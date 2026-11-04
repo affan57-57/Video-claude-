@@ -1,0 +1,54 @@
+{
+ "duration": 62.15,
+ "segments": [
+  {
+   "src_start": 16.29,
+   "src_end": 18.8,
+   "out_start": 0.0,
+   "out_end": 2.51,
+   "label": "HOOK: bau dia macam perfume mewah"
+  },
+  {
+   "src_start": 0.18,
+   "src_end": 6.9,
+   "out_start": 2.51,
+   "out_end": 9.23,
+   "label": "Biasanya mandi sabun gel / sabun buku... yang ni keluar foaming"
+  },
+  {
+   "src_start": 11.22,
+   "src_end": 15.75,
+   "out_start": 9.23,
+   "out_end": 13.76,
+   "label": "Bukan sahaja berbuih lembut... gebu-gebu"
+  },
+  {
+   "src_start": 18.8,
+   "src_end": 29.77,
+   "out_start": 13.76,
+   "out_end": 24.73,
+   "label": "Keistimewaan: foaming + wangian ala perfume, tekan je pam"
+  },
+  {
+   "src_start": 30.95,
+   "src_end": 34.4,
+   "out_start": 24.73,
+   "out_end": 28.18,
+   "label": "Dua pilihan wangian: Woman Glory"
+  },
+  {
+   "src_start": 35.46,
+   "src_end": 66.2,
+   "out_start": 28.18,
+   "out_end": 58.92,
+   "label": "Noce, floral vs fruity, tanpa paraben, ujian, CTA"
+  },
+  {
+   "src_start": 67.45,
+   "src_end": 70.68,
+   "out_start": 58.92,
+   "out_end": 62.15,
+   "label": "Pilih wangian favourite, cepat check out"
+  }
+ ]
+}

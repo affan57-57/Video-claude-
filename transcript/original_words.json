@@ -1,0 +1,1311 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.78,
+  "text": " Biasanya kita mandi sabun keluar gel",
+  "words": [
+   {
+    "w": " Biasanya",
+    "s": 0.0,
+    "e": 0.84
+   },
+   {
+    "w": " kita",
+    "s": 0.84,
+    "e": 1.12
+   },
+   {
+    "w": " mandi",
+    "s": 1.12,
+    "e": 1.58
+   },
+   {
+    "w": " sabun",
+    "s": 1.58,
+    "e": 2.1
+   },
+   {
+    "w": " keluar",
+    "s": 2.1,
+    "e": 2.4
+   },
+   {
+    "w": " gel",
+    "s": 2.4,
+    "e": 2.78
+   }
+  ]
+ },
+ {
+  "start": 2.78,
+  "end": 3.9,
+  "text": " Ataupun sabun buku",
+  "words": [
+   {
+    "w": " Ataupun",
+    "s": 2.78,
+    "e": 3.14
+   },
+   {
+    "w": " sabun",
+    "s": 3.14,
+    "e": 3.54
+   },
+   {
+    "w": " buku",
+    "s": 3.54,
+    "e": 3.9
+   }
+  ]
+ },
+ {
+  "start": 3.9,
+  "end": 4.98,
+  "text": " Tapi yang ni",
+  "words": [
+   {
+    "w": " Tapi",
+    "s": 3.9,
+    "e": 4.52
+   },
+   {
+    "w": " yang",
+    "s": 4.52,
+    "e": 4.74
+   },
+   {
+    "w": " ni",
+    "s": 4.74,
+    "e": 4.98
+   }
+  ]
+ },
+ {
+  "start": 4.98,
+  "end": 6.9,
+  "text": " Kita buat keluar foaming",
+  "words": [
+   {
+    "w": " Kita",
+    "s": 4.98,
+    "e": 5.48
+   },
+   {
+    "w": " buat",
+    "s": 5.48,
+    "e": 5.76
+   },
+   {
+    "w": " keluar",
+    "s": 5.76,
+    "e": 6.28
+   },
+   {
+    "w": " foaming",
+    "s": 6.28,
+    "e": 6.9
+   }
+  ]
+ },
+ {
+  "start": 6.9,
+  "end": 8.04,
+  "text": " Keluar foaming",
+  "words": [
+   {
+    "w": " Keluar",
+    "s": 6.9,
+    "e": 7.62
+   },
+   {
+    "w": " foaming",
+    "s": 7.62,
+    "e": 8.04
+   }
+  ]
+ },
+ {
+  "start": 8.04,
+  "end": 9.3,
+  "text": " So foaming ni",
+  "words": [
+   {
+    "w": " So",
+    "s": 8.04,
+    "e": 8.56
+   },
+   {
+    "w": " foaming",
+    "s": 8.56,
+    "e": 9.06
+   },
+   {
+    "w": " ni",
+    "s": 9.06,
+    "e": 9.3
+   }
+  ]
+ },
+ {
+  "start": 9.3,
+  "end": 11.1,
+  "text": " Kalau aku nak kenal kakak korang",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 9.3,
+    "e": 9.86
+   },
+   {
+    "w": " aku",
+    "s": 9.86,
+    "e": 10.04
+   },
+   {
+    "w": " nak",
+    "s": 10.04,
+    "e": 10.12
+   },
+   {
+    "w": " kenal",
+    "s": 10.12,
+    "e": 10.46
+   },
+   {
+    "w": " kakak",
+    "s": 10.46,
+    "e": 10.72
+   },
+   {
+    "w": " korang",
+    "s": 10.72,
+    "e": 11.1
+   }
+  ]
+ },
+ {
+  "start": 11.1,
+  "end": 12.96,
+  "text": " Dia bukan sahaja berbuih yang lembut",
+  "words": [
+   {
+    "w": " Dia",
+    "s": 11.1,
+    "e": 11.46
+   },
+   {
+    "w": " bukan",
+    "s": 11.46,
+    "e": 11.78
+   },
+   {
+    "w": " sahaja",
+    "s": 11.78,
+    "e": 12.14
+   },
+   {
+    "w": " berbuih",
+    "s": 12.14,
+    "e": 12.6
+   },
+   {
+    "w": " yang",
+    "s": 12.6,
+    "e": 12.68
+   },
+   {
+    "w": " lembut",
+    "s": 12.68,
+    "e": 12.96
+   }
+  ]
+ },
+ {
+  "start": 12.96,
+  "end": 14.58,
+  "text": " Buih dia tu kalau korang pegang",
+  "words": [
+   {
+    "w": " Buih",
+    "s": 12.96,
+    "e": 13.4
+   },
+   {
+    "w": " dia",
+    "s": 13.4,
+    "e": 13.54
+   },
+   {
+    "w": " tu",
+    "s": 13.54,
+    "e": 13.7
+   },
+   {
+    "w": " kalau",
+    "s": 13.7,
+    "e": 13.88
+   },
+   {
+    "w": " korang",
+    "s": 13.88,
+    "e": 14.14
+   },
+   {
+    "w": " pegang",
+    "s": 14.14,
+    "e": 14.58
+   }
+  ]
+ },
+ {
+  "start": 14.58,
+  "end": 15.64,
+  "text": " Gebu-gebu",
+  "words": [
+   {
+    "w": " Gebu",
+    "s": 14.58,
+    "e": 15.2
+   },
+   {
+    "w": "-gebu",
+    "s": 15.2,
+    "e": 15.64
+   }
+  ]
+ },
+ {
+  "start": 15.64,
+  "end": 17.28,
+  "text": " Tapi bau dia tu pun",
+  "words": [
+   {
+    "w": " Tapi",
+    "s": 15.64,
+    "e": 16.1
+   },
+   {
+    "w": " bau",
+    "s": 16.1,
+    "e": 16.54
+   },
+   {
+    "w": " dia",
+    "s": 16.54,
+    "e": 16.78
+   },
+   {
+    "w": " tu",
+    "s": 16.78,
+    "e": 16.98
+   },
+   {
+    "w": " pun",
+    "s": 16.98,
+    "e": 17.28
+   }
+  ]
+ },
+ {
+  "start": 17.28,
+  "end": 18.72,
+  "text": " Macam perfume mewah",
+  "words": [
+   {
+    "w": " Macam",
+    "s": 17.28,
+    "e": 18.1
+   },
+   {
+    "w": " perfume",
+    "s": 18.1,
+    "e": 18.4
+   },
+   {
+    "w": " mewah",
+    "s": 18.4,
+    "e": 18.72
+   }
+  ]
+ },
+ {
+  "start": 18.72,
+  "end": 20.18,
+  "text": " Antara keistimewaan kami",
+  "words": [
+   {
+    "w": " Antara",
+    "s": 18.72,
+    "e": 19.26
+   },
+   {
+    "w": " keistimewaan",
+    "s": 19.26,
+    "e": 19.86
+   },
+   {
+    "w": " kami",
+    "s": 19.86,
+    "e": 20.18
+   }
+  ]
+ },
+ {
+  "start": 20.18,
+  "end": 21.1,
+  "text": " Body wash ni",
+  "words": [
+   {
+    "w": " Body",
+    "s": 20.18,
+    "e": 20.56
+   },
+   {
+    "w": " wash",
+    "s": 20.56,
+    "e": 20.88
+   },
+   {
+    "w": " ni",
+    "s": 20.88,
+    "e": 21.1
+   }
+  ]
+ },
+ {
+  "start": 21.1,
+  "end": 21.68,
+  "text": " Shower ni",
+  "words": [
+   {
+    "w": " Shower",
+    "s": 21.1,
+    "e": 21.5
+   },
+   {
+    "w": " ni",
+    "s": 21.5,
+    "e": 21.68
+   }
+  ]
+ },
+ {
+  "start": 21.68,
+  "end": 24.08,
+  "text": " Jenis foaming dengan wangian ala perfume",
+  "words": [
+   {
+    "w": " Jenis",
+    "s": 21.68,
+    "e": 22.2
+   },
+   {
+    "w": " foaming",
+    "s": 22.2,
+    "e": 22.58
+   },
+   {
+    "w": " dengan",
+    "s": 22.58,
+    "e": 22.92
+   },
+   {
+    "w": " wangian",
+    "s": 22.92,
+    "e": 23.44
+   },
+   {
+    "w": " ala",
+    "s": 23.44,
+    "e": 23.72
+   },
+   {
+    "w": " perfume",
+    "s": 23.72,
+    "e": 24.08
+   }
+  ]
+ },
+ {
+  "start": 24.08,
+  "end": 25.42,
+  "text": " Tekan jepang",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 24.08,
+    "e": 24.9
+   },
+   {
+    "w": " jepang",
+    "s": 24.9,
+    "e": 25.42
+   }
+  ]
+ },
+ {
+  "start": 25.42,
+  "end": 27.02,
+  "text": " Terus keluar buih lembut",
+  "words": [
+   {
+    "w": " Terus",
+    "s": 25.42,
+    "e": 26.16
+   },
+   {
+    "w": " keluar",
+    "s": 26.16,
+    "e": 26.48
+   },
+   {
+    "w": " buih",
+    "s": 26.48,
+    "e": 26.7
+   },
+   {
+    "w": " lembut",
+    "s": 26.7,
+    "e": 27.02
+   }
+  ]
+ },
+ {
+  "start": 27.02,
+  "end": 29.68,
+  "text": " Tak perlu nak berbuih-buihkan sendiri dah",
+  "words": [
+   {
+    "w": " Tak",
+    "s": 27.02,
+    "e": 27.42
+   },
+   {
+    "w": " perlu",
+    "s": 27.42,
+    "e": 27.78
+   },
+   {
+    "w": " nak",
+    "s": 27.78,
+    "e": 27.98
+   },
+   {
+    "w": " berbuih",
+    "s": 27.98,
+    "e": 28.48
+   },
+   {
+    "w": "-buihkan",
+    "s": 28.48,
+    "e": 28.98
+   },
+   {
+    "w": " sendiri",
+    "s": 28.98,
+    "e": 29.4
+   },
+   {
+    "w": " dah",
+    "s": 29.4,
+    "e": 29.68
+   }
+  ]
+ },
+ {
+  "start": 29.68,
+  "end": 30.9,
+  "text": " Tak payah berbuih",
+  "words": [
+   {
+    "w": " Tak",
+    "s": 29.68,
+    "e": 29.92
+   },
+   {
+    "w": " payah",
+    "s": 29.92,
+    "e": 30.22
+   },
+   {
+    "w": " berbuih",
+    "s": 30.22,
+    "e": 30.9
+   }
+  ]
+ },
+ {
+  "start": 30.9,
+  "end": 33.32,
+  "text": " Dan dia ada dua pilihan wangian tau",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 30.9,
+    "e": 31.92
+   },
+   {
+    "w": " dia",
+    "s": 31.92,
+    "e": 32.1
+   },
+   {
+    "w": " ada",
+    "s": 32.1,
+    "e": 32.3
+   },
+   {
+    "w": " dua",
+    "s": 32.3,
+    "e": 32.46
+   },
+   {
+    "w": " pilihan",
+    "s": 32.46,
+    "e": 32.78
+   },
+   {
+    "w": " wangian",
+    "s": 32.78,
+    "e": 33.12
+   },
+   {
+    "w": " tau",
+    "s": 33.12,
+    "e": 33.32
+   }
+  ]
+ },
+ {
+  "start": 33.32,
+  "end": 34.3,
+  "text": " Dia ada woman glory",
+  "words": [
+   {
+    "w": " Dia",
+    "s": 33.32,
+    "e": 33.58
+   },
+   {
+    "w": " ada",
+    "s": 33.58,
+    "e": 33.72
+   },
+   {
+    "w": " woman",
+    "s": 33.72,
+    "e": 33.92
+   },
+   {
+    "w": " glory",
+    "s": 33.92,
+    "e": 34.3
+   }
+  ]
+ },
+ {
+  "start": 34.3,
+  "end": 34.58,
+  "text": " Dan",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 34.3,
+    "e": 34.58
+   }
+  ]
+ },
+ {
+  "start": 35.58,
+  "end": 37.54,
+  "text": " Dia ada bau noce",
+  "words": [
+   {
+    "w": " Dia",
+    "s": 35.58,
+    "e": 36.22
+   },
+   {
+    "w": " ada",
+    "s": 36.22,
+    "e": 36.42
+   },
+   {
+    "w": " bau",
+    "s": 36.42,
+    "e": 36.82
+   },
+   {
+    "w": " noce",
+    "s": 36.82,
+    "e": 37.54
+   }
+  ]
+ },
+ {
+  "start": 37.54,
+  "end": 38.8,
+  "text": " Untuk woman glory",
+  "words": [
+   {
+    "w": " Untuk",
+    "s": 37.54,
+    "e": 38.16
+   },
+   {
+    "w": " woman",
+    "s": 38.16,
+    "e": 38.44
+   },
+   {
+    "w": " glory",
+    "s": 38.44,
+    "e": 38.8
+   }
+  ]
+ },
+ {
+  "start": 38.8,
+  "end": 40.12,
+  "text": " Yang suka bau fresh",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 38.8,
+    "e": 39.26
+   },
+   {
+    "w": " suka",
+    "s": 39.26,
+    "e": 39.5
+   },
+   {
+    "w": " bau",
+    "s": 39.5,
+    "e": 39.76
+   },
+   {
+    "w": " fresh",
+    "s": 39.76,
+    "e": 40.12
+   }
+  ]
+ },
+ {
+  "start": 40.12,
+  "end": 41.62,
+  "text": " Floral dengan feminine",
+  "words": [
+   {
+    "w": " Floral",
+    "s": 40.12,
+    "e": 40.8
+   },
+   {
+    "w": " dengan",
+    "s": 40.8,
+    "e": 41.04
+   },
+   {
+    "w": " feminine",
+    "s": 41.04,
+    "e": 41.62
+   }
+  ]
+ },
+ {
+  "start": 41.62,
+  "end": 43.02,
+  "text": " Kalau noce pula",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 41.62,
+    "e": 42.38
+   },
+   {
+    "w": " noce",
+    "s": 42.38,
+    "e": 42.78
+   },
+   {
+    "w": " pula",
+    "s": 42.78,
+    "e": 43.02
+   }
+  ]
+ },
+ {
+  "start": 43.02,
+  "end": 44.9,
+  "text": " Untuk yang suka bau sweet dengan fruity",
+  "words": [
+   {
+    "w": " Untuk",
+    "s": 43.02,
+    "e": 43.32
+   },
+   {
+    "w": " yang",
+    "s": 43.32,
+    "e": 43.42
+   },
+   {
+    "w": " suka",
+    "s": 43.42,
+    "e": 43.68
+   },
+   {
+    "w": " bau",
+    "s": 43.68,
+    "e": 44.0
+   },
+   {
+    "w": " sweet",
+    "s": 44.0,
+    "e": 44.3
+   },
+   {
+    "w": " dengan",
+    "s": 44.3,
+    "e": 44.5
+   },
+   {
+    "w": " fruity",
+    "s": 44.5,
+    "e": 44.9
+   }
+  ]
+ },
+ {
+  "start": 44.9,
+  "end": 45.6,
+  "text": " Lagi satu",
+  "words": [
+   {
+    "w": " Lagi",
+    "s": 44.9,
+    "e": 45.3
+   },
+   {
+    "w": " satu",
+    "s": 45.3,
+    "e": 45.6
+   }
+  ]
+ },
+ {
+  "start": 45.6,
+  "end": 47.0,
+  "text": " Formulasi kami ni",
+  "words": [
+   {
+    "w": " Formulasi",
+    "s": 45.6,
+    "e": 46.5
+   },
+   {
+    "w": " kami",
+    "s": 46.5,
+    "e": 46.8
+   },
+   {
+    "w": " ni",
+    "s": 46.8,
+    "e": 47.0
+   }
+  ]
+ },
+ {
+  "start": 47.0,
+  "end": 48.12,
+  "text": " Tanpa ada paraben",
+  "words": [
+   {
+    "w": " Tanpa",
+    "s": 47.0,
+    "e": 47.48
+   },
+   {
+    "w": " ada",
+    "s": 47.48,
+    "e": 47.66
+   },
+   {
+    "w": " paraben",
+    "s": 47.66,
+    "e": 48.12
+   }
+  ]
+ },
+ {
+  "start": 48.12,
+  "end": 49.62,
+  "text": " Tanpa bahan berbahaya",
+  "words": [
+   {
+    "w": " Tanpa",
+    "s": 48.12,
+    "e": 48.74
+   },
+   {
+    "w": " bahan",
+    "s": 48.74,
+    "e": 49.06
+   },
+   {
+    "w": " berbahaya",
+    "s": 49.06,
+    "e": 49.62
+   }
+  ]
+ },
+ {
+  "start": 49.62,
+  "end": 51.06,
+  "text": " Yang dilarang dalam kosmetik",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 49.62,
+    "e": 49.84
+   },
+   {
+    "w": " dilarang",
+    "s": 49.84,
+    "e": 50.32
+   },
+   {
+    "w": " dalam",
+    "s": 50.32,
+    "e": 50.54
+   },
+   {
+    "w": " kosmetik",
+    "s": 50.54,
+    "e": 51.06
+   }
+  ]
+ },
+ {
+  "start": 51.06,
+  "end": 52.98,
+  "text": " Produk juga telah menjalani",
+  "words": [
+   {
+    "w": " Produk",
+    "s": 51.06,
+    "e": 51.82
+   },
+   {
+    "w": " juga",
+    "s": 51.82,
+    "e": 52.12
+   },
+   {
+    "w": " telah",
+    "s": 52.12,
+    "e": 52.5
+   },
+   {
+    "w": " menjalani",
+    "s": 52.5,
+    "e": 52.98
+   }
+  ]
+ },
+ {
+  "start": 52.98,
+  "end": 54.5,
+  "text": " Ujian makmadi keada bayu",
+  "words": [
+   {
+    "w": " Ujian",
+    "s": 52.98,
+    "e": 53.42
+   },
+   {
+    "w": " makmadi",
+    "s": 53.42,
+    "e": 53.86
+   },
+   {
+    "w": " keada",
+    "s": 53.86,
+    "e": 54.22
+   },
+   {
+    "w": " bayu",
+    "s": 54.22,
+    "e": 54.5
+   }
+  ]
+ },
+ {
+  "start": 54.5,
+  "end": 56.06,
+  "text": " Jadi kalau korang rasa nak rasa",
+  "words": [
+   {
+    "w": " Jadi",
+    "s": 54.5,
+    "e": 54.94
+   },
+   {
+    "w": " kalau",
+    "s": 54.94,
+    "e": 55.16
+   },
+   {
+    "w": " korang",
+    "s": 55.16,
+    "e": 55.42
+   },
+   {
+    "w": " rasa",
+    "s": 55.42,
+    "e": 55.64
+   },
+   {
+    "w": " nak",
+    "s": 55.64,
+    "e": 55.78
+   },
+   {
+    "w": " rasa",
+    "s": 55.78,
+    "e": 56.06
+   }
+  ]
+ },
+ {
+  "start": 56.06,
+  "end": 58.02,
+  "text": " Pengalaman mandian yang lebih istimewa",
+  "words": [
+   {
+    "w": " Pengalaman",
+    "s": 56.06,
+    "e": 56.58
+   },
+   {
+    "w": " mandian",
+    "s": 56.58,
+    "e": 56.98
+   },
+   {
+    "w": " yang",
+    "s": 56.98,
+    "e": 57.12
+   },
+   {
+    "w": " lebih",
+    "s": 57.12,
+    "e": 57.34
+   },
+   {
+    "w": " istimewa",
+    "s": 57.34,
+    "e": 58.02
+   }
+  ]
+ },
+ {
+  "start": 58.02,
+  "end": 59.16,
+  "text": " Korang kena",
+  "words": [
+   {
+    "w": " Korang",
+    "s": 58.02,
+    "e": 58.56
+   },
+   {
+    "w": " kena",
+    "s": 58.56,
+    "e": 59.16
+   }
+  ]
+ },
+ {
+  "start": 59.16,
+  "end": 59.66,
+  "text": " Try fresh",
+  "words": [
+   {
+    "w": " Try",
+    "s": 59.16,
+    "e": 59.42
+   },
+   {
+    "w": " fresh",
+    "s": 59.42,
+    "e": 59.66
+   }
+  ]
+ },
+ {
+  "start": 59.66,
+  "end": 60.16,
+  "text": " Kurua body",
+  "words": [
+   {
+    "w": " Kurua",
+    "s": 59.66,
+    "e": 59.98
+   },
+   {
+    "w": " body",
+    "s": 59.98,
+    "e": 60.16
+   }
+  ]
+ },
+ {
+  "start": 60.16,
+  "end": 61.28,
+  "text": " Tekan beg kuning",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 60.16,
+    "e": 60.8
+   },
+   {
+    "w": " beg",
+    "s": 60.8,
+    "e": 60.92
+   },
+   {
+    "w": " kuning",
+    "s": 60.92,
+    "e": 61.28
+   }
+  ]
+ },
+ {
+  "start": 61.28,
+  "end": 62.18,
+  "text": " Dan check out sekarang",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 61.28,
+    "e": 61.48
+   },
+   {
+    "w": " check",
+    "s": 61.48,
+    "e": 61.74
+   },
+   {
+    "w": " out",
+    "s": 61.74,
+    "e": 61.9
+   },
+   {
+    "w": " sekarang",
+    "s": 61.9,
+    "e": 62.18
+   }
+  ]
+ },
+ {
+  "start": 62.18,
+  "end": 63.64,
+  "text": " Sebab produk kami",
+  "words": [
+   {
+    "w": " Sebab",
+    "s": 62.18,
+    "e": 62.92
+   },
+   {
+    "w": " produk",
+    "s": 62.92,
+    "e": 63.26
+   },
+   {
+    "w": " kami",
+    "s": 63.26,
+    "e": 63.64
+   }
+  ]
+ },
+ {
+  "start": 63.64,
+  "end": 65.34,
+  "text": " Dah sangat-sangat terhad",
+  "words": [
+   {
+    "w": " Dah",
+    "s": 63.64,
+    "e": 64.18
+   },
+   {
+    "w": " sangat",
+    "s": 64.18,
+    "e": 64.64
+   },
+   {
+    "w": "-sangat",
+    "s": 64.64,
+    "e": 64.94
+   },
+   {
+    "w": " terhad",
+    "s": 64.94,
+    "e": 65.34
+   }
+  ]
+ },
+ {
+  "start": 65.34,
+  "end": 66.1,
+  "text": " Dah tak banyak",
+  "words": [
+   {
+    "w": " Dah",
+    "s": 65.34,
+    "e": 65.56
+   },
+   {
+    "w": " tak",
+    "s": 65.56,
+    "e": 65.78
+   },
+   {
+    "w": " banyak",
+    "s": 65.78,
+    "e": 66.1
+   }
+  ]
+ },
+ {
+  "start": 66.1,
+  "end": 67.46,
+  "text": " Tekan beg kuning sekarang",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 66.1,
+    "e": 66.76
+   },
+   {
+    "w": " beg",
+    "s": 66.76,
+    "e": 66.88
+   },
+   {
+    "w": " kuning",
+    "s": 66.88,
+    "e": 67.1
+   },
+   {
+    "w": " sekarang",
+    "s": 67.1,
+    "e": 67.46
+   }
+  ]
+ },
+ {
+  "start": 67.46,
+  "end": 69.14,
+  "text": " Pilih wangian mana",
+  "words": [
+   {
+    "w": " Pilih",
+    "s": 67.46,
+    "e": 68.3
+   },
+   {
+    "w": " wangian",
+    "s": 68.3,
+    "e": 68.68
+   },
+   {
+    "w": " mana",
+    "s": 68.68,
+    "e": 69.14
+   }
+  ]
+ },
+ {
+  "start": 69.14,
+  "end": 69.78,
+  "text": " Fabric korang",
+  "words": [
+   {
+    "w": " Fabric",
+    "s": 69.14,
+    "e": 69.48
+   },
+   {
+    "w": " korang",
+    "s": 69.48,
+    "e": 69.78
+   }
+  ]
+ },
+ {
+  "start": 69.78,
+  "end": 70.66,
+  "text": " Cepat check out",
+  "words": [
+   {
+    "w": " Cepat",
+    "s": 69.78,
+    "e": 70.22
+   },
+   {
+    "w": " check",
+    "s": 70.22,
+    "e": 70.4
+   },
+   {
+    "w": " out",
+    "s": 70.4,
+    "e": 70.66
+   }
+  ]
+ },
+ {
+  "start": 70.66,
+  "end": 70.94,
+  "text": " Tidak",
+  "words": [
+   {
+    "w": " Tidak",
+    "s": 70.66,
+    "e": 70.94
+   }
+  ]
+ },
+ {
+  "start": 70.94,
+  "end": 72.18,
+  "text": " Terima kasih kerana menonton!",
+  "words": [
+   {
+    "w": " Terima",
+    "s": 70.94,
+    "e": 71.22
+   },
+   {
+    "w": " kasih",
+    "s": 71.22,
+    "e": 72.18
+   },
+   {
+    "w": " kerana",
+    "s": 72.18,
+    "e": 72.18
+   },
+   {
+    "w": " menonton!",
+    "s": 72.18,
+    "e": 72.18
+   }
+  ]
+ }
+]
