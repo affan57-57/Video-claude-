@@ -1,5 +1,6 @@
 """Cut awkward pauses/repeats from the source voice and make it sound studio-clean.
-Usage: python3 -I edit_audio.py SOURCE.mp4 RNNOISE_MODEL OUT_DIR
+Usage: python3 -I edit_audio.py SOURCE.mp4 RNNOISE_MODEL OUT_DIR [CUTS.json]
+  CUTS.json (optional): {"keep": [[start, end, label], ...], "keep_gap": 0.08}
 Writes OUT_DIR/voice.wav (48k mono, enhanced, -14 LUFS), OUT_DIR/edl.json and
 OUT_DIR/remap.json (pauses removed by tightening, in the pre-tightening timeline)."""
 import json, subprocess, sys, wave
@@ -22,6 +23,13 @@ KEEP = [
     # cut 66.10-67.46 repeated "tekan beg kuning sekarang"
     (67.46, 70.66, "Pilih wangian favourite, cepat check out"),
 ]
+
+if len(sys.argv) > 4:
+    _cfg = json.load(open(sys.argv[4]))
+    KEEP = [tuple(k) for k in _cfg["keep"]]
+    _KEEP_GAP = _cfg.get("keep_gap", 0.08)
+else:
+    _KEEP_GAP = 0.08
 
 SR = 48000
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-ac", "1", "-ar", str(SR),
@@ -105,7 +113,7 @@ while i < len(quiet):
         i = j
     else:
         i += 1
-KEEP_GAP = 0.08
+KEEP_GAP = _KEEP_GAP
 pieces, removed, pos = [], [], 0.0
 xf = int(0.01 * SR)
 for a0, a1 in gaps:
