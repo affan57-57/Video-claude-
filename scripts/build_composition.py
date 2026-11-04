@@ -1,6 +1,7 @@
 """Build hf/project/index.html (HyperFrames composition) for the body-wash awareness edit.
 
-Usage: python3 -I build_composition.py PROJECT_DIR [--final]
+Usage: python3 -I build_composition.py PROJECT_DIR [--final] [--4k]
+--4k points every clip/photo at the AI-upscaled 2160x3840 assets (assets/broll4k, assets/product4k).
 Reads PROJECT_DIR/assets/audio/words.json (word timestamps of the edited voice track).
 Without --final a small PREVIEW tag is drawn on the frame.
 """
@@ -8,6 +9,7 @@ import json, random, re, sys
 
 proj = sys.argv[1]
 FINAL = "--final" in sys.argv
+UHD = "--4k" in sys.argv
 
 # ------------------------------------------------------------------ config
 BRAND = "FRESCURA BODY"
@@ -389,5 +391,7 @@ tl.seek(0);
 </body>
 </html>
 """
+if UHD:
+    page = page.replace("assets/broll/", "assets/broll4k/").replace("assets/product/", "assets/product4k/")
 open(f"{proj}/index.html", "w").write(page)
 print(f"scenes ok, {len(chunks)} caption chunks, {len(js)} tweens")
