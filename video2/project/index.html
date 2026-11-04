@@ -162,7 +162,7 @@ video.leak { z-index: 7; mix-blend-mode: screen; opacity: .0; object-fit: cover;
 <img id="ph_diag" class="clip bg" src="assets/product/duo_diag.jpg" data-start="13.560" data-duration="1.440" style="object-position:50% 50%" alt="">
 <div id="s5" class="clip " data-start="13.560" data-duration="1.440" style=""><div class="shade full" style="background:rgba(8,6,4,.62)"></div><div id="sw5" class="sweep"></div><div class="lockup" style="top:820px"><div class="brand gold"><span id="l5a" class="rv "><span>FRESCURA</span></span></div><div class="sub"><span id="l5b" class="rv "><span>GENTLE FOAMING BODY SHOWER</span></span></div></div></div>
 <video id="v_press" class="clip bg" src="assets/broll/pump_press.mp4" data-start="15.000" data-duration="5.300" data-media-start="0" muted playsinline style=""></video>
-<div id="s6" class="clip " data-start="15.000" data-duration="5.300" style=""><div class="shade" style="opacity:.6"></div><div id="c6a" class="callout" style="left:620px;top:520px"><div class="dot"></div><div class="ln"></div><div class="tx">FOAMING<small>pump</small></div></div><div id="c6b" class="callout" style="left:110px;top:1060px"><div class="dot"></div><div class="ln"></div><div class="tx">BUIH LEMBUT<small>terus dari botol</small></div></div></div>
+<div id="s6" class="clip " data-start="15.000" data-duration="5.300" style=""><div class="shade" style="opacity:.6"></div><div id="c6a" class="callout" style="left:610px;top:858px"><div class="dot"></div><div class="ln"></div><div class="tx">FOAMING<small>pump</small></div></div><div id="c6b" class="callout" style="left:770px;top:1180px"><div class="tx">BUIH<br>LEMBUT<small>terus dari botol</small></div></div></div>
 <video id="v_foam" class="clip bg" src="assets/broll/pump_foam.mp4" data-start="20.300" data-duration="2.400" data-media-start="0" muted playsinline style=""></video>
 <video id="v_show" class="clip bg" src="assets/broll/shower.mp4" data-start="22.700" data-duration="2.940" data-media-start="0" muted playsinline style=""></video>
 <div id="s7" class="clip " data-start="20.300" data-duration="5.340" style=""><div class="shade full"></div><div class="blist"><div class="kick" id="k7" style="margin-bottom:20px">LEPAS MANDI</div><div class="bi" id="b7a"><b>01</b><span>BERSIH</span><em>badan segar</em></div><div class="bi" id="b7b"><b>02</b><span>LEMBUT</span><em>kulit terasa halus</em></div><div class="bi" id="b7c"><b>03</b><span>SEGAR</span><em>sepanjang hari</em></div></div></div>
@@ -291,9 +291,7 @@ tl.fromTo("#v_press",{opacity:0},{opacity:1,duration:0.35},15.0);
 tl.fromTo("#c6a .dot",{scale:0},{scale:1,duration:0.4,ease:"back.out(3)"},16.66);
 tl.fromTo("#c6a .ln",{scaleX:0},{scaleX:1,duration:0.6,ease:"expo.out"},16.76);
 tl.fromTo("#c6a .tx",{opacity:0,y:0},{opacity:1,y:0,duration:0.6,ease:"power3.out"},16.96);
-tl.fromTo("#c6b .dot",{scale:0},{scale:1,duration:0.4,ease:"back.out(3)"},18.22);
-tl.fromTo("#c6b .ln",{scaleX:0},{scaleX:1,duration:0.6,ease:"expo.out"},18.32);
-tl.fromTo("#c6b .tx",{opacity:0,y:0},{opacity:1,y:0,duration:0.6,ease:"power3.out"},18.52);
+tl.fromTo("#c6b .tx",{opacity:0,y:20},{opacity:1,y:0,duration:0.8,ease:"power3.out"},18.22);
 tl.fromTo("#v_foam",{scale:1.1},{scale:1.0,duration:2.40,ease:"power1.out"},20.3);
 tl.fromTo("#v_foam",{opacity:0},{opacity:1,duration:0.35},20.3);
 tl.fromTo("#v_show",{scale:1.12},{scale:1.0,duration:2.94,ease:"power1.out"},22.7);

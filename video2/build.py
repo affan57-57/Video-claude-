@@ -160,14 +160,13 @@ reveal("#l5a", 13.65, 0.8); reveal("#l5b", 14.0, 0.7)
 # S6 15.00-20.30 real pump press, background replaced
 video("v_press", "assets/broll/pump_press.mp4", 15.0, 5.3, 1.08, 1.0)
 clip("s6", 15.0, 5.3, '<div class="shade" style="opacity:.6"></div>'
-     '<div id="c6a" class="callout" style="left:620px;top:520px"><div class="dot"></div><div class="ln"></div>'
+     '<div id="c6a" class="callout" style="left:610px;top:858px"><div class="dot"></div><div class="ln"></div>'
      '<div class="tx">FOAMING<small>pump</small></div></div>'
-     '<div id="c6b" class="callout" style="left:110px;top:1060px"><div class="dot"></div><div class="ln"></div>'
-     '<div class="tx">BUIH LEMBUT<small>terus dari botol</small></div></div>')
-for sel, t0 in (("#c6a", 16.66), ("#c6b", 18.22)):
-    A(f'tl.fromTo("{sel} .dot",{{scale:0}},{{scale:1,duration:0.4,ease:"back.out(3)"}},{t0});')
-    A(f'tl.fromTo("{sel} .ln",{{scaleX:0}},{{scaleX:1,duration:0.6,ease:"expo.out"}},{t0+0.1:.2f});')
-    fade(f"{sel} .tx", t0 + 0.3, 0.6, 0)
+     '<div id="c6b" class="callout" style="left:770px;top:1180px"><div class="tx">BUIH<br>LEMBUT<small>terus dari botol</small></div></div>')
+A('tl.fromTo("#c6a .dot",{scale:0},{scale:1,duration:0.4,ease:"back.out(3)"},16.66);')
+A('tl.fromTo("#c6a .ln",{scaleX:0},{scaleX:1,duration:0.6,ease:"expo.out"},16.76);')
+fade("#c6a .tx", 16.96, 0.6, 0)
+fade("#c6b .tx", 18.22, 0.8, 20)
 
 # S7 20.32-25.62 foam close-up -> water; benefit list
 video("v_foam", "assets/broll/pump_foam.mp4", 20.30, 2.4, 1.1, 1.0)
