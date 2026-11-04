@@ -199,7 +199,7 @@ reveal("#t9a", 28.45, 0.5); reveal("#t9b", 28.72, 0.6)
 video("v_rose", "assets/broll/rose.mp4", 29.54, 5.94)
 clip("s10", 29.54, 5.94, '<div class="shade full"></div>'
      '<div class="stitle"><div class="n">I · SIGNATURE</div>'
-     f'<div class="t">{R("t10a","Woman")}<br>{R("t10b","Glory")}</div><div class="s">{R("t10c","Bombshell")}</div></div>'
+     f'<div class="t">{R("t10a","Woman")}<br>{R("t10b","Glory")}</div><div class="s">{R("t10c","by Bombshell")}</div></div>'
      '<div id="cg" class="card" style="left:640px;top:520px;width:360px;height:919px"><img src="assets/product/glory_card.jpg" alt=""></div>'
      '<div class="notes"><div class="note" id="n10a">FRESH</div><div class="note" id="n10b">FLORAL</div>'
      '<div class="note" id="n10c">FEMININE</div></div>')
@@ -212,7 +212,7 @@ for sel, t0 in (("#n10a", 32.98), ("#n10b", 33.70), ("#n10c", 34.42)):
 video("v_stars", "assets/broll/stars.mp4", 35.48, 5.96)
 clip("s11", 35.48, 5.96, '<div class="shade full"></div>'
      '<div class="stitle"><div class="n">II · SIGNATURE</div>'
-     f'<div class="t">{R("t11a","Noche")}</div><div class="s">{R("t11b","Midnight Fantasy")}</div></div>'
+     f'<div class="t">{R("t11a","Noche")}</div><div class="s">{R("t11b","by Midnight Fantasy")}</div></div>'
      '<div id="cn" class="card" style="left:640px;top:520px;width:350px;height:923px"><img src="assets/product/noche_card.jpg" alt=""></div>'
      '<div class="notes" style="top:760px"><div class="note" id="n11a">SWEET</div><div class="note" id="n11b">FRUITY</div>'
      '<div class="note" id="n11c">SEDUCTIVE</div></div>')

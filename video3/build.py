@@ -168,7 +168,7 @@ html[-1] = html[-1].replace('<video id="v_g"', '<img id="v_g"').replace('data-me
 vid("v_rose", "assets/broll/rose.mp4", 20.80, 3.68, (90, 420, 380, 380), cls="circle")
 clip("s8", 20.80, 3.68, f'<div class="t kick" style="top:300px">{R("g0","No. 01")}</div>'
      f'<div class="t" style="top:880px;font:300 96px/1 Montserrat;letter-spacing:-1px">{R("g1","WOMAN")}<br>{R("g2","GLORY")}</div>'
-     f'<div class="t serif-it accent" style="top:1090px;font-size:60px">{R("g3","Bombshell")}</div>'
+     f'<div class="t serif-it accent" style="top:1090px;font-size:60px">{R("g3","by Bombshell")}</div>'
      '<div class="t" style="top:1220px;right:auto;width:480px"><div class="chip" id="g4"><i></i>FRESH</div><div class="chip" id="g5"><i></i>FLORAL</div></div>')
 rv("#g0", 20.85); rv("#g1", 20.84); rv("#g2", 21.1); rv("#g3", 21.5); fade("#g4", 23.14, 0.5, 0, -30); fade("#g5", 23.76, 0.5, 0, -30)
 
@@ -179,9 +179,9 @@ html[-1] = html[-1].replace('<video id="v_n"', '<img id="v_n"').replace('data-me
 vid("v_star", "assets/broll/stars.mp4", 24.48, 3.42, (90, 420, 380, 380), cls="circle")
 clip("s9", 24.48, 3.42, f'<div class="t kick" style="top:300px">{R("n0","No. 02")}</div>'
      f'<div class="t" style="top:880px;font:300 96px/1 Montserrat;letter-spacing:-1px">{R("n1","NOCHE")}</div>'
-     f'<div class="t serif-it" style="top:990px;font-size:60px;color:var(--violet)">{R("n2","Midnight Fantasy")}</div>'
+     f'<div class="t serif-it" style="top:990px;right:auto;width:450px;font-size:48px;line-height:1.15;color:var(--violet)">{R("n2","by Midnight")}<br>{R("n2b","Fantasy")}</div>'
      '<div class="t" style="top:1220px;right:auto;width:480px"><div class="chip v" id="n3"><i></i>SWEET</div><div class="chip v" id="n4"><i></i>FRUITY</div></div>')
-rv("#n0", 24.5); rv("#n1", 24.56); rv("#n2", 24.95); fade("#n3", 26.56, 0.5, 0, -30); fade("#n4", 27.14, 0.5, 0, -30)
+rv("#n0", 24.5); rv("#n1", 24.56); rv("#n2", 24.95); rv("#n2b", 25.1); fade("#n3", 26.56, 0.5, 0, -30); fade("#n4", 27.14, 0.5, 0, -30)
 
 # ---- S10 27.90-31.70: choose your favourite (selection UI on the real photo)
 full("ph_sel", "assets/product/duo_marble.jpg", 27.90, 3.8, 1.06, 1.0, tag="img")
