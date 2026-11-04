@@ -1,0 +1,237 @@
+[
+{
+"t": 0.0,
+"sfx": "pop",
+"gain": 0.35
+},
+{
+"t": 0.1,
+"sfx": "tick",
+"gain": 0.4
+},
+{
+"t": 1.9,
+"sfx": "swoosh",
+"gain": 0.55
+},
+{
+"t": 2.24,
+"sfx": "tick",
+"gain": 0.5
+},
+{
+"t": 2.52,
+"sfx": "boom",
+"gain": 0.6
+},
+{
+"t": 2.62,
+"sfx": "pop",
+"gain": 0.45
+},
+{
+"t": 2.92,
+"sfx": "tick",
+"gain": 0.45
+},
+{
+"t": 3.34,
+"sfx": "tick",
+"gain": 0.45
+},
+{
+"t": 3.88,
+"sfx": "swoosh",
+"gain": 0.5
+},
+{
+"t": 4.3,
+"sfx": "chime",
+"gain": 0.4
+},
+{
+"t": 5.78,
+"sfx": "swoosh",
+"gain": 0.45
+},
+{
+"t": 6.32,
+"sfx": "tick",
+"gain": 0.5
+},
+{
+"t": 6.75,
+"sfx": "click",
+"gain": 0.6
+},
+{
+"t": 7.9,
+"sfx": "tick",
+"gain": 0.45
+},
+{
+"t": 8.7,
+"sfx": "click",
+"gain": 0.6
+},
+{
+"t": 8.85,
+"sfx": "click",
+"gain": 0.5
+},
+{
+"t": 9.16,
+"sfx": "tick",
+"gain": 0.4
+},
+{
+"t": 10.45,
+"sfx": "swoosh",
+"gain": 0.5
+},
+{
+"t": 10.9,
+"sfx": "riser",
+"gain": 0.3
+},
+{
+"t": 12.34,
+"sfx": "pop",
+"gain": 0.55
+},
+{
+"t": 12.8,
+"sfx": "chime",
+"gain": 0.45
+},
+{
+"t": 13.85,
+"sfx": "swoosh",
+"gain": 0.5
+},
+{
+"t": 14.0,
+"sfx": "foam",
+"gain": 0.5
+},
+{
+"t": 15.52,
+"sfx": "boom",
+"gain": 0.5
+},
+{
+"t": 16.25,
+"sfx": "swoosh",
+"gain": 0.45
+},
+{
+"t": 16.5,
+"sfx": "click",
+"gain": 0.7
+},
+{
+"t": 16.7,
+"sfx": "foam",
+"gain": 0.55
+},
+{
+"t": 17.72,
+"sfx": "pop",
+"gain": 0.45
+},
+{
+"t": 18.62,
+"sfx": "swoosh",
+"gain": 0.55
+},
+{
+"t": 18.78,
+"sfx": "swoosh",
+"gain": 0.35
+},
+{
+"t": 19.76,
+"sfx": "boom",
+"gain": 0.5
+},
+{
+"t": 20.76,
+"sfx": "swoosh",
+"gain": 0.45
+},
+{
+"t": 23.14,
+"sfx": "tick",
+"gain": 0.5
+},
+{
+"t": 23.76,
+"sfx": "tick",
+"gain": 0.5
+},
+{
+"t": 24.44,
+"sfx": "swoosh",
+"gain": 0.45
+},
+{
+"t": 26.56,
+"sfx": "tick",
+"gain": 0.5
+},
+{
+"t": 27.14,
+"sfx": "tick",
+"gain": 0.5
+},
+{
+"t": 27.86,
+"sfx": "swoosh",
+"gain": 0.5
+},
+{
+"t": 29.6,
+"sfx": "click",
+"gain": 0.6
+},
+{
+"t": 30.45,
+"sfx": "click",
+"gain": 0.6
+},
+{
+"t": 30.5,
+"sfx": "pop",
+"gain": 0.35
+},
+{
+"t": 31.66,
+"sfx": "swoosh",
+"gain": 0.5
+},
+{
+"t": 31.76,
+"sfx": "boom",
+"gain": 0.5
+},
+{
+"t": 32.94,
+"sfx": "tick",
+"gain": 0.4
+},
+{
+"t": 34.44,
+"sfx": "tick",
+"gain": 0.45
+},
+{
+"t": 36.7,
+"sfx": "click",
+"gain": 0.7
+},
+{
+"t": 37.16,
+"sfx": "chime",
+"gain": 0.5
+}
+]

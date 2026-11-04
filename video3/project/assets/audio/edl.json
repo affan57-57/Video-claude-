@@ -1,0 +1,47 @@
+{
+ "duration": 38.78,
+ "segments": [
+  {
+   "src_start": 0.06,
+   "src_end": 3.95,
+   "out_start": 0.0,
+   "out_end": 3.89,
+   "label": "HOOK: kalau beli sabun mandi... ada bahan apa dalam sabun mandi ni"
+  },
+  {
+   "src_start": 12.71,
+   "src_end": 23.06,
+   "out_start": 3.89,
+   "out_end": 14.24,
+   "label": "2nd take: Frescura Body tanpa paraben / bahan berbahaya; ujian makmal"
+  },
+  {
+   "src_start": 23.37,
+   "src_end": 26.44,
+   "out_start": 14.24,
+   "out_end": 17.31,
+   "label": "yang best-nya, jenis foaming; tekan je,"
+  },
+  {
+   "src_start": 27.3,
+   "src_end": 38.21,
+   "out_start": 17.31,
+   "out_end": 28.22,
+   "label": "terus keluar buih lembut; 2 pilihan wangian; Woman Glory / Noche"
+  },
+  {
+   "src_start": 38.75,
+   "src_end": 43.46,
+   "out_start": 28.22,
+   "out_end": 32.93,
+   "label": "jadi kalau nak cuba, pilih perfume kegemaran"
+  },
+  {
+   "src_start": 44.76,
+   "src_end": 50.61,
+   "out_start": 32.93,
+   "out_end": 38.78,
+   "label": "CTA: tekan beg kuning, check out, stok terhad, tekan cepat"
+  }
+ ]
+}
