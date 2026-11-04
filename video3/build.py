@@ -70,13 +70,23 @@ CHECK = '<svg viewBox="0 0 100 100"><path id="ck" d="M22 52 L42 72 L78 32" strok
 BASKET = ('<svg viewBox="0 0 120 110"><path d="M38 40 L52 10 M82 40 L68 10" stroke="#161412" stroke-width="8" stroke-linecap="round"/>'
           '<path d="M8 40 H112 L100 100 H20 Z" fill="#161412"/></svg>')
 
-# ---- S0 0.00-1.94: the only 2 s of face, to camera, holding the bottle
-html.append('<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="0" data-duration="1.94" data-media-start="0" muted playsinline></video>')
-A('tl.fromTo("#v_face",{scale:1.0},{scale:1.08,duration:1.94,ease:"none"},0);')
-clip("s0", 0, 1.94, '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)"></div>'
+# ---- S0 0.00-0.90: the only face shot (under 1 s), to camera, holding the bottle
+FACE_END = 0.90
+html.append(f'<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="0" data-duration="{FACE_END}" data-media-start="0" muted playsinline></video>')
+A(f'tl.fromTo("#v_face",{{scale:1.0}},{{scale:1.05,duration:{FACE_END},ease:"none"}},0);')
+clip("s0", 0, FACE_END, '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)"></div>'
      f'<div class="t c kick" style="top:1330px;color:#fff;letter-spacing:10px">{R("k0","Kalau beli sabun mandi")}</div>'
      '<div class="hair" id="h0" style="left:390px;width:300px;top:1395px;background:#fff"></div>')
 rv("#k0", 0.1); line("#h0", 0.4)
+# ---- S0b 0.90-1.94: "mesti korang nak tahu kan" -- voice continues over motion graphics
+clip("bg0b", FACE_END, 1.94 - FACE_END, '<div class="ivory"></div>', style="z-index:2")
+vid("v_bub0", "assets/broll/pump_foam.mp4", FACE_END, 1.94 - FACE_END, (240, 700, 600, 600), cls="circle", media="1.2")
+clip("s0b", FACE_END, 1.94 - FACE_END, f'<div class="t c kick" style="top:420px">{R("m0","Mesti korang")}</div>'
+     f'<div class="t c big" style="top:480px">{R("m1","nak tahu...")}</div>'
+     '<div class="ring" id="m2" style="left:200px;top:660px;width:680px;height:680px"></div>')
+A(f'tl.fromTo("#bg0b",{{clipPath:"circle(0% at 50% 50%)"}},{{clipPath:"circle(80% at 50% 50%)",duration:0.45,ease:"expo.inOut"}},{FACE_END});')
+rv("#m0", 1.02); rv("#m1", 1.38)
+A('tl.fromTo("#m2",{scale:0.7,opacity:0},{scale:1,opacity:1,duration:0.6,ease:"expo.out"},1.0);')
 
 # ---- S1 1.94-3.92: HOOK question, kinetic type
 clip("s1", 1.94, 1.98, '<div class="ivory"></div>'
@@ -215,8 +225,8 @@ A('tl.fromTo("#sb",{scaleX:1},{scaleX:0.15,duration:2.2,ease:"power2.in"},34.44)
 A('tl.to("#btn",{scale:1.05,duration:0.18,yoyo:true,repeat:5,ease:"sine.inOut"},36.7);')
 
 # ---- persistent: progress bar + wordmark (hidden on the face shot)
-clip("chrome", 1.94, DURATION - 1.94, '<div id="prog"></div>', style="z-index:8")
-A(f'tl.fromTo("#prog",{{scaleX:0}},{{scaleX:1,duration:{DURATION-1.94:.2f},ease:"none"}},1.94);')
+clip("chrome", FACE_END, DURATION - FACE_END, '<div id="prog"></div>', style="z-index:8")
+A(f'tl.fromTo("#prog",{{scaleX:0}},{{scaleX:1,duration:{DURATION-FACE_END:.2f},ease:"none"}},{FACE_END});')
 
 # ---- captions (pill)
 for ci, ch in enumerate(chunks):

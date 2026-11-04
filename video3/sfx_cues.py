@@ -2,7 +2,7 @@
 import json, sys
 c = []
 def a(t, s, g=0.6): c.append({"t": t, "sfx": s, "gain": g})
-a(0.0, "pop", 0.35); a(0.1, "tick", 0.4)
+a(0.0, "pop", 0.35); a(0.1, "tick", 0.4); a(0.86, "swoosh", 0.5); a(1.02, "tick", 0.4); a(1.38, "pop", 0.4)
 a(1.9, "swoosh", 0.55); a(2.24, "tick", 0.5); a(2.52, "boom", 0.6); a(2.62, "pop", 0.45); a(2.92, "tick", 0.45); a(3.34, "tick", 0.45)
 a(3.88, "swoosh", 0.5); a(4.3, "chime", 0.4)
 a(5.78, "swoosh", 0.45); a(6.32, "tick", 0.5); a(6.75, "click", 0.6); a(7.90, "tick", 0.45); a(8.7, "click", 0.6); a(8.85, "click", 0.5); a(9.16, "tick", 0.4)
