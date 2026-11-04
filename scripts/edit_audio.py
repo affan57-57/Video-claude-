@@ -1,6 +1,7 @@
 """Cut awkward pauses/repeats from the source voice and make it sound studio-clean.
 Usage: python3 -I edit_audio.py SOURCE.mp4 RNNOISE_MODEL OUT_DIR
-Writes OUT_DIR/voice.wav (48k mono, enhanced, -14 LUFS) and OUT_DIR/edl.json."""
+Writes OUT_DIR/voice.wav (48k mono, enhanced, -14 LUFS), OUT_DIR/edl.json and
+OUT_DIR/remap.json (pauses removed by tightening, in the pre-tightening timeline)."""
 import json, subprocess, sys, wave
 import numpy as np
 
@@ -46,6 +47,12 @@ for s, e, label in KEEP:
     s2 = snap(s, 0.04 if s == 16.33 else 0.12)
     e2 = snap(e)
     seg = a[int(s2 * SR):int(e2 * SR)].copy()
+    # level-match: bring each kept segment's speech (loudest half of 20 ms frames) to -20 dBFS,
+    # the opening of the recording was ~10 dB quieter than the rest
+    fr = seg[:len(seg) // 960 * 960].reshape(-1, 960)
+    rms = np.sqrt(np.mean(fr ** 2, 1))
+    speech = np.sqrt(np.mean(np.sort(rms)[len(rms) // 2:] ** 2))
+    seg *= min(10 ** (-20 / 20) / (speech + 1e-9), 6.0)
     ramp = np.linspace(0, 1, fade)
     seg[:fade] *= ramp
     seg[-fade:] *= ramp[::-1]
@@ -64,6 +71,7 @@ with wave.open(tmp, "wb") as w:
 # presence, air) -> de-ess -> compression -> level evening -> broadcast loudness.
 chain = ",".join([
     "highpass=f=85",
+    "dynaudnorm=f=150:g=9:p=0.85:m=12:r=0.3",
     f"arnndn=m={model}:mix=0.9",
     "afftdn=nr=10:nf=-40:tn=1",
     "equalizer=f=250:t=q:w=1.2:g=-3",
@@ -78,7 +86,45 @@ chain = ",".join([
     "aresample=48000",
 ])
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-af", chain,
-                "-ar", "48000", "-ac", "1", f"{out}/voice.wav"], check=True)
+                "-ar", "48000", "-ac", "1", f"{out}/voice_enh.wav"], check=True)
+
+# ---- tighten pauses: any gap quieter than -34 dBFS longer than 0.20 s is shrunk to 0.08 s
+with wave.open(f"{out}/voice_enh.wav") as w:
+    v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
+h = SR // 100
+db = np.array([20 * np.log10(np.sqrt(np.mean(v[i:i + h] ** 2)) + 1e-9) for i in range(0, len(v) - h, h)])
+quiet = db < -34
+gaps, i = [], 0
+while i < len(quiet):
+    if quiet[i]:
+        j = i
+        while j < len(quiet) and quiet[j]:
+            j += 1
+        if (j - i) / 100 > 0.20 and i > 0 and j < len(quiet):
+            gaps.append((i / 100, j / 100))
+        i = j
+    else:
+        i += 1
+KEEP_GAP = 0.08
+pieces, removed, pos = [], [], 0.0
+xf = int(0.01 * SR)
+for a0, a1 in gaps:
+    cut0 = a0 + KEEP_GAP / 2
+    cut1 = a1 - KEEP_GAP / 2
+    pieces.append(v[int(pos * SR):int(cut0 * SR)])
+    removed.append([round(cut0, 3), round(cut1, 3)])
+    pos = cut1
+pieces.append(v[int(pos * SR):])
+outv = pieces[0]
+for p_ in pieces[1:]:            # 10 ms crossfade at each join
+    r = np.linspace(0, 1, xf)
+    outv = np.concatenate([outv[:-xf], outv[-xf:] * r[::-1] + p_[:xf] * r, p_[xf:]])
+with wave.open(f"{out}/voice.wav", "wb") as w:
+    w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
+    w.writeframes((np.clip(outv, -1, 1) * 32767).astype(np.int16).tobytes())
+json.dump(removed, open(f"{out}/remap.json", "w"))
+print(f"tightened {len(removed)} pauses, removed {sum(b - a for a, b in removed):.2f}s:",
+      removed)
 json.dump({"duration": round(t, 3), "segments": edl}, open(f"{out}/edl.json", "w"), indent=1)
 print(f"output duration {t:.2f}s")
 for x in edl:

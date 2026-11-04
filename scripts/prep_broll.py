@@ -41,13 +41,8 @@ for name, (f, ss, d, fx, extra) in CLIPS.items():
     run(["-ss", str(ss), "-t", str(d), "-i", f, "-vf", vf, *enc, f"{out}/{name}.mp4"])
     print("ok", name)
 
-# Talking-head hook: the only 2 s of face. Source is mirrored, so flip it.
-run(["-ss", "16.29", "-t", "2.15", "-i", src, "-vf",
+# The only 2 s of face: talking to camera ("Biasanya kita mandi sabun"), src 0.18 -> out 2.51.
+# Source is mirrored (selfie), so flip it so the product label reads correctly.
+run(["-ss", "0.18", "-t", "2.1", "-i", src, "-vf",
      f"hflip,scale=1080:1920:flags=lanczos,setsar=1,{grade}", *enc, f"{out}/face.mp4"])
-# Product placeholder (until real product photos arrive): bottle crop, flipped so label reads right.
-run(["-ss", "0.6", "-t", "3.0", "-i", src, "-vf",
-     f"hflip,crop=340:604:0:372,scale=720:1280:flags=lanczos,setsar=1,{grade}", *enc,
-     f"{out}/product.mp4"])
-run(["-ss", "1.0", "-i", src, "-frames:v", "1", "-vf",
-     "hflip,crop=340:604:0:372,scale=720:1280:flags=lanczos", f"{out}/product.jpg"])
-print("ok face/product")
+print("ok face")

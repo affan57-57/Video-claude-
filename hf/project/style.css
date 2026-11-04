@@ -151,7 +151,7 @@ div.clip { z-index: 5; }
   display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 30px 70px rgba(0,0,0,.5);
   border: 5px solid rgba(255,255,255,.7); }
 .scent.sa { left: 70px; background: linear-gradient(170deg, #ff6b81 0%, #c4122f 60%, #6d0619 100%); }
-.scent.sb { right: 70px; background: linear-gradient(170deg, #ffd1a6 0%, #ff8fb1 55%, #d94a7c 100%); }
+.scent.sb { right: 70px; background: linear-gradient(170deg, #8a6bff 0%, #5b3bb5 55%, #2a1366 100%); }
 .sname { font: 400 92px/0.98 "Anton"; color: #fff; text-transform: uppercase; }
 .snote { margin-top: 18px; font-weight: 800; font-size: 40px; color: rgba(255,255,255,.92); }
 .vs { position: absolute; left: 470px; top: 840px; width: 140px; height: 140px; border-radius: 50%;
@@ -199,3 +199,18 @@ div.clip { z-index: 5; }
 #fA { left: 70px; } #fB { right: 70px; }
 
 #v_phone { filter: blur(7px) brightness(.85); }
+
+/* v2: product photos */
+img.bg { object-fit: cover; z-index: 1; transform-origin: 50% 50%; }
+.shade.top { background: linear-gradient(180deg, rgba(10,0,5,.65) 0%, rgba(10,0,5,.15) 30%, rgba(10,0,5,0) 55%, rgba(10,0,5,.35) 100%); }
+#s0 .shade { background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%); }
+.plabel { position: absolute; top: 300px; width: 360px; text-align: center; padding: 12px 0;
+  border-radius: 18px; font: 400 64px/1 "Anton"; color: #fff; letter-spacing: 1px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.45); border: 4px solid rgba(255,255,255,.85); }
+.plabel.pa { background: linear-gradient(170deg, #ff4d63, #a3001a); }
+.plabel.pb { background: linear-gradient(170deg, #8a6bff, #3b1f8f); }
+#s9 .vs { left: 470px; top: 860px; }
+.notes.left { align-items: flex-start; padding-left: 70px; top: 520px; }
+#pg, #pn { top: 470px; left: auto; right: 60px; margin: 0; transform: none; }
+.ribbon.pk { background: linear-gradient(170deg, #8a6bff, #3b1f8f); }
+#t1 { --bg: rgba(255,255,255,.95); letter-spacing: 4px; }

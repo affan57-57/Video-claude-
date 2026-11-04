@@ -10,22 +10,39 @@ proj = sys.argv[1]
 FINAL = "--final" in sys.argv
 
 # ------------------------------------------------------------------ config
-PRODUCT_IMG = "assets/broll/product.jpg"     # swap for the real product photo(s) later
-PRODUCT_VID = "assets/broll/product.mp4"
+BRAND = "FRESCURA BODY"
+IMG_HERO = "assets/product/hero_foam.jpg"      # bottle + pink foam on hand, dark backdrop
+IMG_DUO_WOOD = "assets/product/duo_wood.jpg"
+IMG_DUO_MARBLE = "assets/product/duo_marble.jpg"
+IMG_DUO_DIAG = "assets/product/duo_diag.jpg"
+IMG_GLORY = "assets/product/glory_card.jpg"
+IMG_NOCHE = "assets/product/noche_card.jpg"
 SCENT_A = "WOMAN GLORY"
-SCENT_B = "NOCE"                               # spelling to confirm with the client
-DURATION = 62.4
+SCENT_B = "NOCHE"
+
+# Scene times below are authored on the voice timeline BEFORE pause-tightening;
+# T() maps them onto the final voice (remap.json = removed intervals).
+REMOVED = json.load(open(f"{proj}/assets/audio/remap.json"))
+def T(x):
+    out = x
+    for a, b in REMOVED:
+        if x >= b: out -= (b - a)
+        elif x > a: out -= (x - a)
+    return round(out, 3)
+DURATION = T(62.4)
 
 words = [w for s in json.load(open(f"{proj}/assets/audio/words.json")) for w in s["words"]]
 
 # Caption text fixes (whisper mishearings) and words to hide until confirmed.
 FIX = {"Atang": "Antara", "perfum": "perfume", "perfum.": "perfume.", "makmadi": "makmal",
-       "favorite": "favourite", "pump,": "pump,", "noce.": "Noce.", "noce": "Noce",
-       "sendirilah.": "sendiri."}
-HIDE = {"keedah", "bayu.", "fresh", "kurwa", "bodi."}   # unclear: lab-test wording + brand name
-HIDE_AT = {(45.0, 47.4), (52.0, 52.95)}               # only hide inside these windows
+       "makmah": "makmal", "favorite": "favourite", "favorite,": "favourite,", "noceh.": "Noche.",
+       "noceh": "Noche", "noce": "Noche", "sendirilah.": "sendiri.", "tak?": "tau.",
+       "fresh": "Frescura", "bodi.": "Body.", "korang?": "korang."}
+HIDE = {"di", "keedah", "bayu.", "kurwa"}   # unclear lab-test wording; "kurwa" folded into brand
+HIDE_AT = {(45.4, 46.9), (51.5, 52.4)}       # only hide inside these windows (final timeline)
+FIX_AT = {"fresh": (51.4, 52.0)}             # "fresh" -> "Frescura" only at the brand mention
 HL = {"perfume", "mewah", "foaming", "lembut", "gebu-gebu", "tekan", "buih", "dua", "woman",
-      "glory", "noce", "fresh", "floral", "feminine", "sweet", "fruity", "paraben", "berbahaya",
+      "glory", "noche", "fresh", "frescura", "body", "floral", "feminine", "sweet", "fruity", "paraben", "berbahaya",
       "ujian", "makmal", "istimewa", "try", "beg", "kuning", "check", "out", "terhad", "banyak",
       "favourite", "cepat", "gel", "buku", "wangian"}
 
@@ -37,7 +54,10 @@ for w in words:
     if hidden(w):
         continue
     txt = w["w"].strip()
-    txt = FIX.get(txt, txt)
+    if txt in FIX_AT and not (FIX_AT[txt][0] <= w["s"] <= FIX_AT[txt][1]):
+        pass
+    else:
+        txt = FIX.get(txt, txt)
     if txt.startswith("-") and clean:          # "gebu" + "-gebu" -> one word
         clean[-1]["t"] += txt; clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
@@ -120,38 +140,41 @@ def rising_bubbles(prefix, start, dur, n, seed, color="rgba(255,255,255,0.55)"):
           f'duration:{speed:.2f},ease:"none"}},{start+delay:.2f});')
     return "".join(out)
 
-def product_card(id_, w, src=PRODUCT_IMG, vid=False):
-    media = (f'<img src="{src}" alt="">' if not vid else
-             f'<video src="{PRODUCT_VID}" muted playsinline></video>')
-    return f'<div id="{id_}" class="prod" style="width:{w}px;height:{w*16/9:.0f}px">{media}</div>'
+def product_card(id_, w, src=IMG_HERO, ratio=16/9):
+    return (f'<div id="{id_}" class="prod" style="width:{w}px;height:{w*ratio:.0f}px">'
+            f'<img src="{src}" alt=""></div>')
+def photo(id_, src, start, dur, z0=1.18, z1=1.04, pos="50% 50%"):
+    """Full-frame product photo with a slow Ken Burns push."""
+    html.append(f'<img id="{id_}" class="clip bg" src="{src}" data-start="{start:.3f}" '
+                f'data-duration="{dur:.3f}" style="object-position:{pos}" alt="">')
+    A(f'tl.fromTo("#{id_}",{{scale:{z0}}},{{scale:{z1},duration:{dur:.2f},ease:"power1.out"}},{start});')
+    flash(start)
 
 # ------------------------------------------------------------------ scenes
-# S0  0.00-2.00  the only 2 s of face: cold-open hook
-video("v_face", "assets/broll/face.mp4", 0.0, 2.0, enter="none", push=False)
-A('tl.fromTo("#v_face",{scale:1.0},{scale:1.16,duration:2,ease:"power1.in"},0);')
-clip("s0", 0.0, 2.0, '<div class="hook"><div id="h0a" class="hk1">SABUN MANDI</div>'
+# S0  0.00-2.51  hook on the hero product shot (no face)
+photo("ph_hero", IMG_HERO, 0.0, 2.51, 1.3, 1.05, "50% 40%")
+clip("s0", 0.0, 2.51, '<div class="shade"></div><div class="hook"><div id="h0a" class="hk1">SABUN MANDI</div>'
      '<div id="h0b" class="hk2">BAU MACAM</div><div id="h0c" class="hk3">PERFUME MEWAH?!</div></div>')
 slam("#h0a", 0.05); slam("#h0b", 0.55); slam("#h0c", 1.05)
 sparkles("sp0_", 1.75, 6, (120, 260, 960, 760), 1)
 
-# S1  2.00-2.64  product reveal
-clip("s1", 2.0, 0.64, '<div class="redbg"></div>' + product_card("p1", 560) +
-     '<div id="t1" class="tag big" style="top:1270px">FOAMING BODY WASH</div>')
-pop("#p1", 2.0, 0.4, -12, 0.4); slide("#t1", 2.12, 0, 60, 0.3)
-flash(2.0, 0.8)
+# S1  2.51-4.46  the only 2 s of face: talking to camera with the bottle
+video("v_face", "assets/broll/face.mp4", 2.51, 1.95, enter="none", push=False)
+A('tl.fromTo("#v_face",{scale:1.12},{scale:1.0,duration:1.95,ease:"power2.out"},2.51);')
+clip("s1", 2.51, 1.95, f'<div id="t1" class="tag" style="top:250px">{BRAND}</div>')
+pop("#t1", 2.7)
 
-# S2  2.64-6.40  "biasanya ... gel ataupun sabun buku"
-video("v_gel", "assets/broll/gel.mp4", 2.64, 2.26)
-clip("s2a", 2.64, 2.26, '<div class="kicker" id="k2">BIASANYA...</div>'
-     '<div id="c2a" class="chip" style="top:620px">SABUN GEL</div>'
+# S2  4.46-6.45  "keluar gel ataupun sabun buku"
+video("v_gel", "assets/broll/gel.mp4", 4.46, 1.0)
+clip("s2a", 4.46, 1.0, '<div id="c2a" class="chip" style="top:620px">SABUN GEL</div>'
      f'<div id="x2a" class="xwrap" style="top:430px">{SVG_X}</div>')
-slide("#k2", 2.7, 0, -60); pop("#c2a", 3.0); pop("#x2a", 4.75, 3, 30, 0.25, "power4.in")
-clip("s2b", 4.90, 1.50, '<div class="creambg"></div><div class="kicker dark" id="k2b">ATAUPUN...</div>'
+pop("#c2a", 4.5); pop("#x2a", 5.0, 3, 30, 0.25, "power4.in")
+clip("s2b", 5.46, 0.99, '<div class="creambg"></div>'
      '<div id="soap" class="soapbar"><div class="soapshine"></div><span>SOAP</span></div>'
      '<div id="c2b" class="chip" style="top:1080px">SABUN BUKU</div>'
      f'<div id="x2b" class="xwrap" style="top:520px">{SVG_X}</div>')
-flash(4.9)
-A('tl.fromTo("#soap",{y:-900,rotation:-30},{y:0,rotation:-8,duration:0.5,ease:"bounce.out"},4.92);')
+flash(5.46)
+A('tl.fromTo("#soap",{y:-900,rotation:-30},{y:0,rotation:-8,duration:0.4,ease:"bounce.out"},5.46);')
 pop("#c2b", 5.56); pop("#x2b", 6.1, 3, 30, 0.25, "power4.in")
 
 # S3  6.40-9.30  "tapi yang ni ... keluar foaming"
@@ -215,32 +238,38 @@ clip("s8", 22.20, 2.90, '<div class="shade"></div>'
      '<div id="t8b" class="tag" style="top:800px">BERBUIH-BUIHKAN SENDIRI</div>')
 pop("#x8", 22.3, 3, 40, 0.25, "power4.in"); slam("#t8a", 22.45); slide("#t8b", 23.0)
 
-# S9  25.10-30.40  two scents
-video("v_rose", "assets/broll/rose.mp4", 25.10, 5.30)
-clip("s9", 25.10, 5.30, '<div class="shade"></div>'
-     '<div id="t9" class="mega" style="top:230px"><span class="num" id="n9">2</span> PILIHAN WANGIAN</div>'
-     f'<div id="cA" class="scent sa"><div class="sname">{SCENT_A}</div><div class="snote">Fresh • Floral</div></div>'
-     '<div id="vs" class="vs">VS</div>'
-     f'<div id="cB" class="scent sb"><div class="sname">{SCENT_B}</div><div class="snote">Sweet • Fruity</div></div>')
+# S9  25.10-30.40  two scents, on the real product photo (Noche left, Woman Glory right)
+photo("ph_duo", IMG_DUO_MARBLE, 25.10, 5.30, 1.12, 1.0, "50% 50%")
+clip("s9", 25.10, 5.30, '<div class="shade top"></div>'
+     '<div id="t9" class="mega" style="top:120px"><span class="num" id="n9">2</span> PILIHAN WANGIAN</div>'
+     f'<div id="lA" class="plabel pa" style="left:575px">{SCENT_A}</div>'
+     f'<div id="lB" class="plabel pb" style="left:150px">{SCENT_B}</div>'
+     '<div id="vs" class="vs">VS</div>')
 pop("#t9", 25.25, 0.5, 0, 0.4); pop("#n9", 26.12, 3, 0, 0.35, "power4.in")
-A('tl.fromTo("#cA",{x:-700,rotation:-10},{x:0,rotation:-4,duration:0.5,ease:"back.out(1.5)"},27.54);')
-pop("#vs", 28.4, 3, 90, 0.3, "power4.in")
-A('tl.fromTo("#cB",{x:700,rotation:10},{x:0,rotation:4,duration:0.5,ease:"back.out(1.5)"},28.98);')
+A('tl.fromTo("#lA",{y:-120,opacity:0},{y:0,opacity:1,duration:0.45,ease:"back.out(2)"},27.52);')
+pop("#vs", 28.66, 3, 90, 0.3, "power4.in")
+A('tl.fromTo("#lB",{y:-120,opacity:0},{y:0,opacity:1,duration:0.45,ease:"back.out(2)"},29.16);')
 
-# S10 30.40-34.85  Woman Glory notes
+# S10 30.40-34.85  Woman Glory notes + bottle card
 video("v_flow", "assets/broll/flowers.mp4", 30.40, 4.45)
 clip("s10", 30.40, 4.45, '<div class="shade"></div>'
-     f'<div id="t10" class="ribbon" style="top:260px">{SCENT_A}</div>'
-     '<div class="notes"><div id="n10a" class="note">FRESH</div><div id="n10b" class="note">FLORAL</div>'
+     f'<div id="t10" class="ribbon" style="top:240px">{SCENT_A}</div>'
+     + product_card("pg", 330, IMG_GLORY, 1200/470) +
+     '<div class="notes left"><div id="n10a" class="note">FRESH</div><div id="n10b" class="note">FLORAL</div>'
      '<div id="n10c" class="note">FEMININE</div></div>')
-slide("#t10", 30.48, -400, 0); pop("#n10a", 32.52); pop("#n10b", 33.10); pop("#n10c", 33.80)
+slide("#t10", 30.48, -400, 0)
+A('tl.fromTo("#pg",{x:500,rotation:12},{x:0,rotation:4,duration:0.55,ease:"back.out(1.6)"},30.6);')
+pop("#n10a", 32.48); pop("#n10b", 33.08); pop("#n10c", 33.78)
 
-# S11 34.85-37.80  Noce notes
+# S11 34.85-37.80  Noche notes + bottle card
 video("v_berry", "assets/broll/berries.mp4", 34.85, 2.95)
 clip("s11", 34.85, 2.95, '<div class="shade"></div>'
-     f'<div id="t11" class="ribbon pk" style="top:260px">{SCENT_B}</div>'
-     '<div class="notes"><div id="n11a" class="note">SWEET</div><div id="n11b" class="note">FRUITY</div></div>')
-slide("#t11", 34.92, 400, 0); pop("#n11a", 36.76); pop("#n11b", 37.28)
+     f'<div id="t11" class="ribbon pk" style="top:240px">{SCENT_B}</div>'
+     + product_card("pn", 320, IMG_NOCHE, 1200/455) +
+     '<div class="notes left"><div id="n11a" class="note">SWEET</div><div id="n11b" class="note">FRUITY</div></div>')
+slide("#t11", 34.92, 400, 0)
+A('tl.fromTo("#pn",{x:500,rotation:12},{x:0,rotation:4,duration:0.55,ease:"back.out(1.6)"},35.0);')
+pop("#n11a", 36.76); pop("#n11b", 37.28)
 
 # S12 37.80-43.95  formulation checklist (educational)
 video("v_lab", "assets/broll/lab.mp4", 37.80, 6.15)
@@ -271,13 +300,12 @@ clip("s14", 47.40, 3.60, '<div class="shade"></div>'
 slide("#t14a", 48.82, 0, 60); slam("#t14b", 49.88)
 sparkles("sp14_", 50.1, 6, (100, 380, 980, 820), 14)
 
-# S15 51.00-52.95  product hero
-clip("s15", 51.00, 1.95, '<div class="redbg"></div><div id="rays" class="rays"></div>'
-     + product_card("p15", 520) +
-     '<div id="t15" class="mega" style="top:200px">WAJIB TRY!</div>')
-flash(51.0, 0.9)
-A('tl.fromTo("#rays",{rotation:0},{rotation:40,duration:1.95,ease:"none"},51.0);')
-pop("#p15", 51.0, 0.3, -10, 0.5); slam("#t15", 51.2)
+# S15 51.00-52.95  product hero: "korang kena try Frescura Body"
+photo("ph_diag", IMG_DUO_DIAG, 51.00, 1.95, 1.0, 1.14, "50% 50%")
+clip("s15", 51.00, 1.95, '<div class="shade top"></div>'
+     '<div id="t15" class="mega" style="top:150px">WAJIB TRY!</div>'
+     f'<div id="t15b" class="tag big" style="top:340px">{BRAND}</div>')
+slam("#t15", 51.15); pop("#t15b", 51.8)
 
 # S16 52.95-58.95  CTA: yellow basket + limited stock
 video("v_phone", "assets/broll/phone.mp4", 52.95, 6.00)
@@ -295,20 +323,28 @@ pop("#stock", 55.68, 0.5)
 A('tl.fromTo("#sfill",{width:"42%"},{width:"7%",duration:2.8,ease:"power1.in"},55.8);')
 A('tl.to("#stock .slabel",{opacity:0.25,duration:0.15,yoyo:true,repeat:7},56.4);')
 
-# S17 58.95-62.40  final CTA
-clip("s17", 58.95, DURATION - 58.95, '<div class="redbg"></div>'
-     '<div id="t17" class="mega" style="top:200px">PILIH WANGIAN<br>FAVOURITE KORANG</div>'
-     f'<div id="fA" class="scent sa mini">{SCENT_A}</div><div id="fB" class="scent sb mini">{SCENT_B}</div>'
-     f'<div id="btn" class="btn"><i>{SVG_BASKET}</i>CHECK OUT SEKARANG</div>')
-flash(58.95, 0.8)
-pop("#t17", 59.2, 0.4); pop("#fA", 59.82, 0.2, -15); pop("#fB", 60.68, 0.2, 15)
+# S17 58.95-62.40  final CTA on the duo photo
+photo("ph_wood", IMG_DUO_WOOD, 58.95, 62.4 - 58.95, 1.15, 1.02, "50% 50%")
+clip("s17", 58.95, 62.4 - 58.95, '<div class="shade top"></div>'
+     '<div id="t17" class="mega" style="top:120px">PILIH WANGIAN<br>FAVOURITE KORANG</div>'
+     f'<div id="fB" class="plabel pb" style="left:150px;top:1020px">{SCENT_B}</div>'
+     f'<div id="fA" class="plabel pa" style="left:570px;top:1020px">{SCENT_A}</div>'
+     f'<div id="btn" class="btn" style="top:1170px"><i>{SVG_BASKET}</i>CHECK OUT SEKARANG</div>')
+pop("#t17", 59.1, 0.4); pop("#fB", 59.82, 0.2, -15); pop("#fA", 60.68, 0.2, 15)
 pop("#btn", 61.4, 0.2)
 A('tl.to("#btn",{scale:1.08,duration:0.2,yoyo:true,repeat:3,ease:"sine.inOut"},61.9);')
+
+# ---- remap every scene time onto the tightened voice timeline (captions are already final)
+def _remap_attr(m):
+    s, d = float(m.group(1)), float(m.group(2))
+    return f'data-start="{T(s):.3f}" data-duration="{T(s + d) - T(s):.3f}"'
+html = [re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', _remap_attr, h) for h in html]
+js = [re.sub(r',([\d.]+)\);$', lambda m: f",{T(float(m.group(1))):.3f});", l) for l in js]
 
 # ------------------------------------------------------------------ captions
 for ci, ch in enumerate(chunks):
     start = ch[0]["s"]
-    if start < 2.0:          # hook headline already says it on screen
+    if start < 2.4:          # hook headline already says it on screen
         continue
     nxt = chunks[ci + 1][0]["s"] if ci + 1 < len(chunks) else DURATION
     end = min(nxt, ch[-1]["e"] + 0.5) if nxt - ch[-1]["e"] > 0.6 else nxt
