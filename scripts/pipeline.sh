@@ -30,3 +30,5 @@ ffmpeg -y -i $W/voice_studio.wav -i $X/whoosh.wav -i $X/chime.wav -i $X/sparkle.
 # 4) Video: Real-ESRGAN general-x4v3 per frame (output resized to 1080x1976), then light finishing
 ffmpeg -y -i "$IN" -vsync 0 $W/fr_in/%05d.png
 TILE=384 python "$D/esr.py" models/esr_general_x4v3.safetensors $W/fr_in $W/fr_esr
+# 5) Final: blend 80% AI frames + 20% lanczos original, light CAS + colour, 1.27s end hold for SFX tail
+ffmpeg -y -framerate 30 -i $W/fr_esr/%05d.png -i "$IN" -i $W/final_audio.wav -filter_complex "[1:v]scale=1080:1976:flags=lanczos,setsar=1[o];[0:v]setsar=1[e];[e][o]blend=all_expr='A*0.8+B*0.2',cas=strength=0.35,eq=contrast=1.04:saturation=1.07:brightness=0.01,tpad=stop_mode=clone:stop_duration=1.27,format=yuv420p[v]" -map "[v]" -map 2:a -c:v libx264 -preset slow -crf 18 -c:a aac -b:a 192k -movflags +faststart -shortest "$OUT"
