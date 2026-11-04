@@ -1,14 +1,17 @@
 # Video-claude-
 
-Projek video yang dibangunkan dengan bantuan Claude Code.
+Toolkit suntingan video kesedaran (awareness) untuk FRESCURA BODY, dibangunkan dengan bantuan Claude Code.
 
 ## Tentang
 
-Repositori ini baru dimulakan. Penerangan projek, cara pemasangan dan cara penggunaan akan ditambah di sini apabila kod mula dibangunkan.
+Spesifikasi kerja dan pipeline penuh ada dalam [`CLAUDE.md`](CLAUDE.md); rancangan suntingan dalam [`EDIT_PLAN.md`](EDIT_PLAN.md).
 
 ## Struktur
 
-_Belum ada fail lain lagi._
+- `scripts/` — skrip pipeline umum (transkripsi, audio, B-roll, SFX, matte, upscale, komposisi)
+- `hf/project/` — Video 1 (TikTok-bold): gaya, fon, gambar produk
+- `video2/` — Video 2 (luxury premium corporate)
+- `video3/` — Video 3 (motion graphics minimalis mewah)
 
 ## Pemilik
 

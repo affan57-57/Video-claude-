@@ -1,0 +1,132 @@
+@font-face { font-family: "Playfair"; src: url("assets/fonts/PlayfairDisplay.ttf"); font-weight: 400 900; }
+@font-face { font-family: "Playfair"; src: url("assets/fonts/PlayfairDisplay-Italic.ttf"); font-style: italic; font-weight: 400 900; }
+@font-face { font-family: "Cormorant"; src: url("assets/fonts/Cormorant.ttf"); font-weight: 300 700; }
+@font-face { font-family: "Cormorant"; src: url("assets/fonts/Cormorant-Italic.ttf"); font-style: italic; font-weight: 300 700; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat.ttf"); font-weight: 100 900; }
+
+:root {
+  --black: #0b0907;
+  --gold: #d6b57a;
+  --gold-hi: #f1dfb3;
+  --gold-lo: #9c7a45;
+  --ivory: #f4eee4;
+  --wine: #6b0f1a;
+  --violet: #3b2a6b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--black); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; color: var(--ivory);
+  font-family: "Montserrat", sans-serif; background: var(--black); }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; transform-origin: 50% 50%; }
+div.clip { z-index: 5; }
+video.leak { z-index: 7; mix-blend-mode: screen; opacity: .0; object-fit: cover; }
+.panel-v { z-index: 2; height: 640px; object-fit: cover; }
+
+/* grading / atmosphere */
+.shade { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,6,4,.72) 0%, rgba(8,6,4,.18) 32%, rgba(8,6,4,.12) 62%, rgba(8,6,4,.78) 100%); }
+.shade.full { background: rgba(8,6,4,.45); }
+.vign { position: absolute; inset: 0; z-index: 6; pointer-events: none;
+  background: radial-gradient(ellipse 80% 70% at 50% 48%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); }
+.grain { position: absolute; inset: -20px; z-index: 6; opacity: .06; pointer-events: none;
+  background-image: repeating-radial-gradient(circle at 17% 32%, #fff 0 1px, transparent 1px 3px),
+                    repeating-radial-gradient(circle at 71% 63%, #fff 0 1px, transparent 1px 4px); }
+
+/* corporate frame + brand mark */
+.frame { position: absolute; z-index: 8; left: 36px; top: 36px; right: 36px; bottom: 36px;
+  border: 1.5px solid rgba(214,181,122,.55); pointer-events: none; }
+.frame i { position: absolute; width: 26px; height: 26px; border-color: var(--gold); border-style: solid; }
+.frame i:nth-child(1) { left: -8px; top: -8px; border-width: 3px 0 0 3px; }
+.frame i:nth-child(2) { right: -8px; top: -8px; border-width: 3px 3px 0 0; }
+.frame i:nth-child(3) { left: -8px; bottom: -8px; border-width: 0 0 3px 3px; }
+.frame i:nth-child(4) { right: -8px; bottom: -8px; border-width: 0 3px 3px 0; }
+.mark { position: absolute; z-index: 8; top: 74px; left: 0; width: 1080px; text-align: center;
+  font: 500 22px "Montserrat"; letter-spacing: 12px; color: var(--gold); }
+.mark b { font-weight: 500; color: var(--gold-hi); }
+
+/* captions */
+.cap { z-index: 9; inset: auto; top: 1490px; left: 90px; width: 900px; height: auto; text-align: center;
+  font: 600 48px/1.25 "Montserrat"; letter-spacing: .5px; }
+.cap .w { display: inline-block; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.9); }
+.cap .w.hl { color: var(--gold-hi); }
+
+/* type */
+.serif { font-family: "Playfair", serif; }
+.it { font-family: "Cormorant", serif; font-style: italic; font-weight: 500; }
+.line { position: absolute; left: 0; width: 1080px; text-align: center; text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 6px; }
+.rv > span { display: inline-block; }
+.gold, .gold * { color: #e8cf9a; text-shadow: 0 2px 24px rgba(214,181,122,.35), 0 2px 6px rgba(0,0,0,.6); }
+.kick { font: 500 26px "Montserrat"; letter-spacing: 10px; color: var(--gold); text-transform: uppercase; }
+.rule { position: absolute; left: 50%; width: 220px; margin-left: -110px; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent); transform-origin: 50% 50%; }
+
+/* busy triptych */
+.plabel { position: absolute; left: 70px; font: 600 34px "Montserrat"; letter-spacing: 12px; color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,.8); }
+.plabel::after { content: ""; display: block; width: 100%; height: 2px; margin-top: 10px; background: var(--gold); transform-origin: 0 50%; }
+.pline { position: absolute; left: 0; width: 1080px; height: 2px; background: var(--gold); z-index: 3; }
+
+/* product lockups */
+.lockup { position: absolute; left: 0; width: 1080px; text-align: center; }
+.lockup .brand { font: 500 92px/1 "Playfair"; letter-spacing: 14px; }
+.lockup .sub { margin-top: 18px; font: 500 24px "Montserrat"; letter-spacing: 10px; color: var(--gold); }
+.sweep { position: absolute; inset: -200px; z-index: 6;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,236,200,.38) 50%, transparent 60%); }
+
+/* callouts */
+.callout { position: absolute; display: flex; align-items: center; gap: 18px; }
+.callout .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--gold-hi);
+  box-shadow: 0 0 18px rgba(241,223,179,.8); }
+.callout .ln { height: 2px; width: 160px; background: var(--gold); transform-origin: 0 50%; }
+.callout .tx { font: 600 30px "Montserrat"; letter-spacing: 6px; color: #fff; white-space: nowrap;
+  text-shadow: 0 2px 12px rgba(0,0,0,.8); }
+.callout .tx small { display: block; font: italic 500 30px "Cormorant"; letter-spacing: 1px; color: var(--gold-hi); }
+
+/* benefit list */
+.blist { position: absolute; left: 110px; top: 560px; width: 860px; }
+.bi { display: flex; align-items: baseline; gap: 34px; padding: 26px 0; border-bottom: 1px solid rgba(214,181,122,.45); }
+.bi b { font: 400 64px "Playfair"; color: var(--gold); width: 110px; }
+.bi span { font: 500 60px "Playfair"; letter-spacing: 6px; color: #fff; }
+.bi em { font: italic 500 36px "Cormorant"; color: var(--gold-hi); margin-left: auto; }
+
+/* scent */
+.card { position: absolute; border-radius: 8px; overflow: hidden; border: 1.5px solid rgba(241,223,179,.7);
+  box-shadow: 0 40px 90px rgba(0,0,0,.6); }
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.stitle { position: absolute; left: 90px; top: 380px; }
+.stitle .n { font: 500 26px "Montserrat"; letter-spacing: 10px; color: var(--gold); }
+.stitle .t { margin-top: 18px; font: 500 96px/1.02 "Playfair"; color: #fff; letter-spacing: 2px; }
+.stitle .s { margin-top: 10px; font: italic 500 50px "Cormorant"; color: var(--gold-hi); }
+.notes { position: absolute; left: 90px; top: 860px; }
+.note { display: flex; align-items: center; gap: 22px; margin-bottom: 34px; font: 500 44px "Montserrat";
+  letter-spacing: 10px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.7); }
+.note::before { content: ""; width: 12px; height: 12px; transform: rotate(45deg); background: var(--gold); }
+
+/* comment UI */
+.cm { position: absolute; left: 140px; width: 800px; padding: 28px 36px; border-radius: 26px;
+  background: rgba(20,15,11,.72); border: 1.5px solid rgba(214,181,122,.55); display: flex; align-items: center; gap: 26px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.cm .av { width: 78px; height: 78px; border-radius: 50%; flex: none; background: linear-gradient(160deg, #f1dfb3, #9c7a45); }
+.cm .av.v { background: linear-gradient(160deg, #a58bea, #3b2a6b); }
+.cm .av.r { background: linear-gradient(160deg, #ff7b8a, #6b0f1a); }
+.cm .who { font: 600 26px "Montserrat"; color: var(--gold); letter-spacing: 2px; }
+.cm .msg { margin-top: 6px; font: 500 40px "Montserrat"; color: #fff; }
+.cm .hrt { margin-left: auto; width: 46px; height: 46px; }
+
+/* CTA */
+.btn { position: absolute; left: 140px; width: 800px; height: 150px; border-radius: 75px;
+  background: linear-gradient(180deg, #f6e7c4 0%, #d6b57a 50%, #a8854f 100%); color: #1a1209;
+  display: flex; align-items: center; justify-content: center; gap: 22px; font: 700 40px "Montserrat"; letter-spacing: 6px;
+  box-shadow: 0 0 0 1.5px rgba(255,240,210,.9) inset, 0 24px 70px rgba(214,181,122,.35); }
+.btn svg { width: 64px; height: 60px; }
+.stock { position: absolute; left: 0; width: 1080px; text-align: center; font: 600 28px "Montserrat";
+  letter-spacing: 10px; color: var(--gold-hi); }
+.stock i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #e0483c; margin-right: 16px;
+  box-shadow: 0 0 14px #e0483c; vertical-align: middle; }
+.spk { position: absolute; z-index: 7; width: 60px; height: 60px; filter: drop-shadow(0 0 10px rgba(255,236,190,.9)); }
+.spk svg { width: 100%; height: 100%; }
+#flash { position: absolute; inset: 0; background: #fff6e3; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 58px; left: 58px; font: 600 18px "Montserrat"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.5); color: #fff; }
