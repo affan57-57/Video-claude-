@@ -1,4 +1,4 @@
-# Video Awareness: FRESCURA BODY Foaming Body Wash (PREVIEW v2)
+# Video Awareness: FRESCURA BODY Foaming Body Wash (FINAL)
 
 **Status: FINAL** — `final/FRESCURA_BODY_awareness_final.mp4` (1080x1920, 30 fps, ~9.7 Mbps, -14 LUFS). Preview lama: `preview/preview_v2.mp4`.
 
