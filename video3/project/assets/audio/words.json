@@ -26,17 +26,17 @@
    },
    {
     "w": " mesti",
-    "s": 1.02,
+    "s": 1.0,
     "e": 1.16
    },
    {
     "w": " korang",
     "s": 1.16,
-    "e": 1.38
+    "e": 1.36
    },
    {
     "w": " nak",
-    "s": 1.38,
+    "s": 1.36,
     "e": 1.46
    },
    {
@@ -54,7 +54,7 @@
  {
   "start": 1.92,
   "end": 3.84,
-  "text": " ada bahan apa yang dalam sabun mandi ni?",
+  "text": " ada bahan apa yang dalam sabun mandi ni.",
   "words": [
    {
     "w": " ada",
@@ -92,7 +92,7 @@
     "e": 3.7
    },
    {
-    "w": " ni?",
+    "w": " ni.",
     "s": 3.7,
     "e": 3.84
    }
@@ -101,26 +101,31 @@
  {
   "start": 3.94,
   "end": 5.82,
-  "text": " Flaskura Bodi ni, kami hasilkan",
+  "text": " First Cooler Body ni, kami hasilkan",
   "words": [
    {
-    "w": " Flaskura",
+    "w": " First",
     "s": 3.94,
-    "e": 4.3
+    "e": 4.08
    },
    {
-    "w": " Bodi",
-    "s": 4.3,
-    "e": 4.68
+    "w": " Cooler",
+    "s": 4.08,
+    "e": 4.34
+   },
+   {
+    "w": " Body",
+    "s": 4.34,
+    "e": 4.6
    },
    {
     "w": " ni,",
-    "s": 4.68,
+    "s": 4.6,
     "e": 4.82
    },
    {
     "w": " kami",
-    "s": 4.92,
+    "s": 4.9,
     "e": 5.12
    },
    {
@@ -143,16 +148,16 @@
    {
     "w": " parabens",
     "s": 6.32,
-    "e": 6.94
+    "e": 6.92
    },
    {
     "w": " dan",
-    "s": 6.94,
-    "e": 7.48
+    "s": 6.92,
+    "e": 7.46
    },
    {
     "w": " tanpa",
-    "s": 7.48,
+    "s": 7.46,
     "e": 7.9
    }
   ]
@@ -170,67 +175,67 @@
    {
     "w": " berbahaya",
     "s": 8.2,
-    "e": 8.8
+    "e": 8.78
    },
    {
     "w": " yang",
-    "s": 8.8,
+    "s": 8.78,
     "e": 9.16
    },
    {
     "w": " didarang",
     "s": 9.16,
-    "e": 9.64
+    "e": 9.66
    },
    {
     "w": " dalam",
-    "s": 9.64,
+    "s": 9.66,
     "e": 9.9
    }
   ]
  },
  {
   "start": 9.9,
-  "end": 12.34,
-  "text": " kosmetik. Produk kami pun dah menjalani",
+  "end": 11.72,
+  "text": " kosmetik. Produk kami pun dah",
   "words": [
    {
     "w": " kosmetik.",
     "s": 9.9,
-    "e": 10.42
+    "e": 10.4
    },
    {
     "w": " Produk",
-    "s": 10.56,
+    "s": 10.58,
     "e": 10.96
    },
    {
     "w": " kami",
     "s": 10.96,
-    "e": 11.28
+    "e": 11.26
    },
    {
     "w": " pun",
-    "s": 11.28,
+    "s": 11.26,
     "e": 11.5
    },
    {
     "w": " dah",
     "s": 11.5,
     "e": 11.72
-   },
-   {
-    "w": " menjalani",
-    "s": 11.72,
-    "e": 12.34
    }
   ]
  },
  {
-  "start": 12.34,
+  "start": 11.72,
   "end": 13.66,
-  "text": " ujian makmah di kedai bayu.",
+  "text": " menjalani ujian makmah di kedai bayu.",
   "words": [
+   {
+    "w": " menjalani",
+    "s": 11.72,
+    "e": 12.34
+   },
    {
     "w": " ujian",
     "s": 12.34,
@@ -261,7 +266,7 @@
  {
   "start": 13.92,
   "end": 15.94,
-  "text": " Yang basenya sabun ni, dia jenis foaming.",
+  "text": " Yang basenya, sabun ni, dia jenis foaming.",
   "words": [
    {
     "w": " Yang",
@@ -269,13 +274,13 @@
     "e": 14.18
    },
    {
-    "w": " basenya",
+    "w": " basenya,",
     "s": 14.18,
-    "e": 14.52
+    "e": 14.48
    },
    {
     "w": " sabun",
-    "s": 14.52,
+    "s": 14.64,
     "e": 14.98
    },
    {
@@ -285,7 +290,7 @@
    },
    {
     "w": " dia",
-    "s": 15.2,
+    "s": 15.18,
     "e": 15.3
    },
    {
@@ -302,17 +307,17 @@
  },
  {
   "start": 16.36,
-  "end": 18.34,
-  "text": " Tekan je, terus keluar bui lembut.",
+  "end": 17.72,
+  "text": " Tekan je, terus keluar",
   "words": [
    {
     "w": " Tekan",
     "s": 16.36,
-    "e": 16.8
+    "e": 16.78
    },
    {
     "w": " je,",
-    "s": 16.8,
+    "s": 16.78,
     "e": 16.94
    },
    {
@@ -324,7 +329,14 @@
     "w": " keluar",
     "s": 17.46,
     "e": 17.72
-   },
+   }
+  ]
+ },
+ {
+  "start": 17.72,
+  "end": 19.76,
+  "text": " bui lembut. Wangian pun ada",
+  "words": [
    {
     "w": " bui",
     "s": 17.72,
@@ -334,41 +346,34 @@
     "w": " lembut.",
     "s": 17.9,
     "e": 18.34
-   }
-  ]
- },
- {
-  "start": 18.7,
-  "end": 19.94,
-  "text": " Wangian pun ada dua",
-  "words": [
+   },
    {
     "w": " Wangian",
-    "s": 18.7,
-    "e": 19.16
+    "s": 18.66,
+    "e": 19.14
    },
    {
     "w": " pun",
-    "s": 19.16,
+    "s": 19.14,
     "e": 19.38
    },
    {
     "w": " ada",
     "s": 19.38,
     "e": 19.76
-   },
-   {
-    "w": " dua",
-    "s": 19.76,
-    "e": 19.94
    }
   ]
  },
  {
-  "start": 19.94,
-  "end": 21.96,
-  "text": " pilihan tau. Woman Glory untuk",
+  "start": 19.76,
+  "end": 21.76,
+  "text": " dua pilihan tau. Woman Glory by",
   "words": [
+   {
+    "w": " dua",
+    "s": 19.76,
+    "e": 19.94
+   },
    {
     "w": " pilihan",
     "s": 19.94,
@@ -381,279 +386,323 @@
    },
    {
     "w": " Woman",
-    "s": 20.84,
+    "s": 20.82,
     "e": 21.1
    },
    {
     "w": " Glory",
     "s": 21.1,
-    "e": 21.54
+    "e": 21.48
    },
    {
-    "w": " untuk",
-    "s": 21.54,
-    "e": 21.96
+    "w": " by",
+    "s": 21.48,
+    "e": 21.76
    }
   ]
  },
  {
-  "start": 21.96,
-  "end": 24.1,
-  "text": " korang yang suka bau fresh dan floral.",
+  "start": 21.76,
+  "end": 23.92,
+  "text": " Bombshell. Untuk korang",
   "words": [
    {
-    "w": " korang",
-    "s": 21.96,
-    "e": 22.38
-   },
-   {
-    "w": " yang",
-    "s": 22.38,
+    "w": " Bombshell.",
+    "s": 21.76,
     "e": 22.52
    },
    {
-    "w": " suka",
-    "s": 22.52,
-    "e": 22.84
-   },
-   {
-    "w": " bau",
-    "s": 22.84,
-    "e": 23.14
-   },
-   {
-    "w": " fresh",
-    "s": 23.14,
-    "e": 23.56
-   },
-   {
-    "w": " dan",
-    "s": 23.56,
-    "e": 23.76
-   },
-   {
-    "w": " floral.",
-    "s": 23.76,
-    "e": 24.1
-   }
-  ]
- },
- {
-  "start": 24.56,
-  "end": 26.2,
-  "text": " Noche pula untuk yang suka",
-  "words": [
-   {
-    "w": " Noche",
-    "s": 24.56,
-    "e": 24.88
-   },
-   {
-    "w": " pula",
-    "s": 24.88,
-    "e": 25.26
-   },
-   {
-    "w": " untuk",
-    "s": 25.26,
-    "e": 25.64
-   },
-   {
-    "w": " yang",
-    "s": 25.64,
-    "e": 25.88
-   },
-   {
-    "w": " suka",
-    "s": 25.88,
-    "e": 26.2
-   }
-  ]
- },
- {
-  "start": 26.2,
-  "end": 27.52,
-  "text": " bau sweet dan fruity.",
-  "words": [
-   {
-    "w": " bau",
-    "s": 26.2,
-    "e": 26.56
-   },
-   {
-    "w": " sweet",
-    "s": 26.56,
-    "e": 26.94
-   },
-   {
-    "w": " dan",
-    "s": 26.94,
-    "e": 27.14
-   },
-   {
-    "w": " fruity.",
-    "s": 27.14,
-    "e": 27.52
-   }
-  ]
- },
- {
-  "start": 28.0,
-  "end": 29.96,
-  "text": " Jadi kalau korang nak cuba, pilih",
-  "words": [
-   {
-    "w": " Jadi",
-    "s": 28.0,
-    "e": 28.2
-   },
-   {
-    "w": " kalau",
-    "s": 28.2,
-    "e": 28.44
+    "w": " Untuk",
+    "s": 22.98,
+    "e": 23.54
    },
    {
     "w": " korang",
-    "s": 28.44,
-    "e": 28.84
-   },
-   {
-    "w": " nak",
-    "s": 28.84,
-    "e": 28.98
-   },
-   {
-    "w": " cuba,",
-    "s": 28.98,
-    "e": 29.38
-   },
-   {
-    "w": " pilih",
-    "s": 29.6,
-    "e": 29.96
+    "s": 23.54,
+    "e": 23.92
    }
   ]
  },
  {
-  "start": 30.0,
-  "end": 31.64,
-  "text": " je. Perfume mana kegemaran?",
+  "start": 23.92,
+  "end": 25.68,
+  "text": " yang suka bau fresh dan floral.",
   "words": [
    {
-    "w": " je.",
+    "w": " yang",
+    "s": 23.92,
+    "e": 24.06
+   },
+   {
+    "w": " suka",
+    "s": 24.06,
+    "e": 24.38
+   },
+   {
+    "w": " bau",
+    "s": 24.38,
+    "e": 24.68
+   },
+   {
+    "w": " fresh",
+    "s": 24.68,
+    "e": 25.1
+   },
+   {
+    "w": " dan",
+    "s": 25.1,
+    "e": 25.3
+   },
+   {
+    "w": " floral.",
+    "s": 25.3,
+    "e": 25.68
+   }
+  ]
+ },
+ {
+  "start": 26.08,
+  "end": 27.62,
+  "text": " No Chair by Midnight Fantasy.",
+  "words": [
+   {
+    "w": " No",
+    "s": 26.08,
+    "e": 26.24
+   },
+   {
+    "w": " Chair",
+    "s": 26.24,
+    "e": 26.52
+   },
+   {
+    "w": " by",
+    "s": 26.52,
+    "e": 26.82
+   },
+   {
+    "w": " Midnight",
+    "s": 26.82,
+    "e": 27.16
+   },
+   {
+    "w": " Fantasy.",
+    "s": 27.16,
+    "e": 27.62
+   }
+  ]
+ },
+ {
+  "start": 27.96,
+  "end": 29.62,
+  "text": " Pula, untuk yang suka bau",
+  "words": [
+   {
+    "w": " Pula,",
+    "s": 27.96,
+    "e": 28.32
+   },
+   {
+    "w": " untuk",
+    "s": 28.54,
+    "e": 28.72
+   },
+   {
+    "w": " yang",
+    "s": 28.72,
+    "e": 28.94
+   },
+   {
+    "w": " suka",
+    "s": 28.94,
+    "e": 29.26
+   },
+   {
+    "w": " bau",
+    "s": 29.26,
+    "e": 29.62
+   }
+  ]
+ },
+ {
+  "start": 29.62,
+  "end": 31.92,
+  "text": " sweet dan fruity. Jadi, kalau korang",
+  "words": [
+   {
+    "w": " sweet",
+    "s": 29.62,
+    "e": 30.0
+   },
+   {
+    "w": " dan",
     "s": 30.0,
     "e": 30.2
    },
    {
-    "w": " Perfume",
-    "s": 30.3,
-    "e": 30.8
+    "w": " fruity.",
+    "s": 30.2,
+    "e": 30.64
    },
    {
-    "w": " mana",
-    "s": 30.8,
-    "e": 31.04
+    "w": " Jadi,",
+    "s": 30.84,
+    "e": 31.26
    },
    {
-    "w": " kegemaran?",
-    "s": 31.04,
-    "e": 31.64
+    "w": " kalau",
+    "s": 31.4,
+    "e": 31.52
+   },
+   {
+    "w": " korang",
+    "s": 31.52,
+    "e": 31.92
    }
   ]
  },
  {
-  "start": 31.76,
-  "end": 33.68,
-  "text": " Tekan backbone ni sekarang, check out sekarang",
+  "start": 31.92,
+  "end": 33.84,
+  "text": " nak cuba, pilih je. Perfume",
   "words": [
    {
-    "w": " Tekan",
-    "s": 31.76,
+    "w": " nak",
+    "s": 31.92,
     "e": 32.04
    },
    {
-    "w": " backbone",
+    "w": " cuba,",
     "s": 32.04,
-    "e": 32.32
+    "e": 32.48
    },
    {
-    "w": " ni",
-    "s": 32.32,
-    "e": 32.5
+    "w": " pilih",
+    "s": 32.58,
+    "e": 33.08
    },
    {
-    "w": " sekarang,",
-    "s": 32.5,
-    "e": 32.68
+    "w": " je.",
+    "s": 33.08,
+    "e": 33.22
    },
    {
-    "w": " check",
-    "s": 32.94,
-    "e": 33.12
+    "w": " Perfume",
+    "s": 33.4,
+    "e": 33.84
+   }
+  ]
+ },
+ {
+  "start": 33.84,
+  "end": 35.74,
+  "text": " mana kegemaran, tekan back on it sekarang.",
+  "words": [
+   {
+    "w": " mana",
+    "s": 33.84,
+    "e": 34.1
+   },
+   {
+    "w": " kegemaran,",
+    "s": 34.1,
+    "e": 34.7
+   },
+   {
+    "w": " tekan",
+    "s": 34.84,
+    "e": 35.1
+   },
+   {
+    "w": " back",
+    "s": 35.1,
+    "e": 35.32
+   },
+   {
+    "w": " on",
+    "s": 35.32,
+    "e": 35.46
+   },
+   {
+    "w": " it",
+    "s": 35.46,
+    "e": 35.54
+   },
+   {
+    "w": " sekarang.",
+    "s": 35.54,
+    "e": 35.74
+   }
+  ]
+ },
+ {
+  "start": 36.02,
+  "end": 37.54,
+  "text": " Check out sekarang. Sebab",
+  "words": [
+   {
+    "w": " Check",
+    "s": 36.02,
+    "e": 36.2
    },
    {
     "w": " out",
-    "s": 33.12,
-    "e": 33.34
+    "s": 36.2,
+    "e": 36.42
    },
    {
-    "w": " sekarang",
-    "s": 33.34,
-    "e": 33.68
+    "w": " sekarang.",
+    "s": 36.42,
+    "e": 36.7
+   },
+   {
+    "w": " Sebab",
+    "s": 37.1,
+    "e": 37.54
    }
   ]
  },
  {
-  "start": 33.68,
-  "end": 36.1,
-  "text": " sebab stok kami sangat-sangat",
+  "start": 37.54,
+  "end": 39.52,
+  "text": " stok kami sangat-sangat terhad.",
   "words": [
    {
-    "w": " sebab",
-    "s": 33.68,
-    "e": 34.44
-   },
-   {
     "w": " stok",
-    "s": 34.44,
-    "e": 34.88
+    "s": 37.54,
+    "e": 37.96
    },
    {
     "w": " kami",
-    "s": 34.88,
-    "e": 35.18
+    "s": 37.96,
+    "e": 38.24
    },
    {
     "w": " sangat",
-    "s": 35.18,
-    "e": 35.8
+    "s": 38.24,
+    "e": 38.88
    },
    {
     "w": "-sangat",
-    "s": 35.8,
-    "e": 36.1
+    "s": 38.88,
+    "e": 39.16
+   },
+   {
+    "w": " terhad.",
+    "s": 39.16,
+    "e": 39.52
    }
   ]
  },
  {
-  "start": 36.1,
-  "end": 37.28,
-  "text": " terhad. Tekan sepuluh",
+  "start": 39.82,
+  "end": 40.34,
+  "text": " Tekan...",
   "words": [
    {
-    "w": " terhad.",
-    "s": 36.1,
-    "e": 36.48
-   },
-   {
-    "w": " Tekan",
-    "s": 36.7,
-    "e": 37.16
-   },
-   {
-    "w": " sepuluh",
-    "s": 37.16,
-    "e": 37.28
+    "w": " Tekan...",
+    "s": 39.82,
+    "e": 40.34
    }
   ]
  }

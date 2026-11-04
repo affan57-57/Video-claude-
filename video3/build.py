@@ -4,11 +4,24 @@ import json, re, sys
 
 proj = sys.argv[1]
 FINAL = "--final" in sys.argv
-DURATION = 37.6
+DURATION = 37.6          # authored on the original voice timeline; remapped below
+
+# The voice later got newly recorded phrases spliced in ("Woman Glory by Bombshell", "Noche by Midnight Fantasy").
+# inserts.json = [[old_start, old_end, +seconds], ...]: the old span [a, b] now lasts (b - a + delta).
+INSERTS = json.load(open(f"{proj}/assets/audio/inserts.json"))
+def T(x):
+    shift = 0.0
+    for a, b, dl in INSERTS:
+        if x >= b: shift += dl
+        elif x > a: return round(a + shift + (x - a) * (b - a + dl) / (b - a), 3)
+    return round(x + shift, 3)
 
 words = [w for s in json.load(open(f"{proj}/assets/audio/words.json")) for w in s["words"]]
 FIX = {"Flaskura": "Frescura", "Bodi": "Body", "parabens": "paraben", "didarang": "dilarang", "makmah": "makmal",
-       "basenya": "best-nya", "bui": "buih", "backbone": "beg kuning", "sepuluh": "cepat"}
+       "basenya": "best-nya", "basenya,": "best-nya,", "bui": "buih", "backbone": "beg kuning", "sepuluh": "cepat"}
+# word fixes valid only inside a time window (word, from, to, replacement; "" drops the word)
+WFIX = [("First", 3.8, 4.1, "Frescura"), ("Cooler", 4.0, 4.3, ""), ("No", 26.0, 26.2, "Noche"), ("Chair", 26.2, 26.4, ""),
+        ("back", 35.0, 35.2, "beg"), ("on", 35.2, 35.4, "kuning"), ("it", 35.4, 35.5, ""), ("Tekan...", 39.7, 39.9, "Tekan")]
 HIDE = [("di", 12.9, 13.7), ("kedai", 12.9, 13.7), ("bayu.", 12.9, 13.7)]   # unclear wording after "ujian makmal"
 HL = {"bahan", "frescura", "body", "paraben", "berbahaya", "dilarang", "ujian", "makmal", "foaming", "buih", "lembut",
       "dua", "woman", "glory", "fresh", "floral", "noche", "sweet", "fruity", "perfume", "kegemaran", "beg", "kuning",
@@ -19,12 +32,19 @@ for w in words:
     if any(txt == h and a <= w["s"] <= b for h, a, b in HIDE):
         continue
     core = txt.rstrip(".,?"); tail = txt[len(core):]
-    txt = FIX.get(core, core) + tail
+    wf = [rep for (k, a, b, rep) in WFIX if core == k and a <= w["s"] <= b]
+    if wf:
+        if wf[0] == "":
+            continue
+        txt = wf[0] + tail
+    else:
+        txt = FIX.get(core, core) + tail
     if txt.startswith("-") and clean:
         clean[-1]["t"] += txt; clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
-if clean and clean[-1]["t"].rstrip(".") == "cepat":
-    clean[-1]["t"] = "cepat!"
+if clean and clean[-1]["t"].startswith("Tekan") and clean[-1]["s"] > 39:
+    clean[-1]["t"] = "Tekan"
+    clean.append({"t": "cepat!", "s": 40.29, "e": 40.6})   # whisper drops the last word on the room tone
 chunks, cur = [], []
 for i, w in enumerate(clean):
     cur.append(w)
@@ -180,7 +200,7 @@ clip("s8", 20.80, 3.68, f'<div class="t kick" style="top:300px">{R("g0","No. 01"
      f'<div class="t" style="top:880px;font:300 96px/1 Montserrat;letter-spacing:-1px">{R("g1","WOMAN")}<br>{R("g2","GLORY")}</div>'
      f'<div class="t serif-it accent" style="top:1090px;font-size:60px">{R("g3","by Bombshell")}</div>'
      '<div class="t" style="top:1220px;right:auto;width:480px"><div class="chip" id="g4"><i></i>FRESH</div><div class="chip" id="g5"><i></i>FLORAL</div></div>')
-rv("#g0", 20.85); rv("#g1", 20.84); rv("#g2", 21.1); rv("#g3", 21.5); fade("#g4", 23.14, 0.5, 0, -30); fade("#g5", 23.76, 0.5, 0, -30)
+rv("#g0", 20.85); rv("#g1", 20.82); rv("#g2", 20.89); rv("#g3", 21.0); fade("#g4", 23.14, 0.5, 0, -30); fade("#g5", 23.76, 0.5, 0, -30)
 
 # ---- S9 24.48-27.90: Noche
 clip("bg9", 24.48, 3.42, '<div class="ivory"></div>', style="z-index:2")
@@ -191,7 +211,7 @@ clip("s9", 24.48, 3.42, f'<div class="t kick" style="top:300px">{R("n0","No. 02"
      f'<div class="t" style="top:880px;font:300 96px/1 Montserrat;letter-spacing:-1px">{R("n1","NOCHE")}</div>'
      f'<div class="t serif-it" style="top:990px;right:auto;width:450px;font-size:48px;line-height:1.15;color:var(--violet)">{R("n2","by Midnight")}<br>{R("n2b","Fantasy")}</div>'
      '<div class="t" style="top:1220px;right:auto;width:480px"><div class="chip v" id="n3"><i></i>SWEET</div><div class="chip v" id="n4"><i></i>FRUITY</div></div>')
-rv("#n0", 24.5); rv("#n1", 24.56); rv("#n2", 24.95); rv("#n2b", 25.1); fade("#n3", 26.56, 0.5, 0, -30); fade("#n4", 27.14, 0.5, 0, -30)
+rv("#n0", 24.49); rv("#n1", 24.50); rv("#n2", 24.622); rv("#n2b", 24.795); fade("#n3", 26.56, 0.5, 0, -30); fade("#n4", 27.14, 0.5, 0, -30)
 
 # ---- S10 27.90-31.70: choose your favourite (selection UI on the real photo)
 full("ph_sel", "assets/product/duo_marble.jpg", 27.90, 3.8, 1.06, 1.0, tag="img")
@@ -223,6 +243,14 @@ A('tl.fromTo("#btn",{opacity:0,y:60},{opacity:1,y:0,duration:0.6,ease:"expo.out"
 rv("#e1", 32.94); rv("#e2", 34.44)
 A('tl.fromTo("#sb",{scaleX:1},{scaleX:0.15,duration:2.2,ease:"power2.in"},34.44);')
 A('tl.to("#btn",{scale:1.05,duration:0.18,yoyo:true,repeat:5,ease:"sine.inOut"},36.7);')
+
+# ---- remap every scene time onto the spliced voice (captions below already use the new word times)
+def _ra(m):
+    s, d = float(m.group(1)), float(m.group(2))
+    return f'data-start="{T(s):.3f}" data-duration="{T(s + d) - T(s):.3f}"'
+html = [re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', _ra, h) for h in html]
+js = [re.sub(r',([\d.]+)\);$', lambda m: f",{T(float(m.group(1))):.3f});", l) for l in js]
+DURATION = T(DURATION)
 
 # ---- persistent: progress bar + wordmark (hidden on the face shot)
 clip("chrome", FACE_END, DURATION - FACE_END, '<div id="prog"></div>', style="z-index:8")
