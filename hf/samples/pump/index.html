@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Poppins"; font-weight: 900; src: url("assets/Poppins-Black.ttf"); }
+@font-face { font-family: "Poppins"; font-weight: 800; src: url("assets/Poppins-ExtraBold.ttf"); }
+@font-face { font-family: "Anton"; src: url("assets/Anton-Regular.ttf"); }
+:root { --yellow: #ffd23f; --ink: #1b0a10; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #12040a; }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Poppins", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+
+/* studio backdrop */
+.bg { background: radial-gradient(ellipse 70% 55% at 55% 45%, #6e1430 0%, #3a0a1c 45%, #14040b 100%); }
+.beams { position: absolute; inset: -200px; opacity: .22;
+  background: repeating-linear-gradient(115deg, rgba(255,220,230,.0) 0 120px, rgba(255,220,230,.55) 160px 190px, rgba(255,220,230,0) 230px 360px); }
+.floor { position: absolute; left: 0; top: 1711px; width: 1080px; height: 236px;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75)); }
+.glow { position: absolute; left: 300px; top: 1640px; width: 640px; height: 120px; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.6), rgba(0,0,0,0) 70%); }
+
+/* product stage: all coordinates in source-photo pixels, scaled 0.6 */
+.stage { position: absolute; left: 400px; top: 470px; width: 780px; height: 2280px; transform-origin: 0 0; }
+.stage img { position: absolute; left: 0; top: 0; display: block; }
+#foam { left: -367px; top: 100px; transform-origin: 420px 10px; --r: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 calc(var(--r) * 1% - 12%), transparent calc(var(--r) * 1%));
+  mask-image: linear-gradient(180deg, #000 0%, #000 calc(var(--r) * 1% - 12%), transparent calc(var(--r) * 1%)); }
+#refl { opacity: .22; }
+#refl .inner { position: absolute; left: 0; top: 0; width: 780px; height: 2280px;
+  transform: scaleY(-1); transform-origin: 0 2257px;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0, rgba(0,0,0,0) 1750px, rgba(0,0,0,1) 2257px, rgba(0,0,0,0) 2258px); }
+
+.t { position: absolute; left: 0; width: 1080px; text-align: center; }
+#t1 { top: 150px; font: 800 70px "Poppins"; color: #fff; letter-spacing: 2px; text-shadow: 0 6px 20px rgba(0,0,0,.6); }
+#t2 { top: 140px; font: 400 118px/1 "Anton"; white-space: nowrap; color: var(--yellow); text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(255,210,63,.6), 0 10px 0 rgba(0,0,0,.35); }
+#brand { top: 1790px; font: 900 44px "Poppins"; letter-spacing: 10px; color: rgba(255,255,255,.9); }
+.spark { position: absolute; width: 90px; height: 90px; filter: drop-shadow(0 0 12px rgba(255,240,180,.9)); }
+.spark svg { width: 100%; height: 100%; }
+.ring { position: absolute; left: 354px; top: 475px; width: 110px; height: 110px; border-radius: 50%;
+  border: 8px solid rgba(255,255,255,.9); opacity: 0; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="5" data-width="1080" data-height="1920">
+  <audio id="sfx1" class="clip" src="assets/whoosh.wav" data-start="0.05" data-duration="0.6" data-volume="0.6"></audio>
+  <audio id="sfx2" class="clip" src="assets/click.wav" data-start="0.90" data-duration="0.1" data-volume="0.9"></audio>
+  <audio id="sfx3" class="clip" src="assets/bubbles.wav" data-start="1.00" data-duration="0.6" data-volume="0.8"></audio>
+  <audio id="sfx4" class="clip" src="assets/click.wav" data-start="1.90" data-duration="0.1" data-volume="0.9"></audio>
+  <audio id="sfx5" class="clip" src="assets/bubbles.wav" data-start="2.00" data-duration="0.6" data-volume="0.8"></audio>
+  <audio id="sfx6" class="clip" src="assets/pop.wav" data-start="2.60" data-duration="0.15" data-volume="0.6"></audio>
+  <audio id="sfx7" class="clip" src="assets/sparkle.wav" data-start="2.75" data-duration="1.0" data-volume="0.6"></audio>
+  <audio id="sfx8" class="clip" src="assets/ding.wav" data-start="3.4" data-duration="1.4" data-volume="0.4"></audio>
+
+  <div id="scene" class="clip" data-start="0" data-duration="5">
+    <div class="clip bg"></div>
+    <div class="beams" id="beams"></div>
+    <div class="floor"></div>
+    <div class="glow"></div>
+    <div id="cam" class="clip" style="transform-origin: 540px 900px">
+      <div class="stage" id="refl" style="transform: scale(0.55)"><div class="inner">
+        <img src="assets/bottle_body.png" alt=""><img src="assets/pump_head.png" alt="">
+      </div></div>
+      <div class="stage" id="stage" style="transform: scale(0.55)">
+        <img id="foam" src="assets/foam.png" alt="">
+        <img id="pump" src="assets/pump_head.png" alt="">
+        <img id="body" src="assets/bottle_body.png" alt="">
+      </div>
+      <div class="ring" id="ring"></div>
+    </div>
+    <div class="t" id="t1">TEKAN JE PAM...</div>
+    <div class="t" id="t2">TERUS KELUAR BUIH!</div>
+    <div class="t" id="brand">FRESCURA BODY</div>
+    <div class="spark" id="sp1" style="left:150px;top:520px"><svg viewBox="0 0 100 100"><path d="M50 0C55 38 62 45 100 50C62 55 55 62 50 100C45 62 38 55 0 50C38 45 45 38 50 0Z" fill="#fff6c9"/></svg></div>
+    <div class="spark" id="sp2" style="left:250px;top:880px;width:60px;height:60px"><svg viewBox="0 0 100 100"><path d="M50 0C55 38 62 45 100 50C62 55 55 62 50 100C45 62 38 55 0 50C38 45 45 38 50 0Z" fill="#fff6c9"/></svg></div>
+    <div class="spark" id="sp3" style="left:90px;top:760px;width:70px;height:70px"><svg viewBox="0 0 100 100"><path d="M50 0C55 38 62 45 100 50C62 55 55 62 50 100C45 62 38 55 0 50C38 45 45 38 50 0Z" fill="#fff6c9"/></svg></div>
+    <div id="flash"></div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+// slow camera push + light drift
+tl.fromTo("#cam", { scale: 1.0 }, { scale: 1.08, duration: 5, ease: "power1.inOut" }, 0);
+tl.fromTo("#beams", { x: -60 }, { x: 60, duration: 5, ease: "none" }, 0);
+tl.fromTo("#flash", { opacity: 0.6 }, { opacity: 0, duration: 0.3 }, 0);
+tl.fromTo("#t1", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 0.2);
+tl.fromTo("#brand", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.3);
+
+// foam starts hidden inside the nozzle
+tl.set("#foam", { "--r": 0, scale: 0.5 }, 0);
+
+// press 1
+tl.to("#pump", { y: 62, duration: 0.12, ease: "power2.in" }, 0.85);
+tl.to("#pump", { y: 0, duration: 0.3, ease: "back.out(2)" }, 1.1);
+tl.fromTo("#ring", { scale: 0.3, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.45, ease: "power2.out" }, 0.9);
+tl.to("#foam", { "--r": 55, scale: 0.72, duration: 0.8, ease: "power2.out" }, 0.95);
+
+// press 2
+tl.to("#pump", { y: 62, duration: 0.12, ease: "power2.in" }, 1.85);
+tl.to("#pump", { y: 0, duration: 0.3, ease: "back.out(2)" }, 2.1);
+tl.fromTo("#ring", { scale: 0.3, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 1.9);
+tl.to("#foam", { "--r": 112, scale: 0.88, duration: 0.85, ease: "power2.out" }, 1.95);
+// soft settle / wobble of the foam
+tl.to("#foam", { scaleY: 0.9, scaleX: 0.87, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.75);
+
+tl.to("#t1", { opacity: 0, y: -30, duration: 0.25 }, 2.45);
+tl.fromTo("#t2", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 2.55);
+["#sp1", "#sp2", "#sp3"].forEach((s, i) => {
+  tl.fromTo(s, { scale: 0, rotation: 0 }, { scale: 1, rotation: 90, duration: 0.35, ease: "back.out(3)" }, 2.75 + i * 0.12);
+  tl.to(s, { scale: 0, opacity: 0, duration: 0.3 }, 3.3 + i * 0.12);
+});
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

@@ -4,3 +4,4 @@ hf/project/.hyperframes/
 *.log
 final/.*hf-transaction*/
 final/work-*/
+hf/samples/*/.hyperframes/
