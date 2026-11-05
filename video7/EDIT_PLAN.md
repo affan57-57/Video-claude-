@@ -1,6 +1,6 @@
 # Video 7: "Wanita lebih yakin: 5 perkara" (tips → garam laut → Frescura Body)
 
-**Status: PREVIEW v3**, `preview/preview_v3.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v4**, `preview/preview_v4.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
 - Asal: 57.3 s. Selepas edit: **46.9 s** (45.4 s suara + 1.5 s kad penutup).
 - Muka: **0.64 s sahaja**, dari rakaman klien sendiri (wanita berpurdah), 0.00–0.64 s pada "Wanita,"; jelas bawah 1 saat. Mata tepat ke lensa (rakaman 1.40–2.04 s; berpurdah, tiada isu lip-sync); hflip. Selepas 7 saat pertama telefon terdongak ke siling, jadi selebihnya B-roll dan motion graphics sepenuhnya.
@@ -10,6 +10,8 @@
 - **v2: cakap lebih laju & rancak.** Suara dipercepat ~15% dengan time-stretch yang mengekalkan pitch (`TEMPO=1.15` dalam `voice_studio.sh`) dan jeda dirapatkan lagi. Suara 45.4 s → 39.4 s; video 46.9 s → **41.0 s**. Semua babak/SFX dipetakan semula secara automatik ke suara baru melalui padanan perkataan (`words_scene_timeline.json` → `words.json`), dan sempadan babak yang jatuh di tengah perkataan di-snap (contoh: babak fakta tamat tepat sebelum "Sebab tu"). Muka kini **0.56 s**.
 
 - **v3:** "5" kedengaran berulang. Rakaman sebenarnya: "…diri sendiri, *cuba lima…* cuba buat lima perkara ni" (cubaan pertama tersasul). Bahagian 3.98–5.00 s ("cuba lima") dibuang, jadi kini "…diri sendiri, cuba buat 5 perkara ni" dengan satu "5" sahaja. Muka berpurdah **dicerahkan** bingkai demi bingkai (`face_glow.py`: kulit dilicinkan edge-preserving, pencahayaan diangkat, kulit lebih cerah & rona peach segar, cahaya lembut, mata kekal tajam; wajah tidak diubah). Odometer diberi kesan pudar atas/bawah supaya hanya satu nombor jelas ketika bergolek.
+
+- **v4: klip sambungan** (`part2.mov`, suara sahaja, video gelap): nama penuh wangian dirakam semula dan disisipkan ke ayat akhir: "Kita ada pilihan **Woman Glory by Bombshell** dan **Noche by Midnight Fantasy** untuk menjadikan rutin mandi lebih istimewa." Kedua-dua rakaman digabung jadi `src/voice_sources.wav` (main dipad ke 58.0 s + part2), level disamakan per segmen, rantaian studio + tempo 1.15 yang sama. Polaroid berlabel "Woman Glory by Bombshell" / "Noche by Midnight Fantasy" jatuh tepat pada nama masing-masing. Video kini **41.5 s**.
 
 ## Gaya baru: "Porcelain & Olive" (belum pernah digunakan)
 - **Font baru:** Instrument Serif (tajuk, serif editorial moden) + **Outfit** (caption tebal 64 px, sangat jelas). **Palet:** putih tulang, batu, olive, tanah liat (clay), arang.

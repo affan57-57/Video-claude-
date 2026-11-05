@@ -57,11 +57,32 @@
   ],
   [
    51.03,
+   51.9,
+   "Kita ada pilihan"
+  ],
+  [
+   63.21,
+   64.97,
+   "(part2.mov 5.21-6.97) Woman Glory by Bombshell"
+  ],
+  [
+   52.78,
+   53.04,
+   "dan"
+  ],
+  [
+   66.2,
+   68.02,
+   "(part2.mov 8.20-10.02) Noche by Midnight Fantasy"
+  ],
+  [
+   53.95,
    57.05,
-   "Kita ada pilihan Bombshell dan Midnight Fantasy untuk menjadikan rutin mandi lebih istimewa."
+   "untuk menjadikan rutin mandi lebih istimewa."
   ]
  ],
  "keep_gap": 0.06,
  "quiet_db": -36,
- "snap_win": 0.02
+ "snap_win": 0.02,
+ "source_note": "src/voice_sources.wav = main.mov audio padded to 58.0 s + part2.mov (scent names re-recorded)"
 }

@@ -28,10 +28,10 @@ def T(x):
     if x >= _ao[-1]: return round(_an[-1] + (x - _ao[-1]), 3)
     i = max(k for k in range(len(_ao)) if _ao[k] <= x)
     return round(_an[i] + (x - _ao[i]) * (_an[i + 1] - _an[i]) / (_ao[i + 1] - _ao[i]), 3)
-FIX = {"setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
+FIX = {"No": "Noche", "Women": "Woman", "Dan": "dan", "Untuk": "untuk", "setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
        "bombshell": "Bombshell", "midnight": "Midnight", "fantasy": "Fantasy"}
-DROP = {"Coral"}
-HL = {"yakin", "5", "kebersihan", "pakaian", "selesa", "penampilan", "rumah", "masa", "mandi", "segar", "garam", "laut",
+DROP = {"Coral", "Chair", "chair"}
+HL = {"woman", "glory", "noche", "yakin", "5", "kebersihan", "pakaian", "selesa", "penampilan", "rumah", "masa", "mandi", "segar", "garam", "laut",
       "mineral", "frescura", "body", "sea", "salt", "perfume", "bombshell", "midnight", "fantasy", "istimewa", "keempat"}
 clean = []
 for w in words:
@@ -261,15 +261,15 @@ S(34.10, "boom", 0.6); S(34.2, "shimmer", 0.45)
 # S 39.38-45.39: kita ada pilihan Bombshell & Midnight Fantasy -> rutin mandi lebih istimewa
 clip("bgs", 39.38, 6.01, '<div class="stonebg"></div><div class="paper"></div>', style="z-index:2")
 clip("sc", 39.38, 6.01, f'<div class="t c eyebrow" style="top:200px">{R("k0","Kita ada pilihan")}</div>'
-     + pola("k1", "assets/product/glory_card.jpg", 130, 300, 380, 820, -5, "Bombshell")
-     + pola("k2", "assets/product/noche_card.jpg", 570, 320, 380, 820, 5, "Midnight Fantasy")
+     + pola("k1", "assets/product/glory_card.jpg", 130, 300, 380, 820, -5, "Woman Glory <small style='font-size:28px;color:var(--mute)'>by Bombshell</small>")
+     + pola("k2", "assets/product/noche_card.jpg", 570, 320, 380, 820, 5, "Noche <small style='font-size:28px;color:var(--mute)'>by Midnight Fantasy</small>")
      + f'<div class="t c serif-it" style="top:1290px;font-size:104px">{R("k3","rutin mandi lebih")}</div>'
      + f'<div class="t c serif clay" style="top:1395px;font-size:118px">{CH("k4","istimewa")}</div>'
      + scrib("k5", "under", 330, 1515, 420, 50, 44.95))
 A('tl.fromTo("#sc",{clipPath:"polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)"},{clipPath:"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",duration:0.45,ease:"expo.out"},39.38);')
 rv("#k0", 39.40)
-A('tl.fromTo("#k1",{y:-900,rotation:-25},{y:0,rotation:-5,duration:0.6,ease:"back.out(1.4)"},40.28);')
-A('tl.fromTo("#k2",{y:-900,rotation:25},{y:0,rotation:5,duration:0.6,ease:"back.out(1.4)"},41.36);')
+A('tl.fromTo("#k1",{y:-900,rotation:-25,opacity:0},{y:0,opacity:1,rotation:-5,duration:0.6,ease:"back.out(1.4)"},40.28);')
+A('tl.fromTo("#k2",{y:-900,rotation:25,opacity:0},{y:0,opacity:1,rotation:5,duration:0.6,ease:"back.out(1.4)"},41.36);')
 A('tl.to("#k1,#k2",{scale:0.86,y:-60,duration:0.5,ease:"power2.inOut"},42.9);')
 rv("#k3", 43.56, 0.5); chars("#k4", 44.34, 0.04)
 S(40.28, "whip", 0.5); S(40.6, "top", 0.5); S(41.36, "whip", 0.5); S(41.7, "top", 0.5); S(44.34, "chime", 0.5)
