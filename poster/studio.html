@@ -1,0 +1,95 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Frescura Studio Shot</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* Minimal luxury studio product image, 1:1 for TikTok Shop.
+   Variant via query: studio.html?v=duo | noche | wg */
+:root{--bg1:#f4eee7;--bg2:#e3d7ca;--bg3:#cdbcab;--ink:#2a221e;--muted:#7b6c60;--accent:#a8865a;--tintA:rgba(0,0,0,0);--tintB:rgba(0,0,0,0)}
+body.noche{--bg1:#f1edf3;--bg2:#ddd4e2;--bg3:#bfb1c8;--ink:#241d2b;--muted:#6f6278;--accent:#8a6fa6;--tintA:rgba(120,70,200,.35)}
+body.wg{--bg1:#f6ece9;--bg2:#e7d3cd;--bg3:#cfb0a7;--ink:#2c1c1c;--muted:#7d5f5a;--accent:#a0574f;--tintA:rgba(200,20,40,.30)}
+body.duo{--tintA:rgba(120,70,200,.30);--tintB:rgba(200,20,40,.28)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:var(--bg2)}
+#poster{position:relative;width:1080px;height:1080px;overflow:hidden;font-family:Montserrat,sans-serif;color:var(--ink);
+  background:radial-gradient(120% 85% at 50% 30%,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%)}
+/* seamless sweep: wall-to-floor transition */
+#sweep{position:absolute;left:0;right:0;top:640px;height:440px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.18) 30%,rgba(0,0,0,.04) 100%)}
+/* soft window light falling across the backdrop */
+#gobo{position:absolute;inset:-200px;opacity:.22;filter:blur(26px);mix-blend-mode:soft-light;
+  background:repeating-linear-gradient(118deg,rgba(255,255,255,0) 0 90px,rgba(255,255,255,1) 90px 150px,rgba(255,255,255,0) 150px 260px)}
+#vignette{position:absolute;inset:0;background:radial-gradient(90% 80% at 50% 45%,transparent 55%,rgba(40,25,15,.18) 100%)}
+#grain{position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply}
+
+/* plinth */
+#plinth{position:absolute;left:50%;transform:translateX(-50%)}
+#plinth .top{position:absolute;left:0;top:0;width:100%;border-radius:50%;
+  background:radial-gradient(70% 90% at 45% 35%,#fbf8f4 0%,#ece4da 60%,#d9cdbf 100%);box-shadow:inset 0 -3px 6px rgba(0,0,0,.06),0 2px 0 rgba(255,255,255,.7)}
+#plinth .side{position:absolute;left:0;width:100%;
+  background:linear-gradient(90deg,#cfc2b2 0%,#e9e0d5 28%,#f3ece4 45%,#ddd1c3 75%,#bfb09e 100%);border-radius:0 0 50% 50% / 0 0 40px 40px}
+#plinth .floor{position:absolute;left:-12%;width:124%;height:90px;border-radius:50%;background:radial-gradient(closest-side,rgba(60,40,25,.28),transparent);filter:blur(10px)}
+
+/* product */
+.bottle{position:absolute}
+.bottle img{display:block;height:100%;filter:drop-shadow(18px 22px 26px rgba(50,30,20,.28)) drop-shadow(0 4px 6px rgba(40,25,15,.25))}
+.contact{position:absolute;height:34px;border-radius:50%;background:radial-gradient(closest-side,rgba(30,18,10,.55),transparent);filter:blur(5px)}
+.caustic{position:absolute;height:70px;border-radius:50%;filter:blur(14px);mix-blend-mode:multiply}
+
+/* type */
+#brand{position:absolute;top:66px;left:0;width:100%;text-align:center}
+#brand .n{font-family:'Cormorant Garamond';font-weight:500;font-size:36px;letter-spacing:16px;padding-left:16px}
+#brand .rule{width:46px;height:1px;background:var(--accent);margin:14px auto 0}
+#copy{position:absolute;left:0;width:100%;text-align:center;top:128px}
+#copy .t{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:44px;letter-spacing:.5px}
+#copy .s{margin-top:10px;font-size:14px;font-weight:600;letter-spacing:6px;color:var(--muted)}
+</style></head>
+<body>
+<div id="poster">
+  <div id="gobo"></div>
+  <div id="sweep"></div>
+  <div id="stage"></div>
+  <div id="vignette"></div>
+  <svg id="grain" width="1080" height="1080"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .4  0 0 0 0 .3  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+  <div id="brand"><div class="n">FRESCURA BODY</div><div class="rule"></div></div>
+  <div id="copy"><div class="t" id="title"></div><div class="s" id="sub"></div></div>
+</div>
+<script>
+const v=new URLSearchParams(location.search).get('v')||'duo';
+document.body.className=v;
+const stage=document.getElementById('stage');
+const add=(html)=>stage.insertAdjacentHTML('beforeend',html);
+
+// plinth geometry
+const P={duo:{w:700,top:812,rx:40,h:96},noche:{w:470,top:868,rx:32,h:74},wg:{w:470,top:868,rx:32,h:74}}[v];
+add(`<div id="plinth" style="width:${P.w}px;top:${P.top}px;height:${P.h+2*P.rx}px">
+  <div class="floor" style="top:${P.h+P.rx-10}px"></div>
+  <div class="side" style="top:${P.rx}px;height:${P.h+P.rx}px"></div>
+  <div class="top" style="height:${2*P.rx}px"></div></div>`);
+
+// bottles: [src, centerX, height, tint]
+const B={
+  duo:[['assets/noche.png',412,590,'var(--tintA)'],['assets/womanglory.png',670,590,'var(--tintB)']],
+  noche:[['assets/noche.png',540,632,'var(--tintA)']],
+  wg:[['assets/womanglory.png',540,632,'var(--tintA)']],
+}[v];
+// both bottles are the same real size: scale by source pixels so they match
+const SRC={'assets/noche.png':[343,986],'assets/womanglory.png':[357,1040]};
+const floorY=P.top+P.rx;            // plinth surface centre line
+B.forEach(([src,cx,H,tint])=>{
+  const k=H/986, w=SRC[src][0]*k, h=SRC[src][1]*k, top=floorY+6-h;
+  add(`<div class="caustic" style="left:${cx-w*0.55}px;top:${floorY-30}px;width:${w*1.3}px;background:${tint}"></div>`);
+  add(`<div class="contact" style="left:${cx-w*0.48}px;top:${floorY-14}px;width:${w*0.96}px"></div>`);
+  add(`<div class="bottle" style="left:${cx-w/2}px;top:${top}px;height:${h}px"><img src="${src}"></div>`);
+});
+
+const T={
+  duo:['Foaming Body Shower','OCEAN SALT  ·  AROMATHERAPY  ·  500ML'],
+  noche:['Noche — Midnight Fantasy','FOAMING BODY SHOWER  ·  OCEAN SALT  ·  500ML'],
+  wg:['Woman Glory — Bombshell','FOAMING BODY SHOWER  ·  OCEAN SALT  ·  500ML'],
+}[v];
+document.getElementById('title').textContent=T[0];
+document.getElementById('sub').textContent=T[1];
+Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>document.body.dataset.ready=1);
+</script>
+</body></html>
