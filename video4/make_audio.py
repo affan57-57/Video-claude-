@@ -101,7 +101,7 @@ for k_, v in S.items(): save(f"{out}/sfx/{k_}.wav", v)
 # ---------------- MUSIC: 70 bpm felt piano + warm pads + sub swells ----------------
 voice = load(voice_path)
 L = len(voice) + int(1.5 * SR)
-bpm = 116; beat = 60 / bpm      # upbeat ("rancak") per client feedback
+bpm = 90; beat = 60 / bpm       # client: music slow and soft, the energy comes from the SFX
 mono = np.zeros(L)
 mid = lambda m: 440 * 2 ** ((m - 69) / 12)
 def put(buf, start, sig, g=1.0):
@@ -127,21 +127,12 @@ for b in range(nb):
     for nn in ch: put(mono, t0, pad(mid(nn), bar + 1.0), 0.05)
     for i, ai in enumerate(arp):
         put(mono, t0 + i * beat / 2, piano(mid(ch[ai] + 12)), 0.10 if i % 2 == 0 else 0.07)
-    if b >= 1:  # driving four-on-the-floor groove after the intro bar
-        x = t(0.4); kick = np.sin(2 * np.pi * np.cumsum(45 + 110 * np.exp(-x * 32)) / SR) * np.exp(-x * 10)
+    if b >= 1:  # light, laid-back groove
+        x = t(0.4); kick = np.sin(2 * np.pi * np.cumsum(45 + 80 * np.exp(-x * 28)) / SR) * np.exp(-x * 9)
         xh = t(0.05); hat = hp_fft(rng.standard_normal(len(xh)), 7000) * np.exp(-xh * 120)
-        xo = t(0.22); ohat = hp_fft(rng.standard_normal(len(xo)), 6000) * np.exp(-xo * 18)
-        xc = t(0.18); clap = hp_fft(lp_fft(rng.standard_normal(len(xc)), 5000), 900) * np.exp(-xc * 28)
-        xb = t(beat / 2 * 0.9)
         for q in range(4):
-            put(mono, t0 + q * beat, kick, 0.42)
-            for sx in range(4):                                   # 16th-note hats with accents
-                put(mono, t0 + q * beat + sx * beat / 4, hat, (0.11, 0.05, 0.08, 0.05)[sx])
-            put(mono, t0 + q * beat + beat / 2, ohat, 0.05)
-            if q in (1, 3): put(mono, t0 + q * beat, clap, 0.22)
-            for e in range(2):                                    # pulsing 8th-note bass on the root
-                bass = np.sin(2 * np.pi * mid(root - 12) * xb) * np.exp(-xb * 7) * np.minimum(1, xb / 0.005)
-                put(mono, t0 + q * beat + e * beat / 2, lp_fft(bass, 400), 0.16)
+            if q in (0, 2): put(mono, t0 + q * beat, kick, 0.22)
+            put(mono, t0 + q * beat + beat / 2, hat, 0.05)
 music = reverb(mono, 1.6, 0.25)[:L]
 tt = np.arange(L) / SR
 music *= (np.minimum(1, tt / 2.0) * np.minimum(1, np.maximum(0, (L / SR - tt) / 2.5)))[:, None]
@@ -153,14 +144,14 @@ mix = np.zeros((L, 2))
 vm = np.abs(voice[:, 0]); win = int(0.2 * SR)
 env = np.pad(np.convolve(vm, np.ones(win) / win, "same"), (0, L - len(vm)))
 talk = np.convolve((env > 0.02).astype(float), np.ones(int(0.3 * SR)) / int(0.3 * SR), "same")
-mus_g = 0.30 - 0.21 * talk            # music ~ -20 dB under speech, comes up in the gaps
-sfx_g = 1.0 - 0.35 * talk
+mus_g = 0.17 - 0.115 * talk           # music soft: ~ -26 dB under speech, a little up in the gaps
+sfx_g = 1.0 - 0.15 * talk             # SFX loud and clear (client asked for louder pops)
 mix += norm(music, 0.8) * mus_g[:, None] * 0.55
 sf = np.zeros((L, 2))
 for c in cues:
     s = load(f"{out}/sfx/{c['sfx']}.wav"); i = int(c["t"] * SR)
     if i < L:
-        s = s[:L - i]; sf[i:i + len(s)] += s * c.get("gain", 0.6) * 0.62
+        s = s[:L - i]; sf[i:i + len(s)] += s * c.get("gain", 0.6) * 1.2
 mix += sf * sfx_g[:, None]
 mix[:len(voice)] += voice * 1.0
 pk = np.max(np.abs(mix))

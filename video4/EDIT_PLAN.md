@@ -1,6 +1,10 @@
 # Video 4: "Perempuan ada dua jenis" (Bombshell vs Midnight Fantasy)
 
-**Status: PREVIEW**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v3**, `preview/preview_v3.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+
+## Maklum balas & perubahan
+- **v2:** suara tenggelam, jadi suara dinaikkan ke ~19 dB di atas latar. Gerakan ~45% lebih laju, ada zoom punch, bunyi "top" pada setiap teks dan "whip" pada setiap peralihan, kilatan pada impak.
+- **v3:** SFX lebih kuat (puncak ~8 dB di bawah suara), muzik lebih perlahan dan lembut (90 bpm, ~−26 dB di bawah suara). Suara lebih "studio" (`voice_studio.sh`): bunyi kabin kereta di-gate, kehangatan close-mic, "box" dipotong, presence + air, exciter. Mix akhir −13 LUFS.
 
 - Asal: 58.9 s. Selepas edit: **49.0 s** (47.6 s suara + 1.4 s kad penutup).
 - Gaya: **modern motion graphics, minimalist luxury** (ikut Video 3). Latar ivory, Montserrat nipis, garis halus, B-roll dalam bingkai bulat/bucu bulat, caption pil, nombor seksyen 01–05 dan progress bar.
@@ -48,7 +52,7 @@
 
 ## Sumber
 - B-roll: [Mixkit](https://mixkit.co) (Mixkit Free License). Klip: 38386, 40294, 49306, 49311, 16025, 4433, 18802, 1244, 21694, 4915, 4124, 13787. Klip yang dedah kulit dan klip arak dielak.
-- SFX & muzik: disintesis sendiri (`video3/make_audio_min.py`).
+- SFX & muzik: disintesis sendiri (`video4/make_audio.py`).
 - Komposisi: HyperFrames v0.9.10 (`video4/project/`).
 
 ## Cara build semula
@@ -60,7 +64,8 @@ python3 -I prep_broll.py mixkit project/assets/broll src/main.mov
 MATTE_MODEL=isnet-general-use python3 work/matte_fast.py src/pump2.mp4 4.3 6.0 work/matte_pump
 LIGHT=1 python3 ../video2/compose_pump.py work/matte_pump project/assets/broll/pump_ivory.mp4 0.5 0.5
 python3 -I build.py project            # also writes assets/audio/sfx_cues.json
-python3 ../video3/make_audio_min.py project/assets/audio/voice.wav project/assets/audio
-ffmpeg -i project/assets/audio/mix_raw.wav -af loudnorm=I=-14:TP=-1:LRA=9 -ar 48000 project/assets/audio/mix.wav
+./voice_studio.sh
+python3 make_audio.py project/assets/audio/voice.wav project/assets/audio
+ffmpeg -i project/assets/audio/mix_raw.wav -af loudnorm=I=-13:TP=-1:LRA=9 -ar 48000 project/assets/audio/mix.wav
 cd project && npx hyperframes@0.9.10 render -q draft -o ../preview/preview_v1.mp4      # final: python3 -I ../build.py . --final; render -q delivery
 ```
