@@ -32,8 +32,14 @@ for i, w in enumerate(clean):
         chunks.append(cur); cur = []
 
 html, js, sfx = [], [], []
-def A(l): js.append(l)
-def S(t, s, g=0.6): sfx.append({"t": round(t, 3), "sfx": s, "gain": g})
+SPEED = 0.55             # client asked for snappier motion: every short tween runs ~45% faster
+def _fast(l):
+    return re.sub(r"duration:([\d.]+)", lambda m: f"duration:{float(m.group(1)) * SPEED:.2f}" if float(m.group(1)) <= 1.3 else m.group(0), l)
+def A(l): js.append(_fast(l))
+def S(t, s, g=0.6, auto=False):
+    if s == "swoosh": s, g = "whip", g * 0.9      # short, punchy "sup" instead of the long soft swoosh
+    if s == "tick": s = "top"
+    sfx.append({"t": round(t, 3), "sfx": s, "gain": g, "auto": auto})
 def clip(id_, s, d, inner="", cls="", style=""):
     html.append(f'<div id="{id_}" class="clip {cls}" data-start="{s:.3f}" data-duration="{d:.3f}" style="{style}">{inner}</div>')
 def vid(id_, src, s, d, box, cls="frame", z0=1.15, z1=1.0, media="0", img=False):
@@ -48,28 +54,36 @@ def vid(id_, src, s, d, box, cls="frame", z0=1.15, z1=1.0, media="0", img=False)
     else:
         html.append(f'<video id="{id_}" class="clip" src="{src}" data-start="{s:.3f}" data-duration="{d:.3f}" data-media-start="{media}" '
                     f'muted playsinline style="{st}"></video>')
-    A(f'tl.fromTo("#{id_}",{{scale:{z0}}},{{scale:{z1},duration:{d:.2f},ease:"power2.out"}},{s});')
-    A(f'tl.fromTo("#{id_},#{id_}m",{{clipPath:"inset(100% 0% 0% 0% round 44px)"}},{{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"}},{s});')
+    # zoom punch in, then a slow drift
+    js.append(f'tl.fromTo("#{id_}",{{scale:{max(z0, 1.22)}}},{{scale:1.04,duration:0.42,ease:"expo.out"}},{s});')
+    js.append(f'tl.to("#{id_}",{{scale:{z1},duration:{max(d - 0.42, 0.1):.2f},ease:"none"}},{s + 0.42:.3f});')
+    js.append(f'tl.fromTo("#{id_},#{id_}m",{{clipPath:"inset(100% 0% 0% 0% round 44px)"}},{{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.34,ease:"expo.out"}},{s});')
+    S(s, "whip", 0.45, auto=True); S(s + 0.12, "top", 0.4, auto=True)
 def full(id_, src, s, d, z0=1.12, z1=1.0, tag="video", reveal="circle", media="0"):
     if tag == "video":
         html.append(f'<video id="{id_}" class="clip bg" src="{src}" data-start="{s:.3f}" data-duration="{d:.3f}" data-media-start="{media}" muted playsinline></video>')
     else:
         html.append(f'<img id="{id_}" class="clip bg" src="{src}" data-start="{s:.3f}" data-duration="{d:.3f}" alt="">')
-    A(f'tl.fromTo("#{id_}",{{scale:{z0}}},{{scale:{z1},duration:{d:.2f},ease:"power2.out"}},{s});')
+    js.append(f'tl.fromTo("#{id_}",{{scale:{max(z0, 1.2)}}},{{scale:1.03,duration:0.45,ease:"expo.out"}},{s});')
+    js.append(f'tl.to("#{id_}",{{scale:{z1},duration:{max(d - 0.45, 0.1):.2f},ease:"none"}},{s + 0.45:.3f});')
     if reveal == "circle":
-        A(f'tl.fromTo("#{id_}",{{clipPath:"circle(0% at 50% 50%)"}},{{clipPath:"circle(75% at 50% 50%)",duration:0.8,ease:"expo.inOut"}},{s});')
+        js.append(f'tl.fromTo("#{id_}",{{clipPath:"circle(0% at 50% 50%)"}},{{clipPath:"circle(75% at 50% 50%)",duration:0.4,ease:"expo.out"}},{s});')
     elif reveal == "up":
-        A(f'tl.fromTo("#{id_}",{{clipPath:"inset(100% 0% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:0.7,ease:"expo.inOut"}},{s});')
+        js.append(f'tl.fromTo("#{id_}",{{clipPath:"inset(100% 0% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:0.36,ease:"expo.out"}},{s});')
+    S(s, "whip", 0.5, auto=True)
 def rv(sel, t, d=0.7):
-    A(f'tl.fromTo("{sel} > span",{{yPercent:110}},{{yPercent:0,duration:{d},ease:"expo.out"}},{t:.2f});')
+    js.append(f'tl.fromTo("{sel} > span",{{yPercent:115}},{{yPercent:0,duration:{max(d * SPEED, 0.22):.2f},ease:"expo.out"}},{t:.2f});')
+    S(t, "top", 0.38, auto=True)
 def fade(sel, t, d=0.6, y=24, x=0):
-    A(f'tl.fromTo("{sel}",{{opacity:0,y:{y},x:{x}}},{{opacity:1,y:0,x:0,duration:{d},ease:"expo.out"}},{t:.2f});')
+    js.append(f'tl.fromTo("{sel}",{{opacity:0,y:{y},x:{x}}},{{opacity:1,y:0,x:0,duration:{max(d * SPEED, 0.2):.2f},ease:"expo.out"}},{t:.2f});')
+    S(t, "top", 0.32, auto=True)
 def line(sel, t, d=0.8):
-    A(f'tl.fromTo("{sel}",{{scaleX:0}},{{scaleX:1,duration:{d},ease:"expo.inOut"}},{t:.2f});')
+    js.append(f'tl.fromTo("{sel}",{{scaleX:0}},{{scaleX:1,duration:{max(d * SPEED, 0.22):.2f},ease:"expo.out"}},{t:.2f});')
 def pop(sel, t, d=0.5):
-    A(f'tl.fromTo("{sel}",{{scale:0}},{{scale:1,duration:{d},ease:"back.out(2.2)"}},{t:.2f});')
+    js.append(f'tl.fromTo("{sel}",{{scale:0}},{{scale:1,duration:{max(d * 0.65, 0.22):.2f},ease:"back.out(3)"}},{t:.2f});')
+    S(t, "top", 0.5, auto=True)
 def typed(sel, t, d=0.6, n=12):
-    A(f'tl.fromTo("{sel}",{{clipPath:"inset(0% 100% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:{d},ease:"steps({n})"}},{t:.2f});')
+    js.append(f'tl.fromTo("{sel}",{{clipPath:"inset(0% 100% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:{d},ease:"steps({n})"}},{t:.2f});')
 def R(id_, txt): return f'<span id="{id_}" class="rv"><span>{txt}</span></span>'
 def sect(n, s, d, label, light=False):
     c = ' style="color:rgba(255,255,255,.75)"' if light else ""
@@ -312,7 +326,17 @@ for ci, ch in enumerate(chunks):
     clip(f"cap{ci}", st, max(en - st, 0.2), '<span class="pill">' + " ".join(sp) + "</span>", cls="cap")
     A(f'tl.fromTo("#cap{ci} .pill",{{y:20,opacity:0}},{{y:0,opacity:1,duration:0.25,ease:"power3.out"}},{st:.2f});')
 
-json.dump(sorted(sfx, key=lambda c: c["t"]), open(f"{proj}/assets/audio/sfx_cues.json", "w"), indent=0)
+sfx.sort(key=lambda c: c["t"])
+manual = [c for c in sfx if not c["auto"]]
+kept = list(manual)
+for c in (c for c in sfx if c["auto"]):           # auto cues yield to hand-placed ones and to each other
+    if any(abs(c["t"] - k["t"]) < 0.07 for k in kept):
+        continue
+    kept.append(c)
+kept.sort(key=lambda c: c["t"])
+for c in kept: c.pop("auto", None)
+sfx = kept
+json.dump(sfx, open(f"{proj}/assets/audio/sfx_cues.json", "w"), indent=0)
 CSS = open(f"{proj}/style.css").read()
 pv = "" if FINAL else '<div class="pv">PREVIEW</div>'
 page = f"""<!doctype html>
