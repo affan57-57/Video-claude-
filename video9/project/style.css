@@ -1,0 +1,75 @@
+/* Video 9 -- "Blush & Plum": warm fashion-editorial minimalist luxury (Gloock high-contrast serif + Plus Jakarta Sans;
+   blush / cream / plum ink / rose (Woman Glory) / violet (Noche) / champagne, yellow only for the shop bag) */
+@font-face { font-family: "Gloock"; src: url("assets/fonts/Gloock.ttf"); }
+@font-face { font-family: "Jakarta"; src: url("assets/fonts/Jakarta.ttf"); font-weight: 200 800; }
+@font-face { font-family: "Jakarta"; src: url("assets/fonts/Jakarta-Italic.ttf"); font-weight: 200 800; font-style: italic; }
+
+:root {
+  --blush: #f4e8e3;
+  --cream: #fbf6f2;
+  --nude: #e6d2c8;
+  --plum: #3b1d2e;
+  --rose: #b02a45;
+  --violet: #5a3f9e;
+  --champ: #c29a74;
+  --bag: #f6c445;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blush); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--blush);
+  color: var(--plum); font-family: "Jakarta", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.blushbg { position: absolute; inset: 0; background: radial-gradient(110% 70% at 50% 28%, var(--cream) 0%, var(--blush) 55%, var(--nude) 100%); }
+.plumbg { position: absolute; inset: 0; background: radial-gradient(110% 70% at 50% 30%, #57293f 0%, var(--plum) 70%); }
+.veil { position: absolute; inset: 0; }
+.grain { position: absolute; inset: 0; opacity: .4;
+  background-image: radial-gradient(rgba(59,29,46,.05) 1px, transparent 1px); background-size: 4px 4px; }
+
+/* type */
+.t { position: absolute; left: 80px; right: 80px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; }
+.rv > span { display: inline-block; }
+.ch { display: inline-block; white-space: pre; }
+.gl { font-family: "Gloock"; font-weight: 400; }
+.big { font: 400 150px/1 "Gloock"; letter-spacing: -2px; }
+.it { font-style: italic; }
+.lab { font: 700 30px "Jakarta"; letter-spacing: 9px; text-transform: uppercase; color: var(--champ); }
+.rose { color: var(--rose); } .violet { color: var(--violet); } .cream { color: var(--cream); } .plum { color: var(--plum); } .champ { color: var(--champ); }
+
+/* frames */
+.frame { position: absolute; overflow: hidden; border-radius: 40px; box-shadow: 0 34px 80px rgba(59,29,46,.25); }
+.frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pill { position: absolute; display: inline-flex; align-items: center; gap: 16px; padding: 20px 40px; border-radius: 999px;
+  background: var(--cream); color: var(--plum); font: 700 40px "Jakarta"; letter-spacing: 2px; white-space: nowrap;
+  box-shadow: 0 14px 34px rgba(59,29,46,.16); }
+.pill.r { background: var(--rose); color: var(--cream); } .pill.v { background: var(--violet); color: var(--cream); } .pill.p { background: var(--plum); color: var(--cream); }
+.pill b { font: 400 44px "Gloock"; }
+.blob { position: absolute; border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+
+/* scent profile meters */
+.meter { position: absolute; width: 440px; }
+.meter .nm { font: 700 30px "Jakarta"; letter-spacing: 6px; color: var(--cream); margin-bottom: 14px; }
+.meter .tr { height: 18px; border-radius: 9px; background: rgba(251,246,242,.25); overflow: hidden; }
+.meter .fl { height: 100%; border-radius: 9px; background: var(--cream); transform-origin: 0 50%; }
+
+/* section tabs: SEBAB 01 / 02 / 03 */
+#tabs { position: absolute; z-index: 8; top: 48px; left: 60px; right: 60px; display: flex; gap: 14px; }
+#tabs .tb { flex: 1; display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 999px;
+  background: rgba(251,246,242,.55); border: 1.5px solid rgba(59,29,46,.15); font: 700 22px "Jakarta"; letter-spacing: 3px; color: rgba(59,29,46,.45);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+#tabs .tb i { font: 400 30px "Gloock"; font-style: normal; letter-spacing: 0; }
+
+/* captions: words pop in as spoken; keywords switch to Gloock in rose */
+.cap { z-index: 9; inset: auto; top: 1555px; left: 40px; width: 1000px; height: auto; text-align: center; }
+.cap .ln { display: inline-block; font: 800 72px/1.16 "Jakarta"; letter-spacing: -1.5px; color: var(--plum);
+  text-shadow: 0 0 24px rgba(251,246,242,.95), 0 0 8px rgba(251,246,242,.9), 0 0 2px rgba(251,246,242,1); }
+.cap .ln.dk { color: var(--cream); text-shadow: 0 0 24px rgba(59,29,46,.9), 0 0 8px rgba(59,29,46,.85), 0 2px 3px rgba(59,29,46,.9); }
+.cap .w { display: inline-block; margin: 0 6px; }
+.cap .w.k { font: 400 86px/1 "Gloock"; letter-spacing: -1px; color: var(--rose); }
+.cap .ln.dk .w.k { color: #ffd0d8; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 120px; right: 40px; font: 600 16px "Jakarta"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }
