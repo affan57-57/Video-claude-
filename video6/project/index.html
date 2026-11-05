@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+/* Video 6 -- "Editorial Espresso": a new minimalist-luxury system (Bodoni Moda + Manrope, espresso / sand / brass / sage) */
+@font-face { font-family: "Bodoni"; src: url("assets/fonts/BodoniModa.ttf"); font-weight: 400 900; }
+@font-face { font-family: "Bodoni"; src: url("assets/fonts/BodoniModa-Italic.ttf"); font-style: italic; font-weight: 400 900; }
+@font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope.ttf"); font-weight: 200 800; }
+
+:root {
+  --esp: #1b1613;
+  --esp2: #2a221d;
+  --sand: #e8dfd2;
+  --cream: #f5efe6;
+  --brass: #b8955a;
+  --sage: #8f9c88;
+  --mute: #a39a8e;
+  --rose: #a5162f;
+  --violet: #4a3a8c;
+  --yellow: #f2c230;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--esp); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--esp);
+  color: var(--cream); font-family: "Manrope", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.esp { position: absolute; inset: 0; background: var(--esp); }
+.sandbg { position: absolute; inset: 0; background: var(--sand); }
+.shade { position: absolute; inset: 0; }
+.grain { position: absolute; inset: 0; opacity: .06; background-image: radial-gradient(rgba(255,255,255,.9) 1px, transparent 1px);
+  background-size: 6px 6px; }
+
+/* type */
+.t { position: absolute; left: 90px; right: 90px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .06em; }
+.rv > span { display: inline-block; }
+.label { font: 600 22px "Manrope"; letter-spacing: 10px; text-transform: uppercase; color: var(--brass); }
+.disp { font: 400 128px/0.95 "Bodoni"; letter-spacing: -2px; }
+.disp-it { font: italic 400 112px/1 "Bodoni"; letter-spacing: -1px; }
+.mid { font: 500 56px/1.15 "Manrope"; letter-spacing: -0.5px; }
+.giant { font: 400 520px/0.8 "Bodoni"; letter-spacing: -20px; }
+.outline { color: transparent; -webkit-text-stroke: 2px var(--brass); }
+.brass { color: var(--brass); } .sage { color: var(--sage); } .ink { color: var(--esp); }
+.vert { position: absolute; transform: rotate(-90deg); transform-origin: 0 0; white-space: nowrap;
+  font: 600 20px "Manrope"; letter-spacing: 12px; text-transform: uppercase; color: var(--mute); }
+.rule { position: absolute; height: 1px; background: var(--brass); transform-origin: 0 50%; }
+.vrule { position: absolute; width: 1px; background: var(--brass); transform-origin: 50% 0; }
+.strike { position: absolute; left: -12px; right: -12px; top: 50%; height: 10px; background: var(--brass); transform-origin: 0 50%; }
+
+/* masks / frames */
+.arch { position: absolute; overflow: hidden; border-radius: 600px 600px 18px 18px; }
+.frame { position: absolute; overflow: hidden; border-radius: 18px; }
+.circle { position: absolute; overflow: hidden; border-radius: 50%; }
+.tile { position: absolute; overflow: hidden; border-radius: 14px; }
+/* text-as-window: white letters on black, multiplied over the footage underneath */
+.knock { position: absolute; inset: 0; background: #000; color: #fff; mix-blend-mode: multiply; display: flex; align-items: center; justify-content: center; }
+.blind { position: absolute; top: 0; height: 1920px; background: var(--brass); transform-origin: 50% 0; }
+
+/* chapter chrome */
+.chap { position: absolute; z-index: 8; left: 90px; top: 92px; font: 600 22px "Manrope"; letter-spacing: 8px; color: var(--mute); }
+.chap b { color: var(--brass); font-weight: 700; }
+#vprog { position: absolute; z-index: 8; right: 44px; top: 120px; width: 2px; height: 1680px; background: rgba(184,149,90,.22); }
+#vprog i { position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: var(--brass); transform-origin: 50% 0; }
+
+/* marquee */
+.marq { position: absolute; left: 0; width: 4000px; white-space: nowrap; font: italic 400 64px "Bodoni"; color: var(--sand); }
+.marq span { margin: 0 34px; } .marq span.d { color: var(--brass); font-style: normal; }
+
+/* UI pieces */
+.toggle { position: absolute; width: 200px; height: 104px; border-radius: 52px; background: var(--sage); }
+.toggle i { position: absolute; top: 8px; left: 104px; width: 88px; height: 88px; border-radius: 50%; background: var(--cream); }
+.toggle-l { position: absolute; font: 700 30px "Manrope"; letter-spacing: 8px; }
+.notif { position: absolute; display: flex; align-items: center; gap: 16px; padding: 18px 28px; border-radius: 22px;
+  background: rgba(245,239,230,.94); color: var(--esp); font: 600 30px "Manrope"; white-space: nowrap; box-shadow: 0 12px 34px rgba(0,0,0,.35); }
+.notif i { width: 38px; height: 38px; border-radius: 10px; background: var(--brass); }
+.eq { position: absolute; display: flex; align-items: flex-end; gap: 12px; height: 160px; }
+.eq i { width: 16px; height: 160px; background: var(--brass); transform-origin: 50% 100%; border-radius: 3px; }
+.breath { position: absolute; border-radius: 50%; border: 2px solid var(--sand); }
+.breath-dot { position: absolute; border-radius: 50%; background: rgba(232,223,210,.12); }
+.spec { position: absolute; display: flex; align-items: center; gap: 18px; }
+.spec .d { width: 14px; height: 14px; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 8px rgba(184,149,90,.18); }
+.spec .l { width: 150px; height: 1px; background: var(--brass); transform-origin: 0 50%; }
+.spec .x { font: 600 26px "Manrope"; letter-spacing: 6px; color: var(--cream); white-space: nowrap; }
+.spec .x small { display: block; font: italic 400 30px "Bodoni"; letter-spacing: 0; color: var(--mute); }
+.check { position: absolute; left: 140px; display: flex; align-items: center; gap: 30px; font: 500 46px "Manrope"; color: var(--cream); }
+.check .bx { width: 54px; height: 54px; border: 2px solid var(--brass); border-radius: 12px; position: relative; flex: none; }
+.check .bx svg { position: absolute; inset: 6px; }
+.check .n { font: italic 400 40px "Bodoni"; color: var(--brass); width: 60px; }
+.sharebtn { position: absolute; left: 240px; width: 600px; height: 150px; border-radius: 75px; background: var(--brass); color: var(--esp);
+  display: flex; align-items: center; justify-content: center; gap: 24px; font: 700 42px "Manrope"; letter-spacing: 10px; }
+.sharebtn svg { width: 56px; height: 56px; }
+.tap { position: absolute; width: 70px; height: 70px; border-radius: 50%; background: rgba(245,239,230,.9); box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+.lbl { position: absolute; padding: 14px 30px; border-radius: 999px; font: 700 24px "Manrope"; letter-spacing: 6px; color: #fff; white-space: nowrap; }
+.lbl.r { background: var(--rose); } .lbl.v { background: var(--violet); }
+
+/* captions: no pill -- a soft lower band, the spoken word lights up in brass */
+.cap { z-index: 9; inset: auto; top: 1590px; left: 70px; width: 940px; height: auto; text-align: center; }
+.cap .line { display: inline-block; padding: 10px 6px; font: 700 50px/1.2 "Manrope"; color: rgba(245,239,230,.55); letter-spacing: -0.3px;
+  text-shadow: 0 2px 18px rgba(0,0,0,.65); }
+.cap .w { display: inline-block; }
+.cap .w.on { color: var(--cream); }
+.cap .w.hl.on { color: var(--brass); }
+#capband { position: absolute; z-index: 8; left: 0; top: 1480px; width: 1080px; height: 440px;
+  background: linear-gradient(180deg, rgba(27,22,19,0) 0%, rgba(27,22,19,.55) 55%, rgba(27,22,19,.75) 100%); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 22px; right: 30px; font: 600 16px "Manrope"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="49.0" data-width="1080" data-height="1920">
+<audio id="mix" class="clip" src="assets/audio/mix.wav" data-start="0" data-duration="49.0" data-volume="1"></audio>
+<div id="s0" class="clip " data-start="0.000" data-duration="0.380" style=""><div class="esp"></div><div class="t c" style="top:760px;font:italic 400 260px/1 Bodoni;color:var(--cream)" id="b0">Balik</div></div>
+<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="0.380" data-duration="0.780" data-media-start="0" muted playsinline style="z-index:6"></video>
+<div id="s1" class="clip " data-start="0.380" data-duration="0.780" style="z-index:7"><div class="shade" style="background:linear-gradient(180deg,rgba(27,22,19,0) 55%,rgba(27,22,19,.75) 100%)"></div><div class="t c" style="top:1360px;font:italic 400 150px/1 Bodoni;color:var(--cream)"><span id="f0" class="rv"><span>kerja,</span></span></div></div>
+<div id="s2" class="clip " data-start="1.160" data-duration="1.100" style=""><div class="esp" style="background:#0e0b09"></div><div class="t c" id="k1" style="top:770px;left:0;right:0;font:900 250px/1 Bodoni;letter-spacing:-6px;-webkit-text-stroke:1.5px rgba(245,239,230,.55);color:transparent;background:url(assets/broll/office.jpg) center 45%/1400px auto;-webkit-background-clip:text;background-clip:text">KERJA</div><div class="t c label" style="top:640px;color:var(--brass)"><span id="k0" class="rv"><span>Jangan terus fikir pasal</span></span></div><div style="position:absolute;left:110px;width:860px;top:955px;height:12px;background:var(--brass);transform-origin:0 50%" id="k2"></div></div>
+<div id="s3" class="clip " data-start="2.260" data-duration="1.520" style=""><div class="esp"></div><div class="grain"></div><div class="giant outline" id="big5" style="position:absolute;left:300px;top:380px;font-size:900px;line-height:.8">5</div><div class="t c label" style="top:300px"><span id="p0" class="rv"><span>Cuba buat</span></span></div><div class="t c disp-it" style="top:1180px;color:var(--cream)"><span id="p1" class="rv"><span>perkara ini</span></span></div><div class="marq" id="mq" style="top:1430px"><span>Tarik nafas</span><span class="d">&middot;</span><span>Jauhkan telefon</span><span class="d">&middot;</span><span>Dengar lagu</span><span class="d">&middot;</span><span>Masa keluarga</span><span class="d">&middot;</span><span>Mandi &amp; me-time</span><span class="d">&middot;</span><span>Tarik nafas</span><span class="d">&middot;</span><span>Jauhkan telefon</span></div></div>
+<div id="bl1" class="clip " data-start="3.580" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="bg1" class="clip " data-start="3.780" data-duration="3.620" style="z-index:2"><div class="esp"></div></div>
+<video id="v_sea" class="clip" src="assets/broll/sea.mp4" data-start="3.780" data-duration="3.620" data-media-start="0" muted playsinline style="z-index:4;left:500px;top:500px;width:490px;height:820px;object-fit:cover;border-radius:600px 600px 18px 18px"></video>
+<div id="t1" class="clip " data-start="3.780" data-duration="3.620" style=""><div id="n1" class="giant outline" style="position:absolute;left:70px;top:150px;font-size:300px">01</div><div class="t disp" style="top:620px;left:90px;width:420px;font-size:112px"><span id="a0" class="rv"><span>Tarik</span></span><br><span id="a1" class="rv"><span>nafas</span></span></div><div class="t disp-it brass" style="top:880px;left:90px;width:420px;font-size:66px"><span id="a2" class="rv"><span>pelan-pelan</span></span></div><div class="breath-dot" id="bd" style="left:150px;top:1040px;width:260px;height:260px"></div><div class="breath" id="br" style="left:150px;top:1040px;width:260px;height:260px"></div><div class="t label" id="bt" style="top:1158px;left:150px;width:260px;text-align:center;letter-spacing:6px">TARIK</div><div class="t label" id="bh" style="top:1158px;left:150px;width:260px;text-align:center;letter-spacing:6px;opacity:0">HEMBUS</div><div class="t mid" style="top:1390px;left:500px;width:500px;color:var(--sand);font-size:44px"><span id="a3" class="rv"><span>&amp; tenangkan fikiran</span></span></div></div>
+<div id="c1" class="clip " data-start="3.780" data-duration="3.620" style="z-index:8"><div class="chap"><b>N&deg; 01</b> &nbsp;/ 05 &nbsp;&middot;&nbsp; NAFAS</div></div>
+<div id="bl2" class="clip " data-start="7.200" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="bg2" class="clip " data-start="7.400" data-duration="4.480" style="z-index:2"><div class="esp"></div></div>
+<video id="v_ph" class="clip" src="assets/broll/phone.mp4" data-start="7.400" data-duration="4.480" data-media-start="0" muted playsinline style="z-index:4;left:250px;top:560px;width:580px;height:820px;object-fit:cover;border-radius:18px"></video>
+<div id="t2" class="clip " data-start="7.400" data-duration="4.480" style=""><div id="n2" class="giant outline" style="position:absolute;left:70px;top:150px;font-size:300px">02</div><div class="t disp" style="top:240px;left:480px;width:520px;font-size:104px"><span id="j0" class="rv"><span>Jauhkan</span></span></div><div class="t disp-it brass" style="top:360px;left:480px;width:520px;font-size:66px"><span id="j1" class="rv"><span>diri sekejap</span></span></div><div class="notif" id="j2" style="left:120px;top:640px"><i></i>12 notifikasi baru</div><div class="notif" id="j3" style="left:520px;top:820px"><i style="background:var(--rose)"></i>48 likes</div><div class="notif" id="j4" style="left:160px;top:1000px"><i style="background:var(--sage)"></i>3 mesej</div><div class="toggle" id="j5" style="left:440px;top:1430px"><i></i></div><div class="toggle-l" id="j6" style="left:270px;top:1462px;color:var(--mute)">ON</div><div class="toggle-l" id="j7" style="left:670px;top:1462px;color:var(--brass);opacity:0">OFF</div></div>
+<div id="c2" class="clip " data-start="7.400" data-duration="4.480" style="z-index:8"><div class="chap"><b>N&deg; 02</b> &nbsp;/ 05 &nbsp;&middot;&nbsp; TELEFON</div></div>
+<div id="bl3" class="clip " data-start="11.680" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="bg3" class="clip " data-start="11.880" data-duration="2.360" style="z-index:2"><div class="esp"></div></div>
+<video id="v_vin" class="clip" src="assets/broll/vinyl.mp4" data-start="11.880" data-duration="2.360" data-media-start="0" muted playsinline style="z-index:4;left:240px;top:520px;width:600px;height:600px;object-fit:cover;border-radius:50%"></video>
+<div id="t3" class="clip " data-start="11.880" data-duration="2.360" style=""><div id="n3" class="giant outline" style="position:absolute;left:70px;top:150px;font-size:300px">03</div><div class="t disp" style="top:240px;left:480px;width:520px;font-size:104px"><span id="m0" class="rv"><span>Dengar</span></span></div><div class="t disp-it brass" style="top:360px;left:480px;width:520px;font-size:66px"><span id="m1" class="rv"><span>lagu kegemaran</span></span></div><div class="breath" style="left:216px;top:496px;width:648px;height:648px;border-color:rgba(184,149,90,.5)" id="m2"></div><div class="eq" style="left:306px;top:1200px"><i id="eq0"></i><i id="eq1"></i><i id="eq2"></i><i id="eq3"></i><i id="eq4"></i><i id="eq5"></i><i id="eq6"></i><i id="eq7"></i><i id="eq8"></i><i id="eq9"></i><i id="eq10"></i><i id="eq11"></i><i id="eq12"></i><i id="eq13"></i></div></div>
+<div id="c3" class="clip " data-start="11.880" data-duration="2.360" style="z-index:8"><div class="chap"><b>N&deg; 03</b> &nbsp;/ 05 &nbsp;&middot;&nbsp; MUZIK</div></div>
+<div id="bl4" class="clip " data-start="14.040" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="bg4" class="clip " data-start="14.240" data-duration="3.940" style="z-index:2"><div class="esp"></div></div>
+<video id="v_fam" class="clip" src="assets/broll/family.mp4" data-start="14.240" data-duration="3.940" data-media-start="0" muted playsinline style="z-index:4;left:0;top:640px;width:1080px;height:452px;object-fit:cover"></video>
+<div id="t4" class="clip " data-start="14.240" data-duration="3.940" style=""><div id="n4" class="giant outline" style="position:absolute;left:70px;top:150px;font-size:300px">04</div><div class="t disp" style="top:240px;left:480px;width:540px;font-size:96px"><span id="q0" class="rv"><span>Luangkan</span></span><br><span id="q0b" class="rv"><span>masa</span></span></div><div class="t label" style="top:1130px"><span id="q1" class="rv"><span>dengan keluarga atau</span></span></div><div class="t c disp-it" style="top:1200px;font-size:104px;color:var(--cream)"><span id="q2" class="rv"><span>orang yang</span></span><br><span id="q3" class="rv"><span>tersayang</span></span></div><div id="q4" style="position:absolute;left:480px;top:1460px"><svg viewBox="0 0 120 110" style="width:120px;height:110px"><path id="hp" d="M60 100 C20 70 6 50 6 32 C6 16 18 6 32 6 C44 6 54 14 60 24 C66 14 76 6 88 6 C102 6 114 16 114 32 C114 50 100 70 60 100 Z" fill="none" stroke="#b8955a" stroke-width="4" stroke-dasharray="330" stroke-dashoffset="330"/></svg></div><div class="rule" id="q5" style="left:0;width:1080px;top:639px"></div><div class="rule" id="q6" style="left:0;width:1080px;top:1092px"></div></div>
+<div id="c4" class="clip " data-start="14.240" data-duration="3.940" style="z-index:8"><div class="chap"><b>N&deg; 04</b> &nbsp;/ 05 &nbsp;&middot;&nbsp; KELUARGA</div></div>
+<div id="bl5" class="clip " data-start="17.980" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="bg5" class="clip " data-start="18.180" data-duration="4.920" style="z-index:2"><div class="esp"></div></div>
+<video id="v_bath" class="clip" src="assets/broll/bath.mp4" data-start="18.180" data-duration="4.920" data-media-start="0" muted playsinline style="z-index:4;left:90px;top:520px;width:900px;height:560px;object-fit:cover;border-radius:14px"></video>
+<video id="v_cdl" class="clip" src="assets/broll/candle.mp4" data-start="19.820" data-duration="3.280" data-media-start="0" muted playsinline style="z-index:4;left:90px;top:1100px;width:440px;height:420px;object-fit:cover;border-radius:14px"></video>
+<video id="v_pmp" class="clip" src="assets/broll/pump_ivory.mp4" data-start="20.660" data-duration="2.440" data-media-start="3.3" muted playsinline style="z-index:4;left:550px;top:1100px;width:440px;height:420px;object-fit:cover;border-radius:14px"></video>
+<div id="t5" class="clip " data-start="18.180" data-duration="4.920" style=""><div id="n5" class="giant outline" style="position:absolute;left:70px;top:150px;font-size:300px">05</div><div class="t disp" style="top:240px;left:480px;width:520px;font-size:104px"><span id="u0" class="rv"><span>Mandi</span></span></div><div class="t disp-it brass" style="top:360px;left:480px;width:520px;font-size:62px"><span id="u1" class="rv"><span>&amp; nikmati masa</span></span></div><div class="t label" style="top:455px;left:480px;width:520px"><span id="u2" class="rv"><span>untuk diri sendiri</span></span></div></div>
+<div id="c5" class="clip " data-start="18.180" data-duration="4.920" style="z-index:8"><div class="chap"><b>N&deg; 05</b> &nbsp;/ 05 &nbsp;&middot;&nbsp; MANDI &amp; ME-TIME</div></div>
+<div id="blr" class="clip " data-start="22.900" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<video id="v_tea" class="clip bg" src="assets/broll/tea.mp4" data-start="23.100" data-duration="2.900" data-media-start="0" muted playsinline></video>
+<div id="refl1" class="clip " data-start="23.100" data-duration="2.900" style=""><div class="shade" style="background:linear-gradient(180deg,rgba(27,22,19,.75) 0%,rgba(27,22,19,.2) 45%,rgba(27,22,19,.1) 100%)"></div><div class="t label" style="top:260px"><span id="r0" class="rv"><span>Kadang-kadang</span></span></div><div class="t disp-it" style="top:330px;font-size:84px;line-height:1.08"><span id="r1" class="rv"><span>kita tak perlukan</span></span><br><span id="r2" class="rv"><span>sesuatu yang besar</span></span><br><span id="r3" class="rv"><span>untuk berehat.</span></span></div></div>
+<video id="v_book" class="clip bg" src="assets/broll/book.mp4" data-start="26.000" data-duration="3.040" data-media-start="0" muted playsinline style="z-index:2"></video>
+<div id="refl2" class="clip " data-start="26.000" data-duration="3.040" style=""><div class="shade" style="background:rgba(27,22,19,.55)"></div><div class="t c brass" style="top:470px;font:400 260px/1 Bodoni" id="r4">&ldquo;</div><div class="t c disp-it" style="top:760px;font-size:92px;line-height:1.1"><span id="r5" class="rv"><span>Cukup beri ruang</span></span><br><span id="r6" class="rv"><span>kepada diri sendiri.</span></span></div><div class="rule" id="r7" style="left:440px;width:200px;top:1060px"></div></div>
+<div id="blp" class="clip " data-start="28.840" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="bgp" class="clip " data-start="29.040" data-duration="10.420" style="z-index:2"><div class="esp"></div><div class="grain"></div></div>
+<img id="p_duo" class="clip" src="assets/product/duo_white.jpg" data-start="29.040" data-duration="10.420" alt="" style="z-index:4;left:470px;top:560px;width:520px;height:924px;object-fit:cover;border-radius:600px 600px 18px 18px">
+<div id="prod1" class="clip " data-start="29.040" data-duration="4.640" style=""><div class="t label" style="top:250px"><span id="w0" class="rv"><span>Nak jadikan rutin mandi</span></span></div><div class="t disp-it" style="top:310px;font-size:96px"><span id="w1" class="rv"><span>lebih istimewa?</span></span></div><div class="t mid" style="top:760px;left:90px;width:360px;color:var(--sand);font-size:46px"><span id="w2" class="rv"><span>Korang</span></span><br><span id="w3" class="rv"><span>kena cuba</span></span></div><div class="vrule" id="w4" style="left:90px;top:900px;height:420px"></div></div>
+<div id="prod2" class="clip " data-start="33.680" data-duration="5.780" style=""><div class="t c" style="top:200px;font:400 104px/1 Bodoni;letter-spacing:22px"><span id="x0" class="rv"><span>FRESCURA</span></span></div><div class="t c label" style="top:330px;letter-spacing:30px"><span id="x1" class="rv"><span>BODY</span></span></div><div class="spec" id="x2" style="left:90px;top:760px"><div><div class="x">SEA SALT<small>ocean salt</small></div></div><div class="l"></div><div class="d"></div></div><div class="spec" id="x3" style="left:90px;top:960px"><div><div class="x">PILIHAN WANGIAN<small>dua pilihan</small></div></div><div class="l"></div><div class="d"></div></div><div class="spec" id="x4" style="left:90px;top:1160px"><div><div class="x">ALA PERFUME<small>berinspirasikan</small></div></div><div class="l"></div><div class="d"></div></div></div>
+<div id="bgs" class="clip " data-start="39.460" data-duration="2.100" style="z-index:2"><div class="esp"></div></div>
+<img id="p_gl" class="clip" src="assets/product/glory_card.jpg" data-start="39.460" data-duration="2.100" alt="" style="z-index:4;left:110px;top:470px;width:420px;height:1060px;object-fit:cover;border-radius:18px">
+<img id="p_no" class="clip" src="assets/product/noche_card.jpg" data-start="40.900" data-duration="0.660" alt="" style="z-index:4;left:550px;top:470px;width:420px;height:1060px;object-fit:cover;border-radius:18px">
+<div id="s5x" class="clip " data-start="39.460" data-duration="2.100" style=""><div class="t c label" style="top:300px"><span id="y0" class="rv"><span>Seperti</span></span></div><div class="lbl r" id="y1" style="left:185px;top:1460px">BOMBSHELL</div><div class="lbl v" id="y2" style="left:560px;top:1460px">MIDNIGHT FANTASY</div></div>
+<div id="blc" class="clip " data-start="41.360" data-duration="0.550" style="z-index:9"><div class="blind" style="left:0px;width:217px"></div><div class="blind" style="left:216px;width:217px"></div><div class="blind" style="left:432px;width:217px"></div><div class="blind" style="left:648px;width:217px"></div><div class="blind" style="left:864px;width:217px"></div></div>
+<div id="cta" class="clip " data-start="41.560" data-duration="5.950" style=""><div class="esp"></div><div class="grain"></div><div class="t label" style="top:250px"><span id="z0" class="rv"><span>Kalau tips ni bermanfaat</span></span></div><div class="t disp-it" style="top:310px;font-size:84px"><span id="z1" class="rv"><span>5 perkara tadi</span></span></div><div class="check" id="ck0" style="top:470px"><span class="n">01</span><div class="bx"><svg viewBox="0 0 40 40"><path d="M8 21 L17 30 L33 11" stroke="#b8955a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></div>Tarik nafas</div><div class="check" id="ck1" style="top:588px"><span class="n">02</span><div class="bx"><svg viewBox="0 0 40 40"><path d="M8 21 L17 30 L33 11" stroke="#b8955a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></div>Jauhkan telefon</div><div class="check" id="ck2" style="top:706px"><span class="n">03</span><div class="bx"><svg viewBox="0 0 40 40"><path d="M8 21 L17 30 L33 11" stroke="#b8955a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></div>Dengar lagu</div><div class="check" id="ck3" style="top:824px"><span class="n">04</span><div class="bx"><svg viewBox="0 0 40 40"><path d="M8 21 L17 30 L33 11" stroke="#b8955a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></div>Masa keluarga</div><div class="check" id="ck4" style="top:942px"><span class="n">05</span><div class="bx"><svg viewBox="0 0 40 40"><path d="M8 21 L17 30 L33 11" stroke="#b8955a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></div>Mandi &amp; me-time</div><div class="sharebtn" id="z2" style="top:1110px"><svg viewBox="0 0 64 64"><path d="M38 10 L58 30 L38 50 V38 C24 38 14 42 6 54 C8 36 18 24 38 22 Z" fill="#1b1613"/></svg>SHARE</div><div class="tap" id="z3" style="left:720px;top:1150px"></div><div class="t c disp-it" style="top:1310px;font-size:66px;color:var(--sand)"><span id="z4" class="rv"><span>supaya lebih ramai tahu</span></span><br><span id="z5" class="rv"><span>cara menjaga diri</span></span></div></div>
+<div id="end" class="clip " data-start="47.510" data-duration="1.490" style=""><div class="sandbg"></div><div class="t c ink" style="top:740px;font:400 110px/1 Bodoni;letter-spacing:20px"><span id="e0" class="rv"><span>FRESCURA</span></span></div><div class="t c label" style="top:870px;letter-spacing:30px;color:var(--esp)"><span id="e1" class="rv"><span>BODY</span></span></div><div class="rule" id="e2" style="left:440px;width:200px;top:950px;background:var(--esp)"></div><div class="t c" style="top:990px;font:italic 400 52px Bodoni;color:#6d6358"><span id="e3" class="rv"><span>Woman Glory &middot; Noche</span></span></div></div>
+<div id="chrome" class="clip " data-start="3.780" data-duration="45.220" style="z-index:8"><div id="vprog"><i></i></div></div>
+<div id="band" class="clip " data-start="3.780" data-duration="43.730" style="z-index:8"><div id="capband"></div></div>
+<div id="cap5" class="clip cap" data-start="3.780" data-duration="1.020" style=""><span class="line"><span id="w5_0" class="w">Pertama</span></span></div>
+<div id="cap6" class="clip cap" data-start="4.800" data-duration="1.260" style=""><span class="line"><span id="w6_0" class="w">tarik</span> <span id="w6_1" class="w">nafas</span> <span id="w6_2" class="w">pelan-pelan</span></span></div>
+<div id="cap7" class="clip cap" data-start="6.060" data-duration="1.340" style=""><span class="line"><span id="w7_0" class="w">dan</span> <span id="w7_1" class="w">tenangkan</span> <span id="w7_2" class="w">fikiran</span></span></div>
+<div id="cap8" class="clip cap" data-start="7.400" data-duration="0.780" style=""><span class="line"><span id="w8_0" class="w">Kedua</span></span></div>
+<div id="cap9" class="clip cap" data-start="8.180" data-duration="1.460" style=""><span class="line"><span id="w9_0" class="w">jauhkan</span> <span id="w9_1" class="w">diri</span> <span id="w9_2" class="w">sekejap</span></span></div>
+<div id="cap10" class="clip cap" data-start="9.640" data-duration="1.460" style=""><span class="line"><span id="w10_0" class="w">daripada</span> <span id="w10_1" class="w">telefon</span> <span id="w10_2" class="w">dan</span></span></div>
+<div id="cap11" class="clip cap" data-start="11.100" data-duration="0.780" style=""><span class="line"><span id="w11_0" class="w">media</span> <span id="w11_1" class="w">sosial</span></span></div>
+<div id="cap12" class="clip cap" data-start="11.880" data-duration="1.000" style=""><span class="line"><span id="w12_0" class="w">Yang</span> <span id="w12_1" class="w">ketiga</span></span></div>
+<div id="cap13" class="clip cap" data-start="12.880" data-duration="0.660" style=""><span class="line"><span id="w13_0" class="w">dengar</span> <span id="w13_1" class="w">lagu</span> <span id="w13_2" class="w">yang</span></span></div>
+<div id="cap14" class="clip cap" data-start="13.540" data-duration="0.700" style=""><span class="line"><span id="w14_0" class="w">korang</span> <span id="w14_1" class="w">suka</span></span></div>
+<div id="cap15" class="clip cap" data-start="14.240" data-duration="0.960" style=""><span class="line"><span id="w15_0" class="w">Keempat</span></span></div>
+<div id="cap16" class="clip cap" data-start="15.200" data-duration="1.040" style=""><span class="line"><span id="w16_0" class="w">luangkan</span> <span id="w16_1" class="w">masa</span> <span id="w16_2" class="w">dengan</span></span></div>
+<div id="cap17" class="clip cap" data-start="16.240" data-duration="1.380" style=""><span class="line"><span id="w17_0" class="w">keluarga</span> <span id="w17_1" class="w">atau</span> <span id="w17_2" class="w">orang</span></span></div>
+<div id="cap18" class="clip cap" data-start="17.620" data-duration="0.560" style=""><span class="line"><span id="w18_0" class="w">yang</span> <span id="w18_1" class="w">tersayang</span></span></div>
+<div id="cap19" class="clip cap" data-start="18.180" data-duration="1.640" style=""><span class="line"><span id="w19_0" class="w">Dan</span> <span id="w19_1" class="w">yang</span> <span id="w19_2" class="w">kelima</span></span></div>
+<div id="cap20" class="clip cap" data-start="19.820" data-duration="1.340" style=""><span class="line"><span id="w20_0" class="w">mandi</span> <span id="w20_1" class="w">dan</span> <span id="w20_2" class="w">nikmati</span></span></div>
+<div id="cap21" class="clip cap" data-start="21.160" data-duration="1.580" style=""><span class="line"><span id="w21_0" class="w">masa</span> <span id="w21_1" class="w">untuk</span> <span id="w21_2" class="w">diri</span></span></div>
+<div id="cap22" class="clip cap" data-start="22.740" data-duration="0.360" style=""><span class="line"><span id="w22_0" class="w">sendiri</span></span></div>
+<div id="cap23" class="clip cap" data-start="23.100" data-duration="1.180" style=""><span class="line"><span id="w23_0" class="w">Kadang-kadang</span></span></div>
+<div id="cap24" class="clip cap" data-start="24.280" data-duration="0.600" style=""><span class="line"><span id="w24_0" class="w">kita</span> <span id="w24_1" class="w">tak</span> <span id="w24_2" class="w">perlukan</span></span></div>
+<div id="cap25" class="clip cap" data-start="24.880" data-duration="1.080" style=""><span class="line"><span id="w25_0" class="w">sesuatu</span> <span id="w25_1" class="w">yang</span> <span id="w25_2" class="w">besar</span></span></div>
+<div id="cap26" class="clip cap" data-start="25.960" data-duration="0.800" style=""><span class="line"><span id="w26_0" class="w">untuk</span> <span id="w26_1" class="w">berehat</span></span></div>
+<div id="cap27" class="clip cap" data-start="26.760" data-duration="0.840" style=""><span class="line"><span id="w27_0" class="w">cukup</span> <span id="w27_1" class="w">dengan</span> <span id="w27_2" class="w">beri</span></span></div>
+<div id="cap28" class="clip cap" data-start="27.600" data-duration="1.060" style=""><span class="line"><span id="w28_0" class="w">ruang</span> <span id="w28_1" class="w">kepada</span> <span id="w28_2" class="w">diri</span></span></div>
+<div id="cap29" class="clip cap" data-start="28.660" data-duration="0.380" style=""><span class="line"><span id="w29_0" class="w">sendiri</span></span></div>
+<div id="cap30" class="clip cap" data-start="29.040" data-duration="1.480" style=""><span class="line"><span id="w30_0" class="w">Kalau</span> <span id="w30_1" class="w">nak</span> <span id="w30_2" class="w">jadikan</span></span></div>
+<div id="cap31" class="clip cap" data-start="30.520" data-duration="1.280" style=""><span class="line"><span id="w31_0" class="w">rutin</span> <span id="w31_1" class="w">mandi</span> <span id="w31_2" class="w">lebih</span></span></div>
+<div id="cap32" class="clip cap" data-start="31.800" data-duration="0.900" style=""><span class="line"><span id="w32_0" class="w">istimewa</span></span></div>
+<div id="cap33" class="clip cap" data-start="32.700" data-duration="0.980" style=""><span class="line"><span id="w33_0" class="w">korang</span> <span id="w33_1" class="w">kena</span> <span id="w33_2" class="w">cuba</span></span></div>
+<div id="cap34" class="clip cap" data-start="33.680" data-duration="1.040" style=""><span class="line"><span id="w34_0" class="w">Frescura</span> <span id="w34_1" class="w">Body</span></span></div>
+<div id="cap35" class="clip cap" data-start="34.720" data-duration="1.820" style=""><span class="line"><span id="w35_0" class="w">mengandungi</span> <span id="w35_1" class="w">sea salt</span> <span id="w35_2" class="w">dan</span></span></div>
+<div id="cap36" class="clip cap" data-start="36.540" data-duration="2.500" style=""><span class="line"><span id="w36_0" class="w">pilihan</span> <span id="w36_1" class="w">wangian</span> <span id="w36_2" class="w">berinspirasikan</span></span></div>
+<div id="cap37" class="clip cap" data-start="39.040" data-duration="1.480" style=""><span class="line"><span id="w37_0" class="w">perfume</span> <span id="w37_1" class="w">seperti</span> <span id="w37_2" class="w">Bombshell</span></span></div>
+<div id="cap38" class="clip cap" data-start="40.520" data-duration="1.040" style=""><span class="line"><span id="w38_0" class="w">dan</span> <span id="w38_1" class="w">Midnight</span> <span id="w38_2" class="w">Fantasy</span></span></div>
+<div id="cap39" class="clip cap" data-start="41.560" data-duration="1.000" style=""><span class="line"><span id="w39_0" class="w">Kalau</span> <span id="w39_1" class="w">korang</span> <span id="w39_2" class="w">rasa</span></span></div>
+<div id="cap40" class="clip cap" data-start="42.560" data-duration="1.300" style=""><span class="line"><span id="w40_0" class="w">tips</span> <span id="w40_1" class="w">ni</span> <span id="w40_2" class="w">bermanfaat</span></span></div>
+<div id="cap41" class="clip cap" data-start="43.860" data-duration="1.200" style=""><span class="line"><span id="w41_0" class="w">share</span> <span id="w41_1" class="w">video</span> <span id="w41_2" class="w">ni</span></span></div>
+<div id="cap42" class="clip cap" data-start="45.060" data-duration="1.100" style=""><span class="line"><span id="w42_0" class="w">supaya</span> <span id="w42_1" class="w">lebih</span> <span id="w42_2" class="w">ramai</span></span></div>
+<div id="cap43" class="clip cap" data-start="46.160" data-duration="1.100" style=""><span class="line"><span id="w43_0" class="w">tahu</span> <span id="w43_1" class="w">cara</span> <span id="w43_2" class="w">menjaga</span></span></div>
+<div id="cap44" class="clip cap" data-start="47.260" data-duration="0.250" style=""><span class="line"><span id="w44_0" class="w">diri</span></span></div>
+<div id="flash"></div><div class="pv">PREVIEW</div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#b0",{scale:1.35,opacity:0},{scale:1,opacity:1,duration:0.14,ease:"expo.out"},0);
+tl.fromTo("#v_face",{clipPath:"inset(0% 0% 100% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.14,ease:"expo.out"},0.38);
+tl.fromTo("#v_face",{scale:1.1},{scale:1.0,duration:0.43,ease:"power2.out"},0.38);
+tl.fromTo("#f0 > span",{yPercent:118},{yPercent:0,duration:0.25,ease:"expo.out"},0.40);
+tl.fromTo("#k1",{scale:1.25,backgroundPosition:"30% 45%"},{scale:1,backgroundPosition:"60% 45%",duration:0.61,ease:"expo.out"},1.16);
+tl.fromTo("#k0 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},1.18);
+tl.fromTo("#k2",{scaleX:0},{scaleX:1,duration:0.22,ease:"expo.out"},1.90);
+tl.fromTo("#s3",{clipPath:"inset(0% 0% 100% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.22,ease:"expo.out"},2.26);
+tl.fromTo("#p0 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},2.28);
+tl.fromTo("#big5",{scale:0.4,opacity:0,rotation:-12},{scale:1,opacity:1,rotation:0,duration:0.30,ease:"back.out(2)"},2.96);
+tl.fromTo("#p1 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},3.20);
+tl.fromTo("#mq",{x:0},{x:-1500,duration:1.5,ease:"none"},2.28);
+tl.fromTo("#bl1 .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},3.580);
+tl.to("#bl1 .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},3.820);
+tl.fromTo("#v_sea",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},3.78);
+tl.to("#v_sea",{scale:1.0,duration:3.20,ease:"none"},4.200);
+tl.fromTo("#v_sea",{clipPath:"inset(100% 0% 0% 0% round 600px 600px 18px 18px)"},{clipPath:"inset(0% 0% 0% 0% round 600px 600px 18px 18px)",duration:0.45,ease:"expo.out"},3.78);
+tl.fromTo("#n1",{x:-260,opacity:0},{x:0,opacity:1,duration:0.5,ease:"expo.out"},3.80);
+tl.fromTo("#c1 .chap",{opacity:0,x:-20},{opacity:1,x:0,duration:0.3,ease:"expo.out"},3.830);
+tl.fromTo("#a0 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},4.80);
+tl.fromTo("#a1 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},5.04);
+tl.fromTo("#a2 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},5.36);
+tl.fromTo("#br,#bd",{scale:0.45},{scale:1.15,duration:0.69,ease:"sine.inOut"},4.80);
+tl.to("#br,#bd",{scale:0.55,duration:0.72,ease:"sine.inOut"},6.06);
+tl.to("#bt",{opacity:0,duration:0.11},6.0);
+tl.fromTo("#bh",{opacity:0},{opacity:1,duration:0.11},6.06);
+tl.fromTo("#a3 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},6.50);
+tl.fromTo("#bl2 .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},7.200);
+tl.to("#bl2 .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},7.440);
+tl.fromTo("#v_ph",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},7.4);
+tl.to("#v_ph",{scale:1.0,duration:4.06,ease:"none"},7.820);
+tl.fromTo("#v_ph",{clipPath:"inset(0% 100% 0% 0% round 16px)"},{clipPath:"inset(0% 0% 0% 0% round 16px)",duration:0.38,ease:"expo.out"},7.4);
+tl.fromTo("#n2",{x:-260,opacity:0},{x:0,opacity:1,duration:0.5,ease:"expo.out"},7.42);
+tl.fromTo("#c2 .chap",{opacity:0,x:-20},{opacity:1,x:0,duration:0.3,ease:"expo.out"},7.450);
+tl.fromTo("#j2",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},7.70);
+tl.fromTo("#j3",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},7.86);
+tl.fromTo("#j4",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},8.02);
+tl.fromTo("#j0 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},8.18);
+tl.fromTo("#j1 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},8.78);
+tl.to("#v_ph",{x:340,rotation:8,opacity:0.18,duration:0.39,ease:"expo.inOut"},8.30);
+tl.to("#j2,#j3,#j4",{y:520,opacity:0,rotation:12,duration:0.33,stagger:0.08,ease:"power2.in"},9.64);
+tl.fromTo("#j5",{opacity:0,y:20,x:0},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},9.70);
+tl.fromTo("#j6",{opacity:0,y:20,x:0},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},9.70);
+tl.to("#j5 i",{x:-96,duration:0.17,ease:"expo.inOut"},10.16);
+tl.to("#j5",{backgroundColor:"#2a221d",boxShadow:"inset 0 0 0 2px #b8955a",duration:0.17},10.16);
+tl.to("#j6",{opacity:0.25,duration:0.11},10.16);
+tl.to("#j7",{opacity:1,duration:0.11},10.2);
+tl.fromTo("#bl3 .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},11.680);
+tl.to("#bl3 .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},11.920);
+tl.fromTo("#v_vin",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},11.88);
+tl.to("#v_vin",{scale:1.0,duration:1.94,ease:"none"},12.300);
+tl.fromTo("#v_vin",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(50% at 50% 50%)",duration:0.4,ease:"expo.out"},11.88);
+tl.fromTo("#v_vin",{rotation:0},{rotation:200,duration:2.36,ease:"none"},11.88);
+tl.fromTo("#n3",{x:-260,opacity:0},{x:0,opacity:1,duration:0.5,ease:"expo.out"},11.90);
+tl.fromTo("#c3 .chap",{opacity:0,x:-20},{opacity:1,x:0,duration:0.3,ease:"expo.out"},11.930);
+tl.fromTo("#m0 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},12.88);
+tl.fromTo("#m1 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},13.08);
+tl.fromTo("#m2",{scale:0.8,opacity:0},{scale:1,opacity:1,duration:0.33,ease:"expo.out"},11.95);
+tl.to("#eq0",{scaleY:0.82,duration:0.20,ease:"sine.inOut"},12.00);
+tl.to("#eq0",{scaleY:0.56,duration:0.15,ease:"sine.inOut"},12.20);
+tl.to("#eq0",{scaleY:0.15,duration:0.19,ease:"sine.inOut"},12.35);
+tl.to("#eq0",{scaleY:0.55,duration:0.20,ease:"sine.inOut"},12.54);
+tl.to("#eq0",{scaleY:0.47,duration:0.20,ease:"sine.inOut"},12.74);
+tl.to("#eq0",{scaleY:0.38,duration:0.20,ease:"sine.inOut"},12.94);
+tl.to("#eq0",{scaleY:0.77,duration:0.16,ease:"sine.inOut"},13.14);
+tl.to("#eq0",{scaleY:0.61,duration:0.19,ease:"sine.inOut"},13.30);
+tl.to("#eq0",{scaleY:0.31,duration:0.18,ease:"sine.inOut"},13.49);
+tl.to("#eq0",{scaleY:0.83,duration:0.15,ease:"sine.inOut"},13.67);
+tl.to("#eq0",{scaleY:0.83,duration:0.19,ease:"sine.inOut"},13.82);
+tl.to("#eq0",{scaleY:0.87,duration:0.15,ease:"sine.inOut"},14.01);
+tl.to("#eq0",{scaleY:0.23,duration:0.20,ease:"sine.inOut"},14.16);
+tl.to("#eq1",{scaleY:0.83,duration:0.16,ease:"sine.inOut"},12.00);
+tl.to("#eq1",{scaleY:0.23,duration:0.14,ease:"sine.inOut"},12.16);
+tl.to("#eq1",{scaleY:0.69,duration:0.15,ease:"sine.inOut"},12.30);
+tl.to("#eq1",{scaleY:0.96,duration:0.18,ease:"sine.inOut"},12.45);
+tl.to("#eq1",{scaleY:0.32,duration:0.19,ease:"sine.inOut"},12.63);
+tl.to("#eq1",{scaleY:0.46,duration:0.21,ease:"sine.inOut"},12.82);
+tl.to("#eq1",{scaleY:0.92,duration:0.17,ease:"sine.inOut"},13.03);
+tl.to("#eq1",{scaleY:0.70,duration:0.19,ease:"sine.inOut"},13.20);
+tl.to("#eq1",{scaleY:0.83,duration:0.22,ease:"sine.inOut"},13.39);
+tl.to("#eq1",{scaleY:0.17,duration:0.16,ease:"sine.inOut"},13.61);
+tl.to("#eq1",{scaleY:0.66,duration:0.15,ease:"sine.inOut"},13.77);
+tl.to("#eq1",{scaleY:0.65,duration:0.13,ease:"sine.inOut"},13.92);
+tl.to("#eq1",{scaleY:0.90,duration:0.17,ease:"sine.inOut"},14.05);
+tl.to("#eq2",{scaleY:0.25,duration:0.19,ease:"sine.inOut"},12.00);
+tl.to("#eq2",{scaleY:0.42,duration:0.14,ease:"sine.inOut"},12.19);
+tl.to("#eq2",{scaleY:0.56,duration:0.13,ease:"sine.inOut"},12.33);
+tl.to("#eq2",{scaleY:0.33,duration:0.21,ease:"sine.inOut"},12.46);
+tl.to("#eq2",{scaleY:0.74,duration:0.12,ease:"sine.inOut"},12.67);
+tl.to("#eq2",{scaleY:0.81,duration:0.12,ease:"sine.inOut"},12.79);
+tl.to("#eq2",{scaleY:0.43,duration:0.21,ease:"sine.inOut"},12.91);
+tl.to("#eq2",{scaleY:0.68,duration:0.15,ease:"sine.inOut"},13.12);
+tl.to("#eq2",{scaleY:0.47,duration:0.16,ease:"sine.inOut"},13.27);
+tl.to("#eq2",{scaleY:0.26,duration:0.22,ease:"sine.inOut"},13.43);
+tl.to("#eq2",{scaleY:0.20,duration:0.16,ease:"sine.inOut"},13.65);
+tl.to("#eq2",{scaleY:0.78,duration:0.16,ease:"sine.inOut"},13.81);
+tl.to("#eq2",{scaleY:0.98,duration:0.14,ease:"sine.inOut"},13.97);
+tl.to("#eq2",{scaleY:0.98,duration:0.21,ease:"sine.inOut"},14.11);
+tl.to("#eq3",{scaleY:0.72,duration:0.21,ease:"sine.inOut"},12.00);
+tl.to("#eq3",{scaleY:0.53,duration:0.20,ease:"sine.inOut"},12.21);
+tl.to("#eq3",{scaleY:0.83,duration:0.17,ease:"sine.inOut"},12.41);
+tl.to("#eq3",{scaleY:0.55,duration:0.19,ease:"sine.inOut"},12.58);
+tl.to("#eq3",{scaleY:0.50,duration:0.13,ease:"sine.inOut"},12.77);
+tl.to("#eq3",{scaleY:0.78,duration:0.15,ease:"sine.inOut"},12.90);
+tl.to("#eq3",{scaleY:0.56,duration:0.20,ease:"sine.inOut"},13.05);
+tl.to("#eq3",{scaleY:0.30,duration:0.12,ease:"sine.inOut"},13.25);
+tl.to("#eq3",{scaleY:0.25,duration:0.18,ease:"sine.inOut"},13.37);
+tl.to("#eq3",{scaleY:0.46,duration:0.15,ease:"sine.inOut"},13.55);
+tl.to("#eq3",{scaleY:0.53,duration:0.21,ease:"sine.inOut"},13.70);
+tl.to("#eq3",{scaleY:0.37,duration:0.16,ease:"sine.inOut"},13.91);
+tl.to("#eq3",{scaleY:0.90,duration:0.18,ease:"sine.inOut"},14.07);
+tl.to("#eq4",{scaleY:0.38,duration:0.17,ease:"sine.inOut"},12.00);
+tl.to("#eq4",{scaleY:0.56,duration:0.13,ease:"sine.inOut"},12.17);
+tl.to("#eq4",{scaleY:0.47,duration:0.15,ease:"sine.inOut"},12.30);
+tl.to("#eq4",{scaleY:0.83,duration:0.15,ease:"sine.inOut"},12.45);
+tl.to("#eq4",{scaleY:0.71,duration:0.22,ease:"sine.inOut"},12.60);
+tl.to("#eq4",{scaleY:0.93,duration:0.16,ease:"sine.inOut"},12.82);
+tl.to("#eq4",{scaleY:0.66,duration:0.15,ease:"sine.inOut"},12.98);
+tl.to("#eq4",{scaleY:0.49,duration:0.17,ease:"sine.inOut"},13.13);
+tl.to("#eq4",{scaleY:0.82,duration:0.21,ease:"sine.inOut"},13.30);
+tl.to("#eq4",{scaleY:0.40,duration:0.12,ease:"sine.inOut"},13.51);
+tl.to("#eq4",{scaleY:0.53,duration:0.13,ease:"sine.inOut"},13.63);
+tl.to("#eq4",{scaleY:0.18,duration:0.20,ease:"sine.inOut"},13.76);
+tl.to("#eq4",{scaleY:0.25,duration:0.19,ease:"sine.inOut"},13.96);
+tl.to("#eq4",{scaleY:0.46,duration:0.21,ease:"sine.inOut"},14.15);
+tl.to("#eq5",{scaleY:0.88,duration:0.13,ease:"sine.inOut"},12.00);
+tl.to("#eq5",{scaleY:0.31,duration:0.21,ease:"sine.inOut"},12.13);
+tl.to("#eq5",{scaleY:0.67,duration:0.16,ease:"sine.inOut"},12.34);
+tl.to("#eq5",{scaleY:0.81,duration:0.20,ease:"sine.inOut"},12.50);
+tl.to("#eq5",{scaleY:0.57,duration:0.17,ease:"sine.inOut"},12.70);
+tl.to("#eq5",{scaleY:0.24,duration:0.16,ease:"sine.inOut"},12.87);
+tl.to("#eq5",{scaleY:0.27,duration:0.18,ease:"sine.inOut"},13.03);
+tl.to("#eq5",{scaleY:0.67,duration:0.13,ease:"sine.inOut"},13.21);
+tl.to("#eq5",{scaleY:0.68,duration:0.13,ease:"sine.inOut"},13.34);
+tl.to("#eq5",{scaleY:0.24,duration:0.18,ease:"sine.inOut"},13.47);
+tl.to("#eq5",{scaleY:0.54,duration:0.21,ease:"sine.inOut"},13.65);
+tl.to("#eq5",{scaleY:0.68,duration:0.19,ease:"sine.inOut"},13.86);
+tl.to("#eq5",{scaleY:0.26,duration:0.20,ease:"sine.inOut"},14.05);
+tl.to("#eq6",{scaleY:0.22,duration:0.18,ease:"sine.inOut"},12.00);
+tl.to("#eq6",{scaleY:0.92,duration:0.21,ease:"sine.inOut"},12.18);
+tl.to("#eq6",{scaleY:0.91,duration:0.17,ease:"sine.inOut"},12.39);
+tl.to("#eq6",{scaleY:0.74,duration:0.20,ease:"sine.inOut"},12.56);
+tl.to("#eq6",{scaleY:0.27,duration:0.21,ease:"sine.inOut"},12.76);
+tl.to("#eq6",{scaleY:0.92,duration:0.16,ease:"sine.inOut"},12.97);
+tl.to("#eq6",{scaleY:0.81,duration:0.16,ease:"sine.inOut"},13.13);
+tl.to("#eq6",{scaleY:0.38,duration:0.19,ease:"sine.inOut"},13.29);
+tl.to("#eq6",{scaleY:0.20,duration:0.20,ease:"sine.inOut"},13.48);
+tl.to("#eq6",{scaleY:0.98,duration:0.15,ease:"sine.inOut"},13.68);
+tl.to("#eq6",{scaleY:0.95,duration:0.13,ease:"sine.inOut"},13.83);
+tl.to("#eq6",{scaleY:0.88,duration:0.15,ease:"sine.inOut"},13.96);
+tl.to("#eq6",{scaleY:0.97,duration:0.16,ease:"sine.inOut"},14.11);
+tl.to("#eq7",{scaleY:0.93,duration:0.12,ease:"sine.inOut"},12.00);
+tl.to("#eq7",{scaleY:0.22,duration:0.20,ease:"sine.inOut"},12.12);
+tl.to("#eq7",{scaleY:0.69,duration:0.17,ease:"sine.inOut"},12.32);
+tl.to("#eq7",{scaleY:0.18,duration:0.14,ease:"sine.inOut"},12.49);
+tl.to("#eq7",{scaleY:0.46,duration:0.13,ease:"sine.inOut"},12.63);
+tl.to("#eq7",{scaleY:0.99,duration:0.20,ease:"sine.inOut"},12.76);
+tl.to("#eq7",{scaleY:0.96,duration:0.19,ease:"sine.inOut"},12.96);
+tl.to("#eq7",{scaleY:0.44,duration:0.13,ease:"sine.inOut"},13.15);
+tl.to("#eq7",{scaleY:0.77,duration:0.13,ease:"sine.inOut"},13.28);
+tl.to("#eq7",{scaleY:0.62,duration:0.17,ease:"sine.inOut"},13.41);
+tl.to("#eq7",{scaleY:0.57,duration:0.13,ease:"sine.inOut"},13.58);
+tl.to("#eq7",{scaleY:0.21,duration:0.17,ease:"sine.inOut"},13.71);
+tl.to("#eq7",{scaleY:0.18,duration:0.17,ease:"sine.inOut"},13.88);
+tl.to("#eq7",{scaleY:0.28,duration:0.15,ease:"sine.inOut"},14.05);
+tl.to("#eq8",{scaleY:0.28,duration:0.18,ease:"sine.inOut"},12.00);
+tl.to("#eq8",{scaleY:0.48,duration:0.14,ease:"sine.inOut"},12.18);
+tl.to("#eq8",{scaleY:0.34,duration:0.18,ease:"sine.inOut"},12.32);
+tl.to("#eq8",{scaleY:0.92,duration:0.16,ease:"sine.inOut"},12.50);
+tl.to("#eq8",{scaleY:0.29,duration:0.15,ease:"sine.inOut"},12.66);
+tl.to("#eq8",{scaleY:0.35,duration:0.18,ease:"sine.inOut"},12.81);
+tl.to("#eq8",{scaleY:0.82,duration:0.18,ease:"sine.inOut"},12.99);
+tl.to("#eq8",{scaleY:0.31,duration:0.15,ease:"sine.inOut"},13.17);
+tl.to("#eq8",{scaleY:0.47,duration:0.16,ease:"sine.inOut"},13.32);
+tl.to("#eq8",{scaleY:0.49,duration:0.22,ease:"sine.inOut"},13.48);
+tl.to("#eq8",{scaleY:0.62,duration:0.19,ease:"sine.inOut"},13.70);
+tl.to("#eq8",{scaleY:0.76,duration:0.18,ease:"sine.inOut"},13.89);
+tl.to("#eq8",{scaleY:0.83,duration:0.16,ease:"sine.inOut"},14.07);
+tl.to("#eq9",{scaleY:0.72,duration:0.22,ease:"sine.inOut"},12.00);
+tl.to("#eq9",{scaleY:0.29,duration:0.18,ease:"sine.inOut"},12.22);
+tl.to("#eq9",{scaleY:0.48,duration:0.13,ease:"sine.inOut"},12.40);
+tl.to("#eq9",{scaleY:0.18,duration:0.20,ease:"sine.inOut"},12.53);
+tl.to("#eq9",{scaleY:0.25,duration:0.19,ease:"sine.inOut"},12.73);
+tl.to("#eq9",{scaleY:0.24,duration:0.16,ease:"sine.inOut"},12.92);
+tl.to("#eq9",{scaleY:0.18,duration:0.17,ease:"sine.inOut"},13.08);
+tl.to("#eq9",{scaleY:0.82,duration:0.14,ease:"sine.inOut"},13.25);
+tl.to("#eq9",{scaleY:0.63,duration:0.21,ease:"sine.inOut"},13.39);
+tl.to("#eq9",{scaleY:0.40,duration:0.17,ease:"sine.inOut"},13.60);
+tl.to("#eq9",{scaleY:0.77,duration:0.21,ease:"sine.inOut"},13.77);
+tl.to("#eq9",{scaleY:0.29,duration:0.19,ease:"sine.inOut"},13.98);
+tl.to("#eq9",{scaleY:0.25,duration:0.13,ease:"sine.inOut"},14.17);
+tl.to("#eq10",{scaleY:0.99,duration:0.13,ease:"sine.inOut"},12.00);
+tl.to("#eq10",{scaleY:0.93,duration:0.20,ease:"sine.inOut"},12.13);
+tl.to("#eq10",{scaleY:0.72,duration:0.19,ease:"sine.inOut"},12.33);
+tl.to("#eq10",{scaleY:0.70,duration:0.15,ease:"sine.inOut"},12.52);
+tl.to("#eq10",{scaleY:0.53,duration:0.14,ease:"sine.inOut"},12.67);
+tl.to("#eq10",{scaleY:0.88,duration:0.20,ease:"sine.inOut"},12.81);
+tl.to("#eq10",{scaleY:0.82,duration:0.14,ease:"sine.inOut"},13.01);
+tl.to("#eq10",{scaleY:0.65,duration:0.15,ease:"sine.inOut"},13.15);
+tl.to("#eq10",{scaleY:0.82,duration:0.19,ease:"sine.inOut"},13.30);
+tl.to("#eq10",{scaleY:1.00,duration:0.19,ease:"sine.inOut"},13.49);
+tl.to("#eq10",{scaleY:0.73,duration:0.20,ease:"sine.inOut"},13.68);
+tl.to("#eq10",{scaleY:0.23,duration:0.18,ease:"sine.inOut"},13.88);
+tl.to("#eq10",{scaleY:0.18,duration:0.16,ease:"sine.inOut"},14.06);
+tl.to("#eq11",{scaleY:0.25,duration:0.21,ease:"sine.inOut"},12.00);
+tl.to("#eq11",{scaleY:0.17,duration:0.21,ease:"sine.inOut"},12.21);
+tl.to("#eq11",{scaleY:0.96,duration:0.16,ease:"sine.inOut"},12.42);
+tl.to("#eq11",{scaleY:0.86,duration:0.13,ease:"sine.inOut"},12.58);
+tl.to("#eq11",{scaleY:0.27,duration:0.12,ease:"sine.inOut"},12.71);
+tl.to("#eq11",{scaleY:0.21,duration:0.12,ease:"sine.inOut"},12.83);
+tl.to("#eq11",{scaleY:0.85,duration:0.13,ease:"sine.inOut"},12.95);
+tl.to("#eq11",{scaleY:0.65,duration:0.15,ease:"sine.inOut"},13.08);
+tl.to("#eq11",{scaleY:0.26,duration:0.16,ease:"sine.inOut"},13.23);
+tl.to("#eq11",{scaleY:0.30,duration:0.22,ease:"sine.inOut"},13.39);
+tl.to("#eq11",{scaleY:0.48,duration:0.18,ease:"sine.inOut"},13.61);
+tl.to("#eq11",{scaleY:0.63,duration:0.18,ease:"sine.inOut"},13.79);
+tl.to("#eq11",{scaleY:0.56,duration:0.15,ease:"sine.inOut"},13.97);
+tl.to("#eq11",{scaleY:0.27,duration:0.21,ease:"sine.inOut"},14.12);
+tl.to("#eq12",{scaleY:0.31,duration:0.16,ease:"sine.inOut"},12.00);
+tl.to("#eq12",{scaleY:0.84,duration:0.18,ease:"sine.inOut"},12.16);
+tl.to("#eq12",{scaleY:0.96,duration:0.20,ease:"sine.inOut"},12.34);
+tl.to("#eq12",{scaleY:0.59,duration:0.13,ease:"sine.inOut"},12.54);
+tl.to("#eq12",{scaleY:0.65,duration:0.17,ease:"sine.inOut"},12.67);
+tl.to("#eq12",{scaleY:0.88,duration:0.17,ease:"sine.inOut"},12.84);
+tl.to("#eq12",{scaleY:0.74,duration:0.20,ease:"sine.inOut"},13.01);
+tl.to("#eq12",{scaleY:0.55,duration:0.20,ease:"sine.inOut"},13.21);
+tl.to("#eq12",{scaleY:0.91,duration:0.14,ease:"sine.inOut"},13.41);
+tl.to("#eq12",{scaleY:0.93,duration:0.21,ease:"sine.inOut"},13.55);
+tl.to("#eq12",{scaleY:0.88,duration:0.15,ease:"sine.inOut"},13.76);
+tl.to("#eq12",{scaleY:0.36,duration:0.13,ease:"sine.inOut"},13.91);
+tl.to("#eq12",{scaleY:0.47,duration:0.21,ease:"sine.inOut"},14.04);
+tl.to("#eq13",{scaleY:0.46,duration:0.12,ease:"sine.inOut"},12.00);
+tl.to("#eq13",{scaleY:0.41,duration:0.13,ease:"sine.inOut"},12.12);
+tl.to("#eq13",{scaleY:0.68,duration:0.20,ease:"sine.inOut"},12.25);
+tl.to("#eq13",{scaleY:0.94,duration:0.13,ease:"sine.inOut"},12.45);
+tl.to("#eq13",{scaleY:0.47,duration:0.13,ease:"sine.inOut"},12.58);
+tl.to("#eq13",{scaleY:0.92,duration:0.20,ease:"sine.inOut"},12.71);
+tl.to("#eq13",{scaleY:0.59,duration:0.22,ease:"sine.inOut"},12.91);
+tl.to("#eq13",{scaleY:0.59,duration:0.20,ease:"sine.inOut"},13.13);
+tl.to("#eq13",{scaleY:0.56,duration:0.16,ease:"sine.inOut"},13.33);
+tl.to("#eq13",{scaleY:1.00,duration:0.20,ease:"sine.inOut"},13.49);
+tl.to("#eq13",{scaleY:0.65,duration:0.21,ease:"sine.inOut"},13.69);
+tl.to("#eq13",{scaleY:0.70,duration:0.20,ease:"sine.inOut"},13.90);
+tl.to("#eq13",{scaleY:0.21,duration:0.13,ease:"sine.inOut"},14.10);
+tl.fromTo("#bl4 .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},14.040);
+tl.to("#bl4 .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},14.280);
+tl.fromTo("#v_fam",{clipPath:"inset(50% 0% 50% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.28,ease:"expo.out"},14.24);
+tl.fromTo("#v_fam",{scale:1.12},{scale:1.0,duration:3.94,ease:"none"},14.24);
+tl.fromTo("#n4",{x:-260,opacity:0},{x:0,opacity:1,duration:0.5,ease:"expo.out"},14.26);
+tl.fromTo("#c4 .chap",{opacity:0,x:-20},{opacity:1,x:0,duration:0.3,ease:"expo.out"},14.290);
+tl.fromTo("#q0 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},15.20);
+tl.fromTo("#q0b > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},15.68);
+tl.fromTo("#q1 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},15.98);
+tl.fromTo("#q2 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},17.30);
+tl.fromTo("#q3 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},17.74);
+tl.fromTo("#q5",{scaleX:0},{scaleX:1,duration:0.44,ease:"expo.out"},14.30);
+tl.fromTo("#q6",{scaleX:0},{scaleX:1,duration:0.44,ease:"expo.out"},14.30);
+tl.to("#hp",{strokeDashoffset:0,duration:0.28,ease:"power2.out"},17.74);
+tl.fromTo("#bl5 .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},17.980);
+tl.to("#bl5 .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},18.220);
+tl.fromTo("#v_bath",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},18.18);
+tl.to("#v_bath",{scale:1.0,duration:4.50,ease:"none"},18.600);
+tl.fromTo("#v_bath",{clipPath:"inset(0% 100% 0% 0% round 16px)"},{clipPath:"inset(0% 0% 0% 0% round 16px)",duration:0.38,ease:"expo.out"},18.18);
+tl.fromTo("#v_cdl",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},19.82);
+tl.to("#v_cdl",{scale:1.0,duration:2.86,ease:"none"},20.240);
+tl.fromTo("#v_cdl",{clipPath:"inset(0% 100% 0% 0% round 16px)"},{clipPath:"inset(0% 0% 0% 0% round 16px)",duration:0.38,ease:"expo.out"},19.82);
+tl.fromTo("#v_pmp",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},20.66);
+tl.to("#v_pmp",{scale:1.0,duration:2.02,ease:"none"},21.080);
+tl.fromTo("#v_pmp",{clipPath:"inset(0% 100% 0% 0% round 16px)"},{clipPath:"inset(0% 0% 0% 0% round 16px)",duration:0.38,ease:"expo.out"},20.66);
+tl.fromTo("#n5",{x:-260,opacity:0},{x:0,opacity:1,duration:0.5,ease:"expo.out"},18.20);
+tl.fromTo("#c5 .chap",{opacity:0,x:-20},{opacity:1,x:0,duration:0.3,ease:"expo.out"},18.230);
+tl.fromTo("#u0 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},19.82);
+tl.fromTo("#u1 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},20.66);
+tl.fromTo("#u2 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},21.60);
+tl.fromTo("#blr .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},22.900);
+tl.to("#blr .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},23.140);
+tl.fromTo("#v_tea",{scale:1.18},{scale:1.03,duration:0.45,ease:"expo.out"},23.1);
+tl.to("#v_tea",{scale:1.0,duration:2.45,ease:"none"},23.550);
+tl.fromTo("#r0 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},23.12);
+tl.fromTo("#r1 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},24.28);
+tl.fromTo("#r2 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},24.88);
+tl.fromTo("#r3 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},25.96);
+tl.fromTo("#v_book",{x:1080},{x:0,duration:0.25,ease:"expo.inOut"},26.00);
+tl.fromTo("#v_book",{scale:1.08},{scale:1.0,duration:3.04,ease:"none"},26.00);
+tl.fromTo("#refl2",{opacity:0},{opacity:1,duration:0.17},26.15);
+tl.fromTo("#r4",{scale:0},{scale:1,duration:0.26,ease:"back.out(3)"},26.30);
+tl.fromTo("#r5 > span",{yPercent:118},{yPercent:0,duration:0.33,ease:"expo.out"},26.76);
+tl.fromTo("#r6 > span",{yPercent:118},{yPercent:0,duration:0.33,ease:"expo.out"},27.92);
+tl.fromTo("#r7",{scaleX:0},{scaleX:1,duration:0.44,ease:"expo.out"},28.66);
+tl.fromTo("#blp .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},28.840);
+tl.to("#blp .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},29.080);
+tl.fromTo("#p_duo",{scale:1.2},{scale:1.04,duration:0.42,ease:"expo.out"},29.04);
+tl.to("#p_duo",{scale:1.0,duration:10.00,ease:"none"},29.460);
+tl.fromTo("#p_duo",{clipPath:"inset(100% 0% 0% 0% round 600px 600px 18px 18px)"},{clipPath:"inset(0% 0% 0% 0% round 600px 600px 18px 18px)",duration:0.45,ease:"expo.out"},29.04);
+tl.fromTo("#w0 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},29.06);
+tl.fromTo("#w1 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},31.56);
+tl.fromTo("#w2 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},32.70);
+tl.fromTo("#w3 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},32.92);
+tl.fromTo("#w4",{scaleY:0},{scaleY:1,duration:0.33,ease:"expo.out"},33.00);
+tl.fromTo("#prod2",{opacity:0},{opacity:1,duration:0.11},33.68);
+tl.fromTo("#x0 > span",{yPercent:118},{yPercent:0,duration:0.33,ease:"expo.out"},33.68);
+tl.fromTo("#x1 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},34.28);
+tl.fromTo("#x2 .x",{opacity:0,y:0,x:-20},{opacity:1,y:0,x:0,duration:0.22,ease:"expo.out"},35.54);
+tl.fromTo("#x2 .l",{scaleX:0},{scaleX:1,duration:0.22,ease:"expo.out"},35.62);
+tl.fromTo("#x2 .d",{scale:0},{scale:1,duration:0.22,ease:"back.out(3)"},35.79);
+tl.fromTo("#x3 .x",{opacity:0,y:0,x:-20},{opacity:1,y:0,x:0,duration:0.22,ease:"expo.out"},36.54);
+tl.fromTo("#x3 .l",{scaleX:0},{scaleX:1,duration:0.22,ease:"expo.out"},36.62);
+tl.fromTo("#x3 .d",{scale:0},{scale:1,duration:0.22,ease:"back.out(3)"},36.79);
+tl.fromTo("#x4 .x",{opacity:0,y:0,x:-20},{opacity:1,y:0,x:0,duration:0.22,ease:"expo.out"},37.78);
+tl.fromTo("#x4 .l",{scaleX:0},{scaleX:1,duration:0.22,ease:"expo.out"},37.86);
+tl.fromTo("#x4 .d",{scale:0},{scale:1,duration:0.22,ease:"back.out(3)"},38.03);
+tl.fromTo("#p_gl",{clipPath:"inset(0% 100% 0% 0% round 16px)"},{clipPath:"inset(0% 0% 0% 0% round 16px)",duration:0.38,ease:"expo.out"},39.46);
+tl.fromTo("#p_no",{clipPath:"inset(0% 100% 0% 0% round 16px)"},{clipPath:"inset(0% 0% 0% 0% round 16px)",duration:0.38,ease:"expo.out"},40.9);
+tl.fromTo("#p_gl",{x:700,rotation:4},{x:0,rotation:-2,duration:0.25,ease:"expo.out"},39.46);
+tl.fromTo("#p_no",{x:700,rotation:6},{x:0,rotation:2,duration:0.25,ease:"expo.out"},40.90);
+tl.fromTo("#y0 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},39.48);
+tl.fromTo("#y1",{scale:0},{scale:1,duration:0.26,ease:"back.out(3)"},39.98);
+tl.fromTo("#y2",{scale:0},{scale:1,duration:0.26,ease:"back.out(3)"},41.00);
+tl.fromTo("#blc .blind",{scaleY:0,transformOrigin:"50% 0%"},{scaleY:1,duration:0.18,stagger:0.03,ease:"power3.in"},41.360);
+tl.to("#blc .blind",{scaleY:0,transformOrigin:"50% 100%",duration:0.22,stagger:0.03,ease:"power3.out"},41.600);
+tl.fromTo("#z0 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},41.58);
+tl.fromTo("#z1 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},41.96);
+tl.fromTo("#ck0",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},42.20);
+tl.to("#ck0 path",{strokeDashoffset:0,duration:0.22,ease:"power2.out"},42.32);
+tl.fromTo("#ck1",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},42.48);
+tl.to("#ck1 path",{strokeDashoffset:0,duration:0.22,ease:"power2.out"},42.60);
+tl.fromTo("#ck2",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},42.76);
+tl.to("#ck2 path",{strokeDashoffset:0,duration:0.22,ease:"power2.out"},42.88);
+tl.fromTo("#ck3",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},43.04);
+tl.to("#ck3 path",{strokeDashoffset:0,duration:0.22,ease:"power2.out"},43.16);
+tl.fromTo("#ck4",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.20,ease:"expo.out"},43.32);
+tl.to("#ck4 path",{strokeDashoffset:0,duration:0.22,ease:"power2.out"},43.44);
+tl.fromTo("#z2",{scale:0},{scale:1,duration:0.29,ease:"back.out(3)"},43.86);
+tl.fromTo("#z3",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:0.14},44.30);
+tl.to("#z2",{scale:0.94,duration:0.06,yoyo:true,repeat:1,ease:"sine.inOut"},44.44);
+tl.fromTo("#z4 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},45.06);
+tl.fromTo("#z5 > span",{yPercent:118},{yPercent:0,duration:0.28,ease:"expo.out"},46.16);
+tl.fromTo("#end",{clipPath:"inset(100% 0% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.28,ease:"expo.inOut"},47.51);
+tl.fromTo("#e0 > span",{yPercent:118},{yPercent:0,duration:0.33,ease:"expo.out"},47.66);
+tl.fromTo("#e1 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},47.86);
+tl.fromTo("#e2",{scaleX:0},{scaleX:1,duration:0.44,ease:"expo.out"},47.96);
+tl.fromTo("#e3 > span",{yPercent:118},{yPercent:0,duration:0.39,ease:"expo.out"},48.06);
+tl.fromTo("#vprog i",{scaleY:0},{scaleY:1,duration:45.22,ease:"none"},3.78);
+tl.fromTo("#w5_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},3.78);
+tl.fromTo("#cap5 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},3.78);
+tl.fromTo("#w6_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},4.80);
+tl.fromTo("#w6_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},5.04);
+tl.fromTo("#w6_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},5.36);
+tl.fromTo("#cap6 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},4.80);
+tl.fromTo("#w7_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},6.06);
+tl.fromTo("#w7_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},6.50);
+tl.fromTo("#w7_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},6.98);
+tl.fromTo("#cap7 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},6.06);
+tl.fromTo("#w8_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},7.40);
+tl.fromTo("#cap8 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},7.40);
+tl.fromTo("#w9_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},8.18);
+tl.fromTo("#w9_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},8.78);
+tl.fromTo("#w9_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},9.08);
+tl.fromTo("#cap9 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},8.18);
+tl.fromTo("#w10_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},9.64);
+tl.fromTo("#w10_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},10.16);
+tl.fromTo("#w10_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},10.52);
+tl.fromTo("#cap10 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},9.64);
+tl.fromTo("#w11_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},11.10);
+tl.fromTo("#w11_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},11.40);
+tl.fromTo("#cap11 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},11.10);
+tl.fromTo("#w12_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},11.88);
+tl.fromTo("#w12_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},12.18);
+tl.fromTo("#cap12 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},11.88);
+tl.fromTo("#w13_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},12.88);
+tl.fromTo("#w13_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},13.08);
+tl.fromTo("#w13_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},13.40);
+tl.fromTo("#cap13 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},12.88);
+tl.fromTo("#w14_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},13.54);
+tl.fromTo("#w14_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},13.92);
+tl.fromTo("#cap14 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},13.54);
+tl.fromTo("#w15_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},14.24);
+tl.fromTo("#cap15 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},14.24);
+tl.fromTo("#w16_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},15.20);
+tl.fromTo("#w16_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},15.68);
+tl.fromTo("#w16_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},15.98);
+tl.fromTo("#cap16 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},15.20);
+tl.fromTo("#w17_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},16.24);
+tl.fromTo("#w17_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},16.82);
+tl.fromTo("#w17_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},17.30);
+tl.fromTo("#cap17 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},16.24);
+tl.fromTo("#w18_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},17.62);
+tl.fromTo("#w18_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},17.74);
+tl.fromTo("#cap18 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},17.62);
+tl.fromTo("#w19_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},18.18);
+tl.fromTo("#w19_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},18.46);
+tl.fromTo("#w19_2",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},18.66);
+tl.fromTo("#cap19 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},18.18);
+tl.fromTo("#w20_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},19.82);
+tl.fromTo("#w20_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},20.34);
+tl.fromTo("#w20_2",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},20.66);
+tl.fromTo("#cap20 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},19.82);
+tl.fromTo("#w21_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},21.16);
+tl.fromTo("#w21_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},21.60);
+tl.fromTo("#w21_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},22.40);
+tl.fromTo("#cap21 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},21.16);
+tl.fromTo("#w22_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},22.74);
+tl.fromTo("#cap22 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},22.74);
+tl.fromTo("#w23_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},23.10);
+tl.fromTo("#cap23 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},23.10);
+tl.fromTo("#w24_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},24.28);
+tl.fromTo("#w24_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},24.42);
+tl.fromTo("#w24_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},24.58);
+tl.fromTo("#cap24 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},24.28);
+tl.fromTo("#w25_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},24.88);
+tl.fromTo("#w25_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},25.32);
+tl.fromTo("#w25_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},25.52);
+tl.fromTo("#cap25 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},24.88);
+tl.fromTo("#w26_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},25.96);
+tl.fromTo("#w26_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},26.20);
+tl.fromTo("#cap26 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},25.96);
+tl.fromTo("#w27_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},26.76);
+tl.fromTo("#w27_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},27.16);
+tl.fromTo("#w27_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},27.34);
+tl.fromTo("#cap27 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},26.76);
+tl.fromTo("#w28_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},27.60);
+tl.fromTo("#w28_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},27.92);
+tl.fromTo("#w28_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},28.24);
+tl.fromTo("#cap28 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},27.60);
+tl.fromTo("#w29_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},28.66);
+tl.fromTo("#cap29 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},28.66);
+tl.fromTo("#w30_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},29.04);
+tl.fromTo("#w30_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},29.84);
+tl.fromTo("#w30_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},29.98);
+tl.fromTo("#cap30 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},29.04);
+tl.fromTo("#w31_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},30.52);
+tl.fromTo("#w31_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},31.26);
+tl.fromTo("#w31_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},31.56);
+tl.fromTo("#cap31 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},30.52);
+tl.fromTo("#w32_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},31.80);
+tl.fromTo("#cap32 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},31.80);
+tl.fromTo("#w33_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},32.70);
+tl.fromTo("#w33_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},32.92);
+tl.fromTo("#w33_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},33.24);
+tl.fromTo("#cap33 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},32.70);
+tl.fromTo("#w34_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},33.68);
+tl.fromTo("#w34_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},34.28);
+tl.fromTo("#cap34 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},33.68);
+tl.fromTo("#w35_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},34.72);
+tl.fromTo("#w35_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},35.54);
+tl.fromTo("#w35_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},36.16);
+tl.fromTo("#cap35 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},34.72);
+tl.fromTo("#w36_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},36.54);
+tl.fromTo("#w36_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},37.06);
+tl.fromTo("#w36_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},37.78);
+tl.fromTo("#cap36 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},36.54);
+tl.fromTo("#w37_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},39.04);
+tl.fromTo("#w37_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},39.46);
+tl.fromTo("#w37_2",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},39.98);
+tl.fromTo("#cap37 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},39.04);
+tl.fromTo("#w38_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},40.52);
+tl.fromTo("#w38_1",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},40.90);
+tl.fromTo("#w38_2",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},41.20);
+tl.fromTo("#cap38 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},40.52);
+tl.fromTo("#w39_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},41.56);
+tl.fromTo("#w39_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},41.96);
+tl.fromTo("#w39_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},42.26);
+tl.fromTo("#cap39 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},41.56);
+tl.fromTo("#w40_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},42.56);
+tl.fromTo("#w40_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},43.08);
+tl.fromTo("#w40_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},43.24);
+tl.fromTo("#cap40 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},42.56);
+tl.fromTo("#w41_0",{color:"rgba(245,239,230,.45)"},{color:"#b8955a",duration:0.08},43.86);
+tl.fromTo("#w41_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},44.44);
+tl.fromTo("#w41_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},44.86);
+tl.fromTo("#cap41 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},43.86);
+tl.fromTo("#w42_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},45.06);
+tl.fromTo("#w42_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},45.44);
+tl.fromTo("#w42_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},45.64);
+tl.fromTo("#cap42 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},45.06);
+tl.fromTo("#w43_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},46.16);
+tl.fromTo("#w43_1",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},46.44);
+tl.fromTo("#w43_2",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},46.94);
+tl.fromTo("#cap43 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},46.16);
+tl.fromTo("#w44_0",{color:"rgba(245,239,230,.45)"},{color:"#f5efe6",duration:0.08},47.26);
+tl.fromTo("#cap44 .line",{y:16,opacity:0},{y:0,opacity:1,duration:0.14,ease:"power3.out"},47.26);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},0.000);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},1.980);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},2.960);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},3.800);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},7.420);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},11.900);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},12.880);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},14.260);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},18.200);
+tl.fromTo("#flash",{opacity:0.35},{opacity:0,duration:0.2,ease:"power2.out"},33.680);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script></body></html>

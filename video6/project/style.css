@@ -1,0 +1,106 @@
+/* Video 6 -- "Editorial Espresso": a new minimalist-luxury system (Bodoni Moda + Manrope, espresso / sand / brass / sage) */
+@font-face { font-family: "Bodoni"; src: url("assets/fonts/BodoniModa.ttf"); font-weight: 400 900; }
+@font-face { font-family: "Bodoni"; src: url("assets/fonts/BodoniModa-Italic.ttf"); font-style: italic; font-weight: 400 900; }
+@font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope.ttf"); font-weight: 200 800; }
+
+:root {
+  --esp: #1b1613;
+  --esp2: #2a221d;
+  --sand: #e8dfd2;
+  --cream: #f5efe6;
+  --brass: #b8955a;
+  --sage: #8f9c88;
+  --mute: #a39a8e;
+  --rose: #a5162f;
+  --violet: #4a3a8c;
+  --yellow: #f2c230;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--esp); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--esp);
+  color: var(--cream); font-family: "Manrope", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.esp { position: absolute; inset: 0; background: var(--esp); }
+.sandbg { position: absolute; inset: 0; background: var(--sand); }
+.shade { position: absolute; inset: 0; }
+.grain { position: absolute; inset: 0; opacity: .06; background-image: radial-gradient(rgba(255,255,255,.9) 1px, transparent 1px);
+  background-size: 6px 6px; }
+
+/* type */
+.t { position: absolute; left: 90px; right: 90px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .06em; }
+.rv > span { display: inline-block; }
+.label { font: 600 22px "Manrope"; letter-spacing: 10px; text-transform: uppercase; color: var(--brass); }
+.disp { font: 400 128px/0.95 "Bodoni"; letter-spacing: -2px; }
+.disp-it { font: italic 400 112px/1 "Bodoni"; letter-spacing: -1px; }
+.mid { font: 500 56px/1.15 "Manrope"; letter-spacing: -0.5px; }
+.giant { font: 400 520px/0.8 "Bodoni"; letter-spacing: -20px; }
+.outline { color: transparent; -webkit-text-stroke: 2px var(--brass); }
+.brass { color: var(--brass); } .sage { color: var(--sage); } .ink { color: var(--esp); }
+.vert { position: absolute; transform: rotate(-90deg); transform-origin: 0 0; white-space: nowrap;
+  font: 600 20px "Manrope"; letter-spacing: 12px; text-transform: uppercase; color: var(--mute); }
+.rule { position: absolute; height: 1px; background: var(--brass); transform-origin: 0 50%; }
+.vrule { position: absolute; width: 1px; background: var(--brass); transform-origin: 50% 0; }
+.strike { position: absolute; left: -12px; right: -12px; top: 50%; height: 10px; background: var(--brass); transform-origin: 0 50%; }
+
+/* masks / frames */
+.arch { position: absolute; overflow: hidden; border-radius: 600px 600px 18px 18px; }
+.frame { position: absolute; overflow: hidden; border-radius: 18px; }
+.circle { position: absolute; overflow: hidden; border-radius: 50%; }
+.tile { position: absolute; overflow: hidden; border-radius: 14px; }
+/* text-as-window: white letters on black, multiplied over the footage underneath */
+.knock { position: absolute; inset: 0; background: #000; color: #fff; mix-blend-mode: multiply; display: flex; align-items: center; justify-content: center; }
+.blind { position: absolute; top: 0; height: 1920px; background: var(--brass); transform-origin: 50% 0; }
+
+/* chapter chrome */
+.chap { position: absolute; z-index: 8; left: 90px; top: 92px; font: 600 22px "Manrope"; letter-spacing: 8px; color: var(--mute); }
+.chap b { color: var(--brass); font-weight: 700; }
+#vprog { position: absolute; z-index: 8; right: 44px; top: 120px; width: 2px; height: 1680px; background: rgba(184,149,90,.22); }
+#vprog i { position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: var(--brass); transform-origin: 50% 0; }
+
+/* marquee */
+.marq { position: absolute; left: 0; width: 4000px; white-space: nowrap; font: italic 400 64px "Bodoni"; color: var(--sand); }
+.marq span { margin: 0 34px; } .marq span.d { color: var(--brass); font-style: normal; }
+
+/* UI pieces */
+.toggle { position: absolute; width: 200px; height: 104px; border-radius: 52px; background: var(--sage); }
+.toggle i { position: absolute; top: 8px; left: 104px; width: 88px; height: 88px; border-radius: 50%; background: var(--cream); }
+.toggle-l { position: absolute; font: 700 30px "Manrope"; letter-spacing: 8px; }
+.notif { position: absolute; display: flex; align-items: center; gap: 16px; padding: 18px 28px; border-radius: 22px;
+  background: rgba(245,239,230,.94); color: var(--esp); font: 600 30px "Manrope"; white-space: nowrap; box-shadow: 0 12px 34px rgba(0,0,0,.35); }
+.notif i { width: 38px; height: 38px; border-radius: 10px; background: var(--brass); }
+.eq { position: absolute; display: flex; align-items: flex-end; gap: 12px; height: 160px; }
+.eq i { width: 16px; height: 160px; background: var(--brass); transform-origin: 50% 100%; border-radius: 3px; }
+.breath { position: absolute; border-radius: 50%; border: 2px solid var(--sand); }
+.breath-dot { position: absolute; border-radius: 50%; background: rgba(232,223,210,.12); }
+.spec { position: absolute; display: flex; align-items: center; gap: 18px; }
+.spec .d { width: 14px; height: 14px; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 8px rgba(184,149,90,.18); }
+.spec .l { width: 150px; height: 1px; background: var(--brass); transform-origin: 0 50%; }
+.spec .x { font: 600 26px "Manrope"; letter-spacing: 6px; color: var(--cream); white-space: nowrap; }
+.spec .x small { display: block; font: italic 400 30px "Bodoni"; letter-spacing: 0; color: var(--mute); }
+.check { position: absolute; left: 140px; display: flex; align-items: center; gap: 30px; font: 500 46px "Manrope"; color: var(--cream); }
+.check .bx { width: 54px; height: 54px; border: 2px solid var(--brass); border-radius: 12px; position: relative; flex: none; }
+.check .bx svg { position: absolute; inset: 6px; }
+.check .n { font: italic 400 40px "Bodoni"; color: var(--brass); width: 60px; }
+.sharebtn { position: absolute; left: 240px; width: 600px; height: 150px; border-radius: 75px; background: var(--brass); color: var(--esp);
+  display: flex; align-items: center; justify-content: center; gap: 24px; font: 700 42px "Manrope"; letter-spacing: 10px; }
+.sharebtn svg { width: 56px; height: 56px; }
+.tap { position: absolute; width: 70px; height: 70px; border-radius: 50%; background: rgba(245,239,230,.9); box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+.lbl { position: absolute; padding: 14px 30px; border-radius: 999px; font: 700 24px "Manrope"; letter-spacing: 6px; color: #fff; white-space: nowrap; }
+.lbl.r { background: var(--rose); } .lbl.v { background: var(--violet); }
+
+/* captions: no pill -- a soft lower band, the spoken word lights up in brass */
+.cap { z-index: 9; inset: auto; top: 1590px; left: 70px; width: 940px; height: auto; text-align: center; }
+.cap .line { display: inline-block; padding: 10px 6px; font: 700 50px/1.2 "Manrope"; color: rgba(245,239,230,.55); letter-spacing: -0.3px;
+  text-shadow: 0 2px 18px rgba(0,0,0,.65); }
+.cap .w { display: inline-block; }
+.cap .w.on { color: var(--cream); }
+.cap .w.hl.on { color: var(--brass); }
+#capband { position: absolute; z-index: 8; left: 0; top: 1480px; width: 1080px; height: 440px;
+  background: linear-gradient(180deg, rgba(27,22,19,0) 0%, rgba(27,22,19,.55) 55%, rgba(27,22,19,.75) 100%); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 22px; right: 30px; font: 600 16px "Manrope"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }

@@ -1,0 +1,675 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.7,
+  "text": " Balik kerja, jangan terus fikir pasal kerja",
+  "words": [
+   {
+    "w": " Balik",
+    "s": 0.0,
+    "e": 0.8
+   },
+   {
+    "w": " kerja,",
+    "s": 0.8,
+    "e": 1.18
+   },
+   {
+    "w": " jangan",
+    "s": 1.38,
+    "e": 1.58
+   },
+   {
+    "w": " terus",
+    "s": 1.58,
+    "e": 1.8
+   },
+   {
+    "w": " fikir",
+    "s": 1.8,
+    "e": 2.06
+   },
+   {
+    "w": " pasal",
+    "s": 2.06,
+    "e": 2.32
+   },
+   {
+    "w": " kerja",
+    "s": 2.32,
+    "e": 2.7
+   }
+  ]
+ },
+ {
+  "start": 2.7,
+  "end": 4.48,
+  "text": " Cuba buat 5 perkara ini",
+  "words": [
+   {
+    "w": " Cuba",
+    "s": 2.7,
+    "e": 3.38
+   },
+   {
+    "w": " buat",
+    "s": 3.38,
+    "e": 3.64
+   },
+   {
+    "w": " 5",
+    "s": 3.64,
+    "e": 3.86
+   },
+   {
+    "w": " perkara",
+    "s": 3.86,
+    "e": 4.22
+   },
+   {
+    "w": " ini",
+    "s": 4.22,
+    "e": 4.48
+   }
+  ]
+ },
+ {
+  "start": 5.260000000000002,
+  "end": 8.88,
+  "text": " Pertama, tarik nafas pelan-pelan dan tenangkan fikiran",
+  "words": [
+   {
+    "w": " Pertama,",
+    "s": 5.260000000000002,
+    "e": 5.98
+   },
+   {
+    "w": " tarik",
+    "s": 6.24,
+    "e": 6.5
+   },
+   {
+    "w": " nafas",
+    "s": 6.5,
+    "e": 6.82
+   },
+   {
+    "w": " pelan",
+    "s": 6.82,
+    "e": 7.08
+   },
+   {
+    "w": "-pelan",
+    "s": 7.08,
+    "e": 7.52
+   },
+   {
+    "w": " dan",
+    "s": 7.52,
+    "e": 7.96
+   },
+   {
+    "w": " tenangkan",
+    "s": 7.96,
+    "e": 8.42
+   },
+   {
+    "w": " fikiran",
+    "s": 8.42,
+    "e": 8.88
+   }
+  ]
+ },
+ {
+  "start": 10.120000000000001,
+  "end": 14.92,
+  "text": " Kedua, jauhkan diri sekejap daripada telefon dan media sosial",
+  "words": [
+   {
+    "w": " Kedua,",
+    "s": 10.120000000000001,
+    "e": 10.84
+   },
+   {
+    "w": " jauhkan",
+    "s": 11.2,
+    "e": 11.68
+   },
+   {
+    "w": " diri",
+    "s": 11.68,
+    "e": 12.0
+   },
+   {
+    "w": " sekejap",
+    "s": 12.0,
+    "e": 12.56
+   },
+   {
+    "w": " daripada",
+    "s": 12.56,
+    "e": 13.18
+   },
+   {
+    "w": " telefon",
+    "s": 13.18,
+    "e": 13.5
+   },
+   {
+    "w": " dan",
+    "s": 13.5,
+    "e": 14.12
+   },
+   {
+    "w": " media",
+    "s": 14.12,
+    "e": 14.42
+   },
+   {
+    "w": " sosial",
+    "s": 14.42,
+    "e": 14.92
+   }
+  ]
+ },
+ {
+  "start": 14.92,
+  "end": 18.84,
+  "text": " Yang ketiga, dengar lagu yang korang suka",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 14.92,
+    "e": 16.34
+   },
+   {
+    "w": " ketiga,",
+    "s": 16.34,
+    "e": 16.74
+   },
+   {
+    "w": " dengar",
+    "s": 17.44,
+    "e": 17.66
+   },
+   {
+    "w": " lagu",
+    "s": 17.66,
+    "e": 17.98
+   },
+   {
+    "w": " yang",
+    "s": 17.98,
+    "e": 18.12
+   },
+   {
+    "w": " korang",
+    "s": 18.12,
+    "e": 18.5
+   },
+   {
+    "w": " suka",
+    "s": 18.5,
+    "e": 18.84
+   }
+  ]
+ },
+ {
+  "start": 20.84,
+  "end": 25.06,
+  "text": " Keempat, luangkan masa dengan keluarga atau orang yang tersayang",
+  "words": [
+   {
+    "w": " Keempat,",
+    "s": 20.84,
+    "e": 21.56
+   },
+   {
+    "w": " luangkan",
+    "s": 21.86,
+    "e": 22.38
+   },
+   {
+    "w": " masa",
+    "s": 22.38,
+    "e": 22.68
+   },
+   {
+    "w": " dengan",
+    "s": 22.68,
+    "e": 22.94
+   },
+   {
+    "w": " keluarga",
+    "s": 22.94,
+    "e": 23.52
+   },
+   {
+    "w": " atau",
+    "s": 23.52,
+    "e": 24.14
+   },
+   {
+    "w": " orang",
+    "s": 24.14,
+    "e": 24.46
+   },
+   {
+    "w": " yang",
+    "s": 24.46,
+    "e": 24.58
+   },
+   {
+    "w": " tersayang",
+    "s": 24.58,
+    "e": 25.06
+   }
+  ]
+ },
+ {
+  "start": 25.06,
+  "end": 31.2,
+  "text": " Dan yang kelima, mandi dan niatmati masa untuk diri sendiri",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 25.06,
+    "e": 26.58
+   },
+   {
+    "w": " yang",
+    "s": 26.58,
+    "e": 26.78
+   },
+   {
+    "w": " kelima,",
+    "s": 26.78,
+    "e": 27.42
+   },
+   {
+    "w": " mandi",
+    "s": 27.64,
+    "e": 28.46
+   },
+   {
+    "w": " dan",
+    "s": 28.46,
+    "e": 28.76
+   },
+   {
+    "w": " niatmati",
+    "s": 28.76,
+    "e": 29.32
+   },
+   {
+    "w": " masa",
+    "s": 29.32,
+    "e": 29.72
+   },
+   {
+    "w": " untuk",
+    "s": 29.72,
+    "e": 30.52
+   },
+   {
+    "w": " diri",
+    "s": 30.52,
+    "e": 30.86
+   },
+   {
+    "w": " sendiri",
+    "s": 30.86,
+    "e": 31.2
+   }
+  ]
+ },
+ {
+  "start": 31.2,
+  "end": 35.28,
+  "text": " Kadang-kadang, kita tak perlukan sesuatu yang bersapur untuk berehat",
+  "words": [
+   {
+    "w": " Kadang",
+    "s": 31.2,
+    "e": 32.3
+   },
+   {
+    "w": "-kadang,",
+    "s": 32.3,
+    "e": 32.66
+   },
+   {
+    "w": " kita",
+    "s": 32.92,
+    "e": 33.06
+   },
+   {
+    "w": " tak",
+    "s": 33.06,
+    "e": 33.22
+   },
+   {
+    "w": " perlukan",
+    "s": 33.22,
+    "e": 33.52
+   },
+   {
+    "w": " sesuatu",
+    "s": 33.52,
+    "e": 33.98
+   },
+   {
+    "w": " yang",
+    "s": 33.98,
+    "e": 34.16
+   },
+   {
+    "w": " bersapur",
+    "s": 34.16,
+    "e": 34.6
+   },
+   {
+    "w": " untuk",
+    "s": 34.6,
+    "e": 34.86
+   },
+   {
+    "w": " berehat",
+    "s": 34.86,
+    "e": 35.28
+   }
+  ]
+ },
+ {
+  "start": 35.28,
+  "end": 38.0,
+  "text": " Cukup dengan beri ruang kepada diri sendiri",
+  "words": [
+   {
+    "w": " Cukup",
+    "s": 35.28,
+    "e": 36.1
+   },
+   {
+    "w": " dengan",
+    "s": 36.1,
+    "e": 36.3
+   },
+   {
+    "w": " beri",
+    "s": 36.3,
+    "e": 36.58
+   },
+   {
+    "w": " ruang",
+    "s": 36.58,
+    "e": 36.88
+   },
+   {
+    "w": " kepada",
+    "s": 36.88,
+    "e": 37.2
+   },
+   {
+    "w": " diri",
+    "s": 37.2,
+    "e": 37.62
+   },
+   {
+    "w": " sendiri",
+    "s": 37.62,
+    "e": 38.0
+   }
+  ]
+ },
+ {
+  "start": 38.0,
+  "end": 43.82,
+  "text": " Kalau nak jadikan rutin mandi lebih istimewa, korang kena cuba fresh kura bodi",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 38.0,
+    "e": 39.06
+   },
+   {
+    "w": " nak",
+    "s": 39.06,
+    "e": 39.22
+   },
+   {
+    "w": " jadikan",
+    "s": 39.22,
+    "e": 39.74
+   },
+   {
+    "w": " rutin",
+    "s": 39.74,
+    "e": 40.46
+   },
+   {
+    "w": " mandi",
+    "s": 40.46,
+    "e": 40.76
+   },
+   {
+    "w": " lebih",
+    "s": 40.76,
+    "e": 41.02
+   },
+   {
+    "w": " istimewa,",
+    "s": 41.02,
+    "e": 41.66
+   },
+   {
+    "w": " korang",
+    "s": 41.92,
+    "e": 42.1
+   },
+   {
+    "w": " kena",
+    "s": 42.1,
+    "e": 42.46
+   },
+   {
+    "w": " cuba",
+    "s": 42.46,
+    "e": 42.84
+   },
+   {
+    "w": " fresh",
+    "s": 42.84,
+    "e": 43.26
+   },
+   {
+    "w": " kura",
+    "s": 43.26,
+    "e": 43.48
+   },
+   {
+    "w": " bodi",
+    "s": 43.48,
+    "e": 43.82
+   }
+  ]
+ },
+ {
+  "start": 43.82,
+  "end": 49.54,
+  "text": " Mengandungi sisa dan pilihan wangian berinspirasikan perfume",
+  "words": [
+   {
+    "w": " Mengandungi",
+    "s": 43.82,
+    "e": 45.4
+   },
+   {
+    "w": " sisa",
+    "s": 45.4,
+    "e": 46.2
+   },
+   {
+    "w": " dan",
+    "s": 46.2,
+    "e": 46.62
+   },
+   {
+    "w": " pilihan",
+    "s": 46.62,
+    "e": 47.12
+   },
+   {
+    "w": " wangian",
+    "s": 47.12,
+    "e": 47.86
+   },
+   {
+    "w": " berinspirasikan",
+    "s": 47.86,
+    "e": 49.1
+   },
+   {
+    "w": " perfume",
+    "s": 49.1,
+    "e": 49.54
+   }
+  ]
+ },
+ {
+  "start": 49.54,
+  "end": 51.86,
+  "text": " Seperti bombshell dan minat fantasi",
+  "words": [
+   {
+    "w": " Seperti",
+    "s": 49.54,
+    "e": 50.22
+   },
+   {
+    "w": " bombshell",
+    "s": 50.22,
+    "e": 50.68
+   },
+   {
+    "w": " dan",
+    "s": 50.68,
+    "e": 51.2
+   },
+   {
+    "w": " minat",
+    "s": 51.2,
+    "e": 51.44
+   },
+   {
+    "w": " fantasi",
+    "s": 51.44,
+    "e": 51.86
+   }
+  ]
+ },
+ {
+  "start": 51.86,
+  "end": 56.06,
+  "text": " Kalau korang rasa tips ni bermanfaat, share video ni",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 51.86,
+    "e": 52.98
+   },
+   {
+    "w": " korang",
+    "s": 52.98,
+    "e": 53.3
+   },
+   {
+    "w": " rasa",
+    "s": 53.3,
+    "e": 53.6
+   },
+   {
+    "w": " tips",
+    "s": 53.6,
+    "e": 54.1
+   },
+   {
+    "w": " ni",
+    "s": 54.1,
+    "e": 54.26
+   },
+   {
+    "w": " bermanfaat,",
+    "s": 54.26,
+    "e": 54.88
+   },
+   {
+    "w": " share",
+    "s": 55.02,
+    "e": 55.48
+   },
+   {
+    "w": " video",
+    "s": 55.48,
+    "e": 55.86
+   },
+   {
+    "w": " ni",
+    "s": 55.86,
+    "e": 56.06
+   }
+  ]
+ },
+ {
+  "start": 56.06,
+  "end": 58.9,
+  "text": " Supaya lebih ramai tahu cara menjaga diri selepas ini",
+  "words": [
+   {
+    "w": " Supaya",
+    "s": 56.06,
+    "e": 56.46
+   },
+   {
+    "w": " lebih",
+    "s": 56.46,
+    "e": 56.64
+   },
+   {
+    "w": " ramai",
+    "s": 56.64,
+    "e": 57.18
+   },
+   {
+    "w": " tahu",
+    "s": 57.18,
+    "e": 57.46
+   },
+   {
+    "w": " cara",
+    "s": 57.46,
+    "e": 57.96
+   },
+   {
+    "w": " menjaga",
+    "s": 57.96,
+    "e": 58.3
+   },
+   {
+    "w": " diri",
+    "s": 58.3,
+    "e": 58.66
+   },
+   {
+    "w": " selepas",
+    "s": 58.66,
+    "e": 58.9
+   },
+   {
+    "w": " ini",
+    "s": 58.9,
+    "e": 58.9
+   }
+  ]
+ }
+]
