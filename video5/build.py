@@ -23,6 +23,8 @@ for w in words:
     if core == "-kanti":
         clean[-1]["t"] = "panjat katil"; clean[-1]["e"] = w["e"]; continue
     txt = FIX.get(txt, FIX.get(core, core) + tail)
+    if core == "body" and w["s"] > 40:          # CTA: client confirmed "So geng buddy" (the earlier "body yang ada standard" stays)
+        txt = "buddy" + tail
     if txt.startswith("-") and clean:
         clean[-1]["t"] += txt; clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
@@ -286,7 +288,7 @@ S(44.32, "boom", 0.45); S(44.62, "shimmer", 0.4)
 # ---- S13 45.10-50.70: CTA -- tekan beg kuning sekarang, sebelum habis
 clip("bg13", 45.1, 5.6, '<div class="ivory"></div>', style="z-index:2")
 vid("p_cta", "assets/product/duo_wood2.jpg", 45.1, 5.6, (190, 330, 700, 800), img=True)
-clip("s13", 45.1, 5.6, f'<div class="t c kick" style="top:160px">{R("c0","Geng yang nak tidur")}</div>'
+clip("s13", 45.1, 5.6, f'<div class="t c kick" style="top:160px">{R("c0","Geng buddy yang nak tidur")}</div>'
      f'<div class="t c serif-it" style="top:210px;font-size:64px;color:var(--rose);white-space:nowrap">{R("c1","wangi semerbak malam ni")}</div>'
      f'<div class="btn" id="btn" style="top:1190px"><div class="bk">{BASKET}</div>TEKAN BEG KUNING</div>'
      f'<div class="t c kick" style="top:1375px;color:var(--ink)">{R("c2","Sekarang")}</div>'

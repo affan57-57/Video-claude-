@@ -40,8 +40,8 @@
 | 45.10–50.70 | Geng nak tidur wangi semerbak… tekan beg kuning sekarang, sebelum habis | Foto duo kayu + butang TEKAN BEG KUNING + bar "SEBELUM HABIS" | whip, pop, click, boom |
 | 50.70–52.20 | (penutup) | FRESCURA BODY, tidur wangi semerbak + butang | chime |
 
-## Perlu pengesahan
-- Ayat CTA: whisper dengar "So **geng body** yang nak tidur wangi semerbak malam ni". Caption tunjuk "So geng body…". Kalau maksudnya lain, beritahu.
+## Disahkan
+- Ayat CTA: "So **geng buddy** yang nak tidur wangi semerbak malam ni" (disahkan oleh klien).
 
 ## Sumber
 - B-roll: [Mixkit](https://mixkit.co) (Mixkit Free License). Klip: 4196, 34613, 3111, 6925, 4198, 21694, 18304, 18299, 21766, 4433, 48498. Klip tanpa orang (bilik, katil, lilin, shower) dipilih untuk elak aurat.
