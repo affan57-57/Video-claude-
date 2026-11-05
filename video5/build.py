@@ -9,11 +9,12 @@ DURATION = 52.2          # voice is 50.7 s + end-card tail
 
 words = [w for s in json.load(open(f"{proj}/assets/audio/words.json")) for w in s["words"]]
 FIX = {"lakseri": "luxury", "hati.": "hotel.", "hati": "hotel", "pajak": "panjat", "-kanti": "katil", "bantan": "bantal",
-       "vex": "vibes", "usia": "tekan", "abek": "beg", "kuni": "kuning", "gang": "geng", "Terus": "Terus"}
+       "vex": "vibes", "usia": "tekan", "abek": "beg", "kuni": "kuning", "gang": "geng", "Terus": "Terus",
+       "body": "buddy", "umat": "mak", "pocket": "poket", "kati": "katil", "semerba": "semerbak", "ku": "kuning"}   # client: "buddy", not "body"
 DROP = {"Haa", "Haa,", "ke", "Dia,", "Apa"}          # fillers / mis-hearings left out of the captions
 HL = {"wangi", "semerbak", "luxury", "hotel", "perangai", "mengada-ngada", "tidur", "standard", "spray", "perfume", "mahal",
       "mahal-mahal", "menangis", "membazir", "rahsia", "mandi", "malam", "melekat", "kulit", "fresh", "premium", "expensive",
-      "vibes", "beg", "kuning", "habis", "katil", "bantal"}
+      "vibes", "beg", "kuning", "habis", "katil", "bantal", "buddy"}
 clean = []
 for w in words:
     txt = w["w"].strip()
@@ -23,10 +24,10 @@ for w in words:
     if core == "-kanti":
         clean[-1]["t"] = "panjat katil"; clean[-1]["e"] = w["e"]; continue
     txt = FIX.get(txt, FIX.get(core, core) + tail)
-    if core == "body" and w["s"] > 40:          # CTA: client confirmed "So geng buddy" (the earlier "body yang ada standard" stays)
-        txt = "buddy" + tail
     if txt.startswith("-") and clean:
         clean[-1]["t"] += txt; clean[-1]["e"] = w["e"]; continue
+    if clean and clean[-1]["t"] == "kuning" and core == "ni" and w["s"] - clean[-1]["e"] < 0.15:   # "beg ku ni" = "beg kuning"
+        clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
 chunks, cur = [], []
 for i, w in enumerate(clean):
@@ -175,7 +176,7 @@ S(10.9, "boom", 0.4); S(14.2, "shimmer", 0.5)
 # ---- S4 15.60-18.85: body yang ada standard
 clip("s4", 15.6, 3.25, '<div class="ivory grid"></div>'
      f'<div class="t c kick" style="top:520px">{R("b0","Barulah rasa macam")}</div>'
-     f'<div class="t c" style="top:600px;font:200 220px/1 Montserrat;letter-spacing:-6px">{R("b1","BODY")}</div>'
+     f'<div class="t c" style="top:600px;font:200 220px/1 Montserrat;letter-spacing:-6px">{R("b1","BUDDY")}</div>'
      f'<div class="t c serif-it" style="top:850px;font-size:90px;color:var(--mute)">{R("b2","yang ada")}</div>'
      f'<div class="badge" id="b3" style="left:390px;top:1000px">{CHECK}STAN<br>DARD</div>')
 A('tl.fromTo("#s4",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(80% at 50% 50%)",duration:0.45,ease:"expo.out"},15.6);')
@@ -311,6 +312,40 @@ clip("s14", 50.7, DURATION - 50.7, '<div class="ivory"></div>'
 A('tl.fromTo("#s14",{clipPath:"inset(100% 0% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.45,ease:"expo.inOut"},50.7);')
 rv("#n0", 50.85); line("#n1", 51.0); rv("#n2", 51.1); pop("#n3", 51.3, 0.4)
 S(50.7, "whip", 0.5); S(50.85, "chime", 0.5)
+
+# ---- scenes above are authored on the first voice cut (words_scene_timeline.json). The voice was re-cut so
+# "hotel" and "expensive" are no longer clipped; map every scene/SFX time onto the new voice by matching words.
+import difflib
+_old = [w for x in json.load(open(f"{proj}/assets/audio/words_scene_timeline.json")) for w in x["words"]]
+_norm = lambda t: re.sub(r"[^a-z]", "", t.lower())
+_m = difflib.SequenceMatcher(a=[_norm(w["w"]) for w in _old], b=[_norm(w["w"]) for w in words], autojunk=False)
+_anc = [(0.0, 0.0)]
+for blk in _m.get_matching_blocks():
+    for k in range(blk.size):
+        o, n = _old[blk.a + k], words[blk.b + k]
+        _anc += [(o["s"], n["s"]), (o["e"], n["e"])]
+_anc.sort(); _ao, _an = [], []
+for o, n in _anc:
+    if not _ao or (o > _ao[-1] and n > _an[-1]): _ao.append(o); _an.append(n)
+def T(x):
+    if x >= _ao[-1]: return round(_an[-1] + (x - _ao[-1]), 3)
+    i = max(k for k in range(len(_ao)) if _ao[k] <= x)
+    return round(_an[i] + (x - _ao[i]) * (_an[i + 1] - _an[i]) / (_ao[i + 1] - _ao[i]), 3)
+def _ra(m):
+    st, d = float(m.group(1)), float(m.group(2))
+    return f'data-start="{T(st):.3f}" data-duration="{T(st + d) - T(st):.3f}"'
+html = [re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', _ra, h) for h in html]
+js = [re.sub(r",([\d.]+)\);$", lambda m: f",{T(float(m.group(1))):.3f});", l) for l in js]
+_punch = {}                                       # keep each zoom punch -> slow drift pair back-to-back after the remap
+for i, l in enumerate(js):
+    m = re.match(r'tl\.fromTo\("(#[\w-]+)",\{scale:[\d.]+\},\{scale:[\d.]+,duration:([\d.]+),ease:"expo\.out"\},([\d.]+)\);$', l)
+    if m: _punch[m.group(1)] = float(m.group(3)) + float(m.group(2)); continue
+    m = re.match(r'(tl\.to\("(#[\w-]+)",\{scale:[\d.]+,duration:)([\d.]+)(,ease:"none"\},)([\d.]+)\);$', l)
+    if m and m.group(2) in _punch:
+        st0 = _punch.pop(m.group(2)); end = float(m.group(5)) + float(m.group(3))
+        js[i] = f"{m.group(1)}{max(end - st0, 0.1):.2f}{m.group(4)}{st0:.3f});"
+for c in sfx: c["t"] = T(c["t"])
+DURATION = round(T(DURATION), 2)
 
 # ---- persistent: progress bar (hidden on the face shot)
 clip("chrome", 0, DURATION, '<div id="prog"></div>', style="z-index:5")

@@ -29,9 +29,11 @@ if len(sys.argv) > 4:
     KEEP = [tuple(k) for k in _cfg["keep"]]
     _KEEP_GAP = _cfg.get("keep_gap", 0.08)
     _QUIET_DB = _cfg.get("quiet_db", -34)       # pause threshold; raise it for noisy locations
+    _SNAP_WIN = _cfg.get("snap_win", 0.12)      # small value = keep hand-placed cut points (stop consonants have silent gaps)
 else:
     _KEEP_GAP = 0.08
     _QUIET_DB = -34
+    _SNAP_WIN = 0.12
 
 SR = 48000
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-ac", "1", "-ar", str(SR),
@@ -54,8 +56,8 @@ def snap(t, win=0.12):
 fade = int(0.012 * SR)
 pieces, edl, t = [], [], 0.0
 for s, e, label in KEEP:
-    s2 = snap(s, 0.04 if s == 16.33 else 0.12)
-    e2 = snap(e)
+    s2 = snap(s, 0.04 if s == 16.33 else _SNAP_WIN)
+    e2 = snap(e, _SNAP_WIN)
     seg = a[int(s2 * SR):int(e2 * SR)].copy()
     # level-match: bring each kept segment's speech (loudest half of 20 ms frames) to -20 dBFS,
     # the opening of the recording was ~10 dB quieter than the rest

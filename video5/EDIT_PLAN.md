@@ -1,24 +1,28 @@
 # Video 5: "Tidur wangi semerbak" (cerita → rahsia → beg kuning)
 
-**Status: PREVIEW**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v3**, `preview/preview_v3.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
-- Asal: 2 klip disambung (59.0 s + 6.5 s = 65.5 s). Selepas edit: **52.2 s** (50.7 s suara + 1.5 s kad penutup).
+- Asal: 2 klip disambung (59.0 s + 6.5 s = 65.5 s). Selepas edit: **52.8 s** (51.3 s suara + 1.5 s kad penutup).
 - Gaya: minimalist luxury, rancak (ikut Video 4 v3 yang diluluskan). Animasi laju dengan zoom punch, bunyi "top" pada setiap teks dan "whip" pada setiap peralihan, kilatan pada impak. Muzik lembut 90 bpm (~−26 dB di bawah suara), SFX kuat, mix −13 LUFS.
-- Muka: **0.9 s sahaja** (4.80–5.70 s, "Korang, aku…"; ikut permintaan, bawah 1 saat). Diambil dari rakaman 1.3–2.2 s di mana mata pandang tepat ke lensa (berniqab, jadi tiada isu lip-sync). Hanya 4 saat pertama rakaman yang pandang kamera; selebihnya telefon terdongak ke siling, jadi diganti sepenuhnya dengan B-roll dan motion graphics.
+- Muka: **0.93 s sahaja** (5.32–6.25 s, "Korang, aku…"; ikut permintaan, bawah 1 saat). Diambil dari rakaman 1.3–2.2 s di mana mata pandang tepat ke lensa (berniqab, jadi tiada isu lip-sync). Hanya 4 saat pertama rakaman yang pandang kamera; selebihnya telefon terdongak ke siling, jadi diganti sepenuhnya dengan B-roll dan motion graphics.
 - Suara: lokasi rakaman bising (lantai bunyi ~−30 dBFS). Segmen disamakan level, kemudian RNNoise + FFT denoise, noise gate, EQ (kehangatan, potong "box", presence, air), de-esser, compressor ringan, exciter, dan gandaan tetap ke −14 LUFS.
+
+## Maklum balas & perubahan
+- **v1→v2:** muka dipendekkan ke bawah 1 s; caption CTA "geng buddy".
+- **v3:** "buddy yang ada standard" (bukan body), jadi kedua-dua tempat "buddy", termasuk teks besar BUDDY. **"hotel" dan "expensive" terpotong** di v1/v2 kerana skrip potong cari titik senyap ±0.12 s dan jatuh di tengah perkataan (bunyi "t"/"s"). Sekarang titik potong ditetapkan tepat ikut tenaga bunyi (`snap_win` 0.02): hook 37.72–42.46, "Bau dia…" 42.62–46.66. Semua babak dipetakan semula secara automatik ke suara baru melalui padanan perkataan (`words_scene_timeline.json` → `words.json`).
 
 ## Apa yang dibuang / dipindah
 | Masa asal | Tindakan | Sebab |
 |---|---|---|
-| 37.9–42.1 "Satu bilik tidur tu jadi wangi, terus auto macam luxury hotel" | **dipindah ke 0:00** | hook paling kuat (flash-forward) |
+| 37.7–42.5 "Satu bilik tidur tu jadi wangi, terus auto macam luxury hotel" | **dipindah ke 0:00** | hook paling kuat (flash-forward) |
 | 4.2–5.3 | dibuang | jeda |
 | 12.6–13.3 | dibuang | jeda |
 | 32.7–34.5 | dibuang | jeda 1.9 s |
-| 46.4–55.0 | dibuang | ulangan "Bau dia pun memang melekat kat kulit, lepas tu rasa fresh, premium" + jeda 3.3 s |
+| 46.7–55.0 | dibuang | ulangan "Bau dia pun memang melekat kat kulit, lepas tu rasa fresh, premium" + jeda 3.3 s |
 | 64.8–65.5 "Okay" | dibuang | hujung |
 | 6 jeda pendek | dirapatkan | pace |
 
-## Storyboard (masa selepas edit)
+## Storyboard (masa pada potongan suara v1; build.py memetakannya ke suara v3)
 | Masa | Suara | Visual | SFX |
 |---|---|---|---|
 | 0.00–2.85 | Satu bilik tidur tu jadi wangi | B-roll bilik hotel + "jadi WANGI" + kilauan | boom, shimmer |
@@ -27,7 +31,7 @@
 | 5.70–6.80 | …ada satu perangai tau | Kinetic type gelap: "PERANGAI tau!" | whip, boom |
 | 6.80–10.85 | Mak aku selalu bising… mengada-ngada | "SELALU BISING" + bubble "MAK: Mengada-ngada!" (taip, bergegar) + "!!" | boom, click |
 | 10.85–15.60 | Sebab apa? Nak tidur, badan mesti wangi semerbak | "SEBAB APA?" + bilik tidur senja + lilin | boom, shimmer |
-| 15.60–18.85 | Body yang ada standard | "BODY yang ada" + lencana STANDARD ✓ | boom, chime |
+| 15.60–18.85 | Buddy yang ada standard | "BUDDY yang ada" + lencana STANDARD ✓ | boom, chime |
 | 18.85–22.90 | Sebelum panjat katil, jenuh aku spray | Katil hotel + "PANJAT KATIL" + "SPRAY!" dengan percikan | foam |
 | 22.90–26.60 | Perfume mahal-mahal kat badan, baju, bantal | Rak perfume + "MAHAL-MAHAL" + label "RM RM RM" + chip BADAN/BAJU/BANTAL | click, top |
 | 26.60–30.70 | Poket menangis, membazir gila | Duit + dompet + bar "BAKI POKET" susut ke merah + "membazir gila!" | boom ×2 |

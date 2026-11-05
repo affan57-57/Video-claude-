@@ -1,8 +1,8 @@
 {
  "keep": [
   [
-   37.86,
-   42.12,
+   37.72,
+   42.46,
    "HOOK (moved from story): Satu bilik tidur tu jadi wangi, terus auto macam luxury hotel"
   ],
   [
@@ -31,8 +31,8 @@
    "Sekali aku mandi malam sebelum tidur"
   ],
   [
-   42.16,
-   46.42,
+   42.62,
+   46.66,
    "Bau dia memang melekat kat kulit, rasa fresh, premium and expensive (cut 2nd take 46.4-54.4)"
   ],
   [
@@ -42,5 +42,6 @@
   ]
  ],
  "keep_gap": 0.12,
- "quiet_db": -30
+ "quiet_db": -33,
+ "snap_win": 0.02
 }
