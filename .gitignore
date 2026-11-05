@@ -1,0 +1,14 @@
+# raw client footage, downloads, intermediates and rendered media (rebuild with video4/EDIT_PLAN.md)
+video4/src/
+video4/mixkit/
+video4/work/
+video4/audio/
+video4/sh.rnnn
+video4/preview/
+video4/final/
+video4/project/assets/broll/
+video4/project/assets/audio/*.wav
+video4/project/assets/audio/sfx/
+video4/project/.hyperframes/
+__pycache__/
+video4/work_audio16k.wav

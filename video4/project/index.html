@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Playfair"; src: url("assets/fonts/PlayfairDisplay.ttf"); font-weight: 400 900; }
+@font-face { font-family: "Playfair"; src: url("assets/fonts/PlayfairDisplay-Italic.ttf"); font-style: italic; font-weight: 400 900; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat.ttf"); font-weight: 100 900; }
+
+:root {
+  --ivory: #f3eee6;
+  --bone: #e6ddd0;
+  --ink: #161412;
+  --mute: #7d746a;
+  --hair: rgba(22,20,18,.22);
+  --rose: #a5162f;
+  --violet: #4a3a8c;
+  --yellow: #f2c230;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ivory); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ivory);
+  color: var(--ink); font-family: "Montserrat", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.ivory { position: absolute; inset: 0; background: var(--ivory); }
+.ivory.grid { background-color: var(--ivory);
+  background-image: linear-gradient(var(--hair) 1px, transparent 1px), linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+  background-size: 1080px 160px, 180px 1920px; background-position: 0 79px, 89px 0; opacity: 1; }
+.ivory.grid::after { content: ""; position: absolute; inset: 0; background: rgba(243,238,230,.82); }
+
+/* type */
+.t { position: absolute; left: 90px; right: 90px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.rv > span { display: inline-block; }
+.kick { font: 600 24px "Montserrat"; letter-spacing: 9px; text-transform: uppercase; color: var(--mute); }
+.huge { font: 200 168px/0.98 "Montserrat"; letter-spacing: -4px; text-transform: uppercase; }
+.big { font: 300 112px/1.02 "Montserrat"; letter-spacing: -2px; text-transform: uppercase; }
+.mid { font: 500 64px/1.1 "Montserrat"; letter-spacing: 1px; }
+.serif-it { font: italic 500 92px/1.05 "Playfair"; letter-spacing: -1px; }
+.accent { color: var(--rose); }
+.hair { position: absolute; height: 1.5px; background: var(--ink); transform-origin: 0 50%; }
+.strike { position: absolute; left: -10px; right: -10px; top: 52%; height: 8px; background: var(--rose); transform-origin: 0 50%; }
+.sect { position: absolute; z-index: 8; left: 90px; bottom: 86px; font: 600 22px "Montserrat"; letter-spacing: 6px; color: var(--mute); }
+.sect b { color: var(--ink); font-weight: 600; }
+#prog { position: absolute; z-index: 8; left: 0; top: 0; height: 6px; width: 1080px; background: var(--ink); transform-origin: 0 50%; }
+.wm { position: absolute; z-index: 8; top: 70px; left: 0; width: 1080px; text-align: center;
+  font: 600 20px "Montserrat"; letter-spacing: 12px; color: var(--ink); }
+.wm.light { color: #fff; }
+
+/* frames / masks */
+.frame { position: absolute; overflow: hidden; border-radius: 44px; background: var(--bone); }
+.frame video, .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.circle { position: absolute; overflow: hidden; border-radius: 50%; background: var(--bone); }
+.circle video, .circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ring { position: absolute; border-radius: 50%; border: 1.5px solid var(--ink); }
+.dot { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: var(--rose); }
+
+/* captions: modern pill */
+.cap { z-index: 9; inset: auto; top: 1560px; left: 90px; width: 900px; height: auto; text-align: center; }
+.cap .pill { display: inline-block; padding: 14px 28px; border-radius: 18px; background: rgba(22,20,18,.88);
+  font: 600 44px/1.25 "Montserrat"; color: #fff; letter-spacing: .3px; }
+.cap .w { display: inline-block; }
+.cap .w.hl { color: #f2d388; }
+
+/* badges & chips */
+.badge { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: var(--ink); color: var(--ivory);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  font: 600 26px/1.3 "Montserrat"; letter-spacing: 6px; }
+.badge svg { width: 90px; height: 90px; margin-bottom: 10px; }
+.chip { display: inline-flex; align-items: center; gap: 16px; padding: 16px 34px; border: 1.5px solid var(--ink);
+  border-radius: 999px; font: 500 40px "Montserrat"; letter-spacing: 6px; margin: 0 14px 22px 0; background: rgba(243,238,230,.85); }
+.chip i { width: 14px; height: 14px; border-radius: 50%; background: var(--rose); }
+.chip.v i { background: var(--violet); }
+.block { position: absolute; }
+.callout { position: absolute; display: flex; align-items: center; gap: 16px; }
+.callout .d { width: 16px; height: 16px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 8px rgba(22,20,18,.12); }
+.callout .l { width: 140px; height: 1.5px; background: var(--ink); transform-origin: 0 50%; }
+.callout .x { font: 600 30px "Montserrat"; letter-spacing: 6px; color: var(--ink); white-space: nowrap; }
+.callout .x small { display: block; font: italic 500 30px "Playfair"; letter-spacing: 0; color: var(--mute); }
+
+/* CTA */
+.btn { position: absolute; left: 140px; width: 800px; height: 150px; border-radius: 75px; background: var(--ink); color: #fff;
+  display: flex; align-items: center; justify-content: center; gap: 24px; font: 600 40px "Montserrat"; letter-spacing: 6px; }
+.btn .bk { width: 74px; height: 74px; border-radius: 50%; background: var(--yellow); display: flex; align-items: center; justify-content: center; }
+.btn .bk svg { width: 44px; height: 40px; }
+.bar { position: absolute; left: 140px; width: 800px; height: 6px; background: var(--hair); }
+.bar i { display: block; height: 100%; width: 40%; background: var(--rose); transform-origin: 0 50%; }
+.sel { position: absolute; border: 3px solid #fff; border-radius: 30px; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+.tap { position: absolute; width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,.85);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 22px; right: 30px; font: 600 16px "Montserrat"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }
+
+/* ---- video 4 additions ---- */
+.bubble { position: absolute; display: flex; align-items: center; gap: 20px; padding: 22px 36px 22px 22px; background: #fff;
+  border-radius: 44px 44px 44px 10px; box-shadow: 0 14px 44px rgba(0,0,0,.20); font: 600 42px "Montserrat"; color: var(--ink); white-space: nowrap; }
+.bubble .av { width: 60px; height: 60px; border-radius: 50%; background: var(--rose); flex: none; }
+.bubble.v .av { background: var(--violet); }
+.bubble small { display: block; font: 600 20px "Montserrat"; letter-spacing: 5px; color: var(--mute); margin-bottom: 4px; }
+.bubble .tx { display: inline-block; }
+.sharebtn { position: absolute; left: 240px; width: 600px; height: 160px; border-radius: 80px; background: #fff; color: var(--ink);
+  display: flex; align-items: center; justify-content: center; gap: 26px; font: 600 46px "Montserrat"; letter-spacing: 10px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.22); }
+.sharebtn svg { width: 64px; height: 64px; }
+.lbl { position: absolute; padding: 14px 30px; border-radius: 999px; background: rgba(22,20,18,.88); color: #fff;
+  font: 600 26px "Montserrat"; letter-spacing: 6px; white-space: nowrap; }
+.lbl.r { background: var(--rose); } .lbl.v { background: var(--violet); }
+.row2 { position: absolute; left: 90px; right: 90px; display: flex; align-items: center; gap: 22px; }
+.row2 .nm { font: 600 27px "Montserrat"; letter-spacing: 5px; width: 440px; white-space: nowrap; }
+.row2 .ar { width: 70px; height: 1.5px; background: var(--ink); transform-origin: 0 50%; }
+.row2 .tr { font: italic 500 44px "Playfair"; color: var(--mute); }
+.light { color: #fff !important; }
+.glow { position: absolute; border-radius: 50%; border: 2px solid rgba(255,255,255,.75); box-shadow: 0 0 60px rgba(255,255,255,.35), inset 0 0 60px rgba(255,255,255,.25); }
+.shade { position: absolute; inset: 0; }
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="49.0" data-width="1080" data-height="1920">
+<audio id="mix" class="clip" src="assets/audio/mix.wav" data-start="0" data-duration="49.0" data-volume="1"></audio>
+<div id="bg1" class="clip " data-start="0.000" data-duration="2.110" style="z-index:2"><div class="ivory grid"></div></div>
+<div id="p_duow" class="clip" data-start="0.550" data-duration="1.560" style="z-index:4"><div id="p_duom" class="frame" style="left:240px;top:560px;width:600px;height:1066px"></div></div>
+<img id="p_duo" class="clip" src="assets/product/duo_white.jpg" data-start="0.550" data-duration="1.560" alt="" style="z-index:4;left:240px;top:560px;width:600px;height:1066px;object-fit:cover;border-radius:44px">
+<div id="s1" class="clip " data-start="0.000" data-duration="2.110" style=""><div class="t c" style="top:230px;font:200 132px/1 Montserrat;letter-spacing:-3px"><span id="d0" class="rv"><span>PEREMPUAN</span></span></div><div class="t c serif-it" style="top:370px;font-size:96px;color:var(--rose)"><span id="d1" class="rv"><span>ada 2 jenis</span></span></div><div class="lbl v" id="d2" style="left:150px;top:1440px">MIDNIGHT FANTASY</div><div class="lbl r" id="d3" style="left:640px;top:1440px">BOMBSHELL</div></div>
+<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="2.11" data-duration="0.86" data-media-start="0" muted playsinline style="z-index:6"></video>
+<div id="s2" class="clip " data-start="2.110" data-duration="0.860" style="z-index:7"><div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%)"></div><div class="t c" style="top:1300px;font:200 150px/1 Montserrat;color:#fff;letter-spacing:-4px"><span id="g1" class="rv"><span>GENG</span></span></div><div class="t c serif-it" style="top:1450px;color:#fff;font-size:110px"><span id="g2" class="rv"><span>mana?</span></span></div></div>
+<div id="bg3" class="clip " data-start="3.000" data-duration="1.700" style="z-index:2"><div class="ivory"></div></div>
+<div id="p_gw" class="clip" data-start="3.000" data-duration="1.700" style="z-index:4"><div id="p_gm" class="frame" style="left:560px;top:420px;width:430px;height:1100px"></div></div>
+<img id="p_g" class="clip" src="assets/product/glory_card.jpg" data-start="3.000" data-duration="1.700" alt="" style="z-index:4;left:560px;top:420px;width:430px;height:1100px;object-fit:cover;border-radius:44px">
+<div id="s3" class="clip " data-start="3.000" data-duration="1.700" style=""><div class="t kick" style="top:300px"><span id="a0" class="rv"><span>Pertama · No. 01</span></span></div><div class="t kick" style="top:820px;right:auto;width:450px"><span id="a1" class="rv"><span>Geng</span></span></div><div class="t" style="top:870px;right:auto;width:470px;font:300 92px/1 Montserrat;letter-spacing:-2px;color:var(--rose)"><span id="a2" class="rv"><span>BOMB</span></span><br><span id="a3" class="rv"><span>SHELL</span></span></div><div class="t serif-it" style="top:1090px;right:auto;width:450px;font-size:54px;color:var(--mute)"><span id="a4" class="rv"><span>Woman Glory</span></span></div><div class="hair" id="a5" style="left:90px;width:380px;top:1180px"></div></div>
+<div id="sect1" class="clip " data-start="3.000" data-duration="8.450" style="z-index:8"><div class="sect"><b>01</b> &nbsp;/ 05 &nbsp;&nbsp;BOMBSHELL</div></div>
+<div id="bg4" class="clip " data-start="4.700" data-duration="3.600" style="z-index:2"><div class="ivory"></div></div>
+<div id="v_rosew" class="clip" data-start="4.700" data-duration="3.600" style="z-index:4"><div id="v_rosem" class="frame" style="left:90px;top:230px;width:900px;height:1000px"></div></div>
+<video id="v_rose" class="clip" src="assets/broll/rose.mp4" data-start="4.700" data-duration="3.600" data-media-start="0" muted playsinline style="z-index:4;left:90px;top:230px;width:900px;height:1000px;object-fit:cover;border-radius:44px"></video>
+<div id="v_prosew" class="clip" data-start="4.700" data-duration="3.600" style="z-index:4"><div id="v_prosem" class="circle" style="left:600px;top:960px;width:400px;height:400px"></div></div>
+<video id="v_prose" class="clip" src="assets/broll/pinkrose.mp4" data-start="4.700" data-duration="3.600" data-media-start="0" muted playsinline style="z-index:4;left:600px;top:960px;width:400px;height:400px;object-fit:cover;border-radius:50%"></video>
+<div id="s4" class="clip " data-start="4.700" data-duration="3.600" style=""><div class="t kick" style="top:150px"><span id="r0" class="rv"><span>Suka bau</span></span></div><div class="ring" id="r9" style="left:580px;top:940px;width:440px;height:440px"></div><div class="t" style="top:1290px;right:auto;width:900px"><div class="chip" id="r1"><i></i>FRESH</div><div class="chip" id="r2"><i></i>FLORAL</div></div><div class="t" style="top:1390px;right:auto;width:900px"><div class="chip" id="r3"><i></i>FEMININE</div><div class="chip" id="r4"><i></i>ELEGANT</div></div></div>
+<div id="bg5" class="clip " data-start="8.300" data-duration="3.150" style="z-index:2"><div class="ivory"></div></div>
+<div id="v_hjw" class="clip" data-start="8.300" data-duration="3.150" style="z-index:4"><div id="v_hjm" class="frame" style="left:90px;top:230px;width:900px;height:1150px"></div></div>
+<video id="v_hj" class="clip" src="assets/broll/hijab.mp4" data-start="8.300" data-duration="3.150" data-media-start="0" muted playsinline style="z-index:4;left:90px;top:230px;width:900px;height:1150px;object-fit:cover;border-radius:44px"></video>
+<div id="s5" class="clip " data-start="8.300" data-duration="3.150" style=""><div class="shade" style="inset:auto;left:90px;top:900px;width:900px;height:480px;border-radius:0 0 44px 44px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55))"></div><div class="t kick" style="top:150px"><span id="c0" class="rv"><span>Jenis yang suka nampak</span></span></div><div class="t" style="top:1060px;left:150px;font:200 150px/1 Montserrat;letter-spacing:-4px;color:#fff"><span id="c1" class="rv"><span>CLASSY</span></span></div><div class="t serif-it" style="top:1225px;left:150px;font-size:66px;color:#fff"><span id="c2" class="rv"><span>&amp; penuh keyakinan</span></span></div></div>
+<div id="bg6" class="clip " data-start="11.450" data-duration="2.250" style="z-index:2"><div class="shade" style="background:radial-gradient(ellipse at 30% 30%,#3a2d78 0%,#1c1638 60%,#0e0b1d 100%)"></div></div>
+<div id="p_nw" class="clip" data-start="11.450" data-duration="2.250" style="z-index:4"><div id="p_nm" class="frame" style="left:560px;top:420px;width:420px;height:1107px"></div></div>
+<img id="p_n" class="clip" src="assets/product/noche_card.jpg" data-start="11.450" data-duration="2.250" alt="" style="z-index:4;left:560px;top:420px;width:420px;height:1107px;object-fit:cover;border-radius:44px">
+<div id="s6" class="clip " data-start="11.450" data-duration="2.250" style=""><div class="t kick" style="top:300px;color:rgba(255,255,255,.7)"><span id="n0" class="rv"><span>Team kedua · No. 02</span></span></div><div class="t kick" style="top:820px;right:auto;width:450px;color:rgba(255,255,255,.7)"><span id="n1" class="rv"><span>Geng</span></span></div><div class="t" style="top:870px;right:auto;width:470px;font:300 80px/1.02 Montserrat;letter-spacing:-1px;color:#fff"><span id="n2" class="rv"><span>MIDNIGHT</span></span><br><span id="n3" class="rv"><span>FANTASY</span></span></div><div class="t serif-it" style="top:1070px;right:auto;width:450px;font-size:54px;color:#b9a8ff"><span id="n4" class="rv"><span>Noche</span></span></div><div class="hair" id="n5" style="left:90px;width:380px;top:1160px;background:#fff"></div></div>
+<div id="sect2" class="clip " data-start="11.450" data-duration="12.000" style="z-index:8"><div class="sect" style="color:rgba(255,255,255,.75)"><b style="color:#fff">02</b> &nbsp;/ 05 &nbsp;&nbsp;MIDNIGHT FANTASY</div></div>
+<div id="bg7" class="clip " data-start="13.700" data-duration="3.850" style="z-index:2"><div class="ivory"></div></div>
+<div id="v_stw" class="clip" data-start="13.700" data-duration="3.850" style="z-index:4"><div id="v_stm" class="circle" style="left:160px;top:330px;width:760px;height:760px"></div></div>
+<video id="v_st" class="clip" src="assets/broll/straw.mp4" data-start="13.700" data-duration="3.850" data-media-start="0" muted playsinline style="z-index:4;left:160px;top:330px;width:760px;height:760px;object-fit:cover;border-radius:50%"></video>
+<div id="s7" class="clip " data-start="13.700" data-duration="3.850" style=""><div class="t c kick" style="top:180px"><span id="m0" class="rv"><span>Diorang suka bau yang</span></span></div><div class="ring" id="m9" style="left:120px;top:290px;width:840px;height:840px"></div><div class="t c" style="top:1210px"><div class="chip v" id="m1"><i></i>MANIS</div><div class="chip v" id="m2"><i></i>FRUITY</div></div></div>
+<video id="v_moon" class="clip bg" src="assets/broll/moon.mp4" data-start="17.550" data-duration="1.400" data-media-start="0" muted playsinline></video>
+<div id="s7b" class="clip " data-start="17.550" data-duration="1.400" style=""><div class="shade" style="background:rgba(8,6,20,.35)"></div><div class="t c kick" style="top:700px;color:rgba(255,255,255,.75);letter-spacing:14px"><span id="y0" class="rv"><span>Agak</span></span></div><div class="t c" style="top:760px;font:200 170px/1 Montserrat;letter-spacing:-4px;color:#fff" id="y1">MISTERI</div></div>
+<div id="bg8" class="clip " data-start="18.950" data-duration="2.550" style="z-index:2"><div class="ivory"></div></div>
+<div id="v_htw" class="clip" data-start="18.950" data-duration="2.550" style="z-index:4"><div id="v_htm" class="circle" style="left:190px;top:420px;width:700px;height:700px"></div></div>
+<video id="v_ht" class="clip" src="assets/broll/hearts.mp4" data-start="18.950" data-duration="2.550" data-media-start="0" muted playsinline style="z-index:4;left:190px;top:420px;width:700px;height:700px;object-fit:cover;border-radius:50%"></video>
+<div id="s8" class="clip " data-start="18.950" data-duration="2.550" style=""><div class="t c kick" style="top:230px"><span id="h1" class="rv"><span>Dan yang paling penting</span></span></div><div class="ring" id="h2" style="left:150px;top:380px;width:780px;height:780px"></div><div class="t c serif-it" style="top:1190px;font-size:150px;color:var(--rose)"><span id="h3" class="rv"><span>Menggoda</span></span></div></div>
+<div id="s9" class="clip " data-start="21.500" data-duration="1.900" style=""><div class="ivory"></div><div class="t c kick" style="top:420px"><span id="j0" class="rv"><span>Tapi...</span></span></div><div id="j1" style="position:absolute;left:320px;top:560px"><svg viewBox="0 0 220 140" style="width:440px;height:280px"><circle cx="80" cy="70" r="52" fill="none" stroke="#161412" stroke-width="7"/><circle cx="140" cy="70" r="52" fill="none" stroke="#a5162f" stroke-width="7"/><path d="M128 14 l12 -12 l12 12 l-12 10z" fill="#a5162f"/></svg></div><div class="t c" style="top:930px;font:300 128px/1 Montserrat;letter-spacing:-3px"><span id="j2" class="rv"><span>SUAMI JE</span></span></div><div class="t c serif-it" style="top:1080px;font-size:80px;color:var(--rose)"><span id="j3" class="rv"><span>tau!</span></span></div></div>
+<video id="v_lav" class="clip bg" src="assets/broll/lavender.mp4" data-start="23.400" data-duration="1.850" data-media-start="0" muted playsinline></video>
+<div id="s10" class="clip " data-start="23.400" data-duration="1.850" style=""><div class="shade" style="background:rgba(30,22,60,.30)"></div><div class="glow" id="u0" style="left:240px;top:560px;width:600px;height:600px"></div><div class="glow" id="u1" style="left:140px;top:460px;width:800px;height:800px;opacity:.5"></div><div class="t c" style="top:740px;font:200 190px/1 Montserrat;letter-spacing:-4px;color:#fff"><span id="u2" class="rv"><span>AURA</span></span></div><div class="t c serif-it" style="top:950px;font-size:76px;color:#fff"><span id="u3" class="rv"><span>tersendiri</span></span></div></div>
+<video id="v_pump" class="clip bg" src="assets/broll/pump_ivory.mp4" data-start="25.250" data-duration="2.050" data-media-start="3.4" muted playsinline></video>
+<div id="s11a" class="clip " data-start="25.250" data-duration="2.050" style=""><div class="shade" style="background:linear-gradient(180deg,rgba(243,238,230,.92) 0%,rgba(243,238,230,0) 22%)"></div><div class="t c kick" style="top:150px"><span id="q0" class="rv"><span>Tapi aku nak tahu</span></span></div><div class="t c serif-it" style="top:205px;font-size:84px"><span id="q1" class="rv"><span>betulkah...</span></span></div></div>
+<div id="sect3" class="clip " data-start="25.250" data-duration="6.350" style="z-index:8"><div class="sect"><b>03</b> &nbsp;/ 05 &nbsp;&nbsp;PERSONALITI</div></div>
+<div id="bg11" class="clip " data-start="27.300" data-duration="4.300" style="z-index:2"><div class="ivory grid"></div></div>
+<div id="v_pfw" class="clip" data-start="27.300" data-duration="4.300" style="z-index:4"><div id="v_pfm" class="circle" style="left:620px;top:1150px;width:360px;height:360px"></div></div>
+<video id="v_pf" class="clip" src="assets/broll/perfume.mp4" data-start="27.300" data-duration="4.300" data-media-start="0" muted playsinline style="z-index:4;left:620px;top:1150px;width:360px;height:360px;object-fit:cover;border-radius:50%"></video>
+<div id="s11b" class="clip " data-start="27.300" data-duration="4.300" style=""><div class="t kick" style="top:260px"><span id="e0" class="rv"><span>Pilihan</span></span></div><div class="t big" style="top:310px"><span id="e1" class="rv"><span>WANGIAN</span></span></div><div class="t" style="top:440px;font:200 120px/1 Montserrat"><span id="e2" class="rv"><span>=</span></span></div><div class="t big accent" style="top:580px"><span id="e3" class="rv"><span>PERSONALITI</span></span><span style="font-family:Playfair;font-style:italic"><span id="e3b" class="rv"><span>?</span></span></span></div><div class="hair" id="e4" style="left:90px;width:900px;top:790px"></div><div class="row2" id="e5" style="top:880px"><div class="nm" style="color:var(--rose)">BOMBSHELL</div><div class="ar"></div><div class="tr">classy · yakin</div></div><div class="row2" id="e6" style="top:990px"><div class="nm" style="color:var(--violet)">MIDNIGHT FANTASY</div><div class="ar"></div><div class="tr">misteri · aura</div></div><div class="hair" id="e7" style="left:90px;width:900px;top:1100px;opacity:.4"></div></div>
+<div id="bg12" class="clip " data-start="31.600" data-duration="3.950" style="z-index:2"><div class="ivory"></div></div>
+<div id="v_phw" class="clip" data-start="31.600" data-duration="3.950" style="z-index:4"><div id="v_phm" class="frame" style="left:90px;top:260px;width:900px;height:1150px"></div></div>
+<video id="v_ph" class="clip" src="assets/broll/phone.mp4" data-start="31.600" data-duration="3.950" data-media-start="0" muted playsinline style="z-index:4;left:90px;top:260px;width:900px;height:1150px;object-fit:cover;border-radius:44px"></video>
+<div id="s12" class="clip " data-start="31.600" data-duration="3.950" style=""><div class="t kick" style="top:160px"><span id="o0" class="rv"><span>Korang jangan malu-malu</span></span></div><div class="bubble" id="o1" style="left:150px;top:1000px"><div class="av"></div><div><small>GENG MANA?</small><span class="tx" id="o1t">Bombshell!</span></div></div><div class="lbl r" id="o2" style="left:150px;top:880px">KOMEN SEKARANG</div></div>
+<div id="sect4" class="clip " data-start="31.600" data-duration="9.500" style="z-index:8"><div class="sect"><b>04</b> &nbsp;/ 05 &nbsp;&nbsp;KOMEN</div></div>
+<video id="v_sky" class="clip bg" src="assets/broll/stars.mp4" data-start="35.550" data-duration="4.350" data-media-start="0" muted playsinline></video>
+<div id="v_tyw" class="clip" data-start="35.550" data-duration="4.350" style="z-index:4"><div id="v_tym" class="circle" style="left:140px;top:330px;width:800px;height:800px"></div></div>
+<video id="v_ty" class="clip" src="assets/broll/typing.mp4" data-start="35.550" data-duration="4.350" data-media-start="0" muted playsinline style="z-index:4;left:140px;top:330px;width:800px;height:800px;object-fit:cover;border-radius:50%"></video>
+<div id="s13" class="clip " data-start="35.550" data-duration="4.350" style=""><div class="t c kick" style="top:200px;color:rgba(255,255,255,.75)"><span id="i0" class="rv"><span>Yang mana geng</span></span></div><div class="glow" id="i9" style="left:110px;top:300px;width:860px;height:860px;opacity:.6"></div><div class="bubble v" id="i1" style="left:170px;top:1180px"><div class="av"></div><div><small>GENG MANA?</small><span class="tx" id="i1t">Midnight Fantasy!</span></div></div><div class="t c" style="top:1340px;font:300 64px/1.1 Montserrat;letter-spacing:2px;color:#fff"><span id="i2" class="rv"><span>MIDNIGHT FANTASY?</span></span></div></div>
+<video id="v_bub" class="clip bg" src="assets/broll/bubbles.mp4" data-start="39.900" data-duration="1.200" data-media-start="0" muted playsinline></video>
+<div id="s14" class="clip " data-start="39.900" data-duration="1.200" style=""><div class="t c kick light" style="top:640px;letter-spacing:12px"><span id="x0" class="rv"><span>Tolong</span></span></div><div class="sharebtn" id="x1" style="top:760px"><svg viewBox="0 0 64 64"><path d="M38 10 L58 30 L38 50 V38 C24 38 14 42 6 54 C8 36 18 24 38 22 Z" fill="#161412"/></svg>SHARE</div><div class="tap" id="x2" style="left:740px;top:850px"></div><div class="t c serif-it light" style="top:990px;font-size:72px"><span id="x3" class="rv"><span>video ni</span></span></div></div>
+<img id="ph_poll" class="clip bg" src="assets/product/duo_wood_rl.jpg" data-start="41.100" data-duration="7.900" alt="">
+<div id="s15" class="clip " data-start="41.100" data-duration="6.300" style=""><div class="shade" style="background:linear-gradient(180deg,rgba(243,238,230,.95) 0%,rgba(243,238,230,0) 20%)"></div><div class="t c kick" style="top:140px"><span id="z0" class="rv"><span>Cuba tanya kawan-kawan</span></span></div><div class="t c serif-it" style="top:195px;font-size:80px"><span id="z1" class="rv"><span>geng mana?</span></span></div><div class="sel" id="zA" style="left:150px;top:380px;width:400px;height:1100px"></div><div class="sel" id="zB" style="left:550px;top:380px;width:400px;height:1100px"></div><div class="lbl r" id="zA2" style="left:205px;top:1400px">BOMBSHELL</div><div class="lbl v" id="zB2" style="left:570px;top:1400px">MIDNIGHT FANTASY</div><div class="tap" id="ztap" style="left:330px;top:1300px"></div></div>
+<div id="sect5" class="clip " data-start="41.100" data-duration="6.300" style="z-index:8"><div class="sect"><b>05</b> &nbsp;/ 05 &nbsp;&nbsp;TANYA KAWAN</div></div>
+<div id="s16" class="clip " data-start="47.400" data-duration="1.600" style=""><div class="ivory"></div><div class="t c" style="top:560px;font:600 46px Montserrat;letter-spacing:16px"><span id="f0" class="rv"><span>FRESCURA BODY</span></span></div><div class="hair" id="f1" style="left:390px;width:300px;top:640px"></div><div class="t c kick" style="top:740px"><span id="f2" class="rv"><span>Komen di bawah</span></span></div><div class="t c" style="top:820px"><div class="chip" id="f3"><i></i>BOMBSHELL</div></div><div class="t c serif-it" style="top:930px;font-size:60px;color:var(--mute)"><span id="f4" class="rv"><span>atau</span></span></div><div class="t c" style="top:1030px"><div class="chip v" id="f5"><i></i>MIDNIGHT FANTASY</div></div><div class="t c" style="top:1200px;font:italic 500 40px Playfair;color:var(--mute)"><span id="f6" class="rv"><span>Woman Glory · Noche</span></span></div></div>
+<div id="chrome" class="clip " data-start="0.000" data-duration="49.000" style="z-index:5"><div id="prog"></div></div>
+<div id="cap3" class="clip cap" data-start="3.040" data-duration="0.680" style=""><span class="pill"><span id="w3_0" class="w">Pertama</span></span></div>
+<div id="cap4" class="clip cap" data-start="3.720" data-duration="1.000" style=""><span class="pill"><span id="w4_0" class="w">geng</span> <span id="w4_1" class="w hl">Bombshell</span></span></div>
+<div id="cap5" class="clip cap" data-start="4.720" data-duration="1.360" style=""><span class="pill"><span id="w5_0" class="w">Suka</span> <span id="w5_1" class="w">bau</span> <span id="w5_2" class="w hl">fresh</span></span></div>
+<div id="cap6" class="clip cap" data-start="6.080" data-duration="0.780" style=""><span class="pill"><span id="w6_0" class="w hl">floral</span></span></div>
+<div id="cap7" class="clip cap" data-start="6.860" data-duration="1.480" style=""><span class="pill"><span id="w7_0" class="w hl">feminine</span> <span id="w7_1" class="w">dan</span> <span id="w7_2" class="w hl">elegant</span></span></div>
+<div id="cap8" class="clip cap" data-start="8.340" data-duration="0.700" style=""><span class="pill"><span id="w8_0" class="w hl">Jenis</span> <span id="w8_1" class="w">yang</span> <span id="w8_2" class="w">suka</span></span></div>
+<div id="cap9" class="clip cap" data-start="9.040" data-duration="1.420" style=""><span class="pill"><span id="w9_0" class="w">nampak</span> <span id="w9_1" class="w hl">classy</span> <span id="w9_2" class="w">dan</span></span></div>
+<div id="cap10" class="clip cap" data-start="10.460" data-duration="1.040" style=""><span class="pill"><span id="w10_0" class="w">penuh</span> <span id="w10_1" class="w hl">keyakinan</span></span></div>
+<div id="cap11" class="clip cap" data-start="11.500" data-duration="0.520" style=""><span class="pill"><span id="w11_0" class="w">Tim</span> <span id="w11_1" class="w">yang</span> <span id="w11_2" class="w">kedua</span></span></div>
+<div id="cap12" class="clip cap" data-start="12.020" data-duration="1.100" style=""><span class="pill"><span id="w12_0" class="w">adalah</span> <span id="w12_1" class="w">geng</span> <span id="w12_2" class="w hl">Midnight</span></span></div>
+<div id="cap13" class="clip cap" data-start="13.120" data-duration="0.660" style=""><span class="pill"><span id="w13_0" class="w hl">Fantasy</span></span></div>
+<div id="cap14" class="clip cap" data-start="13.780" data-duration="0.740" style=""><span class="pill"><span id="w14_0" class="w">Geng</span> <span id="w14_1" class="w">ni</span></span></div>
+<div id="cap15" class="clip cap" data-start="14.520" data-duration="0.740" style=""><span class="pill"><span id="w15_0" class="w">diorang</span> <span id="w15_1" class="w">suka</span> <span id="w15_2" class="w">bau</span></span></div>
+<div id="cap16" class="clip cap" data-start="15.260" data-duration="1.120" style=""><span class="pill"><span id="w16_0" class="w">yang</span> <span id="w16_1" class="w hl">manis</span></span></div>
+<div id="cap17" class="clip cap" data-start="16.380" data-duration="1.420" style=""><span class="pill"><span id="w17_0" class="w hl">fruity</span> <span id="w17_1" class="w">dan</span> <span id="w17_2" class="w">agak</span></span></div>
+<div id="cap18" class="clip cap" data-start="17.800" data-duration="1.220" style=""><span class="pill"><span id="w18_0" class="w hl">misteri</span></span></div>
+<div id="cap19" class="clip cap" data-start="19.020" data-duration="0.980" style=""><span class="pill"><span id="w19_0" class="w">Dan</span> <span id="w19_1" class="w">yang</span> <span id="w19_2" class="w">paling</span></span></div>
+<div id="cap20" class="clip cap" data-start="20.000" data-duration="0.680" style=""><span class="pill"><span id="w20_0" class="w">penting</span></span></div>
+<div id="cap21" class="clip cap" data-start="20.680" data-duration="0.900" style=""><span class="pill"><span id="w21_0" class="w hl">menggoda</span></span></div>
+<div id="cap22" class="clip cap" data-start="21.580" data-duration="0.740" style=""><span class="pill"><span id="w22_0" class="w">Tapi</span></span></div>
+<div id="cap23" class="clip cap" data-start="22.320" data-duration="0.740" style=""><span class="pill"><span id="w23_0" class="w">goda</span> <span id="w23_1" class="w hl">suami</span> <span id="w23_2" class="w">je</span></span></div>
+<div id="cap24" class="clip cap" data-start="23.060" data-duration="0.420" style=""><span class="pill"><span id="w24_0" class="w">lah</span></span></div>
+<div id="cap25" class="clip cap" data-start="23.480" data-duration="0.700" style=""><span class="pill"><span id="w25_0" class="w hl">Jenis</span> <span id="w25_1" class="w">yang</span> <span id="w25_2" class="w">ada</span></span></div>
+<div id="cap26" class="clip cap" data-start="24.180" data-duration="1.140" style=""><span class="pill"><span id="w26_0" class="w hl">aura</span> <span id="w26_1" class="w hl">tersendiri</span></span></div>
+<div id="cap30" class="clip cap" data-start="28.280" data-duration="1.760" style=""><span class="pill"><span id="w30_0" class="w">ni</span> <span id="w30_1" class="w">boleh</span> <span id="w30_2" class="w">menggambarkan</span></span></div>
+<div id="cap31" class="clip cap" data-start="30.040" data-duration="1.660" style=""><span class="pill"><span id="w31_0" class="w hl">personality</span> <span id="w31_1" class="w">seseorang</span></span></div>
+<div id="cap32" class="clip cap" data-start="31.700" data-duration="1.100" style=""><span class="pill"><span id="w32_0" class="w">Korang</span> <span id="w32_1" class="w">jangan</span> <span id="w32_2" class="w">malu-malu</span></span></div>
+<div id="cap33" class="clip cap" data-start="32.800" data-duration="0.900" style=""><span class="pill"><span id="w33_0" class="w">Yang</span> <span id="w33_1" class="w">mana</span> <span id="w33_2" class="w">geng</span></span></div>
+<div id="cap34" class="clip cap" data-start="33.700" data-duration="0.700" style=""><span class="pill"><span id="w34_0" class="w hl">Bombshell</span></span></div>
+<div id="cap35" class="clip cap" data-start="34.400" data-duration="1.220" style=""><span class="pill"><span id="w35_0" class="w">Korang</span> <span id="w35_1" class="w hl">komen</span> <span id="w35_2" class="w hl">Bombshell</span></span></div>
+<div id="cap36" class="clip cap" data-start="35.620" data-duration="0.960" style=""><span class="pill"><span id="w36_0" class="w">Yang</span> <span id="w36_1" class="w">mana</span> <span id="w36_2" class="w">geng</span></span></div>
+<div id="cap37" class="clip cap" data-start="36.580" data-duration="1.080" style=""><span class="pill"><span id="w37_0" class="w hl">Midnight</span> <span id="w37_1" class="w hl">Fantasy</span></span></div>
+<div id="cap38" class="clip cap" data-start="37.660" data-duration="0.920" style=""><span class="pill"><span id="w38_0" class="w">Cuba</span> <span id="w38_1" class="w">korang</span> <span id="w38_2" class="w hl">komen</span></span></div>
+<div id="cap39" class="clip cap" data-start="38.580" data-duration="1.420" style=""><span class="pill"><span id="w39_0" class="w hl">Midnight</span> <span id="w39_1" class="w hl">Fantasy</span></span></div>
+<div id="cap40" class="clip cap" data-start="40.000" data-duration="0.760" style=""><span class="pill"><span id="w40_0" class="w">Tolong</span> <span id="w40_1" class="w hl">share</span> <span id="w40_2" class="w">video</span></span></div>
+<div id="cap41" class="clip cap" data-start="40.760" data-duration="0.440" style=""><span class="pill"><span id="w41_0" class="w">ni</span></span></div>
+<div id="cap42" class="clip cap" data-start="41.200" data-duration="0.980" style=""><span class="pill"><span id="w42_0" class="w">Cuba</span> <span id="w42_1" class="w">korang</span> <span id="w42_2" class="w">tanya</span></span></div>
+<div id="cap43" class="clip cap" data-start="42.180" data-duration="1.040" style=""><span class="pill"><span id="w43_0" class="w">Kawan-kawan</span> <span id="w43_1" class="w">korang</span></span></div>
+<div id="cap44" class="clip cap" data-start="43.220" data-duration="0.620" style=""><span class="pill"><span id="w44_0" class="w">yang</span> <span id="w44_1" class="w">mana</span> <span id="w44_2" class="w">yang</span></span></div>
+<div id="cap45" class="clip cap" data-start="43.840" data-duration="0.940" style=""><span class="pill"><span id="w45_0" class="w">geng</span> <span id="w45_1" class="w hl">Bombshell</span></span></div>
+<div id="cap46" class="clip cap" data-start="44.780" data-duration="0.600" style=""><span class="pill"><span id="w46_0" class="w">Dan</span> <span id="w46_1" class="w">yang</span> <span id="w46_2" class="w">mana</span></span></div>
+<div id="cap47" class="clip cap" data-start="45.380" data-duration="1.520" style=""><span class="pill"><span id="w47_0" class="w">satu</span> <span id="w47_1" class="w">geng</span> <span id="w47_2" class="w hl">Midnight</span></span></div>
+<div id="cap48" class="clip cap" data-start="46.900" data-duration="0.500" style=""><span class="pill"><span id="w48_0" class="w hl">Fantasy</span></span></div>
+<div id="flash"></div><div class="pv">PREVIEW</div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#p_duo",{scale:1.15},{scale:1.0,duration:1.56,ease:"power2.out"},0.55);
+tl.fromTo("#p_duo,#p_duom",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},0.55);
+tl.fromTo("#d0 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},0.02);
+tl.fromTo("#d1 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},0.80);
+tl.fromTo("#d2",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},1.45);
+tl.fromTo("#d3",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},1.60);
+tl.fromTo("#v_face",{scale:1.08},{scale:1.0,duration:0.86,ease:"power2.out"},2.11);
+tl.fromTo("#v_face",{clipPath:"inset(0% 0% 0% 100%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.25,ease:"expo.out"},2.11);
+tl.fromTo("#g1 > span",{yPercent:110},{yPercent:0,duration:0.45,ease:"expo.out"},2.42);
+tl.fromTo("#g2 > span",{yPercent:110},{yPercent:0,duration:0.45,ease:"expo.out"},2.62);
+tl.fromTo("#p_g",{scale:1.15},{scale:1.0,duration:1.70,ease:"power2.out"},3.0);
+tl.fromTo("#p_g,#p_gm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},3.0);
+tl.fromTo("#a0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},3.05);
+tl.fromTo("#a1 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},3.72);
+tl.fromTo("#a2 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},4.00);
+tl.fromTo("#a3 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},4.08);
+tl.fromTo("#a4 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},4.30);
+tl.fromTo("#a5",{scaleX:0},{scaleX:1,duration:0.8,ease:"expo.inOut"},4.30);
+tl.fromTo("#sect1 .sect",{opacity:0,y:10,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},3.10);
+tl.fromTo("#v_rose",{scale:1.15},{scale:1.0,duration:3.60,ease:"power2.out"},4.7);
+tl.fromTo("#v_rose,#v_rosem",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},4.7);
+tl.fromTo("#v_prose",{scale:1.3},{scale:1.0,duration:3.60,ease:"power2.out"},4.7);
+tl.fromTo("#v_prose,#v_prosem",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},4.7);
+tl.fromTo("#r0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},4.75);
+tl.fromTo("#r9",{scale:0.6,opacity:0},{scale:1,opacity:1,duration:0.8,ease:"expo.out"},5.0);
+tl.fromTo("#r1",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},5.36);
+tl.fromTo("#r2",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},6.08);
+tl.fromTo("#r3",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},6.86);
+tl.fromTo("#r4",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},7.62);
+tl.fromTo("#v_hj",{scale:1.15},{scale:1.0,duration:3.15,ease:"power2.out"},8.3);
+tl.fromTo("#v_hj,#v_hjm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},8.3);
+tl.fromTo("#c0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},8.35);
+tl.fromTo("#c1 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},9.36);
+tl.fromTo("#c2 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},10.46);
+tl.fromTo("#bg6",{clipPath:"inset(0% 0% 100% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.6,ease:"expo.inOut"},11.45);
+tl.fromTo("#p_n",{scale:1.15},{scale:1.0,duration:2.25,ease:"power2.out"},11.45);
+tl.fromTo("#p_n,#p_nm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},11.45);
+tl.fromTo("#n0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},11.55);
+tl.fromTo("#n1 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},12.28);
+tl.fromTo("#n2 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},12.80);
+tl.fromTo("#n3 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},12.90);
+tl.fromTo("#n4 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},13.15);
+tl.fromTo("#n5",{scaleX:0},{scaleX:1,duration:0.8,ease:"expo.inOut"},13.15);
+tl.fromTo("#sect2 .sect",{opacity:0,y:10,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},11.55);
+tl.fromTo("#v_st",{scale:1.15},{scale:1.0,duration:3.85,ease:"power2.out"},13.7);
+tl.fromTo("#v_st,#v_stm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},13.7);
+tl.fromTo("#m0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},14.50);
+tl.fromTo("#m9",{scale:0.7,opacity:0},{scale:1,opacity:1,duration:0.9,ease:"expo.out"},13.8);
+tl.fromTo("#m1",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},15.44);
+tl.fromTo("#m2",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},16.38);
+tl.fromTo("#v_moon",{scale:1.15},{scale:1.0,duration:1.40,ease:"power2.out"},17.55);
+tl.fromTo("#v_moon",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(75% at 50% 50%)",duration:0.8,ease:"expo.inOut"},17.55);
+tl.fromTo("#y0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},17.60);
+tl.fromTo("#y1",{opacity:0,filter:"blur(24px)",scale:1.25},{opacity:1,filter:"blur(0px)",scale:1,duration:0.9,ease:"expo.out"},17.8);
+tl.fromTo("#v_ht",{scale:1.15},{scale:1.0,duration:2.55,ease:"power2.out"},18.95);
+tl.fromTo("#v_ht,#v_htm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},18.95);
+tl.fromTo("#h1 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},19.05);
+tl.fromTo("#h2",{scale:0.6,opacity:0},{scale:1,opacity:1,duration:0.9,ease:"expo.out"},19.0);
+tl.fromTo("#h3 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},20.68);
+tl.fromTo("#s9",{clipPath:"inset(0% 0% 0% 100%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.45,ease:"expo.inOut"},21.5);
+tl.fromTo("#j0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},21.60);
+tl.fromTo("#j1",{scale:0},{scale:1,duration:0.6,ease:"back.out(2.2)"},22.32);
+tl.fromTo("#j2 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},22.48);
+tl.fromTo("#j3 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},23.00);
+tl.to("#j1",{rotation:-6,duration:0.12,yoyo:true,repeat:3,ease:"sine.inOut"},22.95);
+tl.fromTo("#v_lav",{scale:1.12},{scale:1.0,duration:1.85,ease:"power2.out"},23.4);
+tl.fromTo("#v_lav",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(75% at 50% 50%)",duration:0.8,ease:"expo.inOut"},23.4);
+tl.fromTo("#u0,#u1",{scale:0.5,opacity:0},{scale:1,opacity:1,duration:1.2,stagger:0.15,ease:"expo.out"},23.45);
+tl.to("#u0",{scale:1.06,duration:0.6,yoyo:true,repeat:2,ease:"sine.inOut"},24.6);
+tl.fromTo("#u2 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},24.18);
+tl.fromTo("#u3 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},24.50);
+tl.fromTo("#v_pump",{scale:1.06},{scale:1.0,duration:2.05,ease:"power2.out"},25.25);
+tl.fromTo("#v_pump",{clipPath:"inset(100% 0% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.7,ease:"expo.inOut"},25.25);
+tl.fromTo("#q0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},25.35);
+tl.fromTo("#q1 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},26.36);
+tl.fromTo("#sect3 .sect",{opacity:0,y:10,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},25.35);
+tl.fromTo("#v_pf",{scale:1.15},{scale:1.0,duration:4.30,ease:"power2.out"},27.3);
+tl.fromTo("#v_pf,#v_pfm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},27.3);
+tl.fromTo("#e0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},27.34);
+tl.fromTo("#e1 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},27.84);
+tl.fromTo("#e2 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},28.60);
+tl.fromTo("#e3 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},30.04);
+tl.fromTo("#e3b > span",{yPercent:110},{yPercent:0,duration:0.4,ease:"expo.out"},30.50);
+tl.fromTo("#e4",{scaleX:0},{scaleX:1,duration:1.0,ease:"expo.inOut"},29.30);
+tl.fromTo("#e5",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.6,ease:"expo.out"},30.85);
+tl.fromTo("#e6",{opacity:0,y:0,x:-30},{opacity:1,y:0,x:0,duration:0.6,ease:"expo.out"},31.10);
+tl.fromTo("#e5 .ar",{scaleX:0},{scaleX:1,duration:0.4,ease:"expo.inOut"},30.95);
+tl.fromTo("#e6 .ar",{scaleX:0},{scaleX:1,duration:0.4,ease:"expo.inOut"},31.20);
+tl.fromTo("#e7",{scaleX:0},{scaleX:1,duration:0.8,ease:"expo.inOut"},31.20);
+tl.fromTo("#v_ph",{scale:1.15},{scale:1.0,duration:3.95,ease:"power2.out"},31.6);
+tl.fromTo("#v_ph,#v_phm",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},31.6);
+tl.fromTo("#o0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},31.70);
+tl.fromTo("#o2",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},32.80);
+tl.fromTo("#o1",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.45,ease:"expo.out"},34.40);
+tl.fromTo("#o1t",{clipPath:"inset(0% 100% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.5,ease:"steps(10)"},34.70);
+tl.fromTo("#sect4 .sect",{opacity:0,y:10,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},31.70);
+tl.fromTo("#v_sky",{scale:1.1},{scale:1.0,duration:4.35,ease:"power2.out"},35.55);
+tl.fromTo("#v_sky",{clipPath:"inset(100% 0% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.7,ease:"expo.inOut"},35.55);
+tl.fromTo("#v_ty",{scale:1.15},{scale:1.0,duration:4.35,ease:"power2.out"},35.55);
+tl.fromTo("#v_ty,#v_tym",{clipPath:"inset(100% 0% 0% 0% round 44px)"},{clipPath:"inset(0% 0% 0% 0% round 44px)",duration:0.7,ease:"expo.out"},35.55);
+tl.fromTo("#i0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},35.65);
+tl.fromTo("#i9",{scale:0.7,opacity:0},{scale:1,opacity:.6,duration:0.9,ease:"expo.out"},35.7);
+tl.fromTo("#i2 > span",{yPercent:110},{yPercent:0,duration:0.6,ease:"expo.out"},36.58);
+tl.fromTo("#i1",{opacity:0,y:30,x:0},{opacity:1,y:0,x:0,duration:0.45,ease:"expo.out"},38.16);
+tl.fromTo("#i1t",{clipPath:"inset(0% 100% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.7,ease:"steps(16)"},38.50);
+tl.fromTo("#v_bub",{scale:1.1},{scale:1.0,duration:1.20,ease:"power2.out"},39.9);
+tl.fromTo("#v_bub",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(75% at 50% 50%)",duration:0.8,ease:"expo.inOut"},39.9);
+tl.fromTo("#x0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},39.95);
+tl.fromTo("#x1",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},40.30);
+tl.fromTo("#x3 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},40.48);
+tl.fromTo("#x2",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:0.25},40.6);
+tl.to("#x1",{scale:0.94,duration:0.1,yoyo:true,repeat:1,ease:"sine.inOut"},40.78);
+tl.fromTo("#ph_poll",{scale:1.08},{scale:1.0,duration:7.90,ease:"power2.out"},41.1);
+tl.fromTo("#ph_poll",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(75% at 50% 50%)",duration:0.8,ease:"expo.inOut"},41.1);
+tl.fromTo("#z0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},41.20);
+tl.fromTo("#z1 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},42.18);
+tl.fromTo("#ztap",{opacity:0,scale:1.4},{opacity:1,scale:1,duration:0.3},43.6);
+tl.fromTo("#zA",{opacity:0,scale:1.06},{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"},44.1);
+tl.fromTo("#zA2",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},44.15);
+tl.to("#ztap",{x:400,duration:0.5,ease:"power2.inOut"},45.6);
+tl.to("#zA",{opacity:0.25,duration:0.3},46.3);
+tl.fromTo("#zB",{opacity:0,scale:1.06},{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"},46.42);
+tl.fromTo("#zB2",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},46.47);
+tl.fromTo("#sect5 .sect",{opacity:0,y:10,x:0},{opacity:1,y:0,x:0,duration:0.5,ease:"expo.out"},41.20);
+tl.fromTo("#s16",{clipPath:"inset(100% 0% 0% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.6,ease:"expo.inOut"},47.4);
+tl.fromTo("#f0 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},47.60);
+tl.fromTo("#f1",{scaleX:0},{scaleX:1,duration:0.8,ease:"expo.inOut"},47.80);
+tl.fromTo("#f2 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},47.90);
+tl.fromTo("#f3",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},48.05);
+tl.fromTo("#f4 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},48.20);
+tl.fromTo("#f5",{scale:0},{scale:1,duration:0.45,ease:"back.out(2.2)"},48.30);
+tl.fromTo("#f6 > span",{yPercent:110},{yPercent:0,duration:0.7,ease:"expo.out"},48.45);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:49.00,ease:"none"},0);
+tl.fromTo("#w3_0",{opacity:0.35},{opacity:1,duration:0.15},3.04);
+tl.fromTo("#cap3 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},3.04);
+tl.fromTo("#w4_0",{opacity:0.35},{opacity:1,duration:0.15},3.72);
+tl.fromTo("#w4_1",{opacity:0.35},{opacity:1,duration:0.15},4.00);
+tl.fromTo("#cap4 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},3.72);
+tl.fromTo("#w5_0",{opacity:0.35},{opacity:1,duration:0.15},4.72);
+tl.fromTo("#w5_1",{opacity:0.35},{opacity:1,duration:0.15},5.08);
+tl.fromTo("#w5_2",{opacity:0.35},{opacity:1,duration:0.15},5.36);
+tl.fromTo("#cap5 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},4.72);
+tl.fromTo("#w6_0",{opacity:0.35},{opacity:1,duration:0.15},6.08);
+tl.fromTo("#cap6 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},6.08);
+tl.fromTo("#w7_0",{opacity:0.35},{opacity:1,duration:0.15},6.86);
+tl.fromTo("#w7_1",{opacity:0.35},{opacity:1,duration:0.15},7.32);
+tl.fromTo("#w7_2",{opacity:0.35},{opacity:1,duration:0.15},7.62);
+tl.fromTo("#cap7 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},6.86);
+tl.fromTo("#w8_0",{opacity:0.35},{opacity:1,duration:0.15},8.34);
+tl.fromTo("#w8_1",{opacity:0.35},{opacity:1,duration:0.15},8.66);
+tl.fromTo("#w8_2",{opacity:0.35},{opacity:1,duration:0.15},8.82);
+tl.fromTo("#cap8 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},8.34);
+tl.fromTo("#w9_0",{opacity:0.35},{opacity:1,duration:0.15},9.04);
+tl.fromTo("#w9_1",{opacity:0.35},{opacity:1,duration:0.15},9.36);
+tl.fromTo("#w9_2",{opacity:0.35},{opacity:1,duration:0.15},9.82);
+tl.fromTo("#cap9 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},9.04);
+tl.fromTo("#w10_0",{opacity:0.35},{opacity:1,duration:0.15},10.46);
+tl.fromTo("#w10_1",{opacity:0.35},{opacity:1,duration:0.15},10.78);
+tl.fromTo("#cap10 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},10.46);
+tl.fromTo("#w11_0",{opacity:0.35},{opacity:1,duration:0.15},11.50);
+tl.fromTo("#w11_1",{opacity:0.35},{opacity:1,duration:0.15},11.64);
+tl.fromTo("#w11_2",{opacity:0.35},{opacity:1,duration:0.15},11.80);
+tl.fromTo("#cap11 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},11.50);
+tl.fromTo("#w12_0",{opacity:0.35},{opacity:1,duration:0.15},12.02);
+tl.fromTo("#w12_1",{opacity:0.35},{opacity:1,duration:0.15},12.28);
+tl.fromTo("#w12_2",{opacity:0.35},{opacity:1,duration:0.15},12.80);
+tl.fromTo("#cap12 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},12.02);
+tl.fromTo("#w13_0",{opacity:0.35},{opacity:1,duration:0.15},13.12);
+tl.fromTo("#cap13 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},13.12);
+tl.fromTo("#w14_0",{opacity:0.35},{opacity:1,duration:0.15},13.78);
+tl.fromTo("#w14_1",{opacity:0.35},{opacity:1,duration:0.15},14.06);
+tl.fromTo("#cap14 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},13.78);
+tl.fromTo("#w15_0",{opacity:0.35},{opacity:1,duration:0.15},14.52);
+tl.fromTo("#w15_1",{opacity:0.35},{opacity:1,duration:0.15},14.68);
+tl.fromTo("#w15_2",{opacity:0.35},{opacity:1,duration:0.15},14.94);
+tl.fromTo("#cap15 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},14.52);
+tl.fromTo("#w16_0",{opacity:0.35},{opacity:1,duration:0.15},15.26);
+tl.fromTo("#w16_1",{opacity:0.35},{opacity:1,duration:0.15},15.44);
+tl.fromTo("#cap16 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},15.26);
+tl.fromTo("#w17_0",{opacity:0.35},{opacity:1,duration:0.15},16.38);
+tl.fromTo("#w17_1",{opacity:0.35},{opacity:1,duration:0.15},16.84);
+tl.fromTo("#w17_2",{opacity:0.35},{opacity:1,duration:0.15},17.42);
+tl.fromTo("#cap17 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},16.38);
+tl.fromTo("#w18_0",{opacity:0.35},{opacity:1,duration:0.15},17.80);
+tl.fromTo("#cap18 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},17.80);
+tl.fromTo("#w19_0",{opacity:0.35},{opacity:1,duration:0.15},19.02);
+tl.fromTo("#w19_1",{opacity:0.35},{opacity:1,duration:0.15},19.56);
+tl.fromTo("#w19_2",{opacity:0.35},{opacity:1,duration:0.15},19.86);
+tl.fromTo("#cap19 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},19.02);
+tl.fromTo("#w20_0",{opacity:0.35},{opacity:1,duration:0.15},20.00);
+tl.fromTo("#cap20 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},20.00);
+tl.fromTo("#w21_0",{opacity:0.35},{opacity:1,duration:0.15},20.68);
+tl.fromTo("#cap21 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},20.68);
+tl.fromTo("#w22_0",{opacity:0.35},{opacity:1,duration:0.15},21.58);
+tl.fromTo("#cap22 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},21.58);
+tl.fromTo("#w23_0",{opacity:0.35},{opacity:1,duration:0.15},22.32);
+tl.fromTo("#w23_1",{opacity:0.35},{opacity:1,duration:0.15},22.48);
+tl.fromTo("#w23_2",{opacity:0.35},{opacity:1,duration:0.15},22.88);
+tl.fromTo("#cap23 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},22.32);
+tl.fromTo("#w24_0",{opacity:0.35},{opacity:1,duration:0.15},23.06);
+tl.fromTo("#cap24 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},23.06);
+tl.fromTo("#w25_0",{opacity:0.35},{opacity:1,duration:0.15},23.48);
+tl.fromTo("#w25_1",{opacity:0.35},{opacity:1,duration:0.15},23.82);
+tl.fromTo("#w25_2",{opacity:0.35},{opacity:1,duration:0.15},23.94);
+tl.fromTo("#cap25 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},23.48);
+tl.fromTo("#w26_0",{opacity:0.35},{opacity:1,duration:0.15},24.18);
+tl.fromTo("#w26_1",{opacity:0.35},{opacity:1,duration:0.15},24.50);
+tl.fromTo("#cap26 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},24.18);
+tl.fromTo("#w30_0",{opacity:0.35},{opacity:1,duration:0.15},28.28);
+tl.fromTo("#w30_1",{opacity:0.35},{opacity:1,duration:0.15},28.60);
+tl.fromTo("#w30_2",{opacity:0.35},{opacity:1,duration:0.15},29.24);
+tl.fromTo("#cap30 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},28.28);
+tl.fromTo("#w31_0",{opacity:0.35},{opacity:1,duration:0.15},30.04);
+tl.fromTo("#w31_1",{opacity:0.35},{opacity:1,duration:0.15},30.82);
+tl.fromTo("#cap31 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},30.04);
+tl.fromTo("#w32_0",{opacity:0.35},{opacity:1,duration:0.15},31.70);
+tl.fromTo("#w32_1",{opacity:0.35},{opacity:1,duration:0.15},31.94);
+tl.fromTo("#w32_2",{opacity:0.35},{opacity:1,duration:0.15},32.10);
+tl.fromTo("#cap32 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},31.70);
+tl.fromTo("#w33_0",{opacity:0.35},{opacity:1,duration:0.15},32.80);
+tl.fromTo("#w33_1",{opacity:0.35},{opacity:1,duration:0.15},33.16);
+tl.fromTo("#w33_2",{opacity:0.35},{opacity:1,duration:0.15},33.42);
+tl.fromTo("#cap33 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},32.80);
+tl.fromTo("#w34_0",{opacity:0.35},{opacity:1,duration:0.15},33.70);
+tl.fromTo("#cap34 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},33.70);
+tl.fromTo("#w35_0",{opacity:0.35},{opacity:1,duration:0.15},34.40);
+tl.fromTo("#w35_1",{opacity:0.35},{opacity:1,duration:0.15},34.64);
+tl.fromTo("#w35_2",{opacity:0.35},{opacity:1,duration:0.15},34.88);
+tl.fromTo("#cap35 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},34.40);
+tl.fromTo("#w36_0",{opacity:0.35},{opacity:1,duration:0.15},35.62);
+tl.fromTo("#w36_1",{opacity:0.35},{opacity:1,duration:0.15},35.94);
+tl.fromTo("#w36_2",{opacity:0.35},{opacity:1,duration:0.15},36.26);
+tl.fromTo("#cap36 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},35.62);
+tl.fromTo("#w37_0",{opacity:0.35},{opacity:1,duration:0.15},36.58);
+tl.fromTo("#w37_1",{opacity:0.35},{opacity:1,duration:0.15},36.86);
+tl.fromTo("#cap37 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},36.58);
+tl.fromTo("#w38_0",{opacity:0.35},{opacity:1,duration:0.15},37.66);
+tl.fromTo("#w38_1",{opacity:0.35},{opacity:1,duration:0.15},37.86);
+tl.fromTo("#w38_2",{opacity:0.35},{opacity:1,duration:0.15},38.16);
+tl.fromTo("#cap38 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},37.66);
+tl.fromTo("#w39_0",{opacity:0.35},{opacity:1,duration:0.15},38.58);
+tl.fromTo("#w39_1",{opacity:0.35},{opacity:1,duration:0.15},39.06);
+tl.fromTo("#cap39 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},38.58);
+tl.fromTo("#w40_0",{opacity:0.35},{opacity:1,duration:0.15},40.00);
+tl.fromTo("#w40_1",{opacity:0.35},{opacity:1,duration:0.15},40.30);
+tl.fromTo("#w40_2",{opacity:0.35},{opacity:1,duration:0.15},40.48);
+tl.fromTo("#cap40 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},40.00);
+tl.fromTo("#w41_0",{opacity:0.35},{opacity:1,duration:0.15},40.76);
+tl.fromTo("#cap41 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},40.76);
+tl.fromTo("#w42_0",{opacity:0.35},{opacity:1,duration:0.15},41.20);
+tl.fromTo("#w42_1",{opacity:0.35},{opacity:1,duration:0.15},41.42);
+tl.fromTo("#w42_2",{opacity:0.35},{opacity:1,duration:0.15},41.70);
+tl.fromTo("#cap42 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},41.20);
+tl.fromTo("#w43_0",{opacity:0.35},{opacity:1,duration:0.15},42.18);
+tl.fromTo("#w43_1",{opacity:0.35},{opacity:1,duration:0.15},42.70);
+tl.fromTo("#cap43 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},42.18);
+tl.fromTo("#w44_0",{opacity:0.35},{opacity:1,duration:0.15},43.22);
+tl.fromTo("#w44_1",{opacity:0.35},{opacity:1,duration:0.15},43.42);
+tl.fromTo("#w44_2",{opacity:0.35},{opacity:1,duration:0.15},43.68);
+tl.fromTo("#cap44 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},43.22);
+tl.fromTo("#w45_0",{opacity:0.35},{opacity:1,duration:0.15},43.84);
+tl.fromTo("#w45_1",{opacity:0.35},{opacity:1,duration:0.15},44.10);
+tl.fromTo("#cap45 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},43.84);
+tl.fromTo("#w46_0",{opacity:0.35},{opacity:1,duration:0.15},44.78);
+tl.fromTo("#w46_1",{opacity:0.35},{opacity:1,duration:0.15},44.88);
+tl.fromTo("#w46_2",{opacity:0.35},{opacity:1,duration:0.15},45.06);
+tl.fromTo("#cap46 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},44.78);
+tl.fromTo("#w47_0",{opacity:0.35},{opacity:1,duration:0.15},45.38);
+tl.fromTo("#w47_1",{opacity:0.35},{opacity:1,duration:0.15},45.72);
+tl.fromTo("#w47_2",{opacity:0.35},{opacity:1,duration:0.15},46.42);
+tl.fromTo("#cap47 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},45.38);
+tl.fromTo("#w48_0",{opacity:0.35},{opacity:1,duration:0.15},46.90);
+tl.fromTo("#cap48 .pill",{y:20,opacity:0},{y:0,opacity:1,duration:0.25,ease:"power3.out"},46.90);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script></body></html>
