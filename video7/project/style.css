@@ -1,0 +1,85 @@
+/* Video 7 -- "Porcelain & Olive": airy minimalist luxury (Instrument Serif + Outfit; bone / stone / olive / clay / charcoal) */
+@font-face { font-family: "Instrument"; src: url("assets/fonts/InstrumentSerif.ttf"); }
+@font-face { font-family: "Instrument"; src: url("assets/fonts/InstrumentSerif-Italic.ttf"); font-style: italic; }
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit.ttf"); font-weight: 100 900; }
+
+:root {
+  --bone: #f4f1ec;
+  --stone: #dcd5c9;
+  --olive: #6e7358;
+  --clay: #b9785a;
+  --char: #2b2a27;
+  --mute: #8b857b;
+  --rose: #a5162f;
+  --violet: #4a3a8c;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bone); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--bone);
+  color: var(--char); font-family: "Outfit", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.bonebg { position: absolute; inset: 0; background: var(--bone); }
+.stonebg { position: absolute; inset: 0; background: var(--stone); }
+.olivebg { position: absolute; inset: 0; background: var(--olive); }
+.shade { position: absolute; inset: 0; }
+.paper { position: absolute; inset: 0; opacity: .5;
+  background-image: radial-gradient(rgba(43,42,39,.05) 1px, transparent 1px); background-size: 5px 5px; }
+
+/* type */
+.t { position: absolute; left: 90px; right: 90px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; }
+.rv > span { display: inline-block; }
+.ch { display: inline-block; white-space: pre; }
+.eyebrow { font: 600 32px "Outfit"; letter-spacing: 7px; text-transform: uppercase; color: var(--olive); }
+.serif { font: 400 150px/0.95 "Instrument"; letter-spacing: -2px; }
+.serif-it { font: italic 400 132px/1 "Instrument"; letter-spacing: -1px; }
+.body { font: 500 54px/1.2 "Outfit"; }
+.digit { font: italic 400 300px/0.8 "Instrument"; color: var(--olive); }
+.clay { color: var(--clay); } .olive { color: var(--olive); } .boneclr { color: var(--bone); }
+
+/* odometer: a strip of digits scrolled into place */
+.odo { position: absolute; overflow: hidden; }
+.odo .strip { display: flex; flex-direction: column; }
+.odo .strip span { display: block; }
+
+/* scribble (hand-drawn) */
+.scrib { position: absolute; overflow: visible; }
+.scrib path { fill: none; stroke: var(--clay); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* frames */
+.diag { position: absolute; overflow: hidden; }
+.pola { position: absolute; background: #fff; padding: 18px 18px 70px 18px; box-shadow: 0 22px 50px rgba(43,42,39,.22); }
+.pola img, .pola video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pola .cap2 { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font: italic 400 40px "Instrument"; color: var(--char); }
+.glass { position: absolute; border-radius: 34px; background: rgba(244,241,236,.42); backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2); border: 1px solid rgba(255,255,255,.55); box-shadow: 0 20px 60px rgba(43,42,39,.18); }
+.chipx { display: inline-flex; align-items: center; gap: 16px; padding: 18px 36px; border-radius: 999px; background: var(--bone);
+  border: 2px solid var(--olive); font: 600 40px "Outfit"; letter-spacing: 3px; color: var(--char); margin: 0 10px 18px 0; }
+.chipx i { width: 16px; height: 16px; border-radius: 50%; background: var(--clay); }
+.sticker { position: absolute; padding: 16px 32px; border-radius: 999px; background: var(--clay); color: var(--bone);
+  font: 700 32px "Outfit"; letter-spacing: 4px; text-transform: uppercase; white-space: nowrap; box-shadow: 0 10px 26px rgba(43,42,39,.2); }
+.sticker.o { background: var(--olive); } .sticker.r { background: var(--rose); } .sticker.v { background: var(--violet); }
+.plus { position: absolute; font: 300 140px/1 "Outfit"; color: var(--clay); }
+.ring { position: absolute; border-radius: 50%; border: 2px solid var(--clay); }
+
+/* story-style segment bar */
+#story { position: absolute; z-index: 8; left: 40px; right: 40px; top: 36px; display: flex; gap: 10px; }
+#story .sg { flex: 1; height: 6px; border-radius: 3px; background: rgba(43,42,39,.18); overflow: hidden; }
+#story .sg i { display: block; height: 100%; background: var(--olive); transform-origin: 0 50%; transform: scaleX(0); }
+#story.light .sg { background: rgba(244,241,236,.35); }
+
+/* captions: frosted strip, bold Outfit, keyword gets a clay underline sweep */
+.cap { z-index: 9; inset: auto; top: 1560px; left: 50px; width: 980px; height: auto; text-align: center; }
+.cap .strip { display: inline-block; padding: 16px 34px 18px; border-radius: 26px; background: rgba(244,241,236,.72);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); font: 700 64px/1.15 "Outfit"; color: var(--char); letter-spacing: -0.5px;
+  box-shadow: 0 10px 30px rgba(43,42,39,.12); }
+.cap .w { display: inline-block; position: relative; }
+.cap .w.hl { color: var(--clay); }
+.cap .w.hl::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 6px; border-radius: 3px; background: var(--clay);
+  transform: scaleX(var(--u, 0)); transform-origin: 0 50%; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 56px; right: 40px; font: 600 16px "Outfit"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }

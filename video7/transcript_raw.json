@@ -1,0 +1,562 @@
+[
+ {
+  "start": 0.7199999999999982,
+  "end": 6.62,
+  "text": " Wanita kalau nak rasa lebih yakin dengan diri sendiri, cuba buat 5 perkara ni.",
+  "words": [
+   {
+    "w": " Wanita",
+    "s": 0.7199999999999982,
+    "e": 1.4
+   },
+   {
+    "w": " kalau",
+    "s": 1.4,
+    "e": 1.7
+   },
+   {
+    "w": " nak",
+    "s": 1.7,
+    "e": 1.86
+   },
+   {
+    "w": " rasa",
+    "s": 1.86,
+    "e": 2.2
+   },
+   {
+    "w": " lebih",
+    "s": 2.2,
+    "e": 2.6
+   },
+   {
+    "w": " yakin",
+    "s": 2.6,
+    "e": 3.12
+   },
+   {
+    "w": " dengan",
+    "s": 3.12,
+    "e": 3.32
+   },
+   {
+    "w": " diri",
+    "s": 3.32,
+    "e": 3.6
+   },
+   {
+    "w": " sendiri,",
+    "s": 3.6,
+    "e": 3.96
+   },
+   {
+    "w": " cuba",
+    "s": 4.26,
+    "e": 4.46
+   },
+   {
+    "w": " buat",
+    "s": 4.46,
+    "e": 5.58
+   },
+   {
+    "w": " 5",
+    "s": 5.58,
+    "e": 5.96
+   },
+   {
+    "w": " perkara",
+    "s": 5.96,
+    "e": 6.42
+   },
+   {
+    "w": " ni.",
+    "s": 6.42,
+    "e": 6.62
+   }
+  ]
+ },
+ {
+  "start": 8.16,
+  "end": 11.02,
+  "text": " Pertama, jaga kebersihan diri setiap hari.",
+  "words": [
+   {
+    "w": " Pertama,",
+    "s": 8.16,
+    "e": 8.84
+   },
+   {
+    "w": " jaga",
+    "s": 9.12,
+    "e": 9.46
+   },
+   {
+    "w": " kebersihan",
+    "s": 9.46,
+    "e": 10.18
+   },
+   {
+    "w": " diri",
+    "s": 10.18,
+    "e": 10.56
+   },
+   {
+    "w": " setiap",
+    "s": 10.56,
+    "e": 10.8
+   },
+   {
+    "w": " hari.",
+    "s": 10.8,
+    "e": 11.02
+   }
+  ]
+ },
+ {
+  "start": 12.14,
+  "end": 15.48,
+  "text": " Kedua, pilih pakaian buat korang rasa selesa.",
+  "words": [
+   {
+    "w": " Kedua,",
+    "s": 12.14,
+    "e": 12.82
+   },
+   {
+    "w": " pilih",
+    "s": 13.06,
+    "e": 13.4
+   },
+   {
+    "w": " pakaian",
+    "s": 13.4,
+    "e": 14.08
+   },
+   {
+    "w": " buat",
+    "s": 14.08,
+    "e": 14.34
+   },
+   {
+    "w": " korang",
+    "s": 14.34,
+    "e": 14.64
+   },
+   {
+    "w": " rasa",
+    "s": 14.64,
+    "e": 15.02
+   },
+   {
+    "w": " selesa.",
+    "s": 15.02,
+    "e": 15.48
+   }
+  ]
+ },
+ {
+  "start": 16.52,
+  "end": 20.06,
+  "text": " Ketiga, jaga penampilan walau hanya duduk dekat rumah.",
+  "words": [
+   {
+    "w": " Ketiga,",
+    "s": 16.52,
+    "e": 17.2
+   },
+   {
+    "w": " jaga",
+    "s": 17.42,
+    "e": 17.76
+   },
+   {
+    "w": " penampilan",
+    "s": 17.76,
+    "e": 18.48
+   },
+   {
+    "w": " walau",
+    "s": 18.48,
+    "e": 18.88
+   },
+   {
+    "w": " hanya",
+    "s": 18.88,
+    "e": 19.22
+   },
+   {
+    "w": " duduk",
+    "s": 19.22,
+    "e": 19.56
+   },
+   {
+    "w": " dekat",
+    "s": 19.56,
+    "e": 19.8
+   },
+   {
+    "w": " rumah.",
+    "s": 19.8,
+    "e": 20.06
+   }
+  ]
+ },
+ {
+  "start": 21.16,
+  "end": 24.1,
+  "text": " Kempat pula, luangkan masa untuk diri sendiri, okey?",
+  "words": [
+   {
+    "w": " Kempat",
+    "s": 21.16,
+    "e": 21.64
+   },
+   {
+    "w": " pula,",
+    "s": 21.64,
+    "e": 21.94
+   },
+   {
+    "w": " luangkan",
+    "s": 22.14,
+    "e": 22.46
+   },
+   {
+    "w": " masa",
+    "s": 22.46,
+    "e": 22.84
+   },
+   {
+    "w": " untuk",
+    "s": 22.84,
+    "e": 23.18
+   },
+   {
+    "w": " diri",
+    "s": 23.18,
+    "e": 23.52
+   },
+   {
+    "w": " sendiri,",
+    "s": 23.52,
+    "e": 23.74
+   },
+   {
+    "w": " okey?",
+    "s": 23.96,
+    "e": 24.1
+   }
+  ]
+ },
+ {
+  "start": 25.32,
+  "end": 28.7,
+  "text": " Kelima, jangan pernah abaikan rutin mandi.",
+  "words": [
+   {
+    "w": " Kelima,",
+    "s": 25.32,
+    "e": 26.0
+   },
+   {
+    "w": " jangan",
+    "s": 26.36,
+    "e": 26.62
+   },
+   {
+    "w": " pernah",
+    "s": 26.62,
+    "e": 26.98
+   },
+   {
+    "w": " abaikan",
+    "s": 26.98,
+    "e": 27.56
+   },
+   {
+    "w": " rutin",
+    "s": 27.56,
+    "e": 28.2
+   },
+   {
+    "w": " mandi.",
+    "s": 28.2,
+    "e": 28.7
+   }
+  ]
+ },
+ {
+  "start": 29.639999999999997,
+  "end": 34.64,
+  "text": " Mandi membantu membersihkan badan dan membuat korang lebih segar.",
+  "words": [
+   {
+    "w": " Mandi",
+    "s": 29.639999999999997,
+    "e": 30.48
+   },
+   {
+    "w": " membantu",
+    "s": 30.48,
+    "e": 31.24
+   },
+   {
+    "w": " membersihkan",
+    "s": 31.24,
+    "e": 32.22
+   },
+   {
+    "w": " badan",
+    "s": 32.22,
+    "e": 33.08
+   },
+   {
+    "w": " dan",
+    "s": 33.08,
+    "e": 33.28
+   },
+   {
+    "w": " membuat",
+    "s": 33.28,
+    "e": 33.6
+   },
+   {
+    "w": " korang",
+    "s": 33.6,
+    "e": 33.92
+   },
+   {
+    "w": " lebih",
+    "s": 33.92,
+    "e": 34.18
+   },
+   {
+    "w": " segar.",
+    "s": 34.18,
+    "e": 34.64
+   }
+  ]
+ },
+ {
+  "start": 35.46,
+  "end": 42.32,
+  "text": " Tahukah korang, garam laut mengandungi mineral semula jadi dan sering digunakan dalam produk penjagaan diri.",
+  "words": [
+   {
+    "w": " Tahukah",
+    "s": 35.46,
+    "e": 36.28
+   },
+   {
+    "w": " korang,",
+    "s": 36.28,
+    "e": 36.78
+   },
+   {
+    "w": " garam",
+    "s": 36.92,
+    "e": 37.16
+   },
+   {
+    "w": " laut",
+    "s": 37.16,
+    "e": 37.5
+   },
+   {
+    "w": " mengandungi",
+    "s": 37.5,
+    "e": 38.12
+   },
+   {
+    "w": " mineral",
+    "s": 38.12,
+    "e": 38.58
+   },
+   {
+    "w": " semula",
+    "s": 38.58,
+    "e": 39.16
+   },
+   {
+    "w": " jadi",
+    "s": 39.16,
+    "e": 39.52
+   },
+   {
+    "w": " dan",
+    "s": 39.52,
+    "e": 39.78
+   },
+   {
+    "w": " sering",
+    "s": 39.78,
+    "e": 40.16
+   },
+   {
+    "w": " digunakan",
+    "s": 40.16,
+    "e": 40.68
+   },
+   {
+    "w": " dalam",
+    "s": 40.68,
+    "e": 40.96
+   },
+   {
+    "w": " produk",
+    "s": 40.96,
+    "e": 41.28
+   },
+   {
+    "w": " penjagaan",
+    "s": 41.28,
+    "e": 41.92
+   },
+   {
+    "w": " diri.",
+    "s": 41.92,
+    "e": 42.32
+   }
+  ]
+ },
+ {
+  "start": 43.42,
+  "end": 49.7,
+  "text": " Sebab tu, Fresh Coral Body menggambungkan sea salt dengan wangian menginspirasi perfume.",
+  "words": [
+   {
+    "w": " Sebab",
+    "s": 43.32,
+    "e": 43.74
+   },
+   {
+    "w": " tu,",
+    "s": 43.74,
+    "e": 43.94
+   },
+   {
+    "w": " Fresh",
+    "s": 44.12,
+    "e": 44.32
+   },
+   {
+    "w": " Coral",
+    "s": 44.32,
+    "e": 44.58
+   },
+   {
+    "w": " Body",
+    "s": 44.58,
+    "e": 44.86
+   },
+   {
+    "w": " menggambungkan",
+    "s": 44.86,
+    "e": 46.16
+   },
+   {
+    "w": " sea",
+    "s": 46.16,
+    "e": 47.26
+   },
+   {
+    "w": " salt",
+    "s": 47.26,
+    "e": 47.62
+   },
+   {
+    "w": " dengan",
+    "s": 47.62,
+    "e": 47.9
+   },
+   {
+    "w": " wangian",
+    "s": 47.9,
+    "e": 48.46
+   },
+   {
+    "w": " menginspirasi",
+    "s": 48.46,
+    "e": 49.28
+   },
+   {
+    "w": " perfume.",
+    "s": 49.28,
+    "e": 49.7
+   }
+  ]
+ },
+ {
+  "start": 50.48,
+  "end": 56.9,
+  "text": " Kita ada pilihan bombshell dan midnight fantasy untuk menjadikan rutin mandi lebih istimewa.",
+  "words": [
+   {
+    "w": " Kita",
+    "s": 50.48,
+    "e": 51.32
+   },
+   {
+    "w": " ada",
+    "s": 51.32,
+    "e": 51.52
+   },
+   {
+    "w": " pilihan",
+    "s": 51.52,
+    "e": 51.9
+   },
+   {
+    "w": " bombshell",
+    "s": 51.9,
+    "e": 52.52
+   },
+   {
+    "w": " dan",
+    "s": 52.52,
+    "e": 52.98
+   },
+   {
+    "w": " midnight",
+    "s": 52.98,
+    "e": 53.38
+   },
+   {
+    "w": " fantasy",
+    "s": 53.38,
+    "e": 53.96
+   },
+   {
+    "w": " untuk",
+    "s": 53.96,
+    "e": 54.72
+   },
+   {
+    "w": " menjadikan",
+    "s": 54.72,
+    "e": 55.16
+   },
+   {
+    "w": " rutin",
+    "s": 55.16,
+    "e": 55.54
+   },
+   {
+    "w": " mandi",
+    "s": 55.54,
+    "e": 55.9
+   },
+   {
+    "w": " lebih",
+    "s": 55.9,
+    "e": 56.22
+   },
+   {
+    "w": " istimewa.",
+    "s": 56.22,
+    "e": 56.9
+   }
+  ]
+ }
+]
