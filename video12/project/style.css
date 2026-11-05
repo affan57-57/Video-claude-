@@ -1,0 +1,65 @@
+/* Video 12 -- "Metro Noir": night-city minimalist luxury (Syncopate wide architectural caps + Figtree;
+   midnight / chrome / amber neon; rose (Woman Glory), violet (Noche); yellow only for the shop bag) */
+@font-face { font-family: "Syncopate"; src: url("assets/fonts/Syncopate.ttf"); font-weight: 400; }
+@font-face { font-family: "Syncopate"; src: url("assets/fonts/Syncopate-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/Figtree.ttf"); font-weight: 300 900; }
+
+:root {
+  --night: #0a0e1a;
+  --chrome: #eef1f6;
+  --steel: #9aa3b5;
+  --amber: #ffb547;
+  --rose: #e0475f;
+  --violet: #9b7bff;
+  --bag: #f6c445;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--night); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--night);
+  color: var(--chrome); font-family: "Figtree", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,26,.78) 0%, rgba(10,14,26,.15) 38%, rgba(10,14,26,.2) 62%, rgba(10,14,26,.8) 100%); }
+.nightbg { position: absolute; inset: 0; background: radial-gradient(90% 60% at 50% 40%, #1a2140 0%, var(--night) 75%); }
+
+/* type */
+.t { position: absolute; left: 70px; right: 70px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; }
+.rv > span { display: inline-block; }
+.ch { display: inline-block; white-space: pre; }
+.sy { font-family: "Syncopate"; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.syl { font-family: "Syncopate"; font-weight: 400; letter-spacing: 8px; text-transform: uppercase; }
+.out { color: transparent; -webkit-text-stroke: 3px var(--chrome); }
+.amber { color: var(--amber); text-shadow: 0 0 24px rgba(255,181,71,.55); }
+.rose { color: var(--rose); } .violet { color: var(--violet); }
+.lab { font: 800 28px "Figtree"; letter-spacing: 9px; text-transform: uppercase; color: var(--steel); }
+.hair { position: absolute; height: 2px; background: linear-gradient(90deg, var(--amber), rgba(255,181,71,0)); transform-origin: 0 50%; }
+
+/* product cut-outs float over the city with a glass-floor reflection */
+.bottle { position: absolute; -webkit-box-reflect: below 6px linear-gradient(transparent 62%, rgba(255,255,255,.28));
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)); }
+.glow { position: absolute; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,181,71,.45), rgba(255,181,71,0)); }
+
+/* location pill */
+.loc { position: absolute; z-index: 8; top: 60px; left: 50px; display: inline-flex; align-items: center; gap: 12px; padding: 12px 24px 12px 18px;
+  border-radius: 999px; background: rgba(10,14,26,.55); border: 1px solid rgba(238,241,246,.25); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  font: 800 22px "Figtree"; letter-spacing: 5px; color: var(--chrome); }
+.loc i { width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 12px var(--amber); }
+.loc small { font: 600 18px "Figtree"; letter-spacing: 2px; color: var(--steel); margin-left: 6px; }
+
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 12px; padding: 16px 30px; border-radius: 999px;
+  background: rgba(10,14,26,.6); border: 1.5px solid rgba(238,241,246,.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  font: 800 32px "Figtree"; letter-spacing: 4px; color: var(--chrome); white-space: nowrap; }
+.chip.r { border-color: var(--rose); color: #ffd3da; } .chip.v { border-color: var(--violet); color: #e2d8ff; } .chip.a { border-color: var(--amber); color: var(--amber); }
+.window { position: absolute; border-radius: 30px; overflow: hidden; border: 2px solid rgba(238,241,246,.5); box-shadow: 0 40px 90px rgba(0,0,0,.6), 0 0 40px rgba(255,181,71,.15); }
+
+/* captions: bold Figtree in chrome; the spoken keyword lights up in amber neon */
+.cap { z-index: 9; inset: auto; top: 1570px; left: 40px; width: 1000px; height: auto; text-align: center; }
+.cap .ln { display: inline-block; font: 800 72px/1.15 "Figtree"; letter-spacing: -1px; color: var(--chrome);
+  text-shadow: 0 4px 24px rgba(0,0,0,.85), 0 0 3px rgba(0,0,0,.9); }
+.cap .w { display: inline-block; margin: 0 6px; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 66px; right: 40px; font: 700 16px "Figtree"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(255,255,255,.2); color: #fff; }
