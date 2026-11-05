@@ -11,7 +11,24 @@ VOICE_END = 45.39
 DURATION = 46.89
 
 words = [w for s in json.load(open(f"{proj}/assets/audio/words.json")) for w in s["words"]]
-FIX = {"Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
+import difflib
+_old = [w for x in json.load(open(f"{proj}/assets/audio/words_scene_timeline.json")) for w in x["words"]]
+_norm = lambda t: re.sub(r"[^a-z]", "", t.lower())
+_m = difflib.SequenceMatcher(a=[_norm(w["w"]) for w in _old], b=[_norm(w["w"]) for w in words], autojunk=False)
+_anc = [(0.0, 0.0)]
+for blk in _m.get_matching_blocks():
+    for k in range(blk.size):
+        o, n = _old[blk.a + k], words[blk.b + k]
+        _anc += [(o["s"], n["s"]), (o["e"], n["e"])]
+_anc.sort(); _ao, _an = [], []
+for o, n in _anc:
+    if not _ao or (o > _ao[-1] and n > _an[-1]): _ao.append(o); _an.append(n)
+def T(x):
+    """first-cut time -> faster re-cut time (client asked for a faster, livelier read)"""
+    if x >= _ao[-1]: return round(_an[-1] + (x - _ao[-1]), 3)
+    i = max(k for k in range(len(_ao)) if _ao[k] <= x)
+    return round(_an[i] + (x - _ao[i]) * (_an[i + 1] - _an[i]) / (_ao[i + 1] - _ao[i]), 3)
+FIX = {"setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
        "bombshell": "Bombshell", "midnight": "Midnight", "fantasy": "Fantasy"}
 DROP = {"Coral"}
 HL = {"yakin", "5", "kebersihan", "pakaian", "selesa", "penampilan", "rumah", "masa", "mandi", "segar", "garam", "laut",
@@ -24,7 +41,8 @@ for w in words:
     if txt.startswith("-") and clean:
         clean[-1]["t"] += txt; clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
-SECTIONS = [0.0, 5.98, 8.92, 12.28, 15.90, 18.56, 21.86, 26.56, 33.28, 39.38, VOICE_END]
+SECTIONS_OLD = [0.0, 5.98, 8.92, 12.28, 15.90, 18.56, 21.86, 26.56, 33.28, 39.38, VOICE_END]
+SECTIONS = [T(x) for x in SECTIONS_OLD]
 chunks, cur = [], []
 for i, w in enumerate(clean):
     cur.append(w)
@@ -264,11 +282,54 @@ A(f'tl.fromTo("#end",{{clipPath:"polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"}},{{cl
 chars("#n0", VOICE_END + 0.15, 0.03); rv("#n1", VOICE_END + 0.6)
 S(VOICE_END, "whip", 0.55); S(VOICE_END + 0.2, "chime", 0.5)
 
+# ---- remap the scenes (authored on the first cut) onto the faster voice
+def _ra(m):
+    st, d = float(m.group(1)), float(m.group(2))
+    return f'data-start="{T(st):.3f}" data-duration="{T(st + d) - T(st):.3f}"'
+html = [re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', _ra, h) for h in html]
+js = [re.sub(r",([\d.]+)\);$", lambda m: f",{T(float(m.group(1))):.3f});", l) for l in js]
+for c in sfx: c["t"] = T(c["t"])
+_punch = {}                                       # keep zoom punch -> drift pairs back-to-back
+for i, l in enumerate(js):
+    m = re.match(r'tl\.fromTo\("(#[\w-]+)",\{scale:[\d.]+\},\{scale:[\d.]+,duration:([\d.]+),ease:"expo\.out"\},([\d.]+)\);$', l)
+    if m: _punch[m.group(1)] = float(m.group(3)) + float(m.group(2)); continue
+    m = re.match(r'(tl\.to\("(#[\w-]+)",\{scale:[\d.]+,duration:)([\d.]+)(,ease:"none"\},)([\d.]+)\);$', l)
+    if m and m.group(2) in _punch:
+        st0 = _punch.pop(m.group(2)); end = float(m.group(5)) + float(m.group(3))
+        js[i] = f"{m.group(1)}{max(end - st0, 0.1):.2f}{m.group(4)}{st0:.3f});"
+VOICE_END = T(VOICE_END); DURATION = round(VOICE_END + 1.5, 2)
+# snap any scene boundary that the remap put inside a word: before a new sentence, otherwise after the word
+def _bounds():
+    out = set()
+    for h in html:
+        m = re.search(r'id="([^"]+)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
+        if m and re.match(r'^(s\d|bg\w*|t\d|m\d|fct|prd|sc|v_\w+)$', m.group(1)):
+            out.add(round(float(m.group(2)) + float(m.group(3)), 3))
+    return out
+_moves = {}
+for b in sorted(_bounds()):
+    mid = [w for w in words if w["s"] + 0.04 < b < w["e"] - 0.04]
+    if mid and b < VOICE_END - 0.05:
+        w = mid[0]; i = words.index(w)
+        new_sentence = i == 0 or re.search(r"[.,?!]$", words[i - 1]["w"].strip())
+        _moves[b] = round(w["s"] if new_sentence and b - w["s"] < 0.45 else w["e"], 3)
+def _mv(x):
+    for o, n in _moves.items():
+        if abs(x - o) < 0.003: return n
+    return x
+def _rb(m):
+    st, d = float(m.group(1)), float(m.group(2)); ns, ne = _mv(st), _mv(round(st + d, 3))
+    return f'data-start="{ns:.3f}" data-duration="{ne - ns:.3f}"'
+html = [re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', _rb, h) for h in html]
+js = [re.sub(r",([\d.]+)\);$", lambda m: f",{_mv(float(m.group(1))):.3f});", l) for l in js]
+for c in sfx: c["t"] = _mv(c["t"])
+if _moves: print("scene boundaries moved off mid-word:", _moves)
+
 # ---- story-style segment bar (after the face)
 segs = "".join(f'<div class="sg"><i id="sg{i}"></i></div>' for i in range(len(SECTIONS) - 1))
-clip("chrome", 0.64, DURATION - 0.64, f'<div id="story">{segs}</div>', style="z-index:8")
+clip("chrome", T(0.64), DURATION - T(0.64), f'<div id="story">{segs}</div>', style="z-index:8")
 for i in range(len(SECTIONS) - 1):
-    a, b = max(SECTIONS[i], 0.64), SECTIONS[i + 1]
+    a, b = max(SECTIONS[i], T(0.64)), SECTIONS[i + 1]
     js.append(f'tl.fromTo("#sg{i}",{{scaleX:0}},{{scaleX:1,duration:{b - a:.2f},ease:"none"}},{a:.2f});')
 
 # ---- scene changes must fall between words

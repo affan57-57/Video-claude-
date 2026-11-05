@@ -1,10 +1,13 @@
 # Video 7: "Wanita lebih yakin: 5 perkara" (tips → garam laut → Frescura Body)
 
-**Status: PREVIEW**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v2**, `preview/preview_v2.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
 - Asal: 57.3 s. Selepas edit: **46.9 s** (45.4 s suara + 1.5 s kad penutup).
 - Muka: **0.64 s sahaja**, dari rakaman klien sendiri (wanita berpurdah), 0.00–0.64 s pada "Wanita,"; jelas bawah 1 saat. Mata tepat ke lensa (rakaman 1.40–2.04 s; berpurdah, tiada isu lip-sync); hflip. Selepas 7 saat pertama telefon terdongak ke siling, jadi selebihnya B-roll dan motion graphics sepenuhnya.
 - Suara: bilik senyap (~−47 dBFS). 11 segmen disamakan level → RNNoise + FFT denoise, gate, EQ (kehangatan, potong "box", presence, air), de-esser, compressor ringan, exciter, gandaan tetap −14 LUFS (`voice_studio.sh`). Mix −13 LUFS: suara depan, SFX kuat, muzik lembut.
+
+## Maklum balas
+- **v2: cakap lebih laju & rancak.** Suara dipercepat ~15% dengan time-stretch yang mengekalkan pitch (`TEMPO=1.15` dalam `voice_studio.sh`) dan jeda dirapatkan lagi. Suara 45.4 s → 39.4 s; video 46.9 s → **41.0 s**. Semua babak/SFX dipetakan semula secara automatik ke suara baru melalui padanan perkataan (`words_scene_timeline.json` → `words.json`), dan sempadan babak yang jatuh di tengah perkataan di-snap (contoh: babak fakta tamat tepat sebelum "Sebab tu"). Muka kini **0.56 s**.
 
 ## Gaya baru: "Porcelain & Olive" (belum pernah digunakan)
 - **Font baru:** Instrument Serif (tajuk, serif editorial moden) + **Outfit** (caption tebal 64 px, sangat jelas). **Palet:** putih tulang, batu, olive, tanah liat (clay), arang.
