@@ -1,0 +1,57 @@
+{
+ "keep_gap": 0.06,
+ "quiet_db": -36,
+ "snap_win": 0.02,
+ "keep": [
+  [
+   0.7,
+   1.21,
+   "HOOK: Stop!"
+  ],
+  [
+   1.4,
+   4.06,
+   "Jangan buat 5 kesilapan ini masa mandi."
+  ],
+  [
+   5.04,
+   10.56,
+   "Yang pertama, mandi menggunakan air terlalu panas sehingga kulit boleh terasa kering."
+  ],
+  [
+   10.99,
+   16.36,
+   "Yang kedua, menggosok badan terlalu kuat kerana ingat lebih kuat lebih bersih."
+  ],
+  [
+   16.84,
+   21.43,
+   "Yang ketiga, menggunakan sabun secara berlebihan. Tak boleh tu."
+  ],
+  [
+   21.8,
+   27.87,
+   "Yang keempat, tidak membilas badan dengan sempurna sehingga sisa sabun tertinggal."
+  ],
+  [
+   28.3,
+   34.48,
+   "Dan yang kelima, terlupa menggunakan pelembab selepas mandi, terutama kalau kulit mudah kering."
+  ],
+  [
+   35.16,
+   50.77,
+   "Frescura Body hadir dengan kandungan sea salt ... rutin mandi lebih istimewa."
+  ],
+  [
+   51.21,
+   58.62,
+   "Jangan biarkan kawan-kawan korang buat kesilapan yang sama. Share video ini ..."
+  ],
+  [
+   58.94,
+   62.42,
+   "Kalau korang tahu tips ni, komen baru tahu."
+  ]
+ ]
+}

@@ -1,0 +1,724 @@
+[
+ {
+  "start": 0.0,
+  "end": 2.82,
+  "text": " Stop! Jangan buat 5 kesilapan ini masa mandi.",
+  "words": [
+   {
+    "w": " Stop!",
+    "s": 0.0,
+    "e": 0.36
+   },
+   {
+    "w": " Jangan",
+    "s": 0.58,
+    "e": 0.78
+   },
+   {
+    "w": " buat",
+    "s": 0.78,
+    "e": 0.94
+   },
+   {
+    "w": " 5",
+    "s": 0.94,
+    "e": 1.12
+   },
+   {
+    "w": " kesilapan",
+    "s": 1.12,
+    "e": 1.6
+   },
+   {
+    "w": " ini",
+    "s": 1.6,
+    "e": 1.84
+   },
+   {
+    "w": " masa",
+    "s": 1.84,
+    "e": 2.38
+   },
+   {
+    "w": " mandi.",
+    "s": 2.38,
+    "e": 2.82
+   }
+  ]
+ },
+ {
+  "start": 3.0,
+  "end": 7.74,
+  "text": " Yang pertama, mandi menggunakan air terlalu panas sehingga kulit boleh terasa kering.",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 3.0,
+    "e": 3.08
+   },
+   {
+    "w": " pertama,",
+    "s": 3.08,
+    "e": 3.4
+   },
+   {
+    "w": " mandi",
+    "s": 3.84,
+    "e": 4.14
+   },
+   {
+    "w": " menggunakan",
+    "s": 4.14,
+    "e": 4.6
+   },
+   {
+    "w": " air",
+    "s": 4.6,
+    "e": 4.92
+   },
+   {
+    "w": " terlalu",
+    "s": 4.92,
+    "e": 5.52
+   },
+   {
+    "w": " panas",
+    "s": 5.52,
+    "e": 5.96
+   },
+   {
+    "w": " sehingga",
+    "s": 5.96,
+    "e": 6.42
+   },
+   {
+    "w": " kulit",
+    "s": 6.42,
+    "e": 6.8
+   },
+   {
+    "w": " boleh",
+    "s": 6.8,
+    "e": 7.14
+   },
+   {
+    "w": " terasa",
+    "s": 7.14,
+    "e": 7.42
+   },
+   {
+    "w": " kering.",
+    "s": 7.42,
+    "e": 7.74
+   }
+  ]
+ },
+ {
+  "start": 7.9,
+  "end": 12.38,
+  "text": " Yang kedua, menggosok badan terlalu kuat kerana ingat lebih kuat lebih bersih.",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 7.9,
+    "e": 8.02
+   },
+   {
+    "w": " kedua,",
+    "s": 8.02,
+    "e": 8.36
+   },
+   {
+    "w": " menggosok",
+    "s": 8.68,
+    "e": 9.08
+   },
+   {
+    "w": " badan",
+    "s": 9.08,
+    "e": 9.38
+   },
+   {
+    "w": " terlalu",
+    "s": 9.38,
+    "e": 10.08
+   },
+   {
+    "w": " kuat",
+    "s": 10.08,
+    "e": 10.4
+   },
+   {
+    "w": " kerana",
+    "s": 10.4,
+    "e": 10.74
+   },
+   {
+    "w": " ingat",
+    "s": 10.74,
+    "e": 11.06
+   },
+   {
+    "w": " lebih",
+    "s": 11.06,
+    "e": 11.38
+   },
+   {
+    "w": " kuat",
+    "s": 11.38,
+    "e": 11.72
+   },
+   {
+    "w": " lebih",
+    "s": 11.72,
+    "e": 11.98
+   },
+   {
+    "w": " bersih.",
+    "s": 11.98,
+    "e": 12.38
+   }
+  ]
+ },
+ {
+  "start": 12.54,
+  "end": 16.34,
+  "text": " Yang ketiga, menggunakan sabut secara berlebihan. Tak boleh tu.",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 12.54,
+    "e": 12.66
+   },
+   {
+    "w": " ketiga,",
+    "s": 12.66,
+    "e": 13.08
+   },
+   {
+    "w": " menggunakan",
+    "s": 13.4,
+    "e": 13.96
+   },
+   {
+    "w": " sabut",
+    "s": 13.96,
+    "e": 14.34
+   },
+   {
+    "w": " secara",
+    "s": 14.34,
+    "e": 15.0
+   },
+   {
+    "w": " berlebihan.",
+    "s": 15.0,
+    "e": 15.62
+   },
+   {
+    "w": " Tak",
+    "s": 15.86,
+    "e": 15.94
+   },
+   {
+    "w": " boleh",
+    "s": 15.94,
+    "e": 16.14
+   },
+   {
+    "w": " tu.",
+    "s": 16.14,
+    "e": 16.34
+   }
+  ]
+ },
+ {
+  "start": 16.6,
+  "end": 21.0,
+  "text": " Yang keempat, tidak membilas badan dengan sempurna sehingga sisa sabut tertinggal.",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 16.6,
+    "e": 16.8
+   },
+   {
+    "w": " keempat,",
+    "s": 16.8,
+    "e": 17.24
+   },
+   {
+    "w": " tidak",
+    "s": 17.36,
+    "e": 17.62
+   },
+   {
+    "w": " membilas",
+    "s": 17.62,
+    "e": 18.02
+   },
+   {
+    "w": " badan",
+    "s": 18.02,
+    "e": 18.42
+   },
+   {
+    "w": " dengan",
+    "s": 18.42,
+    "e": 18.88
+   },
+   {
+    "w": " sempurna",
+    "s": 18.88,
+    "e": 19.42
+   },
+   {
+    "w": " sehingga",
+    "s": 19.42,
+    "e": 20.16
+   },
+   {
+    "w": " sisa",
+    "s": 20.16,
+    "e": 20.68
+   },
+   {
+    "w": " sabut",
+    "s": 20.68,
+    "e": 20.98
+   },
+   {
+    "w": " tertinggal.",
+    "s": 20.98,
+    "e": 21.3
+   }
+  ]
+ },
+ {
+  "start": 21.62,
+  "end": 26.48,
+  "text": " Dan yang kelima, terlupa menggunakan pelembab selepas mandi terutama kalau kulit mudah kering.",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 21.62,
+    "e": 21.74
+   },
+   {
+    "w": " yang",
+    "s": 21.74,
+    "e": 21.84
+   },
+   {
+    "w": " kelima,",
+    "s": 21.84,
+    "e": 22.22
+   },
+   {
+    "w": " terlupa",
+    "s": 22.4,
+    "e": 22.86
+   },
+   {
+    "w": " menggunakan",
+    "s": 22.86,
+    "e": 23.46
+   },
+   {
+    "w": " pelembab",
+    "s": 23.46,
+    "e": 23.82
+   },
+   {
+    "w": " selepas",
+    "s": 23.82,
+    "e": 24.14
+   },
+   {
+    "w": " mandi",
+    "s": 24.14,
+    "e": 24.44
+   },
+   {
+    "w": " terutama",
+    "s": 24.44,
+    "e": 25.1
+   },
+   {
+    "w": " kalau",
+    "s": 25.1,
+    "e": 25.42
+   },
+   {
+    "w": " kulit",
+    "s": 25.42,
+    "e": 25.78
+   },
+   {
+    "w": " mudah",
+    "s": 25.78,
+    "e": 26.16
+   },
+   {
+    "w": " kering.",
+    "s": 26.16,
+    "e": 26.48
+   }
+  ]
+ },
+ {
+  "start": 26.48,
+  "end": 33.54,
+  "text": " Frescura Bodi hadir dengan kandungan sisa yang kaya dengan mineral semula jadi sebagai sebahagian daripada formulasi penjagaan badan.",
+  "words": [
+   {
+    "w": " Frescura",
+    "s": 26.48,
+    "e": 27.04
+   },
+   {
+    "w": " Bodi",
+    "s": 27.04,
+    "e": 27.44
+   },
+   {
+    "w": " hadir",
+    "s": 27.44,
+    "e": 27.96
+   },
+   {
+    "w": " dengan",
+    "s": 27.96,
+    "e": 28.12
+   },
+   {
+    "w": " kandungan",
+    "s": 28.12,
+    "e": 28.52
+   },
+   {
+    "w": " sisa",
+    "s": 28.52,
+    "e": 28.94
+   },
+   {
+    "w": " yang",
+    "s": 28.94,
+    "e": 29.06
+   },
+   {
+    "w": " kaya",
+    "s": 29.06,
+    "e": 29.28
+   },
+   {
+    "w": " dengan",
+    "s": 29.28,
+    "e": 29.46
+   },
+   {
+    "w": " mineral",
+    "s": 29.46,
+    "e": 29.72
+   },
+   {
+    "w": " semula",
+    "s": 29.72,
+    "e": 29.94
+   },
+   {
+    "w": " jadi",
+    "s": 29.94,
+    "e": 30.14
+   },
+   {
+    "w": " sebagai",
+    "s": 30.14,
+    "e": 30.88
+   },
+   {
+    "w": " sebahagian",
+    "s": 30.88,
+    "e": 31.66
+   },
+   {
+    "w": " daripada",
+    "s": 31.66,
+    "e": 31.96
+   },
+   {
+    "w": " formulasi",
+    "s": 31.96,
+    "e": 32.62
+   },
+   {
+    "w": " penjagaan",
+    "s": 32.62,
+    "e": 33.28
+   },
+   {
+    "w": " badan.",
+    "s": 33.28,
+    "e": 33.54
+   }
+  ]
+ },
+ {
+  "start": 33.6,
+  "end": 40.26,
+  "text": " Ditambah pula dengan wangian berinspirasikan perfume seperti bombshell dan minat fantasi untuk menjadikan rutin mandi lebih istimewa.",
+  "words": [
+   {
+    "w": " Ditambah",
+    "s": 33.6,
+    "e": 33.92
+   },
+   {
+    "w": " pula",
+    "s": 33.92,
+    "e": 34.2
+   },
+   {
+    "w": " dengan",
+    "s": 34.2,
+    "e": 34.52
+   },
+   {
+    "w": " wangian",
+    "s": 34.52,
+    "e": 35.04
+   },
+   {
+    "w": " berinspirasikan",
+    "s": 35.04,
+    "e": 35.74
+   },
+   {
+    "w": " perfume",
+    "s": 35.74,
+    "e": 36.06
+   },
+   {
+    "w": " seperti",
+    "s": 36.06,
+    "e": 36.5
+   },
+   {
+    "w": " bombshell",
+    "s": 36.5,
+    "e": 37.0
+   },
+   {
+    "w": " dan",
+    "s": 37.0,
+    "e": 37.32
+   },
+   {
+    "w": " minat",
+    "s": 37.32,
+    "e": 37.54
+   },
+   {
+    "w": " fantasi",
+    "s": 37.54,
+    "e": 37.94
+   },
+   {
+    "w": " untuk",
+    "s": 37.94,
+    "e": 38.34
+   },
+   {
+    "w": " menjadikan",
+    "s": 38.34,
+    "e": 38.72
+   },
+   {
+    "w": " rutin",
+    "s": 38.72,
+    "e": 39.0
+   },
+   {
+    "w": " mandi",
+    "s": 39.0,
+    "e": 39.28
+   },
+   {
+    "w": " lebih",
+    "s": 39.28,
+    "e": 39.7
+   },
+   {
+    "w": " istimewa.",
+    "s": 39.7,
+    "e": 40.26
+   }
+  ]
+ },
+ {
+  "start": 40.34,
+  "end": 43.24,
+  "text": " Jangan biarkan kawan-kawan korang buat kesilapan yang sama.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 40.34,
+    "e": 40.68
+   },
+   {
+    "w": " biarkan",
+    "s": 40.68,
+    "e": 41.18
+   },
+   {
+    "w": " kawan",
+    "s": 41.18,
+    "e": 41.62
+   },
+   {
+    "w": "-kawan",
+    "s": 41.62,
+    "e": 41.88
+   },
+   {
+    "w": " korang",
+    "s": 41.88,
+    "e": 42.26
+   },
+   {
+    "w": " buat",
+    "s": 42.26,
+    "e": 42.54
+   },
+   {
+    "w": " kesilapan",
+    "s": 42.54,
+    "e": 42.94
+   },
+   {
+    "w": " yang",
+    "s": 42.94,
+    "e": 43.04
+   },
+   {
+    "w": " sama.",
+    "s": 43.04,
+    "e": 43.24
+   }
+  ]
+ },
+ {
+  "start": 43.36,
+  "end": 46.5,
+  "text": " Share video ini supaya lebih ramai tahu cara menjaga kulit ketika mandi.",
+  "words": [
+   {
+    "w": " Share",
+    "s": 43.36,
+    "e": 43.54
+   },
+   {
+    "w": " video",
+    "s": 43.54,
+    "e": 43.74
+   },
+   {
+    "w": " ini",
+    "s": 43.74,
+    "e": 43.94
+   },
+   {
+    "w": " supaya",
+    "s": 43.94,
+    "e": 44.18
+   },
+   {
+    "w": " lebih",
+    "s": 44.18,
+    "e": 44.32
+   },
+   {
+    "w": " ramai",
+    "s": 44.32,
+    "e": 44.62
+   },
+   {
+    "w": " tahu",
+    "s": 44.62,
+    "e": 44.86
+   },
+   {
+    "w": " cara",
+    "s": 44.86,
+    "e": 45.22
+   },
+   {
+    "w": " menjaga",
+    "s": 45.22,
+    "e": 45.56
+   },
+   {
+    "w": " kulit",
+    "s": 45.56,
+    "e": 45.86
+   },
+   {
+    "w": " ketika",
+    "s": 45.86,
+    "e": 46.2
+   },
+   {
+    "w": " mandi.",
+    "s": 46.2,
+    "e": 46.5
+   }
+  ]
+ },
+ {
+  "start": 46.58,
+  "end": 48.88,
+  "text": " Kalau korang tahu tips ni, komen baru tahu.",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 46.58,
+    "e": 46.78
+   },
+   {
+    "w": " korang",
+    "s": 46.78,
+    "e": 47.02
+   },
+   {
+    "w": " tahu",
+    "s": 47.02,
+    "e": 47.26
+   },
+   {
+    "w": " tips",
+    "s": 47.26,
+    "e": 47.52
+   },
+   {
+    "w": " ni,",
+    "s": 47.52,
+    "e": 47.72
+   },
+   {
+    "w": " komen",
+    "s": 47.9,
+    "e": 48.16
+   },
+   {
+    "w": " baru",
+    "s": 48.16,
+    "e": 48.68
+   },
+   {
+    "w": " tahu.",
+    "s": 48.68,
+    "e": 48.88
+   }
+  ]
+ }
+]

@@ -1,0 +1,81 @@
+/* Video 8 -- "Mineral Mist": cool spa-mineral minimalist luxury (Fraunces soft serif + Sora; mist / pearl / deep-sea ink / sea / foam / sand / alert) */
+@font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces.ttf"); font-weight: 100 900; }
+@font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Italic.ttf"); font-weight: 100 900; font-style: italic; }
+@font-face { font-family: "Sora"; src: url("assets/fonts/Sora.ttf"); font-weight: 100 800; }
+
+:root {
+  --mist: #e4ebe9;
+  --pearl: #f6f5f1;
+  --ink: #10323a;
+  --sea: #3d6e78;
+  --foam: #a3c3bd;
+  --sand: #cdbfa8;
+  --alert: #c4553f;
+  --rose: #a5162f;
+  --violet: #4a3a8c;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--mist); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--mist);
+  color: var(--ink); font-family: "Sora", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.mistbg { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 30%, #f3f6f5 0%, var(--mist) 60%, #d3dfdc 100%); }
+.inkbg { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 35%, #17434c 0%, var(--ink) 70%); }
+.veil { position: absolute; inset: 0; }
+.grain { position: absolute; inset: 0; opacity: .35;
+  background-image: radial-gradient(rgba(16,50,58,.06) 1px, transparent 1px); background-size: 4px 4px; }
+
+/* type */
+.t { position: absolute; left: 80px; right: 80px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; }
+.rv > span { display: inline-block; }
+.ch { display: inline-block; white-space: pre; }
+.fr { font-family: "Fraunces"; font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; }
+.lab { font: 600 32px "Sora"; letter-spacing: 8px; text-transform: uppercase; color: var(--sea); }
+.h1 { font: 400 124px/1.0 "Fraunces"; font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; letter-spacing: -2px; }
+.it { font-style: italic; }
+.num { font: italic 300 250px/0.8 "Fraunces"; font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; color: var(--sea); }
+.alert { color: var(--alert); } .sea { color: var(--sea); } .pearl { color: var(--pearl); } .ink { color: var(--ink); }
+
+/* masks & frames */
+.drop { position: absolute; overflow: hidden; }
+.capsule { position: absolute; overflow: hidden; border-radius: 999px; box-shadow: 0 30px 70px rgba(16,50,58,.22); }
+.rounded { position: absolute; overflow: hidden; border-radius: 48px; box-shadow: 0 30px 70px rgba(16,50,58,.2); }
+.circ { position: absolute; overflow: hidden; border-radius: 50%; box-shadow: 0 30px 70px rgba(16,50,58,.22); }
+.drop video, .capsule video, .rounded video, .circ video, .rounded img, .capsule img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hair { position: absolute; height: 2px; background: var(--sea); transform-origin: 0 50%; }
+
+/* chips & stamps */
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 18px; padding: 20px 38px; border-radius: 999px;
+  background: var(--pearl); color: var(--ink); font: 600 40px "Sora"; letter-spacing: 3px; white-space: nowrap;
+  box-shadow: 0 14px 34px rgba(16,50,58,.16); }
+.chip b { width: 18px; height: 18px; border-radius: 50%; background: var(--sea); }
+.chip.a { background: var(--alert); color: var(--pearl); } .chip.a b { background: var(--pearl); }
+.chip.s { background: var(--sea); color: var(--pearl); } .chip.s b { background: var(--foam); }
+.stamp { position: absolute; padding: 18px 44px; border: 7px solid var(--alert); border-radius: 22px; color: var(--alert);
+  font: 800 92px/1 "Sora"; letter-spacing: 6px; white-space: nowrap; background: rgba(246,245,241,.9); }
+.glass { position: absolute; border-radius: 40px; background: rgba(246,245,241,.55); backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15); border: 1px solid rgba(255,255,255,.6); box-shadow: 0 24px 60px rgba(16,50,58,.18); }
+
+/* droplet progress (5 mistakes) */
+#drops { position: absolute; z-index: 8; top: 52px; left: 0; right: 0; display: flex; justify-content: center; gap: 22px; }
+#drops svg { width: 34px; height: 38px; overflow: visible; }
+#drops path { stroke: var(--sea); stroke-width: 6; fill: var(--sea); fill-opacity: 0; }
+#drops.lite path { stroke: var(--pearl); fill: var(--pearl); }
+
+/* captions: Sora on a pearl halo; each word gets a sea marker that sweeps in while it is spoken */
+.cap { z-index: 9; inset: auto; top: 1560px; left: 40px; width: 1000px; height: auto; text-align: center; }
+.cap .ln { display: inline-block; font: 700 70px/1.18 "Sora"; letter-spacing: -1px; color: var(--ink);
+  text-shadow: 0 0 22px rgba(246,245,241,.95), 0 0 8px rgba(246,245,241,.9), 0 0 2px rgba(246,245,241,1); }
+.cap .ln.dk { color: var(--pearl); text-shadow: 0 0 22px rgba(16,50,58,.95), 0 0 8px rgba(16,50,58,.9), 0 2px 3px rgba(16,50,58,.9); }
+.cap .w { display: inline-block; position: relative; padding: 0 8px; }
+.cap .w i { position: absolute; z-index: -1; left: 0; right: 0; top: 10%; bottom: 4%; border-radius: 14px; background: var(--sea);
+  transform: scaleX(0); transform-origin: 0 50%; }
+.cap .w.on { color: var(--pearl); text-shadow: none; }
+.cap .w.hl i { background: var(--alert); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 110px; right: 40px; font: 600 16px "Sora"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }
