@@ -10,7 +10,8 @@ DURATION = 52.2          # voice is 50.7 s + end-card tail
 words = [w for s in json.load(open(f"{proj}/assets/audio/words.json")) for w in s["words"]]
 FIX = {"lakseri": "luxury", "hati.": "hotel.", "hati": "hotel", "pajak": "panjat", "-kanti": "katil", "bantan": "bantal",
        "vex": "vibes", "usia": "tekan", "abek": "beg", "kuni": "kuning", "gang": "geng", "Terus": "Terus",
-       "body": "buddy", "umat": "mak", "pocket": "poket", "kati": "katil", "semerba": "semerbak", "ku": "kuning"}   # client: "buddy", not "body"
+       "body": "buddy", "umat": "mak", "pocket": "poket", "kati": "katil", "semerba": "semerbak", "semerbah": "semerbak", "semerbah.": "semerbak.", "ku": "kuning", "kanti": "katil", "kanti,": "katil,",
+       "Malam-lamam": "Lama-lama", "Malam-lamam,": "Lama-lama,"}   # client: "buddy", not "body"
 DROP = {"Haa", "Haa,", "ke", "Dia,", "Apa"}          # fillers / mis-hearings left out of the captions
 HL = {"wangi", "semerbak", "luxury", "hotel", "perangai", "mengada-ngada", "tidur", "standard", "spray", "perfume", "mahal",
       "mahal-mahal", "menangis", "membazir", "rahsia", "mandi", "malam", "melekat", "kulit", "fresh", "premium", "expensive",
@@ -29,6 +30,8 @@ for w in words:
     if clean and clean[-1]["t"] == "kuning" and core == "ni" and w["s"] - clean[-1]["e"] < 0.15:   # "beg ku ni" = "beg kuning"
         clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
+for w in clean:
+    w["t"] = {"Malam-lamam": "Lama-lama", "Malam-lamam,": "Lama-lama,"}.get(w["t"], w["t"])
 chunks, cur = [], []
 for i, w in enumerate(clean):
     cur.append(w)
@@ -346,6 +349,18 @@ for i, l in enumerate(js):
         js[i] = f"{m.group(1)}{max(end - st0, 0.1):.2f}{m.group(4)}{st0:.3f});"
 for c in sfx: c["t"] = T(c["t"])
 DURATION = round(T(DURATION), 2)
+_FACE_LEN = 0.92
+for i, h in enumerate(html):
+    m = re.search(r'id="(v_face|s1|s1b)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
+    if not m: continue
+    st, d = float(m.group(2)), float(m.group(3))
+    if m.group(1) in ("v_face", "s1"):
+        html[i] = h.replace(f'data-duration="{m.group(3)}"', f'data-duration="{_FACE_LEN:.3f}"')
+        _face_start = st
+    else:                                         # kinetic PERANGAI beat takes over right when the face ends
+        end = st + d; ns = _face_start + _FACE_LEN
+        html[i] = h.replace(f'data-start="{m.group(2)}" data-duration="{m.group(3)}"', f'data-start="{ns:.3f}" data-duration="{end - ns:.3f}"')
+        js = [re.sub(r'(tl\.fromTo\("#s1b",.*\},)([\d.]+)\);$', lambda q: f"{q.group(1)}{ns:.3f});", l) for l in js]
 
 # ---- persistent: progress bar (hidden on the face shot)
 clip("chrome", 0, DURATION, '<div id="prog"></div>', style="z-index:5")
