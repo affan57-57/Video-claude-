@@ -97,23 +97,23 @@ def pola(id_, src, left, top, w, h, rot, cap=""):
     return f'<div class="pola" id="{id_}" style="left:{left}px;top:{top}px;width:{w}px;height:{h}px;transform:rotate({rot}deg)"><img src="{src}" alt="">{c}</div>'
 
 # ======================= HOOK =======================
-# S0 0.00-0.96: the only face shot (0.96 s), eyes into the lens -- "Wanita, kalau..."
-html.append(f'<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="0" data-duration="0.960" data-media-start="0" muted playsinline style="z-index:6"></video>')
-A('tl.fromTo("#v_face",{scale:1.12},{scale:1.0,duration:0.96,ease:"power2.out"},0);')
-clip("s0", 0, 0.96, '<div class="shade" style="background:linear-gradient(180deg,rgba(43,42,39,0) 50%,rgba(43,42,39,.55) 100%)"></div>'
+# S0 0.00-0.64: the only face shot (0.64 s, from the client's own recording), eyes into the lens -- "Wanita,"
+html.append(f'<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="0" data-duration="0.640" data-media-start="0" muted playsinline style="z-index:6"></video>')
+A('tl.fromTo("#v_face",{scale:1.12},{scale:1.0,duration:0.64,ease:"power2.out"},0);')
+clip("s0", 0, 0.64, '<div class="shade" style="background:linear-gradient(180deg,rgba(43,42,39,0) 50%,rgba(43,42,39,.55) 100%)"></div>'
      f'<div class="t c boneclr" style="top:1230px;font:italic 400 210px/1 Instrument">{CH("h0","Wanita,")}</div>', style="z-index:7")
-chars("#h0", 0.02, 0.04)
+chars("#h0", 0.02, 0.03)
 S(0.0, "boom", 0.55)
 
-# S1 0.96-3.48: kalau nak rasa lebih YAKIN dengan diri sendiri -- confident woman, frosted card, scribble
-full("v_wom", "assets/broll/woman.mp4", 0.96, 2.52)
-clip("s1", 0.96, 2.52, '<div class="glass" id="g1" style="left:80px;top:1010px;width:920px;height:470px"></div>'
+# S1 0.64-3.48: kalau nak rasa lebih YAKIN dengan diri sendiri -- confident woman, frosted card, scribble
+full("v_wom", "assets/broll/woman.mp4", 0.64, 2.84)
+clip("s1", 0.64, 2.84, '<div class="glass" id="g1" style="left:80px;top:1010px;width:920px;height:470px"></div>'
      f'<div class="t c eyebrow" style="top:1060px">{R("y0","Kalau nak rasa lebih")}</div>'
      f'<div class="t c serif" style="top:1120px;font-size:190px">{CH("y1","yakin")}</div>'
      + scrib("y2", "under", 300, 1300, 480, 60, 2.10) +
      f'<div class="t c body" style="top:1380px">{R("y3","dengan diri sendiri")}</div>')
-A('tl.fromTo("#g1",{opacity:0,y:60},{opacity:1,y:0,duration:0.5,ease:"expo.out"},0.98);')
-rv("#y0", 1.00); chars("#y1", 1.84, 0.05); rv("#y3", 2.56)
+A('tl.fromTo("#g1",{opacity:0,y:60},{opacity:1,y:0,duration:0.5,ease:"expo.out"},0.70);')
+rv("#y0", 0.72); chars("#y1", 1.84, 0.05); rv("#y3", 2.56)
 S(1.84, "boom", 0.45)
 
 # S2 3.48-5.98: cuba buat 5 perkara ni -- odometer 1->5, polaroid fan
@@ -266,9 +266,9 @@ S(VOICE_END, "whip", 0.55); S(VOICE_END + 0.2, "chime", 0.5)
 
 # ---- story-style segment bar (after the face)
 segs = "".join(f'<div class="sg"><i id="sg{i}"></i></div>' for i in range(len(SECTIONS) - 1))
-clip("chrome", 0.96, DURATION - 0.96, f'<div id="story">{segs}</div>', style="z-index:8")
+clip("chrome", 0.64, DURATION - 0.64, f'<div id="story">{segs}</div>', style="z-index:8")
 for i in range(len(SECTIONS) - 1):
-    a, b = max(SECTIONS[i], 0.96), SECTIONS[i + 1]
+    a, b = max(SECTIONS[i], 0.64), SECTIONS[i + 1]
     js.append(f'tl.fromTo("#sg{i}",{{scaleX:0}},{{scaleX:1,duration:{b - a:.2f},ease:"none"}},{a:.2f});')
 
 # ---- scene changes must fall between words
@@ -283,7 +283,7 @@ if _bad: print("WARNING scene ends mid-word:", _bad)
 # ---- captions: frosted strip, keyword underline sweeps in with the word
 for ci, ch in enumerate(chunks):
     st = ch[0]["s"]
-    if st < 0.9 or st >= VOICE_END:
+    if st < 0.6 or st >= VOICE_END:
         continue
     nxt = chunks[ci + 1][0]["s"] if ci + 1 < len(chunks) else VOICE_END
     en = min(nxt, ch[-1]["e"] + 0.45) if nxt - ch[-1]["e"] > 0.6 else nxt

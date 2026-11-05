@@ -24,7 +24,7 @@ for name, (i, ss, d, fx, W, H) in C.items():
           f"crop={W}:{H}:(iw-{W})*{fx}:(ih-{H})/2,setsar=1,{G}")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(ss), "-t", str(d), "-i", f, "-vf", vf, *enc, f"{out}/{name}.mp4"], check=True)
     print("ok", name)
-# 0.96 s of face (client: under 1 s), eyes into the lens (src 1.40-2.36; niqab, so no lip-sync needed). Selfie -> hflip.
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "1.40", "-t", "0.96", "-i", main, "-vf",
+# 0.64 s of face (client: under 1 s, from her own recording), eyes into the lens (src 1.40-2.04; niqab, so no lip-sync needed). Selfie -> hflip.
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "1.40", "-t", "0.64", "-i", main, "-vf",
                 f"hflip,scale=1080:1920:flags=lanczos,setsar=1,{G}", *enc, f"{out}/face.mp4"], check=True)
 print("ok face")

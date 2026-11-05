@@ -3,7 +3,7 @@
 **Status: PREVIEW**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
 - Asal: 57.3 s. Selepas edit: **46.9 s** (45.4 s suara + 1.5 s kad penutup).
-- Muka: **0.96 s sahaja** (0.00–0.96 s, "Wanita, kalau…"; bawah 1 saat). Mata tepat ke lensa (rakaman 1.40–2.36 s; berniqab, tiada isu lip-sync); hflip. Selepas 7 saat pertama telefon terdongak ke siling, jadi selebihnya B-roll dan motion graphics sepenuhnya.
+- Muka: **0.64 s sahaja**, dari rakaman klien sendiri (wanita berpurdah), 0.00–0.64 s pada "Wanita,"; jelas bawah 1 saat. Mata tepat ke lensa (rakaman 1.40–2.04 s; berpurdah, tiada isu lip-sync); hflip. Selepas 7 saat pertama telefon terdongak ke siling, jadi selebihnya B-roll dan motion graphics sepenuhnya.
 - Suara: bilik senyap (~−47 dBFS). 11 segmen disamakan level → RNNoise + FFT denoise, gate, EQ (kehangatan, potong "box", presence, air), de-esser, compressor ringan, exciter, gandaan tetap −14 LUFS (`voice_studio.sh`). Mix −13 LUFS: suara depan, SFX kuat, muzik lembut.
 
 ## Gaya baru: "Porcelain & Olive" (belum pernah digunakan)
@@ -22,8 +22,8 @@
 ## Storyboard (masa selepas edit)
 | Masa | Suara | Visual |
 |---|---|---|
-| 0.00–0.96 | Wanita, kalau… | **Muka (0.96 s)** + "Wanita," huruf demi huruf |
-| 0.96–3.48 | …nak rasa lebih yakin dengan diri sendiri | Wanita bertudung tersenyum + kad kaca: "yakin" + garis tangan |
+| 0.00–0.64 | Wanita, | **Muka klien (0.64 s)** + "Wanita," huruf demi huruf |
+| 0.64–3.48 | kalau nak rasa lebih yakin dengan diri sendiri | Wanita bertudung tersenyum + kad kaca: "yakin" + garis tangan |
 | 3.48–5.98 | cuba buat 5 perkara ni | Odometer 1→5 + 5 polaroid mengembang |
 | 5.98–8.92 | 01 jaga kebersihan diri setiap hari | Basuh tangan (pepenjuru) + polaroid sabun + bulatan tangan |
 | 8.92–12.28 | 02 pilih pakaian buat korang rasa selesa | Dua lajur (kain satin / almari) bergerak berlawanan + kad kaca |
