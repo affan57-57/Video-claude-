@@ -1,6 +1,6 @@
 # Video 12: "3 sebab kau kena tukar ke Frescura Body" (Metro Noir: KLCC, Menara KL, TRX + dalam mall)
 
-**Status: PREVIEW v2**, `preview/preview_v2.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: FINAL** (diluluskan klien), `final/video12_klcc_trx_menarakl_pavilion_1080p.mp4` (1080x1920, `-q delivery`, tanpa tag PREVIEW). Preview: `preview/preview_v2.mp4`.
 
 - Sumber: `src/main.mp4` (klien bercakap, 64.0 s) + `src/part2.mp4` (footage pam & buih Woman Glory klien).
 - Selepas edit: **52.1 s** (50.5 s suara + 1.6 s kad penutup).
