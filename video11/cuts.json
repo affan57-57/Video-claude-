@@ -1,0 +1,47 @@
+{
+ "keep_gap": 0.06,
+ "quiet_db": -36,
+ "snap_win": 0.02,
+ "keep": [
+  [
+   0.0,
+   3.3,
+   "HOOK: Serius, sabun ni bau perfume mahal."
+  ],
+  [
+   3.62,
+   5.86,
+   "Kalau tak percaya, tengok video ni sampai habis."
+  ],
+  [
+   8.5,
+   10.76,
+   "Tiga sebab sabun ni bau perfume mahal."
+  ],
+  [
+   10.9,
+   18.96,
+   "Frescura Body. Sebab yang pertama, wangian dia memang inspirasi perfume. Sekali cium, terus bau perfume mahal."
+  ],
+  [
+   19.14,
+   37.58,
+   "Yang kedua, ada dua bau premium. Bombshell ... Midnight Fantasy ... Sesuai untuk malam. Yang ketiga, tekan je terus keluar buih lembut. Ada sea salt yang kaya mineral, mandi pun rasa mewah."
+  ],
+  [
+   38.38,
+   46.54,
+   "Kau sanggup beli perfume ratus-ratus. Tapi sabun yang bau perfume mahal ni, kau nak lepaskan? Rugi gila weh."
+  ],
+  [
+   46.87,
+   52.92,
+   "Tekan beg kuning sekarang. Check out sekarang. Sebab stok kami memang dah tak banyak. Sangat-sangat terhad."
+  ],
+  [
+   54.86,
+   56.5,
+   "(repeat 'Tekan dan check out sekarang' 53.1-54.7 cut) Tekan beg kuning dan check out sekarang."
+  ]
+ ]
+}
