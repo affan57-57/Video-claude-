@@ -418,7 +418,7 @@
  {
   "start": 27.9,
   "end": 33.0,
-  "text": " Sebab tu, Fresh Coral Body menggambungkan sea salt dengan wangian menginspirasi perfume.",
+  "text": " Sebab tu, Fresh Coral Body menggambungkan sisa dengan wangian menginspirasi perfume.",
   "words": [
    {
     "w": " Sebab",
@@ -448,31 +448,26 @@
    {
     "w": " menggambungkan",
     "s": 29.38,
-    "e": 30.46
+    "e": 30.48
    },
    {
-    "w": " sea",
-    "s": 30.46,
-    "e": 30.82
-   },
-   {
-    "w": " salt",
-    "s": 30.82,
-    "e": 31.16
+    "w": " sisa",
+    "s": 30.48,
+    "e": 31.08
    },
    {
     "w": " dengan",
-    "s": 31.16,
-    "e": 31.4
+    "s": 31.08,
+    "e": 31.38
    },
    {
     "w": " wangian",
-    "s": 31.4,
-    "e": 31.88
+    "s": 31.38,
+    "e": 31.86
    },
    {
     "w": " menginspirasi",
-    "s": 31.88,
+    "s": 31.86,
     "e": 32.6
    },
    {
@@ -484,8 +479,8 @@
  },
  {
   "start": 33.3,
-  "end": 34.02,
-  "text": " Kita ada pilihan",
+  "end": 39.92,
+  "text": " Kita ada pilihan Woman Glory by Bombshell dan Noche by Midnight Fantasy untuk menjadikan rutin mandi lebih istimewa.",
   "words": [
    {
     "w": " Kita",
@@ -500,60 +495,41 @@
    {
     "w": " pilihan",
     "s": 33.72,
-    "e": 34.02
-   }
-  ]
- },
- {
-  "start": 34.02,
-  "end": 35.46,
-  "text": " Women Glory by Bombshell",
-  "words": [
+    "e": 34.0
+   },
    {
-    "w": " Women",
-    "s": 34.02,
+    "w": " Woman",
+    "s": 34.0,
     "e": 34.22
    },
    {
     "w": " Glory",
     "s": 34.22,
-    "e": 34.6
+    "e": 34.58
    },
    {
     "w": " by",
-    "s": 34.6,
+    "s": 34.58,
     "e": 34.8
    },
    {
     "w": " Bombshell",
     "s": 34.8,
     "e": 35.46
-   }
-  ]
- },
- {
-  "start": 35.46,
-  "end": 37.16,
-  "text": " Dan No Chair by Midnight Fantasy",
-  "words": [
+   },
    {
-    "w": " Dan",
+    "w": " dan",
     "s": 35.46,
-    "e": 35.7
+    "e": 35.72
    },
    {
-    "w": " No",
-    "s": 35.7,
-    "e": 35.94
-   },
-   {
-    "w": " Chair",
-    "s": 35.94,
-    "e": 36.18
+    "w": " Noche",
+    "s": 35.72,
+    "e": 36.16
    },
    {
     "w": " by",
-    "s": 36.18,
+    "s": 36.16,
     "e": 36.46
    },
    {
@@ -565,22 +541,15 @@
     "w": " Fantasy",
     "s": 36.78,
     "e": 37.16
-   }
-  ]
- },
- {
-  "start": 37.16,
-  "end": 39.92,
-  "text": " Untuk menjadikan rutin mandi lebih istimewa.",
-  "words": [
+   },
    {
-    "w": " Untuk",
+    "w": " untuk",
     "s": 37.16,
-    "e": 38.06
+    "e": 37.98
    },
    {
     "w": " menjadikan",
-    "s": 38.06,
+    "s": 37.98,
     "e": 38.42
    },
    {
@@ -596,12 +565,218 @@
    {
     "w": " lebih",
     "s": 39.1,
-    "e": 39.34
+    "e": 39.32
    },
    {
     "w": " istimewa.",
-    "s": 39.34,
+    "s": 39.32,
     "e": 39.92
+   }
+  ]
+ },
+ {
+  "start": 40.0,
+  "end": 43.6,
+  "text": " Kalau korang sayangkan diri sendiri, jangan simpan tips ni untuk diri sendiri.",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 40.0,
+    "e": 40.22
+   },
+   {
+    "w": " korang",
+    "s": 40.22,
+    "e": 40.64
+   },
+   {
+    "w": " sayangkan",
+    "s": 40.64,
+    "e": 41.04
+   },
+   {
+    "w": " diri",
+    "s": 41.04,
+    "e": 41.3
+   },
+   {
+    "w": " sendiri,",
+    "s": 41.3,
+    "e": 41.62
+   },
+   {
+    "w": " jangan",
+    "s": 41.96,
+    "e": 42.14
+   },
+   {
+    "w": " simpan",
+    "s": 42.14,
+    "e": 42.58
+   },
+   {
+    "w": " tips",
+    "s": 42.58,
+    "e": 42.78
+   },
+   {
+    "w": " ni",
+    "s": 42.78,
+    "e": 42.92
+   },
+   {
+    "w": " untuk",
+    "s": 42.92,
+    "e": 43.08
+   },
+   {
+    "w": " diri",
+    "s": 43.08,
+    "e": 43.32
+   },
+   {
+    "w": " sendiri.",
+    "s": 43.32,
+    "e": 43.6
+   }
+  ]
+ },
+ {
+  "start": 43.76,
+  "end": 48.06,
+  "text": " Cuba share video ni supaya lebih ramai wanita sedar pentingnya menjaga diri.",
+  "words": [
+   {
+    "w": " Cuba",
+    "s": 43.76,
+    "e": 44.02
+   },
+   {
+    "w": " share",
+    "s": 44.02,
+    "e": 44.34
+   },
+   {
+    "w": " video",
+    "s": 44.34,
+    "e": 44.6
+   },
+   {
+    "w": " ni",
+    "s": 44.6,
+    "e": 44.82
+   },
+   {
+    "w": " supaya",
+    "s": 44.82,
+    "e": 45.28
+   },
+   {
+    "w": " lebih",
+    "s": 45.28,
+    "e": 45.5
+   },
+   {
+    "w": " ramai",
+    "s": 45.5,
+    "e": 45.92
+   },
+   {
+    "w": " wanita",
+    "s": 45.92,
+    "e": 46.28
+   },
+   {
+    "w": " sedar",
+    "s": 46.28,
+    "e": 46.7
+   },
+   {
+    "w": " pentingnya",
+    "s": 46.7,
+    "e": 47.38
+   },
+   {
+    "w": " menjaga",
+    "s": 47.38,
+    "e": 47.7
+   },
+   {
+    "w": " diri.",
+    "s": 47.7,
+    "e": 48.06
+   }
+  ]
+ },
+ {
+  "start": 48.12,
+  "end": 53.34,
+  "text": " Dan kalau korang percaya siapa wanita berhak rasa yakin dan istimewa, kau meyakin.",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 48.12,
+    "e": 48.3
+   },
+   {
+    "w": " kalau",
+    "s": 48.3,
+    "e": 48.54
+   },
+   {
+    "w": " korang",
+    "s": 48.54,
+    "e": 48.84
+   },
+   {
+    "w": " percaya",
+    "s": 48.84,
+    "e": 49.84
+   },
+   {
+    "w": " siapa",
+    "s": 49.84,
+    "e": 50.12
+   },
+   {
+    "w": " wanita",
+    "s": 50.12,
+    "e": 50.34
+   },
+   {
+    "w": " berhak",
+    "s": 50.34,
+    "e": 50.74
+   },
+   {
+    "w": " rasa",
+    "s": 50.74,
+    "e": 51.0
+   },
+   {
+    "w": " yakin",
+    "s": 51.0,
+    "e": 51.32
+   },
+   {
+    "w": " dan",
+    "s": 51.32,
+    "e": 51.48
+   },
+   {
+    "w": " istimewa,",
+    "s": 51.48,
+    "e": 52.16
+   },
+   {
+    "w": " kau",
+    "s": 52.44,
+    "e": 52.6
+   },
+   {
+    "w": " meyakin.",
+    "s": 52.6,
+    "e": 53.34
    }
   ]
  }

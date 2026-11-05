@@ -1,0 +1,237 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.86,
+  "text": " Kalau korang sayangkan diri sendiri, jangan simpan tips ni untuk diri sendiri.",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 0.0,
+    "e": 0.94
+   },
+   {
+    "w": " korang",
+    "s": 0.94,
+    "e": 1.46
+   },
+   {
+    "w": " sayangkan",
+    "s": 1.46,
+    "e": 1.9
+   },
+   {
+    "w": " diri",
+    "s": 1.9,
+    "e": 2.18
+   },
+   {
+    "w": " sendiri,",
+    "s": 2.18,
+    "e": 2.54
+   },
+   {
+    "w": " jangan",
+    "s": 2.92,
+    "e": 3.16
+   },
+   {
+    "w": " simpan",
+    "s": 3.16,
+    "e": 3.64
+   },
+   {
+    "w": " tips",
+    "s": 3.64,
+    "e": 3.9
+   },
+   {
+    "w": " ni",
+    "s": 3.9,
+    "e": 4.06
+   },
+   {
+    "w": " untuk",
+    "s": 4.06,
+    "e": 4.24
+   },
+   {
+    "w": " diri",
+    "s": 4.24,
+    "e": 4.52
+   },
+   {
+    "w": " sendiri.",
+    "s": 4.52,
+    "e": 4.86
+   }
+  ]
+ },
+ {
+  "start": 5.14,
+  "end": 10.38,
+  "text": " Cuba share video ni supaya lebih ramai wanita sedar pentingnya menjaga diri.",
+  "words": [
+   {
+    "w": " Cuba",
+    "s": 5.14,
+    "e": 5.66
+   },
+   {
+    "w": " share",
+    "s": 5.66,
+    "e": 6.04
+   },
+   {
+    "w": " video",
+    "s": 6.04,
+    "e": 6.36
+   },
+   {
+    "w": " ni",
+    "s": 6.36,
+    "e": 6.62
+   },
+   {
+    "w": " supaya",
+    "s": 6.62,
+    "e": 7.12
+   },
+   {
+    "w": " lebih",
+    "s": 7.12,
+    "e": 7.38
+   },
+   {
+    "w": " ramai",
+    "s": 7.38,
+    "e": 7.88
+   },
+   {
+    "w": " wanita",
+    "s": 7.88,
+    "e": 8.26
+   },
+   {
+    "w": " sedar",
+    "s": 8.26,
+    "e": 8.74
+   },
+   {
+    "w": " pentingnya",
+    "s": 8.74,
+    "e": 9.54
+   },
+   {
+    "w": " menjaga",
+    "s": 9.54,
+    "e": 9.92
+   },
+   {
+    "w": " diri.",
+    "s": 9.92,
+    "e": 10.38
+   }
+  ]
+ },
+ {
+  "start": 10.5,
+  "end": 16.8,
+  "text": " Dan kalau korang percaya setiap wanita berhak rasa yakin dan istimewa, komen yakin.",
+  "words": [
+   {
+    "w": " Dan",
+    "s": 10.5,
+    "e": 10.92
+   },
+   {
+    "w": " kalau",
+    "s": 10.92,
+    "e": 11.2
+   },
+   {
+    "w": " korang",
+    "s": 11.2,
+    "e": 11.56
+   },
+   {
+    "w": " percaya",
+    "s": 11.56,
+    "e": 12.7
+   },
+   {
+    "w": " setiap",
+    "s": 12.7,
+    "e": 13.0
+   },
+   {
+    "w": " wanita",
+    "s": 13.0,
+    "e": 13.3
+   },
+   {
+    "w": " berhak",
+    "s": 13.3,
+    "e": 13.76
+   },
+   {
+    "w": " rasa",
+    "s": 13.76,
+    "e": 14.06
+   },
+   {
+    "w": " yakin",
+    "s": 14.06,
+    "e": 14.42
+   },
+   {
+    "w": " dan",
+    "s": 14.42,
+    "e": 14.6
+   },
+   {
+    "w": " istimewa,",
+    "s": 14.6,
+    "e": 15.32
+   },
+   {
+    "w": " komen",
+    "s": 15.68,
+    "e": 16.32
+   },
+   {
+    "w": " yakin.",
+    "s": 16.32,
+    "e": 16.8
+   }
+  ]
+ },
+ {
+  "start": 17.0,
+  "end": 17.78,
+  "text": " Komen yakin.",
+  "words": [
+   {
+    "w": " Komen",
+    "s": 17.0,
+    "e": 17.38
+   },
+   {
+    "w": " yakin.",
+    "s": 17.38,
+    "e": 17.78
+   }
+  ]
+ },
+ {
+  "start": 17.98,
+  "end": 18.42,
+  "text": " Ok.",
+  "words": [
+   {
+    "w": " Ok.",
+    "s": 17.98,
+    "e": 18.42
+   }
+  ]
+ }
+]

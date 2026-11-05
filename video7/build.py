@@ -28,10 +28,10 @@ def T(x):
     if x >= _ao[-1]: return round(_an[-1] + (x - _ao[-1]), 3)
     i = max(k for k in range(len(_ao)) if _ao[k] <= x)
     return round(_an[i] + (x - _ao[i]) * (_an[i + 1] - _an[i]) / (_ao[i + 1] - _ao[i]), 3)
-FIX = {"No": "Noche", "Women": "Woman", "Dan": "dan", "Untuk": "untuk", "setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
+FIX = {"siapa": "setiap", "kau": "komen", "meyakin": "yakin", "No": "Noche", "Women": "Woman", "Dan": "dan", "Untuk": "untuk", "setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
        "bombshell": "Bombshell", "midnight": "Midnight", "fantasy": "Fantasy"}
 DROP = {"Coral", "Chair", "chair"}
-HL = {"woman", "glory", "noche", "yakin", "5", "kebersihan", "pakaian", "selesa", "penampilan", "rumah", "masa", "mandi", "segar", "garam", "laut",
+HL = {"sayangkan", "share", "berhak", "komen", "woman", "glory", "noche", "yakin", "5", "kebersihan", "pakaian", "selesa", "penampilan", "rumah", "masa", "mandi", "segar", "garam", "laut",
       "mineral", "frescura", "body", "sea", "salt", "perfume", "bombshell", "midnight", "fantasy", "istimewa", "keempat"}
 clean = []
 for w in words:
@@ -42,7 +42,8 @@ for w in words:
         clean[-1]["t"] += txt; clean[-1]["e"] = w["e"]; continue
     clean.append({"t": txt, "s": w["s"], "e": w["e"]})
 SECTIONS_OLD = [0.0, 5.98, 8.92, 12.28, 15.90, 18.56, 21.86, 26.56, 33.28, 39.38, VOICE_END]
-SECTIONS = [T(x) for x in SECTIONS_OLD]
+REAL_END = round(words[-1]["e"], 2)
+SECTIONS = [T(x) for x in SECTIONS_OLD] + [REAL_END]
 chunks, cur = [], []
 for i, w in enumerate(clean):
     cur.append(w)
@@ -274,14 +275,6 @@ A('tl.to("#k1,#k2",{scale:0.86,y:-60,duration:0.5,ease:"power2.inOut"},42.9);')
 rv("#k3", 43.56, 0.5); chars("#k4", 44.34, 0.04)
 S(40.28, "whip", 0.5); S(40.6, "top", 0.5); S(41.36, "whip", 0.5); S(41.7, "top", 0.5); S(44.34, "chime", 0.5)
 
-# END 45.39-46.89
-clip("end", VOICE_END, DURATION - VOICE_END, '<div class="olivebg"></div>'
-     f'<div class="t c boneclr" style="top:760px;font:400 150px/1 Instrument">{CH("n0","Frescura Body")}</div>'
-     f'<div class="t c eyebrow" style="top:950px;color:var(--stone)">{R("n1","Woman Glory &middot; Noche")}</div>')
-A(f'tl.fromTo("#end",{{clipPath:"polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"}},{{clipPath:"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",duration:0.5,ease:"expo.inOut"}},{VOICE_END});')
-chars("#n0", VOICE_END + 0.15, 0.03); rv("#n1", VOICE_END + 0.6)
-S(VOICE_END, "whip", 0.55); S(VOICE_END + 0.2, "chime", 0.5)
-
 # ---- remap the scenes (authored on the first cut) onto the faster voice
 def _ra(m):
     st, d = float(m.group(1)), float(m.group(2))
@@ -325,6 +318,91 @@ js = [re.sub(r",([\d.]+)\);$", lambda m: f",{_mv(float(m.group(1))):.3f});", l) 
 for c in sfx: c["t"] = _mv(c["t"])
 if _moves: print("scene boundaries moved off mid-word:", _moves)
 
+
+# ======================= OUTRO (part3.mov, authored on the final voice) =======================
+ALT = {"setiap": {"setiap", "siapa"}, "komen": {"komen", "kau"}}      # whisper's spellings of the same words
+def W(word, after=0.0):
+    ok = ALT.get(word, {word})
+    return next(w["s"] for w in words if w["s"] >= after and re.sub(r"[^a-z]", "", w["w"].lower()) in ok)
+SCENT_END = VOICE_END
+o1, o2, o3 = W("kalau", SCENT_END - 0.2), W("cuba", SCENT_END), W("dan", SCENT_END + 4)
+VOICE_END = REAL_END; DURATION = round(VOICE_END + 1.5, 2)
+def typed(sel, t, d=0.5, n=8):
+    js.append(f'tl.fromTo("{sel}",{{clipPath:"inset(0% 100% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:{d},ease:"steps({n})"}},{t:.2f});')
+BOOK = ('<svg viewBox="0 0 60 80" style="width:96px;height:128px"><path d="M8 6 H52 V74 L30 58 L8 74 Z" fill="none" stroke="#2b2a27" stroke-width="4" stroke-linejoin="round"/></svg>')
+SHAREI = '<svg viewBox="0 0 64 64" style="width:74px;height:74px"><path d="M38 10 L58 30 L38 50 V38 C24 38 14 42 6 54 C8 36 18 24 38 22 Z" fill="#f4f1ec"/></svg>'
+SEND = '<svg viewBox="0 0 48 48" style="width:52px;height:52px"><path d="M6 24 L42 8 L32 42 L22 28 Z" fill="#f4f1ec"/></svg>'
+HEARTP = "M150 250 C60 190 20 140 20 95 C20 55 50 30 85 30 C115 30 138 50 150 75 C162 50 185 30 215 30 C250 30 280 55 280 95 C280 140 240 190 150 250 Z"
+
+# O1: kalau korang sayangkan diri sendiri, jangan simpan tips ni untuk diri sendiri
+swipe("swo1", o1)
+clip("o1", o1, o2 - o1, '<div class="bonebg"></div><div class="paper"></div>'
+     f'<svg class="scrib" id="o1h" style="left:390px;top:300px;width:300px;height:270px" viewBox="0 0 300 270"><path d="{HEARTP}" stroke-dasharray="1600" stroke-dashoffset="1600"/></svg>'
+     f'<div class="t c eyebrow" style="top:640px">{R("o1a","Kalau korang")}</div>'
+     f'<div class="t c serif" style="top:700px;font-size:170px">{CH("o1b","sayangkan")}</div>'
+     f'<div class="t c serif-it clay" style="top:880px;font-size:120px">{R("o1c","diri sendiri")}</div>'
+     f'<div id="o1d" style="position:absolute;left:220px;top:1110px;transform:scale(1.35);transform-origin:0 0">{BOOK}</div>'
+     '<div id="o1e" style="position:absolute;left:200px;top:1190px;width:180px;height:9px;background:var(--clay);transform-origin:0 50%;transform:rotate(-30deg)"></div>'
+     f'<div class="t" style="top:1120px;left:410px;font:700 70px/1.12 Outfit">{R("o1f","jangan simpan")}<br>{R("o1g","tips ni")}</div>')
+js.append(f'tl.fromTo("#o1h path",{{strokeDashoffset:1600}},{{strokeDashoffset:0,duration:0.7,ease:"power2.out"}},{o1 + 0.05:.2f});')
+rv("#o1a", o1 + 0.02); chars("#o1b", W("sayangkan", o1), 0.04); rv("#o1c", W("diri", o1), 0.5)
+t_j = W("jangan", o1); fade("#o1d", t_j, 0.4, 20); rv("#o1f", t_j); rv("#o1g", W("tips", o1))
+js.append(f'tl.fromTo("#o1e",{{scaleX:0}},{{scaleX:1,duration:0.25,ease:"expo.out"}},{W("simpan", o1) + 0.15:.2f});')
+S(W("sayangkan", o1), "boom", 0.45); S(W("simpan", o1) + 0.15, "whip", 0.45)
+
+# O2: cuba share video ni supaya lebih ramai wanita sedar pentingnya menjaga diri -- share network
+swipe("swo2", o2)
+clip("bgo2", o2, o3 - o2, '<div class="bonebg"></div>', style="z-index:2")
+diag("v_phn", "assets/broll/phone.mp4", o2, o3 - o2, (0, 0, 1080, 1000))
+import math
+nodes, lines = "", ""
+for i in range(7):
+    ang = math.pi * (0.08 + 0.84 * i / 6); x = 540 + 400 * math.cos(ang); y = 1330 - 150 * math.sin(ang) * -1
+    y = 1330 + 150 * math.sin(ang) - 150
+    dx, dy = x - 540, y - 1330; L = math.hypot(dx, dy); deg = math.degrees(math.atan2(dy, dx))
+    lines += f'<div class="ln" style="position:absolute;left:540px;top:1330px;width:{L:.0f}px;height:3px;background:var(--stone);transform-origin:0 50%;transform:rotate({deg:.1f}deg)"></div>'
+    nodes += f'<div class="nd" style="position:absolute;left:{x - 34:.0f}px;top:{y - 34:.0f}px;width:68px;height:68px;border-radius:50%;background:{"var(--olive)" if i % 2 else "var(--clay)"};border:5px solid var(--bone)"></div>'
+clip("o2", o2, o3 - o2, f'<div class="t eyebrow" style="top:1040px">{R("o2a","Cuba")}</div>'
+     f'<div class="t serif" style="top:1090px;font-size:120px">{R("o2b","share video ni")}</div>'
+     + lines + nodes +
+     f'<div id="o2c" style="position:absolute;left:470px;top:1260px;width:140px;height:140px;border-radius:50%;background:var(--clay);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(43,42,39,.25)">{SHAREI}</div>')
+rv("#o2a", o2 + 0.02); rv("#o2b", W("share", o2), 0.5); pop("#o2c", W("share", o2) + 0.1, 0.45)
+t_r = W("ramai", o2)
+js.append(f'tl.fromTo("#o2 .ln",{{scaleX:0}},{{scaleX:1,duration:0.3,stagger:0.05,ease:"expo.out"}},{t_r - 0.2:.2f});')
+js.append(f'tl.fromTo("#o2 .nd",{{scale:0}},{{scale:1,duration:0.3,stagger:0.07,ease:"back.out(3)"}},{t_r:.2f});')
+for i in range(7): S(t_r + i * 0.07, "top", 0.35)
+
+# O3: setiap wanita berhak rasa yakin dan istimewa, komen yakin -- comment box
+swipe("swo3", o3)
+clip("o3", o3, VOICE_END - o3, '<div class="stonebg"></div><div class="paper"></div>'
+     f'<div class="t c eyebrow" style="top:420px">{R("o3a","Setiap wanita berhak rasa")}</div>'
+     f'<div class="t c serif" style="top:490px;font-size:190px">{CH("o3b","yakin")}</div>'
+     f'<div class="t c serif-it clay" style="top:700px;font-size:130px">{R("o3c","&amp; istimewa")}</div>'
+     '<div class="glass" id="o3d" style="left:90px;top:1060px;width:900px;height:170px;border-radius:85px;background:rgba(244,241,236,.85)"></div>'
+     '<div style="position:absolute;left:150px;top:1112px;font:500 46px Outfit;color:var(--mute)" id="o3e">Tulis komen&hellip;</div>'
+     '<div style="position:absolute;left:150px;top:1104px;font:800 58px Outfit;letter-spacing:6px;color:var(--char)" id="o3f">YAKIN</div>'
+     f'<div id="o3g" style="position:absolute;left:830px;top:1080px;width:130px;height:130px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center">{SEND}</div>'
+     '<div class="sticker" id="o3h" style="left:330px;top:1290px">komen &ldquo;yakin&rdquo;</div>')
+rv("#o3a", W("setiap", o3)); chars("#o3b", W("yakin", o3), 0.05); rv("#o3c", W("istimewa", o3), 0.5)
+t_k = W("komen", o3)
+js.append(f'tl.fromTo("#o3d",{{scaleX:0.3,opacity:0}},{{scaleX:1,opacity:1,duration:0.35,ease:"expo.out"}},{t_k - 0.3:.2f});')
+js.append(f'tl.fromTo("#o3e",{{opacity:0}},{{opacity:1,duration:0.15}},{t_k - 0.2:.2f});')
+js.append(f'tl.to("#o3e",{{opacity:0,duration:0.1}},{t_k + 0.1:.2f});')
+typed("#o3f", t_k + 0.15, 0.45, 5); pop("#o3g", t_k + 0.2, 0.35)
+js.append(f'tl.to("#o3g",{{scale:0.86,duration:0.08,yoyo:true,repeat:1}},{t_k + 0.7:.2f});')
+pop("#o3h", t_k + 0.85, 0.4, rot=-3)
+for i in range(5): S(t_k + 0.15 + i * 0.09, "click", 0.4)
+S(t_k + 0.7, "pop", 0.55); S(t_k + 0.85, "chime", 0.5)
+
+# END (after the outro)
+clip("end", VOICE_END, DURATION - VOICE_END, '<div class="olivebg"></div>'
+     f'<div class="t c boneclr" style="top:760px;font:400 150px/1 Instrument">{CH("n0","Frescura Body")}</div>'
+     f'<div class="t c eyebrow" style="top:950px;color:var(--stone)">{R("n1","Woman Glory &middot; Noche")}</div>')
+A(f'tl.fromTo("#end",{{clipPath:"polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"}},{{clipPath:"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",duration:0.5,ease:"expo.inOut"}},{VOICE_END});')
+chars("#n0", VOICE_END + 0.15, 0.03); rv("#n1", VOICE_END + 0.6)
+S(VOICE_END, "whip", 0.55); S(VOICE_END + 0.2, "chime", 0.5)
+
+
 # ---- story-style segment bar (after the face)
 segs = "".join(f'<div class="sg"><i id="sg{i}"></i></div>' for i in range(len(SECTIONS) - 1))
 clip("chrome", T(0.64), DURATION - T(0.64), f'<div id="story">{segs}</div>', style="z-index:8")
@@ -336,7 +414,7 @@ for i in range(len(SECTIONS) - 1):
 _tops = []
 for h in html:
     m = re.search(r'id="([^"]+)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
-    if m and re.match(r'^(s\d|bg\w*|t\d|m\d|fct|prd|sc|end|v_face|v_oce|v_wom|v_flw|v_bub|v_spl)$', m.group(1)):
+    if m and re.match(r'^(s\d|bg\w*|t\d|m\d|o\d|fct|prd|sc|end|v_face|v_oce|v_wom|v_flw|v_bub|v_spl|v_phn)$', m.group(1)):
         _tops.append((m.group(1), round(float(m.group(2)) + float(m.group(3)), 3)))
 _bad = [(i, e, w["w"]) for i, e in _tops for w in words if w["s"] + 0.04 < e < w["e"] - 0.04 and e < VOICE_END - 0.05]
 if _bad: print("WARNING scene ends mid-word:", _bad)

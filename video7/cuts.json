@@ -79,10 +79,25 @@
    53.95,
    57.05,
    "untuk menjadikan rutin mandi lebih istimewa."
+  ],
+  [
+   70.76,
+   75.02,
+   "(part3.mov) Kalau korang sayangkan diri sendiri, jangan simpan tips ni untuk diri sendiri."
+  ],
+  [
+   75.38,
+   80.37,
+   "(part3.mov) Cuba share video ni supaya lebih ramai wanita sedar pentingnya menjaga diri."
+  ],
+  [
+   80.74,
+   86.97,
+   "(part3.mov) Dan kalau korang percaya setiap wanita berhak rasa yakin dan istimewa, komen yakin. (repeat 'komen yakin' + 'Ok' cut)"
   ]
  ],
  "keep_gap": 0.06,
  "quiet_db": -36,
  "snap_win": 0.02,
- "source_note": "src/voice_sources.wav = main.mov audio padded to 58.0 s + part2.mov (scent names re-recorded)"
+ "source_note": "src/voice_sources.wav = main.mov audio padded to 58.0 s + part2.mov (scent names) padded to 12.0 s + part3.mov (outro/CTA) at 70.0 s"
 }
