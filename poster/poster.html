@@ -1,0 +1,244 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Frescura Body KL Poster</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--gold1:#fff4d6;--gold2:#e9c77b;--gold3:#b8893a;--gold4:#7a5520;--ink:#07060d}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;background:var(--ink);overflow:hidden}
+#poster{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Montserrat,sans-serif;color:#fff}
+#sky{position:absolute;inset:0}
+.gold{background:linear-gradient(180deg,var(--gold1) 0%,var(--gold2) 38%,var(--gold3) 70%,#f3dca0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.layer{position:absolute;left:0;width:100%;text-align:center}
+
+/* top brand */
+#brand{top:96px}
+#brand .row{display:flex;align-items:center;justify-content:center;gap:22px}
+#brand .line{width:120px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold2))}
+#brand .line.r{background:linear-gradient(270deg,transparent,var(--gold2))}
+#brand .name{font-family:Cinzel;font-weight:600;font-size:34px;letter-spacing:14px;padding-left:14px}
+#brand .sub{margin-top:10px;font-size:15px;letter-spacing:9px;color:#d9c9a3;font-weight:500}
+
+/* headline */
+#head{top:205px}
+#head .kicker{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:50px;color:#f4e3bb;text-shadow:0 2px 18px rgba(0,0,0,.8)}
+#head h1{font-family:Cinzel;font-weight:700;font-size:118px;line-height:1;letter-spacing:6px;margin-top:6px;filter:drop-shadow(0 6px 22px rgba(0,0,0,.75))}
+#head h2{font-family:Cinzel;font-weight:600;font-size:66px;line-height:1.05;letter-spacing:12px;padding-left:12px;color:#fff;text-shadow:0 4px 22px rgba(0,0,0,.85)}
+#ribbon{display:inline-flex;align-items:center;gap:18px;margin-top:22px;padding:14px 40px;background:linear-gradient(90deg,#9a6c26,#f0d28c 30%,#fff1c9 50%,#f0d28c 70%,#9a6c26);color:#1a1206;font-weight:700;font-size:30px;letter-spacing:5px;box-shadow:0 10px 30px rgba(0,0,0,.6),0 0 40px rgba(233,199,123,.25)}
+#ribbon i{font-style:normal;font-size:16px;opacity:.7}
+
+/* product */
+#bottles{position:absolute;left:418px;top:742px;height:740px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.75)) drop-shadow(0 0 60px rgba(255,214,140,.18))}
+#reflect{position:absolute;left:418px;top:1482px;height:740px;transform:scaleY(-1);transform-origin:top;opacity:.32;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9) 0%,transparent 22%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9) 0%,transparent 22%)}
+#halo{position:absolute;left:340px;top:720px;width:660px;height:820px;background:radial-gradient(closest-side,rgba(255,215,150,.28),rgba(255,190,120,.08) 60%,transparent);}
+
+/* foam medallion */
+#foam{position:absolute;left:40px;top:880px;width:340px;text-align:center}
+#foam .ring{position:relative;width:340px;height:340px;border-radius:50%;padding:7px;background:conic-gradient(from 200deg,#7a5520,#f6dfa4,#b8893a,#fff2cc,#8a6226,#f6dfa4,#7a5520);box-shadow:0 20px 50px rgba(0,0,0,.75),0 0 50px rgba(233,199,123,.25)}
+#foam .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid #0b0910}
+#foam .tag{position:absolute;right:-6px;top:4px;width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3cf,#e2bb6a 55%,#9a6c26);color:#1a1206;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:17px;letter-spacing:1px;line-height:1.15;box-shadow:0 8px 20px rgba(0,0,0,.6);transform:rotate(-10deg)}
+#foam .tag b{font-family:Cinzel;font-size:26px}
+#foam .caps{position:relative;margin-top:16px;padding:14px 0 16px;border-radius:18px;background:rgba(8,6,12,.72);border:1px solid rgba(233,199,123,.35);backdrop-filter:blur(6px)}
+#foam .cap1{font-family:Cinzel;font-weight:700;font-size:31px;letter-spacing:2px;line-height:1.15;text-shadow:0 3px 14px rgba(0,0,0,.9)}
+#foam .cap2{margin-top:8px;font-family:'Cormorant Garamond';font-style:italic;font-size:28px;color:#f1deb2;text-shadow:0 3px 14px rgba(0,0,0,.9)}
+
+/* floor */
+#floor{position:absolute;left:0;top:1470px;width:100%;height:450px;background:linear-gradient(180deg,rgba(20,14,24,.0) 0%,rgba(10,8,14,.85) 6%,#08070c 40%,#050409 100%)}
+#floorline{position:absolute;left:0;top:1478px;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold3) 20%,var(--gold1) 50%,var(--gold3) 80%,transparent);box-shadow:0 0 18px rgba(255,220,150,.6)}
+
+/* benefits */
+#benefits{position:absolute;top:1560px;left:60px;right:60px;display:flex;justify-content:space-between}
+.b{width:220px;text-align:center}
+.b svg{width:78px;height:78px;display:block;margin:0 auto 12px}
+.b .t{font-weight:700;font-size:23px;letter-spacing:2.5px;color:#f6e6c0}
+.b .s{font-size:17px;letter-spacing:1px;color:#b9ab8f;margin-top:4px}
+.sep{width:1px;background:linear-gradient(180deg,transparent,rgba(233,199,123,.6),transparent)}
+
+/* bottom */
+#variants{top:1760px;font-size:19px;letter-spacing:4px;color:#d9c9a3}
+#variants b{color:#fff;font-weight:700}
+#variants .dot{color:var(--gold2);padding:0 14px}
+#cta{top:1806px}
+#cta span{display:inline-block;padding:15px 46px;border:2px solid var(--gold2);border-radius:999px;font-weight:700;font-size:25px;letter-spacing:4px;color:var(--gold1);background:rgba(233,199,123,.08);box-shadow:0 0 26px rgba(233,199,123,.25)}
+</style></head>
+<body>
+<div id="poster">
+  <svg id="sky" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+
+  <div class="layer" id="brand">
+    <div class="row"><div class="line"></div><div class="name gold">FRESCURA BODY</div><div class="line r"></div></div>
+    <div class="sub">KUALA LUMPUR · LUXURY BATH COLLECTION</div>
+  </div>
+
+  <div class="layer" id="head">
+    <div class="kicker">Kemewahan kota, dalam setiap buih</div>
+    <h1 class="gold">FOAMING</h1>
+    <h2>BODY SHOWER</h2>
+    <div id="ribbon">DENGAN GARAM LAUT <i>◆</i> OCEAN SALT</div>
+  </div>
+
+  <div id="halo"></div>
+  <div id="floor"></div>
+  <img id="reflect" src="assets/bottles.png">
+  <div id="floorline"></div>
+  <img id="bottles" src="assets/bottles.png">
+
+  <div id="foam">
+    <div class="ring"><img src="assets/foam.jpg"></div>
+    <div class="tag"><b>1×</b>TEKAN</div>
+    <div class="caps"><div class="cap1">SEKALI TEKAN,<br><span class="gold">TERUS BUIH!</span></div>
+    <div class="cap2">Buih lembut terus dari pump</div></div>
+  </div>
+
+  <div id="benefits">
+    <div class="b">
+      <svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="2.6" stroke-linejoin="round">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2cc"/><stop offset="1" stop-color="#c3923f"/></linearGradient></defs>
+        <path d="M40 8 L66 23 L66 53 L40 68 L14 53 L14 23 Z"/><path d="M14 23 L40 38 L66 23 M40 38 L40 68"/>
+        <path d="M8 74 Q20 68 32 74 T56 74 T80 74" stroke-width="2"/>
+      </svg>
+      <div class="t">GARAM LAUT</div><div class="s">Ocean Salt</div>
+    </div>
+    <div class="sep"></div>
+    <div class="b">
+      <svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="2.6" stroke-linecap="round">
+        <path d="M40 70 C40 50 40 34 40 14"/><path d="M40 52 C24 50 16 38 18 24 C32 26 40 36 40 52 Z"/><path d="M40 44 C56 42 64 30 62 16 C48 18 40 28 40 44 Z"/>
+      </svg>
+      <div class="t">AROMATERAPI</div><div class="s">Aromatherapy</div>
+    </div>
+    <div class="sep"></div>
+    <div class="b">
+      <svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="2.6">
+        <circle cx="32" cy="46" r="20"/><circle cx="58" cy="28" r="11"/><circle cx="60" cy="58" r="7"/><circle cx="26" cy="14" r="5"/><path d="M22 40 Q24 32 32 30" stroke-linecap="round"/>
+      </svg>
+      <div class="t">BUIH LEMBUT</div><div class="s">Gentle Foaming</div>
+    </div>
+    <div class="sep"></div>
+    <div class="b">
+      <svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="2.6" stroke-linejoin="round">
+        <path d="M40 8 L46 32 L70 40 L46 48 L40 72 L34 48 L10 40 L34 32 Z"/><path d="M64 10 L66 16 L72 18 L66 20 L64 26 L62 20 L56 18 L62 16 Z" stroke-width="2"/>
+      </svg>
+      <div class="t">WANGI MEWAH</div><div class="s">Soft · Fragrante</div>
+    </div>
+  </div>
+
+  <div class="layer" id="variants"><b>NOCHE</b> Midnight Fantasy<span class="dot">◆</span><b>WOMAN GLORY</b> Bombshell<span class="dot">◆</span>500ml</div>
+  <div class="layer" id="cta"><span>ORDER SEKARANG · BAKUL KUNING</span></div>
+</div>
+
+<script>
+// ---------- KL night skyline (original illustration) ----------
+const NS='http://www.w3.org/2000/svg', svg=document.getElementById('sky');
+let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+const el=(t,a,p=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e};
+const BASE=1480;
+
+const defs=el('defs',{});
+defs.innerHTML=`
+<linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#05040c"/><stop offset=".35" stop-color="#140d2a"/>
+  <stop offset=".62" stop-color="#3a1d3e"/><stop offset=".78" stop-color="#7a3f3a"/><stop offset=".86" stop-color="#c47a45"/><stop offset="1" stop-color="#2a1610"/>
+</linearGradient>
+<linearGradient id="petro" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f6250"/><stop offset=".35" stop-color="#fff3d2"/><stop offset=".55" stop-color="#e9d3a0"/><stop offset="1" stop-color="#4a3d2c"/>
+</linearGradient>
+<linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#1b1a2b"/><stop offset=".5" stop-color="#2f2c44"/><stop offset="1" stop-color="#121120"/>
+</linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#3b5170"/><stop offset=".5" stop-color="#1c2638"/><stop offset="1" stop-color="#0d121c"/>
+</linearGradient>
+<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#c47a45" stop-opacity="0"/><stop offset=".7" stop-color="#e3a060" stop-opacity=".35"/><stop offset="1" stop-color="#f0b070" stop-opacity=".55"/>
+</linearGradient>
+<radialGradient id="moon"><stop offset="0" stop-color="#fff6dc"/><stop offset=".25" stop-color="#ffe9b5" stop-opacity=".55"/><stop offset="1" stop-color="#ffe0a0" stop-opacity="0"/></radialGradient>
+<radialGradient id="bokeh"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".9"/><stop offset=".6" stop-color="#ffcf80" stop-opacity=".35"/><stop offset="1" stop-color="#ffcf80" stop-opacity="0"/></radialGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="3"/></filter>
+<linearGradient id="topshade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05040a" stop-opacity=".95"/><stop offset="1" stop-color="#05040a" stop-opacity="0"/></linearGradient>`;
+
+el('rect',{x:0,y:0,width:1080,height:1920,fill:'url(#skyg)'});
+// stars
+for(let i=0;i<140;i++){el('circle',{cx:rnd()*1080,cy:rnd()*760,r:rnd()*1.4+.3,fill:'#fff',opacity:(rnd()*.6+.2).toFixed(2)})}
+// moon glow
+el('circle',{cx:1000,cy:640,r:120,fill:'url(#moon)',opacity:.45});
+el('circle',{cx:1000,cy:640,r:20,fill:'#fff3d6',opacity:.8,filter:'url(#soft)'});
+
+// generic buildings w/ windows
+function building(x,w,h,fill,winC,winP,layerOp=1){
+  const g=el('g',{opacity:layerOp});
+  el('rect',{x,y:BASE-h,width:w,height:h,fill},g);
+  const cw=6,ch=8,gx=5,gy=8;
+  for(let yy=BASE-h+12;yy<BASE-10;yy+=ch+gy) for(let xx=x+5;xx<x+w-cw-3;xx+=cw+gx)
+    if(rnd()<winP) el('rect',{x:xx,y:yy,width:cw,height:ch,fill:winC,opacity:(rnd()*.6+.4).toFixed(2)},g);
+  return g;
+}
+// far layer
+for(let x=-20;x<1100;){const w=40+rnd()*70,h=260+rnd()*330;building(x,w,h,'#1a1530','#f6c97a',.18,.75);x+=w+rnd()*6}
+
+// ---- Merdeka-118-like faceted spire tower (centre, mostly behind bottles)
+(function(){const cx=640,top=640,g=el('g',{});
+  el('path',{d:`M${cx-70} ${BASE} L${cx-58} ${top+220} L${cx-30} ${top+60} L${cx} ${top} L${cx+30} ${top+60} L${cx+58} ${top+220} L${cx+70} ${BASE} Z`,fill:'url(#glass)'},g);
+  for(let i=-3;i<=3;i++) el('path',{d:`M${cx+i*9} ${top+40+Math.abs(i)*12} L${cx+i*20} ${BASE}`,stroke:'#8fb3d9',"stroke-opacity":.25,"stroke-width":1.2},g);
+  el('path',{d:`M${cx} ${top} L${cx} ${top-150}`,stroke:'#dfe9ff',"stroke-width":3,filter:'url(#glow)'},g);
+  el('circle',{cx,cy:top-150,r:3.5,fill:'#ff5a5a',filter:'url(#glow)'},g);
+})();
+
+// ---- Exchange-106-like tower (right)
+(function(){const x=870,w=100,top=620,g=el('g',{});
+  el('path',{d:`M${x} ${BASE} L${x} ${top+40} L${x+w*0.5} ${top} L${x+w} ${top+28} L${x+w} ${BASE} Z`,fill:'url(#glass)'},g);
+  for(let yy=top+50;yy<BASE;yy+=14) el('line',{x1:x+4,y1:yy,x2:x+w-4,y2:yy,stroke:'#f3c983',"stroke-opacity":(.18+rnd()*.25).toFixed(2),"stroke-width":2},g);
+  el('path',{d:`M${x} ${top+40} L${x+w*0.5} ${top} L${x+w} ${top+28}`,stroke:'#fff0c8',"stroke-width":3,fill:'none',filter:'url(#glow)'},g);
+  el('line',{x1:x+w*0.5,y1:top,x2:x+w*0.5,y2:BASE,stroke:'#fff0c8',"stroke-opacity":.35,"stroke-width":2},g);
+})();
+
+// ---- Menara-KL-like telecom tower
+(function(){const cx=392,g=el('g',{});
+  el('path',{d:`M${cx-16} ${BASE} L${cx-9} 860 L${cx+9} 860 L${cx+16} ${BASE} Z`,fill:'url(#tower)'},g);
+  el('path',{d:`M${cx-22} 860 L${cx+22} 860 L${cx+40} 830 L${cx+44} 800 L${cx+36} 778 L${cx-36} 778 L${cx-44} 800 L${cx-40} 830 Z`,fill:'#2a2640'},g);
+  el('rect',{x:cx-42,y:800,width:84,height:6,fill:'#ffd38a',filter:'url(#glow)'},g);
+  el('rect',{x:cx-36,y:818,width:72,height:4,fill:'#ffe6b5',opacity:.8},g);
+  el('path',{d:`M${cx-26} 778 L${cx-14} 752 L${cx+14} 752 L${cx+26} 778 Z`,fill:'#2f2b48'},g);
+  el('rect',{x:cx-5,y:690,width:10,height:62,fill:'#3a3654'},g);
+  el('line',{x1:cx,y1:690,x2:cx,y2:610,stroke:'#e6e1ff',"stroke-width":3,filter:'url(#glow)'},g);
+  el('circle',{cx,cy:610,r:4,fill:'#ff5a5a',filter:'url(#glow)'},g);
+})();
+
+// ---- Twin-tower landmark (left), glowing champagne-silver
+function twin(cx,w,top){
+  const g=el('g',{filter:'url(#glow)'}),H=BASE-top;
+  const tiers=[[0,1],[.55,.9],[.66,.8],[.75,.68],[.82,.56],[.87,.42],[.91,.3]];
+  let d='';
+  for(let i=0;i<tiers.length;i++){
+    const [f,s]=tiers[i],nf=i+1<tiers.length?tiers[i+1][0]:.95;
+    const y0=BASE-H*f,y1=BASE-H*nf,hw=w*s/2;
+    d+=`M${cx-hw} ${y0} L${cx-hw} ${y1} L${cx+hw} ${y1} L${cx+hw} ${y0} Z `;
+  }
+  d+=`M${cx-w*.12} ${BASE-H*.95} L${cx} ${BASE-H*.985} L${cx+w*.12} ${BASE-H*.95} Z`;
+  el('path',{d,fill:'url(#petro)'},g);
+  // vertical ribs
+  for(let i=-3;i<=3;i++){const xx=cx+i*w*.13;el('line',{x1:xx,y1:BASE-H*.86*(1-Math.abs(i)*.06),x2:xx,y2:BASE,stroke:'#7d6a4c',"stroke-opacity":.55,"stroke-width":1.6},g)}
+  // ring lines
+  for(let f=.05;f<.86;f+=.035){const s=f<.55?1:f<.66?.9:f<.75?.8:.68;el('line',{x1:cx-w*s/2,x2:cx+w*s/2,y1:BASE-H*f,y2:BASE-H*f,stroke:'#fff8e6',"stroke-opacity":.35,"stroke-width":1.2},g)}
+  el('line',{x1:cx,y1:BASE-H*.985,x2:cx,y2:top-40,stroke:'#fffaf0',"stroke-width":3},g);
+  el('circle',{cx,cy:top-40,r:2.5,fill:'#fff'},g);
+  return H;
+}
+const pTop=560; twin(98,84,pTop); const H=twin(262,84,pTop);
+// sky bridge
+(function(){const g=el('g',{filter:'url(#glow)'});const y=BASE-H*.48;
+  el('rect',{x:140,y:y-10,width:80,height:12,fill:'#f4e3bb'},g);
+  el('path',{d:`M180 ${y+2} L148 ${y+90} M180 ${y+2} L212 ${y+90}`,stroke:'#e9d3a0',"stroke-width":4},g);
+})();
+
+// near layer
+for(let x=-30;x<1110;){const w=50+rnd()*90,h=120+rnd()*230;building(x,w,h,'#0c0a14','#ffcf85',.28,1);x+=w+rnd()*4}
+// city haze
+el('rect',{x:0,y:1150,width:1080,height:340,fill:'url(#haze)'});
+// bokeh
+for(let i=0;i<34;i++){const r=6+rnd()*26;el('circle',{cx:rnd()*1080,cy:1150+rnd()*330,r,fill:'url(#bokeh)',opacity:(.25+rnd()*.5).toFixed(2)})}
+// top shade for text legibility
+el('rect',{x:0,y:0,width:1080,height:640,fill:'url(#topshade)'});
+document.fonts.ready.then(()=>document.body.dataset.ready=1);
+</script>
+</body></html>
