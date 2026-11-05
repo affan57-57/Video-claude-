@@ -105,7 +105,7 @@ BASKET = ('<svg viewBox="0 0 120 110"><path d="M38 40 L52 10 M82 40 L68 10" stro
 CHECK = ('<svg viewBox="0 0 100 100"><path id="ck" d="M22 52 L42 72 L78 32" stroke="#f3eee6" stroke-width="9" fill="none" '
          'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="90" stroke-dashoffset="90"/></svg>')
 SPARK = ('<svg viewBox="0 0 100 100"><path d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42 Z" fill="#c9a24a"/></svg>')
-FACE0, FACE1 = 4.80, 6.80
+FACE0, FACE1 = 4.80, 5.70     # client: face under 1 s
 
 # ---- S0 0.00-2.85: HOOK (flash-forward) -- "Satu bilik tidur tu jadi wangi"
 full("v_hotel", "assets/broll/hotel.mp4", 0.0, 2.85, 1.15, 1.0)
@@ -128,15 +128,23 @@ clip("s0b", 2.85, 1.95, '<div class="shade" style="background:rgba(10,8,6,.30)">
 rv("#l0", 2.95); rv("#l1", 3.64, 0.5); rv("#l2", 4.24, 0.5); line("#l3", 4.3)
 S(3.64, "boom", 0.5)
 
-# ---- S1 4.80-6.80: the only face shot (2.0 s) -- "Korang, aku ada satu perangai tau"
+# ---- S1 4.80-5.70: the only face shot (0.9 s) -- "Korang, aku..."
 html.append(f'<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data-start="{FACE0}" data-duration="{FACE1-FACE0:.2f}" data-media-start="0" muted playsinline style="z-index:6"></video>')
 A(f'tl.fromTo("#v_face",{{scale:1.12}},{{scale:1.0,duration:0.45,ease:"expo.out"}},{FACE0});')
 A(f'tl.fromTo("#v_face",{{clipPath:"inset(0% 0% 0% 100%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:0.3,ease:"expo.out"}},{FACE0});')
-clip("s1", FACE0, FACE1 - FACE0, '<div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%)"></div>'
-     f'<div class="t c kick light" style="top:1330px;letter-spacing:12px">{R("f0","Aku ada satu")}</div>'
-     f'<div class="t c light" style="top:1390px;font:200 140px/1 Montserrat;letter-spacing:-3px">{R("f1","PERANGAI")}</div>', style="z-index:7")
-rv("#f0", 5.3); rv("#f1", 5.78, 0.5)
+clip("s1", FACE0, FACE1 - FACE0, '<div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)"></div>'
+     f'<div class="t c light" style="top:1380px;font:200 130px/1 Montserrat;letter-spacing:-3px">{R("f0","KORANG,")}</div>', style="z-index:7")
+rv("#f0", 4.85, 0.45)
 S(4.8, "whip", 0.5)
+
+# ---- S1b 5.70-6.80: "...ada satu PERANGAI tau" -- kinetic type
+clip("s1b", FACE1, 6.80 - FACE1, '<div class="shade" style="background:var(--ink)"></div>'
+     f'<div class="t c kick" style="top:700px;color:rgba(255,255,255,.7);letter-spacing:14px">{R("f1","Aku ada satu")}</div>'
+     f'<div class="t c" style="top:770px;font:200 170px/1 Montserrat;letter-spacing:-4px;color:#fff">{R("f2","PERANGAI")}</div>'
+     f'<div class="t c serif-it" style="top:960px;font-size:110px;color:#f2d388">{R("f3","tau!")}</div>')
+A(f'tl.fromTo("#s1b",{{clipPath:"inset(100% 0% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:0.35,ease:"expo.out"}},{FACE1});')
+rv("#f1", 5.72); rv("#f2", 5.78, 0.45); rv("#f3", 6.24, 0.4)
+S(5.7, "whip", 0.5); S(5.78, "boom", 0.45)
 
 # ---- S2 6.80-10.85: mak selalu bising -- "mengada-ngada"
 clip("s2", 6.80, 4.05, '<div class="ivory grid"></div>'

@@ -4,7 +4,7 @@
 
 - Asal: 2 klip disambung (59.0 s + 6.5 s = 65.5 s). Selepas edit: **52.2 s** (50.7 s suara + 1.5 s kad penutup).
 - Gaya: minimalist luxury, rancak (ikut Video 4 v3 yang diluluskan). Animasi laju dengan zoom punch, bunyi "top" pada setiap teks dan "whip" pada setiap peralihan, kilatan pada impak. Muzik lembut 90 bpm (~−26 dB di bawah suara), SFX kuat, mix −13 LUFS.
-- Muka: **2.0 s sahaja** (4.80–6.80 s, "Korang, aku ada satu perangai tau"). Hanya 4 saat pertama rakaman yang pandang kamera; selebihnya telefon terdongak ke siling, jadi bahagian itu diganti sepenuhnya dengan B-roll dan motion graphics.
+- Muka: **0.9 s sahaja** (4.80–5.70 s, "Korang, aku…"; ikut permintaan, bawah 1 saat). Diambil dari rakaman 1.3–2.2 s di mana mata pandang tepat ke lensa (berniqab, jadi tiada isu lip-sync). Hanya 4 saat pertama rakaman yang pandang kamera; selebihnya telefon terdongak ke siling, jadi diganti sepenuhnya dengan B-roll dan motion graphics.
 - Suara: lokasi rakaman bising (lantai bunyi ~−30 dBFS). Segmen disamakan level, kemudian RNNoise + FFT denoise, noise gate, EQ (kehangatan, potong "box", presence, air), de-esser, compressor ringan, exciter, dan gandaan tetap ke −14 LUFS.
 
 ## Apa yang dibuang / dipindah
@@ -23,7 +23,8 @@
 |---|---|---|---|
 | 0.00–2.85 | Satu bilik tidur tu jadi wangi | B-roll bilik hotel + "jadi WANGI" + kilauan | boom, shimmer |
 | 2.85–4.80 | Terus auto macam luxury hotel | Koridor hotel mewah + "LUXURY hotel" emas | boom |
-| 4.80–6.80 | Korang, aku ada satu perangai tau | **Muka** + "PERANGAI" | whip |
+| 4.80–5.70 | Korang, aku… | **Muka (0.9 s)** + "KORANG," | whip |
+| 5.70–6.80 | …ada satu perangai tau | Kinetic type gelap: "PERANGAI tau!" | whip, boom |
 | 6.80–10.85 | Mak aku selalu bising… mengada-ngada | "SELALU BISING" + bubble "MAK: Mengada-ngada!" (taip, bergegar) + "!!" | boom, click |
 | 10.85–15.60 | Sebab apa? Nak tidur, badan mesti wangi semerbak | "SEBAB APA?" + bilik tidur senja + lilin | boom, shimmer |
 | 15.60–18.85 | Body yang ada standard | "BODY yang ada" + lencana STANDARD ✓ | boom, chime |

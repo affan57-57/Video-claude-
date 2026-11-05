@@ -23,7 +23,7 @@ for name, (i, ss, d, fx, W, H) in C.items():
           f"crop={W}:{H}:(iw-{W})*{fx}:(ih-{H})/2,setsar=1,{G}")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(ss), "-t", str(d), "-i", f, "-vf", vf, *enc, f"{out}/{name}.mp4"], check=True)
     print("ok", name)
-# 2.0 s of face, front camera, looking into the lens: "Korang, aku ada satu perangai tau". Selfie -> hflip.
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "0.49", "-t", "2.02", "-i", main, "-vf",
+# 0.9 s of face (client: under 1 s), front camera, eyes into the lens (src 1.3-2.2 s; niqab, so no lip-sync needed). Selfie -> hflip.
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "1.30", "-t", "0.92", "-i", main, "-vf",
                 f"hflip,scale=1080:1920:flags=lanczos,setsar=1,{G}", *enc, f"{out}/face.mp4"], check=True)
 print("ok face")
