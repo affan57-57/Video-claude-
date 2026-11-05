@@ -1,0 +1,71 @@
+/* Video 10 -- "Lilac Silk": perfume-advert minimalist luxury (Italiana high-fashion display + Urbanist;
+   silk lilac-grey / pearl / night ink / lilac / rose (Woman Glory) / violet (Noche); yellow only for the shop bag) */
+@font-face { font-family: "Italiana"; src: url("assets/fonts/Italiana.ttf"); }
+@font-face { font-family: "Urbanist"; src: url("assets/fonts/Urbanist.ttf"); font-weight: 100 900; }
+
+:root {
+  --silk: #ebe7ef;
+  --pearl: #faf8fb;
+  --ink: #1d1a2c;
+  --lilac: #8f80bf;
+  --haze: #c9c0dc;
+  --rose: #b02a45;
+  --violet: #5a3f9e;
+  --bag: #f6c445;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--silk); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--silk);
+  color: var(--ink); font-family: "Urbanist", sans-serif; }
+.clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+video.bg, img.bg { object-fit: cover; z-index: 1; }
+div.clip { z-index: 5; }
+.silkbg { position: absolute; inset: 0; background:
+  radial-gradient(70% 40% at 20% 15%, rgba(255,255,255,.9) 0%, transparent 70%),
+  radial-gradient(80% 50% at 90% 85%, rgba(201,192,220,.8) 0%, transparent 70%),
+  linear-gradient(160deg, var(--pearl) 0%, var(--silk) 55%, #ddd6e8 100%); }
+.inkbg { position: absolute; inset: 0; background: radial-gradient(110% 70% at 50% 30%, #2d2846 0%, var(--ink) 70%); }
+.veil { position: absolute; inset: 0; }
+.sheen { position: absolute; inset: -20%; background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%); }
+
+/* type */
+.t { position: absolute; left: 80px; right: 80px; }
+.c { text-align: center; }
+.rv { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .12em; }
+.rv > span { display: inline-block; }
+.ch { display: inline-block; white-space: pre; }
+.it { font-family: "Italiana"; font-weight: 400; letter-spacing: 1px; }
+.lab { font: 800 30px "Urbanist"; letter-spacing: 10px; text-transform: uppercase; color: var(--lilac); }
+.rose { color: var(--rose); } .violet { color: var(--violet); } .pearl { color: var(--pearl); } .ink { color: var(--ink); } .lilac { color: var(--lilac); }
+
+/* frames */
+.frame { position: absolute; overflow: hidden; border-radius: 36px; box-shadow: 0 34px 80px rgba(29,26,44,.25); }
+.frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tag { position: absolute; display: inline-flex; align-items: center; gap: 14px; padding: 18px 36px; border-radius: 999px;
+  background: var(--pearl); color: var(--ink); font: 800 36px "Urbanist"; letter-spacing: 4px; white-space: nowrap;
+  box-shadow: 0 14px 34px rgba(29,26,44,.16); }
+.tag.r { background: var(--rose); color: var(--pearl); } .tag.v { background: var(--violet); color: var(--pearl); } .tag.k { background: var(--ink); color: var(--pearl); }
+.bub { position: absolute; padding: 26px 40px; border-radius: 40px 40px 40px 10px; background: var(--pearl); font: 700 44px/1.2 "Urbanist";
+  box-shadow: 0 16px 40px rgba(29,26,44,.18); white-space: nowrap; }
+.bub.rt { border-radius: 40px 40px 10px 40px; }
+.av { position: absolute; width: 74px; height: 74px; border-radius: 50%; }
+
+/* roman-numeral rail: RAHSIA I / II / III */
+#rail { position: absolute; z-index: 8; top: 0; bottom: 0; left: 26px; width: 70px; display: flex; flex-direction: column; justify-content: center; gap: 34px; }
+#rail .rn { font: 400 46px "Italiana"; color: rgba(29,26,44,.25); text-align: center; position: relative; }
+#rail .rn::after { content: ""; position: absolute; left: 50%; top: 58px; width: 2px; height: 22px; background: rgba(29,26,44,.15); }
+#rail .rn:last-child::after { display: none; }
+#rail.lite .rn { color: rgba(250,248,251,.35); }
+
+/* captions: a pearl label card; each word fills ink left-to-right as it is spoken */
+.cap { z-index: 9; inset: auto; top: 1560px; left: 50px; width: 980px; height: auto; text-align: center; }
+.cap .ln { display: inline-block; padding: 14px 36px 18px; border-radius: 22px; background: rgba(250,248,251,.9);
+  border: 2px solid rgba(143,128,191,.45); box-shadow: 0 14px 36px rgba(29,26,44,.18); font: 800 70px/1.15 "Urbanist"; letter-spacing: -1px; }
+.cap .w { display: inline-block; margin: 0 5px; color: transparent;
+  background: linear-gradient(90deg, var(--ink) 0 50%, rgba(29,26,44,.22) 50% 100%); background-size: 200% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; }
+.cap .w.k { background-image: linear-gradient(90deg, var(--rose) 0 50%, rgba(176,42,69,.25) 50% 100%); }
+.cap .w.l { background-image: linear-gradient(90deg, var(--violet) 0 50%, rgba(90,63,158,.25) 50% 100%); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 9; pointer-events: none; }
+.pv { position: absolute; z-index: 10; top: 40px; right: 40px; font: 700 16px "Urbanist"; letter-spacing: 4px;
+  padding: 4px 10px; background: rgba(0,0,0,.55); color: #fff; }
