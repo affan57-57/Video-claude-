@@ -1,0 +1,85 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Frescura Dark Studio</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* Dark luxury studio product image, 1:1 for TikTok Shop.
+   Variant via query: studio_dark.html?v=duo | noche | wg */
+:root{--glowA:rgba(150,90,255,.55);--glowB:rgba(255,40,70,.5);--cyan:#7fe9ff}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:#040509}
+#poster{position:relative;width:1080px;height:1080px;overflow:hidden;font-family:Montserrat,sans-serif;color:#e9eef5;
+  background:radial-gradient(70% 60% at 50% 42%,#1a1d29 0%,#0b0c13 55%,#040509 100%)}
+/* overhead spotlight cone */
+#cone{position:absolute;left:50%;top:-120px;width:900px;height:1100px;transform:translateX(-50%);
+  background:radial-gradient(50% 100% at 50% 0%,rgba(190,215,255,.16),rgba(190,215,255,.05) 55%,transparent 75%);filter:blur(8px)}
+#rays{position:absolute;inset:0;opacity:.35;mix-blend-mode:screen;filter:blur(18px);
+  background:conic-gradient(from 168deg at 50% -8%,transparent 0deg,rgba(160,200,255,.18) 6deg,transparent 12deg,transparent 16deg,rgba(160,200,255,.12) 20deg,transparent 26deg)}
+/* glossy black floor */
+#floor{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#07080d 0%,#030306 100%)}
+#horizon{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(127,233,255,.35) 30%,rgba(255,255,255,.55) 50%,rgba(127,233,255,.35) 70%,transparent);box-shadow:0 0 14px rgba(127,233,255,.35)}
+#pool{position:absolute;left:50%;transform:translateX(-50%);width:820px;height:150px;border-radius:50%;background:radial-gradient(closest-side,rgba(200,220,255,.16),transparent)}
+#grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:screen}
+
+.glow{position:absolute;border-radius:50%;filter:blur(60px);mix-blend-mode:screen}
+.bottle{position:absolute}
+.bottle img{display:block;height:100%}
+.bottle .main{filter:drop-shadow(0 0 1px rgba(200,235,255,.3)) drop-shadow(0 0 22px rgba(127,233,255,.10)) brightness(1.02) contrast(1.06)}
+.reflect{position:absolute;transform:scaleY(-1);transform-origin:center;opacity:.28;filter:blur(1.2px);
+  -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,1) 0%,rgba(0,0,0,0) 30%);mask-image:linear-gradient(0deg,rgba(0,0,0,1) 0%,rgba(0,0,0,0) 30%)}
+.reflect img{display:block;height:100%}
+.contact{position:absolute;height:22px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.9),transparent);filter:blur(4px)}
+
+#logo{position:absolute;left:50%;transform:translateX(-50%);mix-blend-mode:screen}
+#copy{position:absolute;left:0;width:100%;text-align:center}
+#copy .t{font-family:Cinzel;font-weight:500;font-size:30px;letter-spacing:12px;padding-left:12px;color:#f2f6fb}
+#copy .rule{width:60px;height:1px;margin:16px auto;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+#copy .s{font-size:14px;font-weight:500;letter-spacing:7px;padding-left:7px;color:#9aa6b8}
+</style></head>
+<body>
+<div id="poster">
+  <div id="cone"></div>
+  <div id="rays"></div>
+  <div id="floor"></div>
+  <div id="pool"></div>
+  <div id="stage"></div>
+  <div id="horizon"></div>
+  <img id="logo" src="assets/logo.png">
+  <div id="copy"><div class="t" id="title"></div><div class="rule"></div><div class="s" id="sub"></div></div>
+  <svg id="grain" width="1080" height="1080"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .6  0 0 0 0 .65  0 0 0 0 .75  0 0 0 .35 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+</div>
+<script>
+const v=new URLSearchParams(location.search).get('v')||'duo';
+const stage=document.getElementById('stage');
+const add=h=>stage.insertAdjacentHTML('beforeend',h);
+const SRC={'assets/noche.png':[343,986],'assets/womanglory.png':[357,1040]};
+
+// layout per variant
+const L={
+  duo:{logoTop:34,logoW:400,floorY:858,bottles:[['assets/noche.png',418,520,'var(--glowA)'],['assets/womanglory.png',662,520,'var(--glowB)']],
+       title:'FOAMING BODY SHOWER',sub:'OCEAN SALT  ·  AROMATHERAPY  ·  500ML'},
+  noche:{logoTop:30,logoW:340,floorY:866,bottles:[['assets/noche.png',540,530,'var(--glowA)']],
+       title:'NOCHE',sub:'MIDNIGHT FANTASY  ·  FOAMING BODY SHOWER  ·  500ML'},
+  wg:{logoTop:30,logoW:340,floorY:866,bottles:[['assets/womanglory.png',540,530,'var(--glowB)']],
+       title:'WOMAN GLORY',sub:'BOMBSHELL  ·  FOAMING BODY SHOWER  ·  500ML'},
+}[v];
+
+const fy=L.floorY;
+document.getElementById('floor').style.top=fy+'px';
+document.getElementById('horizon').style.top=fy+'px';
+const pool=document.getElementById('pool'); pool.style.top=(fy-75)+'px';
+const logo=document.getElementById('logo'); logo.style.top=L.logoTop+'px'; logo.style.width=L.logoW+'px';
+const copy=document.getElementById('copy'); copy.style.top=(fy+70)+'px';
+
+L.bottles.forEach(([src,cx,H,glow])=>{
+  const k=H/986,w=SRC[src][0]*k,h=SRC[src][1]*k,top=fy+4-h;
+  add(`<div class="glow" style="left:${cx-w*0.85}px;top:${top+h*0.25}px;width:${w*1.7}px;height:${h*0.7}px;background:${glow};opacity:.55"></div>`);
+  add(`<div class="reflect" style="left:${cx-w/2}px;top:${fy+4}px;height:${h}px"><img src="${src}"></div>`);
+  add(`<div class="contact" style="left:${cx-w*0.5}px;top:${fy-8}px;width:${w}px"></div>`);
+  add(`<div class="bottle" style="left:${cx-w/2}px;top:${top}px;height:${h}px"><img class="main" src="${src}"></div>`);
+});
+document.getElementById('title').textContent=L.title;
+document.getElementById('sub').textContent=L.sub;
+Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>document.body.dataset.ready=1);
+</script>
+</body></html>
