@@ -28,8 +28,10 @@ if len(sys.argv) > 4:
     _cfg = json.load(open(sys.argv[4]))
     KEEP = [tuple(k) for k in _cfg["keep"]]
     _KEEP_GAP = _cfg.get("keep_gap", 0.08)
+    _QUIET_DB = _cfg.get("quiet_db", -34)       # pause threshold; raise it for noisy locations
 else:
     _KEEP_GAP = 0.08
+    _QUIET_DB = -34
 
 SR = 48000
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-ac", "1", "-ar", str(SR),
@@ -96,12 +98,12 @@ chain = ",".join([
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-af", chain,
                 "-ar", "48000", "-ac", "1", f"{out}/voice_enh.wav"], check=True)
 
-# ---- tighten pauses: any gap quieter than -34 dBFS longer than 0.20 s is shrunk to 0.08 s
+# ---- tighten pauses: any gap quieter than QUIET_DB (default -34 dBFS) longer than 0.20 s is shrunk to KEEP_GAP
 with wave.open(f"{out}/voice_enh.wav") as w:
     v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
 h = SR // 100
 db = np.array([20 * np.log10(np.sqrt(np.mean(v[i:i + h] ** 2)) + 1e-9) for i in range(0, len(v) - h, h)])
-quiet = db < -34
+quiet = db < _QUIET_DB
 gaps, i = [], 0
 while i < len(quiet):
     if quiet[i]:

@@ -12,3 +12,15 @@ video4/project/assets/audio/sfx/
 video4/project/.hyperframes/
 __pycache__/
 video4/work_audio16k.wav
+video5/src/
+video5/mixkit/
+video5/work/
+video5/audio/
+video5/sh.rnnn
+video5/preview/
+video5/final/
+video5/work_audio16k.wav
+video5/project/assets/broll/
+video5/project/assets/audio/*.wav
+video5/project/assets/audio/sfx/
+video5/project/.hyperframes/
