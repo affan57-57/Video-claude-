@@ -1,0 +1,90 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Frescura Body Square</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--gold1:#fff4d6;--gold2:#e9c77b;--gold3:#b8893a}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;background:#07060d;overflow:hidden}
+#poster{position:relative;width:1080px;height:1080px;overflow:hidden;font-family:Montserrat,sans-serif;color:#fff}
+#sky{position:absolute;left:0;top:-500px;transform:scaleX(-1)}
+#shadeL{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,5,10,.92) 0%,rgba(6,5,10,.78) 40%,rgba(6,5,10,.15) 62%,transparent 75%)}
+.gold{background:linear-gradient(180deg,var(--gold1) 0%,var(--gold2) 38%,var(--gold3) 70%,#f3dca0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+#left{position:absolute;left:60px;top:58px;width:520px}
+#brand{display:flex;align-items:center;gap:16px}
+#brand .name{font-family:Cinzel;font-weight:600;font-size:26px;letter-spacing:10px}
+#brand .line{flex:1;height:1.5px;background:linear-gradient(90deg,var(--gold2),transparent)}
+.kicker{margin-top:26px;font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:36px;color:#f4e3bb}
+h1{font-family:Cinzel;font-weight:700;font-size:96px;line-height:1;letter-spacing:3px;margin-top:4px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.7))}
+h2{font-family:Cinzel;font-weight:600;font-size:50px;line-height:1.1;letter-spacing:7px}
+#ribbon{display:inline-block;margin-top:16px;padding:10px 24px;background:linear-gradient(90deg,#9a6c26,#f0d28c 30%,#fff1c9 50%,#f0d28c 70%,#9a6c26);color:#1a1206;font-weight:700;font-size:20px;letter-spacing:2.5px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.6)}
+
+#foamrow{display:flex;align-items:center;gap:22px;margin-top:30px}
+#foamrow .ring{flex:none;width:190px;height:190px;border-radius:50%;padding:5px;background:conic-gradient(from 200deg,#7a5520,#f6dfa4,#b8893a,#fff2cc,#8a6226,#f6dfa4,#7a5520);box-shadow:0 14px 34px rgba(0,0,0,.7)}
+#foamrow img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:3px solid #0b0910}
+#foamrow .c1{font-family:Cinzel;font-weight:700;font-size:30px;line-height:1.12;letter-spacing:1px}
+#foamrow .c2{margin-top:8px;font-family:'Cormorant Garamond';font-style:italic;font-size:26px;color:#f1deb2}
+
+#benefits{display:flex;justify-content:space-between;margin-top:30px;padding-top:22px;border-top:1px solid rgba(233,199,123,.35)}
+.b{text-align:center}
+.b svg{width:50px;height:50px;display:block;margin:0 auto 8px}
+.b .t{font-weight:700;font-size:14px;letter-spacing:1.2px;white-space:nowrap;color:#f6e6c0}
+
+#cta{margin-top:26px}
+#cta span{display:inline-block;padding:12px 30px;border:2px solid var(--gold2);border-radius:999px;font-weight:700;font-size:19px;letter-spacing:3px;color:var(--gold1);background:rgba(233,199,123,.08);box-shadow:0 0 22px rgba(233,199,123,.25)}
+
+#halo{position:absolute;left:560px;top:300px;width:540px;height:720px;background:radial-gradient(closest-side,rgba(255,215,150,.28),rgba(255,190,120,.08) 60%,transparent)}
+#floor{position:absolute;left:0;top:975px;width:100%;height:110px;background:linear-gradient(180deg,rgba(10,8,14,.85),#050409)}
+#floorline{position:absolute;left:0;top:980px;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold3) 20%,var(--gold1) 60%,var(--gold3) 85%,transparent);box-shadow:0 0 18px rgba(255,220,150,.6)}
+#bottles{position:absolute;left:612px;top:362px;height:620px;filter:drop-shadow(0 26px 34px rgba(0,0,0,.75)) drop-shadow(0 0 50px rgba(255,214,140,.18))}
+#reflect{position:absolute;left:612px;top:982px;height:620px;transform:scaleY(-1);transform-origin:top;opacity:.3;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9) 0%,transparent 16%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9) 0%,transparent 16%)}
+#variants{position:absolute;left:0;width:100%;top:1030px;text-align:center;font-size:16px;letter-spacing:4px;color:#d9c9a3}
+#variants b{color:#fff}
+#variants .dot{color:var(--gold2);padding:0 12px}
+
+.neon{position:absolute;font-family:Yellowtail;white-space:nowrap;line-height:1;transform:rotate(-7deg)}
+.neon small{display:block;font-family:Montserrat;font-weight:600;font-size:13px;letter-spacing:5px;margin-bottom:5px;text-align:center}
+#neonN{left:560px;top:250px;font-size:46px;color:#f3e8ff;text-shadow:0 0 4px #fff,0 0 10px #e2c6ff,0 0 20px #b36bff,0 0 38px #8a3dff,0 0 70px #7a2dff}
+#neonN small{color:#e9d8ff;text-shadow:0 0 6px #b36bff,0 0 14px #8a3dff}
+#neonB{left:838px;top:300px;font-size:50px;color:#ffe8ee;text-shadow:0 0 4px #fff,0 0 10px #ffc0d2,0 0 20px #ff4f86,0 0 38px #ff1f5f,0 0 70px #ff0f4f}
+#neonB small{color:#ffd6e1;text-shadow:0 0 6px #ff4f86,0 0 14px #ff1f5f}
+</style></head>
+<body>
+<div id="poster">
+  <svg id="sky" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+  <div id="shadeL"></div>
+  <div id="halo"></div>
+  <div id="floor"></div>
+  <img id="reflect" src="assets/bottles.png">
+  <div id="floorline"></div>
+  <img id="bottles" src="assets/bottles.png">
+  <div class="neon" id="neonN"><small>NOCHE</small>Midnight Fantasy</div>
+  <div class="neon" id="neonB"><small>WOMAN GLORY</small>Bombshell</div>
+
+  <div id="left">
+    <div id="brand"><div class="name gold">FRESCURA BODY</div><div class="line"></div></div>
+    <div class="kicker">Kemewahan kota, dalam setiap buih</div>
+    <h1 class="gold">FOAMING</h1>
+    <h2>BODY SHOWER</h2>
+    <div id="ribbon">DENGAN GARAM LAUT · OCEAN SALT</div>
+
+    <div id="foamrow">
+      <div class="ring"><img src="assets/foam.jpg"></div>
+      <div><div class="c1">SEKALI TEKAN,<br><span class="gold">TERUS BUIH!</span></div><div class="c2">Buih lembut terus dari pump</div></div>
+    </div>
+
+    <div id="benefits">
+      <div class="b"><svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="3" stroke-linejoin="round"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2cc"/><stop offset="1" stop-color="#c3923f"/></linearGradient></defs><path d="M40 8 L66 23 L66 53 L40 68 L14 53 L14 23 Z"/><path d="M14 23 L40 38 L66 23 M40 38 L40 68"/><path d="M8 74 Q20 68 32 74 T56 74 T80 74" stroke-width="2"/></svg><div class="t">GARAM LAUT</div></div>
+      <div class="b"><svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round"><path d="M40 70 C40 50 40 34 40 14"/><path d="M40 52 C24 50 16 38 18 24 C32 26 40 36 40 52 Z"/><path d="M40 44 C56 42 64 30 62 16 C48 18 40 28 40 44 Z"/></svg><div class="t">AROMATERAPI</div></div>
+      <div class="b"><svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="3"><circle cx="32" cy="46" r="20"/><circle cx="58" cy="28" r="11"/><circle cx="60" cy="58" r="7"/><circle cx="26" cy="14" r="5"/></svg><div class="t">BUIH LEMBUT</div></div>
+      <div class="b"><svg viewBox="0 0 80 80" fill="none" stroke="url(#g)" stroke-width="3" stroke-linejoin="round"><path d="M40 8 L46 32 L70 40 L46 48 L40 72 L34 48 L10 40 L34 32 Z"/></svg><div class="t">WANGI MEWAH</div></div>
+    </div>
+
+    <div id="cta"><span>ORDER DI BAKUL KUNING</span></div>
+  </div>
+
+  <div id="variants"><b>NOCHE</b> Midnight Fantasy<span class="dot">◆</span><b>WOMAN GLORY</b> Bombshell<span class="dot">◆</span>500ml</div>
+</div>
+<script src="assets/skyline.js"></script>
+</body></html>
