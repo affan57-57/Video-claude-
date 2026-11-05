@@ -1,6 +1,6 @@
 # Video 9: "3 sebab wajib tukar ke Frescura Body" (buih → sea salt → wangian → tekan beg kuning)
 
-**Status: PREVIEW v1**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: FINAL** (diluluskan klien), `final/video9_3sebab_frescura_1080p.mp4` (1080x1920, `-q delivery`, tanpa tag PREVIEW). Preview: `preview/preview_v1.mp4`.
 
 - Asal: 45.0 s. Selepas edit: **32.5 s** (30.9 s suara + 1.6 s kad penutup).
 - Hook: **"Tiga…"** sambil angkat **3 jari**, mata ke lensa. Muka: **0.68 s sahaja** (bawah 1 saat), hflip. Selebihnya B-roll dan motion graphics.
