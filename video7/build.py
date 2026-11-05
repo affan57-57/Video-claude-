@@ -326,7 +326,7 @@ def W(word, after=0.0):
     return next(w["s"] for w in words if w["s"] >= after and re.sub(r"[^a-z]", "", w["w"].lower()) in ok)
 SCENT_END = VOICE_END
 o1, o2, o3 = W("kalau", SCENT_END - 0.2), W("cuba", SCENT_END), W("dan", SCENT_END + 4)
-VOICE_END = REAL_END; DURATION = round(VOICE_END + 1.5, 2)
+VOICE_END = round(REAL_END + 0.6, 2); DURATION = round(VOICE_END + 1.5, 2)
 def typed(sel, t, d=0.5, n=8):
     js.append(f'tl.fromTo("{sel}",{{clipPath:"inset(0% 100% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:{d},ease:"steps({n})"}},{t:.2f});')
 BOOK = ('<svg viewBox="0 0 60 80" style="width:96px;height:128px"><path d="M8 6 H52 V74 L30 58 L8 74 Z" fill="none" stroke="#2b2a27" stroke-width="4" stroke-linejoin="round"/></svg>')
@@ -375,7 +375,8 @@ for i in range(7): S(t_r + i * 0.07, "top", 0.35)
 # O3: setiap wanita berhak rasa yakin dan istimewa, komen yakin -- comment box
 swipe("swo3", o3)
 clip("o3", o3, VOICE_END - o3, '<div class="stonebg"></div><div class="paper"></div>'
-     f'<div class="t c eyebrow" style="top:420px">{R("o3a","Setiap wanita berhak rasa")}</div>'
+     f'<div class="t c" style="top:300px;font:italic 400 84px Instrument;color:var(--char)">{R("o3p","Kalau korang percaya&hellip;")}</div>'
+     f'<div class="t c eyebrow" style="top:430px">{R("o3a","Setiap wanita berhak rasa")}</div>'
      f'<div class="t c serif" style="top:490px;font-size:190px">{CH("o3b","yakin")}</div>'
      f'<div class="t c serif-it clay" style="top:700px;font-size:130px">{R("o3c","&amp; istimewa")}</div>'
      '<div class="glass" id="o3d" style="left:90px;top:1060px;width:900px;height:170px;border-radius:85px;background:rgba(244,241,236,.85)"></div>'
@@ -383,16 +384,16 @@ clip("o3", o3, VOICE_END - o3, '<div class="stonebg"></div><div class="paper"></
      '<div style="position:absolute;left:150px;top:1104px;font:800 58px Outfit;letter-spacing:6px;color:var(--char)" id="o3f">YAKIN</div>'
      f'<div id="o3g" style="position:absolute;left:830px;top:1080px;width:130px;height:130px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center">{SEND}</div>'
      '<div class="sticker" id="o3h" style="left:330px;top:1290px">komen &ldquo;yakin&rdquo;</div>')
-rv("#o3a", W("setiap", o3)); chars("#o3b", W("yakin", o3), 0.05); rv("#o3c", W("istimewa", o3), 0.5)
+rv("#o3p", o3 + 0.05, 0.5); rv("#o3a", W("setiap", o3)); chars("#o3b", W("yakin", o3), 0.05); rv("#o3c", W("istimewa", o3), 0.5)
 t_k = W("komen", o3)
 js.append(f'tl.fromTo("#o3d",{{scaleX:0.3,opacity:0}},{{scaleX:1,opacity:1,duration:0.35,ease:"expo.out"}},{t_k - 0.3:.2f});')
 js.append(f'tl.fromTo("#o3e",{{opacity:0}},{{opacity:1,duration:0.15}},{t_k - 0.2:.2f});')
 js.append(f'tl.to("#o3e",{{opacity:0,duration:0.1}},{t_k + 0.1:.2f});')
-typed("#o3f", t_k + 0.15, 0.45, 5); pop("#o3g", t_k + 0.2, 0.35)
-js.append(f'tl.to("#o3g",{{scale:0.86,duration:0.08,yoyo:true,repeat:1}},{t_k + 0.7:.2f});')
-pop("#o3h", t_k + 0.85, 0.4, rot=-3)
-for i in range(5): S(t_k + 0.15 + i * 0.09, "click", 0.4)
-S(t_k + 0.7, "pop", 0.55); S(t_k + 0.85, "chime", 0.5)
+typed("#o3f", t_k + 0.12, 0.25, 5); pop("#o3g", t_k + 0.15, 0.3)
+js.append(f'tl.to("#o3g",{{scale:0.86,duration:0.08,yoyo:true,repeat:1}},{t_k + 0.42:.2f});')
+pop("#o3h", t_k + 0.5, 0.35, rot=-3)
+for i in range(5): S(t_k + 0.12 + i * 0.05, "click", 0.4)
+S(t_k + 0.42, "pop", 0.55); S(t_k + 0.5, "chime", 0.5)
 
 # END (after the outro)
 clip("end", VOICE_END, DURATION - VOICE_END, '<div class="olivebg"></div>'

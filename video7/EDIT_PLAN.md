@@ -1,6 +1,6 @@
 # Video 7: "Wanita lebih yakin: 5 perkara" (tips → garam laut → Frescura Body)
 
-**Status: PREVIEW v5**, `preview/preview_v5.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v6**, `preview/preview_v6.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
 - Asal: 57.3 s. Selepas edit: **46.9 s** (45.4 s suara + 1.5 s kad penutup).
 - Muka: **0.64 s sahaja**, dari rakaman klien sendiri (wanita berpurdah), 0.00–0.64 s pada "Wanita,"; jelas bawah 1 saat. Mata tepat ke lensa (rakaman 1.40–2.04 s; berpurdah, tiada isu lip-sync); hflip. Selepas 7 saat pertama telefon terdongak ke siling, jadi selebihnya B-roll dan motion graphics sepenuhnya.
@@ -14,6 +14,13 @@
 - **v4 (dibatalkan):** klip `part2.mov` (nama wangian) ialah **suara lelaki**. Atas arahan klien ia **tidak digunakan**; ayat wangian kekal suara asal: "Kita ada pilihan Bombshell dan Midnight Fantasy untuk menjadikan rutin mandi lebih istimewa." Semua suara dalam video ialah suara perempuan (disahkan dengan ukuran pitch: main & part3 ~246 Hz, part2 ~123 Hz).
 
 - **v5: klip penutup** (`part3.mov`, telefon terdongak, jadi motion graphics/B-roll sahaja): "Kalau korang sayangkan diri sendiri, jangan simpan tips ni untuk diri sendiri. Cuba share video ni supaya lebih ramai wanita sedar pentingnya menjaga diri. Dan kalau korang percaya setiap wanita berhak rasa yakin dan istimewa, komen yakin." ("Komen yakin" berulang + "Ok" dibuang.) Tiga babak baru: hati dilukis + "sayangkan diri sendiri" + bookmark dicoret; B-roll wanita bertudung dengan telefon + **rangkaian share**; kotak komen kaca "YAKIN" ditaip + butang hantar + pelekat. Kad penutup dialih ke selepas outro. Video kini **53.4 s**. Sumber: `src/voice_sources.wav` = main.mov (dipad ke 70.0 s) + part3.mov.
+
+- **v6: hujung video tersangkut-sangkut dibuang.** Disemak perkataan demi perkataan (whisper + tenaga audio) di klip penutup:
+  - "Dan kalau korang **pe-**… percaya" → cubaan "pe-" yang tersasul (part3 11.62–12.08 s) dibuang.
+  - "**ke…** komen yakin" (tersangkut 15.6–17.0 s) → diganti dengan take kedua yang bersih "komen yakin" (17.10–17.88 s).
+  - Jeda sebelum "pentingnya menjaga diri" dirapatkan; titik potong kini tepat (`snap_win` 0.02) supaya tiada hujung perkataan terpotong.
+  - Hasil transkrip semula: "…Dan kalau korang percaya setiap wanita berhak rasa yakin dan istimewa, komen yakin." (lancar, tiada ulangan).
+  - Babak komen: tajuk "Kalau korang percaya…" muncul awal (tiada skrin kosong), taip "YAKIN" → hantar → pelekat dipercepat dan babak ditahan 0.6 s selepas suara supaya pelekat sempat dilihat. Video kini **52.6 s**.
 
 ## Gaya baru: "Porcelain & Olive" (belum pernah digunakan)
 - **Font baru:** Instrument Serif (tajuk, serif editorial moden) + **Outfit** (caption tebal 64 px, sangat jelas). **Palet:** putih tulang, batu, olive, tanah liat (clay), arang.

@@ -100,7 +100,7 @@ for k_, v in S.items(): save(f"{out}/sfx/{k_}.wav", v)
 
 # ---------------- MUSIC: 70 bpm felt piano + warm pads + sub swells ----------------
 voice = load(voice_path)
-L = len(voice) + int(1.5 * SR)
+L = len(voice) + int(2.1 * SR)
 bpm = 90; beat = 60 / bpm       # client: music slow and soft, the energy comes from the SFX
 mono = np.zeros(L)
 mid = lambda m: 440 * 2 ** ((m - 69) / 12)
