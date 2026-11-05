@@ -101,3 +101,5 @@ video12/project/assets/broll/
 video12/project/assets/audio/*.wav
 video12/project/assets/audio/sfx/
 video12/project/.hyperframes/
+video12/commons/
+video12/project/assets/city/

@@ -1,12 +1,24 @@
 # Video 12: "3 sebab kau kena tukar ke Frescura Body" (Metro Noir: KLCC, Menara KL, TRX + dalam mall)
 
-**Status: PREVIEW v1**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v2**, `preview/preview_v2.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
 - Sumber: `src/main.mp4` (klien bercakap, 64.0 s) + `src/part2.mp4` (footage pam & buih Woman Glory klien).
 - Selepas edit: **52.1 s** (50.5 s suara + 1.6 s kad penutup).
 - Hook: *"Serius lah, kau masih gosok sabun ni sampai lenguh tangan? Tengok ni, tekan sekali je, buih terus keluar."* Muka: **0.75 s sahaja** (bawah 1 saat), hflip.
 - Suara: 5 segmen disamakan level → RNNoise + FFT denoise, gate, EQ, de-esser, compressor, exciter, −14 LUFS, dipercepat 1.12x. Mix −13 LUFS.
 - Permintaan klien: **sebiji macam Video 11** (gaya Metro Noir), tetapi dengan **KLCC, Menara KL dan TRX**, dan **dalam mall**.
+
+## Maklum balas
+- **v2 (klien):** semua pemandangan bandar **waktu malam** (bukan petang), bangunan dengan **lampu LED warna-warni**, gambar/video **terbaru** TRX, KLCC dan Menara KL, babak **dalam Pavilion Bukit Bintang**, dan lebih banyak gambar Frescura / video foaming pump.
+  - Semua babak siang/senja diganti dengan gambar & video malam dari **Wikimedia Commons** (lesen CC, 2022–2026):
+    - **Menara KL:** video *Kuala Lumpur Tower light show* (lampu LED bertukar warna: kuning, ungu, merah, putih, biru), untuk Bombshell dan CHECK OUT.
+    - **TRX (Exchange 106):** *TRX at night (240721)* dan *The Exchange 106 Towers at night (231211)* (mahkota LED ungu; langit senja digelapkan jadi malam).
+    - **KLCC:** *Petronas Towers at night, Kuala Lumpur, 20250818* (jambatan langit waktu malam), ditambah footage Petronas malam.
+    - **Skyline malam:** panorama *Kl-skyline-at-night-2022* (KLCC + Menara KL + bangunan LED) dan *KL city skyline April 2024* (Menara KL ungu + KLCC), bergerak ke sisi.
+    - **Pavilion Bukit Bintang:** *Inside Pavilion Bukit Bintang 1 & 2* (dalam mall) dan *Pavilion Kuala Lumpur at night (230127) 02* (papan tanda PAVILION + LED; dicrop supaya tiada iklan jenama lain).
+  - Skyline garis KLCC · MENARA KL · TRX kini **bercahaya warna LED** (krom, ungu, merah jambu, amber).
+  - Lebih produk: gambar produk berbuih (hero_foam) dalam bingkai di butik; footage pam/buih klien dalam Pavilion (hook, "1× TEKAN") dan dalam mall.
+  - Gambar Pavilion dengan hiasan perayaan dan video Bukit Bintang siang (iklan jenama lain) tidak digunakan.
 
 ## Gaya (sama seperti Video 11: "Metro Noir")
 - Syncopate + Figtree; malam / krom / neon amber; pil lokasi; peralihan jejak lampu; nombor berbingkai 01/02/03; botol (dipotong dari gambar klien, piksel tidak diubah) terapung dengan pantulan; footage pam klien dalam tingkap kaca; caption kata kunci menyala amber.
@@ -48,7 +60,8 @@
 | 50.46–52.06 | (penutup) | Petronas dari bawah + duo botol + FRESCURA BODY |
 
 ## Nota
-- **TRX (Exchange 106)** tiada dalam stok video percuma; dipaparkan sebagai ilustrasi garis halus (bukan footage). Kalau klien ada footage TRX sendiri, boleh dimasukkan.
+- v1: TRX hanya ilustrasi garis. v2: gambar sebenar TRX / Exchange 106 waktu malam dari Wikimedia Commons.
+- **Kredit Commons (lesen CC BY / CC BY-SA perlukan atribusi; boleh letak di caption/description posting):** Kuala Lumpur Tower light show (Schwede66, CC BY-SA 4.0); TRX at night (240721) & The Exchange 106 Towers at night (231211) (*angys*, CC BY-SA 4.0); Petronas Towers at night, Kuala Lumpur, 20250818 (Jakub Hałun, CC BY 4.0); Kl-skyline-at-night-2022 (Shahee Ilyas, CC BY-SA 4.0); KL city skyline April 2024 (Azreey, CC BY-SA 4.0); Inside Pavilion Bukit Bintang 1 & 2 (PulauKakatua19, CC BY-SA 4.0); Pavilion Kuala Lumpur at night (230127) 02 (*angys*, CC BY-SA 4.0).
 - Caption: "fresh kurang bodi" → *Frescura Body*, "lengah" → *lenguh*, "sisa" → *sea salt*, "femenil" → *feminine*, "minat fantasi" → *Midnight Fantasy*, "kewangi" → *kau wangi*, "stop kami" → *stok kami*.
 
 ## Sumber
@@ -66,5 +79,7 @@ python3 -I prep_broll.py mixkit project/assets/broll src/main.mp4 src/part2.mp4
 python3 -I build.py project
 python3 make_audio.py project/assets/audio/voice.wav project/assets/audio
 ffmpeg -i project/assets/audio/mix_raw.wav -af loudnorm=I=-13:TP=-1:LRA=9 -ar 48000 project/assets/audio/mix.wav
-cd project && npx hyperframes@0.9.10 render -q draft -o ../preview/preview_v1.mp4
+python3 fetch_commons.py 1920 "commons/kltower.webm=Kuala Lumpur Tower light show.webm" ...   # see prep_city.py for the file list (polite UA, 429 back-off)
+python3 -I prep_city.py commons project/assets/city
+cd project && npx hyperframes@0.9.10 render -q draft -o ../preview/preview_v2.mp4
 ```

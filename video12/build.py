@@ -63,6 +63,19 @@ def clip(id_, s, d, inner="", cls="", style=""):
 def city(id_, src, s, d, media=0.0, z0=1.12, z1=1.0):
     html.append(f'<video id="{id_}" class="clip bg" src="assets/broll/{src}.mp4" data-start="{s:.3f}" data-duration="{d:.3f}" data-media-start="{media}" muted playsinline></video>')
     js.append(f'tl.fromTo("#{id_}",{{scale:{z0}}},{{scale:{z1},duration:{d:.2f},ease:"power1.out"}},{s:.2f});')
+def photo(id_, name, s, d, z0=1.0, z1=1.08, x0=0, x1=-40):
+    """night photo (Wikimedia Commons, CC) with a slow push"""
+    html.append(f'<div id="{id_}" class="clip" data-start="{s:.3f}" data-duration="{d:.3f}" style="z-index:1;overflow:hidden">'
+                f'<img src="assets/city/{name}.jpg" alt="" style="position:absolute;left:-54px;top:-96px;width:1188px;height:2112px"></div>')
+    js.append(f'tl.fromTo("#{id_} img",{{scale:{z0},x:{x0}}},{{scale:{z1},x:{x1},duration:{d:.2f},ease:"none"}},{s:.2f});')
+def pano(id_, name, s, d, w, x0, x1):
+    """night skyline panorama panning sideways"""
+    html.append(f'<div id="{id_}" class="clip" data-start="{s:.3f}" data-duration="{d:.3f}" style="z-index:1;overflow:hidden">'
+                f'<img src="assets/city/{name}.jpg" alt="" style="position:absolute;left:0;top:0;width:{w}px;height:1920px"></div>')
+    js.append(f'tl.fromTo("#{id_} img",{{x:{-x0}}},{{x:{-x1},duration:{d:.2f},ease:"sine.inOut"}},{s:.2f});')
+def ledtower(id_, s, d, media=0.0):
+    html.append(f'<video id="{id_}" class="clip bg" src="assets/city/kltower_led.mp4" data-start="{s:.3f}" data-duration="{d:.3f}" data-media-start="{media}" muted playsinline></video>')
+    js.append(f'tl.fromTo("#{id_}",{{scale:1.12}},{{scale:1.0,duration:{d:.2f},ease:"power1.out"}},{s:.2f});')
 def ivid(id_, src, s, d, box, media=0.0, extra=""):
     l, t_, w, h = box
     html.append(f'<video id="{id_}" class="clip window" src="assets/broll/{src}.mp4" data-start="{s:.3f}" data-duration="{d:.3f}" data-media-start="{media}" muted playsinline '
@@ -125,10 +138,10 @@ def veil(id_, s, d, a=0.45):
 
 # ======================= H1: kau masih gosok sabun ni sampai lenguh tangan? (mall atrium + lather window) =======================
 streak("sk0", H1)
-city("v_h1", "mall_atrium", H1, H2 - H1, media=0.0)
+photo("v_h1", "pav_in1", H1, H2 - H1, 1.0, 1.1, 0, -30)
 ivid("v_lt1", "lather1", H1, H2 - H1, (260, 470, 560, 995))
 veil("h1v", H1, H2 - H1)
-clip("h1", H1, H2 - H1, loc("lh1", "DALAM MALL", "KUALA LUMPUR")
+clip("h1", H1, H2 - H1, loc("lh1", "PAVILION", "BUKIT BINTANG")
      + f'<div class="t c" style="top:200px;font:800 58px Figtree">{R("h1a","Kau masih")} {R("h1b","<span class=amber>gosok</span>")}</div>'
      f'<div class="t c sy" style="top:290px;font-size:76px">{CH("h1c","SAMPAI LENGUH")}</div>'
      '<svg id="h1x" style="position:absolute;left:260px;top:470px;width:560px;height:995px;overflow:visible" viewBox="0 0 560 995">'
@@ -142,10 +155,10 @@ js.append(f'tl.to("#v_lt1",{{filter:"grayscale(1) brightness(.8)",duration:0.3}}
 pop("#h1t", W("tangan"), 0.3, rot=-3); S(W("tangan") - 0.1, "buzz", 0.45)
 
 # ======================= H2: tengok ni, tekan sekali je, buih terus keluar (pump in a window over mall escalators) =======================
-city("v_h2", "mall_esc", H2, S3A - H2, media=0.0)
+photo("v_h2", "pav_in2", H2, S3A - H2, 1.1, 1.0, 30, 0)
 ivid("v_pmp", "pump", H2, S3A - H2, (250, 430, 580, 1030))
 veil("h2v", H2, S3A - H2)
-clip("h2", H2, S3A - H2, loc("lh2", "DALAM MALL")
+clip("h2", H2, S3A - H2, loc("lh2", "PAVILION", "BUKIT BINTANG")
      + f'<div class="t c" style="top:190px;font:800 58px Figtree">{R("h2a","Tengok ni,")}</div>'
      f'<div class="t c sy amber" style="top:280px;font-size:80px">{CH("h2b","1× TEKAN")}</div>'
      '<div id="h2ring" style="position:absolute;left:540px;top:770px;width:150px;height:150px;border-radius:50%;border:6px solid var(--bag)"></div>'
@@ -162,16 +175,16 @@ def tower(cx):
     pts = [(-40, 680), (-40, 320), (-32, 300), (-32, 250), (-24, 232), (-24, 190), (-14, 172), (-14, 130), (-6, 118), (-2, 40), (0, 8)]
     pts = pts + [(-x, y) for x, y in reversed(pts[:-1])]
     return "M" + " L".join(f"{cx + x} {y}" for x, y in pts)
-sky = (f'<path d="{tower(220)}"/><path d="{tower(360)}"/><path d="M260 430 H320 M268 430 L290 520 L312 430"/>'
-       '<path d="M560 680 Q578 560 582 340 M620 680 Q602 560 598 340"/><ellipse cx="590" cy="312" rx="48" ry="28"/><path d="M584 284 V230 H596 V284 M590 230 V110"/>'
-       '<path d="M800 680 V150 L818 118 L840 52 L862 118 L880 150 V680"/><path d="M820 170 V680 M840 120 V680 M860 170 V680"/>'
-       '<path d="M60 680 V560 H130 V680 M440 680 V500 H520 V680 M660 680 V590 H740 V680 M930 680 V540 H1010 V680"/><path d="M30 680 H1050"/>')
+sky = (f'<g stroke="#eef1f6" style="filter:drop-shadow(0 0 10px #9fd3ff)"><path d="{tower(220)}"/><path d="{tower(360)}"/><path d="M260 430 H320 M268 430 L290 520 L312 430"/></g>'
+       '<g stroke="#c77dff" style="filter:drop-shadow(0 0 12px #c77dff)"><path d="M560 680 Q578 560 582 340 M620 680 Q602 560 598 340"/><ellipse cx="590" cy="312" rx="48" ry="28"/><path d="M584 284 V230 H596 V284 M590 230 V110"/></g>'
+       '<g stroke="#ff5fa2" style="filter:drop-shadow(0 0 12px #ff5fa2)"><path d="M800 680 V150 L818 118 L840 52 L862 118 L880 150 V680"/><path d="M820 170 V680 M840 120 V680 M860 170 V680"/></g>'
+       '<g stroke="#ffb547" style="filter:drop-shadow(0 0 8px #ffb547)"><path d="M60 680 V560 H130 V680 M440 680 V500 H520 V680 M660 680 V590 H740 V680 M930 680 V540 H1010 V680"/><path d="M30 680 H1050"/></g>')
 clip("s3a", S3A, S3B - S3A, '<div class="nightbg"></div>'
      + '<div id="s3n" class="sy out" style="position:absolute;left:0;right:0;top:140px;text-align:center;font-size:300px;line-height:1">3</div>'
      f'<div class="t c syl" style="top:470px;font-size:44px">{R("s3t1","SEBAB")}</div>'
      f'<div class="t c" style="top:540px;font:800 54px Figtree">{R("s3t2","kau kena")} {R("s3t3","<span class=amber>tukar ke</span>")}</div>'
      f'<svg id="sky" style="position:absolute;left:0;top:700px;width:1080px;height:700px" viewBox="0 0 1080 700">'
-     f'<g fill="none" stroke="#eef1f6" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1800" stroke-dashoffset="1800">{sky}</g></svg>'
+     f'<g fill="none" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1800" stroke-dashoffset="1800">{sky}</g></svg>'
      '<div class="lab" id="sk_a" style="position:absolute;left:160px;top:1405px;color:var(--amber)">KLCC</div>'
      '<div class="lab" id="sk_b" style="position:absolute;left:470px;top:1405px;color:var(--amber)">MENARA KL</div>'
      '<div class="lab" id="sk_c" style="position:absolute;left:800px;top:1405px;color:var(--amber)">TRX</div>')
@@ -184,16 +197,16 @@ for k, sel in enumerate(["#sk_a", "#sk_b", "#sk_c"]):
     fade(sel, S3A + 0.6 + k * 0.25, 0.3, y=15)
 
 # ======================= S3B: Frescura Body (KLCC + Menara KL by day) =======================
-city("v_s3b", "kl_klcc_kl", S3B, R1A - S3B, z0=1.15)
+pano("v_s3b", "sky2022", S3B, R1A - S3B, 5577, 300, 900)
 clip("s3b", S3B, R1A - S3B, '<div class="shade"></div>' + loc("ls3", "KLCC &middot; MENARA KL")
      + bottle("s3d", "duo_white_cut.png", 300, 760, 640) + f'<div class="t c sy" style="top:1440px;font-size:64px">{CH("s3e","FRESCURA BODY")}</div>')
 loc_js("ls3", S3B); bottle_js("s3d", S3B, R1A - S3B - 0.6); chars("#s3e", S3B + 0.05, 0.02); S(S3B, "chime", 0.5)
 
 # ======================= R1A: sebab pertama -- tak payah span, tak payah gosok lama (white mall, glass lift) =======================
 streak("sk2", R1A)
-city("v_r1a", "mall_glass", R1A, R1B - R1A)
+photo("v_r1a", "pav_front", R1A, R1B - R1A, 1.12, 1.0, 0, 0)
 clip("r1a", R1A, R1B - R1A, '<div class="shade" style="background:linear-gradient(180deg,rgba(10,14,26,.85) 0%,rgba(10,14,26,.45) 45%,rgba(10,14,26,.7) 100%)"></div>'
-     + loc("l1", "DALAM MALL") + num("h1", "01", "Sebab pertama")
+     + loc("l1", "PAVILION", "BUKIT BINTANG") + num("h1", "01", "Sebab pertama")
      + f'<div class="t sy" style="top:430px;font-size:68px;line-height:1.25">{R("r1a1","TAK PAYAH")}<br>{R("r1a2","<span class=amber>SPAN</span>")}</div>'
      f'<div class="t sy" style="top:720px;font-size:68px;line-height:1.25">{R("r1a3","TAK PAYAH")}<br>{R("r1a4","<span class=amber>GOSOK LAMA</span>")}</div>'
      '<div class="chip r" id="r1x1" style="left:620px;top:470px;font-size:40px">&#10005;</div>'
@@ -219,7 +232,7 @@ S(W("buih", R1B), "foam", 0.6); pop("#r1b4", W("penuh") - 0.05, 0.3, rot=2)
 
 # ======================= R2A: sebab kedua -- sea salt, kaya mineral (KLCC skyline by day) =======================
 streak("sk3", R2A)
-city("v_r2a", "klcc_day", R2A, R2B - R2A)
+photo("v_r2a", "klcc_bridge", R2A, R2B - R2A, 1.0, 1.1, 0, 0)
 clip("r2a", R2A, R2B - R2A, '<div class="shade"></div>' + loc("l2", "KLCC", "KUALA LUMPUR") + num("h2", "02", "Sebab kedua")
      + f'<div class="t sy" style="top:420px;font-size:96px;line-height:1.05">{R("r2a1","SEA")}<br>{R("r2a2","<span class=amber>SALT</span>")}</div>'
      '<div class="chip" id="r2a3" style="left:70px;top:700px">KAYA MINERAL</div>'
@@ -244,13 +257,15 @@ for k, w_ in enumerate(["bersih", "segar", "kering"], 1): pop(f"#r2b{k}", W(w_) 
 streak("sk4", R3A)
 city("v_r3a", "boutique", R3A, R3B - R3A)
 clip("r3a", R3A, R3B - R3A, '<div class="shade"></div>' + loc("l3", "BUTIK MALL") + num("h3", "03", "Sebab ketiga")
-     + f'<div class="t c" style="top:520px;font:800 56px Figtree">{R("r3a1","bau dia memang")}</div>'
-     f'<div class="t c sy" style="top:610px;font-size:96px;line-height:1.05">{R("r3a2","BAU")}<br>{R("r3a3","<span class=amber>PERFUME</span>")}</div>')
+     + f'<div class="t c" style="top:380px;font:800 56px Figtree">{R("r3a1","bau dia memang")}</div>'
+     f'<div class="t c sy" style="top:470px;font-size:96px;line-height:1.05">{R("r3a2","BAU")}<br>{R("r3a3","<span class=amber>PERFUME</span>")}</div>'
+     '<div id="r3ap" class="window" style="left:330px;top:760px;width:420px;height:620px"><img src="assets/product/hero_foam.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%"></div>')
 loc_js("l3", R3A); num_js("h3", R3A)
+js.append(f'tl.fromTo("#r3ap",{{y:300,opacity:0,rotation:4}},{{y:0,opacity:1,rotation:0,duration:0.55,ease:"expo.out"}},{R3A + 0.3:.2f});'); S(R3A + 0.3, "whip", 0.45)
 rv("#r3a1", W("bau", R3A) - 0.05); rv("#r3a2", W("bau", W("memang")) - 0.05); rv("#r3a3", W("perfume", R3A) - 0.05); S(W("perfume", R3A), "shimmer", 0.5)
 
 # ======================= R3B: Bombshell -- fresh & feminine (Menara KL) =======================
-city("v_r3b", "kl_tower", R3B, R3C - R3B)
+ledtower("v_r3b", R3B, R3C - R3B, 0.0)
 clip("r3b", R3B, R3C - R3B, '<div class="shade"></div>' + loc("l3b", "MENARA KL", "KUALA LUMPUR")
      + bottle("r3bg", "glory_single.png", 560, 520, 900)
      + f'<div style="position:absolute;left:60px;top:560px;width:500px"><div class="sy" style="font-size:62px;line-height:1.1">{R("r3b1","WOMAN")}<br>{R("r3b2","GLORY")}</div>'
@@ -273,7 +288,7 @@ rv("#r3c1", R3C + 0.05); rv("#r3c2", W("midnight") - 0.05); rv("#r3c3", W("fanta
 pop("#r3cm", W("manis") - 0.05, 0.3, rot=-2); pop("#r3cf", W("fruity") - 0.05, 0.3, rot=2)
 
 # ======================= R3D: lepas mandi, badan wangi yang lama (dusk: KLCC + Menara KL silhouettes) =======================
-city("v_r3d", "kl_dusk", R3D, P1 - R3D, z0=1.08)
+pano("v_r3d", "sky2024", R3D, P1 - R3D, 4058, 450, 1000)
 waves = "".join(f'<svg class="wv" style="position:absolute;left:0;top:{980 + k * 70}px;width:1080px;height:80px" viewBox="0 0 1080 80">'
                 f'<path d="M-20 40 C 120 {5 + k * 6}, 240 {75 - k * 6}, 380 40 S 640 {5 + k * 8}, 780 40 S 1000 {70 - k * 5}, 1100 40" fill="none" '
                 f'stroke="{["#ffb547", "#ffd3da", "#e2d8ff"][k]}" stroke-width="{5 - k}" stroke-linecap="round" stroke-dasharray="1400" stroke-dashoffset="1400"/></svg>'
@@ -312,8 +327,8 @@ rv("#p2c", W("tak", P2) - 0.05); rv("#p2d", W("perfume", P2) - 0.05)
 
 # ======================= P3: sekarang ni, sabun ni dah buat kau wangi (duo over the white atrium) =======================
 streak("sk7", P3)
-city("v_p3", "mall_atrium", P3, P4 - P3, media=4.4, z0=1.18)
-clip("p3", P3, P4 - P3, '<div class="shade"></div>' + loc("lp3", "DALAM MALL", "KUALA LUMPUR")
+photo("v_p3", "trx_crown", P3, P4 - P3, 1.0, 1.1, 0, 0)
+clip("p3", P3, P4 - P3, '<div class="shade"></div>' + loc("lp3", "TRX", "EXCHANGE 106")
      + f'<div class="t c syl" style="top:250px;font-size:44px">{R("p3a","SEKARANG NI")}</div>'
      f'<div class="t c" style="top:330px;font:800 60px Figtree">{R("p3b","sabun ni dah buat kau")}</div>'
      f'<div class="t c sy amber" style="top:420px;font-size:110px">{CH("p3c","WANGI")}</div>'
@@ -323,8 +338,8 @@ rv("#p3a", W("sekarang", P3) - 0.05); rv("#p3b", W("sabun", P3) - 0.05); chars("
 bottle_js("p3d", W("sabun", P3) - 0.1, P4 - W("sabun", P3) - 0.6)
 
 # ======================= P4: stok kami tinggal sikit je (KL night) =======================
-city("v_p4", "kl_night", P4, P5 - P4)
-clip("p4", P4, P5 - P4, '<div class="shade"></div>' + loc("lp4", "KUALA LUMPUR")
+photo("v_p4", "trx_tower", P4, P5 - P4, 1.1, 1.0, 0, 0)
+clip("p4", P4, P5 - P4, '<div class="shade"></div>' + loc("lp4", "TRX", "KUALA LUMPUR")
      + f'<div class="t c syl" style="top:600px;font-size:54px">{R("p4a","STOK KAMI")}</div>'
      f'<div class="t c" style="top:690px;font:800 70px Figtree">{R("p4b","tinggal")} {R("p4c","<span class=amber>sikit je</span>")}</div>'
      '<div style="position:absolute;left:140px;top:880px;width:800px;height:24px;border-radius:12px;background:rgba(238,241,246,.2);overflow:hidden">'
@@ -362,11 +377,11 @@ js.append(f'tl.fromTo("#c1r",{{scale:0.2,opacity:1}},{{scale:1.9,opacity:0,durat
 S(tk, "click", 0.75); S(tk + 0.05, "ding", 0.55); pop("#c1s", W("sekarang", C1) - 0.05, 0.3, rot=-2)
 
 # ======================= C2: dan check out sekarang sebelum stok kami habis (KL night aerial) =======================
-city("v_c2", "kl_aerial", C2, VOICE_END + 0.6 - C2, z0=1.2)
+ledtower("v_c2", C2, VOICE_END + 0.6 - C2, 2.0)
 conf = "".join(f'<i class="cf" style="position:absolute;left:530px;top:1000px;width:{r}px;height:{r}px;border-radius:{"50%" if k % 2 else "3px"};background:{c}"></i>'
                for k, (r, c) in enumerate([(18, "#ffb547"), (14, "#f6c445"), (20, "#e0475f"), (12, "#9b7bff"), (16, "#fff"),
                                            (14, "#ffb547"), (18, "#e0475f"), (12, "#9b7bff"), (16, "#f6c445"), (14, "#fff")]))
-clip("c2", C2, VOICE_END + 0.6 - C2, '<div class="shade"></div>' + loc("lc2", "KUALA LUMPUR")
+clip("c2", C2, VOICE_END + 0.6 - C2, '<div class="shade"></div>' + loc("lc2", "MENARA KL")
      + '<div id="c2btn" style="position:absolute;left:190px;top:700px;width:700px;height:160px;border-radius:80px;background:var(--chrome);color:var(--night);'
      'display:flex;align-items:center;justify-content:center;gap:22px;font:900 52px Figtree;letter-spacing:6px;box-shadow:0 0 50px rgba(238,241,246,.3)">'
      'CHECK OUT<svg viewBox="0 0 100 100" style="width:72px;height:72px"><path id="c2tk" d="M20 52 L42 72 L80 30" stroke="#e0475f" stroke-width="12" fill="none" '
