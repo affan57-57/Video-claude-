@@ -7,11 +7,11 @@
    {
     "w": " Wanita",
     "s": 0.0,
-    "e": 0.56
+    "e": 0.58
    },
    {
     "w": " kalau",
-    "s": 0.56,
+    "s": 0.58,
     "e": 0.84
    },
    {
@@ -37,11 +37,11 @@
    {
     "w": " dengan",
     "s": 2.04,
-    "e": 2.24
+    "e": 2.22
    },
    {
     "w": " diri",
-    "s": 2.24,
+    "s": 2.22,
     "e": 2.48
    },
    {
@@ -88,12 +88,12 @@
    },
    {
     "w": " jaga",
-    "s": 5.02,
-    "e": 5.34
+    "s": 5.04,
+    "e": 5.36
    },
    {
     "w": " kebersihan",
-    "s": 5.34,
+    "s": 5.36,
     "e": 5.96
    },
    {
@@ -115,7 +115,7 @@
  },
  {
   "start": 6.84,
-  "end": 9.5,
+  "end": 9.52,
   "text": " Kedua, pilih pakaian buat korang rasa selesa.",
   "words": [
    {
@@ -125,12 +125,12 @@
    },
    {
     "w": " pilih",
-    "s": 7.4,
-    "e": 7.72
+    "s": 7.38,
+    "e": 7.7
    },
    {
     "w": " pakaian",
-    "s": 7.72,
+    "s": 7.7,
     "e": 8.28
    },
    {
@@ -151,7 +151,7 @@
    {
     "w": " selesa.",
     "s": 9.1,
-    "e": 9.5
+    "e": 9.52
    }
   ]
  },
@@ -204,11 +204,11 @@
  },
  {
   "start": 12.94,
-  "end": 15.04,
-  "text": " Gempak pula, luangkan masa untuk diri sendiri.",
+  "end": 15.06,
+  "text": " Keempat pula, luangkan masa untuk diri sendiri.",
   "words": [
    {
-    "w": " Gempak",
+    "w": " Keempat",
     "s": 12.94,
     "e": 13.24
    },
@@ -225,11 +225,11 @@
    {
     "w": " masa",
     "s": 13.96,
-    "e": 14.3
+    "e": 14.28
    },
    {
     "w": " untuk",
-    "s": 14.3,
+    "s": 14.28,
     "e": 14.58
    },
    {
@@ -240,7 +240,7 @@
    {
     "w": " sendiri.",
     "s": 14.86,
-    "e": 15.04
+    "e": 15.06
    }
   ]
  },
@@ -256,7 +256,7 @@
    },
    {
     "w": " jangan",
-    "s": 15.94,
+    "s": 15.96,
     "e": 16.22
    },
    {
@@ -418,7 +418,7 @@
  {
   "start": 27.9,
   "end": 33.0,
-  "text": " Sebab tu, Fresh Coral Body menggambungkan sisa dengan wangian menginspirasi perfume.",
+  "text": " Sebab tu, Fresh Coral Body menggambungkan sea salt dengan wangian menginspirasi perfume.",
   "words": [
    {
     "w": " Sebab",
@@ -433,11 +433,11 @@
    {
     "w": " Fresh",
     "s": 28.72,
-    "e": 28.9
+    "e": 28.88
    },
    {
     "w": " Coral",
-    "s": 28.9,
+    "s": 28.88,
     "e": 29.16
    },
    {
@@ -451,23 +451,28 @@
     "e": 30.48
    },
    {
-    "w": " sisa",
+    "w": " sea",
     "s": 30.48,
-    "e": 31.08
+    "e": 30.82
+   },
+   {
+    "w": " salt",
+    "s": 30.82,
+    "e": 31.16
    },
    {
     "w": " dengan",
-    "s": 31.08,
-    "e": 31.38
+    "s": 31.16,
+    "e": 31.4
    },
    {
     "w": " wangian",
-    "s": 31.38,
-    "e": 31.86
+    "s": 31.4,
+    "e": 31.88
    },
    {
     "w": " menginspirasi",
-    "s": 31.86,
+    "s": 31.88,
     "e": 32.6
    },
    {
@@ -478,13 +483,13 @@
   ]
  },
  {
-  "start": 33.3,
-  "end": 39.92,
-  "text": " Kita ada pilihan Woman Glory by Bombshell dan Noche by Midnight Fantasy untuk menjadikan rutin mandi lebih istimewa.",
+  "start": 33.24,
+  "end": 38.38,
+  "text": " Kita ada pilihan bombshell dan midnight fantasy untuk menjadikan rutin mandi lebih istimewa.",
   "words": [
    {
     "w": " Kita",
-    "s": 33.3,
+    "s": 33.24,
     "e": 33.54
    },
    {
@@ -495,288 +500,268 @@
    {
     "w": " pilihan",
     "s": 33.72,
-    "e": 34.0
+    "e": 34.04
    },
    {
-    "w": " Woman",
-    "s": 34.0,
-    "e": 34.22
-   },
-   {
-    "w": " Glory",
-    "s": 34.22,
-    "e": 34.58
-   },
-   {
-    "w": " by",
-    "s": 34.58,
-    "e": 34.8
-   },
-   {
-    "w": " Bombshell",
-    "s": 34.8,
-    "e": 35.46
+    "w": " bombshell",
+    "s": 34.04,
+    "e": 34.6
    },
    {
     "w": " dan",
-    "s": 35.46,
-    "e": 35.72
+    "s": 34.6,
+    "e": 34.96
    },
    {
-    "w": " Noche",
-    "s": 35.72,
-    "e": 36.16
+    "w": " midnight",
+    "s": 34.96,
+    "e": 35.32
    },
    {
-    "w": " by",
-    "s": 36.16,
-    "e": 36.46
-   },
-   {
-    "w": " Midnight",
-    "s": 36.46,
-    "e": 36.78
-   },
-   {
-    "w": " Fantasy",
-    "s": 36.78,
-    "e": 37.16
+    "w": " fantasy",
+    "s": 35.32,
+    "e": 35.8
    },
    {
     "w": " untuk",
-    "s": 37.16,
-    "e": 37.98
+    "s": 35.8,
+    "e": 36.48
    },
    {
     "w": " menjadikan",
-    "s": 37.98,
-    "e": 38.42
+    "s": 36.48,
+    "e": 36.9
    },
    {
     "w": " rutin",
-    "s": 38.42,
-    "e": 38.78
+    "s": 36.9,
+    "e": 37.26
    },
    {
     "w": " mandi",
-    "s": 38.78,
-    "e": 39.1
+    "s": 37.26,
+    "e": 37.56
    },
    {
     "w": " lebih",
-    "s": 39.1,
-    "e": 39.32
+    "s": 37.56,
+    "e": 37.82
    },
    {
     "w": " istimewa.",
-    "s": 39.32,
-    "e": 39.92
+    "s": 37.82,
+    "e": 38.38
    }
   ]
  },
  {
-  "start": 40.0,
-  "end": 43.6,
+  "start": 38.5,
+  "end": 42.06,
   "text": " Kalau korang sayangkan diri sendiri, jangan simpan tips ni untuk diri sendiri.",
   "words": [
    {
     "w": " Kalau",
-    "s": 40.0,
-    "e": 40.22
+    "s": 38.5,
+    "e": 38.7
    },
    {
     "w": " korang",
-    "s": 40.22,
-    "e": 40.64
+    "s": 38.7,
+    "e": 39.1
    },
    {
     "w": " sayangkan",
-    "s": 40.64,
-    "e": 41.04
+    "s": 39.1,
+    "e": 39.52
    },
    {
     "w": " diri",
-    "s": 41.04,
-    "e": 41.3
+    "s": 39.52,
+    "e": 39.76
    },
    {
     "w": " sendiri,",
-    "s": 41.3,
-    "e": 41.62
+    "s": 39.76,
+    "e": 40.1
    },
    {
     "w": " jangan",
-    "s": 41.96,
-    "e": 42.14
+    "s": 40.42,
+    "e": 40.62
    },
    {
     "w": " simpan",
-    "s": 42.14,
-    "e": 42.58
+    "s": 40.62,
+    "e": 41.04
    },
    {
     "w": " tips",
-    "s": 42.58,
-    "e": 42.78
+    "s": 41.04,
+    "e": 41.26
    },
    {
     "w": " ni",
-    "s": 42.78,
-    "e": 42.92
+    "s": 41.26,
+    "e": 41.4
    },
    {
     "w": " untuk",
-    "s": 42.92,
-    "e": 43.08
+    "s": 41.4,
+    "e": 41.54
    },
    {
     "w": " diri",
-    "s": 43.08,
-    "e": 43.32
+    "s": 41.54,
+    "e": 41.8
    },
    {
     "w": " sendiri.",
-    "s": 43.32,
-    "e": 43.6
+    "s": 41.8,
+    "e": 42.06
    }
   ]
  },
  {
-  "start": 43.76,
-  "end": 48.06,
+  "start": 42.24,
+  "end": 46.52,
   "text": " Cuba share video ni supaya lebih ramai wanita sedar pentingnya menjaga diri.",
   "words": [
    {
     "w": " Cuba",
-    "s": 43.76,
-    "e": 44.02
+    "s": 42.24,
+    "e": 42.48
    },
    {
     "w": " share",
-    "s": 44.02,
-    "e": 44.34
+    "s": 42.48,
+    "e": 42.8
    },
    {
     "w": " video",
-    "s": 44.34,
-    "e": 44.6
+    "s": 42.8,
+    "e": 43.08
    },
    {
     "w": " ni",
-    "s": 44.6,
-    "e": 44.82
+    "s": 43.08,
+    "e": 43.3
    },
    {
     "w": " supaya",
-    "s": 44.82,
-    "e": 45.28
+    "s": 43.3,
+    "e": 43.74
    },
    {
     "w": " lebih",
-    "s": 45.28,
-    "e": 45.5
+    "s": 43.74,
+    "e": 43.98
    },
    {
     "w": " ramai",
-    "s": 45.5,
-    "e": 45.92
+    "s": 43.98,
+    "e": 44.4
    },
    {
     "w": " wanita",
-    "s": 45.92,
-    "e": 46.28
+    "s": 44.4,
+    "e": 44.74
    },
    {
     "w": " sedar",
-    "s": 46.28,
-    "e": 46.7
+    "s": 44.74,
+    "e": 45.18
    },
    {
     "w": " pentingnya",
-    "s": 46.7,
-    "e": 47.38
+    "s": 45.18,
+    "e": 45.86
    },
    {
     "w": " menjaga",
-    "s": 47.38,
-    "e": 47.7
+    "s": 45.86,
+    "e": 46.18
    },
    {
     "w": " diri.",
-    "s": 47.7,
-    "e": 48.06
+    "s": 46.18,
+    "e": 46.52
    }
   ]
  },
  {
-  "start": 48.12,
-  "end": 53.34,
-  "text": " Dan kalau korang percaya siapa wanita berhak rasa yakin dan istimewa, kau meyakin.",
+  "start": 46.6,
+  "end": 51.86,
+  "text": " Dan kalau korang percaya siap wanita berhak rasa yakin dan istimewa, kau may yakin.",
   "words": [
    {
     "w": " Dan",
-    "s": 48.12,
-    "e": 48.3
+    "s": 46.6,
+    "e": 46.78
    },
    {
     "w": " kalau",
-    "s": 48.3,
-    "e": 48.54
+    "s": 46.78,
+    "e": 47.02
    },
    {
     "w": " korang",
-    "s": 48.54,
-    "e": 48.84
+    "s": 47.02,
+    "e": 47.32
    },
    {
     "w": " percaya",
-    "s": 48.84,
-    "e": 49.84
+    "s": 47.32,
+    "e": 48.32
    },
    {
-    "w": " siapa",
-    "s": 49.84,
-    "e": 50.12
+    "w": " siap",
+    "s": 48.32,
+    "e": 48.58
    },
    {
     "w": " wanita",
-    "s": 50.12,
-    "e": 50.34
+    "s": 48.58,
+    "e": 48.82
    },
    {
     "w": " berhak",
-    "s": 50.34,
-    "e": 50.74
+    "s": 48.82,
+    "e": 49.2
    },
    {
     "w": " rasa",
-    "s": 50.74,
-    "e": 51.0
+    "s": 49.2,
+    "e": 49.48
    },
    {
     "w": " yakin",
-    "s": 51.0,
-    "e": 51.32
+    "s": 49.48,
+    "e": 49.82
    },
    {
     "w": " dan",
-    "s": 51.32,
-    "e": 51.48
+    "s": 49.82,
+    "e": 49.94
    },
    {
     "w": " istimewa,",
-    "s": 51.48,
-    "e": 52.16
+    "s": 49.94,
+    "e": 50.64
    },
    {
     "w": " kau",
-    "s": 52.44,
-    "e": 52.6
+    "s": 50.92,
+    "e": 51.36
    },
    {
-    "w": " meyakin.",
-    "s": 52.6,
-    "e": 53.34
+    "w": " may",
+    "s": 51.36,
+    "e": 51.5
+   },
+   {
+    "w": " yakin.",
+    "s": 51.5,
+    "e": 51.86
    }
   ]
  }

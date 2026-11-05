@@ -28,9 +28,9 @@ def T(x):
     if x >= _ao[-1]: return round(_an[-1] + (x - _ao[-1]), 3)
     i = max(k for k in range(len(_ao)) if _ao[k] <= x)
     return round(_an[i] + (x - _ao[i]) * (_an[i + 1] - _an[i]) / (_ao[i + 1] - _ao[i]), 3)
-FIX = {"siapa": "setiap", "kau": "komen", "meyakin": "yakin", "No": "Noche", "Women": "Woman", "Dan": "dan", "Untuk": "untuk", "setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
+FIX = {"siap": "setiap", "siapa": "setiap", "kau": "komen", "meyakin": "yakin", "No": "Noche", "Women": "Woman", "Dan": "dan", "Untuk": "untuk", "setiari": "setiap hari", "simiwa": "istimewa", "Gempak": "Keempat", "Fresh": "Frescura", "menggambungkan": "menggabungkan", "menginspirasi": "inspirasi",
        "bombshell": "Bombshell", "midnight": "Midnight", "fantasy": "Fantasy"}
-DROP = {"Coral", "Chair", "chair"}
+DROP = {"Coral", "Chair", "chair", "may"}
 HL = {"sayangkan", "share", "berhak", "komen", "woman", "glory", "noche", "yakin", "5", "kebersihan", "pakaian", "selesa", "penampilan", "rumah", "masa", "mandi", "segar", "garam", "laut",
       "mineral", "frescura", "body", "sea", "salt", "perfume", "bombshell", "midnight", "fantasy", "istimewa", "keempat"}
 clean = []
@@ -320,7 +320,7 @@ if _moves: print("scene boundaries moved off mid-word:", _moves)
 
 
 # ======================= OUTRO (part3.mov, authored on the final voice) =======================
-ALT = {"setiap": {"setiap", "siapa"}, "komen": {"komen", "kau"}}      # whisper's spellings of the same words
+ALT = {"setiap": {"setiap", "siapa", "siap"}, "komen": {"komen", "kau"}}      # whisper's spellings of the same words
 def W(word, after=0.0):
     ok = ALT.get(word, {word})
     return next(w["s"] for w in words if w["s"] >= after and re.sub(r"[^a-z]", "", w["w"].lower()) in ok)
