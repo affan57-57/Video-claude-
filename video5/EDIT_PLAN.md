@@ -4,13 +4,14 @@
 
 - Asal: 2 klip disambung (59.0 s + 6.5 s = 65.5 s). Selepas edit: **50.7 s** (49.3 s suara + 1.4 s kad penutup).
 - Gaya: minimalist luxury, rancak (ikut Video 4 v3 yang diluluskan). Animasi laju dengan zoom punch, bunyi "top" pada setiap teks dan "whip" pada setiap peralihan, kilatan pada impak. Muzik lembut 90 bpm (~−26 dB di bawah suara), SFX kuat, mix −13 LUFS.
-- Muka: **0.92 s sahaja** (4.57–5.49 s, "Korang, aku…"; ikut permintaan, bawah 1 saat). Diambil dari rakaman 1.3–2.2 s di mana mata pandang tepat ke lensa (berniqab, jadi tiada isu lip-sync). Hanya 4 saat pertama rakaman yang pandang kamera; selebihnya telefon terdongak ke siling, jadi diganti sepenuhnya dengan B-roll dan motion graphics.
+- Muka: **0.92 s sahaja** (4.50–5.42 s, "Korang, aku…"; ikut permintaan, bawah 1 saat). Diambil dari rakaman 1.3–2.2 s di mana mata pandang tepat ke lensa (berniqab, jadi tiada isu lip-sync). Hanya 4 saat pertama rakaman yang pandang kamera; selebihnya telefon terdongak ke siling, jadi diganti sepenuhnya dengan B-roll dan motion graphics.
 - Suara: lokasi rakaman bising (lantai bunyi ~−30 dBFS). Segmen disamakan level, kemudian RNNoise + FFT denoise, noise gate, EQ (kehangatan, potong "box", presence, air), de-esser, compressor ringan, exciter, dan gandaan tetap ke −14 LUFS.
 
 ## Maklum balas & perubahan
 - **v1→v2:** muka dipendekkan ke bawah 1 s; caption CTA "geng buddy".
 - **v3:** "buddy yang ada standard" (bukan body), jadi kedua-dua tempat "buddy", termasuk teks besar BUDDY. **"hotel" dan "expensive" terpotong** di v1/v2 kerana skrip potong cari titik senyap ±0.12 s dan jatuh di tengah perkataan (bunyi "t"/"s"). Sekarang titik potong ditetapkan tepat ikut tenaga bunyi (`snap_win` 0.02): hook 37.72–42.46, "Bau dia…" 42.62–46.66. Semua babak dipetakan semula secara automatik ke suara baru melalui padanan perkataan (`words_scene_timeline.json` → `words.json`).
 - **v3 (lanjutan):** awal video ada "aaaa…" sebelum "Satu bilik tidur", jadi hook rasa perlahan/gagap. Dibuang, dan hook kini terus mula pada "Satu". "Haa" yang sama juga dibuang sebelum "lepas tu barulah", "lama-lama poket" (dengan jeda) dan "tak payah". Muka dikunci pada 0.92 s.
+- **Semakan "ayat tak tergantung":** setiap sambungan suara disemak (perkataan sebelum/selepas lengkap). Setiap pertukaran babak kini jatuh di antara perkataan dan di antara frasa: build.py mengalihkan sempadan yang jatuh di tengah perkataan ke awal ayat baru (contoh "Sampailah…") atau ke hujung frasa ("…perfume mahal dah | Lepas ni…"). Shot muka tamat tepat sebelum "satu". Teks atas skrin semua sepadan dengan apa yang disebut. "PERFUME MAHAL" dimuatkan sebaris supaya garis coret tepat.
 
 ## Apa yang dibuang / dipindah
 | Masa asal | Tindakan | Sebab |

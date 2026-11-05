@@ -274,18 +274,18 @@ S(40.4, "chime", 0.45)
 # ---- S12 40.95-45.10: tak payah membazir perfume mahal; tidur pun ada vibes mahal
 clip("s12a", 40.95, 1.95, '<div class="ivory grid"></div>'
      f'<div class="t c kick" style="top:640px">{R("z0","Tak payah dah membazir")}</div>'
-     '<div class="t c" style="top:720px"><span style="position:relative;display:inline-block;font:300 110px/1 Montserrat;letter-spacing:-2px">'
+     '<div class="t c" style="top:720px"><span style="position:relative;display:inline-block;font:300 92px/1 Montserrat;letter-spacing:-2px;white-space:nowrap">'
      f'{R("z1","PERFUME MAHAL")}<i class="strike" id="z2"></i></span></div>'
-     '<div class="t c" style="top:880px;font:200 200px/1 Montserrat;color:var(--rose)" id="z3">&#10005;</div>')
+     '<div class="t c" style="top:860px;font:200 200px/1 Montserrat;color:var(--rose)" id="z3">&#10005;</div>')
 A('tl.fromTo("#s12a",{clipPath:"inset(0% 0% 0% 100%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.4,ease:"expo.inOut"},40.95);')
-rv("#z0", 41.32); rv("#z1", 42.38, 0.45); line("#z2", 42.75, 0.3); pop("#z3", 42.85, 0.35)
-S(40.95, "whip", 0.5); S(42.75, "whip", 0.4); S(42.85, "boom", 0.4)
+rv("#z0", 41.32); rv("#z1", 42.38, 0.45); line("#z2", 42.6, 0.3); pop("#z3", 42.72, 0.35)
+S(40.95, "whip", 0.5); S(42.6, "whip", 0.4); S(42.72, "boom", 0.4)
 full("v_cdls", "assets/broll/candles.mp4", 42.9, 2.2, 1.15, 1.0)
 clip("s12b", 42.9, 2.2, '<div class="shade" style="background:rgba(0,0,0,.25)"></div>'
      f'<div class="t c kick light" style="top:700px;letter-spacing:12px">{R("v0","Lepas ni tidur pun ada")}</div>'
      f'<div class="t c light" style="top:770px;font:200 170px/1 Montserrat;letter-spacing:-4px">{R("v1","VIBES")}</div>'
      f'<div class="t c serif-it" style="top:950px;font-size:130px;color:#f2d388">{R("v2","mahal")}</div>')
-A('tl.fromTo("#s12b .shade",{opacity:0},{opacity:1,duration:0.4},42.9);')
+A('tl.fromTo("#s12b .shade",{opacity:0},{opacity:1,duration:0.3},43.15);')
 rv("#v0", 43.22); rv("#v1", 44.32, 0.45); rv("#v2", 44.62, 0.45)
 S(44.32, "boom", 0.45); S(44.62, "shimmer", 0.4)
 
@@ -349,15 +349,66 @@ for i, l in enumerate(js):
         js[i] = f"{m.group(1)}{max(end - st0, 0.1):.2f}{m.group(4)}{st0:.3f});"
 for c in sfx: c["t"] = T(c["t"])
 DURATION = round(T(DURATION), 2)
+# ---- scene changes must fall between words, never mid-word: snap every top-level scene boundary
+_SCN = re.compile(r'^(s\d+[ab]?|v_hotel|v_corr|v_shower|v_pump|v_cdls|bg\d+|v_\w+w|p_\w+w|v_bed|v_bd|v_sh|v_mn|v_wl|v_cdl|v_mo|p_\w+)$')
+def _bounds():
+    out = set()
+    for h in html:
+        m = re.search(r'id="([^"]+)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
+        if m and re.match(r'^(s\d+[ab]?|bg\d+|v_hotel|v_corr|v_shower|v_pump|v_cdls)$', m.group(1)):
+            out.add(round(float(m.group(2)) + float(m.group(3)), 3))
+    return out
+_moves = {}
+for b in sorted(_bounds()):
+    mid = [w for w in words if w["s"] + 0.04 < b < w["e"] - 0.04]
+    if mid and b < DURATION - 0.05:
+        w = mid[0]; i = words.index(w)
+        starts_sentence = i == 0 or re.search(r"[.,?!]$", words[i - 1]["w"].strip()) or w["s"] - words[i - 1]["e"] > 0.15
+        if starts_sentence and b - w["s"] < 0.45:
+            nb = w["s"]                                  # the new sentence begins with this word: cut just before it
+        else:                                            # mid-phrase: finish the phrase, cut before the next one ("…mahal dah | Lepas ni…")
+            nxt = [x for x in words[i + 1:] if re.match(r"(?i)^(lepas|so|sampailah|sekali|dulu|tak|dia|sebab|korang)\b", x["w"].strip()) and x["s"] - b < 0.4]
+            nb = nxt[0]["s"] if nxt else w["e"]
+        _moves[b] = round(nb, 3)
+def _mv(x):
+    for o, n in _moves.items():
+        if abs(x - o) < 0.003: return n
+    return x
+def _rb(m):
+    st, d = float(m.group(1)), float(m.group(2)); ns, ne = _mv(st), _mv(round(st + d, 3))
+    return f'data-start="{ns:.3f}" data-duration="{ne - ns:.3f}"'
+html = [re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', _rb, h) for h in html]
+js = [re.sub(r",([\d.]+)\);$", lambda m: f",{_mv(float(m.group(1))):.3f});", l) for l in js]
+for c in sfx: c["t"] = _mv(c["t"])
+print("scene boundaries moved off mid-word:", _moves)
+_punch = {}                                       # keep each zoom punch -> slow drift pair back-to-back after the remap
+for i, l in enumerate(js):
+    m = re.match(r'tl\.fromTo\("(#[\w-]+)",\{scale:[\d.]+\},\{scale:[\d.]+,duration:([\d.]+),ease:"expo\.out"\},([\d.]+)\);$', l)
+    if m: _punch[m.group(1)] = float(m.group(3)) + float(m.group(2)); continue
+    m = re.match(r'(tl\.to\("(#[\w-]+)",\{scale:[\d.]+,duration:)([\d.]+)(,ease:"none"\},)([\d.]+)\);$', l)
+    if m and m.group(2) in _punch:
+        st0 = _punch.pop(m.group(2)); end = float(m.group(5)) + float(m.group(3))
+        js[i] = f"{m.group(1)}{max(end - st0, 0.1):.2f}{m.group(4)}{st0:.3f});"
+
+# ---- the face (0.92 s, client: under 1 s) ends on a word boundary near the end of "Korang, aku ada..."
 _FACE_LEN = 0.92
+_fw = [w for w in words if 4.0 < w["s"] < 6.0]
+_fend = min((w["s"] for w in _fw), key=lambda t: abs(t - 5.45))
 for i, h in enumerate(html):
-    m = re.search(r'id="(v_face|s1|s1b)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
+    m = re.search(r'id="(v_face|s1)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
+    if m:
+        html[i] = h.replace(f'data-start="{m.group(2)}" data-duration="{m.group(3)}"', f'data-start="{_fend - _FACE_LEN:.3f}" data-duration="{_FACE_LEN:.3f}"')
+    m = re.search(r'id="(v_corr|s0b)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
+    if m:
+        st = float(m.group(2)); html[i] = h.replace(f'data-duration="{m.group(3)}"', f'data-duration="{_fend - _FACE_LEN - st:.3f}"')
+js = [re.sub(r'^(tl\.fromTo\("#v_face",.*\},)([\d.]+)\);$', lambda q: f"{q.group(1)}{_fend - _FACE_LEN:.3f});", l) for l in js]
+for c in sfx:
+    if c["sfx"] == "whip" and abs(c["t"] - 4.565) < 0.2: c["t"] = round(_fend - _FACE_LEN, 3)
+for i, h in enumerate(html):
+    m = re.search(r'id="(s1b)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', h)
     if not m: continue
-    st, d = float(m.group(2)), float(m.group(3))
-    if m.group(1) in ("v_face", "s1"):
-        html[i] = h.replace(f'data-duration="{m.group(3)}"', f'data-duration="{_FACE_LEN:.3f}"')
-        _face_start = st
-    else:                                         # kinetic PERANGAI beat takes over right when the face ends
+    st, d = float(m.group(2)), float(m.group(3)); _face_start = _fend - _FACE_LEN
+    if True:                                         # kinetic PERANGAI beat takes over right when the face ends
         end = st + d; ns = _face_start + _FACE_LEN
         html[i] = h.replace(f'data-start="{m.group(2)}" data-duration="{m.group(3)}"', f'data-start="{ns:.3f}" data-duration="{end - ns:.3f}"')
         js = [re.sub(r'(tl\.fromTo\("#s1b",.*\},)([\d.]+)\);$', lambda q: f"{q.group(1)}{ns:.3f});", l) for l in js]
