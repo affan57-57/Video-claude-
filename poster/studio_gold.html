@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Frescura Black Gold</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* Black & gold luxury studio product image, 1:1 for TikTok Shop.
+   Variant via query: studio_gold.html?v=duo | noche | wg */
+:root{--g1:#fff1cf;--g2:#e8c57e;--g3:#b88a3e;--g4:#7c5a26}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:#050403}
+#poster{position:relative;width:1080px;height:1080px;overflow:hidden;font-family:Montserrat,sans-serif;
+  background:radial-gradient(65% 55% at 50% 45%,#1d1810 0%,#0d0b08 55%,#040302 100%)}
+#cone{position:absolute;left:50%;top:-140px;width:980px;height:1120px;transform:translateX(-50%);
+  background:radial-gradient(48% 100% at 50% 0%,rgba(255,226,170,.16),rgba(255,214,150,.05) 55%,transparent 76%);filter:blur(10px)}
+#floor{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#0a0806 0%,#030202 100%)}
+#horizon{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 4%,var(--g4) 22%,var(--g1) 50%,var(--g4) 78%,transparent 96%);box-shadow:0 0 12px rgba(255,210,130,.35)}
+#pool{position:absolute;left:50%;transform:translateX(-50%);width:860px;height:140px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,220,160,.13),transparent)}
+#grain{position:absolute;inset:0;opacity:.08;mix-blend-mode:screen}
+
+/* minimal gold-neon wordmark */
+#logo{position:absolute;left:0;width:100%;text-align:center;top:54px}
+#logo .w{font-family:'Tenor Sans';font-size:44px;letter-spacing:13px;padding-left:13px;color:#fff3d8;
+  text-shadow:0 0 2px rgba(255,236,190,.9),0 0 10px rgba(255,205,120,.55),0 0 26px rgba(230,165,60,.35)}
+#logo .rule{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px}
+#logo .rule i{width:58px;height:1px;background:linear-gradient(90deg,transparent,var(--g2))}
+#logo .rule i:last-child{background:linear-gradient(270deg,transparent,var(--g2))}
+#logo .rule span{font-size:12px;font-weight:500;letter-spacing:8px;padding-left:8px;color:#cfae6e}
+
+.glow{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;background:rgba(240,190,100,.32)}
+.bottle,.reflect,.foam,.foamref{position:absolute}
+.bottle img,.reflect img,.foam img,.foamref img{display:block;width:100%;height:100%}
+.bottle img{filter:drop-shadow(0 0 1px rgba(255,230,180,.35)) contrast(1.05) brightness(1.03)}
+.reflect,.foamref{transform:scaleY(-1);opacity:.26;filter:blur(1.4px);
+  -webkit-mask-image:linear-gradient(0deg,#000 0%,transparent 28%);mask-image:linear-gradient(0deg,#000 0%,transparent 28%)}
+.foam img{filter:drop-shadow(0 10px 14px rgba(0,0,0,.6)) brightness(1.04) saturate(.92)}
+.contact{position:absolute;height:20px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.9),transparent);filter:blur(4px)}
+
+#copy{position:absolute;left:0;width:100%;text-align:center}
+#copy .t{font-family:Cinzel;font-weight:500;font-size:30px;letter-spacing:11px;padding-left:11px;
+  background:linear-gradient(180deg,var(--g1),var(--g2) 45%,var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent}
+#copy .s{margin-top:14px;font-size:13px;font-weight:500;letter-spacing:7px;padding-left:7px;color:#a8916a}
+</style></head>
+<body>
+<div id="poster">
+  <div id="cone"></div>
+  <div id="floor"></div>
+  <div id="pool"></div>
+  <div id="stage"></div>
+  <div id="horizon"></div>
+  <div id="logo"><div class="w">FRESCURA BODY</div><div class="rule"><i></i><span>SOFT | FRAGRANT</span><i></i></div></div>
+  <div id="copy"><div class="t" id="title"></div><div class="s" id="sub"></div></div>
+  <svg id="grain" width="1080" height="1080"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .75  0 0 0 0 .65  0 0 0 0 .5  0 0 0 .3 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+</div>
+<script>
+const v=new URLSearchParams(location.search).get('v')||'duo';
+const stage=document.getElementById('stage');
+const add=h=>stage.insertAdjacentHTML('beforeend',h);
+const SRC={'assets/noche.png':[343,986],'assets/womanglory.png':[357,1040]};
+const FOAM=[944,900];
+
+// bottles: [src, centerX, height-in-Noche-units]; foam: [centerX, width, dy below floor line]
+const L={
+  duo:{floorY:868,bottles:[['assets/noche.png',392,640],['assets/womanglory.png',652,640]],foam:[[808,210,16]],
+       title:'FOAMING BODY SHOWER',sub:'OCEAN SALT  ·  AROMATHERAPY  ·  500ML'},
+  noche:{floorY:868,bottles:[['assets/noche.png',540,676]],foam:[],
+       title:'NOCHE',sub:'MIDNIGHT FANTASY  ·  FOAMING BODY SHOWER'},
+  wg:{floorY:868,bottles:[['assets/womanglory.png',500,640]],foam:[[690,230,16]],
+       title:'WOMAN GLORY',sub:'BOMBSHELL  ·  FOAMING BODY SHOWER'},
+}[v];
+
+const fy=L.floorY;
+document.getElementById('floor').style.top=fy+'px';
+document.getElementById('horizon').style.top=fy+'px';
+document.getElementById('pool').style.top=(fy-70)+'px';
+document.getElementById('copy').style.top=(fy+72)+'px';
+
+L.foam.forEach(([cx,w,dy])=>{
+  const h=w*FOAM[1]/FOAM[0],base=fy+dy,top=base-h;
+  add(`<div class="foamref" style="left:${cx-w/2}px;top:${base-6}px;width:${w}px;height:${h}px"><img src="assets/foam_cut.png"></div>`);
+  add(`<div class="contact" style="left:${cx-w*0.42}px;top:${base-14}px;width:${w*0.84}px"></div>`);
+  add(`<div class="foam" style="left:${cx-w/2}px;top:${top}px;width:${w}px;height:${h}px"><img src="assets/foam_cut.png"></div>`);
+});
+L.bottles.forEach(([src,cx,H])=>{
+  const k=H/986,w=SRC[src][0]*k,h=SRC[src][1]*k,top=fy+4-h;
+  add(`<div class="glow" style="left:${cx-w*0.9}px;top:${top+h*0.2}px;width:${w*1.8}px;height:${h*0.75}px"></div>`);
+  add(`<div class="reflect" style="left:${cx-w/2}px;top:${fy+4}px;width:${w}px;height:${h}px"><img src="${src}"></div>`);
+  add(`<div class="contact" style="left:${cx-w*0.5}px;top:${fy-8}px;width:${w}px"></div>`);
+  add(`<div class="bottle" style="left:${cx-w/2}px;top:${top}px;width:${w}px;height:${h}px"><img src="${src}"></div>`);
+});
+document.getElementById('title').textContent=L.title;
+document.getElementById('sub').textContent=L.sub;
+Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>document.body.dataset.ready=1);
+</script>
+</body></html>
