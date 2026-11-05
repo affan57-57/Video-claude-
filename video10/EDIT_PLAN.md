@@ -1,6 +1,6 @@
 # Video 10: "3 rahsia wangi tanpa perfume" (hook soalan → 3 rahsia → tekan beg kuning)
 
-**Status: PREVIEW v2**, `preview/preview_v2.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: FINAL** (diluluskan klien), `final/video10_3rahsia_wangi_1080p.mp4` (1080x1920, `-q delivery`, tanpa tag PREVIEW). Preview: `preview/preview_v2.mp4`.
 
 - Sumber: `src/main.mp4` (klien bercakap, 41.5 s) + `src/part2.mp4` (36.8 s, **footage produk klien sendiri**: pam Woman Glory, buih merah jambu, buih digosok; tiada suara).
 - Selepas edit: **32.8 s** (31.2 s suara + 1.6 s kad penutup).
