@@ -222,18 +222,18 @@ S(W("spray") - 0.15, "spray", 0.6)
 ribbon("rb3", R2A)
 back("r2b_", R2A, R3A - R2A, '<div class="silkbg"></div>')
 CA, CB = (70, 640, 455, 820), (555, 640, 455, 820)
-ivid("v_rse", "assets/broll/rose.mp4", R2B, R3A - R2B, (CA[0], CA[1], CA[2], 560), "border-radius:36px 36px 0 0;")
-ivid("v_ber", "assets/broll/berries.mp4", R2C, R3A - R2C, (CB[0], CB[1], CB[2], 560), "border-radius:36px 36px 0 0;")
-def card(id_, box, letter):
+def card(id_, box, letter, src):
     l, t_, w, h = box
-    return (f'<div id="{id_}" style="position:absolute;left:{l}px;top:{t_}px;width:{w}px;height:{h}px;border-radius:36px;background:var(--pearl);'
+    return (f'<div id="{id_}" style="position:absolute;left:{l}px;top:{t_}px;width:{w}px;height:{h}px;border-radius:36px;overflow:hidden;background:var(--pearl);'
             f'box-shadow:0 30px 70px rgba(29,26,44,.18);border:3px solid rgba(143,128,191,.35);z-index:-1">'
             f'<div style="position:absolute;inset:0 0 260px 0;border-radius:36px 36px 0 0;background:linear-gradient(160deg,#e3ddee,#cfc6e2);display:flex;align-items:center;justify-content:center;'
-            f'font:400 260px Italiana;color:rgba(29,26,44,.25)">{letter}</div></div>')
+            f'font:400 260px Italiana;color:rgba(29,26,44,.25)">{letter}</div>'
+            f'<img id="{id_}i" src="{src}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%">'
+            f'<div style="position:absolute;left:0;right:0;bottom:0;height:250px;background:rgba(250,248,251,.95)"></div></div>')
 clip("r2", R2A, R3A - R2A,
      head("h2", "II", "Kedua")
      + f'<div style="position:absolute;left:130px;top:430px;font:400 140px/1 Italiana">{R("r2t","Pilih bau")} {R("r2u","<span class=lilac>kau</span>")}</div>'
-     + '<div id="r2cards" style="position:absolute;inset:0;z-index:0">' + card("r2ca", CA, "A") + card("r2cb", CB, "B") + '</div>'
+     + '<div id="r2cards" style="position:absolute;inset:0;z-index:0">' + card("r2ca", CA, "A", "assets/product/glory_card.jpg") + card("r2cb", CB, "B", "assets/product/noche_card.jpg") + '</div>'
      f'<div id="r2na" style="position:absolute;left:{CA[0] + 30}px;top:{CA[1] + 580}px;width:{CA[2] - 60}px"><div style="font:400 62px/1 Italiana;color:var(--rose)">Woman Glory</div>'
      '<div class="lab" style="font-size:22px;letter-spacing:5px;margin-top:10px;color:var(--rose)">by Bombshell</div>'
      '<div style="display:flex;gap:10px;margin-top:18px"><span class="tag r" id="r2f1" style="position:relative;font-size:22px;padding:10px 18px">FRESH</span>'
@@ -252,8 +252,9 @@ rv("#r2t", W("pilih") - 0.05); rv("#r2u", W("kau", W("pilih")) - 0.05)
 js.append(f'tl.fromTo("#r2ca, #r2cb",{{y:300,opacity:0}},{{y:0,opacity:1,duration:0.5,stagger:0.1,ease:"expo.out"}},{W("boleh") - 0.1:.2f});')
 S(W("boleh") - 0.1, "whip", 0.45)
 js.append(f'tl.fromTo("#cur",{{opacity:0,x:200,y:300}},{{opacity:1,x:0,y:0,duration:0.5,ease:"power2.out"}},{W("pilih"):.2f});')
-js.append(f'tl.to("#cur",{{x:-260,y:-200,duration:0.5,ease:"power2.inOut"}},{R2B:.2f});')
-js.append(f'tl.fromTo("#v_rse",{{clipPath:"inset(100% 0% 0% 0% round 36px 36px 0 0)"}},{{clipPath:"inset(0% 0% 0% 0% round 36px 36px 0 0)",duration:0.45,ease:"expo.out"}},{R2B:.2f});')
+js.append(f'tl.to("#cur",{{x:-260,y:-10,duration:0.5,ease:"power2.inOut"}},{R2B:.2f});')
+js.append(f'tl.fromTo("#r2cai, #r2cbi",{{clipPath:"inset(100% 0% 0% 0%)",scale:1.15}},{{clipPath:"inset(0% 0% 0% 0%)",scale:1,duration:0.55,stagger:0.12,ease:"expo.out"}},{W("boleh") + 0.15:.2f});')
+js.append(f'tl.to("#r2cai",{{scale:1.06,duration:0.4,yoyo:true,repeat:1,ease:"sine.inOut"}},{R2B:.2f});')
 S(R2B, "swoosh", 0.4)
 fade("#r2na", R2B + 0.15, 0.35, y=20)
 pop("#r2f1", W("fresh", R2B), 0.3); pop("#r2f2", W("feminine"), 0.3)
@@ -261,8 +262,8 @@ ta = W("ambil")
 js.append(f'tl.to("#cur",{{scale:0.85,duration:0.08,yoyo:true,repeat:1}},{ta + 0.2:.2f});')
 js.append(f'tl.to("#r2ca",{{borderColor:"#b02a45",borderWidth:6,duration:0.2}},{ta + 0.2:.2f});')
 pop("#r2ka", ta + 0.25, 0.3); S(ta + 0.2, "click", 0.7); S(ta + 0.3, "ding", 0.45)
-js.append(f'tl.to("#cur",{{x:230,y:-200,duration:0.45,ease:"power2.inOut"}},{R2C:.2f});')
-js.append(f'tl.fromTo("#v_ber",{{clipPath:"inset(100% 0% 0% 0% round 36px 36px 0 0)"}},{{clipPath:"inset(0% 0% 0% 0% round 36px 36px 0 0)",duration:0.45,ease:"expo.out"}},{R2C:.2f});')
+js.append(f'tl.to("#cur",{{x:230,y:-10,duration:0.45,ease:"power2.inOut"}},{R2C:.2f});')
+js.append(f'tl.to("#r2cbi",{{scale:1.06,duration:0.4,yoyo:true,repeat:1,ease:"sine.inOut"}},{R2C:.2f});')
 S(R2C, "swoosh", 0.4)
 fade("#r2nb", R2C + 0.15, 0.35, y=20)
 pop("#r2m1", W("manis"), 0.3); pop("#r2m2", W("fruity"), 0.3)

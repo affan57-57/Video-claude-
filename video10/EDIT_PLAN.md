@@ -1,12 +1,15 @@
 # Video 10: "3 rahsia wangi tanpa perfume" (hook soalan → 3 rahsia → tekan beg kuning)
 
-**Status: PREVIEW v1**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: PREVIEW v2**, `preview/preview_v2.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
 
 - Sumber: `src/main.mp4` (klien bercakap, 41.5 s) + `src/part2.mp4` (36.8 s, **footage produk klien sendiri**: pam Woman Glory, buih merah jambu, buih digosok; tiada suara).
 - Selepas edit: **32.8 s** (31.2 s suara + 1.6 s kad penutup).
 - Hook: *"Kalau kau nak orang tanya kau pakai perfume apa ni, kau wajib tengok video ni sampai habis."* Muka: **0.76 s sahaja** (bawah 1 saat), mata ke lensa, hflip. Selebihnya B-roll, footage produk dan motion graphics.
 - Suara: bilik senyap (lantai ~−49 dBFS). 7 segmen disamakan level → RNNoise + FFT denoise, gate, EQ, de-esser, compressor ringan, exciter, gandaan tetap −14 LUFS, dipercepat 1.12x tanpa ubah pitch. Mix −13 LUFS: suara depan, SFX kuat, muzik lembut.
 - Footage produk (part2) dari kamera belakang: label terbaca betul, **tidak di-flip dan tidak digred warna**, jadi botol/label asal.
+
+## Maklum balas
+- **v2:** masa pilihan Bombshell / Midnight Fantasy, kad A/B kini terus menunjukkan **gambar produk tambahan klien** (botol Woman Glory dan botol Noche), bukan B-roll mawar/beri. Kursor tangan dialih ke bahagian nama supaya label botol jelas.
 
 ## Gaya baru: "Lilac Silk" (belum pernah digunakan)
 - **Font baru:** **Italiana** (display fesyen nipis, gaya iklan perfume) + **Urbanist** (caption tebal 70 px). **Palet:** sutera lilac-kelabu, mutiara, dakwat malam, lilac; mawar untuk Woman Glory, violet untuk Noche, kuning hanya untuk beg kedai.
@@ -31,7 +34,7 @@ Tiada ayat tersasul. "Tekan … check out" disebut dua kali dalam CTA dan dikeka
 | 3.97–6.84 | 3 rahsia wangi tanpa perfume, Frescura Body | "3 Rahsia" + botol line-art dipangkah → footage botol Woman Glory klien + "Frescura Body" |
 | 6.84–10.07 | I: bau dia memang inspirasi perfume | "I" + "inspirasi perfume" + kad Woman Glory + garis aroma |
 | 10.07–12.73 | Lepas mandi pun orang ingat kau baru spray perfume | Footage pam (sisi) + gelembung "Eh, baru spray perfume ke?" + kabus |
-| 12.73–18.87 | II: kau boleh pilih bau kau… Bombshell… Midnight Fantasy | Kad pemilih A/B; kursor pilih A (mawar, FRESH/FEMININE) dan B (beri, MANIS/FRUITY) |
+| 12.73–18.87 | II: kau boleh pilih bau kau… Bombshell… Midnight Fantasy | Kad pemilih dengan **gambar botol Woman Glory dan Noche**; kursor pilih Woman Glory (FRESH/FEMININE) dan Noche (MANIS/FRUITY) |
 | 18.87–21.11 | III: tekan je terus berbuih | **Footage klien: tekan pam, buih keluar ke tapak tangan** + gelang tap |
 | 21.11–22.67 | Ada sea salt yang kaya mineral | Ombak dari udara + "Sea Salt" + KAYA MINERAL |
 | 22.67–23.80 | kulit rasa segar | **Footage klien: buih digosok** + "segar" |
@@ -48,7 +51,8 @@ Tiada ayat tersasul. "Tekan … check out" disebut dua kali dalam CTA dan dikeka
 
 ## Sumber
 - Footage klien: `part2.mp4` (pam & buih Woman Glory).
-- B-roll: [Mixkit](https://mixkit.co) (Mixkit Free License): 40294, 50537, 31745.
+- Gambar produk klien: glory_card, noche_card, duo_wood.
+- B-roll: [Mixkit](https://mixkit.co) (Mixkit Free License): 31745.
 - Fon: Italiana, Urbanist (SIL Open Font License, google/fonts).
 - SFX & muzik: disintesis sendiri (`make_audio.py`; kalimba 100 bpm Abmaj7–Bb7sus–Eb–Fm9). Komposisi: HyperFrames v0.9.10.
 
@@ -62,5 +66,5 @@ python3 -I prep_broll.py mixkit project/assets/broll src/main.mp4 src/part2.mp4
 python3 -I build.py project
 python3 make_audio.py project/assets/audio/voice.wav project/assets/audio
 ffmpeg -i project/assets/audio/mix_raw.wav -af loudnorm=I=-13:TP=-1:LRA=9 -ar 48000 project/assets/audio/mix.wav
-cd project && npx hyperframes@0.9.10 render -q draft -o ../preview/preview_v1.mp4
+cd project && npx hyperframes@0.9.10 render -q draft -o ../preview/preview_v2.mp4
 ```
