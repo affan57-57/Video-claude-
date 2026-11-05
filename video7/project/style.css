@@ -41,7 +41,7 @@ div.clip { z-index: 5; }
 .clay { color: var(--clay); } .olive { color: var(--olive); } .boneclr { color: var(--bone); }
 
 /* odometer: a strip of digits scrolled into place */
-.odo { position: absolute; overflow: hidden; }
+.odo { position: absolute; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%); }
 .odo .strip { display: flex; flex-direction: column; }
 .odo .strip span { display: block; }
 

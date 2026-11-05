@@ -97,7 +97,7 @@ def swipe(id_, t):
 def odo(id_, n, t, left, top, size=300, color="var(--olive)", start=0, italic=True):
     """Odometer numeral: a column of digits rolls up to n."""
     seq = [f"{k:02d}" if size < 400 else str(k) for k in range(start, n + 1)]
-    lh = size * 0.9
+    lh = size * 1.12                               # tall rows: only one digit visible while rolling
     strip = "".join(f'<span style="height:{lh:.0f}px;line-height:{lh:.0f}px">{d}</span>' for d in seq)
     js.append(f'tl.fromTo("#{id_} .strip",{{y:0}},{{y:{-(len(seq) - 1) * lh:.0f},duration:0.6,ease:"expo.out"}},{t:.2f});')
     S(t, "click", 0.5); S(t + 0.3, "boom", 0.45)
