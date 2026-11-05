@@ -59,6 +59,15 @@ html,body{width:1080px;height:1920px;background:var(--ink);overflow:hidden}
 #variants b{color:#fff;font-weight:700}
 #variants .dot{color:var(--gold2);padding:0 14px}
 #cta{top:1806px}
+/* neon scent signs */
+.neon{position:absolute;font-family:Yellowtail;white-space:nowrap;line-height:1;transform:rotate(-7deg)}
+.neon small{display:block;font-family:Montserrat;font-weight:600;font-size:15px;letter-spacing:6px;margin-bottom:6px;text-align:center}
+#neonN{left:395px;top:648px;font-size:60px;color:#f3e8ff;
+  text-shadow:0 0 4px #fff,0 0 10px #e2c6ff,0 0 20px #b36bff,0 0 38px #8a3dff,0 0 70px #7a2dff,0 0 110px #6a1fff}
+#neonN small{color:#e9d8ff;text-shadow:0 0 6px #b36bff,0 0 14px #8a3dff}
+#neonB{left:796px;top:686px;font-size:66px;color:#ffe8ee;
+  text-shadow:0 0 4px #fff,0 0 10px #ffc0d2,0 0 20px #ff4f86,0 0 38px #ff1f5f,0 0 70px #ff0f4f,0 0 110px #e6003c}
+#neonB small{color:#ffd6e1;text-shadow:0 0 6px #ff4f86,0 0 14px #ff1f5f}
 #cta span{display:inline-block;padding:15px 46px;border:2px solid var(--gold2);border-radius:999px;font-weight:700;font-size:25px;letter-spacing:4px;color:var(--gold1);background:rgba(233,199,123,.08);box-shadow:0 0 26px rgba(233,199,123,.25)}
 </style></head>
 <body>
@@ -82,6 +91,9 @@ html,body{width:1080px;height:1920px;background:var(--ink);overflow:hidden}
   <img id="reflect" src="assets/bottles.png">
   <div id="floorline"></div>
   <img id="bottles" src="assets/bottles.png">
+
+  <div class="neon" id="neonN"><small>NOCHE</small>Midnight Fantasy</div>
+  <div class="neon" id="neonB"><small>WOMAN GLORY</small>Bombshell</div>
 
   <div id="foam">
     <div class="ring"><img src="assets/foam.jpg"></div>
@@ -161,8 +173,8 @@ el('rect',{x:0,y:0,width:1080,height:1920,fill:'url(#skyg)'});
 // stars
 for(let i=0;i<140;i++){el('circle',{cx:rnd()*1080,cy:rnd()*760,r:rnd()*1.4+.3,fill:'#fff',opacity:(rnd()*.6+.2).toFixed(2)})}
 // moon glow
-el('circle',{cx:1000,cy:640,r:120,fill:'url(#moon)',opacity:.45});
-el('circle',{cx:1000,cy:640,r:20,fill:'#fff3d6',opacity:.8,filter:'url(#soft)'});
+el('circle',{cx:1015,cy:575,r:110,fill:'url(#moon)',opacity:.45});
+el('circle',{cx:1015,cy:575,r:18,fill:'#fff3d6',opacity:.8,filter:'url(#soft)'});
 
 // generic buildings w/ windows
 function building(x,w,h,fill,winC,winP,layerOp=1){
