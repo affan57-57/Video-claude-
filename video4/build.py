@@ -336,6 +336,9 @@ for c in (c for c in sfx if c["auto"]):           # auto cues yield to hand-plac
 kept.sort(key=lambda c: c["t"])
 for c in kept: c.pop("auto", None)
 sfx = kept
+for c in sfx:                                      # quick white flash on every impact for extra energy
+    if c["sfx"] == "boom":
+        js.append(f'tl.fromTo("#flash",{{opacity:0.45}},{{opacity:0,duration:0.22,ease:"power2.out"}},{c["t"]:.3f});')
 json.dump(sfx, open(f"{proj}/assets/audio/sfx_cues.json", "w"), indent=0)
 CSS = open(f"{proj}/style.css").read()
 pv = "" if FINAL else '<div class="pv">PREVIEW</div>'
