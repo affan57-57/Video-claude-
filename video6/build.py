@@ -29,7 +29,7 @@ for i, w in enumerate(clean):
     cur.append(w)
     nxt = clean[i + 1] if i + 1 < len(clean) else None
     if (len(cur) >= 3 or re.search(r"[.,?!]$", w["t"]) or nxt is None or nxt["s"] - w["e"] > 0.3
-            or len(" ".join(x["t"] for x in cur)) > 22 or any(abs(nxt["s"] - c) < 0.12 for c in CHAPTERS)):
+            or len(" ".join(x["t"] for x in cur)) > 18 or any(abs(nxt["s"] - c) < 0.12 for c in CHAPTERS)):
         chunks.append(cur); cur = []
 
 html, js, sfx = [], [], []
@@ -112,14 +112,14 @@ html.append('<video id="v_face" class="clip bg" src="assets/broll/face.mp4" data
 A('tl.fromTo("#v_face",{clipPath:"inset(0% 0% 100% 0%)"},{clipPath:"inset(0% 0% 0% 0%)",duration:0.25,ease:"expo.out"},0.38);')
 A('tl.fromTo("#v_face",{scale:1.1},{scale:1.0,duration:0.78,ease:"power2.out"},0.38);')
 clip("s1", 0.38, 0.78, '<div class="shade" style="background:linear-gradient(180deg,rgba(27,22,19,0) 55%,rgba(27,22,19,.75) 100%)"></div>'
-     f'<div class="t c" style="top:1360px;font:italic 400 150px/1 Bodoni;color:var(--cream)">{R("f0","kerja,")}</div>', style="z-index:7")
+     f'<div class="t c" style="top:1360px;font:italic 400 183px/1 Bodoni;color:var(--cream)">{R("f0","kerja,")}</div>', style="z-index:7")
 rv("#f0", 0.40, 0.45)
 S(0.38, "whip", 0.5)
 
 # S2 1.16-2.26: "jangan terus fikir pasal KERJA" -- the word is a window onto the office at night, then struck out
 clip("s2", 1.16, 1.10, '<div class="esp" style="background:#0e0b09"></div><div class="t c" id="k1" style="top:770px;left:0;right:0;font:900 250px/1 Bodoni;letter-spacing:-6px;-webkit-text-stroke:1.5px rgba(245,239,230,.55);color:transparent;background:url(assets/broll/office.jpg) center 45%/1400px auto;-webkit-background-clip:text;background-clip:text">KERJA</div>'
      f'<div class="t c label" style="top:640px;color:var(--brass)">{R("k0","Jangan terus fikir pasal")}</div>'
-     '<div style="position:absolute;left:110px;width:860px;top:955px;height:12px;background:var(--brass);transform-origin:0 50%" id="k2"></div>')
+     '<div style="position:absolute;left:110px;width:860px;top:880px;height:12px;background:var(--brass);transform-origin:0 50%" id="k2"></div>')
 A('tl.fromTo("#k1",{scale:1.25,backgroundPosition:"30% 45%"},{scale:1,backgroundPosition:"60% 45%",duration:1.1,ease:"expo.out"},1.16);')
 S(1.16, "whip", 0.5)
 rv("#k0", 1.18); line("#k2", 1.90, 0.4)
@@ -144,15 +144,15 @@ S(2.26, "whip", 0.5); S(2.96, "boom", 0.6)
 # T1 3.78-7.40: tarik nafas pelan-pelan, tenangkan fikiran -- arch sea + breathing guide
 blinds("bl1", 3.78)
 clip("bg1", 3.78, 3.62, '<div class="esp"></div>', style="z-index:2")
-vid("v_sea", "assets/broll/sea.mp4", 3.78, 3.62, (500, 500, 490, 820), cls="arch")
+vid("v_sea", "assets/broll/sea.mp4", 3.78, 3.62, (560, 520, 430, 760), cls="arch")
 clip("t1", 3.78, 3.62, numeral("n1", "01", 3.80)
-     + f'<div class="t disp" style="top:620px;left:90px;width:420px;font-size:112px">{R("a0","Tarik")}<br>{R("a1","nafas")}</div>'
-     + f'<div class="t disp-it brass" style="top:880px;left:90px;width:420px;font-size:66px">{R("a2","pelan-pelan")}</div>'
+     + f'<div class="t disp" style="top:620px;left:90px;width:420px;font-size:137px">{R("a0","Tarik")}<br>{R("a1","nafas")}</div>'
+     + f'<div class="t disp-it brass" style="top:900px;left:90px;width:460px;font-size:70px">{R("a2","pelan-pelan")}</div>'
      + '<div class="breath-dot" id="bd" style="left:150px;top:1040px;width:260px;height:260px"></div>'
      + '<div class="breath" id="br" style="left:150px;top:1040px;width:260px;height:260px"></div>'
-     + '<div class="t label" id="bt" style="top:1158px;left:150px;width:260px;text-align:center;letter-spacing:6px">TARIK</div>'
-     + '<div class="t label" id="bh" style="top:1158px;left:150px;width:260px;text-align:center;letter-spacing:6px;opacity:0">HEMBUS</div>'
-     + f'<div class="t mid" style="top:1390px;left:500px;width:500px;color:var(--sand);font-size:44px">{R("a3","&amp; tenangkan fikiran")}</div>')
+     + '<div class="t label" id="bt" style="top:1320px;left:150px;width:260px;text-align:center;letter-spacing:6px">TARIK</div>'
+     + '<div class="t label" id="bh" style="top:1320px;left:150px;width:260px;text-align:center;letter-spacing:6px;opacity:0">HEMBUS</div>'
+     + f'<div class="t mid" style="top:1300px;left:560px;width:440px;color:var(--sand);font-size:48px">{R("a3","&amp; tenangkan fikiran")}</div>')
 chap("c1", 1, "NAFAS", 3.78, 3.62)
 rv("#a0", 4.80, 0.5); rv("#a1", 5.04, 0.5); rv("#a2", 5.36)
 A('tl.fromTo("#br,#bd",{scale:0.45},{scale:1.15,duration:1.25,ease:"sine.inOut"},4.80);')
@@ -166,8 +166,8 @@ blinds("bl2", 7.40)
 clip("bg2", 7.40, 4.48, '<div class="esp"></div>', style="z-index:2")
 vid("v_ph", "assets/broll/phone.mp4", 7.40, 4.48, (250, 560, 580, 820), cls="frame")
 clip("t2", 7.40, 4.48, numeral("n2", "02", 7.42)
-     + f'<div class="t disp" style="top:240px;left:480px;width:520px;font-size:104px">{R("j0","Jauhkan")}</div>'
-     + f'<div class="t disp-it brass" style="top:360px;left:480px;width:520px;font-size:66px">{R("j1","diri sekejap")}</div>'
+     + f'<div class="t disp" style="top:240px;left:450px;width:580px;font-size:127px">{R("j0","Jauhkan")}</div>'
+     + f'<div class="t disp-it brass" style="top:360px;left:450px;width:580px;font-size:81px">{R("j1","diri sekejap")}</div>'
      + '<div class="notif" id="j2" style="left:120px;top:640px"><i></i>12 notifikasi baru</div>'
      + '<div class="notif" id="j3" style="left:520px;top:820px"><i style="background:var(--rose)"></i>48 likes</div>'
      + '<div class="notif" id="j4" style="left:160px;top:1000px"><i style="background:var(--sage)"></i>3 mesej</div>'
@@ -192,8 +192,8 @@ vid("v_vin", "assets/broll/vinyl.mp4", 11.88, 2.36, (240, 520, 600, 600), cls="c
 A('tl.fromTo("#v_vin",{rotation:0},{rotation:200,duration:2.36,ease:"none"},11.88);')
 EQ = "".join(f'<i id="eq{i}"></i>' for i in range(14))
 clip("t3", 11.88, 2.36, numeral("n3", "03", 11.90)
-     + f'<div class="t disp" style="top:240px;left:480px;width:520px;font-size:104px">{R("m0","Dengar")}</div>'
-     + f'<div class="t disp-it brass" style="top:360px;left:480px;width:520px;font-size:66px">{R("m1","lagu kegemaran")}</div>'
+     + f'<div class="t disp" style="top:240px;left:450px;width:580px;font-size:127px">{R("m0","Dengar")}</div>'
+     + f'<div class="t disp-it brass" style="top:360px;left:450px;width:580px;font-size:70px">{R("m1","lagu kegemaran")}</div>'
      + '<div class="breath" style="left:216px;top:496px;width:648px;height:648px;border-color:rgba(184,149,90,.5)" id="m2"></div>'
      + f'<div class="eq" style="left:306px;top:1200px">{EQ}</div>')
 chap("c3", 3, "MUZIK", 11.88, 2.36)
@@ -217,10 +217,10 @@ A('tl.fromTo("#v_fam",{clipPath:"inset(50% 0% 50% 0%)"},{clipPath:"inset(0% 0% 0
 A('tl.fromTo("#v_fam",{scale:1.12},{scale:1.0,duration:3.94,ease:"none"},14.24);')
 S(14.24, "whip", 0.45)
 clip("t4", 14.24, 3.94, numeral("n4", "04", 14.26)
-     + f'<div class="t disp" style="top:240px;left:480px;width:540px;font-size:96px">{R("q0","Luangkan")}<br>{R("q0b","masa")}</div>'
-     + f'<div class="t label" style="top:1130px">{R("q1","dengan keluarga atau")}</div>'
-     + f'<div class="t c disp-it" style="top:1200px;font-size:104px;color:var(--cream)">{R("q2","orang yang")}<br>{R("q3","tersayang")}</div>'
-     + f'<div id="q4" style="position:absolute;left:480px;top:1460px">{HEART}</div>'
+     + f'<div class="t disp" style="top:240px;left:450px;width:580px;font-size:117px">{R("q0","Luangkan")}<br>{R("q0b","masa")}</div>'
+     + f'<div class="t label" style="top:1112px">{R("q1","dengan keluarga atau")}</div>'
+     + f'<div class="t c disp-it" style="top:1172px;font-size:112px;color:var(--cream)">{R("q2","orang yang")}<br>{R("q3","tersayang")}</div>'
+     + f'<div id="q4" style="position:absolute;left:480px;top:1425px;transform:scale(.8)">{HEART}</div>'
      + '<div class="rule" id="q5" style="left:0;width:1080px;top:639px"></div><div class="rule" id="q6" style="left:0;width:1080px;top:1092px"></div>')
 chap("c4", 4, "KELUARGA", 14.24, 3.94)
 rv("#q0", 15.20, 0.5); rv("#q0b", 15.68, 0.5); rv("#q1", 15.98); rv("#q2", 17.30, 0.5); rv("#q3", 17.74, 0.5); line("#q5", 14.3); line("#q6", 14.3)
@@ -234,9 +234,9 @@ vid("v_bath", "assets/broll/bath.mp4", 18.18, 4.92, (90, 520, 900, 560), cls="ti
 vid("v_cdl", "assets/broll/candle.mp4", 19.82, 3.28, (90, 1100, 440, 420), cls="tile")
 vid("v_pmp", "assets/broll/pump_ivory.mp4", 20.66, 2.44, (550, 1100, 440, 420), cls="tile", media="3.3")
 clip("t5", 18.18, 4.92, numeral("n5", "05", 18.20)
-     + f'<div class="t disp" style="top:240px;left:480px;width:520px;font-size:104px">{R("u0","Mandi")}</div>'
-     + f'<div class="t disp-it brass" style="top:360px;left:480px;width:520px;font-size:62px">{R("u1","&amp; nikmati masa")}</div>'
-     + f'<div class="t label" style="top:455px;left:480px;width:520px">{R("u2","untuk diri sendiri")}</div>')
+     + f'<div class="t disp" style="top:240px;left:450px;width:580px;font-size:127px">{R("u0","Mandi")}</div>'
+     + f'<div class="t disp-it brass" style="top:360px;left:450px;width:580px;font-size:76px">{R("u1","&amp; nikmati masa")}</div>'
+     + f'<div class="t label" style="top:455px;left:450px;width:580px">{R("u2","untuk diri sendiri")}</div>')
 chap("c5", 5, "MANDI &amp; ME-TIME", 18.18, 4.92)
 rv("#u0", 19.82, 0.5); rv("#u1", 20.66); rv("#u2", 21.60)
 S(19.9, "foam", 0.5); S(22.74, "chime", 0.4)
@@ -247,7 +247,7 @@ blinds("blr", 23.10)
 full("v_tea", "assets/broll/tea.mp4", 23.10, 2.90)
 clip("refl1", 23.10, 2.90, '<div class="shade" style="background:linear-gradient(180deg,rgba(27,22,19,.75) 0%,rgba(27,22,19,.2) 45%,rgba(27,22,19,.1) 100%)"></div>'
      f'<div class="t label" style="top:260px">{R("r0","Kadang-kadang")}</div>'
-     f'<div class="t disp-it" style="top:330px;font-size:84px;line-height:1.08">{R("r1","kita tak perlukan")}<br>{R("r2","sesuatu yang besar")}<br>{R("r3","untuk berehat.")}</div>')
+     f'<div class="t disp-it" style="top:330px;font-size:102px;line-height:1.08">{R("r1","kita tak perlukan")}<br>{R("r2","sesuatu yang besar")}<br>{R("r3","untuk berehat.")}</div>')
 rv("#r0", 23.12); rv("#r1", 24.28, 0.5); rv("#r2", 24.88, 0.5); rv("#r3", 25.96, 0.5)
 # R2 26.00-29.04: cukup dengan beri ruang kepada diri sendiri -- film-strip slide to the book, centred quote
 html.append('<video id="v_book" class="clip bg" src="assets/broll/book.mp4" data-start="26.000" data-duration="3.040" data-media-start="0" muted playsinline style="z-index:2"></video>')
@@ -256,7 +256,7 @@ A('tl.fromTo("#v_book",{scale:1.08},{scale:1.0,duration:3.04,ease:"none"},26.00)
 S(26.0, "whip", 0.5)
 clip("refl2", 26.00, 3.04, '<div class="shade" style="background:rgba(27,22,19,.55)"></div>'
      '<div class="t c brass" style="top:470px;font:400 260px/1 Bodoni" id="r4">&ldquo;</div>'
-     f'<div class="t c disp-it" style="top:760px;font-size:92px;line-height:1.1">{R("r5","Cukup beri ruang")}<br>{R("r6","kepada diri sendiri.")}</div>'
+     f'<div class="t c disp-it" style="top:760px;font-size:112px;line-height:1.1">{R("r5","Cukup beri ruang")}<br>{R("r6","kepada diri sendiri.")}</div>'
      '<div class="rule" id="r7" style="left:440px;width:200px;top:1060px"></div>')
 A('tl.fromTo("#refl2",{opacity:0},{opacity:1,duration:0.3},26.15);')
 pop("#r4", 26.30, 0.4); rv("#r5", 26.76, 0.6); rv("#r6", 27.92, 0.6); line("#r7", 28.66)
@@ -268,11 +268,11 @@ blinds("blp", 29.04)
 clip("bgp", 29.04, 10.42, '<div class="esp"></div><div class="grain"></div>', style="z-index:2")
 vid("p_duo", "assets/product/duo_white.jpg", 29.04, 10.42, (470, 560, 520, 924), cls="arch", img=True)
 clip("prod1", 29.04, 4.64, f'<div class="t label" style="top:250px">{R("w0","Nak jadikan rutin mandi")}</div>'
-     f'<div class="t disp-it" style="top:310px;font-size:96px">{R("w1","lebih istimewa?")}</div>'
-     f'<div class="t mid" style="top:760px;left:90px;width:360px;color:var(--sand);font-size:46px">{R("w2","Korang")}<br>{R("w3","kena cuba")}</div>'
+     f'<div class="t disp-it" style="top:310px;font-size:117px">{R("w1","lebih istimewa?")}</div>'
+     f'<div class="t mid" style="top:760px;left:90px;width:360px;color:var(--sand);font-size:56px">{R("w2","Korang")}<br>{R("w3","kena cuba")}</div>'
      '<div class="vrule" id="w4" style="left:90px;top:900px;height:420px"></div>')
 rv("#w0", 29.06); rv("#w1", 31.56, 0.5); rv("#w2", 32.70); rv("#w3", 32.92); line("#w4", 33.0, 0.6, axis="Y")
-clip("prod2", 33.68, 5.78, f'<div class="t c" style="top:200px;font:400 104px/1 Bodoni;letter-spacing:22px">{R("x0","FRESCURA")}</div>'
+clip("prod2", 33.68, 5.78, f'<div class="t c" style="top:200px;font:400 127px/1 Bodoni;letter-spacing:22px">{R("x0","FRESCURA")}</div>'
      f'<div class="t c label" style="top:330px;letter-spacing:30px">{R("x1","BODY")}</div>'
      '<div class="spec" id="x2" style="left:90px;top:760px"><div><div class="x">SEA SALT<small>ocean salt</small></div></div><div class="l"></div><div class="d"></div></div>'
      '<div class="spec" id="x3" style="left:90px;top:960px"><div><div class="x">PILIHAN WANGIAN<small>dua pilihan</small></div></div><div class="l"></div><div class="d"></div></div>'
@@ -301,11 +301,11 @@ TIPS = ["Tarik nafas", "Jauhkan telefon", "Dengar lagu", "Masa keluarga", "Mandi
 rows = "".join(f'<div class="check" id="ck{i}" style="top:{470 + i * 118}px"><span class="n">0{i+1}</span><div class="bx">{TICK}</div>{t}</div>' for i, t in enumerate(TIPS))
 clip("cta", 41.56, VOICE_END - 41.56, '<div class="esp"></div><div class="grain"></div>'
      f'<div class="t label" style="top:250px">{R("z0","Kalau tips ni bermanfaat")}</div>'
-     f'<div class="t disp-it" style="top:310px;font-size:84px">{R("z1","5 perkara tadi")}</div>'
+     f'<div class="t disp-it" style="top:310px;font-size:102px">{R("z1","5 perkara tadi")}</div>'
      + rows +
      f'<div class="sharebtn" id="z2" style="top:1110px">{SHARE}SHARE</div>'
      '<div class="tap" id="z3" style="left:720px;top:1150px"></div>'
-     f'<div class="t c disp-it" style="top:1310px;font-size:66px;color:var(--sand)">{R("z4","supaya lebih ramai tahu")}<br>{R("z5","cara menjaga diri")}</div>')
+     f'<div class="t c disp-it" style="top:1310px;font-size:81px;color:var(--sand)">{R("z4","supaya lebih ramai tahu")}<br>{R("z5","cara menjaga diri")}</div>')
 rv("#z0", 41.58); rv("#z1", 41.96, 0.5)
 for i in range(5):
     tt = 42.2 + i * 0.28
@@ -320,10 +320,10 @@ S(44.44, "click", 0.8); S(44.5, "chime", 0.5)
 
 # END 47.51-49.00
 clip("end", VOICE_END, DURATION - VOICE_END, '<div class="sandbg"></div>'
-     f'<div class="t c ink" style="top:740px;font:400 110px/1 Bodoni;letter-spacing:20px">{R("e0","FRESCURA")}</div>'
+     f'<div class="t c ink" style="top:740px;font:400 134px/1 Bodoni;letter-spacing:20px">{R("e0","FRESCURA")}</div>'
      f'<div class="t c label" style="top:870px;letter-spacing:30px;color:var(--esp)">{R("e1","BODY")}</div>'
      '<div class="rule" id="e2" style="left:440px;width:200px;top:950px;background:var(--esp)"></div>'
-     f'<div class="t c" style="top:990px;font:italic 400 52px Bodoni;color:#6d6358">{R("e3","Woman Glory &middot; Noche")}</div>')
+     f'<div class="t c" style="top:990px;font:italic 400 63px Bodoni;color:#6d6358">{R("e3","Woman Glory &middot; Noche")}</div>')
 A(f'tl.fromTo("#end",{{clipPath:"inset(100% 0% 0% 0%)"}},{{clipPath:"inset(0% 0% 0% 0%)",duration:0.5,ease:"expo.inOut"}},{VOICE_END});')
 rv("#e0", VOICE_END + 0.15, 0.6); rv("#e1", VOICE_END + 0.35); line("#e2", VOICE_END + 0.45); rv("#e3", VOICE_END + 0.55)
 S(VOICE_END, "whip", 0.55); S(VOICE_END + 0.2, "chime", 0.5)

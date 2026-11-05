@@ -10,6 +10,9 @@
 - **Tipografi:** Bodoni Moda (serif editorial berkontras tinggi) + Manrope. **Palet:** espresso, pasir, krim, tembaga (brass), sage.
 - **Teknik motion baharu:** perkataan sebagai tingkap ("KERJA" dengan footage pejabat di dalam huruf); nombor bab besar bergaris luar (01–05) yang meluncur masuk; bingkai **gerbang (arch)**; **grid bento** 3 jubin; **film-strip** (kad meluncur ke sisi); **marquee** senarai tip; peralihan **blinds** (5 bilah tembaga) setiap bab; **bulatan panduan nafas** (TARIK → HEMBUS); **kad telefon ditolak keluar**, notifikasi jatuh, **suis ON → OFF**; **piring hitam berputar + equalizer** hidup; **letterbox sinematik** untuk keluarga; **pull-quote** editorial; **spec sheet** dengan garis penunjuk pada botol; **senarai semak ringkasan** 5 tip yang ditanda satu-satu; caption tanpa pil (perkataan menyala ikut suara); progress bar **menegak**.
 
+## Maklum balas
+- **Tulisan dibesarkan** (~20–30%): caption 62 px (tebal), label 30 px, tajuk Bodoni 124–150 px, italik 70–132 px, senarai semak 56 px, spec 34 px, notifikasi 38 px, butang SHARE 50 px. Ruang kosong, garis halus dan palet dikekalkan supaya rasa luxury tidak hilang; susun atur dilaras supaya tiada pertindihan.
+
 ## Apa yang dibuang
 | Masa asal | Dibuang | Sebab |
 |---|---|---|
