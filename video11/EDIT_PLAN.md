@@ -1,6 +1,6 @@
 # Video 11: "3 sebab sabun ni bau perfume mahal" (konsep bandar: KLCC / Kuala Lumpur / New York)
 
-**Status: PREVIEW v1**, `preview/preview_v1.mp4` (1080x1920, draft, tag PREVIEW). Final akan dirender selepas diluluskan.
+**Status: FINAL** (diluluskan klien), `final/video11_bau_perfume_mahal_city_1080p.mp4` (1080x1920, `-q delivery`, tanpa tag PREVIEW). Preview: `preview/preview_v1.mp4`.
 
 - Sumber: `src/main.mp4` (klien bercakap, 57.0 s) + `src/part2.mp4` (footage pam & buih Woman Glory klien, sama seperti Video 10).
 - Selepas edit: **44.9 s** (43.3 s suara + 1.6 s kad penutup).
