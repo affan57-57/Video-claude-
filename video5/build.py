@@ -236,7 +236,7 @@ html[-2] = html[-2].replace('style="z-index:4"', 'style="z-index:6"'); html[-1] 
 S(30.7, "riser", 0.35); S(33.22, "boom", 0.6); S(33.3, "shimmer", 0.5)
 
 # ---- S9 34.05-36.75: mandi malam sebelum tidur
-full("v_shw", "assets/broll/shower.mp4", 34.05, 2.7, 1.15, 1.0)
+full("v_shower", "assets/broll/shower.mp4", 34.05, 2.7, 1.15, 1.0)
 vid("v_mo", "assets/broll/moon.mp4", 34.05, 2.7, (600, 260, 400, 400), cls="circle")
 clip("s9", 34.05, 2.7, '<div class="shade" style="background:rgba(15,20,35,.30)"></div>'
      f'<div class="t kick light" style="top:820px;letter-spacing:12px">{R("y0","Sekali aku")}</div>'
@@ -366,5 +366,8 @@ window.__timelines["main"] = tl;
 tl.seek(0);
 </script></body></html>
 """
+_ids = re.findall(r'\bid="([^"]+)"', page)
+_dup = sorted({i for i in _ids if _ids.count(i) > 1})
+assert not _dup, f"duplicate element ids break rendering: {_dup}"
 open(f"{proj}/index.html", "w").write(page)
 print(len(chunks), "caption chunks,", len(js), "tweens,", len(sfx), "sfx cues")
