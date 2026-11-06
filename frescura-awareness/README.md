@@ -1,6 +1,6 @@
 # Frescura Body — video awareness "Garam Laut" (45s, 9:16)
 
-Status: **PREVIEW**. The final film has not been rendered yet. It waits for the owner's approval.
+Status: **FINAL** rendered (`output/frescura_awareness_FINAL.mp4`, 1080x1920, 30fps, 45s, -12 LUFS).
 
 ## Pipeline
 1. **Transcribe**: Whisper large-v3 (Malay) with word timestamps, run on the 2 source clips (`scripts/transcribe.py`).
