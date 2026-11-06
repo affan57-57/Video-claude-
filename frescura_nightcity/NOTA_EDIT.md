@@ -58,10 +58,22 @@ B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih)
 | ~41.7 | "Tapi ingat, stok kami dah tak banyak" | Bar **STOK terhad** menyusut | whoosh |
 | ~44.7 | "Tekan beg kuning sekarang… checkout" | Beg kuning berdenyut + anak panah ke bakul + butang **CHECKOUT SEKARANG** | riser→impact, click |
 
+## Animasi edukasi
+| Point | Animasi |
+|---|---|
+| Reveal produk | Dua botol sebenar (NOCHE + Woman Glory Bombshell) naik atas podium emas, kilauan cahaya |
+| 01 Buih siap-siap | Perbandingan **Sabun biasa: 3 langkah** (basahkan span → gosok lama → baru berbuih, *LECEH*) vs **Frescura: 1 langkah** (tekan pam → terus buih, gelembung pop) |
+| 01 (B-roll buih) | Formula animasi **Cecair + Udara = Buih lembut** |
+| 02 Ocean salt | Proses **Air laut → Disejat matahari → Kristal garam** (anak panah dilukis, wap naik), kemudian kristal 3D + **Mg · Ca · K** |
+| 03 Wangi perfume | **Piramid wangian** perfume dibina bertingkat: Base note (tahan lama) → Heart note (jiwa wangian) → Top note (bau pertama) |
+| "terus wangi" | Cincin wangian merebak dari tengah |
+
+Gambar produk: gambar yang awak upload (botol dipotong & diletak atas latar bandar).
+
 ## Pembetulan ejaan kapsyen (Whisper)
 "fresh kura body" → **Frescura Body**, "sisap/silsat" → **sea salt**, "bombsher" → **Bombshell**,
 "mainan/minat fantasi" → **Midnight Fantasy**, "bui" → **buih**, "kuni" → **kuning**, "terahat" → **terhad**, "cek out" → **checkout**.
-(Nama "Midnight Fantasy" ialah tekaan saya dari bunyi "minat fantasi". Sila sahkan.)
+(Disahkan dari gambar produk: **NOCHE · Midnight Fantasy** dan **Woman Glory · Bombshell**.)
 
 ## Tipografi (baru, lain dari sebelum ni)
 - **Syne** (700/800): kapsyen & tajuk, besar dan jelas.

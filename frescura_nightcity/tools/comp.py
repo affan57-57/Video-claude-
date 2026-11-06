@@ -116,7 +116,7 @@ class Scene:
         return i
 
     def bottle(s, name, t_in, t_out=None, cx=540, top=360, h=760, podium=True, halo=True):
-        i = s.id(name); w = round(h * 310 / 925)
+        i = s.id(name); w = round(h * 319 / 963)
         halo_html = ''
         if halo:
             halo_html = (f'<div id="{i}-glow" class="abs" style="left:{cx-380}px;top:{top+h*.5-380:.0f}px;width:760px;height:760px;border-radius:50%;'
@@ -128,8 +128,8 @@ class Scene:
                f'box-shadow:0 0 0 1.5px rgba(232,198,144,.55),0 30px 60px rgba(0,0,0,.7)"></div>') if podium else ''
         s.add(f'<div id="{i}" class="abs h" style="left:0;top:0;width:1080px;height:1920px">{halo_html}{pod}'
               f'<div id="{i}-b" class="abs" style="left:{cx-w/2:.0f}px;top:{top}px;width:{w}px;height:{h}px">'
-              f'<img src="assets/bottle.png" style="position:absolute;left:0;top:0;width:{w}px;height:{h}px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))">'
-              f'<div id="{i}-sh" style="position:absolute;inset:0;-webkit-mask-image:url(assets/bottle.png);mask-image:url(assets/bottle.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;'
+              f'<img src="assets/bombshell.png" style="position:absolute;left:0;top:0;width:{w}px;height:{h}px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))">'
+              f'<div id="{i}-sh" style="position:absolute;inset:0;-webkit-mask-image:url(assets/bombshell.png);mask-image:url(assets/bombshell.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;'
               f'background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.65) 50%,transparent 65%);background-size:300% 100%;background-position:100% 0;mix-blend-mode:screen"></div></div></div>')
         s.a(IN('#' + i, s.t(t_in), 'fade'))
         s.a(f'tl.fromTo("#{i}-b",{{y:260,opacity:0,scale:.9}},{{y:0,opacity:1,scale:1,duration:1.0,ease:"expo.out"}},{s.t(t_in):.3f});')
@@ -158,13 +158,13 @@ class Scene:
 
     def scent_card(s, name, kind, y, t_in, tags, mood_icon, mood):
         i = s.id(name)
-        vis = (f'<div style="width:190px;height:300px;position:relative;flex:none"><img src="assets/bottle.png" style="position:absolute;left:45px;top:4px;width:100px;height:298px"></div>'
-               if kind == 'Bombshell' else
-               f'<div style="width:190px;height:300px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:26px;background:radial-gradient(circle at 50% 40%,#4b1f6e,#1a0b2a 75%)">{icon("moon",130,"#F1DDB0")}</div>')
+        img = 'bombshell' if kind == 'Bombshell' else 'noche'
+        vis = (f'<div style="width:190px;height:300px;position:relative;flex:none;border-radius:26px;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.14),rgba(0,0,0,0) 70%)">'
+               f'<img src="assets/{img}.png" style="position:absolute;left:46px;top:2px;width:98px;height:296px;filter:drop-shadow(0 16px 24px rgba(0,0,0,.6))"></div>')
         tg = ''.join(f'<span style="padding:10px 22px;border-radius:999px;border:1.5px solid rgba(232,198,144,.6);font-family:Syne;font-weight:700;font-size:28px;color:#F6F1E7;text-transform:uppercase">{t}</span>' for t in tags)
         bg = 'linear-gradient(150deg,rgba(80,14,34,.82),rgba(14,8,18,.86))' if kind == 'Bombshell' else 'linear-gradient(150deg,rgba(52,22,86,.84),rgba(10,8,24,.88))'
         s.add(f'<div id="{i}" class="abs h glass" style="left:70px;top:{y}px;width:940px;height:360px;background:{bg};display:flex;align-items:center;gap:34px;padding:30px 40px">{vis}'
-              f'<div style="display:flex;flex-direction:column;gap:18px"><div class="syn" style="font-size:18px">Inspirasi wangian</div>'
+              f'<div style="display:flex;flex-direction:column;gap:18px"><div class="syn" style="font-size:18px">{"Woman Glory" if kind == "Bombshell" else "Noche"}</div>'
               f'<div class="bod gt" style="font-size:{86 if kind=="Bombshell" else 70}px;font-weight:600">{kind}</div><div style="display:flex;gap:12px;flex-wrap:wrap">{tg}</div>'
               f'<div style="display:flex;align-items:center;gap:12px;font-family:Syne;font-size:28px;color:rgba(246,241,231,.75);text-transform:uppercase;letter-spacing:.08em">{icon(mood_icon,44)}{mood}</div></div></div>')
         s.a(IN('#' + i, s.t(t_in), 'right' if kind != 'Bombshell' else 'left'))
@@ -326,3 +326,25 @@ def city_scene_real(segs, total):
     els.append('<div id="city-vig" class="abs" style="inset:0;z-index:41;background:radial-gradient(120% 75% at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%)"></div>')
     css = BASE_CSS + '#root{background:#03050C;overflow:hidden}.sky{opacity:0;transform-origin:50% 55%}'
     return scene_file('city', ''.join(els), '\n'.join(js), css)
+
+def duo(s, name, t_in, top=330, h=680):
+    """NOCHE + Bombshell rising together on one podium."""
+    i = s.id(name); w = round(h * 319 / 963)
+    s.add(f'<div id="{i}" class="abs h" style="left:0;top:0;width:1080px;height:1920px">'
+          f'<div id="{i}-glow" class="abs" style="left:110px;top:{top+h*.5-430:.0f}px;width:860px;height:860px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,150,.40) 0%,rgba(150,60,200,.22) 38%,rgba(0,0,0,0) 68%)"></div>'
+          f'<svg id="{i}-ring" class="abs" style="left:200px;top:{top+h*.5-340:.0f}px" width="680" height="680" viewBox="0 0 680 680"><circle cx="340" cy="340" r="330" fill="none" stroke="#E2C28A" stroke-width="1.5" stroke-dasharray="2 12" opacity=".8"/><circle cx="340" cy="340" r="290" fill="none" stroke="#E2C28A" stroke-width="1" opacity=".45"/></svg>'
+          f'<div class="abs" style="left:200px;top:{top+h-36}px;width:680px;height:80px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#2a2f4d 0%,#0b0e1c 70%);box-shadow:0 0 0 1.5px rgba(232,198,144,.55),0 30px 60px rgba(0,0,0,.7)"></div>'
+          + ''.join(f'<div id="{i}-{k}" class="abs" style="left:{cx-w/2:.0f}px;top:{top}px;width:{w}px;height:{h}px">'
+                    f'<img src="assets/{img}.png" style="position:absolute;left:0;top:0;width:{w}px;height:{h}px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))">'
+                    f'<div id="{i}-sh{k}" style="position:absolute;inset:0;-webkit-mask-image:url(assets/{img}.png);mask-image:url(assets/{img}.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;'
+                    f'background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);background-size:300% 100%;background-position:100% 0;mix-blend-mode:screen"></div></div>'
+                    for k, (img, cx) in enumerate([('noche', 395), ('bombshell', 685)])) + '</div>')
+    s.a(IN('#' + i, s.t(t_in), 'fade'))
+    for k in range(2):
+        s.a(f'tl.fromTo("#{i}-{k}",{{y:280,opacity:0,rotation:{-6 if k == 0 else 6}}},{{y:0,opacity:1,rotation:{-3 if k == 0 else 3},duration:1.0,ease:"expo.out"}},{s.t(t_in)+k*.15:.3f});')
+        s.a(f'tl.fromTo("#{i}-sh{k}",{{backgroundPosition:"100% 0"}},{{backgroundPosition:"-50% 0",duration:1.1,ease:"power2.inOut"}},{s.t(t_in)+.6+k*.15:.3f});')
+    s.a(f'tl.fromTo("#{i}-ring",{{rotation:0,scale:.6,opacity:0}},{{rotation:40,scale:1,opacity:1,duration:{max(1.5,s.dur-s.t(t_in)):.2f},ease:"power1.out"}},{s.t(t_in):.3f});')
+    s.a(f'tl.fromTo("#{i}-glow",{{scale:.5,opacity:0}},{{scale:1,opacity:1,duration:1.2,ease:"power2.out"}},{s.t(t_in):.3f});')
+    return i
+
+Scene.duo = duo

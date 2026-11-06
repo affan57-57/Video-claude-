@@ -1,4 +1,5 @@
 # Credits
+- Product photo (NOCHE Midnight Fantasy, Woman Glory Bombshell): supplied by the brand owner.
 - Music: "Kleiber (Deep House Mix)" by Hasenchat, https://www.jamendo.com/ (via Openverse), licensed CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/). Credit required when publishing.
 - Sound effects: Pixabay Content License (bundled with HyperFrames media-use skill).
 - Fonts: Bodoni Moda, Syne, Syncopate (Google Fonts, SIL Open Font License).

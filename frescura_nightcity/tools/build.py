@@ -4,6 +4,7 @@ import sys, os, json, shutil, subprocess
 sys.path.insert(0, os.path.dirname(__file__))
 from lib import *
 from comp import *
+from edu import *
 
 V, S = sys.argv[1], sys.argv[2]
 W = f'{S}/work'; P = f'{S}/proj_{V}'
@@ -22,7 +23,8 @@ shutil.copy(f'{S}/realbg/bb_monorail.mp4', f'{P}/assets/city/bb_monorail.mp4')
 SFXD = '/root/.claude/skills/media-use/audio/assets/sfx'
 for f in os.listdir(SFXD):
     if f.endswith('.mp3') or f == 'CREDITS.md': shutil.copy(f'{SFXD}/{f}', f'{P}/assets/sfx/{f}')
-for f in ['bottle.png', 'music.m4a', 'broll_pump.mp4', 'broll_close.mp4', 'broll_foam.mp4', 'broll_lather.mp4']:
+for f in ['noche.png', 'bombshell.png']: shutil.copy(f'{S}/prod/{f}', f'{P}/assets/{f}')
+for f in ['music.m4a', 'broll_pump.mp4', 'broll_close.mp4', 'broll_foam.mp4', 'broll_lather.mp4']:
     shutil.copy(f'{S}/assets/{f}', f'{P}/assets/{f}')
 shutil.copy(f'{W}/{src}.voice_cut.wav', f'{P}/assets/voice.wav')
 if V == 'v2': shutil.copy(f'{W}/a2_aroll.mp4', f'{P}/assets/aroll.mp4')
@@ -52,29 +54,30 @@ if V == 'v1':
     s.text('n', '<span class="bod gt" style="font-size:520px;font-style:normal;font-weight:400;line-height:.8">3</span>', 250, b_three, T('Frescura') if False else T('fresh', b_three), 'zoom')
     s.text('t', '<span class="syne x8 shadow" style="font-size:110px">Benda</span>', 700, b_three + .15, T('fresh', b_three), 'rise')
     s.text('s', '<span class="bod" style="font-size:70px;color:rgba(246,241,231,.85)">sabun biasa <span style="color:#FF5A6E">tak boleh bagi</span></span>', 830, T('tak', b_three), T('fresh', b_three), 'rise')
-    s.bottle('btl', T('fresh', b_three) - .1, None, top=300, h=720)
-    s.text('brand', '<span class="syn" style="font-size:26px">Frescura Body</span>', 1110, T('fresh', b_three) + .4, None, 'track')
+    s.duo('duo', T('fresh', b_three) - .1, top=330, h=680)
+    s.text('brand', '<span class="syn" style="font-size:26px">Frescura Body · Noche &amp; Woman Glory</span>', 1110, T('fresh', b_three) + .4, None, 'track')
     s.particles('sp', T('body', b_three), 540, 640, 20, 380)
     scenes.append(s)
     sfx(b_three, 'whoosh-cinematic', .45); sfx(T('tak', b_three), 'pop', .35); sfx(T('fresh', b_three), 'impact-bass-1', .6); sfx(T('body', b_three) + .1, 'sparkle', .55)
     # POINT 1 — BUIH SIAP-SIAP
     s = Scene('p1', b_p1, b_p2)
-    tb = T('tekan', b_p1)
+    tb = T('tekan', b_p1); tbu = T('bui', tb); tada = T('ada', tbu)
     s.header('01', 'Buih', 'siap-siap.', b_p1, T('Tak', b_p1) + .05)
-    s.chip('c1', icon('sponge', 84), 'Tak perlu span', 120, 430, T('span', b_p1) - .1, tb, 'left', w=840)
-    s.add(f'<div id="p1-x1" class="abs h" style="left:850px;top:450px">{icon("x",80)}</div>'); s.a(IN('#p1-x1', s.t(T('span', b_p1)) + .2, 'pop')); s.a(OUT('#p1-x1', s.t(tb), 'fade'))
-    s.chip('c2', icon('scrub', 84), 'Tak perlu gosok', 120, 640, T('gosok', b_p1) - .1, tb, 'left', w=840)
-    s.add(f'<div id="p1-x2" class="abs h" style="left:850px;top:660px">{icon("x",80)}</div>'); s.a(IN('#p1-x2', s.t(T('gosok', b_p1)) + .2, 'pop')); s.a(OUT('#p1-x2', s.t(tb), 'fade'))
-    s.text('only', '<span class="bod gt" style="font-size:84px">cuma tekan pam.</span>', 860, T('gosok', b_p1) + .35, tb, 'rise')
-    tbu = T('bui', tb)
-    s.broll('br1', 'broll_pump.mp4', tb, tbu, 0.6, 'Tekan pam', label_icon='pump')
-    s.broll('br2', 'broll_foam.mp4', tbu, b_p2, 0.4, 'Buih lembut')
+    steps_compare(s, [T('span', b_p1) - .1, T('gosok', b_p1) - .1, T('gosok', b_p1) + .35], tb - .25, tbu)
+    s.broll('br1', 'broll_pump.mp4', tbu, tada, 0.6, 'Tekan pam', label_icon='pump')
+    s.broll('br2', 'broll_foam.mp4', tada, b_p2, 0.4)
+    foam_formula(s, tada + .15, b_p2)
+    for k in range(5): sfx(tada + .4 + k * .16, 'pop', .3)
+    sfx(tb - .25, 'whoosh', .45); sfx(tb + .1, 'sparkle', .45)
     scenes.append(s)
-    sfx(b_p1, 'whoosh', .5); sfx(b_p1 + .05, 'ping', .9); sfx(T('span', b_p1) + .2, 'pop', .4); sfx(T('gosok', b_p1) + .2, 'pop', .4); sfx(tb, 'whoosh-cinematic', .4); sfx(tb + .5, 'click', .5); sfx(tbu, 'sparkle', .5)
+    sfx(b_p1, 'whoosh', .5); sfx(b_p1 + .05, 'ping', .9); sfx(T('span', b_p1) + .2, 'pop', .4); sfx(T('gosok', b_p1) + .2, 'pop', .4); sfx(tbu, 'whoosh-cinematic', .4); sfx(tbu + .5, 'click', .5)
     # POINT 2 — OCEAN SALT
     s = Scene('p2', b_p2, b_p3)
     tk = T('kaya', b_p2); tku = T('kulit', b_p2)
     s.header('02', 'Ocean salt', 'garam laut.', b_p2, tk)
+    tn = [T('sisap', b_p2), T('garam', b_p2) - .35, T('laut', b_p2)]
+    salt_process(s, tn, tk)
+    for t_ in tn: sfx(t_, 'pop', .35)
     s.add(f'<div id="p2-cr" class="abs h" style="left:290px;top:330px">{crystals_svg("p2",500)}</div>')
     s.a(IN('#p2-cr', s.t(tk) - .1, 'zoom')); s.a(OUT('#p2-cr', s.t(tku), 'shrink'))
     s.a(f'tl.fromTo("#p2-cr",{{y:0}},{{y:-20,duration:.8,repeat:5,yoyo:true,ease:"sine.inOut",immediateRender:false}},{s.t(tk):.3f});')
@@ -91,16 +94,16 @@ if V == 'v1':
     # POINT 3 — WANGI PERFUME
     s = Scene('p3', b_p3, b_q)
     tpi = T('Pilih', b_p3); tat = T('atau', tpi); tke = T('Keluar', b_p3)
-    s.header('03', 'Wangi', 'perfume.', b_p3, tpi)
-    s.add(f'<div id="p3-pf" class="abs h" style="left:330px;top:640px">{perfume_svg("p3",420)}</div>')
-    s.a(IN('#p3-pf', s.t(T('wangi', b_p3)) - .2, 'fade')); s.a(OUT('#p3-pf', s.t(tpi), 'fade'))
-    s.a(f'tl.to("#p3-pf-b",{{strokeDashoffset:0,duration:.9,ease:"power2.inOut"}},{s.t(T("wangi", b_p3))-.2:.3f});tl.to("#p3-pf-n",{{strokeDashoffset:0,duration:.6,ease:"power2.inOut"}},{s.t(T("wangi", b_p3))+.3:.3f});')
-    s.particles('mist', T('perfume', b_p3), 470, 690, 20, 300)
+    s.text('n', '<span class="bod gt" style="font-size:130px;font-style:normal">03</span>', 255, b_p3, tpi, 'zoom')
+    s.text('t', '<span class="syne shadow" style="font-size:76px">Wangi <span class="bod gt" style="font-size:92px;text-transform:none">perfume.</span></span>', 405, b_p3 + .15, tpi, 'rise')
+    perfume_pyramid(s, b_p3 + .35, tpi, cx=330, top=560, h=480, w=520)
+    for k in range(3): sfx(b_p3 + .35 + k * .28, 'pop', .35)
     s.scent_card('bs', 'Bombshell', 300, tpi, ['Fresh', 'Feminine'], 'sun', 'Siang · hari-hari')
     s.scent_card('mf', 'Midnight Fantasy', 690, tat, ['Manis', 'Fruity'], 'moon', 'Malam')
     s.a(OUT('#p3-bs', s.t(tke), 'left')); s.a(OUT('#p3-mf', s.t(tke), 'left'))
     s.text('k1', '<span class="syne shadow" style="font-size:100px">Keluar bilik air</span>', 430, tke, None, 'rise')
     s.text('k2', '<span class="bod gt" style="font-size:190px">terus wangi.</span>', 560, T('terus', tke), None, 'slam')
+    scent_rings(s, T('terus', tke), 540, 860)
     s.particles('aura', T('terus', tke), 540, 760, 26, 460)
     scenes.append(s)
     sfx(b_p3, 'whoosh', .5); sfx(b_p3 + .05, 'ping', .9); sfx(T('perfume', b_p3), 'sparkle', .55); sfx(tpi, 'whoosh', .45); sfx(tat, 'whoosh', .45); sfx(tke, 'whoosh-cinematic', .35); sfx(T('terus', tke), 'sparkle', .6)
@@ -111,7 +114,7 @@ if V == 'v1':
           f'<div style="width:220px;height:140px;border-radius:40px;background:linear-gradient(160deg,#d7d7d7,#8d8d8d);box-shadow:inset 0 -10px 20px rgba(0,0,0,.25)"></div>'
           f'<span class="syne" style="font-size:58px;color:#bdbdbd">Sabun<br>biasa</span><span style="font-family:Syne;font-size:28px;color:#9a9a9a;letter-spacing:.12em">BAU BIASA JE</span></div>')
     s.add(f'<div id="q-b" class="abs h glass" style="left:560px;top:300px;width:450px;height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;border-color:rgba(232,198,144,.9);box-shadow:0 0 80px rgba(226,194,138,.35)">'
-          f'<img src="assets/bottle.png" style="width:118px;height:352px"><span class="bod gt" style="font-size:72px;font-weight:700">Frescura</span><span style="font-family:Syne;font-size:28px;color:#F6F1E7;letter-spacing:.12em">BAU PERFUME</span></div>')
+          f'<img src="assets/bombshell.png" style="width:118px;height:352px"><span class="bod gt" style="font-size:72px;font-weight:700">Frescura</span><span style="font-family:Syne;font-size:28px;color:#F6F1E7;letter-spacing:.12em">BAU PERFUME</span></div>')
     s.add('<div id="q-vs" class="abs h" style="left:490px;top:570px;width:100px;height:100px;border-radius:50%;z-index:5;background:#0b0e1c;border:1.5px solid rgba(232,198,144,.8);display:flex;align-items:center;justify-content:center"><span style="font-family:Syne;font-weight:800;font-size:34px;color:#E2C28A">VS</span></div>')
     s.a(IN('#q-a', 0, 'left')); s.a(IN('#q-vs', .3, 'pop')); s.a(IN('#q-b', s.t(tns), 'right'))
     s.a(f'tl.to("#q-a",{{opacity:.35,scale:.94,duration:.4}},{s.t(tns):.3f});tl.fromTo("#q-b",{{scale:1}},{{scale:1.04,duration:.4,ease:"back.out(2)",immediateRender:false}},{s.t(tns)+.4:.3f});')
