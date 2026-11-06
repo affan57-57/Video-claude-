@@ -32,7 +32,6 @@ B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih)
 - Buang bising: **DeepFilterNet3** (had 18 dB supaya suara tak jadi robot).
 - Suara studio: high-pass 85 Hz, kurang "muddy" 250 Hz, presence +3 dB @3 kHz, de-esser, compressor 3:1, loudness −15 LUFS.
 - Buang jeda janggal: setiap senyap > 0.2s dipendekkan ke ~0.11s (potong ikut frame, lip-sync kekal).
-- Buang ayat berulang (V2): "Tekan dan cek out sekarang." (53.1–54.9s) dibuang; tinggal "Tekan beg kuning dan cek out sekarang."
 - Muzik: "Kleiber (Deep House Mix)" oleh Hasenchat (Jamendo, **CC BY 3.0**), ~129 BPM, perlahan bawah suara. **Wajib letak kredit** bila post.
 - SFX (Pixabay, bebas guna): whoosh, impact bass, pop, ping, sparkle, click, riser, glitch.
 
