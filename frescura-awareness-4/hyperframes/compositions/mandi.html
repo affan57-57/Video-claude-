@@ -1,4 +1,4 @@
-<!-- HyperFrames sub-composition "mandi" — mounted at root 4.02s. data-start values and timeline positions are local. -->
+<!-- HyperFrames sub-composition "mandi" — mounted at root 3.3s. data-start values and timeline positions are local. -->
 <template id="mandi-template">
   <div data-composition-id="mandi" data-width="1080" data-height="1920">
     <div id="mandi-root" class="fill">
@@ -6,7 +6,7 @@
         id="v-mandi"
         class="clip bg"
         data-start="0"
-        data-duration="2.82"
+        data-duration="2.28"
         data-media-start="0.4"
         muted
         playsinline
@@ -33,19 +33,19 @@
     <script>
       (function () {
         const tl = gsap.timeline({ paused: true });
-        const at = HF.at(4.02);
+        const at = HF.at(3.3);
         const rnd = HF.rng(230);
         const q = (s) => document.querySelector("#mandi-root " + s);
         const qa = (s) => Array.from(document.querySelectorAll("#mandi-root " + s));
-        tl.fromTo(q("#v-mandi"), { scale: 1.2 }, { scale: 1.05, duration: 2.82, ease: "power1.out" }, 0);
+        tl.fromTo(q("#v-mandi"), { scale: 1.2 }, { scale: 1.05, duration: 2.28, ease: "power1.out" }, 0);
         tl.fromTo(q(".l0"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35 }, 0.05);
-        tl.fromTo(q(".l1"), { autoAlpha: 0, scale: 1.2 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: E }, at(5.4));
-        tl.fromTo(HF.glyphs(q(".l2")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.05, ease: E }, at(6.0));
+        tl.fromTo(q(".l1"), { autoAlpha: 0, scale: 1.2 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: E }, at(4.35));
+        tl.fromTo(HF.glyphs(q(".l2")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.04, ease: E }, at(4.9));
         for (let i = 0; i < 4; i++) {
           const r = document.createElement("div");
           r.className = "rp";
           q(".ripples").appendChild(r);
-          tl.fromTo(r, { scale: 0.3, opacity: 0.9 }, { scale: 9, opacity: 0, duration: 1.2, ease: "power2.out" }, at(6.05) + i * 0.15);
+          tl.fromTo(r, { scale: 0.3, opacity: 0.9 }, { scale: 9, opacity: 0, duration: 1.2, ease: "power2.out" }, at(4.95) + i * 0.15);
         }
         window.__timelines = window.__timelines || {};
         window.__timelines["mandi"] = tl;

@@ -1,4 +1,4 @@
-<!-- HyperFrames sub-composition "glory" — mounted at root 26.2s. data-start values and timeline positions are local. -->
+<!-- HyperFrames sub-composition "glory" — mounted at root 28.2s. data-start values and timeline positions are local. -->
 <template id="glory-template">
   <div data-composition-id="glory" data-width="1080" data-height="1920">
     <div id="glory-root" class="fill">
@@ -43,12 +43,12 @@
     <script>
       (function () {
         const tl = gsap.timeline({ paused: true });
-        const at = HF.at(26.2);
+        const at = HF.at(28.2);
         const rnd = HF.rng(325);
         const q = (s) => document.querySelector("#glory-root " + s);
         const qa = (s) => Array.from(document.querySelectorAll("#glory-root " + s));
         tl.fromTo(q(".prod"), { autoAlpha: 0, y: 80, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.7, ease: E }, 0);
-        tl.to(q(".prod"), { y: -16, duration: 2.76, ease: "sine.inOut" }, 0.7);
+        tl.to(q(".prod"), { y: -16, duration: 2.24, ease: "sine.inOut" }, 0.7);
         tl.fromTo(q(".bm"), { rotate: -24, opacity: 0 }, { rotate: 4, opacity: 0.85, duration: 1.4, ease: "power2.out" }, 0);
         qa(".waves path").forEach((p, i) => {
           const L = p.getTotalLength();
@@ -62,7 +62,7 @@
         });
         tl.fromTo(q(".n"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.35);
         tl.fromTo(HF.glyphs(q(".nm")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.03, ease: E }, 0.4);
-        tl.fromTo(q(".k1"), { autoAlpha: 0, y: 30, filter: "blur(8px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: E }, at(28.1));
+        tl.fromTo(q(".k1"), { autoAlpha: 0, y: 30, filter: "blur(8px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: E }, at(29.9));
 
         window.__timelines = window.__timelines || {};
         window.__timelines["glory"] = tl;

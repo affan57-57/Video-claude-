@@ -1,0 +1,111 @@
+<!-- HyperFrames sub-composition "compare" — mounted at root 38.98s. data-start values and timeline positions are local. -->
+<template id="compare-template">
+  <div data-composition-id="compare" data-width="1080" data-height="1920">
+    <div id="compare-root" class="fill">
+      <img class="clip bg bgi" data-start="0" data-duration="6.96" src="assets/img/noir_curve.jpg" alt="" style="filter: blur(16px) brightness(0.3)" />
+      <div class="abs cx lab t0" style="top: 230px; color: var(--gold2)">Bayangkan</div>
+      <div class="abs cx cin t1" style="top: 285px; font-size: 60px; white-space: nowrap">KETAHANAN WANGIAN</div>
+      <div class="abs rows" style="left: 90px; right: 90px; top: 470px">
+        <div class="row r1">
+          <div class="lb"><b>ORANG LAIN</b><span>wangi setiap hari</span></div>
+          <div class="track"><i class="fill1"></i></div>
+        </div>
+        <div class="row r2" style="margin-top: 70px">
+          <div class="lb"><b>KAMU · SABUN BIASA</b><span>bau hilang cepat</span></div>
+          <div class="track"><i class="fill2"></i></div>
+        </div>
+        <div
+          class="axis"
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 0.25em;
+            color: rgba(244, 239, 230, 0.6);
+          "
+        >
+          <span>MANDI</span><span>PINTU RUMAH</span><span>MALAM</span>
+        </div>
+      </div>
+      <svg
+        class="abs door"
+        style="left: 470px; top: 830px"
+        width="140"
+        height="180"
+        viewBox="0 0 140 180"
+        fill="none"
+        stroke="#f0d9a4"
+        stroke-width="5"
+        stroke-linejoin="round"
+      >
+        <rect x="20" y="10" width="100" height="160" rx="6" />
+        <circle cx="96" cy="95" r="6" fill="#f0d9a4" />
+      </svg>
+      <div class="abs cx cin rugi" style="top: 1070px; font-size: 112px; white-space: nowrap; color: #ff5a6a">RUGI KAN?</div>
+    </div>
+    <style>
+      #compare-root .lb {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 16px;
+      }
+      #compare-root .lb b {
+        font-family: var(--cin);
+        font-weight: 600;
+        font-size: 38px;
+        letter-spacing: 0.06em;
+      }
+      #compare-root .lb span {
+        font-family: var(--it);
+        font-style: italic;
+        font-size: 40px;
+        color: var(--gold2);
+      }
+      #compare-root .track {
+        height: 38px;
+        border-radius: 19px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        overflow: hidden;
+      }
+      #compare-root .track i {
+        display: block;
+        height: 100%;
+        border-radius: 19px;
+        transform-origin: 0 50%;
+      }
+      #compare-root .fill1 {
+        background: linear-gradient(90deg, #b8913f, #f0d9a4);
+        box-shadow: 0 0 24px rgba(240, 217, 164, 0.6);
+      }
+      #compare-root .fill2 {
+        background: linear-gradient(90deg, #8a8a8a, #bdbdbd);
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(38.98);
+        const rnd = HF.rng(458);
+        const q = (s) => document.querySelector("#compare-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#compare-root " + s));
+        tl.fromTo(q(".bgi"), { scale: 1.15 }, { scale: 1.05, duration: 6.96, ease: "none" }, 0);
+        tl.fromTo(q(".t0"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.02);
+        tl.fromTo(HF.glyphs(q(".t1")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.02, ease: E }, 0.2);
+        tl.fromTo(q(".r1"), { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: E }, at(39.5));
+        tl.fromTo(q(".fill1"), { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power2.out" }, at(39.8));
+        tl.fromTo(q(".axis"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, at(40.0));
+        tl.fromTo(q(".r2"), { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: E }, at(41.0));
+        tl.fromTo(q(".fill2"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, at(42.5));
+        tl.to(q(".fill2"), { scaleX: 0.0, opacity: 0.4, duration: 1.0, ease: "power2.in" }, at(43.85));
+        tl.fromTo(q(".door"), { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: B }, at(44.85));
+        tl.fromTo(q(".rugi"), { autoAlpha: 0, scale: 1.8 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(45.35));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["compare"] = tl;
+      })();
+    </script>
+  </div>
+</template>

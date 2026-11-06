@@ -1,7 +1,9 @@
 # Tighten voice: keep ranges, cap pauses inside them, small breath gap at joins. -> voice_cut.wav, edl.json
 import numpy as np, soundfile as sf, subprocess, re, json, sys
 SR=48000; SRC=sys.argv[1]; KEEPS=json.loads(sys.argv[2]); CAP=float(sys.argv[3]) if len(sys.argv)>3 else 0.08; GAP=0.07
-o=subprocess.run(["ffmpeg","-hide_banner","-i",SRC,"-af","silencedetect=n=-40dB:d=0.07","-f","null","-"],capture_output=True,text=True).stderr
+import os
+THR=os.environ.get("SIL_DB","-40")
+o=subprocess.run(["ffmpeg","-hide_banner","-i",SRC,"-af",f"silencedetect=n={THR}dB:d=0.07","-f","null","-"],capture_output=True,text=True).stderr
 SIL=list(zip([float(x) for x in re.findall(r"silence_start: ([0-9.]+)",o)],[float(x) for x in re.findall(r"silence_end: ([0-9.]+)",o)]))
 a,_=sf.read(SRC,dtype="float32"); X=int(0.012*SR)
 out=[]; mp=[]; pos=0.0

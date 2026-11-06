@@ -25,12 +25,12 @@
       (function () {
         const tl = gsap.timeline({ paused: true });
         const at = HF.at(0);
-        const rnd = HF.rng(439);
+        const rnd = HF.rng(496);
         const q = (s) => document.querySelector("#hud-root " + s);
         const qa = (s) => Array.from(document.querySelectorAll("#hud-root " + s));
-        tl.fromTo(q(".pf"), { scaleX: 0 }, { scaleX: 1, duration: 45, ease: "none" }, 0);
-        const SC = [0, 4.02, 6.84, 13.08, 16.5, 23.72, 26.2, 29.66, 33.12, 36.76, 39.86, 45];
-        const RN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+        tl.fromTo(q(".pf"), { scaleX: 0 }, { scaleX: 1, duration: 53, ease: "none" }, 0);
+        const SC = [0, 3.3, 5.58, 14.54, 17.12, 20.24, 26.22, 28.2, 31.14, 33.92, 36.82, 38.98, 45.94, 48.4, 53];
+        const RN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV"];
         RN.forEach((r, i) => {
           const sp = document.createElement("span");
           sp.textContent = r;
@@ -40,7 +40,7 @@
         });
         const wipe = q(".wipe");
         tl.set(wipe, { xPercent: -120, opacity: 0 }, 0);
-        [4.02, 16.5, 26.2, 33.12, 39.86].forEach((t) => {
+        [3.3, 20.24, 28.2, 33.92, 48.4].forEach((t) => {
           tl.set(wipe, { opacity: 1, xPercent: -120 }, t - 0.3);
           tl.to(wipe, { xPercent: 120, duration: 0.55, ease: "power2.inOut" }, t - 0.3);
           tl.set(wipe, { opacity: 0 }, t + 0.26);

@@ -1,8 +1,8 @@
-<!-- HyperFrames sub-composition "cta" — mounted at root 39.86s. data-start values and timeline positions are local. -->
+<!-- HyperFrames sub-composition "cta" — mounted at root 48.4s. data-start values and timeline positions are local. -->
 <template id="cta-template">
   <div data-composition-id="cta" data-width="1080" data-height="1920">
     <div id="cta-root" class="fill">
-      <img class="clip bg bgi" data-start="0" data-duration="5.14" src="assets/img/noir_hero.jpg" alt="" style="filter: brightness(0.45)" />
+      <img class="clip bg bgi" data-start="0" data-duration="4.6" src="assets/img/noir_hero.jpg" alt="" style="filter: brightness(0.45)" />
       <div class="beam bm" style="left: 100px"></div>
       <div class="abs cx cin t1" style="top: 210px; font-size: 92px">KLIK LINK</div>
       <div class="abs cx it t2 gold" style="top: 320px; font-size: 90px">di bawah</div>
@@ -61,24 +61,24 @@
     <script>
       (function () {
         const tl = gsap.timeline({ paused: true });
-        const at = HF.at(39.86);
+        const at = HF.at(48.4);
         const rnd = HF.rng(401);
         const q = (s) => document.querySelector("#cta-root " + s);
         const qa = (s) => Array.from(document.querySelectorAll("#cta-root " + s));
-        tl.fromTo(q(".bgi"), { scale: 1.2 }, { scale: 1.03, duration: 5.14, ease: "power1.out" }, 0);
+        tl.fromTo(q(".bgi"), { scale: 1.2 }, { scale: 1.03, duration: 4.6, ease: "power1.out" }, 0);
         tl.fromTo(q(".bm"), { rotate: -25, opacity: 0 }, { rotate: 10, opacity: 0.8, duration: 2, ease: "power2.out" }, 0);
         tl.fromTo(HF.glyphs(q(".t1")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.03, ease: E }, 0.02);
-        tl.fromTo(q(".t2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(40.3));
-        tl.fromTo(q(".arw"), { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(40.4));
-        tl.to(q(".arw"), { y: 22, duration: 0.25, yoyo: true, repeat: 15, ease: "sine.inOut" }, at(40.7));
-        tl.fromTo(q(".co"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: B }, at(40.94));
-        tl.fromTo(q(".btn"), { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "elastic.out(1,0.6)" }, at(41.9));
-        tl.to(q(".btn"), { scale: 1.06, duration: 0.24, yoyo: true, repeat: 9, ease: "sine.inOut" }, at(42.5));
+        tl.fromTo(q(".t2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E }, at(48.75));
+        tl.fromTo(q(".arw"), { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(48.85));
+        tl.to(q(".arw"), { y: 22, duration: 0.25, yoyo: true, repeat: 13, ease: "sine.inOut" }, at(49.1));
+        tl.fromTo(q(".co"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: B }, at(49.28));
+        tl.fromTo(q(".btn"), { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "elastic.out(1,0.6)" }, at(50.1));
+        tl.to(q(".btn"), { scale: 1.06, duration: 0.24, yoyo: true, repeat: 9, ease: "sine.inOut" }, at(50.6));
         tl.set(q(".rp"), { autoAlpha: 0 }, 0);
-        [42.5, 43.3, 44.1].forEach((t) =>
+        [50.6, 51.4, 52.2].forEach((t) =>
           tl.fromTo(q(".rp"), { autoAlpha: 0.9, scale: 1 }, { autoAlpha: 0, scale: 24, duration: 0.6, ease: "power2.out", immediateRender: false }, at(t)),
         );
-        tl.fromTo(q(".ru"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(42.66));
+        tl.fromTo(q(".ru"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E }, at(51.3));
         window.__timelines = window.__timelines || {};
         window.__timelines["cta"] = tl;
       })();

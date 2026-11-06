@@ -1,4 +1,4 @@
-<!-- HyperFrames sub-composition "listen" — mounted at root 33.12s. data-start values and timeline positions are local. -->
+<!-- HyperFrames sub-composition "listen" — mounted at root 33.92s. data-start values and timeline positions are local. -->
 <template id="listen-template">
   <div data-composition-id="listen" data-width="1080" data-height="1920">
     <div id="listen-root" class="fill">
@@ -34,7 +34,7 @@
     <script>
       (function () {
         const tl = gsap.timeline({ paused: true });
-        const at = HF.at(33.12);
+        const at = HF.at(33.92);
         const rnd = HF.rng(363);
         const q = (s) => document.querySelector("#listen-root " + s);
         const qa = (s) => Array.from(document.querySelectorAll("#listen-root " + s));
@@ -43,15 +43,15 @@
           q(".t1"),
           { autoAlpha: 0, scale: 1.4, filter: "blur(14px)" },
           { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "power4.out" },
-          at(33.55),
+          at(34.15),
         );
         for (let i = 0; i < 5; i++) {
           const r = document.createElement("div");
           r.className = "rg";
           q(".rings").appendChild(r);
-          tl.fromTo(r, { scale: 0.5, opacity: 0.9 }, { scale: 9, opacity: 0, duration: 1.3, ease: "power2.out" }, at(33.6) + i * 0.18);
+          tl.fromTo(r, { scale: 0.5, opacity: 0.9 }, { scale: 9, opacity: 0, duration: 1.3, ease: "power2.out" }, at(34.2) + i * 0.16);
         }
-        tl.fromTo(q(".s0"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(34.4));
+        tl.fromTo(q(".s0"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(34.85));
         const bars = [];
         for (let i = 0; i < 10; i++) {
           const b = document.createElement("div");
@@ -60,13 +60,13 @@
           q(".bars").appendChild(b);
           bars.push(b);
         }
-        tl.fromTo(bars, { scaleY: 0 }, { scaleY: 1, duration: 0.3, stagger: 0.03, ease: B }, at(34.5));
+        tl.fromTo(bars, { scaleY: 0 }, { scaleY: 1, duration: 0.3, stagger: 0.03, ease: B }, at(35.0));
         bars
           .slice(2)
           .reverse()
-          .forEach((b, i) => tl.to(b, { scaleY: 0.05, opacity: 0.25, duration: 0.15 }, at(35.3) + i * 0.1));
-        tl.to(bars.slice(0, 2), { background: "#ff5a6a", duration: 0.2 }, at(36.1));
-        tl.fromTo(q(".s1"), { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(36.3));
+          .forEach((b, i) => tl.to(b, { scaleY: 0.05, opacity: 0.25, duration: 0.12 }, at(35.6) + i * 0.1));
+        tl.to(bars.slice(0, 2), { background: "#ff5a6a", duration: 0.2 }, at(36.4));
+        tl.fromTo(q(".s1"), { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(36.5));
         window.__timelines = window.__timelines || {};
         window.__timelines["listen"] = tl;
       })();

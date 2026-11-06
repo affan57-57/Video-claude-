@@ -1,0 +1,70 @@
+<!-- HyperFrames sub-composition "restock" — mounted at root 36.82s. data-start values and timeline positions are local. -->
+<template id="restock-template">
+  <div data-composition-id="restock" data-width="1080" data-height="1920">
+    <div id="restock-root" class="fill">
+      <div class="fill" style="background: radial-gradient(70% 45% at 50% 45%, #1c1416 0%, #0a0a0b 70%)"></div>
+      <div class="abs cx cin t1" style="top: 230px; font-size: 104px">BILA DAH HABIS</div>
+      <svg class="abs btl" style="left: 140px; top: 470px" width="260" height="560" viewBox="0 0 250 560" fill="none">
+        <clipPath id="bclip">
+          <path
+            d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z"
+          />
+        </clipPath>
+        <g clip-path="url(#bclip)"><rect class="liq" x="0" y="120" width="250" height="440" fill="#c0283c" /></g>
+        <path
+          d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z"
+          stroke="#f0d9a4"
+          stroke-width="4"
+        />
+      </svg>
+      <div
+        class="abs cal"
+        style="left: 500px; top: 520px; width: 440px; height: 440px; border: 3px solid #f0d9a4; border-radius: 28px; overflow: hidden; text-align: center"
+      >
+        <div style="height: 90px; background: #f0d9a4; color: #0a0a0b; font-weight: 800; font-size: 30px; letter-spacing: 0.3em; line-height: 90px">
+          RESTOCK
+        </div>
+        <div class="days" style="position: relative; height: 350px"></div>
+      </div>
+      <div class="abs cx it t2 gold" style="top: 1080px; font-size: 90px">kena tunggu lama…</div>
+    </div>
+    <style>
+      #restock-root .days span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px;
+        font-family: var(--cin);
+        font-size: 190px;
+        color: var(--ivory);
+        opacity: 0;
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(36.82);
+        const rnd = HF.rng(439);
+        const q = (s) => document.querySelector("#restock-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#restock-root " + s));
+        tl.fromTo(HF.glyphs(q(".t1")), { yPercent: 110 }, { yPercent: 0, duration: 0.4, stagger: 0.02, ease: E }, 0.02);
+        tl.fromTo(q(".btl"), { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: E }, 0.1);
+        tl.fromTo(q(".liq"), { attr: { y: 120 } }, { attr: { y: 560 }, duration: 0.6, ease: "power2.in" }, at(37.0));
+        tl.fromTo(q(".cal"), { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: B }, at(37.5));
+        const days = q(".days");
+        const N = 14;
+        for (let i = 0; i < N; i++) {
+          const s = document.createElement("span");
+          s.textContent = String(1 + i * 2);
+          days.appendChild(s);
+          const t = at(37.75) + i * 0.08;
+          tl.set(s, { opacity: 1 }, t);
+          if (i < N - 1) tl.set(s, { opacity: 0 }, t + 0.08);
+        }
+        tl.fromTo(q(".t2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E }, at(37.6));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["restock"] = tl;
+      })();
+    </script>
+  </div>
+</template>
