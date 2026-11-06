@@ -58,6 +58,12 @@ B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih)
 | ~41.7 | "Tapi ingat, stok kami dah tak banyak" | Bar **STOK terhad** menyusut | whoosh |
 | ~44.7 | "Tekan beg kuning sekarang… checkout" | Beg kuning berdenyut + anak panah ke bakul + butang **CHECKOUT SEKARANG** | riser→impact, click |
 
+## B-roll pump: latar bilik air mewah
+Latar asal video pump (dinding belang, meja hijau) dibuang dengan AI (HyperFrames remove-background),
+diganti dengan bilik air moden minimalis: kaunter kayu + sinki batu + lilin + pancur hujan (syot 1),
+sinki kabur (syot 2), ruang shower kaca (sapu buih). Ditambah titisan air pancur beranimasi + wap halus.
+Fail penuh: `output/broll/pump_bilik_air_mewah.mp4` (1080×1920, tanpa audio).
+
 ## Animasi edukasi
 | Point | Animasi |
 |---|---|
