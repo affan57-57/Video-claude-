@@ -277,3 +277,52 @@ def aroll_js(states, punches=()):
     for t, sc, dur in punches:
         js.append(f'tl.fromTo("#aroll-zoom",{{scale:1}},{{scale:{sc},duration:.18,ease:"power3.out"}},{t:.3f});tl.to("#aroll-zoom",{{scale:1,duration:.5,ease:"power2.inOut"}},{t+dur:.3f});')
     return '\n'.join(js)
+
+# ---------------- real-photo / real-video night city background ----------------
+RLOC = {'klcc_hero': ('KLCC · KUALA LUMPUR', '3.1579° N  ·  101.7116° E'),
+        'klcc_up': ('PETRONAS TWIN TOWERS · KLCC', '3.1579° N  ·  101.7116° E'),
+        'klcc_cloud': ('KLCC · KUALA LUMPUR', '3.1579° N  ·  101.7116° E'),
+        'bb_monorail': ('BUKIT BINTANG · KL', '3.1466° N  ·  101.7101° E'),
+        'bb_street': ('BUKIT BINTANG · KL', '3.1466° N  ·  101.7101° E'),
+        'komtar_n': ('KOMTAR · PULAU PINANG', '5.4146° N  ·  100.3296° E'),
+        'penang_lights': ('PULAU PINANG · BUKIT BENDERA', '5.4240° N  ·  100.2690° E'),
+        'alor_hdr_n': ('MENARA ALOR SETAR · KEDAH', '6.1219° N  ·  100.3695° E'),
+        'ramlee': ('JALAN P. RAMLEE · KL', '3.1554° N  ·  101.7068° E'),
+        'kl_skyline': ('KUALA LUMPUR · MALAM', '3.1390° N  ·  101.6869° E')}
+
+def city_scene_real(segs, total):
+    """segs: [(t0, t1, name)]; name 'bb_monorail' is a video, the rest are graded stills (1242x2208)."""
+    els, js = [], []
+    for i, (t0, t1, nm) in enumerate(segs):
+        d = t1 - t0
+        if nm.endswith('monorail'):
+            media = (f'<video id="city-s{i}-v" class="clip" data-start="{max(0,t0-.25):.3f}" data-duration="{d+1.0:.3f}" data-media-start="0" muted playsinline '
+                     f'src="assets/city/{nm}.mp4" style="position:absolute;left:81px;top:144px;width:1080px;height:1920px;object-fit:cover"></video>')
+        else:
+            media = f'<img src="assets/city/{nm}.jpg" style="position:absolute;left:0;top:0;width:1242px;height:2208px">'
+        els.append(f'<div id="city-s{i}" class="abs sky" style="left:-81px;top:-144px;width:1242px;height:2208px;z-index:{i+1}">{media}</div>')
+        if i == 0: js.append(f'tl.set("#city-s{i}",{{opacity:1}},0);')
+        else: js.append(f'tl.fromTo("#city-s{i}",{{opacity:0}},{{opacity:1,duration:.7,ease:"power2.inOut"}},{t0-.2:.3f});')
+        if i + 1 < len(segs): js.append(f'tl.set("#city-s{i}",{{opacity:0}},{t1+.6:.3f});')
+        r = random.Random(i * 11 + 5); dx = r.choice([-1, 1]) * 30
+        js.append(f'tl.fromTo("#city-s{i}",{{scale:1.0,x:{-dx},y:0}},{{scale:1.09,x:{dx},y:-24,duration:{d+1:.2f},ease:"none"}},{max(0,t0-.2):.3f});')
+        a, b = RLOC[nm]
+        els.append(f'<div id="city-tag{i}" class="abs h" style="left:72px;top:190px;z-index:50"><div class="syn" id="city-tag{i}a">◆ {a}</div>'
+                   f'<div style="font-family:Syne;font-size:17px;letter-spacing:.18em;color:rgba(246,241,231,.7);margin-top:10px">{b}</div></div>')
+        js.append(IN(f'#city-tag{i}', t0 + .25, 'fade') + IN(f'#city-tag{i}a', t0 + .25, 'track'))
+        js.append(f'tl.to("#city-tag{i}",{{opacity:0,duration:.3}},{min(t0+3.2,t1-.3):.2f});')
+        if i:
+            els.append(f'<div id="city-flare{i}" class="abs" style="left:0;top:0;width:700px;height:1920px;z-index:60;opacity:0;background:linear-gradient(100deg,transparent 0%,rgba(255,226,180,0) 30%,rgba(255,226,180,.42) 50%,rgba(255,180,200,0) 70%,transparent 100%)"></div>')
+            js.append(f'tl.fromTo("#city-flare{i}",{{x:-800,opacity:1}},{{x:1200,opacity:1,duration:.7,ease:"power2.inOut"}},{t0-.3:.3f});tl.set("#city-flare{i}",{{opacity:0}},{t0+.45:.3f});')
+    # soft bokeh (light leaks) + legibility shading
+    r = random.Random(99); bok = []
+    for k in range(9):
+        s = r.randint(80, 220); c = r.choice(['255,214,160', '255,140,180', '255,240,220'])
+        x, y = r.randint(-60, 1080), r.randint(250, 1600)
+        bok.append(f'<div id="city-bk{k}" class="abs" style="left:{x}px;top:{y}px;width:{s}px;height:{s}px;border-radius:50%;background:radial-gradient(circle,rgba({c},.40) 0%,rgba({c},.12) 45%,rgba({c},0) 70%);opacity:{r.uniform(.25,.55):.2f}"></div>')
+        js.append(f'tl.fromTo("#city-bk{k}",{{x:0,y:0}},{{x:{r.randint(-120,120)},y:{r.randint(-260,-60)},duration:{total:.2f},ease:"none"}},0);')
+    els.append(f'<div id="city-bokeh" class="abs" style="inset:0;z-index:30;mix-blend-mode:screen">{"".join(bok)}</div>')
+    els.append('<div id="city-shade" class="abs" style="inset:0;z-index:40;background:linear-gradient(180deg,rgba(3,4,10,.62) 0%,rgba(3,4,10,.30) 16%,rgba(3,4,10,.22) 40%,rgba(3,4,10,.40) 58%,rgba(3,4,10,.72) 70%,rgba(3,4,10,.55) 85%,rgba(3,4,10,.75) 100%)"></div>')
+    els.append('<div id="city-vig" class="abs" style="inset:0;z-index:41;background:radial-gradient(120% 75% at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%)"></div>')
+    css = BASE_CSS + '#root{background:#03050C;overflow:hidden}.sky{opacity:0;transform-origin:50% 55%}'
+    return scene_file('city', ''.join(els), '\n'.join(js), css)

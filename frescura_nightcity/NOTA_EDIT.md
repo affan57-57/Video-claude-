@@ -5,12 +5,26 @@ Dibina dengan **HyperFrames** (HTML → video, GSAP). Format 1080×1920, 30 fps.
 
 > Ini **preview draft** sahaja, belum render final. Bila awak setuju, render final guna `-q delivery`.
 
-## Dua video
+## Video
+Satu video sahaja (video muka `5_6298316097858838513.MOV` tersilap upload, tidak digunakan).
 
-| Video | Sumber | Tempoh asal → selepas potong | Gaya |
-|---|---|---|---|
-| **V1** | `5_6298316097858838616.MOV` (suara sahaja, kamera tunjuk sofa) | 54.4s → 47.2s (+1s hujung) | Penuh motion graphic + B-roll, tiada A-roll |
-| **V2** | `5_6298316097858838513.MOV` (muka bercakap) | 57.0s → 50.4s (+1s hujung) | A-roll dalam bingkai emas atas latar bandar + B-roll + motion graphic |
+| Sumber | Tempoh asal → selepas potong | Gaya |
+|---|---|---|
+| `5_6298316097858838616.MOV` (suara sahaja) | 54.4s → 47.2s (+1s hujung) | Motion graphic + B-roll atas **gambar & video sebenar** bandar malam |
+
+## Latar bandar (gambar/video SEBENAR, bukan kartun)
+| Bahagian | Latar |
+|---|---|
+| Hook | KLCC + Suria KLCC waktu malam |
+| 3 benda / botol reveal | Petronas dari bawah (jambatan langit) |
+| 01 Buih siap-siap | **Video** monorel Bukit Bintang waktu malam |
+| 02 Ocean salt | Komtar → lampu Pulau Pinang & jambatan dari Bukit Bendera |
+| 03 Wangi perfume | Menara Alor Setar → KLCC |
+| Soalan "sabun biasa vs Frescura" | Jalan P. Ramlee (orang ramai, Petronas) |
+| CTA beg kuning | Skyline KL waktu malam |
+
+Komtar & Menara Alor Setar: tiada gambar malam berlesen bebas-komersial, jadi gambar siang (CC BY) digred jadi suasana malam.
+Semua kredit gambar dalam `CREDITS.md` (wajib letak kredit bila post).
 
 B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih).
 
@@ -24,7 +38,6 @@ B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih)
 
 ## Transkrip & plan visual
 
-### V1
 | Masa | Ayat | Visual | SFX |
 |---|---|---|---|
 | 0.0 | "Oh! Sebelum kau beli sabun mandi baru…" | HOOK: **JANGAN / BELI SABUN / dulu…** atas KLCC | impact bass |
@@ -45,24 +58,6 @@ B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih)
 | ~41.3 | "Pilihan kat tangan kau" | **Pilihan / di tangan kau.** | impact |
 | ~41.7 | "Tapi ingat, stok kami dah tak banyak" | Bar **STOK terhad** menyusut | whoosh |
 | ~44.7 | "Tekan beg kuning sekarang… checkout" | Beg kuning berdenyut + anak panah ke bakul + butang **CHECKOUT SEKARANG** | riser→impact, click |
-
-### V2
-| Masa | Ayat | Visual |
-|---|---|---|
-| 0.0 | "Serius, sabun ni bau perfume mahal." | Muka dalam bingkai emas + **SABUN NI BAU / perfume mahal?** |
-| ~3.2 | "Kalau tak percaya, tengok video ni sampai habis." | **Tak percaya? / tengok sampai habis.** |
-| ~5.5 | "Tiga sebab… Frescura Body." | **3 Sebab** → botol reveal |
-| ~9.3 | "Sebab pertama, wangian dia memang inspirasi perfume." | A-roll penuh + chip **01 Inspirasi perfume** + punch-in |
-| ~13.5 | "Sekali cium, terus bau perfume mahal." | Botol perfume line-art + kabus, **terus mahal.** |
-| ~16.4 | "Yang kedua, ada dua bau premium." | **02 Dua bau premium.** atas bingkai A-roll |
-| ~19.1 | "Bombshell… Midnight Fantasy…" | Kad wangian (hari-hari / untuk malam) |
-| ~26.2 | "Yang ketiga, tekan je terus keluar buih lembut." | **03 Tekan je** → B-roll tekan → buih |
-| ~30.9 | "Ada sea salt yang kaya mineral" | Kristal garam + **Mg · Ca · K** |
-| ~33.3 | "mandi pun rasa mewah" | B-roll sapuan buih "Mandi pun rasa mewah" |
-| ~34.5 | "Kau sanggup beli perfume ratus-ratus." | Botol perfume + tanda harga **RM ratus-ratus** + **Sanggup?** |
-| ~37.2 | "Tapi sabun yang bau perfume mahal ni, kau nak lepaskan?" | A-roll + **kau nak lepas?** |
-| ~41.9 | "Rugi gila weh." | **RUGI** merah slam + punch-in + glitch |
-| ~42.7 | "Tekan beg kuning… stok terhad… checkout sekarang" | CTA beg kuning + stok terhad + butang checkout |
 
 ## Pembetulan ejaan kapsyen (Whisper)
 "fresh kura body" → **Frescura Body**, "sisap/silsat" → **sea salt**, "bombsher" → **Bombshell**,

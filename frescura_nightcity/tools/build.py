@@ -16,7 +16,9 @@ TAIL = 1.0; TOTAL = round(VD + TAIL, 3)
 for d in ['assets/fonts', 'assets/city', 'assets/sfx', 'compositions']: os.makedirs(f'{P}/{d}', exist_ok=True)
 for f in os.listdir(f'{S}/fonts'):
     if f.endswith('.woff2'): shutil.copy(f'{S}/fonts/{f}', f'{P}/assets/fonts/{f}')
-for n in ['klcc', 'bb', 'komtar', 'alorsetar']: shutil.copy(f'{S}/city/{n}.png', f'{P}/assets/city/{n}.png')
+shutil.rmtree(f'{P}/assets/city', ignore_errors=True); os.makedirs(f'{P}/assets/city')
+for n in ['klcc_hero', 'klcc_up', 'klcc_cloud', 'komtar_n', 'penang_lights', 'alor_hdr_n', 'ramlee', 'kl_skyline']: shutil.copy(f'{S}/realbg/{n}.jpg', f'{P}/assets/city/{n}.jpg')
+shutil.copy(f'{S}/realbg/bb_monorail.mp4', f'{P}/assets/city/bb_monorail.mp4')
 SFXD = '/root/.claude/skills/media-use/audio/assets/sfx'
 for f in os.listdir(SFXD):
     if f.endswith('.mp3') or f == 'CREDITS.md': shutil.copy(f'{SFXD}/{f}', f'{P}/assets/sfx/{f}')
@@ -127,7 +129,8 @@ if V == 'v1':
     s.bag_cta(tkb, tco, TOTAL)
     scenes.append(s)
     sfx(b_cta, 'whoosh', .5); sfx(tkb, 'riser', .35); sfx(tkb, 'impact-bass-2', .55); sfx(tkb + .5, 'click', .6); sfx(tco, 'click', .6); sfx(T('klik', b_cta), 'pop', .5)
-    city = [(0, b_p1, 'klcc'), (b_p1, b_p2, 'bb'), (b_p2, b_p3, 'komtar'), (b_p3, b_q, 'alorsetar'), (b_q, b_cta, 'bb'), (b_cta, TOTAL, 'klcc')]
+    city = [(0, b_three, 'klcc_hero'), (b_three, b_p1, 'klcc_up'), (b_p1, b_p2, 'bb_monorail'), (b_p2, tk, 'komtar_n'), (tk, b_p3, 'penang_lights'),
+            (b_p3, tpi, 'alor_hdr_n'), (tpi, b_q, 'klcc_cloud'), (b_q, b_cta, 'ramlee'), (b_cta, TOTAL, 'kl_skyline')]
     states = []; punches = []
 
 else:  # ---------------- V2: talking head ----------------
@@ -232,7 +235,7 @@ hosts = [{'id': 'city', 'start': 0, 'dur': TOTAL, 'track': 0, 'z': 1}]
 for k, s in enumerate(scenes):
     open(f'{P}/compositions/{s.sid}.html', 'w').write(s.file())
     hosts.append({'id': s.sid, 'start': s.start, 'dur': s.dur, 'track': 3 + k % 2, 'z': 10})
-open(f'{P}/compositions/city.html', 'w').write(city_scene(city, TOTAL, f'{S}/city'))
+open(f'{P}/compositions/city.html', 'w').write(city_scene_real(city, TOTAL) if V == 'v1' else city_scene(city, TOTAL, f'{S}/city'))
 cap, groups = captions_html(words, TOTAL)
 open(f'{P}/compositions/captions.html', 'w').write(cap)
 hosts.append({'id': 'captions', 'start': 0, 'dur': TOTAL, 'track': 6, 'z': 20, 'kind': 'captions'})
