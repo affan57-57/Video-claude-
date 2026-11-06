@@ -1,6 +1,6 @@
 # Frescura Body — awareness #3 "3 Kebaikan Garam Laut" (45s, 9:16)
 
-Status: **PREVIEW**. The final has not been rendered yet. It waits for approval.
+Status: **FINAL** rendered (`output/frescura_awareness3_FINAL.mp4`, 1080x1920, 30fps, 45s, -8.4 LUFS, high quality).
 
 ## Voice
 - Source: 85s of voice-over. Cuts:
