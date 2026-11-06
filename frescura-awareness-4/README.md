@@ -1,6 +1,6 @@
 # Frescura Body — awareness #4 "Noir Spotlight" (53s, 9:16)
 
-Status: **PREVIEW v2**. The full script is kept, at the owner's request. The final has not been rendered yet.
+Status: **FINAL** rendered (`output/frescura_awareness4_FINAL.mp4`, 1080x1920, 30fps, 53s, -8.3 LUFS, high quality). The full script is kept, at the owner's request.
 
 ## Voice: full script, stutters removed, a little faster
 - **Every line of the 69s script is kept**, including the lines dropped in preview v1: sea-salt evaporation, spa treatment, restock, and "Bayangkan… sabun biasa… rugi kan".
