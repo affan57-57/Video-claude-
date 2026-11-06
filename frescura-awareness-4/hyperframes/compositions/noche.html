@@ -1,0 +1,87 @@
+<!-- HyperFrames sub-composition "noche" — mounted at root 29.66s. data-start values and timeline positions are local. -->
+<template id="noche-template">
+  <div data-composition-id="noche" data-width="1080" data-height="1920">
+    <div id="noche-root" class="fill">
+      <div class="fill" style="background: radial-gradient(60% 40% at 50% 38%, #1d1650 0%, #0a0a0b 70%)"></div>
+      <div class="fill stars"></div>
+      <div class="beam bm" style="left: 90px; opacity: 0.8"></div>
+      <svg
+        class="abs waves"
+        style="left: 140px; top: 260px"
+        width="800"
+        height="700"
+        viewBox="0 0 800 700"
+        fill="none"
+        stroke="#c4b5ff"
+        stroke-width="3"
+        stroke-linecap="round"
+        opacity=".7"
+      >
+        <path d="M120 600 C80 500 160 420 110 320 S120 160 90 60" />
+        <path d="M680 600 C720 500 640 420 690 320 S680 160 710 60" />
+        <path d="M60 650 C20 520 110 430 50 300 S70 120 40 20" />
+        <path d="M740 650 C780 520 690 430 750 300 S730 120 760 20" />
+      </svg>
+      <div class="abs prod" style="left: 330px; top: 230px; width: 420px; height: 960px; overflow: visible">
+        <img
+          src="assets/img/noche_n.jpg"
+          alt=""
+          style="
+            width: 420px;
+            height: 960px;
+            object-fit: cover;
+            border-radius: 14px;
+            -webkit-box-reflect: below 6px linear-gradient(transparent 70%, rgba(255, 255, 255, 0.22));
+          "
+        />
+      </div>
+      <div class="abs cx lab n" style="top: 1260px; color: #c4b5ff">N° II · Midnight Fantasy</div>
+      <div class="abs cx cin nm" style="top: 1310px; font-size: 100px">NOCHE</div>
+      <div class="abs cx it k1" style="top: 1440px; font-size: 104px; color: #c4b5ff">lembut &amp; misteri</div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(29.66);
+        const rnd = HF.rng(344);
+        const q = (s) => document.querySelector("#noche-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#noche-root " + s));
+        tl.fromTo(q(".prod"), { autoAlpha: 0, y: 80, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.7, ease: E }, 0);
+        tl.to(q(".prod"), { y: -16, duration: 2.76, ease: "sine.inOut" }, 0.7);
+        tl.fromTo(q(".bm"), { rotate: -24, opacity: 0 }, { rotate: 4, opacity: 0.85, duration: 1.4, ease: "power2.out" }, 0);
+        qa(".waves path").forEach((p, i) => {
+          const L = p.getTotalLength();
+          tl.fromTo(
+            p,
+            { attr: { "stroke-dasharray": L, "stroke-dashoffset": L } },
+            { attr: { "stroke-dashoffset": 0 }, duration: 1.2, ease: "power2.out" },
+            0.3 + i * 0.12,
+          );
+          tl.to(p, { y: -40, opacity: 0.2, duration: 1.4 }, 1.6 + i * 0.1);
+        });
+        tl.fromTo(q(".n"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.35);
+        tl.fromTo(HF.glyphs(q(".nm")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.03, ease: E }, 0.4);
+        tl.fromTo(q(".k1"), { autoAlpha: 0, y: 30, filter: "blur(8px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: E }, at(31.4));
+        for (let i = 0; i < 40; i++) {
+          const s = document.createElement("div");
+          const z = 2 + rnd() * 5;
+          Object.assign(s.style, {
+            position: "absolute",
+            left: rnd() * 1080 + "px",
+            top: rnd() * 1250 + "px",
+            width: z + "px",
+            height: z + "px",
+            borderRadius: "50%",
+            background: "#fff",
+            boxShadow: "0 0 10px #fff",
+          });
+          q(".stars").appendChild(s);
+          tl.fromTo(s, { opacity: 0.1 }, { opacity: 1, duration: 0.5 + rnd(), yoyo: true, repeat: 3, ease: "sine.inOut" }, rnd());
+        }
+        window.__timelines = window.__timelines || {};
+        window.__timelines["noche"] = tl;
+      })();
+    </script>
+  </div>
+</template>

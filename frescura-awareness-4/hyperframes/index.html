@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Frescura Body — Noir Spotlight</title>
+    <script src="assets/gsap.min.js"></script>
+    <script src="assets/captions.js"></script>
+    <script src="assets/hf4.js"></script>
+    <style>
+      @font-face {
+        font-family: "Cinzel";
+        font-weight: 400;
+        src: url(assets/fonts/cinzel-latin-400-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Cinzel";
+        font-weight: 600;
+        src: url(assets/fonts/cinzel-latin-600-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "DMSerif";
+        font-style: italic;
+        font-weight: 400;
+        src: url(assets/fonts/dm-serif-display-latin-400-italic.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Sora";
+        font-weight: 500;
+        src: url(assets/fonts/sora-latin-500-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Sora";
+        font-weight: 600;
+        src: url(assets/fonts/sora-latin-600-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Sora";
+        font-weight: 700;
+        src: url(assets/fonts/sora-latin-700-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Sora";
+        font-weight: 800;
+        src: url(assets/fonts/sora-latin-800-normal.woff2) format("woff2");
+      }
+      :root {
+        --noir: #0a0a0b;
+        --smoke: #1a1a1d;
+        --gold: #d8b56a;
+        --gold2: #f0d9a4;
+        --ivory: #f4efe6;
+        --rouge: #c0283c;
+        --vio: #9a84ff;
+        --cin: "Cinzel", serif;
+        --it: "DMSerif", serif;
+        --sans: "Sora", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--noir);
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--noir);
+        font-family: var(--sans);
+        color: var(--ivory);
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .fill {
+        position: absolute;
+        inset: 0;
+      }
+      .abs {
+        position: absolute;
+      }
+      .cx {
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+      .bg {
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+        transform-origin: 50% 50%;
+      }
+      .cin {
+        font-family: var(--cin);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0.08em;
+      }
+      .it {
+        font-family: var(--it);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .lab {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: 0.44em;
+        text-transform: uppercase;
+      }
+      .gold {
+        color: var(--gold2);
+      }
+      .rule {
+        height: 1.5px;
+        background: linear-gradient(90deg, rgba(216, 181, 106, 0), var(--gold), rgba(216, 181, 106, 0));
+      }
+      .beam {
+        position: absolute;
+        width: 1400px;
+        height: 2300px;
+        left: -360px;
+        top: -380px;
+        background: conic-gradient(
+          from 180deg at 50% 0%,
+          rgba(255, 244, 220, 0) 166deg,
+          rgba(255, 244, 220, 0.16) 176deg,
+          rgba(255, 244, 220, 0.22) 180deg,
+          rgba(255, 244, 220, 0.16) 184deg,
+          rgba(255, 244, 220, 0) 194deg
+        );
+        -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 90%);
+        mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 90%);
+        filter: blur(6px);
+        mix-blend-mode: screen;
+        transform-origin: 50% 0%;
+      }
+      .mask {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        padding: 0 0.03em 0.12em;
+        margin-bottom: -0.12em;
+      }
+      .mask > span {
+        display: inline-block;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 34px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 36px;
+      }
+      .bub {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95) 0 12%, rgba(255, 255, 255, 0.08) 13% 60%, rgba(255, 255, 255, 0.28) 100%);
+      }
+      #shade {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.6) 72%, rgba(0, 0, 0, 0.7) 100%);
+        pointer-events: none;
+        opacity: 0;
+      }
+      #flash {
+        background: radial-gradient(70% 50% at 50% 40%, #fff7e6, rgba(255, 247, 230, 0));
+        opacity: 0;
+        pointer-events: none;
+        mix-blend-mode: screen;
+      }
+      #grain {
+        opacity: 0.08;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        background-size: 300px 300px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="1080" data-height="1920" data-fps="30">
+      <!-- Scene sub-compositions (compositions/*.html), mounted in root time; timing inside each file is local -->
+      <div
+        id="host-hook"
+        class="clip"
+        data-composition-id="hook"
+        data-composition-src="compositions/hook.html"
+        data-start="0"
+        data-duration="4.02"
+        data-track-index="0"
+      ></div>
+      <div
+        id="host-mandi"
+        class="clip"
+        data-composition-id="mandi"
+        data-composition-src="compositions/mandi.html"
+        data-start="4.02"
+        data-duration="2.82"
+        data-track-index="1"
+      ></div>
+      <div
+        id="host-secret"
+        class="clip"
+        data-composition-id="secret"
+        data-composition-src="compositions/secret.html"
+        data-start="6.84"
+        data-duration="6.24"
+        data-track-index="2"
+      ></div>
+      <div
+        id="host-moist"
+        class="clip"
+        data-composition-id="moist"
+        data-composition-src="compositions/moist.html"
+        data-start="13.08"
+        data-duration="3.42"
+        data-track-index="3"
+      ></div>
+      <div
+        id="host-formula"
+        class="clip"
+        data-composition-id="formula"
+        data-composition-src="compositions/formula.html"
+        data-start="16.5"
+        data-duration="7.22"
+        data-track-index="4"
+      ></div>
+      <div
+        id="host-pump"
+        class="clip"
+        data-composition-id="pump"
+        data-composition-src="compositions/pump.html"
+        data-start="23.72"
+        data-duration="2.48"
+        data-track-index="5"
+      ></div>
+      <div
+        id="host-glory"
+        class="clip"
+        data-composition-id="glory"
+        data-composition-src="compositions/glory.html"
+        data-start="26.2"
+        data-duration="3.46"
+        data-track-index="6"
+      ></div>
+      <div
+        id="host-noche"
+        class="clip"
+        data-composition-id="noche"
+        data-composition-src="compositions/noche.html"
+        data-start="29.66"
+        data-duration="3.46"
+        data-track-index="7"
+      ></div>
+      <div
+        id="host-listen"
+        class="clip"
+        data-composition-id="listen"
+        data-composition-src="compositions/listen.html"
+        data-start="33.12"
+        data-duration="3.64"
+        data-track-index="8"
+      ></div>
+      <div
+        id="host-soldout"
+        class="clip"
+        data-composition-id="soldout"
+        data-composition-src="compositions/soldout.html"
+        data-start="36.76"
+        data-duration="3.1"
+        data-track-index="9"
+      ></div>
+      <div
+        id="host-cta"
+        class="clip"
+        data-composition-id="cta"
+        data-composition-src="compositions/cta.html"
+        data-start="39.86"
+        data-duration="5.14"
+        data-track-index="10"
+      ></div>
+      <!-- Global layers -->
+      <div id="shade" class="clip" data-start="0" data-duration="45" data-track-index="20"></div>
+      <div
+        id="host-captions"
+        class="clip"
+        data-track-kind="captions"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="45"
+        data-track-index="21"
+      ></div>
+      <div
+        id="host-hud"
+        class="clip"
+        data-composition-id="hud"
+        data-composition-src="compositions/hud.html"
+        data-start="0"
+        data-duration="45"
+        data-track-index="22"
+      ></div>
+      <div id="flash" class="clip" data-start="0" data-duration="45" data-track-index="23"></div>
+      <div id="grain" class="clip" data-start="0" data-duration="45" data-track-index="24"></div>
+      <audio id="mix" data-start="0" data-duration="45" data-media-start="0" data-volume="1" data-track-index="30" src="assets/audio/mix.wav"></audio>
+    </div>
+    <script>
+      const rnd = HF.rng(44);
+      const tl = gsap.timeline({ paused: true });
+      for (let t = 0; t < 45; t += 0.1) tl.set("#grain", { backgroundPosition: Math.floor(rnd() * 300) + "px " + Math.floor(rnd() * 300) + "px" }, t);
+      tl.to("#shade", { opacity: 1, duration: 0.3 }, 0);
+      tl.set("#shade", { opacity: 0 }, 26.2).set("#shade", { opacity: 1 }, 33.12);
+      [4.02, 6.84, 13.08, 23.72, 24.82, 29.66, 36.76].forEach((t) => {
+        tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.7, duration: 0.06, ease: "none", immediateRender: false }, t - 0.06).to(
+          "#flash",
+          { opacity: 0, duration: 0.3 },
+          t,
+        );
+      });
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

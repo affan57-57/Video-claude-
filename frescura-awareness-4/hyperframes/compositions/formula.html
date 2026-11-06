@@ -1,0 +1,68 @@
+<!-- HyperFrames sub-composition "formula" — mounted at root 16.5s. data-start values and timeline positions are local. -->
+<template id="formula-template">
+  <div data-composition-id="formula" data-width="1080" data-height="1920">
+    <div id="formula-root" class="fill">
+      <img class="clip bg hero" data-start="0" data-duration="7.22" src="assets/img/noir_hero.jpg" alt="" />
+      <div class="fill dark" style="background: rgba(10, 10, 11, 0.7)"></div>
+      <div class="fill topg" style="background: linear-gradient(180deg, rgba(10, 10, 11, 0.9), rgba(10, 10, 11, 0) 35%)"></div>
+      <div class="beam bm" style="left: 300px"></div>
+      <div class="abs cx cin br" style="top: 200px; font-size: 118px; letter-spacing: 0.14em">FRESCURA</div>
+      <div class="abs cx lab sb" style="top: 340px; color: var(--gold2)">Body · Foaming Body Shower</div>
+      <div class="abs eq" style="left: 0; right: 0; top: 520px; text-align: center">
+        <div class="ck c1"><span class="cin">GARAM LAUT</span></div>
+        <div class="op o1">+</div>
+        <div class="ck c2"><span class="cin">WANGIAN PERFUME MEWAH</span></div>
+        <div class="op o2">=</div>
+        <div class="ck c3 res"><span class="cin">1 FOAMING BODY SHOWER</span></div>
+      </div>
+    </div>
+    <style>
+      #formula-root .ck {
+        display: inline-block;
+        padding: 26px 46px;
+        border-radius: 16px;
+        border: 2px solid var(--gold);
+        background: rgba(10, 10, 11, 0.55);
+        font-size: 46px;
+      }
+      #formula-root .res {
+        background: var(--gold2);
+        color: #0a0a0b;
+        border-color: var(--gold2);
+      }
+      #formula-root .op {
+        font-family: var(--cin);
+        font-size: 90px;
+        color: var(--gold2);
+        line-height: 1.3;
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(16.5);
+        const rnd = HF.rng(287);
+        const q = (s) => document.querySelector("#formula-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#formula-root " + s));
+        tl.fromTo(q(".hero"), { scale: 1.18 }, { scale: 1.02, duration: 7.22, ease: "power1.out" }, 0);
+        tl.fromTo(q(".hero"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power3.inOut" }, 0);
+        tl.fromTo(q(".dark"), { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+        tl.to(q(".dark"), { opacity: 1, duration: 0.5 }, at(18.7));
+        tl.fromTo(q(".bm"), { rotate: -30, opacity: 0 }, { rotate: 22, opacity: 0.9, duration: 1.6, ease: "power2.inOut" }, 0.2);
+        tl.to(q(".bm"), { opacity: 0.35, duration: 1 }, 1.8);
+        tl.fromTo(HF.glyphs(q(".br")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.04, ease: E }, 0.1);
+        tl.fromTo(q(".sb"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4 }, at(17.2));
+        [
+          [".c1", 18.85],
+          [".o1", 19.55],
+          [".c2", 20.1],
+          [".o2", 21.6],
+          [".c3", 22.3],
+        ].forEach(([c, t]) => tl.fromTo(q(c), { autoAlpha: 0, y: 40, scale: 0.85 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: B }, at(t)));
+        tl.to(q(".c3"), { scale: 1.06, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut" }, at(22.7));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["formula"] = tl;
+      })();
+    </script>
+  </div>
+</template>

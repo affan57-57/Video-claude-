@@ -1,0 +1,53 @@
+<!-- HyperFrames sub-composition "hud" — mounted at root 0s. data-start values and timeline positions are local. -->
+<template id="hud-template">
+  <div data-composition-id="hud" data-width="1080" data-height="1920">
+    <div id="hud-root" class="fill">
+      <div class="abs cx cin logo" style="top: 76px; font-size: 30px; letter-spacing: 0.5em">FRESCURA</div>
+      <div class="abs prog" style="left: 390px; width: 300px; top: 124px; height: 2px; background: rgba(240, 217, 164, 0.2)">
+        <i class="pf" style="display: block; width: 100%; height: 100%; background: #d8b56a; transform-origin: 0 50%"></i>
+      </div>
+      <div class="abs rn" style="left: 70px; top: 80px; font-family: var(--cin); font-size: 30px; color: var(--gold2)"></div>
+      <div
+        class="fill wipe"
+        style="background: linear-gradient(100deg, rgba(255, 240, 210, 0) 30%, rgba(255, 240, 210, 0.95) 50%, rgba(255, 240, 210, 0) 70%); opacity: 0"
+      ></div>
+    </div>
+    <style>
+      #hud-root .rn span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(0);
+        const rnd = HF.rng(439);
+        const q = (s) => document.querySelector("#hud-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#hud-root " + s));
+        tl.fromTo(q(".pf"), { scaleX: 0 }, { scaleX: 1, duration: 45, ease: "none" }, 0);
+        const SC = [0, 4.02, 6.84, 13.08, 16.5, 23.72, 26.2, 29.66, 33.12, 36.76, 39.86, 45];
+        const RN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+        RN.forEach((r, i) => {
+          const sp = document.createElement("span");
+          sp.textContent = r;
+          q(".rn").appendChild(sp);
+          tl.fromTo(sp, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, immediateRender: false }, SC[i] + 0.05);
+          if (i < RN.length - 1) tl.to(sp, { opacity: 0, duration: 0.1 }, SC[i + 1] - 0.1);
+        });
+        const wipe = q(".wipe");
+        tl.set(wipe, { xPercent: -120, opacity: 0 }, 0);
+        [4.02, 16.5, 26.2, 33.12, 39.86].forEach((t) => {
+          tl.set(wipe, { opacity: 1, xPercent: -120 }, t - 0.3);
+          tl.to(wipe, { xPercent: 120, duration: 0.55, ease: "power2.inOut" }, t - 0.3);
+          tl.set(wipe, { opacity: 0 }, t + 0.26);
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["hud"] = tl;
+      })();
+    </script>
+  </div>
+</template>

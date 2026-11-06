@@ -1,0 +1,87 @@
+<!-- HyperFrames sub-composition "cta" — mounted at root 39.86s. data-start values and timeline positions are local. -->
+<template id="cta-template">
+  <div data-composition-id="cta" data-width="1080" data-height="1920">
+    <div id="cta-root" class="fill">
+      <img class="clip bg bgi" data-start="0" data-duration="5.14" src="assets/img/noir_hero.jpg" alt="" style="filter: brightness(0.45)" />
+      <div class="beam bm" style="left: 100px"></div>
+      <div class="abs cx cin t1" style="top: 210px; font-size: 92px">KLIK LINK</div>
+      <div class="abs cx it t2 gold" style="top: 320px; font-size: 90px">di bawah</div>
+      <svg
+        class="abs arw"
+        style="left: 510px; top: 460px"
+        width="60"
+        height="110"
+        viewBox="0 0 60 110"
+        fill="none"
+        stroke="#f0d9a4"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M30 6 V100 M8 76 L30 100 L52 76" />
+      </svg>
+      <div class="abs cx co" style="top: 620px">
+        <span class="chip" style="border: 2px solid var(--gold2); color: var(--gold2); font-family: var(--cin); font-weight: 600; letter-spacing: 0.1em"
+          >CHECK OUT SEKARANG</span
+        >
+      </div>
+      <div
+        class="abs btn"
+        style="
+          left: 110px;
+          right: 110px;
+          top: 780px;
+          height: 170px;
+          border-radius: 85px;
+          background: #ffc21a;
+          color: #0a0a0b;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          font-weight: 800;
+          font-size: 54px;
+          box-shadow:
+            0 0 60px rgba(255, 194, 26, 0.35),
+            0 30px 80px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <svg width="80" height="90" viewBox="0 0 280 330">
+          <path d="M85 110 V80 a55 55 0 0 1 110 0 V110" fill="none" stroke="#0a0a0b" stroke-width="24" stroke-linecap="round" />
+          <rect x="20" y="100" width="240" height="220" rx="40" fill="#0a0a0b" /></svg
+        >TEKAN BEG KUNING
+      </div>
+      <div
+        class="abs rp"
+        style="left: 540px; top: 865px; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 4px solid #ffc21a"
+      ></div>
+      <div class="abs cx it ru gold" style="top: 1010px; font-size: 80px">sebelum anda rugi</div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(39.86);
+        const rnd = HF.rng(401);
+        const q = (s) => document.querySelector("#cta-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#cta-root " + s));
+        tl.fromTo(q(".bgi"), { scale: 1.2 }, { scale: 1.03, duration: 5.14, ease: "power1.out" }, 0);
+        tl.fromTo(q(".bm"), { rotate: -25, opacity: 0 }, { rotate: 10, opacity: 0.8, duration: 2, ease: "power2.out" }, 0);
+        tl.fromTo(HF.glyphs(q(".t1")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.03, ease: E }, 0.02);
+        tl.fromTo(q(".t2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(40.3));
+        tl.fromTo(q(".arw"), { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(40.4));
+        tl.to(q(".arw"), { y: 22, duration: 0.25, yoyo: true, repeat: 15, ease: "sine.inOut" }, at(40.7));
+        tl.fromTo(q(".co"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: B }, at(40.94));
+        tl.fromTo(q(".btn"), { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "elastic.out(1,0.6)" }, at(41.9));
+        tl.to(q(".btn"), { scale: 1.06, duration: 0.24, yoyo: true, repeat: 9, ease: "sine.inOut" }, at(42.5));
+        tl.set(q(".rp"), { autoAlpha: 0 }, 0);
+        [42.5, 43.3, 44.1].forEach((t) =>
+          tl.fromTo(q(".rp"), { autoAlpha: 0.9, scale: 1 }, { autoAlpha: 0, scale: 24, duration: 0.6, ease: "power2.out", immediateRender: false }, at(t)),
+        );
+        tl.fromTo(q(".ru"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(42.66));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["cta"] = tl;
+      })();
+    </script>
+  </div>
+</template>

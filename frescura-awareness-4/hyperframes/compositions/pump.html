@@ -1,0 +1,63 @@
+<!-- HyperFrames sub-composition "pump" — mounted at root 23.72s. data-start values and timeline positions are local. -->
+<template id="pump-template">
+  <div data-composition-id="pump" data-width="1080" data-height="1920">
+    <div id="pump-root" class="fill">
+      <video
+        id="v-pump"
+        class="clip bg"
+        data-start="0"
+        data-duration="1.1"
+        data-media-start="0.4"
+        muted
+        playsinline
+        src="assets/video/pump.mp4"
+        style="filter: brightness(0.75) contrast(1.05)"
+      ></video>
+      <video
+        id="v-palm"
+        class="clip bg"
+        data-start="1.1"
+        data-duration="1.38"
+        data-media-start="0.2"
+        muted
+        playsinline
+        src="assets/video/palm.mp4"
+        style="filter: brightness(0.75) contrast(1.05)"
+      ></video>
+      <div class="fill" style="background: linear-gradient(180deg, rgba(10, 10, 11, 0.75), rgba(10, 10, 11, 0) 45%)"></div>
+      <div class="abs cx cin x1 gold" style="top: 170px; font-size: 220px; font-weight: 600">1×</div>
+      <div class="abs cx lab x2" style="top: 420px">Sekali pump</div>
+      <div class="abs cx cin y1" style="top: 230px; font-size: 104px">BERBUIH</div>
+      <div class="abs cx it y2 gold" style="top: 350px; font-size: 96px">lembut</div>
+      <div class="bubs"></div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(23.72);
+        const rnd = HF.rng(306);
+        const q = (s) => document.querySelector("#pump-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#pump-root " + s));
+        tl.fromTo(q("#v-pump"), { scale: 1.2 }, { scale: 1.08, duration: 1.1, ease: "power1.out" }, 0);
+        tl.fromTo(q("#v-palm"), { scale: 1.08 }, { scale: 1.2, duration: 1.38, ease: "power1.out" }, 1.1);
+        tl.fromTo(q(".x1"), { autoAlpha: 0, scale: 2 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "power4.out" }, 0.02);
+        tl.fromTo(q(".x2"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.25 }, 0.2);
+        tl.to([q(".x1"), q(".x2")], { autoAlpha: 0, y: -40, duration: 0.2 }, 1.0);
+        tl.fromTo(HF.glyphs(q(".y1")), { yPercent: 110 }, { yPercent: 0, duration: 0.4, stagger: 0.03, ease: E }, at(25.2));
+        tl.fromTo(q(".y2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E }, at(25.7));
+        const bb = HF.bubbles(q(".bubs"), 18, { x: 60, y: 1100, w: 960, h: 600 }, rnd);
+        bb.forEach((b, i) =>
+          tl.fromTo(
+            b,
+            { autoAlpha: 0, y: 150, scale: 0.3 },
+            { autoAlpha: 0.95, y: -520 - rnd() * 300, x: (rnd() - 0.5) * 120, scale: 1, duration: 1.4, ease: "power1.out" },
+            1.0 + (i % 9) * 0.05,
+          ),
+        );
+        window.__timelines = window.__timelines || {};
+        window.__timelines["pump"] = tl;
+      })();
+    </script>
+  </div>
+</template>

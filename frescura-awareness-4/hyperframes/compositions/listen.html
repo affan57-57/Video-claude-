@@ -1,0 +1,75 @@
+<!-- HyperFrames sub-composition "listen" — mounted at root 33.12s. data-start values and timeline positions are local. -->
+<template id="listen-template">
+  <div data-composition-id="listen" data-width="1080" data-height="1920">
+    <div id="listen-root" class="fill">
+      <div class="fill" style="background: #0a0a0b"></div>
+      <div class="fill rings"></div>
+      <div class="abs cx lab t0" style="top: 360px; color: var(--gold2)">Tapi</div>
+      <div class="abs cx cin t1" style="top: 410px; font-size: 128px">DENGAR SINI</div>
+      <div class="abs cx lab s0" style="top: 760px; color: var(--gold2)">Stok batch ni</div>
+      <div
+        class="abs bars"
+        style="left: 190px; top: 820px; width: 700px; height: 240px; display: flex; align-items: flex-end; justify-content: space-between"
+      ></div>
+      <div class="abs cx cin s1" style="top: 1100px; font-size: 92px; color: #ff5a6a">TERHAD</div>
+    </div>
+    <style>
+      #listen-root .rg {
+        position: absolute;
+        left: 540px;
+        top: 480px;
+        width: 160px;
+        height: 160px;
+        margin: -80px 0 0 -80px;
+        border-radius: 50%;
+        border: 2px solid rgba(240, 217, 164, 0.6);
+      }
+      #listen-root .bar {
+        width: 50px;
+        border-radius: 8px;
+        background: var(--gold2);
+        transform-origin: 50% 100%;
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(33.12);
+        const rnd = HF.rng(363);
+        const q = (s) => document.querySelector("#listen-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#listen-root " + s));
+        tl.fromTo(q(".t0"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 }, 0.0);
+        tl.fromTo(
+          q(".t1"),
+          { autoAlpha: 0, scale: 1.4, filter: "blur(14px)" },
+          { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "power4.out" },
+          at(33.55),
+        );
+        for (let i = 0; i < 5; i++) {
+          const r = document.createElement("div");
+          r.className = "rg";
+          q(".rings").appendChild(r);
+          tl.fromTo(r, { scale: 0.5, opacity: 0.9 }, { scale: 9, opacity: 0, duration: 1.3, ease: "power2.out" }, at(33.6) + i * 0.18);
+        }
+        tl.fromTo(q(".s0"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(34.4));
+        const bars = [];
+        for (let i = 0; i < 10; i++) {
+          const b = document.createElement("div");
+          b.className = "bar";
+          b.style.height = 120 + Math.sin(i * 0.9) * 50 + 60 + "px";
+          q(".bars").appendChild(b);
+          bars.push(b);
+        }
+        tl.fromTo(bars, { scaleY: 0 }, { scaleY: 1, duration: 0.3, stagger: 0.03, ease: B }, at(34.5));
+        bars
+          .slice(2)
+          .reverse()
+          .forEach((b, i) => tl.to(b, { scaleY: 0.05, opacity: 0.25, duration: 0.15 }, at(35.3) + i * 0.1));
+        tl.to(bars.slice(0, 2), { background: "#ff5a6a", duration: 0.2 }, at(36.1));
+        tl.fromTo(q(".s1"), { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at(36.3));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["listen"] = tl;
+      })();
+    </script>
+  </div>
+</template>

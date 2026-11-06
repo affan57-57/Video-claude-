@@ -1,0 +1,55 @@
+<!-- HyperFrames sub-composition "mandi" — mounted at root 4.02s. data-start values and timeline positions are local. -->
+<template id="mandi-template">
+  <div data-composition-id="mandi" data-width="1080" data-height="1920">
+    <div id="mandi-root" class="fill">
+      <video
+        id="v-mandi"
+        class="clip bg"
+        data-start="0"
+        data-duration="2.82"
+        data-media-start="0.4"
+        muted
+        playsinline
+        src="assets/video/spa.mp4"
+        style="filter: brightness(0.5) saturate(0.8)"
+      ></video>
+      <div class="fill ripples"></div>
+      <div class="abs cx lab l0" style="top: 420px; color: var(--gold2)">Semua tu boleh dapat</div>
+      <div class="abs cx cin l1" style="top: 480px; font-size: 64px">HANYA DENGAN</div>
+      <div class="abs cx cin l2 gold" style="top: 580px; font-size: 230px; font-weight: 600">MANDI</div>
+    </div>
+    <style>
+      #mandi-root .rp {
+        position: absolute;
+        left: 540px;
+        top: 700px;
+        width: 120px;
+        height: 120px;
+        margin: -60px 0 0 -60px;
+        border-radius: 50%;
+        border: 2px solid rgba(240, 217, 164, 0.7);
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(4.02);
+        const rnd = HF.rng(230);
+        const q = (s) => document.querySelector("#mandi-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#mandi-root " + s));
+        tl.fromTo(q("#v-mandi"), { scale: 1.2 }, { scale: 1.05, duration: 2.82, ease: "power1.out" }, 0);
+        tl.fromTo(q(".l0"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35 }, 0.05);
+        tl.fromTo(q(".l1"), { autoAlpha: 0, scale: 1.2 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: E }, at(5.4));
+        tl.fromTo(HF.glyphs(q(".l2")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.05, ease: E }, at(6.0));
+        for (let i = 0; i < 4; i++) {
+          const r = document.createElement("div");
+          r.className = "rp";
+          q(".ripples").appendChild(r);
+          tl.fromTo(r, { scale: 0.3, opacity: 0.9 }, { scale: 9, opacity: 0, duration: 1.2, ease: "power2.out" }, at(6.05) + i * 0.15);
+        }
+        window.__timelines = window.__timelines || {};
+        window.__timelines["mandi"] = tl;
+      })();
+    </script>
+  </div>
+</template>
