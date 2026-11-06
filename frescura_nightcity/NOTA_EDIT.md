@@ -62,7 +62,8 @@ B-roll: `tekan pump yg baru .MOV` (tekan pam, buih di tapak tangan, sapuan buih)
 Latar asal video pump (dinding belang, meja hijau) dibuang dengan AI (HyperFrames remove-background),
 diganti dengan bilik air moden minimalis: kaunter kayu + sinki batu + lilin + pancur hujan (syot 1),
 sinki kabur (syot 2), ruang shower kaca (sapu buih). Ditambah titisan air pancur beranimasi + wap halus.
-Fail penuh: `output/broll/pump_bilik_air_mewah.mp4` (1080×1920, tanpa audio).
+Kelengkapan (paip, kepala pancur, pancur tangan, rak tuala, bingkai kaca) ditukar kepada emas berus (tools/goldify.py).
+Fail penuh: `output/broll/pump_bilik_air_mewah_gold.mp4` (1080×1920, tanpa audio).
 
 ## Animasi edukasi
 | Point | Animasi |

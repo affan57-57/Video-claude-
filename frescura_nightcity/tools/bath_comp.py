@@ -14,9 +14,9 @@ def bg(name, box, blur, zoom=1.10):
     a = np.asarray(im).astype(np.float32) / 255
     a = np.clip((a - .5) * 1.06 + .5, 0, 1) * np.array([1.03, 1.0, .95]) * .92   # warm, slightly dim
     return a
-BGA = bg('3540719b', (250, 0, 610, 640), 3.5)            # counter, rain shower head, faucet, candle
-BGB = bg('3540719b', (170, 230, 530, 870), 9)             # sink/faucet close, strong depth of field
-BGC = bg('1c929dca', (322, 150, 682, 790), 7)             # glass shower + rain head
+BGA = bg('3540719b_gold', (250, 0, 610, 640), 3.5)            # counter, rain shower head, faucet, candle
+BGB = bg('3540719b_gold', (170, 230, 530, 870), 9)             # sink/faucet close, strong depth of field
+BGC = bg('1c929dca_gold', (322, 150, 682, 790), 7)             # glass shower + rain head
 # shower heads in output coords (for animated water): (x, y, cone width, fall length)
 HEADS = {'A': (180, 235, 120, 900), 'C': (876, 400, 150, 1150)}
 
