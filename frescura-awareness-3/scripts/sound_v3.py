@@ -363,8 +363,8 @@ env = np.abs(v); L = int(0.03 * SR)
 env = np.convolve(env, np.ones(L) / L, mode="same")
 duck = 1 - 0.55 * np.clip(env / 0.05, 0, 1)
 duck = np.convolve(duck, np.ones(int(0.12 * SR)) / int(0.12 * SR), mode="same")
-music = norm(mus, -1) * 10 ** (-10.5 / 20) * duck[:, None]
-sfx_ = sfx[:N] * 10 ** (-2.5 / 20)
+music = norm(mus, -1) * 10 ** (-12.5 / 20) * duck[:, None]
+sfx_ = sfx[:N] * 10 ** (-3.5 / 20)
 mix = (st(v) * 1.0 + music + sfx_) * 10 ** (float(os.environ.get("GAIN", "0")) / 20)
 # glue + limit (simple lookahead peak limiter)
 peak = np.max(np.abs(mix), 1)

@@ -29,7 +29,11 @@ Status: **PREVIEW**. The final has not been rendered yet. It waits for approval.
 
 - **Style:** "Ocean Index". Fonts are Italiana, Cormorant Garamond italic and Manrope.
 - **Media:** only the owner's product photos and foam-pump video.
-- **Audio:** synthesised SFX and a 122 BPM bed with voice ducking (`scripts/sound_v3.py`). The voice is boosted about +4 dB over the music and SFX, and the mix runs `GAIN=0.8` for about -9.3 LUFS with true peak at or below -1.2 dBFS.
+- **Audio:** synthesised SFX and a 122 BPM bed with voice ducking (`scripts/sound_v3.py`). `scripts/loud_master.sh` handles the loudness:
+  - densifies the voice (compressor + limiter)
+  - lowers the music and SFX relative to the voice
+  - masters through a 4×-oversampled look-ahead limiter
+  - Result: **-8.4 LUFS**, true peak -1.8 dBFS, 0 clipped samples, median gain reduction 0.8 dB.
 
 ```bash
 cd hyperframes && npx hyperframes@0.9.19 render -q draft -o preview.mp4   # final: -q high
