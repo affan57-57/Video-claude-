@@ -1,0 +1,78 @@
+<!-- HyperFrames sub-composition: variants (root time 32.24s). Timing inside is local to this composition. -->
+<template id="variants-template">
+  <div data-composition-id="variants" data-width="1080" data-height="1920" class="comp-root">
+    <div
+      id="s10"
+      class="clip scene"
+      data-start="0"
+      data-duration="3.46"
+      style="background: radial-gradient(90% 70% at 30% 40%, #7a1424 0%, #3b0a12 70%, #22050a 100%)"
+    >
+      <div class="vcard" style="left: 70px"><img src="assets/img/glory_m.jpg" alt="" /></div>
+      <div class="vcol" style="left: 650px; color: #ffe3e7">
+        <div class="no">NO. 01</div>
+        <div class="nm">Woman Glory</div>
+        <div class="sb" style="color: #ff9fae">BOMBSHELL</div>
+        <div class="hr" style="background: #ff9fae"></div>
+        <div class="kw k1">berani</div>
+        <div class="kw k2" style="color: #ffb3bf">&amp; penawan</div>
+      </div>
+    </div>
+    <div
+      id="s11"
+      class="clip scene"
+      data-start="3.46"
+      data-duration="4.8"
+      style="background: radial-gradient(90% 70% at 70% 40%, #2b1f66 0%, #120d3a 65%, #07051a 100%)"
+    >
+      <div class="stars"></div>
+      <div class="vcard" style="left: 470px"><img src="assets/img/noche_m.jpg" alt="" /></div>
+      <div class="vcol" style="left: 70px; color: #e6e0ff">
+        <div class="no">NO. 02</div>
+        <div class="nm">Noche</div>
+        <div class="sb" style="color: #b7a8ff">MIDNIGHT FANTASY</div>
+        <div class="hr" style="background: #b7a8ff"></div>
+        <div class="kw k1">aura malam</div>
+        <div class="kw k2" style="color: #c9bcff">misteri</div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 32.24);
+        const rnd = HF.rng(3013104609);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        // ---------- S10 / S11 variants ----------
+        const variant = (id, t, d, fromX, kws) => {
+          tl.fromTo(
+            id + " .vcard",
+            { autoAlpha: 0, x: fromX, clipPath: "inset(0 0 100% 0 round 40px)" },
+            { autoAlpha: 1, x: 0, clipPath: "inset(0 0 0% 0 round 40px)", duration: 0.65, ease: E },
+            t + 0.02,
+          );
+          tl.fromTo(id + " .vcard img", { scale: 1.3 }, { scale: 1.04, duration: d, ease: "power2.out" }, t);
+          tl.fromTo(id + " .no", { autoAlpha: 0 }, { autoAlpha: 0.8, duration: 0.3 }, t + 0.15);
+          tl.fromTo(id + " .nm", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, t + 0.2);
+          tl.fromTo(id + " .sb", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, t + 0.45);
+          tl.fromTo(id + " .hr", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: P }, t + 0.5);
+          tl.fromTo(id + " .k1", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, kws[0]);
+          tl.fromTo(id + " .k2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, kws[1]);
+        };
+        variant("#s10", 32.24, 3.46, -120, [34.44, 35.1]);
+        variant("#s11", 35.7, 4.8, 120, [38.7, 39.95]);
+        const stars = $("#s11 .stars");
+        for (let i = 0; i < 40; i++) {
+          const s = document.createElement("div");
+          s.className = "star";
+          const z = 2 + rnd() * 5;
+          Object.assign(s.style, { left: rnd() * 1080 + "px", top: rnd() * 1900 + "px", width: z + "px", height: z + "px" });
+          stars.appendChild(s);
+          tl.fromTo(s, { opacity: 0.1 }, { opacity: 1, duration: 0.5 + rnd(), yoyo: true, repeat: 3, ease: "sine.inOut" }, 35.7 + rnd() * 1.2);
+        }
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["variants"] = base;
+      })();
+    </script>
+  </div>
+</template>

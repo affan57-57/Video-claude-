@@ -1,0 +1,54 @@
+<!-- HyperFrames sub-composition: product (root time 18.46s). Timing inside is local to this composition. -->
+<template id="product-template">
+  <div data-composition-id="product" data-width="1080" data-height="1920" class="comp-root">
+    <img id="m6a" class="clip bg" data-start="0" data-duration="2.54" src="assets/img/duo_wood.jpg" alt="" />
+    <video id="m6b" class="clip bg" data-start="2.54" data-duration="2.92" data-media-start="0" muted playsinline src="assets/video/spa.mp4"></video>
+    <div id="s6a" class="clip scene" data-start="0" data-duration="2.54">
+      <div class="topg"></div>
+      <div class="abs cx eyebrow t0">Kenalkan</div>
+      <div class="abs cx mar t1 tt"></div>
+      <div class="abs cx t2">GENTLE FOAMING BODY SHOWER</div>
+      <div class="abs cx ser t3" style="font-size: 44px; color: var(--champ)">ocean salt · aromatherapy</div>
+    </div>
+    <div id="s6b" class="clip scene" data-start="2.54" data-duration="2.92">
+      <svg class="ringtxt" width="600" height="600" viewBox="0 0 600 600">
+        <defs><path id="circ" d="M300 300 m-250 0 a250 250 0 1 1 500 0 a250 250 0 1 1 -500 0" /></defs>
+        <circle cx="300" cy="300" r="290" fill="rgba(247,243,236,.16)" stroke="rgba(247,243,236,.7)" stroke-width="2" />
+        <text font-family="Jakarta" font-weight="700" font-size="30" letter-spacing="7" fill="#fff">
+          <textPath href="#circ">SPA DI RUMAH • WAKTU MANDI • SPA DI RUMAH • WAKTU MANDI •</textPath>
+        </text>
+      </svg>
+      <div class="abs cx ser spa">spa</div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 18.46);
+        const rnd = HF.rng(3544843437);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        kb("#m6a", 18.46, 2.54, 1.25, 1.04);
+        kb("#m6b", 21.0, 2.92, 1.05, 1.18);
+        // ---------- S6 product ----------
+        const tt = $("#s6a .tt");
+        "FRESCURA".split("").forEach((ch) => {
+          const m = document.createElement("span");
+          m.className = "mask";
+          const s = document.createElement("span");
+          s.textContent = ch;
+          m.appendChild(s);
+          tt.appendChild(m);
+        });
+        tl.fromTo("#s6a .t0", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.35 }, 18.5);
+        tl.fromTo("#s6a .tt .mask > span", { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.04, ease: E }, 18.95);
+        tl.fromTo("#s6a .t2", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 19.7);
+        tl.fromTo("#s6a .t3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 20.1);
+        tl.fromTo("#s6b .ringtxt", { autoAlpha: 0, scale: 0.7, rotate: -40 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.6, ease: E }, 21.05);
+        tl.to("#s6b .ringtxt", { rotate: 70, duration: 2.3, ease: "none" }, 21.65);
+        tl.fromTo("#s6b .spa", { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: B }, 23.5);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["product"] = base;
+      })();
+    </script>
+  </div>
+</template>

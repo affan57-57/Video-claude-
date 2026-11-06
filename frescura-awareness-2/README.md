@@ -16,6 +16,27 @@ Status: **PREVIEW**. The final has not been rendered yet. It waits for approval.
   - yellow-bag CTA
 - **Audio**: synthesised SFX and a 118 BPM spa beat with voice ducking (`scripts/sound_v2.py`). Mix is about -12 LUFS.
 
+## HyperFrames composition structure
+`hyperframes/index.html` is the root composition (`main`, 45s). It mounts 13 sub-compositions with `data-composition-src`. Each one is a `<template>` file with its own GSAP timeline in local time:
+
+| composition | root time | content |
+|---|---|---|
+| `hook` | 0–4.62 | dry-skin hook, cracks, "Garam laut" |
+| `process` | 4.62–10.0 | sea water → evaporation → sun |
+| `minerals` | 10.0–14.42 | Mg / Ca / K orbit |
+| `hydrate` | 14.42–16.52 | magnesium moisture capsule |
+| `choose` | 16.52–18.46 | "Pilih yang betul" |
+| `product` | 18.46–23.92 | FRESCURA reveal + foam "SPA" ring |
+| `foam` | 23.92–30.5 | pump/foam/lather clips + features |
+| `duo` | 30.5–32.24 | "2 varian" |
+| `variants` | 32.24–40.5 | Woman Glory / Noche cards |
+| `stock` | 40.5–42.36 | "STOK TERHAD" stamp |
+| `cta` | 42.36–45 | yellow bag CTA |
+| `captions` | 0–45 | karaoke captions + light/dark theme |
+| `hud` | 0–45 | frame, story progress bar, blinds transitions |
+
+`npx hyperframes compositions` lists the compositions. `scripts/split_comps.py` documents how the scenes were split out.
+
 ```bash
 cd hyperframes && npx hyperframes@0.9.19 render -q draft -o preview.mp4   # final: -q high
 ```

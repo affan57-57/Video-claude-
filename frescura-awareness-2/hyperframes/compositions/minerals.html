@@ -1,0 +1,63 @@
+<!-- HyperFrames sub-composition: minerals (root time 10.0s). Timing inside is local to this composition. -->
+<template id="minerals-template">
+  <div data-composition-id="minerals" data-width="1080" data-height="1920" class="comp-root">
+    <div id="s3" class="clip scene" data-start="0" data-duration="4.42">
+      <div class="abs cx eyebrow t0">Hasilnya</div>
+      <div class="abs cx mar t1">Kaya <span class="ser" style="color: var(--champ)">mineral</span></div>
+      <svg class="orb" width="1000" height="760" viewBox="0 0 1000 760" fill="none">
+        <ellipse class="o1" cx="500" cy="380" rx="420" ry="150" stroke="rgba(226,199,147,.45)" stroke-width="2" transform="rotate(-18 500 380)" />
+        <ellipse class="o2" cx="500" cy="380" rx="420" ry="150" stroke="rgba(226,199,147,.3)" stroke-width="2" transform="rotate(30 500 380)" />
+        <g class="crys" transform="translate(500 380)">
+          <path d="M0 -95 L82 -48 L82 48 L0 95 L-82 48 L-82 -48 Z" fill="rgba(247,243,236,.08)" stroke="#f7f3ec" stroke-width="3" />
+          <path d="M-82 -48 L0 0 L82 -48 M0 0 L0 95" stroke="#f7f3ec" stroke-width="3" />
+        </g>
+        <path class="ln1" d="M500 380 L170 210" stroke="#e2c793" stroke-width="2" stroke-dasharray="6 8" />
+        <path class="ln2" d="M500 380 L830 250" stroke="#e2c793" stroke-width="2" stroke-dasharray="6 8" />
+        <path class="ln3" d="M500 380 L500 650" stroke="#e2c793" stroke-width="2" stroke-dasharray="6 8" />
+      </svg>
+      <div class="el e1" style="left: 105px; top: 525px">
+        <div class="sy">Mg</div>
+        <div class="nm">Magnesium</div>
+      </div>
+      <div class="el e2" style="left: 765px; top: 565px">
+        <div class="sy">Ca</div>
+        <div class="nm">Kalsium</div>
+      </div>
+      <div class="el e3" style="left: 435px; top: 925px">
+        <div class="sy">K</div>
+        <div class="nm">Kalium</div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 10.0);
+        const rnd = HF.rng(3685300239);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        // ---------- S3 minerals ----------
+        tl.fromTo("#s3 .t0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 10.05);
+        tl.fromTo("#s3 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, 11.6);
+        tl.fromTo(
+          "#s3 .o1, #s3 .o2",
+          { opacity: 0, scale: 0.6, transformOrigin: "500px 380px" },
+          { opacity: 1, scale: 1, duration: 0.8, ease: E, stagger: 0.15 },
+          10.1,
+        );
+        tl.fromTo("#s3 .crys", { scale: 0, rotate: -90, transformOrigin: "0 0" }, { scale: 1, rotate: 0, duration: 0.8, ease: B }, 10.7);
+        tl.to("#s3 .crys", { rotate: 60, duration: 3, ease: "none" }, 11.5);
+        [
+          [".e1", ".ln1", 12.38],
+          [".e2", ".ln2", 13.1],
+          [".e3", ".ln3", 13.96],
+        ].forEach(([e, l, t]) => {
+          tl.fromTo("#s3 " + l, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t - 0.1);
+          tl.fromTo("#s3 " + e, { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, t);
+          tl.to("#s3 " + e, { y: -14, duration: 0.6, yoyo: true, repeat: 2, ease: "sine.inOut" }, t + 0.45);
+        });
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["minerals"] = base;
+      })();
+    </script>
+  </div>
+</template>

@@ -6,15 +6,50 @@
     <title>Frescura Body — Kebaikan Garam Laut</title>
     <script src="assets/gsap.min.js"></script>
     <script src="assets/captions.js"></script>
+    <script src="assets/hf-helpers.js"></script>
     <style>
-      @font-face { font-family: "Marcellus"; font-weight: 400; src: url(assets/fonts/marcellus-latin-400-normal.woff2) format("woff2"); }
-      @font-face { font-family: "Instrument Serif"; font-weight: 400; font-style: normal; src: url(assets/fonts/instrument-serif-latin-400-normal.woff2) format("woff2"); }
-      @font-face { font-family: "Instrument Serif"; font-weight: 400; font-style: italic; src: url(assets/fonts/instrument-serif-latin-400-italic.woff2) format("woff2"); }
-      @font-face { font-family: "Jakarta"; font-weight: 400; src: url(assets/fonts/plus-jakarta-sans-latin-400-normal.woff2) format("woff2"); }
-      @font-face { font-family: "Jakarta"; font-weight: 500; src: url(assets/fonts/plus-jakarta-sans-latin-500-normal.woff2) format("woff2"); }
-      @font-face { font-family: "Jakarta"; font-weight: 600; src: url(assets/fonts/plus-jakarta-sans-latin-600-normal.woff2) format("woff2"); }
-      @font-face { font-family: "Jakarta"; font-weight: 700; src: url(assets/fonts/plus-jakarta-sans-latin-700-normal.woff2) format("woff2"); }
-      @font-face { font-family: "Jakarta"; font-weight: 800; src: url(assets/fonts/plus-jakarta-sans-latin-800-normal.woff2) format("woff2"); }
+      @font-face {
+        font-family: "Marcellus";
+        font-weight: 400;
+        src: url(assets/fonts/marcellus-latin-400-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Instrument Serif";
+        font-weight: 400;
+        font-style: normal;
+        src: url(assets/fonts/instrument-serif-latin-400-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Instrument Serif";
+        font-weight: 400;
+        font-style: italic;
+        src: url(assets/fonts/instrument-serif-latin-400-italic.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Jakarta";
+        font-weight: 400;
+        src: url(assets/fonts/plus-jakarta-sans-latin-400-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Jakarta";
+        font-weight: 500;
+        src: url(assets/fonts/plus-jakarta-sans-latin-500-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Jakarta";
+        font-weight: 600;
+        src: url(assets/fonts/plus-jakarta-sans-latin-600-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Jakarta";
+        font-weight: 700;
+        src: url(assets/fonts/plus-jakarta-sans-latin-700-normal.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Jakarta";
+        font-weight: 800;
+        src: url(assets/fonts/plus-jakarta-sans-latin-800-normal.woff2) format("woff2");
+      }
 
       :root {
         --ink: #1b1a17;
@@ -36,531 +71,849 @@
         --capbar: rgba(143, 165, 138, 0.9);
         --capshadow: 0 2px 4px rgba(0, 0, 0, 0.55), 0 4px 34px rgba(0, 0, 0, 0.65);
       }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
-      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); font-family: var(--sans); color: #fff; }
-      .clip { position: absolute; inset: 0; }
-      .bg { width: 1080px; height: 1920px; object-fit: cover; transform-origin: 50% 50%; }
-      .scene { overflow: hidden; }
-      .abs { position: absolute; }
-      .cx { left: 0; right: 0; text-align: center; }
-      .mar { font-family: var(--mar); font-weight: 400; line-height: 1; letter-spacing: 0.01em; }
-      .ser { font-family: var(--ser); font-style: italic; font-weight: 400; }
-      .eyebrow { font-family: var(--sans); font-weight: 600; font-size: 26px; letter-spacing: 0.38em; text-transform: uppercase; }
-      .linen { background: radial-gradient(110% 70% at 50% 30%, #fbf8f3 0%, var(--linen) 50%, var(--stone) 100%); color: var(--ink); }
-      .mask { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 0.06em 0.16em; margin-bottom: -0.16em; }
-      .mask > span { display: inline-block; }
-      .pill { display: inline-flex; align-items: center; gap: 16px; padding: 18px 32px; border-radius: 999px; font-weight: 700; font-size: 34px; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--ink);
+        font-family: var(--sans);
+        color: #fff;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .bg {
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+        transform-origin: 50% 50%;
+      }
+      .scene {
+        overflow: hidden;
+      }
+      .abs {
+        position: absolute;
+      }
+      .cx {
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+      .mar {
+        font-family: var(--mar);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0.01em;
+      }
+      .ser {
+        font-family: var(--ser);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .eyebrow {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 26px;
+        letter-spacing: 0.38em;
+        text-transform: uppercase;
+      }
+      .linen {
+        background: radial-gradient(110% 70% at 50% 30%, #fbf8f3 0%, var(--linen) 50%, var(--stone) 100%);
+        color: var(--ink);
+      }
+      .mask {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        padding: 0 0.06em 0.16em;
+        margin-bottom: -0.16em;
+      }
+      .mask > span {
+        display: inline-block;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 32px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 34px;
+      }
 
       /* S1 hook */
-      #s1 .shade { position: absolute; inset: 0; background: radial-gradient(90% 60% at 50% 40%, rgba(20, 16, 12, 0.35), rgba(20, 16, 12, 0.85)); }
-      #s1 svg.crack { position: absolute; left: 0; top: 0; }
-      #s1 .w1 { top: 330px; font-size: 200px; }
-      #s1 .w2 { top: 560px; font-size: 200px; }
-      #s1 .sub { top: 820px; font-size: 40px; font-weight: 500; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.85); }
-      #s1 .k0 { top: 330px; color: var(--champ); }
-      #s1 .k1 { top: 400px; font-size: 92px; }
-      #s1 .k2 { top: 520px; font-size: 230px; color: var(--champ); }
+      #s1 .shade {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(90% 60% at 50% 40%, rgba(20, 16, 12, 0.35), rgba(20, 16, 12, 0.85));
+      }
+      #s1 svg.crack {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      #s1 .w1 {
+        top: 330px;
+        font-size: 200px;
+      }
+      #s1 .w2 {
+        top: 560px;
+        font-size: 200px;
+      }
+      #s1 .sub {
+        top: 820px;
+        font-size: 40px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      #s1 .k0 {
+        top: 330px;
+        color: var(--champ);
+      }
+      #s1 .k1 {
+        top: 400px;
+        font-size: 92px;
+      }
+      #s1 .k2 {
+        top: 520px;
+        font-size: 230px;
+        color: var(--champ);
+      }
 
       /* S2 process */
-      #s2 .t0 { top: 170px; color: var(--sage); }
-      #s2 .t1 { top: 225px; font-size: 104px; }
-      #s2 svg.ill { position: absolute; left: 90px; top: 380px; }
-      #s2 .steps { position: absolute; left: 70px; right: 70px; top: 1030px; display: flex; justify-content: space-between; }
-      #s2 .st { width: 300px; padding: 22px 20px; border-radius: 28px; background: #fff; border: 1.5px solid var(--sage2); text-align: center; box-shadow: 0 18px 40px rgba(60, 50, 30, 0.08); }
-      #s2 .st b { display: block; font-family: var(--ser); font-style: italic; font-weight: 400; font-size: 44px; color: var(--champ2); line-height: 1; }
-      #s2 .st span { display: block; font-weight: 700; font-size: 30px; margin-top: 8px; color: var(--ink); }
+      #s2 .t0 {
+        top: 170px;
+        color: var(--sage);
+      }
+      #s2 .t1 {
+        top: 225px;
+        font-size: 104px;
+      }
+      #s2 svg.ill {
+        position: absolute;
+        left: 90px;
+        top: 380px;
+      }
+      #s2 .steps {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        top: 1030px;
+        display: flex;
+        justify-content: space-between;
+      }
+      #s2 .st {
+        width: 300px;
+        padding: 22px 20px;
+        border-radius: 28px;
+        background: #fff;
+        border: 1.5px solid var(--sage2);
+        text-align: center;
+        box-shadow: 0 18px 40px rgba(60, 50, 30, 0.08);
+      }
+      #s2 .st b {
+        display: block;
+        font-family: var(--ser);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 44px;
+        color: var(--champ2);
+        line-height: 1;
+      }
+      #s2 .st span {
+        display: block;
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 8px;
+        color: var(--ink);
+      }
 
       /* S3 minerals */
-      #s3 { background: radial-gradient(80% 55% at 50% 45%, #2c3d31 0%, var(--forest) 70%, #121a15 100%); }
-      #s3 .t0 { top: 170px; color: var(--sage2); }
-      #s3 .t1 { top: 225px; font-size: 120px; }
-      #s3 svg.orb { position: absolute; left: 40px; top: 420px; }
-      #s3 .el { position: absolute; width: 210px; height: 210px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0%, #f1ead9 45%, #d9c9a6 100%); color: var(--ink); text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 0 8px rgba(226, 199, 147, 0.18); }
-      #s3 .el .sy { font-family: var(--mar); font-size: 92px; line-height: 1; margin-top: 44px; }
-      #s3 .el .nm { font-size: 22px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink2); margin-top: 6px; }
+      #s3 {
+        background: radial-gradient(80% 55% at 50% 45%, #2c3d31 0%, var(--forest) 70%, #121a15 100%);
+      }
+      #s3 .t0 {
+        top: 170px;
+        color: var(--sage2);
+      }
+      #s3 .t1 {
+        top: 225px;
+        font-size: 120px;
+      }
+      #s3 svg.orb {
+        position: absolute;
+        left: 40px;
+        top: 420px;
+      }
+      #s3 .el {
+        position: absolute;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #fff 0%, #f1ead9 45%, #d9c9a6 100%);
+        color: var(--ink);
+        text-align: center;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.45),
+          0 0 0 8px rgba(226, 199, 147, 0.18);
+      }
+      #s3 .el .sy {
+        font-family: var(--mar);
+        font-size: 92px;
+        line-height: 1;
+        margin-top: 44px;
+      }
+      #s3 .el .nm {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        margin-top: 6px;
+      }
 
       /* S4 Mg */
-      #s4 .mg { left: 80px; top: 400px; font-size: 300px; color: var(--ink); }
-      #s4 .mgs { left: 90px; top: 740px; font-size: 30px; color: var(--ink2); font-weight: 600; letter-spacing: 0.2em; }
-      #s4 .cap { position: absolute; left: 690px; top: 300px; width: 240px; height: 680px; border-radius: 120px; border: 3px solid var(--ink); overflow: hidden; background: #fff; }
-      #s4 .liq { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; background: linear-gradient(180deg, #a9c7c4, #6f9a8f); transform-origin: 50% 100%; }
-      #s4 .wave { position: absolute; left: -240px; top: -26px; width: 720px; height: 40px; }
-      #s4 .lbl { left: 640px; top: 1010px; width: 340px; text-align: center; font-weight: 700; font-size: 30px; letter-spacing: 0.12em; }
-      #s4 .t1 { top: 1090px; font-size: 120px; }
+      #s4 .mg {
+        left: 80px;
+        top: 400px;
+        font-size: 300px;
+        color: var(--ink);
+      }
+      #s4 .mgs {
+        left: 90px;
+        top: 740px;
+        font-size: 30px;
+        color: var(--ink2);
+        font-weight: 600;
+        letter-spacing: 0.2em;
+      }
+      #s4 .cap {
+        position: absolute;
+        left: 690px;
+        top: 300px;
+        width: 240px;
+        height: 680px;
+        border-radius: 120px;
+        border: 3px solid var(--ink);
+        overflow: hidden;
+        background: #fff;
+      }
+      #s4 .liq {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        background: linear-gradient(180deg, #a9c7c4, #6f9a8f);
+        transform-origin: 50% 100%;
+      }
+      #s4 .wave {
+        position: absolute;
+        left: -240px;
+        top: -26px;
+        width: 720px;
+        height: 40px;
+      }
+      #s4 .lbl {
+        left: 640px;
+        top: 1010px;
+        width: 340px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.12em;
+      }
+      #s4 .t1 {
+        top: 1090px;
+        font-size: 120px;
+      }
 
       /* S5 pilih */
-      #s5 .t1 { top: 230px; font-size: 120px; }
-      #s5 .row { position: absolute; left: 90px; right: 90px; top: 480px; display: flex; justify-content: space-between; }
-      #s5 .b { position: relative; width: 250px; height: 560px; }
-      #s5 .ring { position: absolute; left: 395px; top: 450px; width: 290px; height: 620px; border-radius: 60px; border: 4px solid var(--champ2); }
-      #s5 .tick { position: absolute; left: 640px; top: 420px; width: 96px; height: 96px; border-radius: 50%; background: var(--sage); color: #fff; font-size: 56px; font-weight: 800; display: grid; place-items: center; }
+      #s5 .t1 {
+        top: 230px;
+        font-size: 120px;
+      }
+      #s5 .row {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 480px;
+        display: flex;
+        justify-content: space-between;
+      }
+      #s5 .b {
+        position: relative;
+        width: 250px;
+        height: 560px;
+      }
+      #s5 .ring {
+        position: absolute;
+        left: 395px;
+        top: 450px;
+        width: 290px;
+        height: 620px;
+        border-radius: 60px;
+        border: 4px solid var(--champ2);
+      }
+      #s5 .tick {
+        position: absolute;
+        left: 640px;
+        top: 420px;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: var(--sage);
+        color: #fff;
+        font-size: 56px;
+        font-weight: 800;
+        display: grid;
+        place-items: center;
+      }
 
       /* S6 product */
-      #s6a .topg, #s13 .topg { position: absolute; left: 0; right: 0; top: 0; height: 640px; background: linear-gradient(180deg, rgba(20, 16, 12, 0.7), rgba(20, 16, 12, 0)); }
-      #s6a .t0 { top: 190px; color: var(--champ); }
-      #s6a .t1 { top: 245px; font-size: 156px; letter-spacing: 0.1em; }
-      #s6a .t2 { top: 420px; font-size: 30px; font-weight: 600; letter-spacing: 0.32em; }
-      #s6a .t3 { top: 470px; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
-      #s6b .ringtxt { position: absolute; left: 240px; top: 270px; }
-      #s6b .spa { top: 450px; font-size: 170px; color: #fff; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.4); }
+      #s6a .topg,
+      #s13 .topg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 640px;
+        background: linear-gradient(180deg, rgba(20, 16, 12, 0.7), rgba(20, 16, 12, 0));
+      }
+      #s6a .t0 {
+        top: 190px;
+        color: var(--champ);
+      }
+      #s6a .t1 {
+        top: 245px;
+        font-size: 156px;
+        letter-spacing: 0.1em;
+      }
+      #s6a .t2 {
+        top: 420px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0.32em;
+      }
+      #s6a .t3 {
+        top: 470px;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      }
+      #s6b .ringtxt {
+        position: absolute;
+        left: 240px;
+        top: 270px;
+      }
+      #s6b .spa {
+        top: 450px;
+        font-size: 170px;
+        color: #fff;
+        text-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+      }
 
       /* S7/S8 foam */
-      .vt { font-size: 150px; text-shadow: 0 8px 40px rgba(0, 0, 0, 0.45); }
-      .bub { position: absolute; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.9); background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95) 0 12%, rgba(255, 255, 255, 0.1) 13% 60%, rgba(255, 255, 255, 0.3) 100%); }
-      #s8a .chip { font-size: 46px; padding: 24px 44px; left: 50%; top: 300px; transform: translateX(-50%); background: var(--linen); color: var(--ink); }
-      #s8b .feat { position: absolute; left: 70px; display: flex; align-items: center; gap: 22px; padding: 22px 36px 22px 22px; border-radius: 999px; background: rgba(247, 243, 236, 0.94); color: var(--ink); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25); }
-      #s8b .feat .ic { width: 78px; height: 78px; border-radius: 50%; background: var(--sage); display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 40px; }
-      #s8b .feat b { font-size: 42px; font-weight: 700; }
+      .vt {
+        font-size: 150px;
+        text-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+      }
+      .bub {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95) 0 12%, rgba(255, 255, 255, 0.1) 13% 60%, rgba(255, 255, 255, 0.3) 100%);
+      }
+      #s8a .chip {
+        font-size: 46px;
+        padding: 24px 44px;
+        left: 50%;
+        top: 300px;
+        transform: translateX(-50%);
+        background: var(--linen);
+        color: var(--ink);
+      }
+      #s8b .feat {
+        position: absolute;
+        left: 70px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 22px 36px 22px 22px;
+        border-radius: 999px;
+        background: rgba(247, 243, 236, 0.94);
+        color: var(--ink);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+      #s8b .feat .ic {
+        width: 78px;
+        height: 78px;
+        border-radius: 50%;
+        background: var(--sage);
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 40px;
+      }
+      #s8b .feat b {
+        font-size: 42px;
+        font-weight: 700;
+      }
 
       /* S9 two */
-      #s9 .tri1 { position: absolute; inset: 0; background: linear-gradient(135deg, #6d0f1c, #b2213a); clip-path: polygon(0 0, 100% 0, 0 100%); }
-      #s9 .tri2 { position: absolute; inset: 0; background: linear-gradient(135deg, #2a1d70, #120d3a); clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-      #s9 .n { top: 380px; font-size: 820px; line-height: 0.8; color: var(--linen); }
-      #s9 .t1 { top: 1100px; font-size: 44px; font-weight: 700; letter-spacing: 0.4em; color: var(--linen); }
+      #s9 .tri1 {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #6d0f1c, #b2213a);
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+      }
+      #s9 .tri2 {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #2a1d70, #120d3a);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      }
+      #s9 .n {
+        top: 380px;
+        font-size: 820px;
+        line-height: 0.8;
+        color: var(--linen);
+      }
+      #s9 .t1 {
+        top: 1100px;
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        color: var(--linen);
+      }
 
       /* S10/S11 variants */
-      .vcard { position: absolute; top: 270px; width: 540px; height: 900px; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5); }
-      .vcard img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 40%; }
-      .vcol { position: absolute; top: 330px; width: 380px; }
-      .vcol .no { font-size: 24px; font-weight: 700; letter-spacing: 0.3em; opacity: 0.8; }
-      .vcol .nm { font-family: var(--mar); font-size: 84px; line-height: 1; margin-top: 26px; }
-      .vcol .sb { font-size: 26px; font-weight: 700; letter-spacing: 0.3em; margin-top: 22px; }
-      .vcol .hr { height: 2px; width: 120px; margin: 40px 0; transform-origin: 0 50%; }
-      .vcol .kw { font-family: var(--ser); font-style: italic; font-size: 92px; line-height: 1.05; }
-      #s11 .star { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px #fff; }
+      .vcard {
+        position: absolute;
+        top: 270px;
+        width: 540px;
+        height: 900px;
+        border-radius: 40px;
+        overflow: hidden;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+      }
+      .vcard img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: 50% 40%;
+      }
+      .vcol {
+        position: absolute;
+        top: 330px;
+        width: 380px;
+      }
+      .vcol .no {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        opacity: 0.8;
+      }
+      .vcol .nm {
+        font-family: var(--mar);
+        font-size: 84px;
+        line-height: 1;
+        margin-top: 26px;
+      }
+      .vcol .sb {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        margin-top: 22px;
+      }
+      .vcol .hr {
+        height: 2px;
+        width: 120px;
+        margin: 40px 0;
+        transform-origin: 0 50%;
+      }
+      .vcol .kw {
+        font-family: var(--ser);
+        font-style: italic;
+        font-size: 92px;
+        line-height: 1.05;
+      }
+      #s11 .star {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 12px #fff;
+      }
 
       /* S12 stock */
-      #s12 .t0 { top: 220px; color: var(--rouge); }
-      #s12 .t1 { top: 275px; font-size: 120px; }
-      #s12 .grid { position: absolute; left: 140px; top: 520px; width: 800px; display: grid; grid-template-columns: repeat(5, 1fr); row-gap: 40px; }
-      #s12 .stamp { left: 50%; top: 820px; transform: translateX(-50%) rotate(-8deg); padding: 24px 50px; border: 8px solid var(--rouge); border-radius: 18px; color: var(--rouge); font-weight: 800; font-size: 92px; letter-spacing: 0.06em; white-space: nowrap; background: rgba(247, 243, 236, 0.85); }
+      #s12 .t0 {
+        top: 220px;
+        color: var(--rouge);
+      }
+      #s12 .t1 {
+        top: 275px;
+        font-size: 120px;
+      }
+      #s12 .grid {
+        position: absolute;
+        left: 140px;
+        top: 520px;
+        width: 800px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        row-gap: 40px;
+      }
+      #s12 .stamp {
+        left: 50%;
+        top: 820px;
+        transform: translateX(-50%) rotate(-8deg);
+        padding: 24px 50px;
+        border: 8px solid var(--rouge);
+        border-radius: 18px;
+        color: var(--rouge);
+        font-weight: 800;
+        font-size: 92px;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        background: rgba(247, 243, 236, 0.85);
+      }
 
       /* S13 CTA */
-      #s13 .t1 { top: 190px; font-size: 110px; }
-      #s13 .t2 { top: 315px; font-size: 100px; color: var(--champ); }
-      #s13 .bag { position: absolute; left: 400px; top: 470px; }
-      #s13 .btn { position: absolute; left: 110px; right: 110px; top: 1020px; height: 160px; border-radius: 80px; background: #ffc21a; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 20px; font-weight: 800; font-size: 52px; letter-spacing: 0.02em; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
-      #s13 .arrow { position: absolute; left: 510px; top: 870px; }
-      #s13 .lock { top: 1520px; font-size: 40px; letter-spacing: 0.3em; opacity: 0; }
+      #s13 .t1 {
+        top: 190px;
+        font-size: 110px;
+      }
+      #s13 .t2 {
+        top: 315px;
+        font-size: 100px;
+        color: var(--champ);
+      }
+      #s13 .bag {
+        position: absolute;
+        left: 400px;
+        top: 470px;
+      }
+      #s13 .btn {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 1020px;
+        height: 160px;
+        border-radius: 80px;
+        background: #ffc21a;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        font-weight: 800;
+        font-size: 52px;
+        letter-spacing: 0.02em;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      }
+      #s13 .arrow {
+        position: absolute;
+        left: 510px;
+        top: 870px;
+      }
+      #s13 .lock {
+        top: 1520px;
+        font-size: 40px;
+        letter-spacing: 0.3em;
+        opacity: 0;
+      }
 
       /* global */
-      #shade { background: linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0) 12%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0.62) 70%, rgba(0, 0, 0, 0.66) 100%); pointer-events: none; }
-      #frame { pointer-events: none; }
-      #frame .bd { position: absolute; inset: 30px; border: 1.5px solid rgba(255, 255, 255, 0.32); border-radius: 30px; }
-      #frame .segs { position: absolute; left: 70px; right: 70px; top: 62px; display: flex; gap: 8px; }
-      #frame .seg { flex: 1; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.28); overflow: hidden; }
-      #frame .seg i { display: block; width: 100%; height: 100%; background: var(--capc); transform-origin: 0 50%; transform: scaleX(0); }
-      #frame .brand { position: absolute; left: 0; right: 0; top: 92px; text-align: center; font-family: var(--mar); font-size: 28px; letter-spacing: 0.42em; color: var(--capc); opacity: 0.9; }
-      #blinds { pointer-events: none; display: flex; }
-      #blinds i { flex: 1; height: 100%; background: var(--linen); transform: scaleY(0); }
-      #flash { background: #fffaf0; opacity: 0; pointer-events: none; }
-      #grain { opacity: 0.07; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); background-size: 300px 300px; pointer-events: none; }
-      #caps { pointer-events: none; }
-      #caps .cap { position: absolute; left: 60px; right: 60px; top: 1290px; text-align: center; font-family: var(--sans); font-weight: 800; font-size: 80px; line-height: 1.1; letter-spacing: -0.02em; color: var(--capc); text-shadow: var(--capshadow); opacity: 0; }
-      #caps .w { display: inline-block; position: relative; margin: 0 0.14em; }
-      #caps .w.e { color: var(--capem); font-family: var(--ser); font-style: italic; font-weight: 400; font-size: 1.2em; letter-spacing: 0; line-height: 0.9; }
-      #caps .w u { position: absolute; left: -4px; right: -4px; bottom: 2px; height: 12px; border-radius: 6px; background: var(--capbar); z-index: -1; transform-origin: 0 50%; transform: scaleX(0); text-decoration: none; }
+      #shade {
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.28) 0%,
+          rgba(0, 0, 0, 0) 12%,
+          rgba(0, 0, 0, 0) 52%,
+          rgba(0, 0, 0, 0.62) 70%,
+          rgba(0, 0, 0, 0.66) 100%
+        );
+        pointer-events: none;
+      }
+      #frame {
+        pointer-events: none;
+      }
+      .comp-root {
+        position: absolute;
+        inset: 0;
+      }
+      #frame .bd {
+        position: absolute;
+        inset: 30px;
+        border: 1.5px solid rgba(255, 255, 255, 0.32);
+        border-radius: 30px;
+      }
+      #frame .segs {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        top: 62px;
+        display: flex;
+        gap: 8px;
+      }
+      #frame .seg {
+        flex: 1;
+        height: 5px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.28);
+        overflow: hidden;
+      }
+      #frame .seg i {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--capc);
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+      }
+      #frame .brand {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 92px;
+        text-align: center;
+        font-family: var(--mar);
+        font-size: 28px;
+        letter-spacing: 0.42em;
+        color: var(--capc);
+        opacity: 0.9;
+      }
+      #blinds {
+        pointer-events: none;
+        display: flex;
+      }
+      #blinds i {
+        flex: 1;
+        height: 100%;
+        background: var(--linen);
+        transform: scaleY(0);
+      }
+      #flash {
+        background: #fffaf0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      #grain {
+        opacity: 0.07;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        background-size: 300px 300px;
+        pointer-events: none;
+      }
+      #caps {
+        pointer-events: none;
+      }
+      #caps .cap {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        top: 1290px;
+        text-align: center;
+        font-family: var(--sans);
+        font-weight: 800;
+        font-size: 80px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--capc);
+        text-shadow: var(--capshadow);
+        opacity: 0;
+      }
+      #caps .w {
+        display: inline-block;
+        position: relative;
+        margin: 0 0.14em;
+      }
+      #caps .w.e {
+        color: var(--capem);
+        font-family: var(--ser);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.2em;
+        letter-spacing: 0;
+        line-height: 0.9;
+      }
+      #caps .w u {
+        position: absolute;
+        left: -4px;
+        right: -4px;
+        bottom: 2px;
+        height: 12px;
+        border-radius: 6px;
+        background: var(--capbar);
+        z-index: -1;
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="1080" data-height="1920" data-fps="30">
-      <!-- ============ MEDIA LAYER: product photos + owner's foam video only ============ -->
-      <img id="m1" class="clip bg" data-start="0" data-duration="4.62" src="assets/img/duo_wood.jpg" alt="" style="filter: blur(3px) saturate(0.85)" />
-      <img id="m6a" class="clip bg" data-start="18.46" data-duration="2.54" src="assets/img/duo_wood.jpg" alt="" />
-      <video id="m6b" class="clip bg" data-start="21.0" data-duration="2.92" data-media-start="0" muted playsinline src="assets/video/spa.mp4"></video>
-      <video id="m7a" class="clip bg" data-start="23.92" data-duration="0.98" data-media-start="0.6" muted playsinline src="assets/video/pump.mp4"></video>
-      <video id="m7b" class="clip bg" data-start="24.9" data-duration="0.96" data-media-start="0.4" muted playsinline src="assets/video/palm.mp4"></video>
-      <video id="m8a" class="clip bg" data-start="25.86" data-duration="2.04" data-media-start="0" muted playsinline src="assets/video/lather.mp4"></video>
-      <img id="m8b" class="clip bg" data-start="27.9" data-duration="2.6" src="assets/img/duo_marble.jpg" alt="" />
-      <img id="m13" class="clip bg" data-start="42.36" data-duration="2.64" src="assets/img/duo_flat.jpg" alt="" style="filter: brightness(0.62)" />
-
-      <!-- S1 HOOK 0–4.62 -->
-      <div id="s1" class="clip scene" data-start="0" data-duration="4.62">
-        <div class="shade"></div>
-        <svg class="crack" width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" stroke="#e9d9bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
-          <path d="M-10 420 L120 470 L210 440 L300 520 L420 500 L520 590 L640 560 L760 640 L880 610 L1090 700" />
-          <path d="M300 520 L330 640 L290 760 L340 880" />
-          <path d="M640 560 L700 450 L690 330 L760 240" />
-          <path d="M760 640 L800 780 L760 900 L820 1020" />
-          <path d="M120 470 L90 600 L140 720" />
-          <path d="M520 590 L560 720 L510 840 L560 960 L520 1080" />
-        </svg>
-        <div class="abs cx mar w1"><span class="mask"><span>Kering?</span></span></div>
-        <div class="abs cx mar w2"><span class="mask"><span class="ser" style="font-size: 1.1em">Tegang?</span></span></div>
-        <div class="abs cx sub">lepas mandi…</div>
-        <div class="abs cx eyebrow k0">Mungkin kamu belum kenal</div>
-        <div class="abs cx ser k1">kebaikan</div>
-        <div class="abs cx mar k2"><span class="mask"><span>Garam</span></span><br /><span class="mask"><span class="ser" style="font-size: 0.9em">laut</span></span></div>
-      </div>
-
-      <!-- S2 PROCESS 4.62–10.0 -->
-      <div id="s2" class="clip scene linen" data-start="4.62" data-duration="5.38">
-        <div class="abs cx eyebrow t0">Dari laut · ke kulit</div>
-        <div class="abs cx mar t1">Proses <span class="ser">semula jadi</span></div>
-        <svg class="ill" width="900" height="620" viewBox="0 0 900 620" fill="none" stroke-linecap="round">
-          <g class="sun"><circle cx="450" cy="140" r="78" fill="#e2c793" /><g class="rays" stroke="#b08a4c" stroke-width="4"><path d="M450 30v-24M450 274v-24M340 140h-24M584 140h-24M372 62l-16-16M544 234l-16-16M372 218l-16 16M544 46l-16 16" /></g></g>
-          <g class="dots" fill="#8fa58a"></g>
-          <g class="waves" stroke="#6f9a8f" stroke-width="5">
-            <path d="M-200 470 q50 -30 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0" />
-            <path d="M-150 520 q50 -30 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0" opacity=".6" />
-            <path d="M-200 570 q50 -30 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0" opacity=".35" />
-          </g>
-          <g class="cubes" stroke="#1b1a17" stroke-width="3" stroke-linejoin="round" fill="#fff"></g>
-        </svg>
-        <div class="steps"><div class="st s1"><b>01</b><span>Air laut</span></div><div class="st s2"><b>02</b><span>Disejat</span></div><div class="st s3"><b>03</b><span>Matahari</span></div></div>
-      </div>
-
-      <!-- S3 MINERALS 10.0–14.42 -->
-      <div id="s3" class="clip scene" data-start="10.0" data-duration="4.42">
-        <div class="abs cx eyebrow t0">Hasilnya</div>
-        <div class="abs cx mar t1">Kaya <span class="ser" style="color: var(--champ)">mineral</span></div>
-        <svg class="orb" width="1000" height="760" viewBox="0 0 1000 760" fill="none">
-          <ellipse class="o1" cx="500" cy="380" rx="420" ry="150" stroke="rgba(226,199,147,.45)" stroke-width="2" transform="rotate(-18 500 380)" />
-          <ellipse class="o2" cx="500" cy="380" rx="420" ry="150" stroke="rgba(226,199,147,.3)" stroke-width="2" transform="rotate(30 500 380)" />
-          <g class="crys" transform="translate(500 380)"><path d="M0 -95 L82 -48 L82 48 L0 95 L-82 48 L-82 -48 Z" fill="rgba(247,243,236,.08)" stroke="#f7f3ec" stroke-width="3" /><path d="M-82 -48 L0 0 L82 -48 M0 0 L0 95" stroke="#f7f3ec" stroke-width="3" /></g>
-          <path class="ln1" d="M500 380 L170 210" stroke="#e2c793" stroke-width="2" stroke-dasharray="6 8" />
-          <path class="ln2" d="M500 380 L830 250" stroke="#e2c793" stroke-width="2" stroke-dasharray="6 8" />
-          <path class="ln3" d="M500 380 L500 650" stroke="#e2c793" stroke-width="2" stroke-dasharray="6 8" />
-        </svg>
-        <div class="el e1" style="left: 105px; top: 525px"><div class="sy">Mg</div><div class="nm">Magnesium</div></div>
-        <div class="el e2" style="left: 765px; top: 565px"><div class="sy">Ca</div><div class="nm">Kalsium</div></div>
-        <div class="el e3" style="left: 435px; top: 925px"><div class="sy">K</div><div class="nm">Kalium</div></div>
-      </div>
-
-      <!-- S4 Mg HYDRATION 14.42–16.52 -->
-      <div id="s4" class="clip scene linen" data-start="14.42" data-duration="2.1">
-        <div class="abs mar mg">Mg</div>
-        <div class="abs mgs">MAGNESIUM · 12</div>
-        <div class="cap"><div class="liq"><svg class="wave" viewBox="0 0 720 40"><path d="M0 20 q30 -20 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 V40 H0 Z" fill="#a9c7c4" /></svg></div></div>
-        <div class="abs lbl">KELEMBAPAN ↑</div>
-        <div class="abs cx mar t1">Kekal <span class="ser" style="color: #6f9a8f">lembap</span></div>
-      </div>
-
-      <!-- S5 PILIH 16.52–18.46 -->
-      <div id="s5" class="clip scene linen" data-start="16.52" data-duration="1.94">
-        <div class="abs cx mar t1">Pilih <span class="ser" style="color: var(--champ2)">yang betul</span></div>
-        <div class="row">
-          <svg class="b b1" viewBox="0 0 250 560" fill="none" stroke="#b9b0a2" stroke-width="4"><path d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z" /></svg>
-          <svg class="b b2" viewBox="0 0 250 560" fill="none" stroke="#1b1a17" stroke-width="4"><defs><linearGradient id="gb" x1="0" x2="1"><stop offset="0" stop-color="#4b36b8" /><stop offset=".5" stop-color="#4b36b8" /><stop offset=".5" stop-color="#b2213a" /><stop offset="1" stop-color="#b2213a" /></linearGradient></defs><path class="fillb" d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z" fill="url(#gb)" fill-opacity="0" /></svg>
-          <svg class="b b3" viewBox="0 0 250 560" fill="none" stroke="#b9b0a2" stroke-width="4"><path d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z" /></svg>
-        </div>
-        <div class="ring"></div>
-        <div class="tick">✓</div>
-      </div>
-
-      <!-- S6a PRODUCT 18.46–21.0 -->
-      <div id="s6a" class="clip scene" data-start="18.46" data-duration="2.54">
-        <div class="topg"></div>
-        <div class="abs cx eyebrow t0">Kenalkan</div>
-        <div class="abs cx mar t1 tt"></div>
-        <div class="abs cx t2">GENTLE FOAMING BODY SHOWER</div>
-        <div class="abs cx ser t3" style="font-size: 44px; color: var(--champ)">ocean salt · aromatherapy</div>
-      </div>
-      <!-- S6b SPA 21.0–23.92 -->
-      <div id="s6b" class="clip scene" data-start="21.0" data-duration="2.92">
-        <svg class="ringtxt" width="600" height="600" viewBox="0 0 600 600"><defs><path id="circ" d="M300 300 m-250 0 a250 250 0 1 1 500 0 a250 250 0 1 1 -500 0" /></defs><circle cx="300" cy="300" r="290" fill="rgba(247,243,236,.16)" stroke="rgba(247,243,236,.7)" stroke-width="2" /><text font-family="Jakarta" font-weight="700" font-size="30" letter-spacing="7" fill="#fff"><textPath href="#circ">SPA DI RUMAH • WAKTU MANDI • SPA DI RUMAH • WAKTU MANDI •</textPath></text></svg>
-        <div class="abs cx ser spa">spa</div>
-      </div>
-
-      <!-- S7 FOAM 23.92–25.86 -->
-      <div id="s7" class="clip scene" data-start="23.92" data-duration="1.94">
-        <div class="abs cx mar vt v1" style="top: 230px">Buih <span class="ser">lembut</span></div>
-        <div class="abs cx mar vt v2" style="top: 400px">&amp; banyak</div>
-        <div class="bubs"></div>
-      </div>
-      <!-- S8a CLEAN 25.86–27.9 -->
-      <div id="s8a" class="clip scene" data-start="25.86" data-duration="2.04">
-        <div class="abs pill chip">✓ Kulit terasa bersih</div>
-      </div>
-      <!-- S8b FEATURES 27.9–30.5 -->
-      <div id="s8b" class="clip scene" data-start="27.9" data-duration="2.6">
-        <div class="feat f1" style="top: 300px"><div class="ic">✓</div><b>Tanpa rasa kesat</b></div>
-        <div class="feat f2" style="top: 450px">
-          <div class="ic"><svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><circle cx="25" cy="25" r="20" /><path class="hand" d="M25 25 V11" /><path d="M25 25 L34 30" /></svg></div>
-          <b>Wangi berjam-jam</b>
-        </div>
-      </div>
-
-      <!-- S9 TWO 30.5–32.24 -->
-      <div id="s9" class="clip scene" data-start="30.5" data-duration="1.74" style="background: var(--ink)">
-        <div class="tri1"></div>
-        <div class="tri2"></div>
-        <div class="abs cx ser n">2</div>
-        <div class="abs cx t1">VARIAN PILIHAN</div>
-      </div>
-
-      <!-- S10 WOMAN GLORY 32.24–35.7 -->
-      <div id="s10" class="clip scene" data-start="32.24" data-duration="3.46" style="background: radial-gradient(90% 70% at 30% 40%, #7a1424 0%, #3b0a12 70%, #22050a 100%)">
-        <div class="vcard" style="left: 70px"><img src="assets/img/glory_m.jpg" alt="" /></div>
-        <div class="vcol" style="left: 650px; color: #ffe3e7">
-          <div class="no">NO. 01</div>
-          <div class="nm">Woman Glory</div>
-          <div class="sb" style="color: #ff9fae">BOMBSHELL</div>
-          <div class="hr" style="background: #ff9fae"></div>
-          <div class="kw k1">berani</div>
-          <div class="kw k2" style="color: #ffb3bf">&amp; penawan</div>
-        </div>
-      </div>
-
-      <!-- S11 NOCHE 35.7–40.5 -->
-      <div id="s11" class="clip scene" data-start="35.7" data-duration="4.8" style="background: radial-gradient(90% 70% at 70% 40%, #2b1f66 0%, #120d3a 65%, #07051a 100%)">
-        <div class="stars"></div>
-        <div class="vcard" style="left: 470px"><img src="assets/img/noche_m.jpg" alt="" /></div>
-        <div class="vcol" style="left: 70px; color: #e6e0ff">
-          <div class="no">NO. 02</div>
-          <div class="nm">Noche</div>
-          <div class="sb" style="color: #b7a8ff">MIDNIGHT FANTASY</div>
-          <div class="hr" style="background: #b7a8ff"></div>
-          <div class="kw k1">aura malam</div>
-          <div class="kw k2" style="color: #c9bcff">misteri</div>
-        </div>
-      </div>
-
-      <!-- S12 STOCK 40.5–42.36 -->
-      <div id="s12" class="clip scene linen" data-start="40.5" data-duration="1.86">
-        <div class="abs cx eyebrow t0">Peringatan</div>
-        <div class="abs cx mar t1">Stok <span class="ser" style="color: var(--rouge)">kami</span></div>
-        <div class="grid"></div>
-        <div class="abs stamp">STOK TERHAD</div>
-      </div>
-
-      <!-- S13 CTA 42.36–45 -->
-      <div id="s13" class="clip scene" data-start="42.36" data-duration="2.64">
-        <div class="topg"></div>
-        <div class="abs cx mar t1">Check out</div>
-        <div class="abs cx ser t2">di beg kuning</div>
-        <svg class="bag" width="280" height="330" viewBox="0 0 280 330"><path d="M85 110 V80 a55 55 0 0 1 110 0 V110" fill="none" stroke="#ffc21a" stroke-width="20" stroke-linecap="round" /><rect x="20" y="100" width="240" height="220" rx="40" fill="#ffc21a" /><path d="M90 180 q50 50 100 0" fill="none" stroke="#1b1a17" stroke-width="16" stroke-linecap="round" /></svg>
-        <svg class="arrow" width="60" height="110" viewBox="0 0 60 110" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6 V100 M8 76 L30 100 L52 76" /></svg>
-        <div class="btn">CHECK OUT SEKARANG</div>
-      </div>
-
-      <!-- ============ GLOBAL OVERLAYS ============ -->
-      <div id="shade" class="clip" data-start="0" data-duration="45"></div>
-      <div id="caps" class="clip" data-start="0" data-duration="45"></div>
-      <div id="frame" class="clip" data-start="0" data-duration="45"><div id="framein" class="abs" style="inset: 0"><div class="bd"></div><div class="segs"></div><div class="brand">FRESCURA BODY</div></div></div>
-      <div id="blinds" class="clip" data-start="0" data-duration="45"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div id="flash" class="clip" data-start="0" data-duration="45"></div>
-      <div id="grain" class="clip" data-start="0" data-duration="45"></div>
-
-      <audio id="mix" data-start="0" data-duration="45" data-media-start="0" data-volume="1" src="assets/audio/mix.wav"></audio>
+      <!-- Scene sub-compositions (compositions/*.html), mounted in root time -->
+      <div
+        id="host-hook"
+        class="clip"
+        data-composition-id="hook"
+        data-composition-src="compositions/hook.html"
+        data-start="0"
+        data-duration="4.62"
+        data-track-index="0"
+      ></div>
+      <div
+        id="host-process"
+        class="clip"
+        data-composition-id="process"
+        data-composition-src="compositions/process.html"
+        data-start="4.62"
+        data-duration="5.38"
+        data-track-index="1"
+      ></div>
+      <div
+        id="host-minerals"
+        class="clip"
+        data-composition-id="minerals"
+        data-composition-src="compositions/minerals.html"
+        data-start="10.0"
+        data-duration="4.42"
+        data-track-index="2"
+      ></div>
+      <div
+        id="host-hydrate"
+        class="clip"
+        data-composition-id="hydrate"
+        data-composition-src="compositions/hydrate.html"
+        data-start="14.42"
+        data-duration="2.1"
+        data-track-index="3"
+      ></div>
+      <div
+        id="host-choose"
+        class="clip"
+        data-composition-id="choose"
+        data-composition-src="compositions/choose.html"
+        data-start="16.52"
+        data-duration="1.94"
+        data-track-index="4"
+      ></div>
+      <div
+        id="host-product"
+        class="clip"
+        data-composition-id="product"
+        data-composition-src="compositions/product.html"
+        data-start="18.46"
+        data-duration="5.46"
+        data-track-index="5"
+      ></div>
+      <div
+        id="host-foam"
+        class="clip"
+        data-composition-id="foam"
+        data-composition-src="compositions/foam.html"
+        data-start="23.92"
+        data-duration="6.58"
+        data-track-index="6"
+      ></div>
+      <div
+        id="host-duo"
+        class="clip"
+        data-composition-id="duo"
+        data-composition-src="compositions/duo.html"
+        data-start="30.5"
+        data-duration="1.74"
+        data-track-index="7"
+      ></div>
+      <div
+        id="host-variants"
+        class="clip"
+        data-composition-id="variants"
+        data-composition-src="compositions/variants.html"
+        data-start="32.24"
+        data-duration="8.26"
+        data-track-index="8"
+      ></div>
+      <div
+        id="host-stock"
+        class="clip"
+        data-composition-id="stock"
+        data-composition-src="compositions/stock.html"
+        data-start="40.5"
+        data-duration="1.86"
+        data-track-index="9"
+      ></div>
+      <div
+        id="host-cta"
+        class="clip"
+        data-composition-id="cta"
+        data-composition-src="compositions/cta.html"
+        data-start="42.36"
+        data-duration="2.64"
+        data-track-index="10"
+      ></div>
+      <!-- Global layers -->
+      <div id="shade" class="clip" data-start="0" data-duration="45" data-track-index="20"></div>
+      <div
+        id="host-captions"
+        class="clip"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="45"
+        data-track-index="21"
+      ></div>
+      <div
+        id="host-hud"
+        class="clip"
+        data-composition-id="hud"
+        data-composition-src="compositions/hud.html"
+        data-start="0"
+        data-duration="45"
+        data-track-index="22"
+      ></div>
+      <div id="flash" class="clip" data-start="0" data-duration="45" data-track-index="23"></div>
+      <div id="grain" class="clip" data-start="0" data-duration="45" data-track-index="24"></div>
+      <audio id="mix" data-start="0" data-duration="45" data-media-start="0" data-volume="1" data-track-index="30" src="assets/audio/mix.wav"></audio>
     </div>
-
     <script>
       let seed = 4520261106;
-      const rnd = () => ((seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296);
-      const $ = (s) => document.querySelector(s);
-      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const rnd = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
       const tl = gsap.timeline({ paused: true });
-      const E = "expo.out", P = "power3.out", B = "back.out(1.7)";
-
-      // ---------- scene list (story-style progress) ----------
-      const SC = [0, 4.62, 10.0, 14.42, 16.52, 18.46, 23.92, 27.9, 30.5, 32.24, 35.7, 40.5, 42.36, 45];
-      const segs = $("#frame .segs");
-      for (let i = 0; i < SC.length - 1; i++) {
-        const d = document.createElement("div"); d.className = "seg"; d.appendChild(document.createElement("i")); segs.appendChild(d);
-        tl.fromTo(d.firstChild, { scaleX: 0 }, { scaleX: 1, duration: SC[i + 1] - SC[i], ease: "none", immediateRender: false }, SC[i]);
-      }
       for (let t = 0; t < 45; t += 0.1) tl.set("#grain", { backgroundPosition: Math.floor(rnd() * 300) + "px " + Math.floor(rnd() * 300) + "px" }, t);
 
-      // ---------- light scenes: ink captions ----------
-      const LIGHT = [[4.62, 10.0], [14.42, 18.46], [40.5, 42.36]];
-      LIGHT.forEach(([a, b]) => {
-        tl.set(":root", { "--capc": "#1b1a17", "--capem": "#8a6a35", "--capbar": "rgba(143,165,138,.45)", "--capshadow": "0 0 0 rgba(0,0,0,0)" }, a).set("#shade", { opacity: 0 }, a);
-        tl.set(":root", { "--capc": "#ffffff", "--capem": "#e2c793", "--capbar": "rgba(143,165,138,.9)", "--capshadow": "0 2px 4px rgba(0,0,0,.55), 0 4px 34px rgba(0,0,0,.65)" }, b).set("#shade", { opacity: 1 }, b);
-      });
-      tl.set("#frame .bd", { borderColor: "rgba(27,26,23,.18)" }, 4.62).set("#frame .bd", { borderColor: "rgba(255,255,255,.32)" }, 10.0);
-      tl.set("#frame .bd", { borderColor: "rgba(27,26,23,.18)" }, 14.42).set("#frame .bd", { borderColor: "rgba(255,255,255,.32)" }, 18.46);
-      tl.set("#frame .bd", { borderColor: "rgba(27,26,23,.18)" }, 40.5).set("#frame .bd", { borderColor: "rgba(255,255,255,.32)" }, 42.36);
-
-      // ---------- transitions ----------
-      const blinds = $$("#blinds i");
-      [4.62, 18.46, 30.5, 42.36].forEach((t) => {
-        tl.set(blinds, { transformOrigin: "50% 0%" }, t - 0.32);
-        tl.fromTo(blinds, { scaleY: 0 }, { scaleY: 1, duration: 0.26, stagger: 0.012, ease: "power2.in", immediateRender: false }, t - 0.32);
-        tl.set(blinds, { transformOrigin: "50% 100%" }, t);
-        tl.to(blinds, { scaleY: 0, duration: 0.34, stagger: 0.012, ease: "power3.out" }, t + 0.01);
+      [
+        [4.62, 10.0],
+        [14.42, 18.46],
+        [40.5, 42.36],
+      ].forEach(([a, b]) => {
+        tl.set("#shade", { opacity: 0 }, a);
+        tl.set("#shade", { opacity: 1 }, b);
       });
       [10.0, 14.42, 16.52, 21.0, 23.92, 24.9, 25.86, 27.9, 32.24, 35.7, 40.5].forEach((t) => {
-        tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.6, duration: 0.06, ease: "none", immediateRender: false }, t - 0.06).to("#flash", { opacity: 0, duration: 0.28 }, t);
-      });
-
-      // ---------- media camera moves ----------
-      const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
-      kb("#m1", 0, 4.62, 1.3, 1.08);
-      kb("#m6a", 18.46, 2.54, 1.25, 1.04);
-      kb("#m6b", 21.0, 2.92, 1.05, 1.18);
-      kb("#m7a", 23.92, 0.98, 1.2, 1.08);
-      kb("#m7b", 24.9, 0.96, 1.08, 1.2);
-      kb("#m8a", 25.86, 2.04, 1.15, 1.02);
-      kb("#m8b", 27.9, 2.6, 1.08, 1.2, 2);
-      kb("#m13", 42.36, 2.64, 1.2, 1.05);
-
-      // ---------- S1 hook ----------
-      $$("#s1 .crack path").forEach((p, i) => {
-        const L = p.getTotalLength();
-        tl.fromTo(p, { attr: { "stroke-dasharray": L, "stroke-dashoffset": L } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.out" }, 0.66 + i * 0.06);
-      });
-      tl.fromTo("#s1 .w1 .mask > span", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: E }, 0.6);
-      tl.fromTo("#s1 .w2 .mask > span", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: E }, 1.15);
-      tl.fromTo("#s1 .w1", { scale: 1.15 }, { scale: 1, duration: 0.6, ease: E }, 0.6);
-      tl.fromTo("#s1 .sub", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 1.5);
-      tl.to("#s1 .w1, #s1 .w2, #s1 .sub", { autoAlpha: 0, y: -60, duration: 0.3, ease: "power2.in" }, 2.05);
-      tl.to("#s1 .crack", { opacity: 0.18, duration: 0.4 }, 2.1);
-      tl.fromTo("#s1 .k0", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: P }, 2.2);
-      tl.fromTo("#s1 .k1", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: B }, 3.5);
-      tl.fromTo("#s1 .k2 .mask > span", { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.18, ease: E }, 3.98);
-      tl.fromTo("#s1 .k2", { scale: 1.2 }, { scale: 1, duration: 0.7, ease: E }, 3.98);
-      tl.set("#s1 .k0, #s1 .k1", { autoAlpha: 0 }, 0);
-
-      // ---------- S2 process ----------
-      tl.fromTo("#s2 .t0", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 4.7);
-      tl.fromTo("#s2 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, 4.78);
-      tl.fromTo("#s2 .waves path", { x: 0 }, { x: -200, duration: 5.4, ease: "none" }, 4.62);
-      tl.fromTo("#s2 .waves", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: P }, 5.1);
-      tl.fromTo("#s2 .sun", { y: 260, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.0, ease: E }, 8.9);
-      tl.fromTo("#s2 .rays", { rotate: 0, transformOrigin: "450px 140px" }, { rotate: 45, duration: 1.2, ease: "none" }, 8.9);
-      const dots = $("#s2 .dots");
-      for (let i = 0; i < 26; i++) {
-        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        c.setAttribute("cx", 120 + rnd() * 660); c.setAttribute("cy", 450); c.setAttribute("r", 5 + rnd() * 6); dots.appendChild(c);
-        tl.fromTo(c, { y: 0, opacity: 0 }, { y: -(170 + rnd() * 140), opacity: 0.9, duration: 1.1, ease: "power1.out" }, 7.0 + (i % 13) * 0.08 + (i > 12 ? 0.5 : 0));
-        tl.to(c, { opacity: 0, duration: 0.3 }, 8.4 + (i % 13) * 0.08 + (i > 12 ? 0.5 : 0));
-      }
-      const cubes = $("#s2 .cubes");
-      [[160, 600], [250, 600], [205, 560], [690, 600], [780, 600], [735, 560]].forEach(([x, y], i) => {
-        const g = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        g.setAttribute("d", `M${x} ${y - 34} l30 17 v34 l-30 17 l-30 -17 v-34 z M${x - 30} ${y - 17} l30 17 l30 -17 M${x} ${y} v34`);
-        cubes.appendChild(g);
-        tl.fromTo(g, { scale: 0, transformOrigin: `${x}px ${y}px` }, { scale: 1, duration: 0.35, ease: B }, 7.7 + i * 0.07);
-      });
-      [[".s1", 5.24], [".s2", 7.16], [".s3", 9.18]].forEach(([c, t]) => tl.fromTo("#s2 " + c, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: B }, t));
-
-      // ---------- S3 minerals ----------
-      tl.fromTo("#s3 .t0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 10.05);
-      tl.fromTo("#s3 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, 11.6);
-      tl.fromTo("#s3 .o1, #s3 .o2", { opacity: 0, scale: 0.6, transformOrigin: "500px 380px" }, { opacity: 1, scale: 1, duration: 0.8, ease: E, stagger: 0.15 }, 10.1);
-      tl.fromTo("#s3 .crys", { scale: 0, rotate: -90, transformOrigin: "0 0" }, { scale: 1, rotate: 0, duration: 0.8, ease: B }, 10.7);
-      tl.to("#s3 .crys", { rotate: 60, duration: 3, ease: "none" }, 11.5);
-      [[".e1", ".ln1", 12.38], [".e2", ".ln2", 13.1], [".e3", ".ln3", 13.96]].forEach(([e, l, t]) => {
-        tl.fromTo("#s3 " + l, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t - 0.1);
-        tl.fromTo("#s3 " + e, { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, t);
-        tl.to("#s3 " + e, { y: -14, duration: 0.6, yoyo: true, repeat: 2, ease: "sine.inOut" }, t + 0.45);
-      });
-
-      // ---------- S4 Mg ----------
-      tl.fromTo("#s4 .mg", { autoAlpha: 0, x: -80 }, { autoAlpha: 1, x: 0, duration: 0.5, ease: E }, 14.45);
-      tl.fromTo("#s4 .mgs", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 14.7);
-      tl.fromTo("#s4 .cap", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, 14.5);
-      tl.fromTo("#s4 .liq", { scaleY: 0.08 }, { scaleY: 0.92, duration: 1.4, ease: "power2.inOut" }, 14.9);
-      tl.fromTo("#s4 .wave", { x: 0 }, { x: 240, duration: 2, ease: "none" }, 14.45);
-      tl.fromTo("#s4 .lbl", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 15.3);
-      tl.fromTo("#s4 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, 15.8);
-
-      // ---------- S5 pilih ----------
-      tl.fromTo("#s5 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, 16.56);
-      tl.fromTo("#s5 .b", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.08, ease: P }, 16.6);
-      tl.fromTo("#s5 .ring", { autoAlpha: 0, x: -330 }, { autoAlpha: 1, x: -330, duration: 0.2 }, 17.0);
-      tl.to("#s5 .ring", { x: 330, duration: 0.35, ease: "power2.inOut" }, 17.2);
-      tl.to("#s5 .ring", { x: 0, duration: 0.3, ease: "power2.inOut" }, 17.6);
-      tl.to("#s5 .fillb", { attr: { "fill-opacity": 1 }, duration: 0.3 }, 17.9);
-      tl.to("#s5 .b1, #s5 .b3", { opacity: 0.35, duration: 0.3 }, 17.9);
-      tl.fromTo("#s5 .tick", { autoAlpha: 0, scale: 0 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 18.1);
-
-      // ---------- S6 product ----------
-      const tt = $("#s6a .tt");
-      "FRESCURA".split("").forEach((ch) => { const m = document.createElement("span"); m.className = "mask"; const s = document.createElement("span"); s.textContent = ch; m.appendChild(s); tt.appendChild(m); });
-      tl.fromTo("#s6a .t0", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.35 }, 18.5);
-      tl.fromTo("#s6a .tt .mask > span", { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.04, ease: E }, 18.95);
-      tl.fromTo("#s6a .t2", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 19.7);
-      tl.fromTo("#s6a .t3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 20.1);
-      tl.fromTo("#s6b .ringtxt", { autoAlpha: 0, scale: 0.7, rotate: -40 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.6, ease: E }, 21.05);
-      tl.to("#s6b .ringtxt", { rotate: 70, duration: 2.3, ease: "none" }, 21.65);
-      tl.fromTo("#s6b .spa", { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: B }, 23.5);
-
-      // ---------- S7 / S8 foam ----------
-      tl.fromTo("#s7 .v1", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 23.98);
-      tl.fromTo("#s7 .v2", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 25.3);
-      const bw = $("#s7 .bubs");
-      for (let i = 0; i < 20; i++) {
-        const b = document.createElement("div"); const r = 16 + rnd() * 50; b.className = "bub";
-        Object.assign(b.style, { width: r + "px", height: r + "px", left: 60 + rnd() * 960 + "px", top: 1000 + rnd() * 700 + "px" }); bw.appendChild(b);
-        tl.fromTo(b, { autoAlpha: 0, y: 150, scale: 0.3 }, { autoAlpha: 0.95, y: -500 - rnd() * 300, x: (rnd() - 0.5) * 120, scale: 1, duration: 1.6, ease: "power1.out" }, 24.1 + (i % 10) * 0.06);
-      }
-      tl.fromTo("#s8a .chip", { autoAlpha: 0, y: -30, scale: 0.8 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: B }, 26.8);
-      tl.fromTo("#s8b .f1", { autoAlpha: 0, x: -140 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: E }, 28.0);
-      tl.fromTo("#s8b .f2", { autoAlpha: 0, x: -140 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: E }, 29.4);
-      tl.fromTo("#s8b .hand", { rotate: 0, transformOrigin: "25px 25px" }, { rotate: 720, duration: 1.0, ease: "power2.inOut" }, 29.6);
-
-      // ---------- S9 two ----------
-      tl.fromTo("#s9 .tri1", { xPercent: -100, yPercent: -100 }, { xPercent: 0, yPercent: 0, duration: 0.45, ease: "expo.inOut" }, 30.5);
-      tl.fromTo("#s9 .tri2", { xPercent: 100, yPercent: 100 }, { xPercent: 0, yPercent: 0, duration: 0.45, ease: "expo.inOut" }, 30.5);
-      tl.fromTo("#s9 .n", { autoAlpha: 0, scale: 0.5, rotate: -12 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.55, ease: B }, 30.95);
-      tl.fromTo("#s9 .t1", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 31.3);
-
-      // ---------- S10 / S11 variants ----------
-      const variant = (id, t, d, fromX, kws) => {
-        tl.fromTo(id + " .vcard", { autoAlpha: 0, x: fromX, clipPath: "inset(0 0 100% 0 round 40px)" }, { autoAlpha: 1, x: 0, clipPath: "inset(0 0 0% 0 round 40px)", duration: 0.65, ease: E }, t + 0.02);
-        tl.fromTo(id + " .vcard img", { scale: 1.3 }, { scale: 1.04, duration: d, ease: "power2.out" }, t);
-        tl.fromTo(id + " .no", { autoAlpha: 0 }, { autoAlpha: 0.8, duration: 0.3 }, t + 0.15);
-        tl.fromTo(id + " .nm", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, t + 0.2);
-        tl.fromTo(id + " .sb", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, t + 0.45);
-        tl.fromTo(id + " .hr", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: P }, t + 0.5);
-        tl.fromTo(id + " .k1", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, kws[0]);
-        tl.fromTo(id + " .k2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, kws[1]);
-      };
-      variant("#s10", 32.24, 3.46, -120, [34.44, 35.1]);
-      variant("#s11", 35.7, 4.8, 120, [38.7, 39.95]);
-      const stars = $("#s11 .stars");
-      for (let i = 0; i < 40; i++) {
-        const s = document.createElement("div"); s.className = "star"; const z = 2 + rnd() * 5;
-        Object.assign(s.style, { left: rnd() * 1080 + "px", top: rnd() * 1900 + "px", width: z + "px", height: z + "px" }); stars.appendChild(s);
-        tl.fromTo(s, { opacity: 0.1 }, { opacity: 1, duration: 0.5 + rnd(), yoyo: true, repeat: 3, ease: "sine.inOut" }, 35.7 + rnd() * 1.2);
-      }
-
-      // ---------- S12 stock ----------
-      const grid = $("#s12 .grid"); const minis = [];
-      for (let i = 0; i < 10; i++) {
-        const d = document.createElement("div");
-        d.innerHTML = '<svg width="80" height="170" viewBox="0 0 250 560"><path d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z" fill="' + (i < 2 ? "#a51e2e" : "#1b1a17") + '" /></svg>';
-        d.style.textAlign = "center"; grid.appendChild(d); minis.push(d);
-      }
-      tl.fromTo("#s12 .t0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 40.52);
-      tl.fromTo("#s12 .t1", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 40.55);
-      tl.fromTo(minis, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.25, stagger: 0.03, ease: P }, 40.6);
-      minis.slice(2).reverse().forEach((m, i) => tl.to(m, { autoAlpha: 0.12, scale: 0.85, duration: 0.15 }, 41.1 + i * 0.1));
-      tl.fromTo("#s12 .stamp", { autoAlpha: 0, scale: 2.4 }, { autoAlpha: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 41.95);
-
-      // ---------- S13 CTA ----------
-      tl.fromTo("#s13 .t1", { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 42.4);
-      tl.fromTo("#s13 .t2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 43.3);
-      tl.fromTo("#s13 .bag", { autoAlpha: 0, scale: 0.3, rotate: -15, transformOrigin: "50% 100%" }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.6, ease: "elastic.out(1,0.55)" }, 43.38);
-      tl.to("#s13 .bag", { y: -24, duration: 0.25, yoyo: true, repeat: 5, ease: "sine.inOut" }, 44.0);
-      tl.fromTo("#s13 .arrow", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 43.6);
-      tl.to("#s13 .arrow", { y: 24, duration: 0.25, yoyo: true, repeat: 4, ease: "sine.inOut" }, 43.9);
-      tl.fromTo("#s13 .btn", { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 43.6);
-      tl.to("#s13 .btn", { scale: 1.06, duration: 0.22, yoyo: true, repeat: 3, ease: "sine.inOut" }, 44.1);
-
-      // ---------- captions ----------
-      const caps = $("#caps");
-      const HIDE = [];
-      window.CAPTIONS.forEach((chunk, i) => {
-        const d = document.createElement("div"); d.className = "cap";
-        chunk.forEach(([w, s, e, em]) => {
-          const sp = document.createElement("span"); sp.className = "w" + (em ? " e" : ""); sp.textContent = w; sp.dataset.s = s;
-          const u = document.createElement("u"); sp.appendChild(u); d.appendChild(sp);
-        });
-        caps.appendChild(d);
-        const s = chunk[0][1], next = window.CAPTIONS[i + 1];
-        const e = next ? Math.min(next[0][1], chunk[chunk.length - 1][2] + 0.6) : 44.6;
-        tl.fromTo(d, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.16, ease: P }, s);
-        tl.to(d, { autoAlpha: 0, duration: 0.07 }, Math.max(s + 0.2, e - 0.06));
-        Array.from(d.children).forEach((w) => {
-          const t = Math.max(s, +w.dataset.s - 0.03);
-          tl.fromTo(w, { opacity: 0.4 }, { opacity: 1, duration: 0.1 }, t);
-          tl.fromTo(w.querySelector("u"), { scaleX: 0 }, { scaleX: 1, duration: 0.16, ease: P }, t);
-          tl.to(w.querySelector("u"), { scaleX: 0, transformOrigin: "100% 50%", duration: 0.14 }, t + 0.32);
-        });
+        tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.6, duration: 0.06, ease: "none", immediateRender: false }, t - 0.06).to(
+          "#flash",
+          { opacity: 0, duration: 0.28 },
+          t,
+        );
       });
 
       window.__timelines = window.__timelines || {};

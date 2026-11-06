@@ -1,0 +1,58 @@
+<!-- HyperFrames sub-composition: choose (root time 16.52s). Timing inside is local to this composition. -->
+<template id="choose-template">
+  <div data-composition-id="choose" data-width="1080" data-height="1920" class="comp-root">
+    <div id="s5" class="clip scene linen" data-start="0" data-duration="1.94">
+      <div class="abs cx mar t1">Pilih <span class="ser" style="color: var(--champ2)">yang betul</span></div>
+      <div class="row">
+        <svg class="b b1" viewBox="0 0 250 560" fill="none" stroke="#b9b0a2" stroke-width="4">
+          <path
+            d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z"
+          />
+        </svg>
+        <svg class="b b2" viewBox="0 0 250 560" fill="none" stroke="#1b1a17" stroke-width="4">
+          <defs>
+            <linearGradient id="gb" x1="0" x2="1">
+              <stop offset="0" stop-color="#4b36b8" />
+              <stop offset=".5" stop-color="#4b36b8" />
+              <stop offset=".5" stop-color="#b2213a" />
+              <stop offset="1" stop-color="#b2213a" />
+            </linearGradient>
+          </defs>
+          <path
+            class="fillb"
+            d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z"
+            fill="url(#gb)"
+            fill-opacity="0"
+          />
+        </svg>
+        <svg class="b b3" viewBox="0 0 250 560" fill="none" stroke="#b9b0a2" stroke-width="4">
+          <path
+            d="M95 20 h70 v40 h-20 v40 h40 a20 20 0 0 1 20 20 v400 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 v-400 a20 20 0 0 1 20 -20 h40 v-40 h-30z"
+          />
+        </svg>
+      </div>
+      <div class="ring"></div>
+      <div class="tick">✓</div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 16.52);
+        const rnd = HF.rng(2414097521);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        // ---------- S5 pilih ----------
+        tl.fromTo("#s5 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, 16.56);
+        tl.fromTo("#s5 .b", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.08, ease: P }, 16.6);
+        tl.fromTo("#s5 .ring", { autoAlpha: 0, x: -330 }, { autoAlpha: 1, x: -330, duration: 0.2 }, 17.0);
+        tl.to("#s5 .ring", { x: 330, duration: 0.35, ease: "power2.inOut" }, 17.2);
+        tl.to("#s5 .ring", { x: 0, duration: 0.3, ease: "power2.inOut" }, 17.6);
+        tl.to("#s5 .fillb", { attr: { "fill-opacity": 1 }, duration: 0.3 }, 17.9);
+        tl.to("#s5 .b1, #s5 .b3", { opacity: 0.35, duration: 0.3 }, 17.9);
+        tl.fromTo("#s5 .tick", { autoAlpha: 0, scale: 0 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 18.1);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["choose"] = base;
+      })();
+    </script>
+  </div>
+</template>

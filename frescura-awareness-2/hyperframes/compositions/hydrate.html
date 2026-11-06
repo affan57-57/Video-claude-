@@ -1,0 +1,37 @@
+<!-- HyperFrames sub-composition: hydrate (root time 14.42s). Timing inside is local to this composition. -->
+<template id="hydrate-template">
+  <div data-composition-id="hydrate" data-width="1080" data-height="1920" class="comp-root">
+    <div id="s4" class="clip scene linen" data-start="0" data-duration="2.1">
+      <div class="abs mar mg">Mg</div>
+      <div class="abs mgs">MAGNESIUM · 12</div>
+      <div class="cap">
+        <div class="liq">
+          <svg class="wave" viewBox="0 0 720 40">
+            <path d="M0 20 q30 -20 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 V40 H0 Z" fill="#a9c7c4" />
+          </svg>
+        </div>
+      </div>
+      <div class="abs lbl">KELEMBAPAN ↑</div>
+      <div class="abs cx mar t1">Kekal <span class="ser" style="color: #6f9a8f">lembap</span></div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 14.42);
+        const rnd = HF.rng(2600644701);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        // ---------- S4 Mg ----------
+        tl.fromTo("#s4 .mg", { autoAlpha: 0, x: -80 }, { autoAlpha: 1, x: 0, duration: 0.5, ease: E }, 14.45);
+        tl.fromTo("#s4 .mgs", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 14.7);
+        tl.fromTo("#s4 .cap", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, 14.5);
+        tl.fromTo("#s4 .liq", { scaleY: 0.08 }, { scaleY: 0.92, duration: 1.4, ease: "power2.inOut" }, 14.9);
+        tl.fromTo("#s4 .wave", { x: 0 }, { x: 240, duration: 2, ease: "none" }, 14.45);
+        tl.fromTo("#s4 .lbl", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 15.3);
+        tl.fromTo("#s4 .t1", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, 15.8);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["hydrate"] = base;
+      })();
+    </script>
+  </div>
+</template>

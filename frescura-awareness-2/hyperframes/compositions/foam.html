@@ -1,0 +1,69 @@
+<!-- HyperFrames sub-composition: foam (root time 23.92s). Timing inside is local to this composition. -->
+<template id="foam-template">
+  <div data-composition-id="foam" data-width="1080" data-height="1920" class="comp-root">
+    <video id="m7a" class="clip bg" data-start="0" data-duration="0.98" data-media-start="0.6" muted playsinline src="assets/video/pump.mp4"></video>
+    <video id="m7b" class="clip bg" data-start="0.98" data-duration="0.96" data-media-start="0.4" muted playsinline src="assets/video/palm.mp4"></video>
+    <video id="m8a" class="clip bg" data-start="1.94" data-duration="2.04" data-media-start="0" muted playsinline src="assets/video/lather.mp4"></video>
+    <img id="m8b" class="clip bg" data-start="3.98" data-duration="2.6" src="assets/img/duo_marble.jpg" alt="" />
+    <div id="s7" class="clip scene" data-start="0" data-duration="1.94">
+      <div class="abs cx mar vt v1" style="top: 230px">Buih <span class="ser">lembut</span></div>
+      <div class="abs cx mar vt v2" style="top: 400px">&amp; banyak</div>
+      <div class="bubs"></div>
+    </div>
+    <div id="s8a" class="clip scene" data-start="1.94" data-duration="2.04">
+      <div class="abs pill chip">✓ Kulit terasa bersih</div>
+    </div>
+    <div id="s8b" class="clip scene" data-start="3.98" data-duration="2.6">
+      <div class="feat f1" style="top: 300px">
+        <div class="ic">✓</div>
+        <b>Tanpa rasa kesat</b>
+      </div>
+      <div class="feat f2" style="top: 450px">
+        <div class="ic">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round">
+            <circle cx="25" cy="25" r="20" />
+            <path class="hand" d="M25 25 V11" />
+            <path d="M25 25 L34 30" />
+          </svg>
+        </div>
+        <b>Wangi berjam-jam</b>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 23.92);
+        const rnd = HF.rng(862436573);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        kb("#m7a", 23.92, 0.98, 1.2, 1.08);
+        kb("#m7b", 24.9, 0.96, 1.08, 1.2);
+        kb("#m8a", 25.86, 2.04, 1.15, 1.02);
+        kb("#m8b", 27.9, 2.6, 1.08, 1.2, 2);
+        // ---------- S7 / S8 foam ----------
+        tl.fromTo("#s7 .v1", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 23.98);
+        tl.fromTo("#s7 .v2", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 25.3);
+        const bw = $("#s7 .bubs");
+        for (let i = 0; i < 20; i++) {
+          const b = document.createElement("div");
+          const r = 16 + rnd() * 50;
+          b.className = "bub";
+          Object.assign(b.style, { width: r + "px", height: r + "px", left: 60 + rnd() * 960 + "px", top: 1000 + rnd() * 700 + "px" });
+          bw.appendChild(b);
+          tl.fromTo(
+            b,
+            { autoAlpha: 0, y: 150, scale: 0.3 },
+            { autoAlpha: 0.95, y: -500 - rnd() * 300, x: (rnd() - 0.5) * 120, scale: 1, duration: 1.6, ease: "power1.out" },
+            24.1 + (i % 10) * 0.06,
+          );
+        }
+        tl.fromTo("#s8a .chip", { autoAlpha: 0, y: -30, scale: 0.8 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: B }, 26.8);
+        tl.fromTo("#s8b .f1", { autoAlpha: 0, x: -140 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: E }, 28.0);
+        tl.fromTo("#s8b .f2", { autoAlpha: 0, x: -140 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: E }, 29.4);
+        tl.fromTo("#s8b .hand", { rotate: 0, transformOrigin: "25px 25px" }, { rotate: 720, duration: 1.0, ease: "power2.inOut" }, 29.6);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["foam"] = base;
+      })();
+    </script>
+  </div>
+</template>

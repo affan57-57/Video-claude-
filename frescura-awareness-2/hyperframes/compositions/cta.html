@@ -1,0 +1,46 @@
+<!-- HyperFrames sub-composition: cta (root time 42.36s). Timing inside is local to this composition. -->
+<template id="cta-template">
+  <div data-composition-id="cta" data-width="1080" data-height="1920" class="comp-root">
+    <img id="m13" class="clip bg" data-start="0" data-duration="2.64" src="assets/img/duo_flat.jpg" alt="" style="filter: brightness(0.62)" />
+    <div id="s13" class="clip scene" data-start="0" data-duration="2.64">
+      <div class="topg"></div>
+      <div class="abs cx mar t1">Check out</div>
+      <div class="abs cx ser t2">di beg kuning</div>
+      <svg class="bag" width="280" height="330" viewBox="0 0 280 330">
+        <path d="M85 110 V80 a55 55 0 0 1 110 0 V110" fill="none" stroke="#ffc21a" stroke-width="20" stroke-linecap="round" />
+        <rect x="20" y="100" width="240" height="220" rx="40" fill="#ffc21a" />
+        <path d="M90 180 q50 50 100 0" fill="none" stroke="#1b1a17" stroke-width="16" stroke-linecap="round" />
+      </svg>
+      <svg class="arrow" width="60" height="110" viewBox="0 0 60 110" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 6 V100 M8 76 L30 100 L52 76" />
+      </svg>
+      <div class="btn">CHECK OUT SEKARANG</div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 42.36);
+        const rnd = HF.rng(3291890007);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        kb("#m13", 42.36, 2.64, 1.2, 1.05);
+        // ---------- S13 CTA ----------
+        tl.fromTo("#s13 .t1", { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 42.4);
+        tl.fromTo("#s13 .t2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 43.3);
+        tl.fromTo(
+          "#s13 .bag",
+          { autoAlpha: 0, scale: 0.3, rotate: -15, transformOrigin: "50% 100%" },
+          { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.6, ease: "elastic.out(1,0.55)" },
+          43.38,
+        );
+        tl.to("#s13 .bag", { y: -24, duration: 0.25, yoyo: true, repeat: 5, ease: "sine.inOut" }, 44.0);
+        tl.fromTo("#s13 .arrow", { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 43.6);
+        tl.to("#s13 .arrow", { y: 24, duration: 0.25, yoyo: true, repeat: 4, ease: "sine.inOut" }, 43.9);
+        tl.fromTo("#s13 .btn", { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 43.6);
+        tl.to("#s13 .btn", { scale: 1.06, duration: 0.22, yoyo: true, repeat: 3, ease: "sine.inOut" }, 44.1);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["cta"] = base;
+      })();
+    </script>
+  </div>
+</template>

@@ -1,0 +1,27 @@
+<!-- HyperFrames sub-composition: duo (root time 30.5s). Timing inside is local to this composition. -->
+<template id="duo-template">
+  <div data-composition-id="duo" data-width="1080" data-height="1920" class="comp-root">
+    <div id="s9" class="clip scene" data-start="0" data-duration="1.74" style="background: var(--ink)">
+      <div class="tri1"></div>
+      <div class="tri2"></div>
+      <div class="abs cx ser n">2</div>
+      <div class="abs cx t1">VARIAN PILIHAN</div>
+    </div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 30.5);
+        const rnd = HF.rng(1071270804);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        // ---------- S9 two ----------
+        tl.fromTo("#s9 .tri1", { xPercent: -100, yPercent: -100 }, { xPercent: 0, yPercent: 0, duration: 0.45, ease: "expo.inOut" }, 30.5);
+        tl.fromTo("#s9 .tri2", { xPercent: 100, yPercent: 100 }, { xPercent: 0, yPercent: 0, duration: 0.45, ease: "expo.inOut" }, 30.5);
+        tl.fromTo("#s9 .n", { autoAlpha: 0, scale: 0.5, rotate: -12 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.55, ease: B }, 30.95);
+        tl.fromTo("#s9 .t1", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, 31.3);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["duo"] = base;
+      })();
+    </script>
+  </div>
+</template>

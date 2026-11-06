@@ -1,0 +1,51 @@
+<!-- HyperFrames sub-composition: hud (root time 0s). Timing inside is local to this composition. -->
+<template id="hud-template">
+  <div data-composition-id="hud" data-width="1080" data-height="1920" class="comp-root">
+    <div id="frame" class="clip" data-start="0" data-duration="45">
+      <div class="bd"></div>
+      <div class="segs"></div>
+      <div class="brand">FRESCURA BODY</div>
+    </div>
+    <div id="blinds" class="clip" data-start="0" data-duration="45"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <script>
+      (function () {
+        const base = gsap.timeline({ paused: true });
+        const tl = HF.shift(base, 0);
+        const rnd = HF.rng(2702338936);
+        const kb = (sel, t, d, a, b, x = 0) => tl.fromTo(sel, { scale: a, xPercent: x }, { scale: b, xPercent: -x, duration: d, ease: "power1.out" }, t);
+        // ---------- scene list (story-style progress) ----------
+        const SC = [0, 4.62, 10.0, 14.42, 16.52, 18.46, 23.92, 27.9, 30.5, 32.24, 35.7, 40.5, 42.36, 45];
+        const segs = $("#frame .segs");
+        for (let i = 0; i < SC.length - 1; i++) {
+          const d = document.createElement("div");
+          d.className = "seg";
+          d.appendChild(document.createElement("i"));
+          segs.appendChild(d);
+          tl.fromTo(d.firstChild, { scaleX: 0 }, { scaleX: 1, duration: SC[i + 1] - SC[i], ease: "none", immediateRender: false }, SC[i]);
+        }
+        tl.set("#frame .bd", { borderColor: "rgba(27,26,23,.18)" }, 4.62).set("#frame .bd", { borderColor: "rgba(255,255,255,.32)" }, 10.0);
+        tl.set("#frame .bd", { borderColor: "rgba(27,26,23,.18)" }, 14.42).set("#frame .bd", { borderColor: "rgba(255,255,255,.32)" }, 18.46);
+        tl.set("#frame .bd", { borderColor: "rgba(27,26,23,.18)" }, 40.5).set("#frame .bd", { borderColor: "rgba(255,255,255,.32)" }, 42.36);
+        // ---------- transitions ----------
+        const blinds = $$("#blinds i");
+        [4.62, 18.46, 30.5, 42.36].forEach((t) => {
+          tl.set(blinds, { transformOrigin: "50% 0%" }, t - 0.32);
+          tl.fromTo(blinds, { scaleY: 0 }, { scaleY: 1, duration: 0.26, stagger: 0.012, ease: "power2.in", immediateRender: false }, t - 0.32);
+          tl.set(blinds, { transformOrigin: "50% 100%" }, t);
+          tl.to(blinds, { scaleY: 0, duration: 0.34, stagger: 0.012, ease: "power3.out" }, t + 0.01);
+        });
+
+        [
+          [4.62, 10.0],
+          [14.42, 18.46],
+          [40.5, 42.36],
+        ].forEach(([a, b]) => {
+          tl.set("#frame", { "--capc": "#1b1a17" }, a);
+          tl.set("#frame", { "--capc": "#ffffff" }, b);
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["hud"] = base;
+      })();
+    </script>
+  </div>
+</template>
