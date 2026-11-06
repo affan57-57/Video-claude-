@@ -1,0 +1,767 @@
+{
+"keep": [
+[
+0.43333333333333335,
+3.533333333333333
+],
+[
+3.6,
+5.966666666666667
+],
+[
+8.466666666666667,
+30.466666666666665
+],
+[
+30.6,
+31.733333333333334
+],
+[
+31.833333333333332,
+33.53333333333333
+],
+[
+33.63333333333333,
+37.7
+],
+[
+38.333333333333336,
+39.56666666666667
+],
+[
+39.666666666666664,
+46.6
+],
+[
+46.833333333333336,
+53.06666666666667
+],
+[
+54.86666666666667,
+56.53333333333333
+]
+],
+"words": [
+{
+"text": "Serius,",
+"start": 0.0,
+"end": 0.727,
+"src": 0.0
+},
+{
+"text": "sabun",
+"start": 0.927,
+"end": 1.307,
+"src": 1.36
+},
+{
+"text": "ni",
+"start": 1.307,
+"end": 1.787,
+"src": 1.74
+},
+{
+"text": "bau",
+"start": 1.787,
+"end": 2.087,
+"src": 2.22
+},
+{
+"text": "perfum",
+"start": 2.087,
+"end": 2.347,
+"src": 2.52
+},
+{
+"text": "mahal.",
+"start": 2.347,
+"end": 2.987,
+"src": 2.78
+},
+{
+"text": "Kalau",
+"start": 3.18,
+"end": 3.38,
+"src": 3.68
+},
+{
+"text": "tak",
+"start": 3.38,
+"end": 3.52,
+"src": 3.88
+},
+{
+"text": "percaya,",
+"start": 3.52,
+"end": 3.9,
+"src": 4.02
+},
+{
+"text": "tengok",
+"start": 4.12,
+"end": 4.32,
+"src": 4.62
+},
+{
+"text": "video",
+"start": 4.32,
+"end": 4.6,
+"src": 4.82
+},
+{
+"text": "ni",
+"start": 4.6,
+"end": 4.74,
+"src": 5.1
+},
+{
+"text": "sampai",
+"start": 4.74,
+"end": 4.98,
+"src": 5.24
+},
+{
+"text": "habis.",
+"start": 4.98,
+"end": 5.467,
+"src": 5.48
+},
+{
+"text": "Tiga",
+"start": 5.52,
+"end": 5.82,
+"src": 8.52
+},
+{
+"text": "sebab",
+"start": 5.82,
+"end": 6.14,
+"src": 8.82
+},
+{
+"text": "sabun",
+"start": 6.14,
+"end": 6.58,
+"src": 9.14
+},
+{
+"text": "ni",
+"start": 6.58,
+"end": 6.86,
+"src": 9.58
+},
+{
+"text": "bau",
+"start": 6.86,
+"end": 7.12,
+"src": 9.86
+},
+{
+"text": "perfum",
+"start": 7.12,
+"end": 7.4,
+"src": 10.12
+},
+{
+"text": "mahal.",
+"start": 7.4,
+"end": 7.84,
+"src": 10.4
+},
+{
+"text": "Fresh",
+"start": 8.12,
+"end": 8.24,
+"src": 11.12
+},
+{
+"text": "Kura",
+"start": 8.24,
+"end": 8.56,
+"src": 11.24
+},
+{
+"text": "Bodhi.",
+"start": 8.56,
+"end": 9.06,
+"src": 11.56
+},
+{
+"text": "Sebab",
+"start": 9.32,
+"end": 9.6,
+"src": 12.32
+},
+{
+"text": "yang",
+"start": 9.6,
+"end": 9.74,
+"src": 12.6
+},
+{
+"text": "pertama,",
+"start": 9.74,
+"end": 10.24,
+"src": 12.74
+},
+{
+"text": "wangian",
+"start": 10.6,
+"end": 10.98,
+"src": 13.6
+},
+{
+"text": "dia",
+"start": 10.98,
+"end": 11.32,
+"src": 13.98
+},
+{
+"text": "memang",
+"start": 11.32,
+"end": 11.9,
+"src": 14.32
+},
+{
+"text": "inspirasi",
+"start": 11.9,
+"end": 12.58,
+"src": 14.9
+},
+{
+"text": "perfume.",
+"start": 12.58,
+"end": 13.0,
+"src": 15.58
+},
+{
+"text": "Sekali",
+"start": 13.48,
+"end": 13.86,
+"src": 16.48
+},
+{
+"text": "cium,",
+"start": 13.86,
+"end": 14.38,
+"src": 16.86
+},
+{
+"text": "terus",
+"start": 14.78,
+"end": 14.94,
+"src": 17.78
+},
+{
+"text": "bau",
+"start": 14.94,
+"end": 15.22,
+"src": 17.94
+},
+{
+"text": "perfum",
+"start": 15.22,
+"end": 15.6,
+"src": 18.22
+},
+{
+"text": "mahal.",
+"start": 15.6,
+"end": 16.06,
+"src": 18.6
+},
+{
+"text": "Yang",
+"start": 16.36,
+"end": 16.48,
+"src": 19.36
+},
+{
+"text": "kedua,",
+"start": 16.48,
+"end": 17.04,
+"src": 19.48
+},
+{
+"text": "ada",
+"start": 17.38,
+"end": 17.56,
+"src": 20.38
+},
+{
+"text": "dua",
+"start": 17.56,
+"end": 17.9,
+"src": 20.56
+},
+{
+"text": "bau",
+"start": 17.9,
+"end": 18.08,
+"src": 20.9
+},
+{
+"text": "premium.",
+"start": 18.08,
+"end": 18.6,
+"src": 21.08
+},
+{
+"text": "Bombshell,",
+"start": 19.08,
+"end": 19.66,
+"src": 22.08
+},
+{
+"text": "fresh",
+"start": 20.12,
+"end": 20.28,
+"src": 23.12
+},
+{
+"text": "dan",
+"start": 20.28,
+"end": 20.48,
+"src": 23.28
+},
+{
+"text": "feminine,",
+"start": 20.48,
+"end": 20.88,
+"src": 23.48
+},
+{
+"text": "sesuai",
+"start": 21.38,
+"end": 21.62,
+"src": 24.38
+},
+{
+"text": "pakai",
+"start": 21.62,
+"end": 21.86,
+"src": 24.62
+},
+{
+"text": "hari",
+"start": 21.86,
+"end": 22.16,
+"src": 24.86
+},
+{
+"text": "-hari,",
+"start": 22.16,
+"end": 22.5,
+"src": 25.16
+},
+{
+"text": "minat",
+"start": 22.8,
+"end": 23.02,
+"src": 25.8
+},
+{
+"text": "fantasi,",
+"start": 23.02,
+"end": 23.58,
+"src": 26.02
+},
+{
+"text": "manis",
+"start": 24.06,
+"end": 24.28,
+"src": 27.06
+},
+{
+"text": "dan",
+"start": 24.28,
+"end": 24.48,
+"src": 27.28
+},
+{
+"text": "fruity,",
+"start": 24.48,
+"end": 24.84,
+"src": 27.48
+},
+{
+"text": "sesuai",
+"start": 25.36,
+"end": 25.64,
+"src": 28.36
+},
+{
+"text": "untuk",
+"start": 25.64,
+"end": 25.88,
+"src": 28.64
+},
+{
+"text": "malam.",
+"start": 25.88,
+"end": 26.18,
+"src": 28.88
+},
+{
+"text": "Yang",
+"start": 26.18,
+"end": 26.74,
+"src": 29.18
+},
+{
+"text": "ketiga,",
+"start": 26.74,
+"end": 27.467,
+"src": 29.74
+},
+{
+"text": "tekan",
+"start": 27.847,
+"end": 28.207,
+"src": 30.98
+},
+{
+"text": "je",
+"start": 28.207,
+"end": 28.627,
+"src": 31.34
+},
+{
+"text": "terus",
+"start": 28.627,
+"end": 29.107,
+"src": 31.86
+},
+{
+"text": "keluar",
+"start": 29.107,
+"end": 29.467,
+"src": 32.34
+},
+{
+"text": "buih",
+"start": 29.467,
+"end": 29.627,
+"src": 32.7
+},
+{
+"text": "lembut.",
+"start": 29.627,
+"end": 30.3,
+"src": 32.86
+},
+{
+"text": "Ada",
+"start": 30.667,
+"end": 30.827,
+"src": 34.0
+},
+{
+"text": "silsat",
+"start": 30.827,
+"end": 31.347,
+"src": 34.16
+},
+{
+"text": "yang",
+"start": 31.347,
+"end": 31.647,
+"src": 34.68
+},
+{
+"text": "kaya",
+"start": 31.647,
+"end": 31.887,
+"src": 34.98
+},
+{
+"text": "mineral,",
+"start": 31.887,
+"end": 32.347,
+"src": 35.22
+},
+{
+"text": "mandi",
+"start": 33.107,
+"end": 33.507,
+"src": 36.44
+},
+{
+"text": "pun",
+"start": 33.507,
+"end": 33.647,
+"src": 36.84
+},
+{
+"text": "rasa",
+"start": 33.647,
+"end": 33.907,
+"src": 36.98
+},
+{
+"text": "mewah.",
+"start": 33.907,
+"end": 34.327,
+"src": 37.24
+},
+{
+"text": "Kau",
+"start": 34.493,
+"end": 34.633,
+"src": 38.46
+},
+{
+"text": "sanggup",
+"start": 34.633,
+"end": 35.133,
+"src": 38.6
+},
+{
+"text": "beli",
+"start": 35.133,
+"end": 35.653,
+"src": 39.1
+},
+{
+"text": "perfume",
+"start": 35.653,
+"end": 35.933,
+"src": 39.72
+},
+{
+"text": "ratus",
+"start": 35.933,
+"end": 36.273,
+"src": 40.0
+},
+{
+"text": "-ratus.",
+"start": 36.273,
+"end": 36.713,
+"src": 40.34
+},
+{
+"text": "Tapi",
+"start": 36.853,
+"end": 37.493,
+"src": 40.92
+},
+{
+"text": "sabun",
+"start": 37.493,
+"end": 38.393,
+"src": 41.56
+},
+{
+"text": "yang",
+"start": 38.393,
+"end": 38.633,
+"src": 42.46
+},
+{
+"text": "bau",
+"start": 38.633,
+"end": 38.913,
+"src": 42.7
+},
+{
+"text": "perfum",
+"start": 38.913,
+"end": 39.233,
+"src": 42.98
+},
+{
+"text": "mahal",
+"start": 39.233,
+"end": 39.713,
+"src": 43.3
+},
+{
+"text": "ni,",
+"start": 39.713,
+"end": 40.133,
+"src": 43.78
+},
+{
+"text": "kau",
+"start": 40.333,
+"end": 40.373,
+"src": 44.4
+},
+{
+"text": "nak",
+"start": 40.373,
+"end": 40.513,
+"src": 44.44
+},
+{
+"text": "lepaskan?",
+"start": 40.513,
+"end": 41.173,
+"src": 44.58
+},
+{
+"text": "Rugi",
+"start": 41.533,
+"end": 41.873,
+"src": 45.6
+},
+{
+"text": "gila",
+"start": 41.873,
+"end": 42.233,
+"src": 45.94
+},
+{
+"text": "weh.",
+"start": 42.233,
+"end": 42.533,
+"src": 46.3
+},
+{
+"text": "Tekan",
+"start": 42.74,
+"end": 42.96,
+"src": 47.04
+},
+{
+"text": "beg",
+"start": 42.96,
+"end": 43.1,
+"src": 47.26
+},
+{
+"text": "kuning",
+"start": 43.1,
+"end": 43.34,
+"src": 47.4
+},
+{
+"text": "sekarang,",
+"start": 43.34,
+"end": 43.78,
+"src": 47.64
+},
+{
+"text": "cek",
+"start": 44.04,
+"end": 44.28,
+"src": 48.34
+},
+{
+"text": "out",
+"start": 44.28,
+"end": 44.36,
+"src": 48.58
+},
+{
+"text": "sekarang.",
+"start": 44.36,
+"end": 44.86,
+"src": 48.66
+},
+{
+"text": "Sebab",
+"start": 45.12,
+"end": 45.34,
+"src": 49.42
+},
+{
+"text": "stok",
+"start": 45.34,
+"end": 45.62,
+"src": 49.64
+},
+{
+"text": "kami",
+"start": 45.62,
+"end": 45.88,
+"src": 49.92
+},
+{
+"text": "memang",
+"start": 45.88,
+"end": 46.48,
+"src": 50.18
+},
+{
+"text": "dah",
+"start": 46.48,
+"end": 46.62,
+"src": 50.78
+},
+{
+"text": "tak",
+"start": 46.62,
+"end": 46.76,
+"src": 50.92
+},
+{
+"text": "banyak,",
+"start": 46.76,
+"end": 47.1,
+"src": 51.06
+},
+{
+"text": "sangat",
+"start": 47.52,
+"end": 47.76,
+"src": 51.82
+},
+{
+"text": "-sangat",
+"start": 47.76,
+"end": 48.06,
+"src": 52.06
+},
+{
+"text": "terahat.",
+"start": 48.06,
+"end": 48.72,
+"src": 52.36
+},
+{
+"text": "Tekan",
+"start": 48.8,
+"end": 49.04,
+"src": 54.9
+},
+{
+"text": "beg",
+"start": 49.04,
+"end": 49.18,
+"src": 55.14
+},
+{
+"text": "kuning",
+"start": 49.18,
+"end": 49.48,
+"src": 55.28
+},
+{
+"text": "dan",
+"start": 49.48,
+"end": 49.64,
+"src": 55.58
+},
+{
+"text": "cek",
+"start": 49.64,
+"end": 49.86,
+"src": 55.74
+},
+{
+"text": "out",
+"start": 49.86,
+"end": 49.96,
+"src": 55.96
+},
+{
+"text": "sekarang.",
+"start": 49.96,
+"end": 50.3,
+"src": 56.06
+}
+],
+"duration": 50.433
+}
