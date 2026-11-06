@@ -1,0 +1,90 @@
+<!-- HyperFrames sub-composition "stock" — mounted at root 37.4s. All data-start values and timeline positions here are local. -->
+<template id="stock-template">
+  <div data-composition-id="stock" data-width="1080" data-height="1920">
+    <div id="stock-root" class="fill">
+      <div class="fill" style="background: radial-gradient(90% 60% at 50% 35%, #232323, #0b0b0b)"></div>
+      <div class="port pt" style="left: 300px; top: 230px; width: 480px; height: 480px"><img src="assets/img/duo_diag.jpg" alt="" /></div>
+      <div class="ring rr" style="left: 280px; top: 210px; width: 520px; height: 520px; color: rgba(224, 181, 143, 0.6)"></div>
+      <div
+        class="abs band b1"
+        style="left: -200px; top: 820px; width: 1480px; height: 100px; background: var(--rouge); transform: rotate(-7deg); overflow: hidden"
+      >
+        <div class="m1" style="white-space: nowrap; font-weight: 800; font-size: 54px; line-height: 100px; letter-spacing: 0.08em">
+          STOK TERHAD ✦ STOK TERHAD ✦ STOK TERHAD ✦ STOK TERHAD ✦ STOK TERHAD ✦ STOK TERHAD ✦
+        </div>
+      </div>
+      <div
+        class="abs band b2"
+        style="left: -200px; top: 830px; width: 1480px; height: 90px; background: var(--paper); color: var(--char); transform: rotate(6deg); overflow: hidden"
+      >
+        <div class="m2" style="white-space: nowrap; font-family: var(--disp); font-size: 52px; line-height: 90px">
+          BATCH INI ✦ BATCH INI ✦ BATCH INI ✦ BATCH INI ✦ BATCH INI ✦ BATCH INI ✦ BATCH INI ✦
+        </div>
+      </div>
+      <div class="abs ppl" style="left: 140px; top: 1040px; width: 800px; height: 200px"></div>
+    </div>
+    <style>
+      #stock-root .pp {
+        position: absolute;
+        top: 40px;
+        width: 110px;
+        height: 150px;
+      }
+      #stock-root .pp i {
+        position: absolute;
+        left: 30px;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #e6e1d7;
+      }
+      #stock-root .pp b {
+        position: absolute;
+        left: 5px;
+        top: 60px;
+        width: 100px;
+        height: 80px;
+        border-radius: 50px 50px 12px 12px;
+        background: #e6e1d7;
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(37.4);
+        const rnd = HF.rng(254);
+        const q = (s) => document.querySelector("#stock-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#stock-root " + s));
+        tl.fromTo(q(".pt"), { scale: 0, rotate: 20 }, { scale: 1, rotate: 0, duration: 0.6, ease: E }, 0);
+        tl.fromTo(q(".pt img"), { scale: 1.4 }, { scale: 1.1, duration: 3.8, ease: "power1.out" }, 0);
+        tl.fromTo(q(".rr"), { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: E }, 0.1);
+        tl.to(q(".rr"), { scale: 1.08, opacity: 0.3, duration: 0.4, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0.7);
+        tl.fromTo(q(".b1"), { xPercent: -110 }, { xPercent: 0, duration: 0.5, ease: E }, 0.05);
+        tl.fromTo(q(".b2"), { xPercent: 110 }, { xPercent: 0, duration: 0.5, ease: E }, 0.15);
+        tl.fromTo(q(".m1"), { x: 0 }, { x: -600, duration: 3.8, ease: "none" }, 0);
+        tl.fromTo(q(".m2"), { x: -600 }, { x: 0, duration: 3.8, ease: "none" }, 0);
+        const ppl = [];
+        for (let i = 0; i < 3; i++) {
+          const p = document.createElement("div");
+          p.className = "pp";
+          p.style.left = i * 130 + "px";
+          p.innerHTML = "<i></i><b></b>";
+          q(".ppl").appendChild(p);
+          ppl.push(p);
+        }
+        const bag = document.createElement("div");
+        bag.innerHTML =
+          '<svg width="150" height="170" viewBox="0 0 280 330"><path d="M85 110 V80 a55 55 0 0 1 110 0 V110" fill="none" stroke="#ffc21a" stroke-width="22" stroke-linecap="round"/><rect x="20" y="100" width="240" height="220" rx="40" fill="#ffc21a"/></svg>';
+        Object.assign(bag.style, { position: "absolute", left: "640px", top: "20px" });
+        q(".ppl").appendChild(bag);
+        tl.fromTo(ppl, { autoAlpha: 0, x: -120 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.1, ease: E }, at(39.3));
+        tl.fromTo(bag, { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: B }, at(39.5));
+        tl.to(ppl, { x: 230, duration: 0.6, stagger: 0.08, ease: "power2.in" }, at(40.3));
+        tl.to(ppl, { autoAlpha: 0, duration: 0.2, stagger: 0.08 }, at(40.75));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["stock"] = tl;
+      })();
+    </script>
+  </div>
+</template>

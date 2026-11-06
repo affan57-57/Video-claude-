@@ -1,0 +1,58 @@
+<!-- HyperFrames sub-composition "hook" — mounted at root 0s. All data-start values and timeline positions here are local. -->
+<template id="hook-template">
+  <div data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-root" class="fill">
+      <div class="fill ocean"></div>
+      <div class="ring r1" style="left: 130px; top: 470px; width: 820px; height: 820px; color: rgba(156, 195, 201, 0.35)"></div>
+      <div class="ring r2" style="left: 80px; top: 420px; width: 920px; height: 920px; color: rgba(156, 195, 201, 0.18)"></div>
+      <div class="port pt" style="left: 180px; top: 520px; width: 720px; height: 720px"><img src="assets/img/duo_far.jpg" alt="" /></div>
+      <div class="abs cx lab l0" style="top: 200px; color: var(--aqua)">Ramai tahu</div>
+      <div class="abs cx disp t1" style="top: 250px; font-size: 150px">Garam laut</div>
+      <div class="abs cx idx three" style="top: 330px; font-size: 900px; color: var(--copper2)">3</div>
+      <div class="abs cx it keb" style="top: 1100px; font-size: 120px; color: #fff">kebaikan</div>
+      <div class="abs cx lab jar" style="top: 1250px; color: var(--aqua)">yang jarang orang sebut</div>
+      <div class="abs dots" style="left: 0; right: 0; top: 230px; display: flex; justify-content: center; gap: 26px"><i></i><i></i><i></i></div>
+    </div>
+    <style>
+      #hook-root .dots i {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--copper2);
+        display: block;
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(0);
+        const rnd = HF.rng(101);
+        const q = (s) => document.querySelector("#hook-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#hook-root " + s));
+        tl.fromTo(q(".pt"), { scale: 0, rotate: -30 }, { scale: 1, rotate: 0, duration: 0.9, ease: E }, 0);
+        tl.fromTo(q(".pt img"), { scale: 1.5 }, { scale: 1.1, duration: 2.6, ease: "power2.out" }, 0);
+        tl.fromTo(qa(".ring"), { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.0, stagger: 0.12, ease: E }, 0.1);
+        tl.to(qa(".ring"), { rotate: 25, duration: 2.5, ease: "none" }, 0.3);
+        tl.fromTo(q(".l0"), { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.35 }, 0.02);
+        tl.fromTo(HF.glyphs(q(".t1")), { yPercent: 110 }, { yPercent: 0, duration: 0.55, stagger: 0.03, ease: E }, at(0.42));
+        tl.to(q(".l0"), { autoAlpha: 0, duration: 0.2 }, at(2.2));
+        tl.to(q(".t1"), { autoAlpha: 0, y: -40, duration: 0.25 }, at(2.2));
+        tl.to(q(".pt"), { scale: 0, rotate: 40, duration: 0.45, ease: "power3.in" }, at(2.22));
+        tl.to(qa(".ring"), { opacity: 0, duration: 0.3 }, at(2.22));
+        tl.fromTo(
+          q(".three"),
+          { autoAlpha: 0, scale: 0.4, filter: "blur(20px)" },
+          { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: E },
+          at(2.72),
+        );
+        tl.fromTo(qa(".dots i"), { scale: 0 }, { scale: 1, duration: 0.3, stagger: 0.1, ease: "back.out(3)" }, at(2.8));
+        tl.fromTo(q(".keb"), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, at(3.18));
+        tl.fromTo(q(".jar"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(3.9));
+        tl.to(q(".three"), { scale: 1.06, duration: 2, ease: "none" }, at(3.3));
+        tl.set([q(".three"), q(".keb"), q(".jar")], { autoAlpha: 0 }, 0);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["hook"] = tl;
+      })();
+    </script>
+  </div>
+</template>

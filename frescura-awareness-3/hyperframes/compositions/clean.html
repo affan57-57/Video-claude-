@@ -1,0 +1,31 @@
+<!-- HyperFrames sub-composition "clean" — mounted at root 27.82s. All data-start values and timeline positions here are local. -->
+<template id="clean-template">
+  <div data-composition-id="clean" data-width="1080" data-height="1920">
+    <div id="clean-root" class="fill">
+      <video id="v-lather" class="clip bg" data-start="0" data-duration="2.18" data-media-start="0" muted playsinline src="assets/video/lather.mp4"></video>
+      <div class="fill" style="background: linear-gradient(180deg, rgba(14, 39, 53, 0.7), rgba(14, 39, 53, 0) 45%)"></div>
+      <div class="abs cx disp a" style="top: 250px; font-size: 120px">Tak melekat</div>
+      <div class="abs cx b" style="top: 420px">
+        <span class="chip" style="background: var(--paper); color: var(--char); position: relative"
+          >rasa licin<i class="st" style="position: absolute; left: 20px; right: 20px; top: 50%; height: 5px; background: #b3263a; transform-origin: 0 50%"></i
+        ></span>
+      </div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(27.82);
+        const rnd = HF.rng(203);
+        const q = (s) => document.querySelector("#clean-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#clean-root " + s));
+        tl.fromTo(q("#v-lather"), { scale: 1.15 }, { scale: 1.02, duration: 2.18, ease: "power1.out" }, 0);
+        tl.fromTo(HF.glyphs(q(".a")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.03, ease: E }, 0.1);
+        tl.fromTo(q(".b"), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35 }, at(28.8));
+        tl.fromTo(q(".st"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.inOut" }, at(29.45));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["clean"] = tl;
+      })();
+    </script>
+  </div>
+</template>

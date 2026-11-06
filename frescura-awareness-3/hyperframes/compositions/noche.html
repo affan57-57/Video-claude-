@@ -1,0 +1,42 @@
+<!-- HyperFrames sub-composition "noche" — mounted at root 33.26s. All data-start values and timeline positions here are local. -->
+<template id="noche-template">
+  <div data-composition-id="noche" data-width="1080" data-height="1920">
+    <div id="noche-root" class="fill">
+      <div class="abs panel" style="left: 0; right: 0; top: 0; height: 960px; background: linear-gradient(180deg, #120d3a, #2c1f78)"></div>
+      <div class="abs photo" style="left: 0; right: 0; top: 960px; height: 960px; overflow: hidden">
+        <img class="bg" src="assets/img/duo_wood.jpg" alt="" style="height: 960px; filter: blur(14px) brightness(0.55)" />
+        <div class="port pp" style="left: 250px; top: 90px; width: 580px; height: 580px; border: 3px solid rgba(255, 255, 255, 0.7)">
+          <img src="assets/img/noche_w.jpg" alt="" style="object-position: 50% 55%" />
+        </div>
+      </div>
+      <div class="abs cx lab n" style="top: 210px; color: #c9bcff">Varian 02</div>
+      <div class="abs cx disp nm" style="top: 270px; font-size: 150px">Noche</div>
+      <div class="abs cx lab sb" style="top: 440px; color: #c9bcff">Midnight Fantasy</div>
+      <div class="abs cx lab w0" style="top: 560px; color: #fff; letter-spacing: 0.3em">wangian malam yang</div>
+      <div class="abs cx it k1" style="top: 610px; font-size: 120px; color: #c9bcff">lembut</div>
+      <div class="abs cx it k2" style="top: 740px; font-size: 120px">&amp; misteri</div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(33.26);
+        const rnd = HF.rng(237);
+        const q = (s) => document.querySelector("#noche-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#noche-root " + s));
+        tl.fromTo(q(".panel"), { yPercent: -100 }, { yPercent: 0, duration: 0.55, ease: "expo.inOut" }, 0);
+        tl.fromTo(q(".photo"), { yPercent: 100 }, { yPercent: 0, duration: 0.55, ease: "expo.inOut" }, 0);
+        tl.fromTo(q(".pp"), { scale: 0.5, rotate: -20 }, { scale: 1, rotate: 0, duration: 0.7, ease: E }, 0.15);
+        tl.fromTo(q(".pp img"), { scale: 1.12 }, { scale: 1.0, duration: 4.14, ease: "power1.out" }, 0);
+        tl.fromTo(q(".n"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.35);
+        tl.fromTo(HF.glyphs(q(".nm")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.03, ease: E }, 0.4);
+        tl.fromTo(q(".sb"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 0.75);
+        tl.fromTo(q(".w0"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, at(35.78));
+        tl.fromTo(q(".k1"), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(36.28));
+        tl.fromTo(q(".k2"), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(36.82));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["noche"] = tl;
+      })();
+    </script>
+  </div>
+</template>

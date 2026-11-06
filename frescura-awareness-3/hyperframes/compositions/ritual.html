@@ -1,0 +1,42 @@
+<!-- HyperFrames sub-composition "ritual" — mounted at root 18.46s. All data-start values and timeline positions here are local. -->
+<template id="ritual-template">
+  <div data-composition-id="ritual" data-width="1080" data-height="1920">
+    <div id="ritual-root" class="fill">
+      <video id="v-ritual" class="clip bg" data-start="0" data-duration="3.42" data-media-start="0" muted playsinline src="assets/video/spa.mp4"></video>
+      <div class="fill" style="background: linear-gradient(180deg, rgba(14, 39, 53, 0.75), rgba(14, 39, 53, 0.15) 55%, rgba(14, 39, 53, 0))"></div>
+      <div class="abs pills" style="left: 90px; top: 260px; display: flex; flex-direction: column; gap: 18px">
+        <div class="chip pl" style="background: rgba(243, 240, 234, 0.92); color: var(--char)">
+          <b style="font-family: var(--disp); font-weight: 400; color: var(--copper)">01</b>Kawal minyak
+        </div>
+        <div class="chip pl" style="background: rgba(243, 240, 234, 0.92); color: var(--char)">
+          <b style="font-family: var(--disp); font-weight: 400; color: var(--copper)">02</b>Tenangkan kulit
+        </div>
+        <div class="chip pl" style="background: rgba(243, 240, 234, 0.92); color: var(--char)">
+          <b style="font-family: var(--disp); font-weight: 400; color: var(--copper)">03</b>Lembutkan tumit
+        </div>
+      </div>
+      <div class="abs cx lab sh" style="top: 300px; color: var(--aqua2)">Rutin paling ringkas</div>
+      <div class="abs cx it sh2" style="top: 340px; font-size: 96px">setiap hari…</div>
+      <div class="abs cx disp md" style="top: 470px; font-size: 230px">MANDI</div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(18.46);
+        const rnd = HF.rng(169);
+        const q = (s) => document.querySelector("#ritual-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#ritual-root " + s));
+        tl.fromTo(q("#v-ritual"), { scale: 1.25 }, { scale: 1.05, duration: 3.42, ease: "power1.out" }, 0);
+        tl.fromTo(qa(".pl"), { autoAlpha: 0, x: -80 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.12, ease: E }, 0.05);
+        tl.to(qa(".pl"), { autoAlpha: 0, x: 60, duration: 0.3, stagger: 0.06, ease: "power2.in" }, at(19.3));
+        tl.fromTo(q(".sh"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, at(19.5));
+        tl.fromTo(q(".sh2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, at(20.1));
+        tl.fromTo(HF.glyphs(q(".md")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.05, ease: E }, at(21.2));
+        tl.set([q(".sh"), q(".sh2")], { autoAlpha: 0 }, 0);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["ritual"] = tl;
+      })();
+    </script>
+  </div>
+</template>

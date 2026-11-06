@@ -1,0 +1,76 @@
+<!-- HyperFrames sub-composition "cta" — mounted at root 41.2s. All data-start values and timeline positions here are local. -->
+<template id="cta-template">
+  <div data-composition-id="cta" data-width="1080" data-height="1920">
+    <div id="cta-root" class="fill">
+      <img class="clip bg bgimg" data-start="0" data-duration="3.8" src="assets/img/duo_flat.jpg" alt="" style="filter: brightness(0.55)" />
+      <div class="abs cx disp t1" style="top: 200px; font-size: 120px">Klik link</div>
+      <div class="abs cx it t2" style="top: 330px; font-size: 100px; color: var(--copper2)">di bawah</div>
+      <svg
+        class="abs arw"
+        style="left: 510px; top: 480px"
+        width="60"
+        height="110"
+        viewBox="0 0 60 110"
+        fill="none"
+        stroke="#fff"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M30 6 V100 M8 76 L30 100 L52 76" />
+      </svg>
+      <div
+        class="abs btn"
+        style="
+          left: 110px;
+          right: 110px;
+          top: 640px;
+          height: 170px;
+          border-radius: 85px;
+          background: #ffc21a;
+          color: var(--char);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          font-weight: 800;
+          font-size: 54px;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        "
+      >
+        <svg width="80" height="90" viewBox="0 0 280 330">
+          <path d="M85 110 V80 a55 55 0 0 1 110 0 V110" fill="none" stroke="#121212" stroke-width="24" stroke-linecap="round" />
+          <rect x="20" y="100" width="240" height="220" rx="40" fill="#121212" /></svg
+        >TEKAN BEG KUNING
+      </div>
+      <div class="ring rp" style="left: 540px; top: 725px; width: 40px; height: 40px; margin: -20px 0 0 -20px; color: #ffc21a; border-width: 4px"></div>
+      <div class="abs cx co" style="top: 880px">
+        <span class="chip" style="background: var(--paper); color: var(--char); font-size: 44px; padding: 22px 44px">CHECK OUT SEKARANG →</span>
+      </div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(41.2);
+        const rnd = HF.rng(271);
+        const q = (s) => document.querySelector("#cta-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#cta-root " + s));
+        tl.fromTo(q(".bgimg"), { scale: 1.2 }, { scale: 1.03, duration: 3.8, ease: "power1.out" }, 0);
+        tl.fromTo(HF.glyphs(q(".t1")), { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.03, ease: E }, 0.02);
+        tl.fromTo(q(".t2"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(41.84));
+        tl.fromTo(q(".arw"), { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(41.9));
+        tl.to(q(".arw"), { y: 24, duration: 0.25, yoyo: true, repeat: 9, ease: "sine.inOut" }, at(42.2));
+        tl.fromTo(q(".btn"), { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "elastic.out(1,0.6)" }, at(42.45));
+        tl.to(q(".btn"), { scale: 1.06, duration: 0.24, yoyo: true, repeat: 7, ease: "sine.inOut" }, at(43.0));
+        [42.95, 43.7, 44.4].forEach((t) =>
+          tl.fromTo(q(".rp"), { autoAlpha: 0.9, scale: 1 }, { autoAlpha: 0, scale: 24, duration: 0.6, ease: "power2.out", immediateRender: false }, at(t)),
+        );
+        tl.set(q(".rp"), { autoAlpha: 0 }, 0);
+        tl.fromTo(q(".co"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: B }, at(43.26));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["cta"] = tl;
+      })();
+    </script>
+  </div>
+</template>

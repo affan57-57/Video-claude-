@@ -1,0 +1,42 @@
+<!-- HyperFrames sub-composition "glory" — mounted at root 30.0s. All data-start values and timeline positions here are local. -->
+<template id="glory-template">
+  <div data-composition-id="glory" data-width="1080" data-height="1920">
+    <div id="glory-root" class="fill">
+      <div class="abs photo" style="left: 0; right: 0; top: 0; height: 1000px; overflow: hidden">
+        <img class="bg" src="assets/img/duo_wood.jpg" alt="" style="height: 1000px; filter: blur(14px) brightness(0.55)" />
+        <div class="port pp" style="left: 220px; top: 250px; width: 640px; height: 640px; border: 3px solid rgba(255, 255, 255, 0.7)">
+          <img src="assets/img/glory_w.jpg" alt="" style="object-position: 50% 55%" />
+        </div>
+      </div>
+      <div class="abs panel" style="left: 0; right: 0; top: 1000px; height: 920px; background: linear-gradient(180deg, #7e1525, #3a0710)"></div>
+      <div class="abs cx lab n" style="top: 1060px; color: #ffb3bf">Varian 01</div>
+      <div class="abs cx disp nm" style="top: 1110px; font-size: 124px">Woman Glory</div>
+      <div class="abs cx lab sb" style="top: 1270px; color: #ffb3bf">Bombshell</div>
+      <div class="abs cx lab w0" style="top: 1370px; color: #fff; letter-spacing: 0.3em">wangian yang</div>
+      <div class="abs cx it k1" style="top: 1420px; font-size: 120px; color: #ffb3bf">yakin</div>
+      <div class="abs cx it k2" style="top: 1550px; font-size: 120px">&amp; menawan</div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(30.0);
+        const rnd = HF.rng(220);
+        const q = (s) => document.querySelector("#glory-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#glory-root " + s));
+        tl.fromTo(q(".panel"), { yPercent: 100 }, { yPercent: 0, duration: 0.55, ease: "expo.inOut" }, 0);
+        tl.fromTo(q(".photo"), { yPercent: -100 }, { yPercent: 0, duration: 0.55, ease: "expo.inOut" }, 0);
+        tl.fromTo(q(".pp"), { scale: 0.5, rotate: -20 }, { scale: 1, rotate: 0, duration: 0.7, ease: E }, 0.15);
+        tl.fromTo(q(".pp img"), { scale: 1.12 }, { scale: 1.0, duration: 3.26, ease: "power1.out" }, 0);
+        tl.fromTo(q(".n"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.35);
+        tl.fromTo(HF.glyphs(q(".nm")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.03, ease: E }, 0.4);
+        tl.fromTo(q(".sb"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 0.75);
+        tl.fromTo(q(".w0"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, at(31.700000000000003));
+        tl.fromTo(q(".k1"), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(32.2));
+        tl.fromTo(q(".k2"), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(32.74));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["glory"] = tl;
+      })();
+    </script>
+  </div>
+</template>

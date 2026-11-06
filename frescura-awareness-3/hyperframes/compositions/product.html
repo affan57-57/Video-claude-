@@ -1,0 +1,56 @@
+<!-- HyperFrames sub-composition "product" — mounted at root 21.88s. All data-start values and timeline positions here are local. -->
+<template id="product-template">
+  <div data-composition-id="product" data-width="1080" data-height="1920">
+    <div id="product-root" class="fill">
+      <div class="fill ocean"></div>
+      <div class="abs iris" style="inset: 0; clip-path: circle(0% at 50% 50%)"><img class="bg" src="assets/img/duo_marble.jpg" alt="" /></div>
+      <div
+        class="abs topg"
+        style="left: 0; right: 0; top: 0; height: 620px; background: linear-gradient(180deg, rgba(14, 39, 53, 0.8), rgba(14, 39, 53, 0))"
+      ></div>
+      <div class="abs cx lab pre" style="top: 240px; color: var(--aqua2)">Jadikan waktu mandi lebih bermakna</div>
+      <div class="abs cx disp brand" style="top: 270px; font-size: 168px; letter-spacing: 0.12em">FRESCURA</div>
+      <div class="abs cx lab sub" style="top: 450px; color: #fff">Body · Gentle Foaming Body Shower</div>
+      <div class="abs tick" style="left: 0; top: 1150px; width: 1080px; height: 86px; background: var(--paper); overflow: hidden; transform: rotate(-4deg)">
+        <div class="tk" style="white-space: nowrap; font-family: var(--disp); font-size: 52px; line-height: 86px; color: var(--char)">
+          OCEAN SALT ✦ AROMATHERAPY ✦ GENTLE FOAMING ✦ OCEAN SALT ✦ AROMATHERAPY ✦ GENTLE FOAMING ✦ OCEAN SALT ✦ AROMATHERAPY ✦
+        </div>
+      </div>
+      <video id="v-pump" class="clip bg" data-start="3.66" data-duration="2.28" data-media-start="0.3" muted playsinline src="assets/video/pump.mp4"></video>
+      <div class="abs chips" style="left: 70px; top: 300px; display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
+        <div class="chip c1" style="background: var(--paper); color: var(--char)">
+          <i style="width: 22px; height: 22px; border-radius: 50%; background: var(--aqua); display: block"></i>Tekstur ringan
+        </div>
+        <div class="chip c2" style="background: var(--paper); color: var(--char)">
+          <i style="width: 22px; height: 22px; border-radius: 50%; background: var(--aqua); display: block"></i>Senang dibilas
+        </div>
+      </div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(21.88);
+        const rnd = HF.rng(186);
+        const q = (s) => document.querySelector("#product-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#product-root " + s));
+        tl.fromTo(q(".pre"), { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 0.05);
+        tl.to(q(".pre"), { autoAlpha: 0, duration: 0.2 }, at(24.3));
+        tl.fromTo(q(".iris"), { clipPath: "circle(0% at 50% 55%)" }, { clipPath: "circle(36% at 50% 55%)", duration: 0.6, ease: E }, at(22.3));
+        tl.to(q(".iris"), { clipPath: "circle(80% at 50% 55%)", duration: 0.8, ease: "power3.inOut" }, at(24.2));
+        tl.fromTo(q(".iris img"), { scale: 1.3 }, { scale: 1.04, duration: 3.6, ease: "power1.out" }, at(22.3));
+        tl.fromTo(HF.glyphs(q(".brand")), { yPercent: 110 }, { yPercent: 0, duration: 0.55, stagger: 0.04, ease: E }, at(24.5));
+        tl.fromTo(q(".sub"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4 }, at(24.95));
+        tl.fromTo(q(".tick"), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: E }, at(24.9));
+        tl.fromTo(q(".tk"), { x: 0 }, { x: -700, duration: 3.0, ease: "none" }, at(23.0));
+        tl.fromTo(q("#v-pump"), { scale: 1.2 }, { scale: 1.05, duration: 2.28, ease: "power1.out" }, 3.66);
+        tl.fromTo(q(".c1"), { autoAlpha: 0, x: -100 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: E }, at(26.2));
+        tl.fromTo(q(".c2"), { autoAlpha: 0, x: -100 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: E }, at(26.9));
+        tl.set([q(".sub"), q(".tick")], { autoAlpha: 0 }, 0);
+        tl.set([q(".brand"), q(".sub"), q(".tick"), q(".topg")], { autoAlpha: 0 }, 3.66);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["product"] = tl;
+      })();
+    </script>
+  </div>
+</template>

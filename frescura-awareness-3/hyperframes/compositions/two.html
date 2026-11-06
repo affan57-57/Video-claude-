@@ -1,0 +1,94 @@
+<!-- HyperFrames sub-composition "two" — mounted at root 9.2s. All data-start values and timeline positions here are local. -->
+<template id="two-template">
+  <div data-composition-id="two" data-width="1080" data-height="1920">
+    <div id="two-root" class="fill">
+      <div class="fill paper"></div>
+      <div class="grid"></div>
+      <div class="abs idx num" style="left: 70px; top: 200px; font-size: 400px; color: var(--copper)">02</div>
+      <div class="abs lab lb" style="left: 560px; top: 260px; color: var(--copper)">Kebaikan kedua</div>
+      <div class="abs hr" style="left: 560px; top: 310px; width: 420px; height: 2px; background: var(--char)"></div>
+      <div class="abs disp tt" style="left: 70px; top: 630px; font-size: 128px; color: var(--char)">Tenangkan</div>
+      <div class="abs it ti" style="left: 74px; top: 760px; font-size: 104px; color: var(--copper)">kulit gatal &amp; merah</div>
+      <div class="abs patch" style="left: 290px; top: 900px; width: 500px; height: 330px; border-radius: 40px; background: #efd2bd; overflow: hidden">
+        <div
+          class="red"
+          style="
+            position: absolute;
+            left: 90px;
+            top: 40px;
+            width: 320px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(214, 60, 60, 0.75), rgba(214, 60, 60, 0) 70%);
+          "
+        ></div>
+        <div
+          class="calm"
+          style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(156, 195, 201, 0.55), rgba(156, 195, 201, 0) 70%)"
+        ></div>
+      </div>
+      <svg
+        class="abs lines"
+        style="left: 290px; top: 900px"
+        width="500"
+        height="330"
+        viewBox="0 0 500 330"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          class="zig"
+          d="M30 165 L70 105 L110 225 L150 105 L190 225 L230 105 L270 225 L310 105 L350 225 L390 105 L430 225 L470 165"
+          stroke="#b3263a"
+          stroke-width="7"
+        />
+        <path class="sine" d="M30 165 C90 115 130 115 170 165 S250 215 290 165 S370 115 410 165 S450 200 470 165" stroke="#3c7c86" stroke-width="7" />
+      </svg>
+      <div class="abs tagA" style="left: 290px; top: 1240px; font-weight: 800; font-size: 28px; letter-spacing: 0.16em; color: #b3263a">✕ GATAL · MERAH</div>
+      <div class="abs tagB" style="left: 560px; top: 1240px; font-weight: 800; font-size: 28px; letter-spacing: 0.16em; color: #3c7c86">✓ TENANG</div>
+    </div>
+    <style></style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(9.2);
+        const rnd = HF.rng(135);
+        const q = (s) => document.querySelector("#two-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#two-root " + s));
+        tl.fromTo(q(".num"), { autoAlpha: 0, x: -120 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: E }, 0);
+        tl.fromTo(q(".lb"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.15);
+        tl.fromTo(q(".hr"), { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.6, ease: P }, 0.15);
+        tl.fromTo(q(".grid"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0);
+        tl.fromTo(HF.glyphs(q(".tt")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.025, ease: E }, 0.35);
+        tl.fromTo(q(".ti"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, at(11.6));
+        tl.fromTo(q(".patch"), { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: E }, 0.4);
+        tl.fromTo(q(".red"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.1, duration: 0.6, ease: P }, at(11.0));
+        tl.fromTo(q(".calm"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, at(12.25));
+        tl.to(q(".red"), { opacity: 0, scale: 0.5, duration: 0.6, ease: "power2.inOut" }, at(12.25));
+        const zig = q(".zig"),
+          sine = q(".sine");
+        const Lz = zig.getTotalLength(),
+          Ls = sine.getTotalLength();
+        tl.fromTo(
+          zig,
+          { attr: { "stroke-dasharray": Lz, "stroke-dashoffset": Lz } },
+          { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" },
+          at(11.74),
+        );
+        tl.fromTo(q(".tagA"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(11.8));
+        tl.to(zig, { opacity: 0, duration: 0.25 }, at(12.25));
+        tl.fromTo(
+          sine,
+          { attr: { "stroke-dasharray": Ls, "stroke-dashoffset": Ls } },
+          { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" },
+          at(12.3),
+        );
+        tl.to(q(".tagA"), { autoAlpha: 0.25, duration: 0.2 }, at(12.3));
+        tl.fromTo(q(".tagB"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at(12.35));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["two"] = tl;
+      })();
+    </script>
+  </div>
+</template>

@@ -1,0 +1,87 @@
+<!-- HyperFrames sub-composition "one" — mounted at root 5.04s. All data-start values and timeline positions here are local. -->
+<template id="one-template">
+  <div data-composition-id="one" data-width="1080" data-height="1920">
+    <div id="one-root" class="fill">
+      <div class="fill paper"></div>
+      <div class="grid"></div>
+      <div class="abs idx num" style="left: 70px; top: 200px; font-size: 400px; color: var(--copper)">01</div>
+      <div class="abs lab lb" style="left: 560px; top: 260px; color: var(--copper)">Kebaikan pertama</div>
+      <div class="abs hr" style="left: 560px; top: 310px; width: 420px; height: 2px; background: var(--char)"></div>
+      <div class="abs disp tt" style="left: 70px; top: 630px; font-size: 128px; color: var(--char)">Kawal minyak</div>
+      <div class="abs it ti" style="left: 74px; top: 760px; font-size: 104px; color: var(--copper)">berlebihan</div>
+      <div
+        class="abs skin"
+        style="left: 90px; top: 1090px; width: 900px; height: 130px; border-radius: 30px; background: linear-gradient(180deg, #ecc9ad, #d9a98a)"
+      ></div>
+      <div class="drops"></div>
+      <div class="salt"></div>
+      <div class="abs meter" style="left: 90px; top: 960px; width: 900px; color: var(--char)">
+        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 26px; letter-spacing: 0.2em">
+          <span>MINYAK</span><span class="pc" style="color: var(--copper)">BERLEBIHAN</span>
+        </div>
+        <div style="margin-top: 14px; height: 16px; border-radius: 8px; background: rgba(18, 18, 18, 0.1); overflow: hidden">
+          <div class="bar" style="height: 100%; background: linear-gradient(90deg, #d8a94a, #c08457); transform-origin: 0 50%"></div>
+        </div>
+      </div>
+    </div>
+    <style>
+      #one-root .drop {
+        position: absolute;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        background: radial-gradient(circle at 35% 30%, #fff6d6 0 12%, #e4b84c 40%, #b8862a 100%);
+        box-shadow: 0 6px 14px rgba(120, 80, 20, 0.35);
+      }
+      #one-root .cube {
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        background: #fff;
+        border: 2px solid #c9c2b5;
+        transform: rotate(45deg);
+      }
+    </style>
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const at = HF.at(5.04);
+        const rnd = HF.rng(118);
+        const q = (s) => document.querySelector("#one-root " + s);
+        const qa = (s) => Array.from(document.querySelectorAll("#one-root " + s));
+        tl.fromTo(q(".num"), { autoAlpha: 0, x: -120 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: E }, 0);
+        tl.fromTo(q(".lb"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.15);
+        tl.fromTo(q(".hr"), { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.6, ease: P }, 0.15);
+        tl.fromTo(q(".grid"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0);
+        tl.fromTo(HF.glyphs(q(".tt")), { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.025, ease: E }, 0.35);
+        tl.fromTo(q(".ti"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: E }, at(7.76));
+        tl.fromTo(q(".skin"), { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.6, ease: E }, 0.4);
+        tl.fromTo(q(".meter"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.6);
+        tl.fromTo(q(".bar"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: P }, 0.6);
+        const drops = [];
+        for (let i = 0; i < 8; i++) {
+          const d = document.createElement("div");
+          d.className = "drop";
+          const r = 46 + rnd() * 30;
+          Object.assign(d.style, { width: r + "px", height: r * 1.1 + "px", left: 120 + i * 108 + rnd() * 20 + "px", top: 1090 - r * 0.9 + "px" });
+          q(".drops").appendChild(d);
+          drops.push(d);
+        }
+        tl.fromTo(drops, { scale: 0, transformOrigin: "50% 100%" }, { scale: 1, duration: 0.35, stagger: 0.06, ease: "back.out(2.5)" }, 0.8);
+        const cubes = [];
+        for (let i = 0; i < 14; i++) {
+          const c = document.createElement("div");
+          c.className = "cube";
+          Object.assign(c.style, { left: 110 + rnd() * 860 + "px", top: 840 + rnd() * 60 + "px" });
+          q(".salt").appendChild(c);
+          cubes.push(c);
+        }
+        tl.fromTo(cubes, { autoAlpha: 0, y: -80 }, { autoAlpha: 1, y: 180, duration: 0.5, stagger: 0.03, ease: "power2.in" }, at(7.0));
+        tl.to(cubes, { autoAlpha: 0, duration: 0.2, stagger: 0.03 }, at(7.5));
+        tl.to(drops, { scale: 0.25, opacity: 0.35, duration: 0.6, stagger: 0.05, ease: "power2.inOut" }, at(7.45));
+        tl.to(q(".bar"), { scaleX: 0.28, duration: 0.8, ease: "power3.inOut" }, at(7.5));
+        tl.to(q(".skin"), { filter: "brightness(1.08) saturate(0.9)", duration: 0.6 }, at(7.9));
+        window.__timelines = window.__timelines || {};
+        window.__timelines["one"] = tl;
+      })();
+    </script>
+  </div>
+</template>
