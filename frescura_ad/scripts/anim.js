@@ -17,10 +17,9 @@ tl.fromTo("#grain", { x: 0, y: 0 }, { x: 180, y: -140, duration: C.TOTAL, ease: 
 ft(0, "#v_hook1", { scale: 1.28 }, { scale: 1.08, duration: 2.66, ease: "power2.out" });
 ft(2.66, "#v_hook2", { scale: 1.25 }, { scale: 1.05, duration: 2.84, ease: "power1.out" });
 ft(C.FB_OUT, "#v_fb", { scale: 1.12 }, { scale: 1.0, duration: C.FB_END - C.FB_OUT, ease: "none" });
-ft(8.8, "#v_foam", { scale: 1.2 }, { scale: 1.04, duration: 3.1, ease: "power1.out" });
-ft(C.E1, "#i_cta", { scale: 1.0 }, { scale: 1.14, duration: 21.7 - C.E1, ease: "none" });
-ft(21.7, "#v_stock", { scale: 1.35, rotation: -2 }, { scale: 1.15, rotation: 0, duration: 3.26, ease: "none" });
-ft(24.93, "#v_voucher", { scale: 1.3 }, { scale: 1.1, duration: 2.73, ease: "none" });
+ft(C.CL, "#i_cta", { scale: 1.0 }, { scale: 1.14, duration: C.S2 - C.CL, ease: "none" });
+ft(C.S2, "#v_stock", { scale: 1.35, rotation: -2 }, { scale: 1.15, rotation: 0, duration: C.S3 - C.S2, ease: "none" });
+ft(C.S3, "#v_voucher", { scale: 1.3 }, { scale: 1.1, duration: C.S4 - C.S3, ease: "none" });
 
 // ---------- HOOK 0 – 2.66 ----------
 flash(0, 1, 0.35);
@@ -51,28 +50,21 @@ ft(5.28, "#iris", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.in"
 ft(5.5, "#iris", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power2.out" });
 ft(5.5, "#v_fb", { clipPath: "circle(0% at 50% 45%)" }, { clipPath: "circle(80% at 50% 45%)", duration: 0.55, ease: "expo.out" });
 
-// ---------- FEEDBACK 5.5 – 14.53 ----------
+// ---------- FEEDBACK (long, customer stays on screen) ----------
 IN(5.62, "#fb_tag", 0.5, { from: { x: -60, y: 0 } });
-tl.to("#fb_tag .dot", { opacity: 0.2, duration: 0.3, repeat: 9, yoyo: true, ease: "none" }, 5.8);
+tl.to("#fb_tag .dot", { opacity: 0.2, duration: 0.3, repeat: 31, yoyo: true, ease: "none" }, 5.8);
 ft(C.LEMBUT - 0.05, "#b_lembut", { opacity: 0, scale: 0.5, rotation: 8, filter: "blur(10px)" }, { opacity: 1, scale: 1, rotation: -3, filter: "blur(0px)", duration: 0.55, ease: "back.out(1.8)" });
 tl.to("#b_lembut", { y: -20, duration: 1.0, ease: "sine.inOut" }, C.LEMBUT + 0.5);
-OUT(9.5, "#b_lembut", 0.3, { scale: 0.85, y: -60 });
-tl.set("#s_fb", { zIndex: 5 }, 9.4);  // badge floats above b-roll briefly
-// J-cut b-roll (foam) 8.8 – 11.9 with educational meter
-ft(8.8, "#v_foam", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.inOut" });
-ft(8.8, "#s_foam", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.inOut" });
-IN(9.05, "#meter", 0.6, { from: { y: -60 } });
-ft(9.2, "#m_fill", { scaleX: 0.12 }, { scaleX: 0.3, duration: 1.2, ease: "power1.inOut" });
-ft(9.2, "#m_knob", { x: 99 }, { x: 247, duration: 1.2, ease: "power1.inOut" });
-tl.to("#m_fill", { scaleX: 1, duration: 1.2, ease: "power3.inOut" }, C.LAMA);
-tl.to("#m_knob", { x: 824, duration: 1.2, ease: "power3.inOut" }, C.LAMA);
-ft(9.2, "#ml1", { opacity: 0.3 }, { opacity: 1, duration: 0.3 });
-ft(C.LAMA, "#ml2", { opacity: 0.3 }, { opacity: 1, color: "#e2c99b", duration: 0.3 });
-ft(C.LEMBUT2 - 0.05, "#m_res", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" });
-ft(11.88, "#v_foam", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 100% 0% 0%)", duration: 0.3, ease: "expo.in", immediateRender: false });
-ft(11.88, "#s_foam", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 100% 0% 0%)", duration: 0.3, ease: "expo.in" });
+OUT(C.LEMBUT + 1.9, "#b_lembut", 0.3, { scale: 0.85, y: -60 });
+// pump/foam picture-in-picture while she explains "mula-mula ... lama-lama lembut"
+const P0 = C.PIP0, P1 = C.PIP1;
+ft(P0, ["#v_pip", "#pip_frame"], { opacity: 0, x: 420, rotation: 10, scale: 0.8 }, { opacity: 1, x: 0, rotation: 3, scale: 1, duration: 0.6, ease: "expo.out" });
+ft(P0, "#v_pip", { filter: "blur(10px)" }, { filter: "blur(0px)", duration: 0.5 });
+tl.to(["#v_pip", "#pip_frame"], { rotation: -1, y: -18, duration: P1 - P0 - 0.6, ease: "sine.inOut" }, P0 + 0.6);
+IN(C.LEMBUT2 - 0.05, "#pip_res", 0.45, { from: { scale: 0.6, y: 20 } });
+tl.to(["#v_pip", "#pip_frame"], { opacity: 0, x: 420, rotation: 12, duration: 0.4, ease: "expo.in" }, P1 - 0.4);
 // wangi
-ft(12.75, "#glory", { opacity: 0, x: 380, rotation: 14 }, { opacity: 1, x: 0, rotation: 5, duration: 0.6, ease: "expo.out" });
+ft(C.WANGI_Q - 0.1, "#glory", { opacity: 0, x: 380, rotation: 14 }, { opacity: 1, x: 0, rotation: 5, duration: 0.6, ease: "expo.out" });
 ["#sc1", "#sc2", "#sc3"].forEach((p, i) => {
   const L = 560; ft(C.WANGI - 0.1 + i * 0.08, p, { strokeDasharray: L, strokeDashoffset: L, opacity: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" });
   tl.to(p, { opacity: 0, y: -60, duration: 0.5 }, C.WANGI + 0.9 + i * 0.08);
@@ -83,30 +75,16 @@ ft(C.TIPU, "#stamp", { opacity: 0, scale: 2.6, rotation: -30 }, { opacity: 0.95,
 tl.to("#stamp", { rotation: -6, duration: 0.9, ease: "sine.out" }, C.TIPU + 0.25);
 [[14, -10], [-12, 8], [8, -4], [-4, 2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TIPU + 0.22 + i * 0.04));
 flash(C.TIPU + 0.21, 0.35, 0.2);
-// wipe to edu
-ft(C.E0 - 0.28, "#wipe", { yPercent: 100 }, { yPercent: 0, duration: 0.28, ease: "expo.in" });
-ft(C.E0, "#wipe", { yPercent: 0 }, { yPercent: -100, duration: 0.42, ease: "expo.out", immediateRender: false });
-
-// ---------- EDUCATION ----------
-const E = C.E0;
-ft(E, "#v_edu", { clipPath: "inset(100% 0% 0% 0% round 390px 390px 36px 36px)" }, { clipPath: "inset(0% 0% 0% 0% round 390px 390px 36px 36px)", duration: 0.7, ease: "expo.out" });
-ft(E, "#v_edu", { scale: 1.2 }, { scale: 1.0, duration: C.E1 - E, ease: "power1.out" });
-IN(E + 0.15, "#e_eyebrow", 0.5, { from: { y: 0, letterSpacing: "0.9em" }, to: { letterSpacing: "0.42em" } });
-IN(E + 0.25, "#e_title", 0.6, { from: { y: 60 } });
-["#r1", "#r2", "#r3"].forEach((r, i) => {
-  const t = E + 0.75 + i * 0.7;
-  ft(t, r, { opacity: 0, x: -80, borderTopColor: "rgba(110,90,60,0)" }, { opacity: 1, x: 0, borderTopColor: "rgba(110,90,60,.35)", duration: 0.5, ease: "expo.out" });
-  ft(t + 0.1, r + " .num", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" });
-  ft(t + 0.15, r + " .ico svg", { opacity: 0, rotation: -30, scale: 0.5 }, { opacity: 1, rotation: 0, scale: 1, duration: 0.5, ease: "back.out(2)" });
-});
-tl.to(".rows", { y: -14, duration: 2.5, ease: "sine.inOut" }, E + 1.8);
-tl.set("#frame", { opacity: 0 }, E); tl.set("#frame", { opacity: 1 }, C.E1);
-// whip into CTA
-flash(C.E1 - 0.05, 0.9, 0.3);
-ft(C.E1 - 0.25, "#s_edu", { scale: 1, filter: "blur(0px)" }, { scale: 1.25, filter: "blur(18px)", duration: 0.25, ease: "power3.in" });
+tl.to(["#glory", "#b_wangi"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, C.TERIMA - 0.2);
+OUT(C.TERIMA - 0.2, "#stamp", 0.35, { scale: 0.8 });
+ft(C.TERIMA, "#thanks", { opacity: 0, scale: 0.6, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(2)" });
+// whip into closing
+flash(C.CL - 0.05, 0.9, 0.3);
+ft(C.CL - 0.25, "#s_fb", { scale: 1, filter: "blur(0px)" }, { scale: 1.2, filter: "blur(16px)", duration: 0.25, ease: "power3.in" });
+ft(C.CL - 0.25, "#v_fb", { scale: 1.0, filter: "blur(0px)" }, { scale: 1.2, filter: "blur(16px)", duration: 0.25, ease: "power3.in" });
 
 // ---------- CTA 1 ----------
-ft(C.E1, "#i_cta", { filter: "blur(20px) brightness(1.4)" }, { filter: "blur(0px) brightness(1)", duration: 0.5, ease: "power3.out" });
+ft(C.CL, "#i_cta", { filter: "blur(20px) brightness(1.4)" }, { filter: "blur(0px) brightness(1)", duration: 0.5, ease: "power3.out" });
 ft(C.CUBA - 1.0, "#nk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" });
 IN(C.CUBA - 0.05, "#nk2", 0.55, { from: { y: 70 } });
 punch(C.CUBA, "#nk1", 1.08);
@@ -115,13 +93,13 @@ ft(C.CHECK + 0.1, "#co_ring", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.3
 tl.to("#co_btn span", { x: 16, duration: 0.18, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.CHECK + 0.1);
 
 // ---------- STOCK ----------
-flash(21.68, 0.5, 0.2);
-ft(21.72, "#st1", { opacity: 0, scale: 0.6, letterSpacing: "0.3em" }, { opacity: 1, scale: 1, letterSpacing: "0.02em", duration: 0.6, ease: "expo.out" });
-ft(21.95, "#stockbox", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
-ft(22.0, "#s_fill", { scaleX: 1 }, { scaleX: 0.12, duration: 2.5, ease: "power2.inOut" });
+flash(C.S2 - 0.02, 0.5, 0.2);
+ft(C.S2 + 0.02, "#st1", { opacity: 0, scale: 0.6, letterSpacing: "0.3em" }, { opacity: 1, scale: 1, letterSpacing: "0.02em", duration: 0.6, ease: "expo.out" });
+ft(C.S2 + 0.25, "#stockbox", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
+ft(C.S2 + 0.3, "#s_fill", { scaleX: 1 }, { scaleX: 0.12, duration: 2.5, ease: "power2.inOut" });
 ft(C.TERHAD - 0.05, "#st2", { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" });
-ft(23.2, "#sb_hot", { opacity: 0 }, { opacity: 1, duration: 0.1 });
-tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "none" }, 23.4);
+ft(C.S2 + 1.5, "#sb_hot", { opacity: 0 }, { opacity: 1, duration: 0.1 });
+tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "none" }, C.S2 + 1.7);
 [[-14, 0.9], [10, 0.6], [-6, 0.8], [0, 0]].forEach(([x, o], i) => {
   tl.set("#glitchR", { opacity: o, x: x, y: 0 }, C.TERHAD + i * 0.05);
   tl.set("#glitchC", { opacity: o, x: -x, y: 0 }, C.TERHAD + i * 0.05);
@@ -129,22 +107,22 @@ tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "
 [[12, -6], [-10, 6], [6, -2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TERHAD + i * 0.04));
 
 // ---------- VOUCHER ----------
-ft(24.93, "#s_voucher", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" });
-IN(25.0, "#vc1", 0.5, { from: { y: 0, letterSpacing: "1em" }, to: { letterSpacing: "0.42em" } });
+ft(C.S3, "#s_voucher", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" });
+IN(C.S3 + 0.07, "#vc1", 0.5, { from: { y: 0, letterSpacing: "1em" }, to: { letterSpacing: "0.42em" } });
 IN(C.BERAPA - 0.05, "#vc2", 0.5, { from: { y: 60, scale: 1.2 } });
-ft(25.05, "#ticket", { opacity: 0, y: 500, rotation: -16 }, { opacity: 1, y: 0, rotation: -4, duration: 0.7, ease: "expo.out" });
+ft(C.S3 + 0.12, "#ticket", { opacity: 0, y: 500, rotation: -16 }, { opacity: 1, y: 0, rotation: -4, duration: 0.7, ease: "expo.out" });
 ["#q1", "#q2", "#q3"].forEach((q, i) => {
   ft(C.BERAPA + i * 0.08, q, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(3)" });
   tl.to(q, { y: -14, duration: 0.22, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.BERAPA + 0.5 + i * 0.1);
 });
 ft(C.TIKTOK2, "#t_sheen", { x: "-120%" }, { x: "120%", duration: 0.7, ease: "power2.inOut" });
 punch(C.TIKTOK2, "#ticket", 1.06);
-tl.to("#ticket", { rotation: 2, duration: 1.4, ease: "sine.inOut" }, 25.8);
+tl.to("#ticket", { rotation: 2, duration: 1.4, ease: "sine.inOut" }, C.S3 + 0.87);
 
 // ---------- BAG ----------
-flash(27.62, 0.5, 0.2);
-ft(27.68, "#tk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" });
-ft(27.72, "#bagwrap", { opacity: 0, scale: 0.3, y: 200, rotation: -12 }, { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.8)" });
+flash(C.S4 - 0.04, 0.5, 0.2);
+ft(C.S4 + 0.02, "#tk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" });
+ft(C.S4 + 0.06, "#bagwrap", { opacity: 0, scale: 0.3, y: 200, rotation: -12 }, { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.8)" });
 IN(C.BEG - 0.06, "#tk2", 0.45, { from: { y: 50, scale: 1.2 } });
 ft(C.BEG - 0.25, "#finger", { opacity: 0, x: 120, y: 120, scale: 1.3 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.25, ease: "power2.out" });
 ft(C.BEG, "#finger", { scale: 1 }, { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.inOut" });

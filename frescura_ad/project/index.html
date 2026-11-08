@@ -55,8 +55,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 .b-ico{font-size:34px;color:var(--champ)}
 .b-serif{font-family:var(--serif);font-style:italic;font-weight:700;font-size:110px;line-height:1;color:var(--ivory)}
 .b-sans{font-weight:600;font-size:24px;letter-spacing:.5em;margin-left:.5em;color:var(--champ);margin-top:10px}
-.minicard{position:absolute;right:66px;top:440px;width:300px;border-radius:26px;overflow:hidden;background:#140c0e;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1.5px rgba(226,201,155,.55)}
-.minicard img{display:block;width:300px;height:620px;object-fit:cover}
+.minicard{position:absolute;right:56px;top:560px;width:240px;border-radius:26px;overflow:hidden;background:#140c0e;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1.5px rgba(226,201,155,.55)}
+.minicard img{display:block;width:240px;height:496px;object-fit:cover}
 .mc-cap{padding:16px 18px 20px;text-align:center}
 .mc-cap b{display:block;font-weight:700;font-size:22px;letter-spacing:.26em}
 .mc-cap i{font-family:var(--serif);font-size:34px;color:var(--champ)}
@@ -132,19 +132,26 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 #grain{position:absolute;inset:-200px;background:url(assets/img/grain.png);opacity:.07;mix-blend-mode:overlay}
 #vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.42) 100%)}
 
+#v_pip{z-index:5;left:auto;right:64px;top:660px;width:300px;height:533px;border-radius:30px;transform-origin:50% 50%}
+#pip_frame{position:absolute;right:56px;top:652px;width:316px;height:549px;border-radius:34px;border:2px solid rgba(226,201,155,.8);box-shadow:0 30px 80px rgba(0,0,0,.5);z-index:6}
+.pip-res{position:absolute;left:50%;bottom:-74px;transform:translateX(-50%);white-space:nowrap;font-weight:600;font-size:34px;letter-spacing:.04em;padding:10px 26px;border-radius:40px;background:rgba(20,16,18,.55);border:1.5px solid rgba(244,238,230,.3)}
+.pip-res i{font-family:var(--serif);font-size:46px;color:var(--champ)}
+.thanks{position:absolute;left:0;width:100%;top:250px;text-align:center}
+.thanks i{display:block;font-family:var(--serif);font-weight:600;font-size:140px;color:var(--champ);text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.thanks span{display:block;font-weight:500;font-size:30px;letter-spacing:.3em;text-transform:uppercase;margin-top:6px}
+
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="31.800" data-width="1080" data-height="1920" data-fps="30">
+<div id="root" data-composition-id="main" data-start="0" data-duration="37.680" data-width="1080" data-height="1920" data-fps="30">
 <div id="stage">
 <video id="v_hook1" class="clip vid" src="assets/video/pump_press.mp4" data-start="0.000" data-duration="2.660" data-media-start="0.000" muted playsinline ></video>
 <video id="v_hook2" class="clip vid" src="assets/video/pump_close.mp4" data-start="2.660" data-duration="2.840" data-media-start="0.300" muted playsinline ></video>
-<video id="v_fb" class="clip vid" src="assets/video/feedback_cut.mp4" data-start="5.500" data-duration="9.029" data-media-start="0.000" muted playsinline ></video>
-<video id="v_foam" class="clip vid" src="assets/video/foam_palm.mp4" data-start="8.800" data-duration="3.100" data-media-start="0.000" muted playsinline ></video>
-<video id="v_edu" class="clip vid" src="assets/video/foam_lather.mp4" data-start="14.530" data-duration="4.300" data-media-start="0.000" muted playsinline ></video>
-<img id="i_cta" class="clip bgimg" src="assets/img/products.jpg" data-start="18.830" data-duration="2.870" />
-<video id="v_stock" class="clip vid" src="assets/video/pump_press.mp4" data-start="21.700" data-duration="3.260" data-media-start="0.600" muted playsinline ></video>
-<video id="v_voucher" class="clip vid" src="assets/video/foam_lather.mp4" data-start="24.930" data-duration="2.730" data-media-start="1.200" muted playsinline ></video>
+<video id="v_fb" class="clip vid" src="assets/video/feedback_cut.mp4" data-start="5.500" data-duration="19.000" data-media-start="0.000" muted playsinline ></video>
+<video id="v_pip" class="clip vid" src="assets/video/pump_close.mp4" data-start="12.738" data-duration="4.381" data-media-start="0.200" muted playsinline ></video>
+<img id="i_cta" class="clip bgimg" src="assets/img/products.jpg" data-start="24.620" data-duration="2.905" />
+<video id="v_stock" class="clip vid" src="assets/video/pump_press.mp4" data-start="27.525" data-duration="3.224" data-media-start="0.600" muted playsinline ></video>
+<video id="v_voucher" class="clip vid" src="assets/video/foam_lather.mp4" data-start="30.749" data-duration="2.733" data-media-start="1.200" muted playsinline ></video>
 <div id="s_hook" class="clip scene " data-start="0.000" data-duration="2.660">
   <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.72),rgba(8,6,8,.45) 45%,rgba(8,6,8,.85))"></div>
   <div id="hk" class="center-stack" style="top:560px">
@@ -166,40 +173,22 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
   </div>
   <div id="rec" class="pill glass" style="top:820px"><span class="dot"></span>REAL FEEDBACK</div>
 </div>
-<div id="s_fb" class="clip scene " data-start="5.500" data-duration="9.029">
+<div id="s_fb" class="clip scene " data-start="5.500" data-duration="19.000">
   <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.55),rgba(8,6,8,0) 30%,rgba(8,6,8,0) 62%,rgba(8,6,8,.7))"></div>
   <div id="fb_tag" class="pill glass" style="top:150px;left:72px"><span class="dot"></span>PELANGGAN SEBENAR</div>
   <div id="b_lembut" class="badge glass" style="top:560px;right:70px">
     <div class="b-ico">✦</div><div class="b-serif">lembut</div><div class="b-sans">SANGAT</div></div>
   <div id="glory" class="minicard"><img src="assets/img/glory.jpg"/><div class="mc-cap"><b>WOMAN GLORY</b><i>Bombshell</i></div></div>
   <svg id="scent" viewBox="0 0 300 400"><path id="sc1" d="M60 390 C 20 300, 110 260, 70 170 S 120 40, 90 0"/><path id="sc2" d="M150 390 C 110 300, 200 260, 160 170 S 210 40, 180 0"/><path id="sc3" d="M240 390 C 200 300, 290 260, 250 170 S 300 40, 270 0"/></svg>
-  <div id="b_wangi" class="badge glass" style="top:430px;left:70px"><div class="b-ico">✓</div><div class="b-serif">wangi</div><div class="b-sans">TAHAN LAMA</div></div>
+  <div id="b_wangi" class="badge glass" style="top:430px;left:70px"><div class="b-ico">✓</div><div class="b-serif">wangi</div><div class="b-sans">MEMANG WANGI</div></div>
   <div id="stamp"><svg viewBox="0 0 300 300" class="stampsvg"><defs><path id="sc" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0"/></defs>
 <circle cx="150" cy="150" r="140" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="150" cy="150" r="88" fill="none" stroke="currentColor" stroke-width="2"/>
 <text font-family="Outfit" font-weight="800" font-size="27" letter-spacing="7" fill="currentColor"><textPath href="#sc">REAL REVIEW ✦ TAK TIPU ✦ REAL REVIEW ✦</textPath></text>
 <text x="150" y="168" text-anchor="middle" font-family="Bodoni Moda" font-style="italic" font-weight="700" font-size="64" fill="currentColor">100%</text></svg></div>
+  <div id="pip_frame"><div id="pip_res" class="pip-res">makin <i>lembut</i> ✦</div></div>
+  <div id="thanks" class="thanks"><i>terima kasih</i><span>atas review jujur ♡</span></div>
 </div>
-<div id="s_foam" class="clip scene " data-start="8.800" data-duration="3.100">
-  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.65),rgba(8,6,8,0) 40%,rgba(8,6,8,.6))"></div>
-  <div id="meter" class="glass panel" style="top:250px">
-    <div class="eyebrow dark-on-glass">TAHAP KELEMBUTAN KULIT</div>
-    <div class="track"><div id="m_fill" class="fill"></div><div id="m_knob" class="knob"></div></div>
-    <div class="m-labels"><span id="ml1">Mula-mula</span><span class="arrow">⟶</span><span id="ml2">Lama-lama</span></div>
-    <div id="m_res" class="m-res">makin <i>lembut</i> ✦</div>
-  </div>
-</div>
-<div id="s_edu" class="clip scene " data-start="14.530" data-duration="4.300">
-  <div class="ivory"></div>
-  <div id="arch" class="arch"></div>
-  <div id="e_eyebrow" class="eyebrow ink" style="position:absolute;top:960px;width:100%;text-align:center">EDUKASI &nbsp;·&nbsp; GENTLE FOAMING BODY SHOWER</div>
-  <div id="e_title" class="e-title"><span class="sans">Kenapa</span> <i>rasa lembut?</i></div>
-  <div class="rows">
-    <div class="row" id="r1"><div class="num">01</div><div class="txt"><b>OCEAN SALT</b><span>Bersihkan &amp; segarkan kulit</span></div><div class="ico"><svg viewBox="0 0 64 64"><path d="M6 26c6-6 12-6 18 0s12 6 18 0 12-6 16-2M6 38c6-6 12-6 18 0s12 6 18 0 12-6 16-2" /></svg></div></div>
-    <div class="row" id="r2"><div class="num">02</div><div class="txt"><b>AROMATHERAPY</b><span>Wangian yang menenangkan</span></div><div class="ico"><svg viewBox="0 0 64 64"><path d="M14 50C14 26 30 12 54 10c0 24-14 40-38 40zM14 50l22-22" /></svg></div></div>
-    <div class="row" id="r3"><div class="num">03</div><div class="txt"><b>GENTLE FOAMING</b><span>Buih lembut, mesra kulit</span></div><div class="ico"><svg viewBox="0 0 64 64"><circle cx="24" cy="36" r="14"/><circle cx="44" cy="22" r="8"/><circle cx="46" cy="46" r="5"/></svg></div></div>
-  </div>
-</div>
-<div id="s_cta1" class="clip scene " data-start="18.830" data-duration="2.870">
+<div id="s_cta1" class="clip scene " data-start="24.620" data-duration="2.905">
   <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.7),rgba(8,6,8,.1) 40%,rgba(8,6,8,.75))"></div>
   <div class="center-stack" style="top:230px">
     <div id="nk1" class="mega" style="font-size:170px">NAK</div>
@@ -207,7 +196,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
   </div>
   <div id="co_btn" class="cta-btn" style="top:1090px">CHECK OUT <span>⟶</span><div id="co_ring" class="ring"></div></div>
 </div>
-<div id="s_stock" class="clip scene " data-start="21.700" data-duration="3.230">
+<div id="s_stock" class="clip scene " data-start="27.525" data-duration="3.224">
   <div class="tint" style="background:radial-gradient(ellipse at 50% 40%,rgba(60,6,16,.55),rgba(8,4,6,.92) 75%)"></div>
   <div class="center-stack" style="top:300px">
     <div id="st1" class="outline">STOK</div>
@@ -220,7 +209,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
   </div>
   <div id="glitchR" class="glitch-layer r">terhad!</div><div id="glitchC" class="glitch-layer c">terhad!</div>
 </div>
-<div id="s_voucher" class="clip scene " data-start="24.930" data-duration="2.760">
+<div id="s_voucher" class="clip scene " data-start="30.749" data-duration="2.733">
   <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.8),rgba(8,6,8,.45) 50%,rgba(8,6,8,.85))"></div>
   <div class="center-stack" style="top:250px">
     <div id="vc1" class="eyebrow" style="font-size:30px">CUBA TENGOK</div>
@@ -230,7 +219,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
     <div class="t-div"></div><div class="t-right"><div class="t-rm">RM</div><div class="t-q"><span id="q1">?</span><span id="q2">?</span><span id="q3">?</span></div></div>
     <div id="t_sheen" class="sheen"></div></div>
 </div>
-<div id="s_bag" class="clip scene " data-start="27.660" data-duration="1.530">
+<div id="s_bag" class="clip scene " data-start="33.482" data-duration="1.598">
   <div class="tint" style="background:radial-gradient(circle at 50% 42%,#2a2210 0%,#0c0a08 60%)"></div>
   <div class="center-stack" style="top:190px">
     <div id="tk1" class="mega" style="font-size:160px">TEKAN</div>
@@ -243,7 +232,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
   <div id="arrow" class="arrow-dl">↙</div>
   <div id="co2" class="cta-btn yellowbtn" style="top:1170px">CHECK OUT SEKARANG</div>
 </div>
-<div id="s_end" class="clip scene " data-start="29.190" data-duration="2.610">
+<div id="s_end" class="clip scene " data-start="35.080" data-duration="2.600">
   <div style="position:absolute;inset:0;background:#000"></div>
   <div id="logo_glow"></div>
   <img id="logo" src="assets/img/logo.jpg"/>
@@ -253,40 +242,47 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 </div>
 </div>
 
-<div id="caps" class="clip" data-start="0" data-duration="31.800"><div class="cap vo" id="c0"><span class="w" id="c0w0">selepas</span> <span class="w" id="c0w1">cuba</span> <span class="w k" id="c0w2">FRESCURA</span> <span class="w k" id="c0w3">BODY</span></div>
+<div id="caps" class="clip" data-start="0" data-duration="37.680"><div class="cap vo" id="c0"><span class="w" id="c0w0">selepas</span> <span class="w" id="c0w1">cuba</span> <span class="w k" id="c0w2">FRESCURA</span> <span class="w k" id="c0w3">BODY</span></div>
 <div class="cap vo" id="c1"><span class="w" id="c1w0">korang</span> <span class="w" id="c1w1">kena</span> <span class="w" id="c1w2">tengok</span> <span class="w" id="c1w3">sendiri</span></div>
 <div class="cap vo" id="c2"><span class="w k" id="c2w0">feedback</span> <span class="w" id="c2w1">mereka</span> <span class="w" id="c2w2">ini.</span></div>
-<div class="cap q" id="c3"><span class="qmark">Q —</span><span class="w" id="c3w0">Rasa</span> <span class="w" id="c3w1">apa</span> <span class="w" id="c3w2">testing</span> <span class="w" id="c3w3">kita</span> <span class="w" id="c3w4">bagi</span> <span class="w" id="c3w5">tu?</span></div>
-<div class="cap fb" id="c4"><span class="w" id="c4w0">Alhamdulillah,</span> <span class="w" id="c4w1">rasa</span> <span class="w" id="c4w2">dia</span></div>
-<div class="cap fb" id="c5"><span class="w k" id="c5w0">lembut</span> <span class="w" id="c5w1">sangat.</span></div>
-<div class="cap fb" id="c6"><span class="w" id="c6w0">Mula-mula</span> <span class="w" id="c6w1">pakai</span> <span class="w" id="c6w2">tu</span> <span class="w" id="c6w3">tak</span> <span class="w" id="c6w4">rasa</span> <span class="w" id="c6w5">sangat,</span></div>
-<div class="cap fb" id="c7"><span class="w k" id="c7w0">lama-lama</span> <span class="w" id="c7w1">dia</span> <span class="w" id="c7w2">rasa</span> <span class="w k" id="c7w3">lembut.</span></div>
-<div class="cap q" id="c8"><span class="qmark">Q —</span><span class="w" id="c8w0">Wangi</span> <span class="w" id="c8w1">tak,</span> <span class="w" id="c8w2">Kak?</span></div>
-<div class="cap fb" id="c9"><span class="w" id="c9w0">Kalau</span> <span class="w" id="c9w1">yang</span> <span class="w" id="c9w2">ni,</span> <span class="w k" id="c9w3">wangi!</span></div>
-<div class="cap fb" id="c10"><span class="w" id="c10w0">Tak</span> <span class="w k" id="c10w1">tipu</span> <span class="w" id="c10w2">lah</span> <span class="w" id="c10w3">ni!</span></div>
-<div class="cap vo" id="c11"><span class="w" id="c11w0">Kalau</span> <span class="w" id="c11w1">korang</span> <span class="w" id="c11w2">pun</span> <span class="w" id="c11w3">nak</span> <span class="w k" id="c11w4">cuba,</span></div>
-<div class="cap vo" id="c12"><span class="w" id="c12w0">cepat</span> <span class="w k" id="c12w1">check</span> <span class="w k" id="c12w2">out!</span></div>
-<div class="cap vo" id="c13"><span class="w" id="c13w0">Stok</span> <span class="w" id="c13w1">yang</span> <span class="w" id="c13w2">tinggal</span> <span class="w" id="c13w3">di</span> <span class="w k" id="c13w4">TikTok</span> <span class="w k" id="c13w5">Shop</span></div>
-<div class="cap vo" id="c14"><span class="w" id="c14w0">memang</span> <span class="w" id="c14w1">sangat-sangat</span> <span class="w k" id="c14w2">terhad!</span></div>
-<div class="cap vo" id="c15"><span class="w" id="c15w0">Cuba</span> <span class="w" id="c15w1">korang</span> <span class="w" id="c15w2">tengok</span> <span class="w k" id="c15w3">berapa</span></div>
-<div class="cap vo" id="c16"><span class="w" id="c16w0">yang</span> <span class="w k" id="c16w1">TikTok</span> <span class="w" id="c16w2">bagi</span> <span class="w" id="c16w3">dekat</span> <span class="w" id="c16w4">korang.</span></div>
-<div class="cap vo" id="c17"><span class="w" id="c17w0">Tekan</span> <span class="w k" id="c17w1">beg</span> <span class="w k" id="c17w2">kuning</span> <span class="w" id="c17w3">ni</span> <span class="w" id="c17w4">sekarang</span></div>
-<div class="cap vo" id="c18"><span class="w" id="c18w0">dan</span> <span class="w k" id="c18w1">check</span> <span class="w k" id="c18w2">out!</span></div></div>
-<div id="frame" class="clip" data-start="0" data-duration="29.190">
+<div class="cap q" id="c3"><span class="qmark">Q —</span><span class="w" id="c3w0">Testing</span> <span class="w" id="c3w1">kita</span> <span class="w" id="c3w2">bagi</span> <span class="w" id="c3w3">kat</span> <span class="w" id="c3w4">Kak,</span></div>
+<div class="cap q" id="c4"><span class="qmark">Q —</span><span class="w" id="c4w0">rasa</span> <span class="w" id="c4w1">apa</span> <span class="w" id="c4w2">testing</span> <span class="w" id="c4w3">kita</span> <span class="w" id="c4w4">bagi</span> <span class="w" id="c4w5">tu?</span></div>
+<div class="cap fb" id="c5"><span class="w" id="c5w0">Alhamdulillah,</span> <span class="w" id="c5w1">rasa</span> <span class="w" id="c5w2">dia</span></div>
+<div class="cap fb" id="c6"><span class="w k" id="c6w0">lembut</span> <span class="w" id="c6w1">sangat.</span></div>
+<div class="cap fb" id="c7"><span class="w" id="c7w0">Mula-mula</span> <span class="w" id="c7w1">pakai</span> <span class="w" id="c7w2">tu</span> <span class="w" id="c7w3">tak</span> <span class="w" id="c7w4">rasa</span> <span class="w" id="c7w5">sangat,</span></div>
+<div class="cap fb" id="c8"><span class="w k" id="c8w0">lama-lama</span> <span class="w" id="c8w1">dia</span> <span class="w" id="c8w2">rasa</span> <span class="w k" id="c8w3">lembut.</span></div>
+<div class="cap q" id="c9"><span class="qmark">Q —</span><span class="w" id="c9w0">Oh,</span> <span class="w" id="c9w1">mula-mula</span> <span class="w" id="c9w2">tak</span> <span class="w" id="c9w3">rasa</span> <span class="w" id="c9w4">lembut,</span></div>
+<div class="cap q" id="c10"><span class="qmark">Q —</span><span class="w" id="c10w0">dah</span> <span class="w" id="c10w1">lama-lama</span> <span class="w" id="c10w2">baru</span> <span class="w" id="c10w3">rasa</span> <span class="w" id="c10w4">lah.</span></div>
+<div class="cap q" id="c11"><span class="qmark">Q —</span><span class="w" id="c11w0">Wangi</span> <span class="w" id="c11w1">tak,</span> <span class="w" id="c11w2">Kak?</span></div>
+<div class="cap fb" id="c12"><span class="w" id="c12w0">Kalau</span> <span class="w" id="c12w1">yang</span> <span class="w" id="c12w2">ni,</span> <span class="w k" id="c12w3">wangi!</span></div>
+<div class="cap fb" id="c13"><span class="w" id="c13w0">Kalau</span> <span class="w" id="c13w1">bagi</span> <span class="w" id="c13w2">saya,</span> <span class="w" id="c13w3">yang</span> <span class="w" id="c13w4">ni</span></div>
+<div class="cap fb" id="c14"><span class="w" id="c14w0">yang</span> <span class="w" id="c14w1">ni</span> <span class="w k" id="c14w2">wangi</span> <span class="w" id="c14w3">lah.</span></div>
+<div class="cap fb" id="c15"><span class="w" id="c15w0">Tak</span> <span class="w k" id="c15w1">tipu</span> <span class="w" id="c15w2">lah</span> <span class="w" id="c15w3">ni!</span></div>
+<div class="cap q" id="c16"><span class="qmark">Q —</span><span class="w" id="c16w0">Tak</span> <span class="w" id="c16w1">tipu</span> <span class="w" id="c16w2">tu?</span> <span class="w" id="c16w3">Oh</span> <span class="w" id="c16w4">okay.</span></div>
+<div class="cap fb" id="c17"><span class="w" id="c17w0">Terima</span> <span class="w k" id="c17w1">kasih!</span></div>
+<div class="cap vo" id="c18"><span class="w" id="c18w0">Kalau</span> <span class="w" id="c18w1">korang</span> <span class="w" id="c18w2">pun</span> <span class="w" id="c18w3">nak</span> <span class="w k" id="c18w4">cuba,</span></div>
+<div class="cap vo" id="c19"><span class="w" id="c19w0">cepat</span> <span class="w k" id="c19w1">check</span> <span class="w k" id="c19w2">out!</span></div>
+<div class="cap vo" id="c20"><span class="w" id="c20w0">Stok</span> <span class="w" id="c20w1">yang</span> <span class="w" id="c20w2">tinggal</span> <span class="w" id="c20w3">di</span> <span class="w k" id="c20w4">TikTok</span> <span class="w k" id="c20w5">Shop</span></div>
+<div class="cap vo" id="c21"><span class="w" id="c21w0">memang</span> <span class="w" id="c21w1">sangat-sangat</span> <span class="w k" id="c21w2">terhad!</span></div>
+<div class="cap vo" id="c22"><span class="w" id="c22w0">Cuba</span> <span class="w" id="c22w1">korang</span> <span class="w" id="c22w2">tengok</span> <span class="w k" id="c22w3">berapa</span></div>
+<div class="cap vo" id="c23"><span class="w" id="c23w0">yang</span> <span class="w k" id="c23w1">TikTok</span> <span class="w" id="c23w2">bagi</span> <span class="w" id="c23w3">dekat</span> <span class="w" id="c23w4">korang.</span></div>
+<div class="cap vo" id="c24"><span class="w" id="c24w0">Tekan</span> <span class="w k" id="c24w1">beg</span> <span class="w k" id="c24w2">kuning</span> <span class="w" id="c24w3">ni</span> <span class="w" id="c24w4">sekarang</span></div>
+<div class="cap vo" id="c25"><span class="w" id="c25w0">dan</span> <span class="w k" id="c25w1">check</span> <span class="w k" id="c25w2">out!</span></div></div>
+<div id="frame" class="clip" data-start="0" data-duration="35.080">
   <div class="fr-border"></div>
   <div class="fr-tl">FRESCURA BODY</div><div class="fr-tr">Nº 01 — REVIEW</div>
   <div class="fr-bl">SOFT | FRAGRANT</div><div id="fr_time" class="fr-br">500 ML</div>
 </div>
-<div id="fx" class="clip" data-start="0" data-duration="31.800">
-  <div id="flash"></div><div id="wipe"></div><div id="iris"></div>
+<div id="fx" class="clip" data-start="0" data-duration="37.680">
+  <div id="flash"></div><div id="iris"></div>
   <div id="grain"></div><div id="vignette"></div>
 </div>
-<audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="31.800" data-volume="1"></audio>
+<audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="37.680" data-volume="1"></audio>
 
 </div>
 <script>
-const C = {"FB_OUT": 5.5, "FB_END": 14.528571428571427, "E0": 14.53, "E1": 18.83, "END0": 29.19, "END1": 31.8, "TOTAL": 31.8, "LEMBUT": 8.243, "LAMA": 10.624, "LEMBUT2": 11.557, "WANGI_Q": 11.957, "WANGI": 13.31, "TIPU": 13.633, "CUBA": 20.212, "CEPAT": 20.703, "CHECK": 21.321, "TIKTOK": 22.826, "SANGAT": 23.771, "TERHAD": 24.608, "BERAPA": 25.905, "TIKTOK2": 26.615, "TEKAN": 27.726, "BEG": 28.054, "CHECK2": 28.69};
-const CAPS = [{"kind": "vo", "start": 1.55, "end": 2.66, "words": [["selepas", 1.173, 1.645, false], ["cuba", 1.645, 2.009, false], ["FRESCURA", 2.009, 2.391, true], ["BODY", 2.391, 2.664, true]]}, {"kind": "vo", "start": 2.66, "end": 4.096, "words": [["korang", 2.7, 3.318, false], ["kena", 3.318, 3.5, false], ["tengok", 3.5, 3.918, false], ["sendiri", 3.918, 4.136, false]]}, {"kind": "vo", "start": 4.096, "end": 5.498, "words": [["feedback", 4.136, 4.755, true], ["mereka", 4.755, 5.045, false], ["ini.", 5.045, 5.336, false]]}, {"kind": "q", "start": 5.498, "end": 6.946, "words": [["Rasa", 5.538, 5.881, false], ["apa", 5.881, 6.014, false], ["testing", 6.014, 6.262, false], ["kita", 6.262, 6.548, false], ["bagi", 6.548, 6.871, false], ["tu?", 6.871, 6.986, false]]}, {"kind": "fb", "start": 6.946, "end": 8.203000000000001, "words": [["Alhamdulillah,", 6.986, 7.69, false], ["rasa", 7.69, 7.938, false], ["dia", 7.938, 8.243, false]]}, {"kind": "fb", "start": 8.203000000000001, "end": 8.793000000000001, "words": [["lembut", 8.243, 8.586, true], ["sangat.", 8.586, 8.833, false]]}, {"kind": "fb", "start": 8.793000000000001, "end": 10.584000000000001, "words": [["Mula-mula", 8.833, 9.71, false], ["pakai", 9.71, 9.843, false], ["tu", 9.843, 10.09, false], ["tak", 10.09, 10.224, false], ["rasa", 10.224, 10.395, false], ["sangat,", 10.395, 10.624, false]]}, {"kind": "fb", "start": 10.584000000000001, "end": 11.917000000000002, "words": [["lama-lama", 10.624, 11.271, true], ["dia", 11.271, 11.443, false], ["rasa", 11.443, 11.557, false], ["lembut.", 11.557, 11.9, true]]}, {"kind": "q", "start": 11.917000000000002, "end": 12.679, "words": [["Wangi", 11.957, 12.414, false], ["tak,", 12.414, 12.548, false], ["Kak?", 12.548, 12.719, false]]}, {"kind": "fb", "start": 12.679, "end": 13.574000000000002, "words": [["Kalau", 12.719, 13.024, false], ["yang", 13.024, 13.214, false], ["ni,", 13.214, 13.31, false], ["wangi!", 13.31, 13.557, true]]}, {"kind": "fb", "start": 13.574000000000002, "end": 14.53, "words": [["Tak", 13.614, 13.995, false], ["tipu", 13.995, 14.281, true], ["lah", 14.281, 14.319, false], ["ni!", 14.319, 14.49, false]]}, {"kind": "vo", "start": 18.863, "end": 20.663, "words": [["Kalau", 18.903, 19.412, false], ["korang", 19.412, 19.921, false], ["pun", 19.921, 20.066, false], ["nak", 20.066, 20.212, false], ["cuba,", 20.212, 20.703, true]]}, {"kind": "vo", "start": 20.663, "end": 21.768, "words": [["cepat", 20.703, 21.321, false], ["check", 21.321, 21.43, true], ["out!", 21.43, 21.612, true]]}, {"kind": "vo", "start": 21.768, "end": 23.295, "words": [["Stok", 21.808, 22.317, false], ["yang", 22.317, 22.408, false], ["tinggal", 22.408, 22.717, false], ["di", 22.717, 22.826, false], ["TikTok", 22.826, 23.08, true], ["Shop", 23.08, 23.335, true]]}, {"kind": "vo", "start": 23.295, "end": 24.956, "words": [["memang", 23.335, 23.771, false], ["sangat-sangat", 23.771, 24.608, false], ["terhad!", 24.608, 24.862, true]]}, {"kind": "vo", "start": 24.956, "end": 26.356, "words": [["Cuba", 24.996, 25.396, false], ["korang", 25.396, 25.596, false], ["tengok", 25.596, 25.905, false], ["berapa", 25.905, 26.396, true]]}, {"kind": "vo", "start": 26.356, "end": 27.686, "words": [["yang", 26.396, 26.615, false], ["TikTok", 26.615, 26.887, true], ["bagi", 26.887, 27.251, false], ["dekat", 27.251, 27.378, false], ["korang.", 27.378, 27.615, false]]}, {"kind": "vo", "start": 27.686, "end": 28.414, "words": [["Tekan", 27.726, 28.054, false], ["beg", 28.054, 28.145, true], ["kuning", 28.145, 28.254, true], ["ni", 28.254, 28.326, false], ["sekarang", 28.326, 28.454, false]]}, {"kind": "vo", "start": 28.414, "end": 29.240000000000002, "words": [["dan", 28.454, 28.69, false], ["check", 28.69, 28.926, true], ["out!", 28.926, 29.072, true]]}];
+const C = {"FB_OUT": 5.5, "FB_END": 24.5, "CL": 24.62, "S2": 27.525, "S3": 30.749, "S4": 33.482, "PIP0": 12.738, "PIP1": 17.119, "TERIMA": 22.395, "END0": 35.08, "END1": 37.68, "TOTAL": 37.68, "LEMBUT": 10.414, "LAMA": 12.795, "LEMBUT2": 13.729, "WANGI_Q": 17.271, "WANGI": 18.624, "TIPU": 20.224, "CUBA": 26.002, "CEPAT": 26.493, "CHECK": 27.111, "TIKTOK": 28.616, "SANGAT": 29.561, "TERHAD": 30.398, "BERAPA": 31.694, "TIKTOK2": 32.404, "TEKAN": 33.518, "BEG": 33.846, "CHECK2": 34.482};
+const CAPS = [{"kind": "vo", "start": 1.55, "end": 2.66, "words": [["selepas", 1.173, 1.645, false], ["cuba", 1.645, 2.009, false], ["FRESCURA", 2.009, 2.391, true], ["BODY", 2.391, 2.664, true]]}, {"kind": "vo", "start": 2.66, "end": 4.096, "words": [["korang", 2.7, 3.318, false], ["kena", 3.318, 3.5, false], ["tengok", 3.5, 3.918, false], ["sendiri", 3.918, 4.136, false]]}, {"kind": "vo", "start": 4.096, "end": 5.631, "words": [["feedback", 4.136, 4.755, true], ["mereka", 4.755, 5.045, false], ["ini.", 5.045, 5.336, false]]}, {"kind": "q", "start": 5.631, "end": 7.626, "words": [["Testing", 5.671, 6.3, false], ["kita", 6.3, 6.586, false], ["bagi", 6.586, 6.852, false], ["kat", 6.852, 6.986, false], ["Kak,", 6.986, 7.176, false]]}, {"kind": "q", "start": 7.67, "end": 9.117, "words": [["rasa", 7.71, 8.052, false], ["apa", 8.052, 8.186, false], ["testing", 8.186, 8.433, false], ["kita", 8.433, 8.719, false], ["bagi", 8.719, 9.043, false], ["tu?", 9.043, 9.157, false]]}, {"kind": "fb", "start": 9.117, "end": 10.374, "words": [["Alhamdulillah,", 9.157, 9.862, false], ["rasa", 9.862, 10.11, false], ["dia", 10.11, 10.414, false]]}, {"kind": "fb", "start": 10.374, "end": 10.965000000000002, "words": [["lembut", 10.414, 10.757, true], ["sangat.", 10.757, 11.005, false]]}, {"kind": "fb", "start": 10.965000000000002, "end": 12.755, "words": [["Mula-mula", 11.005, 11.881, false], ["pakai", 11.881, 12.014, false], ["tu", 12.014, 12.262, false], ["tak", 12.262, 12.395, false], ["rasa", 12.395, 12.567, false], ["sangat,", 12.567, 12.795, false]]}, {"kind": "fb", "start": 12.755, "end": 14.031, "words": [["lama-lama", 12.795, 13.443, true], ["dia", 13.443, 13.614, false], ["rasa", 13.614, 13.729, false], ["lembut.", 13.729, 14.071, true]]}, {"kind": "q", "start": 14.031, "end": 15.36, "words": [["Oh,", 14.071, 14.186, false], ["mula-mula", 14.186, 14.433, false], ["tak", 14.433, 14.51, false], ["rasa", 14.51, 14.624, false], ["lembut,", 14.624, 14.91, false]]}, {"kind": "q", "start": 15.384, "end": 17.231, "words": [["dah", 15.424, 15.671, false], ["lama-lama", 15.671, 16.129, false], ["baru", 16.129, 16.452, false], ["rasa", 16.452, 16.89, false], ["lah.", 16.89, 17.062, false]]}, {"kind": "q", "start": 17.231, "end": 17.993000000000002, "words": [["Wangi", 17.271, 17.729, false], ["tak,", 17.729, 17.862, false], ["Kak?", 17.862, 18.033, false]]}, {"kind": "fb", "start": 17.993000000000002, "end": 18.831, "words": [["Kalau", 18.033, 18.338, false], ["yang", 18.338, 18.529, false], ["ni,", 18.529, 18.624, false], ["wangi!", 18.624, 18.871, true]]}, {"kind": "fb", "start": 18.831, "end": 19.517, "words": [["Kalau", 18.871, 19.005, false], ["bagi", 19.005, 19.252, false], ["saya,", 19.252, 19.31, false], ["yang", 19.31, 19.443, false], ["ni", 19.443, 19.557, false]]}, {"kind": "fb", "start": 19.517, "end": 20.165, "words": [["yang", 19.557, 19.729, false], ["ni", 19.729, 19.843, false], ["wangi", 19.843, 20.071, true], ["lah.", 20.071, 20.205, false]]}, {"kind": "fb", "start": 20.165, "end": 21.041, "words": [["Tak", 20.205, 20.586, false], ["tipu", 20.586, 20.871, true], ["lah", 20.871, 20.91, false], ["ni!", 20.91, 21.081, false]]}, {"kind": "q", "start": 21.041, "end": 22.355, "words": [["Tak", 21.081, 21.557, false], ["tipu", 21.557, 21.9, false], ["tu?", 21.9, 21.957, false], ["Oh", 21.957, 22.129, false], ["okay.", 22.129, 22.395, false]]}, {"kind": "fb", "start": 22.355, "end": 23.779, "words": [["Terima", 22.395, 22.795, false], ["kasih!", 22.795, 23.329, true]]}, {"kind": "vo", "start": 24.653000000000002, "end": 26.453, "words": [["Kalau", 24.693, 25.202, false], ["korang", 25.202, 25.711, false], ["pun", 25.711, 25.856, false], ["nak", 25.856, 26.002, false], ["cuba,", 26.002, 26.493, true]]}, {"kind": "vo", "start": 26.453, "end": 27.558, "words": [["cepat", 26.493, 27.111, false], ["check", 27.111, 27.22, true], ["out!", 27.22, 27.402, true]]}, {"kind": "vo", "start": 27.558, "end": 29.085, "words": [["Stok", 27.598, 28.107, false], ["yang", 28.107, 28.198, false], ["tinggal", 28.198, 28.507, false], ["di", 28.507, 28.616, false], ["TikTok", 28.616, 28.87, true], ["Shop", 28.87, 29.125, true]]}, {"kind": "vo", "start": 29.085, "end": 30.745, "words": [["memang", 29.125, 29.561, false], ["sangat-sangat", 29.561, 30.398, false], ["terhad!", 30.398, 30.652, true]]}, {"kind": "vo", "start": 30.745, "end": 32.145, "words": [["Cuba", 30.785, 31.185, false], ["korang", 31.185, 31.385, false], ["tengok", 31.385, 31.694, false], ["berapa", 31.694, 32.185, true]]}, {"kind": "vo", "start": 32.145, "end": 33.478, "words": [["yang", 32.185, 32.404, false], ["TikTok", 32.404, 32.676, true], ["bagi", 32.676, 33.04, false], ["dekat", 33.04, 33.167, false], ["korang.", 33.167, 33.404, false]]}, {"kind": "vo", "start": 33.478, "end": 34.206, "words": [["Tekan", 33.518, 33.846, false], ["beg", 33.846, 33.937, true], ["kuning", 33.937, 34.046, true], ["ni", 34.046, 34.118, false], ["sekarang", 34.118, 34.246, false]]}, {"kind": "vo", "start": 34.206, "end": 35.129999999999995, "words": [["dan", 34.246, 34.482, false], ["check", 34.482, 34.718, true], ["out!", 34.718, 34.864, true]]}];
 const tl = gsap.timeline({ paused: true });
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
@@ -306,10 +302,9 @@ tl.fromTo("#grain", { x: 0, y: 0 }, { x: 180, y: -140, duration: C.TOTAL, ease: 
 ft(0, "#v_hook1", { scale: 1.28 }, { scale: 1.08, duration: 2.66, ease: "power2.out" });
 ft(2.66, "#v_hook2", { scale: 1.25 }, { scale: 1.05, duration: 2.84, ease: "power1.out" });
 ft(C.FB_OUT, "#v_fb", { scale: 1.12 }, { scale: 1.0, duration: C.FB_END - C.FB_OUT, ease: "none" });
-ft(8.8, "#v_foam", { scale: 1.2 }, { scale: 1.04, duration: 3.1, ease: "power1.out" });
-ft(C.E1, "#i_cta", { scale: 1.0 }, { scale: 1.14, duration: 21.7 - C.E1, ease: "none" });
-ft(21.7, "#v_stock", { scale: 1.35, rotation: -2 }, { scale: 1.15, rotation: 0, duration: 3.26, ease: "none" });
-ft(24.93, "#v_voucher", { scale: 1.3 }, { scale: 1.1, duration: 2.73, ease: "none" });
+ft(C.CL, "#i_cta", { scale: 1.0 }, { scale: 1.14, duration: C.S2 - C.CL, ease: "none" });
+ft(C.S2, "#v_stock", { scale: 1.35, rotation: -2 }, { scale: 1.15, rotation: 0, duration: C.S3 - C.S2, ease: "none" });
+ft(C.S3, "#v_voucher", { scale: 1.3 }, { scale: 1.1, duration: C.S4 - C.S3, ease: "none" });
 
 // ---------- HOOK 0 – 2.66 ----------
 flash(0, 1, 0.35);
@@ -340,28 +335,21 @@ ft(5.28, "#iris", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.in"
 ft(5.5, "#iris", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power2.out" });
 ft(5.5, "#v_fb", { clipPath: "circle(0% at 50% 45%)" }, { clipPath: "circle(80% at 50% 45%)", duration: 0.55, ease: "expo.out" });
 
-// ---------- FEEDBACK 5.5 – 14.53 ----------
+// ---------- FEEDBACK (long, customer stays on screen) ----------
 IN(5.62, "#fb_tag", 0.5, { from: { x: -60, y: 0 } });
-tl.to("#fb_tag .dot", { opacity: 0.2, duration: 0.3, repeat: 9, yoyo: true, ease: "none" }, 5.8);
+tl.to("#fb_tag .dot", { opacity: 0.2, duration: 0.3, repeat: 31, yoyo: true, ease: "none" }, 5.8);
 ft(C.LEMBUT - 0.05, "#b_lembut", { opacity: 0, scale: 0.5, rotation: 8, filter: "blur(10px)" }, { opacity: 1, scale: 1, rotation: -3, filter: "blur(0px)", duration: 0.55, ease: "back.out(1.8)" });
 tl.to("#b_lembut", { y: -20, duration: 1.0, ease: "sine.inOut" }, C.LEMBUT + 0.5);
-OUT(9.5, "#b_lembut", 0.3, { scale: 0.85, y: -60 });
-tl.set("#s_fb", { zIndex: 5 }, 9.4);  // badge floats above b-roll briefly
-// J-cut b-roll (foam) 8.8 – 11.9 with educational meter
-ft(8.8, "#v_foam", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.inOut" });
-ft(8.8, "#s_foam", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.inOut" });
-IN(9.05, "#meter", 0.6, { from: { y: -60 } });
-ft(9.2, "#m_fill", { scaleX: 0.12 }, { scaleX: 0.3, duration: 1.2, ease: "power1.inOut" });
-ft(9.2, "#m_knob", { x: 99 }, { x: 247, duration: 1.2, ease: "power1.inOut" });
-tl.to("#m_fill", { scaleX: 1, duration: 1.2, ease: "power3.inOut" }, C.LAMA);
-tl.to("#m_knob", { x: 824, duration: 1.2, ease: "power3.inOut" }, C.LAMA);
-ft(9.2, "#ml1", { opacity: 0.3 }, { opacity: 1, duration: 0.3 });
-ft(C.LAMA, "#ml2", { opacity: 0.3 }, { opacity: 1, color: "#e2c99b", duration: 0.3 });
-ft(C.LEMBUT2 - 0.05, "#m_res", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" });
-ft(11.88, "#v_foam", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 100% 0% 0%)", duration: 0.3, ease: "expo.in", immediateRender: false });
-ft(11.88, "#s_foam", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 100% 0% 0%)", duration: 0.3, ease: "expo.in" });
+OUT(C.LEMBUT + 1.9, "#b_lembut", 0.3, { scale: 0.85, y: -60 });
+// pump/foam picture-in-picture while she explains "mula-mula ... lama-lama lembut"
+const P0 = C.PIP0, P1 = C.PIP1;
+ft(P0, ["#v_pip", "#pip_frame"], { opacity: 0, x: 420, rotation: 10, scale: 0.8 }, { opacity: 1, x: 0, rotation: 3, scale: 1, duration: 0.6, ease: "expo.out" });
+ft(P0, "#v_pip", { filter: "blur(10px)" }, { filter: "blur(0px)", duration: 0.5 });
+tl.to(["#v_pip", "#pip_frame"], { rotation: -1, y: -18, duration: P1 - P0 - 0.6, ease: "sine.inOut" }, P0 + 0.6);
+IN(C.LEMBUT2 - 0.05, "#pip_res", 0.45, { from: { scale: 0.6, y: 20 } });
+tl.to(["#v_pip", "#pip_frame"], { opacity: 0, x: 420, rotation: 12, duration: 0.4, ease: "expo.in" }, P1 - 0.4);
 // wangi
-ft(12.75, "#glory", { opacity: 0, x: 380, rotation: 14 }, { opacity: 1, x: 0, rotation: 5, duration: 0.6, ease: "expo.out" });
+ft(C.WANGI_Q - 0.1, "#glory", { opacity: 0, x: 380, rotation: 14 }, { opacity: 1, x: 0, rotation: 5, duration: 0.6, ease: "expo.out" });
 ["#sc1", "#sc2", "#sc3"].forEach((p, i) => {
   const L = 560; ft(C.WANGI - 0.1 + i * 0.08, p, { strokeDasharray: L, strokeDashoffset: L, opacity: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" });
   tl.to(p, { opacity: 0, y: -60, duration: 0.5 }, C.WANGI + 0.9 + i * 0.08);
@@ -372,30 +360,16 @@ ft(C.TIPU, "#stamp", { opacity: 0, scale: 2.6, rotation: -30 }, { opacity: 0.95,
 tl.to("#stamp", { rotation: -6, duration: 0.9, ease: "sine.out" }, C.TIPU + 0.25);
 [[14, -10], [-12, 8], [8, -4], [-4, 2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TIPU + 0.22 + i * 0.04));
 flash(C.TIPU + 0.21, 0.35, 0.2);
-// wipe to edu
-ft(C.E0 - 0.28, "#wipe", { yPercent: 100 }, { yPercent: 0, duration: 0.28, ease: "expo.in" });
-ft(C.E0, "#wipe", { yPercent: 0 }, { yPercent: -100, duration: 0.42, ease: "expo.out", immediateRender: false });
-
-// ---------- EDUCATION ----------
-const E = C.E0;
-ft(E, "#v_edu", { clipPath: "inset(100% 0% 0% 0% round 390px 390px 36px 36px)" }, { clipPath: "inset(0% 0% 0% 0% round 390px 390px 36px 36px)", duration: 0.7, ease: "expo.out" });
-ft(E, "#v_edu", { scale: 1.2 }, { scale: 1.0, duration: C.E1 - E, ease: "power1.out" });
-IN(E + 0.15, "#e_eyebrow", 0.5, { from: { y: 0, letterSpacing: "0.9em" }, to: { letterSpacing: "0.42em" } });
-IN(E + 0.25, "#e_title", 0.6, { from: { y: 60 } });
-["#r1", "#r2", "#r3"].forEach((r, i) => {
-  const t = E + 0.75 + i * 0.7;
-  ft(t, r, { opacity: 0, x: -80, borderTopColor: "rgba(110,90,60,0)" }, { opacity: 1, x: 0, borderTopColor: "rgba(110,90,60,.35)", duration: 0.5, ease: "expo.out" });
-  ft(t + 0.1, r + " .num", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" });
-  ft(t + 0.15, r + " .ico svg", { opacity: 0, rotation: -30, scale: 0.5 }, { opacity: 1, rotation: 0, scale: 1, duration: 0.5, ease: "back.out(2)" });
-});
-tl.to(".rows", { y: -14, duration: 2.5, ease: "sine.inOut" }, E + 1.8);
-tl.set("#frame", { opacity: 0 }, E); tl.set("#frame", { opacity: 1 }, C.E1);
-// whip into CTA
-flash(C.E1 - 0.05, 0.9, 0.3);
-ft(C.E1 - 0.25, "#s_edu", { scale: 1, filter: "blur(0px)" }, { scale: 1.25, filter: "blur(18px)", duration: 0.25, ease: "power3.in" });
+tl.to(["#glory", "#b_wangi"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, C.TERIMA - 0.2);
+OUT(C.TERIMA - 0.2, "#stamp", 0.35, { scale: 0.8 });
+ft(C.TERIMA, "#thanks", { opacity: 0, scale: 0.6, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(2)" });
+// whip into closing
+flash(C.CL - 0.05, 0.9, 0.3);
+ft(C.CL - 0.25, "#s_fb", { scale: 1, filter: "blur(0px)" }, { scale: 1.2, filter: "blur(16px)", duration: 0.25, ease: "power3.in" });
+ft(C.CL - 0.25, "#v_fb", { scale: 1.0, filter: "blur(0px)" }, { scale: 1.2, filter: "blur(16px)", duration: 0.25, ease: "power3.in" });
 
 // ---------- CTA 1 ----------
-ft(C.E1, "#i_cta", { filter: "blur(20px) brightness(1.4)" }, { filter: "blur(0px) brightness(1)", duration: 0.5, ease: "power3.out" });
+ft(C.CL, "#i_cta", { filter: "blur(20px) brightness(1.4)" }, { filter: "blur(0px) brightness(1)", duration: 0.5, ease: "power3.out" });
 ft(C.CUBA - 1.0, "#nk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" });
 IN(C.CUBA - 0.05, "#nk2", 0.55, { from: { y: 70 } });
 punch(C.CUBA, "#nk1", 1.08);
@@ -404,13 +378,13 @@ ft(C.CHECK + 0.1, "#co_ring", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.3
 tl.to("#co_btn span", { x: 16, duration: 0.18, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.CHECK + 0.1);
 
 // ---------- STOCK ----------
-flash(21.68, 0.5, 0.2);
-ft(21.72, "#st1", { opacity: 0, scale: 0.6, letterSpacing: "0.3em" }, { opacity: 1, scale: 1, letterSpacing: "0.02em", duration: 0.6, ease: "expo.out" });
-ft(21.95, "#stockbox", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
-ft(22.0, "#s_fill", { scaleX: 1 }, { scaleX: 0.12, duration: 2.5, ease: "power2.inOut" });
+flash(C.S2 - 0.02, 0.5, 0.2);
+ft(C.S2 + 0.02, "#st1", { opacity: 0, scale: 0.6, letterSpacing: "0.3em" }, { opacity: 1, scale: 1, letterSpacing: "0.02em", duration: 0.6, ease: "expo.out" });
+ft(C.S2 + 0.25, "#stockbox", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
+ft(C.S2 + 0.3, "#s_fill", { scaleX: 1 }, { scaleX: 0.12, duration: 2.5, ease: "power2.inOut" });
 ft(C.TERHAD - 0.05, "#st2", { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" });
-ft(23.2, "#sb_hot", { opacity: 0 }, { opacity: 1, duration: 0.1 });
-tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "none" }, 23.4);
+ft(C.S2 + 1.5, "#sb_hot", { opacity: 0 }, { opacity: 1, duration: 0.1 });
+tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "none" }, C.S2 + 1.7);
 [[-14, 0.9], [10, 0.6], [-6, 0.8], [0, 0]].forEach(([x, o], i) => {
   tl.set("#glitchR", { opacity: o, x: x, y: 0 }, C.TERHAD + i * 0.05);
   tl.set("#glitchC", { opacity: o, x: -x, y: 0 }, C.TERHAD + i * 0.05);
@@ -418,22 +392,22 @@ tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "
 [[12, -6], [-10, 6], [6, -2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TERHAD + i * 0.04));
 
 // ---------- VOUCHER ----------
-ft(24.93, "#s_voucher", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" });
-IN(25.0, "#vc1", 0.5, { from: { y: 0, letterSpacing: "1em" }, to: { letterSpacing: "0.42em" } });
+ft(C.S3, "#s_voucher", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" });
+IN(C.S3 + 0.07, "#vc1", 0.5, { from: { y: 0, letterSpacing: "1em" }, to: { letterSpacing: "0.42em" } });
 IN(C.BERAPA - 0.05, "#vc2", 0.5, { from: { y: 60, scale: 1.2 } });
-ft(25.05, "#ticket", { opacity: 0, y: 500, rotation: -16 }, { opacity: 1, y: 0, rotation: -4, duration: 0.7, ease: "expo.out" });
+ft(C.S3 + 0.12, "#ticket", { opacity: 0, y: 500, rotation: -16 }, { opacity: 1, y: 0, rotation: -4, duration: 0.7, ease: "expo.out" });
 ["#q1", "#q2", "#q3"].forEach((q, i) => {
   ft(C.BERAPA + i * 0.08, q, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(3)" });
   tl.to(q, { y: -14, duration: 0.22, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.BERAPA + 0.5 + i * 0.1);
 });
 ft(C.TIKTOK2, "#t_sheen", { x: "-120%" }, { x: "120%", duration: 0.7, ease: "power2.inOut" });
 punch(C.TIKTOK2, "#ticket", 1.06);
-tl.to("#ticket", { rotation: 2, duration: 1.4, ease: "sine.inOut" }, 25.8);
+tl.to("#ticket", { rotation: 2, duration: 1.4, ease: "sine.inOut" }, C.S3 + 0.87);
 
 // ---------- BAG ----------
-flash(27.62, 0.5, 0.2);
-ft(27.68, "#tk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" });
-ft(27.72, "#bagwrap", { opacity: 0, scale: 0.3, y: 200, rotation: -12 }, { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.8)" });
+flash(C.S4 - 0.04, 0.5, 0.2);
+ft(C.S4 + 0.02, "#tk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" });
+ft(C.S4 + 0.06, "#bagwrap", { opacity: 0, scale: 0.3, y: 200, rotation: -12 }, { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.8)" });
 IN(C.BEG - 0.06, "#tk2", 0.45, { from: { y: 50, scale: 1.2 } });
 ft(C.BEG - 0.25, "#finger", { opacity: 0, x: 120, y: 120, scale: 1.3 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.25, ease: "power2.out" });
 ft(C.BEG, "#finger", { scale: 1 }, { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.inOut" });

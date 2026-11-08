@@ -45,8 +45,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 .b-ico{font-size:34px;color:var(--champ)}
 .b-serif{font-family:var(--serif);font-style:italic;font-weight:700;font-size:110px;line-height:1;color:var(--ivory)}
 .b-sans{font-weight:600;font-size:24px;letter-spacing:.5em;margin-left:.5em;color:var(--champ);margin-top:10px}
-.minicard{position:absolute;right:66px;top:440px;width:300px;border-radius:26px;overflow:hidden;background:#140c0e;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1.5px rgba(226,201,155,.55)}
-.minicard img{display:block;width:300px;height:620px;object-fit:cover}
+.minicard{position:absolute;right:56px;top:560px;width:240px;border-radius:26px;overflow:hidden;background:#140c0e;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1.5px rgba(226,201,155,.55)}
+.minicard img{display:block;width:240px;height:496px;object-fit:cover}
 .mc-cap{padding:16px 18px 20px;text-align:center}
 .mc-cap b{display:block;font-weight:700;font-size:22px;letter-spacing:.26em}
 .mc-cap i{font-family:var(--serif);font-size:34px;color:var(--champ)}
@@ -121,3 +121,11 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 #iris{position:absolute;inset:0;background:#000;opacity:0}
 #grain{position:absolute;inset:-200px;background:url(assets/img/grain.png);opacity:.07;mix-blend-mode:overlay}
 #vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.42) 100%)}
+
+#v_pip{z-index:5;left:auto;right:64px;top:660px;width:300px;height:533px;border-radius:30px;transform-origin:50% 50%}
+#pip_frame{position:absolute;right:56px;top:652px;width:316px;height:549px;border-radius:34px;border:2px solid rgba(226,201,155,.8);box-shadow:0 30px 80px rgba(0,0,0,.5);z-index:6}
+.pip-res{position:absolute;left:50%;bottom:-74px;transform:translateX(-50%);white-space:nowrap;font-weight:600;font-size:34px;letter-spacing:.04em;padding:10px 26px;border-radius:40px;background:rgba(20,16,18,.55);border:1.5px solid rgba(244,238,230,.3)}
+.pip-res i{font-family:var(--serif);font-size:46px;color:var(--champ)}
+.thanks{position:absolute;left:0;width:100%;top:250px;text-align:center}
+.thanks i{display:block;font-family:var(--serif);font-weight:600;font-size:140px;color:var(--champ);text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.thanks span{display:block;font-weight:500;font-size:30px;letter-spacing:.3em;text-transform:uppercase;margin-top:6px}

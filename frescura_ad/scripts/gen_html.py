@@ -6,10 +6,10 @@ from timeline import *
 OUTDIR = sys.argv[1]
 caps = captions()
 for g in caps:
-    lim = EDU[0] if g["words"][0][1] < EDU[0] else END[0] + 0.05
+    lim = FB_END + 0.05 if g["words"][0][1] < FB_END else END[0] + 0.05
     g["end"] = min(g["end"], lim)
 
-E0, E1 = EDU
+PIP0 = round(f(7.60), 3); PIP1 = round(f(12.20), 3)
 Q = lambda x: f"{x:.3f}"
 
 def cap_html():
@@ -48,11 +48,10 @@ body = []
 body.append(vid("v_hook1", "pump_press.mp4", 0, 2.66, 0.0))
 body.append(vid("v_hook2", "pump_close.mp4", 2.66, 2.84, 0.3))
 body.append(vid("v_fb", "feedback_cut.mp4", FB_OUT, FB_END - FB_OUT, 0.0))
-body.append(vid("v_foam", "foam_palm.mp4", 8.80, 3.10, 0.0))
-body.append(vid("v_edu", "foam_lather.mp4", E0, E1 - E0, 0.0))
-body.append(f'<img id="i_cta" class="clip bgimg" src="assets/img/products.jpg" data-start="{Q(E1)}" data-duration="{Q(21.70-E1)}" />')
-body.append(vid("v_stock", "pump_press.mp4", 21.70, 3.26, 0.6))
-body.append(vid("v_voucher", "foam_lather.mp4", 24.93, 2.73, 1.2))
+body.append(vid("v_pip", "pump_close.mp4", PIP0, PIP1 - PIP0, 0.2))
+body.append(f'<img id="i_cta" class="clip bgimg" src="assets/img/products.jpg" data-start="{Q(CL)}" data-duration="{Q(S2-CL)}" />')
+body.append(vid("v_stock", "pump_press.mp4", S2, S3 - S2, 0.6))
+body.append(vid("v_voucher", "foam_lather.mp4", S3, S4 - S3, 1.2))
 
 # ---------------- SCENES ----------------
 body.append(scene("s_hook", 0, 2.66, f'''
@@ -83,30 +82,12 @@ body.append(scene("s_fb", FB_OUT, FB_END - FB_OUT, f'''
     <div class="b-ico">✦</div><div class="b-serif">lembut</div><div class="b-sans">SANGAT</div></div>
   <div id="glory" class="minicard"><img src="assets/img/glory.jpg"/><div class="mc-cap"><b>WOMAN GLORY</b><i>Bombshell</i></div></div>
   <svg id="scent" viewBox="0 0 300 400"><path id="sc1" d="M60 390 C 20 300, 110 260, 70 170 S 120 40, 90 0"/><path id="sc2" d="M150 390 C 110 300, 200 260, 160 170 S 210 40, 180 0"/><path id="sc3" d="M240 390 C 200 300, 290 260, 250 170 S 300 40, 270 0"/></svg>
-  <div id="b_wangi" class="badge glass" style="top:430px;left:70px"><div class="b-ico">✓</div><div class="b-serif">wangi</div><div class="b-sans">TAHAN LAMA</div></div>
+  <div id="b_wangi" class="badge glass" style="top:430px;left:70px"><div class="b-ico">✓</div><div class="b-serif">wangi</div><div class="b-sans">MEMANG WANGI</div></div>
   <div id="stamp">{STAMP}</div>
+  <div id="pip_frame"><div id="pip_res" class="pip-res">makin <i>lembut</i> ✦</div></div>
+  <div id="thanks" class="thanks"><i>terima kasih</i><span>atas review jujur ♡</span></div>
 '''))
-body.append(scene("s_foam", 8.80, 3.10, f'''
-  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.65),rgba(8,6,8,0) 40%,rgba(8,6,8,.6))"></div>
-  <div id="meter" class="glass panel" style="top:250px">
-    <div class="eyebrow dark-on-glass">TAHAP KELEMBUTAN KULIT</div>
-    <div class="track"><div id="m_fill" class="fill"></div><div id="m_knob" class="knob"></div></div>
-    <div class="m-labels"><span id="ml1">Mula-mula</span><span class="arrow">⟶</span><span id="ml2">Lama-lama</span></div>
-    <div id="m_res" class="m-res">makin <i>lembut</i> ✦</div>
-  </div>
-'''))
-body.append(scene("s_edu", E0, E1 - E0, f'''
-  <div class="ivory"></div>
-  <div id="arch" class="arch"></div>
-  <div id="e_eyebrow" class="eyebrow ink" style="position:absolute;top:960px;width:100%;text-align:center">EDUKASI &nbsp;·&nbsp; GENTLE FOAMING BODY SHOWER</div>
-  <div id="e_title" class="e-title"><span class="sans">Kenapa</span> <i>rasa lembut?</i></div>
-  <div class="rows">
-    <div class="row" id="r1"><div class="num">01</div><div class="txt"><b>OCEAN SALT</b><span>Bersihkan &amp; segarkan kulit</span></div><div class="ico">{ICON_WAVE}</div></div>
-    <div class="row" id="r2"><div class="num">02</div><div class="txt"><b>AROMATHERAPY</b><span>Wangian yang menenangkan</span></div><div class="ico">{ICON_LEAF}</div></div>
-    <div class="row" id="r3"><div class="num">03</div><div class="txt"><b>GENTLE FOAMING</b><span>Buih lembut, mesra kulit</span></div><div class="ico">{ICON_BUBBLE}</div></div>
-  </div>
-'''))
-body.append(scene("s_cta1", E1, 21.70 - E1, f'''
+body.append(scene("s_cta1", CL, S2 - CL, f'''
   <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.7),rgba(8,6,8,.1) 40%,rgba(8,6,8,.75))"></div>
   <div class="center-stack" style="top:230px">
     <div id="nk1" class="mega" style="font-size:170px">NAK</div>
@@ -114,7 +95,7 @@ body.append(scene("s_cta1", E1, 21.70 - E1, f'''
   </div>
   <div id="co_btn" class="cta-btn" style="top:1090px">CHECK OUT <span>⟶</span><div id="co_ring" class="ring"></div></div>
 '''))
-body.append(scene("s_stock", 21.70, 3.23, f'''
+body.append(scene("s_stock", S2, S3 - S2, f'''
   <div class="tint" style="background:radial-gradient(ellipse at 50% 40%,rgba(60,6,16,.55),rgba(8,4,6,.92) 75%)"></div>
   <div class="center-stack" style="top:300px">
     <div id="st1" class="outline">STOK</div>
@@ -127,7 +108,7 @@ body.append(scene("s_stock", 21.70, 3.23, f'''
   </div>
   <div id="glitchR" class="glitch-layer r">terhad!</div><div id="glitchC" class="glitch-layer c">terhad!</div>
 '''))
-body.append(scene("s_voucher", 24.93, 2.76, f'''
+body.append(scene("s_voucher", S3, S4 - S3, f'''
   <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.8),rgba(8,6,8,.45) 50%,rgba(8,6,8,.85))"></div>
   <div class="center-stack" style="top:250px">
     <div id="vc1" class="eyebrow" style="font-size:30px">CUBA TENGOK</div>
@@ -137,7 +118,7 @@ body.append(scene("s_voucher", 24.93, 2.76, f'''
     <div class="t-div"></div><div class="t-right"><div class="t-rm">RM</div><div class="t-q"><span id="q1">?</span><span id="q2">?</span><span id="q3">?</span></div></div>
     <div id="t_sheen" class="sheen"></div></div>
 '''))
-body.append(scene("s_bag", 27.66, END[0] - 27.66, f'''
+body.append(scene("s_bag", S4, END[0] - S4, f'''
   <div class="tint" style="background:radial-gradient(circle at 50% 42%,#2a2210 0%,#0c0a08 60%)"></div>
   <div class="center-stack" style="top:190px">
     <div id="tk1" class="mega" style="font-size:160px">TEKAN</div>
@@ -166,7 +147,7 @@ overlays = f'''
   <div class="fr-bl">SOFT | FRAGRANT</div><div id="fr_time" class="fr-br">500 ML</div>
 </div>
 <div id="fx" class="clip" data-start="0" data-duration="{Q(TOTAL)}">
-  <div id="flash"></div><div id="wipe"></div><div id="iris"></div>
+  <div id="flash"></div><div id="iris"></div>
   <div id="grain"></div><div id="vignette"></div>
 </div>
 <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="{Q(TOTAL)}" data-volume="1"></audio>
@@ -174,7 +155,7 @@ overlays = f'''
 
 CSS = open(os.path.join(os.path.dirname(__file__), "style.css")).read()
 JS = open(os.path.join(os.path.dirname(__file__), "anim.js")).read()
-consts = dict(FB_OUT=FB_OUT, FB_END=FB_END, E0=E0, E1=E1, END0=END[0], END1=END[1], TOTAL=TOTAL,
+consts = dict(FB_OUT=FB_OUT, FB_END=FB_END, CL=CL, S2=S2, S3=S3, S4=S4, PIP0=PIP0, PIP1=PIP1, TERIMA=f(18.24), END0=END[0], END1=END[1], TOTAL=TOTAL,
               LEMBUT=f(5.16), LAMA=f(7.66), LEMBUT2=f(8.64), WANGI_Q=f(12.86), WANGI=f(14.28), TIPU=f(15.96),
               CUBA=m(8.84), CEPAT=m(9.38), CHECK=m(10.06), TIKTOK=m(11.80), SANGAT=m(12.84), TERHAD=m(13.76),
               BERAPA=m(15.18), TIKTOK2=m(15.96), TEKAN=m(17.14), BEG=m(17.50), CHECK2=m(18.20))
