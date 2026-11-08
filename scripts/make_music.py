@@ -1,9 +1,9 @@
 """Original minimal-luxury deep-house bed, 120 BPM, written for the Frescura Body awareness cut.
 
-Downbeats land every 2 s from OFFSET (0.5, 2.5 ... ) so the drop hits at 16.5 s and the urgency
-section at 28.5 s. Sections: intro (0-7, filtered, under the hook voice), break (7-16.5, no drums,
-under the customer feedback), drop (16.5-28.5, the foam demo), drive (28.5-36.5, urgency + CTA,
-ticking 16ths), outro (36.5-end, last chord rings out).
+Downbeats land every 2 s from OFFSET (1, 3, 5 ... ) so the drop hits at 33 s and the urgency
+section at 45 s. Sections: intro (0-7, filtered, under the hook voice), break (7-33, light shaker only,
+under the customer feedback), drop (33-45, the foam demo), drive (45-53, urgency + CTA,
+ticking 16ths), outro (53-end, last chord rings out).
 Usage: python make_music.py out.wav [duration_s]
 """
 import sys
@@ -11,12 +11,12 @@ import numpy as np, soundfile as sf
 from scipy.signal import butter, sosfilt, fftconvolve
 
 SR = 48000
-DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 40.0
+DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 56.5
 BPM = 120.0
 BEAT = 60 / BPM
-OFFSET = 0.5                    # first downbeat (bar line) in film time
+OFFSET = 1.0                    # first downbeat (bar line) in film time
 BREAK = 7.0                     # customer feedback: drums out, keys + pad only
-DROP, DRIVE, OUTRO = 16.5, 28.5, 36.5
+DROP, DRIVE, OUTRO = 33.0, 45.0, 53.0
 rng = np.random.default_rng(11)
 N = int(DUR * SR)
 
@@ -111,6 +111,8 @@ for b in range(nbars):
         if sec == 'drive':
             for s16 in range(4):
                 place(drums, shaker(), tb + s16 * BEAT / 4, 0.55 + 0.25 * (s16 % 2), -0.3)
+        elif sec == 'break' and tb >= BREAK + 4 * BEAT:
+            place(drums, shaker(), tb + BEAT * 0.5, 0.28, -0.3)
         elif sec == 'drop':
             place(drums, shaker(), tb + BEAT * 0.25, 0.4, -0.3); place(drums, shaker(), tb + BEAT * 0.75, 0.5, -0.3)
         # offbeat bass
