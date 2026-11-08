@@ -24,7 +24,7 @@ for pi, idx in enumerate(PAGES):
     ws = [word(i) for i in idx]
     start = ws[0]['s'] - 0.06
     nxt = word(PAGES[pi+1][0])['s'] - 0.06 if pi + 1 < len(PAGES) else END_SPEECH
-    end = min(nxt, ws[-1]['e'] + 0.55)
+    end = min(nxt, ws[-1]['e'] + 0.3)
     dark = any(a <= start + 0.05 < b for a, b in LIGHT)
     spans = []
     for k, w in enumerate(ws):
