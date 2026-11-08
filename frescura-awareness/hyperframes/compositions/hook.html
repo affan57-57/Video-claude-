@@ -1,0 +1,78 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:transparent;
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#h-top{left:0;top:-60px;width:1080px;height:1030px;background:radial-gradient(120% 90% at 50% 30%, var(--sea2) 0%, var(--sea) 70%)}
+#h-bot{left:0;top:960px;width:1080px;height:960px;background:var(--ivory)}
+#h-l1{left:0;width:1080px;top:470px;text-align:center;color:var(--ivory);font-size:150px}
+#h-l2{left:0;width:1080px;top:1110px;text-align:center;color:var(--ink);font-size:150px}
+#h-k1{left:0;width:1080px;top:395px;text-align:center;color:var(--gold)}
+#h-k2{left:0;width:1080px;top:1300px;text-align:center;color:var(--wine)}
+#h-neq{left:430px;top:850px;width:220px;height:220px;border-radius:50%;background:var(--wine);color:var(--ivory);
+  display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda';font-size:150px;line-height:1;padding-bottom:18px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+#h-brand{left:0;width:1080px;top:215px;text-align:center;color:rgba(244,239,232,.8);font-size:30px}
+#h-q{left:0;width:1080px;top:1380px;text-align:center;color:var(--muted);font-size:30px}
+.h-grain{position:absolute;width:10px;height:10px;background:rgba(244,239,232,.55);transform:rotate(45deg)}
+
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+<div class="abs" style="left:0;top:1180px;width:1080px;height:740px;background:linear-gradient(180deg,rgba(23,18,18,0) 0%,rgba(23,18,18,.62) 45%,rgba(23,18,18,.7) 100%)"></div>
+
+    <div id="h-top" class="abs"></div><div id="h-bot" class="abs"></div>
+    <div id="h-grains" class="abs" style="inset:0"></div>
+    <div id="h-brand" class="abs ital">Frescura Body</div>
+    <div id="h-k1" class="abs lbl">Sea salt</div>
+    <div id="h-l1" class="abs disp it">Garam Laut</div>
+    <div id="h-k2" class="abs lbl">Table salt</div>
+    <div id="h-l2" class="abs disp">Garam Dapur</div>
+    <div id="h-neq" class="abs">&ne;</div>
+    <div id="h-q" class="abs lbl">tak sama.</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=0.0;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    const g=document.getElementById('h-grains');
+    for(let i=0;i<26;i++){const d=document.createElement('div');d.className='h-grain';d.id='h-g'+i;
+      d.style.left=(60+rnd()*960)+'px';d.style.top=(120+rnd()*720)+'px';const s=4+rnd()*10;d.style.width=s+'px';d.style.height=s+'px';g.appendChild(d);}
+    // frame 0 already shows the hook line (thumbnail)
+    tl.fromTo('#h-l1',{y:30,scale:1.06},{y:0,scale:1,duration:1.2,ease:'expo.out'},0);
+    tl.fromTo('#h-l2',{y:40,scale:1.06},{y:0,scale:1,duration:1.2,ease:'expo.out'},0);
+    tl.fromTo('#h-k2',{opacity:0},{opacity:1,duration:.3},at(1.47));
+    tl.fromTo('#h-neq',{scale:0,rotation:-90},{scale:1,rotation:0,duration:.5,ease:'back.out(1.6)'},at(1.91));
+    tl.fromTo('#h-q',{opacity:0,scale:1.3,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.4,ease:'power3.out'},at(1.75));
+    for(let i=0;i<26;i++) tl.fromTo('#h-g'+i,{y:0,opacity:.9},{y:-60-rnd()*90,opacity:.2,duration:2.3,ease:'none'},0);
+    tl.to('#h-top',{y:-30,duration:2.3,ease:'none'},0);
+
+    tl.set({},{},2.29);
+    window.__timelines["hook"]=tl;
+  })();
+  </script>
+</template>

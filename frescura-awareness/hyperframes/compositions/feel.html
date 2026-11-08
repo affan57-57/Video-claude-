@@ -1,0 +1,59 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:transparent;
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#fe-scrim{left:0;top:0;width:1080px;height:900px;background:linear-gradient(180deg, rgba(23,18,18,.5) 0%, rgba(23,18,18,0) 100%)}
+.fe-w{position:absolute;left:0;width:1080px;text-align:center;color:var(--ivory)}
+#fe-1{top:250px;font-size:190px}
+#fe-2{top:470px;font-size:190px;color:#F6D9DE}
+#fe-k1{left:0;width:1080px;top:215px;text-align:center;color:var(--ivory);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+
+  </style>
+  <div id="root" data-composition-id="feel" data-width="1080" data-height="1920">
+<div class="abs" style="left:0;top:1180px;width:1080px;height:740px;background:linear-gradient(180deg,rgba(23,18,18,0) 0%,rgba(23,18,18,.62) 45%,rgba(23,18,18,.7) 100%)"></div>
+
+    <div id="fe-scrim" class="abs"></div>
+    <div id="fe-k1" class="abs lbl">Selepas mandi</div>
+    <div id="fe-1" class="fe-w disp it">Lembut</div>
+    <div id="fe-2" class="fe-w disp it">&amp; wangi</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=20.57;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    tl.fromTo('#fe-k1',{opacity:0},{opacity:1,duration:.3},0.05);
+    tl.fromTo('#fe-1',{opacity:0,filter:'blur(14px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:.5,ease:'expo.out'},at(21.63)-.1);
+    tl.fromTo('#fe-2',{opacity:0,filter:'blur(14px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:.5,ease:'expo.out'},at(22.51)-.1);
+
+    tl.set({},{},3.07);
+    window.__timelines["feel"]=tl;
+  })();
+  </script>
+</template>

@@ -1,0 +1,89 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:var(--ivory);
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#d-num{left:90px;top:230px;color:var(--wine)}
+#d-title{left:90px;top:285px;color:var(--ink);font-size:118px}
+#d-belt{left:60px;top:880px;width:960px;height:4px;background:var(--ink)}
+#d-gate{left:470px;top:600px;width:140px;height:300px;border:4px solid var(--ink);border-bottom:none;
+  background:repeating-linear-gradient(135deg, transparent 0 14px, rgba(23,18,18,.14) 14px 18px)}
+#d-gatel{left:400px;top:550px;width:280px;text-align:center;color:var(--ink);font-size:28px}
+#d-cube{left:150px;top:700px;width:170px;height:170px;background:#fff;border:4px solid var(--ink);border-radius:18px;
+  box-shadow:inset -18px -18px 0 rgba(23,18,18,.06)}
+.d-chip{position:absolute;width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Bodoni Moda';font-weight:700;font-size:34px;color:var(--ivory);background:var(--sea2)}
+#d-meter{left:90px;top:990px;width:900px}
+#d-mlbl{color:var(--ink);font-size:30px}
+#d-track{margin-top:18px;width:900px;height:22px;border-radius:11px;background:rgba(23,18,18,.08);overflow:hidden}
+#d-fill{width:900px;height:22px;border-radius:11px;background:var(--sea2);transform-origin:left center}
+#d-lost{left:90px;top:1080px;color:var(--rose);font-size:62px}
+
+  </style>
+  <div id="root" data-composition-id="dapur" data-width="1080" data-height="1920">
+
+
+    <div id="d-num" class="abs lbl">01 &mdash; Garam dapur</div>
+    <div id="d-title" class="abs disp">Diproses<span class="it" style="color:var(--wine)">.</span></div>
+    <div id="d-gatel" class="abs lbl">Proses</div>
+    <div id="d-gate" class="abs"></div>
+    <div id="d-belt" class="abs"></div>
+    <div id="d-cube" class="abs"></div>
+    <div id="d-c0" class="d-chip">Mg</div><div id="d-c1" class="d-chip">Ca</div><div id="d-c2" class="d-chip">K</div>
+    <div id="d-meter" class="abs"><div id="d-mlbl" class="lbl">Mineral</div><div id="d-track"><div id="d-fill"></div></div></div>
+    <div id="d-lost" class="abs disp it">kebanyakannya hilang</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=2.29;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    const pos=[[120,610],[300,610],[300,790]];
+    pos.forEach((p,i)=>{const c=document.getElementById('d-c'+i);c.style.left=p[0]+'px';c.style.top=p[1]+'px';});
+    tl.fromTo('#d-num',{opacity:0,x:-30},{opacity:1,x:0,duration:.4,ease:'power3.out'},0.05);
+    tl.fromTo('#d-title',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.35,ease:'power3.out'},0.12);
+    tl.fromTo('#d-belt',{scaleX:0},{scaleX:1,duration:.6,ease:'power3.inOut',transformOrigin:'left center'},0.1);
+    tl.fromTo(['#d-gate','#d-gatel'],{opacity:0,y:-40},{opacity:1,y:0,duration:.5,ease:'expo.out'},0.3);
+    tl.fromTo('#d-cube',{x:-260,rotation:-8},{x:0,rotation:0,duration:.6,ease:'expo.out'},0.15);
+    pos.forEach((p,i)=>tl.fromTo('#d-c'+i,{x:-260,scale:0},{x:0,scale:1,duration:.5,ease:'back.out(1.7)'},0.25+i*.08));
+    tl.fromTo('#d-meter',{opacity:0},{opacity:1,duration:.3},0.5);
+    // into the process gate
+    tl.to('#d-cube',{x:320,duration:.9,ease:'power2.inOut'},at(3.69));
+    pos.forEach((p,i)=>tl.to('#d-c'+i,{x:320,duration:.9,ease:'power2.inOut'},at(3.69)));
+    tl.to('#d-gate',{backgroundPosition:'80px 0px',duration:.9,ease:'none'},at(3.69));
+    // stripped off: minerals fall and grey out
+    pos.forEach((p,i)=>tl.to('#d-c'+i,{y:520,rotation:(i-1)*40,backgroundColor:'#BDB4AC',opacity:0,duration:.9,ease:'power3.in'},at(4.91)+i*.1));
+    tl.to('#d-cube',{x:620,duration:.9,ease:'power2.inOut'},at(4.91));
+    tl.fromTo('#d-fill',{scaleX:1},{scaleX:.08,backgroundColor:'#C23A4B',duration:1.0,ease:'power2.inOut'},at(4.91));
+    tl.fromTo('#d-lost',{opacity:0,y:30},{opacity:1,y:0,duration:.35,ease:'power4.out'},at(5.33)-.1);
+
+    tl.set({},{},3.96);
+    window.__timelines["dapur"]=tl;
+  })();
+  </script>
+</template>

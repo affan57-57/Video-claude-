@@ -1,0 +1,68 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:transparent;
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#e-scrim{left:0;top:0;width:1080px;height:1920px;background:linear-gradient(180deg, rgba(23,18,18,.72) 0%, rgba(23,18,18,.15) 45%, rgba(23,18,18,.65) 100%)}
+#e-logo{left:0;width:1080px;top:290px;text-align:center;color:var(--ivory);font-size:120px;letter-spacing:.2em}
+#e-body{left:0;width:1080px;top:440px;text-align:center;color:var(--ivory);font-size:34px}
+#e-line{left:390px;top:500px;width:300px}
+#e-tag{left:0;width:1080px;top:530px;text-align:center;color:var(--ivory);font-size:56px}
+#e-cta{left:0;width:1080px;top:1150px;text-align:center}
+#e-cta span{display:inline-block;padding:24px 48px;border-radius:70px;background:var(--yellow);color:var(--ink);font-family:'Manrope';font-weight:800;font-size:38px;letter-spacing:.08em}
+#e-v{left:0;width:1080px;top:1270px;text-align:center;color:rgba(244,239,232,.9);font-size:28px}
+
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+<div class="abs" style="left:0;top:1180px;width:1080px;height:740px;background:linear-gradient(180deg,rgba(23,18,18,0) 0%,rgba(23,18,18,.62) 45%,rgba(23,18,18,.7) 100%)"></div>
+
+    <div id="e-scrim" class="abs"></div>
+    <div id="e-logo" class="abs ital">Frescura</div>
+    <div id="e-body" class="abs lbl">Body</div>
+    <div id="e-line" class="hair"></div>
+    <div id="e-tag" class="abs disp it">Ocean salt &times; perfume</div>
+    <div id="e-cta" class="abs"><span>&#128717; TEKAN BEG KUNING</span></div>
+    <div id="e-v" class="abs lbl">Woman Glory &middot; Nature Man</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=37.95;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    tl.fromTo('#e-logo',{opacity:0,scale:1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.9,ease:'expo.out'},0.05);
+    tl.fromTo('#e-body',{opacity:0},{opacity:1,duration:.4},0.4);
+    tl.fromTo('#e-line',{scaleX:0},{scaleX:1,duration:.6,ease:'power3.inOut'},0.45);
+    tl.fromTo('#e-tag',{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:'expo.out'},0.7);
+    tl.fromTo('#e-cta',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.45,ease:'back.out(2)'},1.1);
+    tl.fromTo('#e-v',{opacity:0},{opacity:1,duration:.4},1.4);
+
+    tl.set({},{},5.05);
+    window.__timelines["endcard"]=tl;
+  })();
+  </script>
+</template>

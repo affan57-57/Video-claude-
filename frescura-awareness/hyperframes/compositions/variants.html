@@ -1,0 +1,74 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:var(--ivory);
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#v-k{left:0;width:1080px;top:215px;text-align:center;color:var(--wine)}
+#v-t{left:0;width:1080px;top:260px;text-align:center;color:var(--ink);font-size:110px}
+.v-card{position:absolute;top:440px;width:450px;height:700px;border-radius:34px;overflow:hidden;box-shadow:0 30px 80px rgba(23,18,18,.22)}
+#v-c1{left:55px;background:var(--wine)}
+#v-c2{left:575px;background:radial-gradient(120% 80% at 50% 25%, #2A6B78 0%, #0F2E37 75%)}
+#v-img{position:absolute;left:0;top:0;width:450px;height:520px;object-fit:cover;object-position:50% 58%}
+.v-cap{position:absolute;left:0;bottom:0;width:450px;height:200px;padding:28px 30px;background:var(--paper)}
+.v-cap b{display:block;font-family:'Bodoni Moda';font-style:italic;font-weight:500;font-size:50px;color:var(--ink);line-height:1}
+.v-cap i{display:block;font-style:normal;font-family:'Manrope';font-weight:800;font-size:28px;letter-spacing:.3em;margin-top:16px}
+#v-bot{position:absolute;left:150px;top:120px;width:150px;height:330px;border-radius:22px;
+  background:linear-gradient(160deg, rgba(244,239,232,.22), rgba(244,239,232,.05));border:2px solid rgba(244,239,232,.5)}
+#v-pump{position:absolute;left:190px;top:60px;width:70px;height:60px;border-radius:12px 12px 0 0;background:rgba(244,239,232,.85)}
+#v-bl{position:absolute;left:150px;top:260px;width:150px;text-align:center;color:var(--ivory);font-family:'Italiana';font-size:18px;letter-spacing:.3em}
+.v-no{position:absolute;top:30px;left:30px;color:var(--ivory);font-family:'Manrope';font-weight:800;font-size:28px;letter-spacing:.2em}
+
+  </style>
+  <div id="root" data-composition-id="variants" data-width="1080" data-height="1920">
+
+
+    <div id="v-k" class="abs lbl">Pilih aroma anda</div>
+    <div id="v-t" class="abs disp">2 <span class="it" style="color:var(--wine)">varian</span></div>
+    <div id="v-c1" class="v-card"><img id="v-img" src="assets/img/bottle.jpg" alt="">
+      <div class="v-no">01</div>
+      <div class="v-cap"><b>Woman Glory</b><i style="color:var(--rose)">BOMBSHELL</i></div></div>
+    <div id="v-c2" class="v-card"><div id="v-pump"></div><div id="v-bot"></div><div id="v-bl" data-layout-ignore>FRESCURA</div>
+      <div class="v-no" data-layout-allow-overlap>02</div>
+      <div class="v-cap"><b>Nature Man</b><i style="color:var(--sea2)">FANTASY</i></div></div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=25.85;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    tl.fromTo('#v-k',{opacity:0},{opacity:1,duration:.3},0.02);
+    tl.fromTo('#v-t',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.35},0.02);
+    tl.fromTo('#v-c1',{y:1800,rotation:-6},{y:0,rotation:-2,duration:.7,ease:'expo.out'},at(27.05)-.25);
+    tl.fromTo('#v-img',{scale:1.25},{scale:1,duration:2.5,ease:'power2.out'},at(27.05)-.25);
+    tl.fromTo('#v-c2',{y:1800,rotation:6},{y:0,rotation:2,duration:.7,ease:'expo.out'},at(28.47)-.25);
+
+    tl.set({},{},3.74);
+    window.__timelines["variants"]=tl;
+  })();
+  </script>
+</template>

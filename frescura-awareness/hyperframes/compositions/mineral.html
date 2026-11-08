@@ -1,0 +1,68 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:var(--ivory);
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#m-core{left:400px;top:520px;width:280px;height:280px;transform:rotate(45deg);
+  background:linear-gradient(135deg,#fff 0%, #EFE5D6 50%, var(--gold) 100%);box-shadow:0 30px 80px rgba(110,15,31,.18)}
+.m-el{position:absolute;width:250px;height:150px;border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:18px 22px}
+.m-sym{font-family:'Bodoni Moda';font-weight:700;font-size:64px;color:var(--wine);line-height:1}
+.m-nm{font-family:'Manrope';font-weight:600;font-size:28px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-top:10px}
+#m-title{left:0;width:1080px;top:230px;text-align:center;color:var(--ink);font-size:92px}
+#m-stamp{left:290px;top:1050px;width:500px;height:120px;border:5px solid var(--wine);border-radius:60px;color:var(--wine);
+  display:flex;align-items:center;justify-content:center;font-family:'Manrope';font-weight:800;font-size:48px;letter-spacing:.14em}
+
+  </style>
+  <div id="root" data-composition-id="mineral" data-width="1080" data-height="1920">
+
+
+    <div id="m-title" class="abs disp">Mineral <span class="it" style="color:var(--wine)">semula jadi</span></div>
+    <div id="m-core" class="abs"></div>
+    <div id="m-e0" class="m-el"><div class="m-sym">Mg</div><div class="m-nm">Magnesium</div></div>
+    <div id="m-e1" class="m-el"><div class="m-sym">Ca</div><div class="m-nm">Kalsium</div></div>
+    <div id="m-e2" class="m-el"><div class="m-sym">K</div><div class="m-nm">Kalium</div></div>
+    <div id="m-e3" class="m-el"><div class="m-sym">Na</div><div class="m-nm">Natrium</div></div>
+    <div id="m-stamp" class="abs">&#10003; MASIH ADA</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=9.33;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    const P=[[90,440],[740,440],[90,780],[740,780]], F=[[-400,0],[400,0],[-400,0],[400,0]];
+    P.forEach((p,i)=>{const c=document.getElementById('m-e'+i);c.style.left=p[0]+'px';c.style.top=p[1]+'px';});
+    tl.fromTo('#m-core',{scale:0,rotation:0},{scale:1,rotation:45,duration:.6,ease:'expo.out'},0);
+    tl.fromTo('#m-title',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.35},at(9.83)-.1);
+    P.forEach((p,i)=>tl.fromTo('#m-e'+i,{x:F[i][0],opacity:0},{x:0,opacity:1,duration:.45,ease:'expo.out'},at(10.27)+i*.16));
+    tl.fromTo('#m-stamp',{scale:1.8,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:-3,duration:.28,ease:'power4.in'},at(10.93)-.1);
+
+    tl.set({},{},2.28);
+    window.__timelines["mineral"]=tl;
+  })();
+  </script>
+</template>

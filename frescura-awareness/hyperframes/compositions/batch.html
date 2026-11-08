@@ -1,0 +1,71 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:var(--wine);
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#n-card{left:290px;top:300px;width:500px;height:500px;border-radius:40px;background:rgba(244,239,232,.08);border:2px solid rgba(244,239,232,.35);overflow:hidden}
+#n-img{position:absolute;left:0;top:0;width:500px;height:500px;object-fit:cover;object-position:50% 50%;opacity:.85}
+#n-stamp{left:250px;top:480px;width:580px;height:140px;border:7px solid var(--ivory);border-radius:20px;color:var(--ivory);
+  display:flex;align-items:center;justify-content:center;font-family:'Manrope';font-weight:800;font-size:76px;letter-spacing:.12em;background:rgba(110,15,31,.55)}
+#n-line{left:140px;top:960px;width:800px;height:3px;background:rgba(244,239,232,.35)}
+.n-dot{position:absolute;top:944px;width:36px;height:36px;border-radius:50%;border:3px solid var(--ivory)}
+.n-tx{position:absolute;top:1000px;width:300px;color:var(--ivory);font-size:28px}
+#n-run{left:122px;top:952px;width:20px;height:20px;border-radius:50%;background:var(--gold)}
+#n-t{left:0;width:1080px;top:860px;text-align:center;color:#F6D9DE;font-size:58px}
+
+  </style>
+  <div id="root" data-composition-id="batch" data-width="1080" data-height="1920">
+
+
+    <div id="n-card" class="abs"><img id="n-img" src="assets/img/bottle.jpg" alt=""></div>
+    <div id="n-stamp" class="abs">HABIS</div>
+    <div id="n-line" class="abs"></div>
+    <div id="n-d1" class="n-dot" style="left:122px;background:var(--ivory)"></div>
+    <div id="n-d2" class="n-dot" style="left:922px"></div>
+    <div id="n-run" class="abs"></div>
+    <div class="n-tx lbl" style="left:100px">Batch ini</div>
+    <div class="n-tx lbl" style="left:740px;text-align:right">Seterusnya</div>
+    <div id="n-t" class="abs disp it">tunggu batch seterusnya&hellip;</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=30.91;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    tl.fromTo('#n-card',{y:60,opacity:0},{y:0,opacity:1,duration:.4,ease:'expo.out'},0);
+    tl.fromTo('#n-img',{scale:1.3},{scale:1.1,duration:2.68,ease:'none'},0);
+    tl.fromTo('#n-stamp',{scale:2,opacity:0,rotation:-14},{scale:1,opacity:1,rotation:-8,duration:.22,ease:'power4.in'},at(31.21)+.05);
+    tl.to('#n-img',{filter:'grayscale(1)',opacity:.45,duration:.3},at(31.21)+.25);
+    tl.fromTo('#n-t',{opacity:0},{opacity:1,duration:.35},at(32.27)-.2);
+    tl.fromTo('#n-run',{x:0},{x:800,duration:1.4,ease:'power2.inOut'},at(32.27));
+
+    tl.set({},{},2.68);
+    window.__timelines["batch"]=tl;
+  })();
+  </script>
+</template>

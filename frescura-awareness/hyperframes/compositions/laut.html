@@ -1,0 +1,79 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');font-weight:700;font-style:italic}
+@font-face{font-family:'Italiana';src:url('assets/fonts/italiana-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Manrope';src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');font-weight:800}
+
+    #root{position:absolute;inset:0;overflow:hidden;background:radial-gradient(130% 80% at 50% 20%, #1D5361 0%, #0F2E37 70%);
+--ivory:#F4EFE8; --paper:#FBF8F3; --ink:#171212; --wine:#6E0F1F; --rose:#C23A4B;
+--gold:#B89463; --sea:#0F2E37; --sea2:#1D5361; --muted:#8B8079; --yellow:#F2C230;
+}
+
+.lbl{font-family:'Manrope';font-weight:600;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+.disp{font-family:'Bodoni Moda';font-weight:500;line-height:.95;letter-spacing:-.01em}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:400}
+.ital{font-family:'Italiana';letter-spacing:.42em;text-transform:uppercase}
+.abs{position:absolute}
+.hair{position:absolute;height:2px;background:var(--gold);transform-origin:left center}
+
+
+#l-num{left:90px;top:230px;color:var(--gold)}
+#l-title{left:90px;top:285px;color:var(--ivory);font-size:118px}
+#l-sub{left:90px;top:420px;color:rgba(244,239,232,.75);font-size:52px}
+#l-sun{left:760px;top:500px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle, #F1DDB4 0%, var(--gold) 60%, rgba(184,148,99,0) 72%)}
+.l-wave{position:absolute;left:-1080px;width:3240px;height:220px}
+.l-steam{position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(244,239,232,.8)}
+.l-cry{position:absolute;width:44px;height:44px;background:linear-gradient(135deg,#fff 0%, #E9DDC9 55%, var(--gold) 100%);transform:rotate(45deg);box-shadow:0 0 30px rgba(241,221,180,.6)}
+#l-tag{left:0;width:1080px;top:1060px;text-align:center;color:var(--gold);font-size:64px}
+
+  </style>
+  <div id="root" data-composition-id="laut" data-width="1080" data-height="1920">
+
+
+    <div id="l-sun" class="abs"></div>
+    <div id="l-steams" class="abs" style="inset:0"></div>
+    <svg id="l-w1" class="l-wave" style="top:820px" viewBox="0 0 3240 220" preserveAspectRatio="none"><path fill="#1D5361" d="M0 80 Q 135 20 270 80 T 540 80 T 810 80 T 1080 80 T 1350 80 T 1620 80 T 1890 80 T 2160 80 T 2430 80 T 2700 80 T 2970 80 T 3240 80 V220 H0Z"/></svg>
+    <svg id="l-w2" class="l-wave" style="top:880px" viewBox="0 0 3240 220" preserveAspectRatio="none"><path fill="#2A6B78" d="M0 70 Q 180 10 360 70 T 720 70 T 1080 70 T 1440 70 T 1800 70 T 2160 70 T 2520 70 T 2880 70 T 3240 70 V220 H0Z"/></svg>
+    <div class="abs" style="left:0;top:1080px;width:1080px;height:840px;background:#2A6B78"></div>
+    <div id="l-crys" class="abs" style="inset:0"></div>
+    <div id="l-num" class="abs lbl">02 &mdash; Garam laut</div>
+    <div id="l-title" class="abs disp it">Disejat terus</div>
+    <div id="l-sub" class="abs disp">dari air laut</div>
+    <div id="l-tag" class="abs disp it">= mineral</div>
+
+  </div>
+  <script>
+  (function(){
+    const T0=6.25;
+    const at=t=>Math.max(0,+(t-T0).toFixed(3));
+    const tl=gsap.timeline({paused:true});
+    let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+
+    const st=document.getElementById('l-steams');
+    for(let i=0;i<34;i++){const d=document.createElement('div');d.className='l-steam';d.id='l-s'+i;d.style.left=(80+rnd()*920)+'px';d.style.top=(820+rnd()*60)+'px';st.appendChild(d);
+      tl.fromTo('#l-s'+i,{y:0,opacity:0,scale:.6},{y:-240-rnd()*200,opacity:.85,scale:1.3,duration:1.6+rnd(),ease:'power1.out'},at(7.09)+rnd()*1.2);}
+    const cr=document.getElementById('l-crys');
+    const cp=[[250,690],[420,620],[600,700],[770,640],[520,560]];
+    cp.forEach((p,i)=>{const d=document.createElement('div');d.className='l-cry';d.id='l-c'+i;d.style.left=p[0]+'px';d.style.top=p[1]+'px';cr.appendChild(d);
+      tl.fromTo('#l-c'+i,{scale:0,rotation:0},{scale:1,rotation:45,duration:.5,ease:'back.out(2)'},at(8.97)-.15+i*.06);});
+    tl.fromTo('#l-w1',{x:0},{x:540,duration:3.08,ease:'none'},0);
+    tl.fromTo('#l-w2',{x:0},{x:-720,duration:3.08,ease:'none'},0);
+    tl.fromTo('#l-sun',{y:120,opacity:0},{y:0,opacity:1,duration:1.0,ease:'expo.out'},0);
+    tl.fromTo('#l-num',{opacity:0,x:-30},{opacity:1,x:0,duration:.4,ease:'power3.out'},0.05);
+    tl.fromTo('#l-title',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.35,ease:'power3.out'},at(7.09)-.1);
+    tl.fromTo('#l-sub',{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'power3.out'},at(7.71));
+    tl.fromTo('#l-tag',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.4,ease:'expo.out'},at(8.75)-.1);
+
+    tl.set({},{},3.08);
+    window.__timelines["laut"]=tl;
+  })();
+  </script>
+</template>
