@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Frescura Body — Awareness (Real Feedback)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <style>
+      /* Frescura Body — minimal luxury: wine-black ground, champagne gold, ivory, foam blush */
+      :root {
+        --ground: #12060a;
+        --wine: #2a0c15;
+        --gold: #e2c48e;
+        --gold-deep: #b8915a;
+        --ivory: #f8f1e7;
+        --blush: #f3c6cf;
+        --bag: #ffc83d;
+        --serif: "Bodoni Moda", serif;
+        --sans: "Manrope", sans-serif;
+        --wide: "Syncopate", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); font-family: var(--sans); color: var(--ivory); }
+      .clip, .layer { position: absolute; inset: 0; }
+      .abs { position: absolute; }
+      video.fill, img.fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .center { left: 0; right: 0; text-align: center; }
+      .serif-i { font-family: var(--serif); font-style: italic; font-weight: 500; }
+      .wide { font-family: var(--wide); font-weight: 700; text-transform: uppercase; }
+      .gold { color: var(--gold); }
+      .shade-top { background: linear-gradient(180deg, rgba(18,6,10,.85) 0%, rgba(18,6,10,0) 32%); }
+      .shade-bot { background: linear-gradient(0deg, rgba(18,6,10,.92) 0%, rgba(18,6,10,.35) 38%, rgba(18,6,10,0) 60%); }
+      .wine-bg { background: radial-gradient(120% 70% at 50% 30%, #3a1220 0%, #1c0810 55%, #0d0407 100%); }
+      .glow { position: absolute; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(226,196,142,.28) 0%, rgba(226,196,142,0) 65%); }
+      .hairline { position: absolute; background: var(--gold); }
+      .pill { display: inline-block; padding: 14px 30px; border: 2px solid var(--gold); border-radius: 999px; font-family: var(--wide); font-weight: 700; font-size: 26px; letter-spacing: .28em; color: var(--gold); }
+      .glass { background: rgba(18,6,10,.62); border: 1.5px solid rgba(226,196,142,.55); border-radius: 34px; backdrop-filter: blur(14px); }
+      .num { font-family: var(--wide); font-weight: 700; font-size: 28px; letter-spacing: .3em; color: var(--gold); }
+      .w { display: inline-block; white-space: pre; }
+
+      /* persistent chrome */
+      #brand { top: 96px; font-family: var(--wide); font-weight: 700; font-size: 28px; letter-spacing: .6em; color: var(--gold); padding-left: .62em; }
+      #progress { left: 70px; top: 76px; height: 3px; width: 940px; background: rgba(226,196,142,.18); border-radius: 3px; overflow: hidden; }
+      #progress i { position: absolute; left: 0; top: 0; bottom: 0; width: 940px; background: var(--gold); transform-origin: 0 50%; }
+      #grain { position: absolute; inset: -60px; background: url(assets/img/grain.png); background-size: 540px 960px; opacity: .07; mix-blend-mode: overlay; pointer-events: none; }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(120% 85% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); pointer-events: none; }
+      .flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+
+      /* captions */
+      #caps { position: absolute; left: 70px; right: 70px; top: 1250px; height: 300px; }
+      .cap { position: absolute; left: 0; right: 0; top: 0; text-align: center; font-family: var(--sans); font-weight: 800; font-size: 70px; line-height: 1.12; letter-spacing: -.01em; color: var(--ivory); text-shadow: 0 6px 28px rgba(0,0,0,.65), 0 2px 6px rgba(0,0,0,.5); opacity: 0; }
+      .cap .k { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--gold); font-size: 84px; letter-spacing: 0; }
+
+      /* scene specifics */
+      .h-xl { font-size: 210px; line-height: .95; }
+      .card { position: absolute; overflow: hidden; border-radius: 36px; border: 2px solid var(--gold); box-shadow: 0 40px 90px rgba(0,0,0,.55); }
+      .polaroid { position: absolute; width: 500px; height: 680px; background: var(--ivory); padding: 16px 16px 70px; box-shadow: 0 30px 70px rgba(0,0,0,.6); border-radius: 6px; }
+      .polaroid img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+      .polaroid span { position: absolute; left: 0; right: 0; bottom: 16px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 30px; color: #3a1220; }
+      .tile { position: absolute; width: 178px; height: 176px; border: 2px solid var(--gold); border-radius: 22px; background: rgba(18,6,10,.6); text-align: center; }
+      .tile b { display: block; margin-top: 22px; font-family: var(--serif); font-weight: 500; font-size: 76px; line-height: 1; color: var(--ivory); }
+      .tile small { display: block; margin-top: 14px; font-family: var(--sans); font-weight: 800; font-size: 26px; letter-spacing: 0; color: var(--gold); }
+      .chip { position: absolute; left: 90px; padding: 20px 34px 20px 26px; border-radius: 999px; background: rgba(18,6,10,.66); border: 1.5px solid rgba(226,196,142,.6); font-weight: 700; font-size: 38px; color: var(--ivory); backdrop-filter: blur(10px); }
+      .chip em { font-style: normal; color: var(--gold); margin-right: 16px; }
+      .bar { position: absolute; bottom: 0; width: 18px; border-radius: 9px; background: var(--gold); transform-origin: 50% 100%; }
+      .pip { position: absolute; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; border: 3px solid var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+      .pipv { position: absolute; right: 60px; top: 300px; width: 300px; height: 300px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 3px solid var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+      .pip video { position: absolute; left: -10%; top: -6%; width: 120%; height: auto; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="36.7" data-width="1080" data-height="1920">
+
+      <!-- ======================= AUDIO (voice + SFX + music, pre-mixed) ======================= -->
+      <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="36.7" data-volume="1" data-track-index="20"></audio>
+
+      <!-- ======================= S1 HOOK  0 – 3.62 ======================= -->
+      <video id="v1" class="fill" style="z-index:1" src="assets/video/pump.mp4" data-start="0" data-duration="3.72" data-media-start="2.2" muted playsinline data-track-index="0"></video>
+      <div id="s1" class="clip" style="z-index:2" data-start="0" data-duration="3.72" data-track-index="1">
+        <div class="layer" style="background: rgba(18,6,10,.55)"></div>
+        <div class="layer shade-bot"></div>
+        <div id="h1a" class="abs center serif-i h-xl" style="top: 560px">Jangan</div>
+        <div id="h1b" class="abs center wide gold" style="top: 790px; font-size: 104px; letter-spacing: .1em; padding-left: .1em">percaya</div>
+        <div id="h1c" class="abs center" style="top: 940px; font-weight: 800; font-size: 66px">cakap aku.</div>
+        <div id="h1line" class="hairline" style="left: 390px; top: 1060px; width: 300px; height: 2px"></div>
+        <div id="h2a" class="abs center" style="top: 600px; font-weight: 700; font-size: 64px"><span class="w">Tapi </span><span class="w">dengar </span><span class="w">sendiri</span></div>
+        <div id="h2b" class="abs center serif-i gold" style="top: 700px; font-size: 230px; line-height: 1; text-shadow: 0 0 60px rgba(226,196,142,.45)">feedback</div>
+        <div id="h2c" class="abs center" style="top: 990px"><span class="pill">pelanggan sebenar</span></div>
+      </div>
+
+      <!-- ======================= S1b MALL CARD + S2 LISTEN  3.62 – 8.3 ======================= -->
+      <div id="s1b" class="clip" style="z-index:3" data-start="3.62" data-duration="4.68" data-track-index="2">
+        <div class="layer wine-bg"></div>
+        <img class="fill" src="assets/img/testi_1.0.jpg" style="filter: blur(40px) brightness(.35) saturate(1.2); transform: scale(1.2)" />
+        <div class="glow" style="left: 90px; top: 420px"></div>
+        <div id="m_top" class="abs center" style="top: 190px; font-weight: 700; font-size: 54px"><span class="w">Feedback </span><span class="w">orang </span><span class="w">yang </span><span class="serif-i gold w" style="font-size: 66px">beli</span></div>
+        <div id="mcard" class="card" style="left: 150px; top: 330px; width: 780px; height: 1040px">
+          <img class="fill" src="assets/img/testi_6.5.jpg" />
+          <div class="layer shade-bot"></div>
+          <div id="m_pin" class="abs" style="left: 60px; bottom: 74px; width: 64px; height: 84px">
+            <svg viewBox="0 0 64 84" width="64" height="84"><path d="M32 2C16 2 4 14 4 30c0 21 28 50 28 50s28-29 28-50C60 14 48 2 32 2z" fill="#e2c48e"/><circle cx="32" cy="30" r="10" fill="#12060a"/></svg>
+          </div>
+          <div id="m_mall" class="abs wide" style="left: 142px; bottom: 92px; font-size: 44px; letter-spacing: .14em; color: var(--ivory)">di mall</div>
+          <div id="m_flash" class="flash"></div>
+        </div>
+        <div id="m_bot" class="abs center serif-i" style="top: 1420px; font-size: 64px"><span class="w">masa </span><span class="w">kami </span><span class="w">buat </span><span class="w gold">promosi</span></div>
+        <div id="m_pill" class="abs center" style="top: 1530px"><span class="pill">live · tanpa skrip</span></div>
+
+        <!-- S2 listen overlay -->
+        <div id="l_dim" class="layer" style="background: rgba(18,6,10,.72); opacity: 0"></div>
+        <div id="l_wrap" class="abs center" style="top: 600px; opacity: 0">
+          <svg id="l_hp" viewBox="0 0 200 180" width="200" height="180" style="display: block; margin: 0 auto">
+            <path id="l_hpath" d="M30 120 V95 a70 70 0 0 1 140 0 V120" fill="none" stroke="#e2c48e" stroke-width="10" stroke-linecap="round" stroke-dasharray="330" stroke-dashoffset="330"/>
+            <rect x="18" y="108" width="36" height="62" rx="14" fill="#e2c48e"/><rect x="146" y="108" width="36" height="62" rx="14" fill="#e2c48e"/>
+          </svg>
+          <div class="serif-i" style="margin-top: 40px; font-size: 128px; line-height: 1">Cuba dengar</div>
+          <div class="wide gold" style="margin-top: 26px; font-size: 64px; letter-spacing: .3em; padding-left: .3em">ni.</div>
+          <div id="l_bars" style="position: relative; margin: 60px auto 0; width: 520px; height: 140px"></div>
+        </div>
+        <div id="l_wipe" class="abs" style="left: 490px; top: 910px; width: 100px; height: 100px; border-radius: 50%; background: var(--gold)"></div>
+      </div>
+
+      <!-- ======================= S3 TESTIMONIAL  8.15 – 25.43 ======================= -->
+      <video id="vt" class="fill" style="z-index:4" src="assets/video/testi.mp4" data-start="8.15" data-duration="17.3" data-media-start="0" muted playsinline data-track-index="3"></video>
+      <div id="s3" class="clip" style="z-index:5" data-start="8.15" data-duration="17.35" data-track-index="4">
+        <div class="layer shade-top"></div>
+        <div class="layer" style="background: linear-gradient(0deg, rgba(18,6,10,.78) 0%, rgba(18,6,10,0) 42%)"></div>
+
+      </div>
+
+      <!-- B-roll 1: foam in palm (pump) / B-roll 2: foam on hand at the beach, each with a speaker PiP -->
+      <video id="vb1" class="fill" style="z-index:6" src="assets/video/pump.mp4" data-start="15.85" data-duration="2.6" data-media-start="14.0" muted playsinline data-track-index="5"></video>
+      <video id="vb2" class="fill" style="z-index:6" src="assets/video/beach.mp4" data-start="19.75" data-duration="2.6" data-media-start="12.5" muted playsinline data-track-index="6"></video>
+      <div id="b1" class="clip" style="z-index:7" data-start="15.85" data-duration="2.6" data-track-index="7">
+        <div class="layer shade-top"></div>
+        <div class="layer" style="background: linear-gradient(0deg, rgba(18,6,10,.8) 0%, rgba(18,6,10,0) 45%)"></div>
+      </div>
+      <div id="b2" class="clip" style="z-index:7" data-start="19.75" data-duration="2.6" data-track-index="8">
+        <div class="layer shade-top"></div>
+        <div class="layer" style="background: linear-gradient(0deg, rgba(18,6,10,.82) 0%, rgba(18,6,10,0) 45%)"></div>
+      </div>
+      <video id="pip1" class="pipv" style="z-index:8" src="assets/video/testi.mp4" data-start="15.85" data-duration="2.6" data-media-start="7.7" muted playsinline data-track-index="9"></video>
+      <video id="pip2" class="pipv" style="z-index:8" src="assets/video/testi.mp4" data-start="19.75" data-duration="2.6" data-media-start="11.6" muted playsinline data-track-index="10"></video>
+
+      <div id="s3top" class="clip" style="z-index:9" data-start="8.15" data-duration="17.35" data-track-index="11">
+        <!-- frame + label -->
+        <div class="abs" style="inset: 34px; border: 1.5px solid rgba(226,196,142,.7); border-radius: 30px"></div>
+        <div id="t_label" class="abs" style="left: 70px; top: 160px; display: flex; align-items: center; gap: 16px">
+          <i id="t_dot" style="display: block; width: 16px; height: 16px; border-radius: 50%; background: #ff3b4e"></i>
+          <span class="wide" style="font-size: 26px; letter-spacing: .26em; color: var(--ivory)">real feedback · mall</span>
+        </div>
+
+        <!-- edu 01 WANGI -->
+        <div id="e1" class="glass abs" style="left: 60px; top: 300px; width: 610px; height: 330px; opacity: 0">
+          <div class="num abs" style="left: 44px; top: 42px">01 · aroma</div>
+          <div class="serif-i abs" style="left: 40px; top: 84px; font-size: 128px; line-height: 1"><span style="margin-right: -.14em">W</span>angi</div>
+          <div class="abs" style="left: 46px; top: 240px; font-weight: 600; font-size: 32px; color: var(--blush)">Aromaterapi rose · tahan lama</div>
+          <svg class="abs" style="right: 36px; top: 70px" width="130" height="130" viewBox="0 0 130 130">
+            <g fill="none" stroke="#e2c48e" stroke-width="4" stroke-linecap="round">
+              <path id="e1rose" d="M65 30c-18 0-30 14-30 30s14 30 30 30 30-14 30-30M65 45c-9 0-15 7-15 15s6 15 15 15 15-7 15-15-6-15-15-15M65 90v32M65 108c-10-10-22-8-26-2M65 100c10-10 22-8 26-2" stroke-dasharray="420" stroke-dashoffset="420"/>
+            </g>
+          </svg>
+        </div>
+        <!-- edu 02 LEMBAB -->
+        <div id="e2" class="glass abs" style="left: 60px; top: 300px; width: 640px; height: 360px; opacity: 0">
+          <div class="num abs" style="left: 44px; top: 42px">02 · kulit</div>
+          <div class="serif-i abs" style="left: 40px; top: 92px; font-size: 112px; line-height: 1">Lembab</div>
+          <div class="abs" style="left: 46px; top: 236px; font-weight: 600; font-size: 32px; line-height: 1.3; color: var(--blush)">Kelembapan terkunci,<br />kulit terasa lembut</div>
+          <svg class="abs" style="right: 22px; top: 70px" width="130" height="139" viewBox="0 0 150 160">
+            <g fill="none" stroke="#e2c48e" stroke-width="4" stroke-linecap="round">
+              <path d="M10 120 q17-12 33 0 t33 0 t33 0 t33 0"/><path d="M10 140 q17-12 33 0 t33 0 t33 0 t33 0" opacity=".5"/>
+            </g>
+            <path id="drop1" d="M75 20c-12 18-20 28-20 40a20 20 0 0 0 40 0c0-12-8-22-20-40z" fill="#f3c6cf"/>
+            <circle id="drop2" cx="40" cy="86" r="8" fill="#f3c6cf"/><circle id="drop3" cx="112" cy="80" r="6" fill="#f3c6cf"/>
+          </svg>
+        </div>
+        <!-- edu 03 GARAM LAUT -->
+        <div id="e3" class="glass abs" style="left: 60px; top: 300px; width: 640px; height: 520px; opacity: 0">
+          <div class="num abs" style="left: 44px; top: 42px">03 · rahsia</div>
+          <div class="serif-i abs" style="left: 40px; top: 92px; font-size: 104px; line-height: 1; white-space: nowrap">Garam Laut</div>
+          <div class="tile" id="tMg" style="left: 44px; top: 238px"><b>Mg</b><small>MAGNESIUM</small></div>
+          <div class="tile" id="tCa" style="left: 236px; top: 238px"><b>Ca</b><small>KALSIUM</small></div>
+          <div class="tile" id="tK" style="left: 428px; top: 238px"><b>K</b><small>KALIUM</small></div>
+          <div id="e3t" class="abs" style="left: 46px; top: 440px; font-weight: 600; font-size: 30px; color: var(--blush)">Mineral semula jadi bantu kulit kekal lembab</div>
+        </div>
+        <!-- stamp TAK TIPU -->
+        <div id="stamp" class="abs" style="left: 640px; top: 380px; width: 340px; height: 340px; opacity: 0">
+          <svg viewBox="0 0 340 340" width="340" height="340">
+            <defs><path id="ring" d="M170 170 m-128 0 a128 128 0 1 1 256 0 a128 128 0 1 1 -256 0"/></defs>
+            <circle cx="170" cy="170" r="160" fill="rgba(18,6,10,.55)" stroke="#e2c48e" stroke-width="4"/>
+            <circle cx="170" cy="170" r="100" fill="none" stroke="#e2c48e" stroke-width="2"/>
+            <text font-family="Syncopate" font-weight="700" font-size="26" letter-spacing="8" fill="#e2c48e"><textPath href="#ring">TAK TIPU · REAL FEEDBACK ·</textPath></text>
+            <text x="170" y="168" text-anchor="middle" font-family="Bodoni Moda" font-style="italic" font-size="78" fill="#f8f1e7">100%</text>
+            <text x="170" y="210" text-anchor="middle" font-family="Syncopate" font-weight="700" font-size="24" letter-spacing="6" fill="#e2c48e">JUJUR</text>
+          </svg>
+        </div>
+        <div id="t_flash" class="flash"></div>
+      </div>
+
+      <!-- ======================= S4 PROOF  25.43 – 29.5 ======================= -->
+      <div id="s4" class="clip" style="z-index:10" data-start="25.43" data-duration="4.07" data-track-index="6">
+        <div class="layer wine-bg"></div>
+        <div class="glow" style="left: 90px; top: 520px"></div>
+        <div id="p_q" class="abs center serif-i" style="top: 230px; font-size: 100px">Dah dengar, kan?</div>
+        <div id="pc1" class="polaroid" style="left: 120px; top: 520px"><img src="assets/img/testi_1.0.jpg" /></div>
+        <div id="pc2" class="polaroid" style="left: 470px; top: 560px"><img src="assets/img/testi_6.5.jpg" /></div>
+        <div id="pc3" class="polaroid" style="left: 290px; top: 600px"><img src="assets/img/testi_12.6.jpg" /><span>“Wangi, lembab kulit”</span></div>
+        <div id="p_nt" class="abs center" style="top: 1360px; font-weight: 800; font-size: 84px">Kami tak tipu.</div>
+        <div id="p_ul" class="hairline" style="left: 300px; top: 1470px; width: 480px; height: 4px; transform-origin: 0 50%"></div>
+        <div id="p_real" class="abs center" style="top: 560px; opacity: 0">
+          <div class="wide gold" style="font-size: 210px; letter-spacing: .06em; line-height: 1; padding-left: .06em">REAL</div>
+          <div class="serif-i" style="font-size: 150px; line-height: 1.05">feedback.</div>
+          <svg width="150" height="150" viewBox="0 0 150 150" style="margin-top: 40px">
+            <circle id="p_cc" cx="75" cy="75" r="66" fill="none" stroke="#e2c48e" stroke-width="6" stroke-dasharray="415" stroke-dashoffset="415" transform="rotate(-90 75 75)"/>
+            <path id="p_ck" d="M44 78 l22 22 l42 -48" fill="none" stroke="#e2c48e" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="110" stroke-dashoffset="110"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ======================= S5 VALUE  29.5 – 32.45 ======================= -->
+      <video id="v5" class="fill" style="z-index:11" src="assets/video/beach.mp4" data-start="29.4" data-duration="3.1" data-media-start="6.0" muted playsinline data-track-index="12"></video>
+      <div id="s5" class="clip" style="z-index:12" data-start="29.4" data-duration="3.1" data-track-index="7">
+        <div class="layer" style="background: linear-gradient(180deg, rgba(18,6,10,.82) 0%, rgba(18,6,10,.25) 48%, rgba(18,6,10,.86) 100%)"></div>
+        <div id="v_a" class="abs center" style="top: 250px; font-weight: 700; font-size: 54px; letter-spacing: .02em">Untuk yang berminat,</div>
+        <div id="v_b" class="abs center serif-i h-xl" style="top: 340px">Hargai</div>
+        <div id="v_c" class="abs center serif-i gold" style="top: 560px; font-size: 128px">diri anda.</div>
+        <div id="ch1" class="chip" style="top: 1180px"><em>✓</em>Tanggalkan sel kulit mati</div>
+        <div id="ch2" class="chip" style="top: 1300px"><em>✓</em>Badan rasa segar</div>
+        <div id="ch3" class="chip" style="top: 1420px"><em>✓</em>Kulit lembut &amp; licin</div>
+      </div>
+
+      <!-- ======================= S6 CTA + END  32.45 – 36.7 ======================= -->
+      <video id="v6" class="fill" style="z-index:13; filter: blur(18px) brightness(.4) saturate(1.1); transform: scale(1.15)" src="assets/video/pump.mp4" data-start="32.45" data-duration="4.25" data-media-start="24.0" muted playsinline data-track-index="13"></video>
+      <div id="s6" class="clip" style="z-index:14" data-start="32.45" data-duration="4.25" data-track-index="8">
+        <div class="layer" style="background: radial-gradient(100% 60% at 50% 35%, rgba(58,18,32,.55) 0%, rgba(13,4,7,.9) 100%)"></div>
+        <div id="c_card" class="card" style="left: 250px; top: 230px; width: 580px; height: 760px">
+          <img class="fill" src="assets/img/pump_0.4.jpg" style="object-position: 50% 62%; transform: scale(1.35)" />
+        </div>
+        <div id="c_bagwrap" class="abs" style="left: 140px; top: 1080px; width: 230px; height: 250px">
+          <div id="c_ripple" class="abs" style="left: 15px; top: 30px; width: 200px; height: 200px; border-radius: 50%; border: 5px solid var(--bag); opacity: 0"></div>
+          <svg id="c_bag" viewBox="0 0 230 250" width="230" height="250">
+            <path d="M75 86 V66 a40 40 0 0 1 80 0 V86" fill="none" stroke="#ffc83d" stroke-width="14" stroke-linecap="round"/>
+            <path d="M28 86 h174 l-14 142 a14 14 0 0 1 -14 12 H56 a14 14 0 0 1 -14 -12 z" fill="#ffc83d"/>
+            <circle cx="88" cy="118" r="8" fill="#12060a"/><circle cx="142" cy="118" r="8" fill="#12060a"/>
+          </svg>
+        </div>
+        <div id="c_t1" class="abs" style="left: 410px; top: 1090px; font-weight: 800; font-size: 74px; line-height: 1">Tekan</div>
+        <div id="c_t2" class="abs serif-i" style="left: 404px; top: 1170px; font-size: 118px; line-height: 1; color: var(--bag)">beg kuning</div>
+        <svg id="c_arrow" class="abs" style="left: 120px; top: 1380px" width="160" height="160" viewBox="0 0 160 160">
+          <path d="M140 20 L30 130 M30 130 V60 M30 130 H100" fill="none" stroke="#ffc83d" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div id="c_btn" class="abs" style="left: 310px; top: 1430px; width: 640px; height: 116px; border-radius: 999px; background: linear-gradient(90deg, #e2c48e, #f6e2b8 50%, #e2c48e); overflow: hidden">
+          <div class="wide" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 34px; letter-spacing: .18em; color: #12060a">checkout sekarang</div>
+          <i id="c_shine" style="position: absolute; top: -20px; left: -200px; width: 120px; height: 160px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.85), rgba(255,255,255,0)); transform: rotate(18deg)"></i>
+        </div>
+
+        <!-- end lockup -->
+        <div id="end" class="layer" style="opacity: 0">
+          <div class="layer wine-bg"></div>
+          <div class="glow" style="left: 90px; top: 380px"></div>
+          <div class="abs center" style="top: 640px">
+            <div class="wide" style="font-size: 92px; letter-spacing: .34em; padding-left: .34em; color: var(--ivory)">Frescura</div>
+            <div class="serif-i gold" style="font-size: 150px; line-height: 1.1; margin-top: 6px">Body</div>
+            <div class="hairline" style="position: relative; display: block; margin: 40px auto; width: 140px; height: 2px"></div>
+            <div style="font-weight: 600; font-size: 34px; letter-spacing: .08em; color: var(--blush)">Aromatherapy Ocean Salt</div>
+            <div style="font-weight: 600; font-size: 34px; letter-spacing: .08em; color: var(--blush); margin-top: 8px">Foaming Body Shower</div>
+            <div style="margin-top: 80px"><span class="pill" style="border-color: var(--bag); color: var(--bag)">tekan beg kuning ↙</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================= CAPTIONS ======================= -->
+      <div id="caps" style="z-index:20"></div>
+
+      <!-- ======================= PERSISTENT CHROME ======================= -->
+      <div id="grain" style="z-index:30"></div>
+      <div id="vignette" style="z-index:30"></div>
+      <div id="progress" class="abs" style="z-index:31"><i id="prog"></i></div>
+      <div id="brand" class="abs center" style="z-index:31">Frescura Body</div>
+          </div>
+
+    <script>
+      // ---------- captions (film seconds; *word* = luxury serif keyword) ----------
+      const CAPS = [
+        [8.20, 9.12, "Saya nak tanya,"],
+        [9.22, 10.80, "lepas saya beri testimoni tadi tu,"],
+        [10.92, 13.30, "pengalaman pakai tadi rasa macam mana?"],
+        [13.62, 14.82, "*Wangi* lah, memang *wangi!*"],
+        [14.88, 15.38, "Tak tipu lagi?"],
+        [15.42, 16.08, "Wangi, *lembab.*"],
+        [16.12, 17.40, "Oh, *lembab* kulit."],
+        [17.52, 18.76, "Lepas je, sekarang dah lembab."],
+        [18.78, 19.78, "*Lembabkan* kulit lah."],
+        [19.94, 21.96, "Memang lembabkan kulit sebab ada *garam laut.*"],
+        [22.02, 22.98, "Terima kasih banyak!"],
+        [23.06, 23.62, "Tak tipu lah ni?"],
+        [23.68, 24.14, "Tak ada!"],
+        [24.24, 25.40, "Okey, terima kasih banyak kak!"],
+      ];
+      for (let i = 0; i < CAPS.length - 1; i++) {
+        if (CAPS[i + 1][0] - CAPS[i][1] < 0.35) CAPS[i][1] = CAPS[i + 1][0] - 0.02;
+      }
+      const capsEl = document.getElementById("caps");
+      CAPS.forEach((c, i) => {
+        const d = document.createElement("div");
+        d.className = "cap"; d.id = "cap" + i;
+        const words = c[2].split(" ");
+        let inK = false;
+        d.innerHTML = words.map((w) => {
+          const starts = w.startsWith("*"), ends = w.replace(/[,.!?]$/, "").endsWith("*");
+          if (starts) inK = true;
+          const clean = w.replace(/\*/g, "");
+          const txt = inK && clean.startsWith("W") ? `<span style="margin-right:-.14em">W</span>${clean.slice(1)}` : clean;
+          const html = `<span class="w${inK ? " k" : ""}">${txt} </span>`;
+          if (ends) inK = false;
+          return html;
+        }).join("");
+        capsEl.appendChild(d);
+      });
+
+      // sound-wave bars for "Cuba dengar ni"
+      const bars = document.getElementById("l_bars");
+      const BH = [40, 70, 110, 80, 130, 95, 60, 120, 85, 135, 70, 105, 55, 90, 45];
+      BH.forEach((h, i) => {
+        const b = document.createElement("i");
+        b.className = "bar"; b.id = "bar" + i;
+        b.style.left = (i * 34 + 6) + "px"; b.style.height = h + "px";
+        bars.appendChild(b);
+      });
+
+      // ---------- master timeline ----------
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out", EI = "power2.in", X = "expo.out";
+
+      // chrome
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 36.7, ease: "none" }, 0);
+      tl.fromTo("#brand", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 0.15);
+      tl.to("#brand", { opacity: 0, duration: 0.3 }, 34.6);
+      tl.to("#grain", { x: 30, y: -24, duration: 36.7, ease: "steps(220)" }, 0);
+
+      // S1 hook
+      tl.fromTo("#v1", { scale: 1.18 }, { scale: 1.0, duration: 3.72, ease: "power1.out" }, 0);
+      tl.fromTo("#h1a", { opacity: 1, y: 30, scale: 1.12 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: X }, 0);
+      tl.fromTo("#h1b", { opacity: 0.0001, scaleX: 1.5 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: X }, 0.4);
+      tl.fromTo("#h1c", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 1.2);
+      tl.fromTo("#h1line", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: E }, 1.3);
+      tl.to(["#h1a", "#h1b", "#h1c", "#h1line"], { opacity: 0, y: -80, duration: 0.3, ease: EI, stagger: 0.03 }, 1.72);
+      tl.fromTo("#h2a .w", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: E, stagger: 0.22 }, 1.9);
+      tl.fromTo("#h2b", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.55, ease: X }, 2.92);
+      tl.fromTo("#h2c", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 3.12);
+      tl.to(["#h2a", "#h2b", "#h2c"], { opacity: 0, y: -60, duration: 0.25, ease: EI }, 3.45);
+
+      // S1b mall card
+      tl.fromTo("#mcard", { y: 520, rotation: -6, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.6, ease: X }, 3.6);
+      tl.fromTo("#m_flash", { opacity: 0.85 }, { opacity: 0, duration: 0.3 }, 3.72);
+      tl.fromTo("#m_top .w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: E, stagger: 0.12 }, 3.7);
+      tl.fromTo("#m_pin", { y: -160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "bounce.out" }, 4.66);
+      tl.fromTo("#m_mall", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 4.82);
+      tl.fromTo("#m_bot .w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: E, stagger: 0.16 }, 5.28);
+      tl.fromTo("#m_pill", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 5.6);
+      tl.to("#mcard", { scale: 1.05, duration: 2.4, ease: "none" }, 4.2);
+
+      // S2 listen
+      tl.to("#l_dim", { opacity: 1, duration: 0.3 }, 6.8);
+      tl.to(["#m_top", "#m_bot", "#m_pill", "#m_pin", "#m_mall"], { opacity: 0, duration: 0.25 }, 6.8);
+      tl.fromTo("#l_wrap", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 6.9);
+      tl.to("#l_hpath", { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: E }, 6.95);
+      BH.forEach((h, i) => {
+        tl.fromTo("#bar" + i, { scaleY: 0.15 }, { scaleY: 1, duration: 0.16 + (i % 4) * 0.03, ease: "sine.inOut", yoyo: true, repeat: 5 }, 6.98 + (i % 5) * 0.03);
+      });
+      tl.fromTo("#l_wipe", { scale: 0 }, { scale: 26, duration: 0.42, ease: "power3.in" }, 7.78);
+
+      // S3 testimonial
+      tl.fromTo("#vt", { scale: 1.12 }, { scale: 1.0, duration: 0.9, ease: X }, 8.15);
+      tl.to("#vt", { scale: 1.07, duration: 16.3, ease: "none" }, 9.05);
+      tl.fromTo("#t_label", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 8.4);
+      tl.to("#t_dot", { opacity: 0.15, duration: 0.45, yoyo: true, repeat: 17, ease: "steps(1)" }, 8.4);
+      // edu 1 wangi
+      tl.fromTo("#e1", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.45, ease: X }, 13.48);
+      tl.to("#e1rose", { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: E }, 13.6);
+      tl.to("#e1", { opacity: 0, x: -60, duration: 0.3, ease: EI }, 15.45);
+      // b-roll 1 + edu 2 lembab
+      tl.fromTo(["#vb1", "#b1", "#pip1"], { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.3, ease: E }, 15.85);
+      tl.fromTo("#e2", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.45, ease: X }, 16.0);
+      tl.fromTo("#drop1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "back.out(2)" }, 16.2);
+      tl.fromTo(["#drop2", "#drop3"], { y: 40, opacity: 0 }, { y: -8, opacity: 1, duration: 0.5, ease: E, stagger: 0.15 }, 16.45);
+      tl.to(["#vb1", "#b1", "#pip1"], { opacity: 0, duration: 0.25 }, 18.2);
+      tl.to("#e2", { opacity: 0, x: -60, duration: 0.3, ease: EI }, 19.5);
+      // b-roll 2 + edu 3 garam laut
+      tl.fromTo(["#vb2", "#b2", "#pip2"], { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.3, ease: E }, 19.75);
+      tl.fromTo("#e3", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.45, ease: X }, 19.8);
+      tl.fromTo(["#tMg", "#tCa", "#tK"], { opacity: 0, y: 40, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)", stagger: 0.25 }, 20.0);
+      tl.fromTo("#e3t", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 21.0);
+      tl.to(["#vb2", "#b2", "#pip2"], { opacity: 0, duration: 0.25 }, 22.1);
+      tl.to("#e3", { opacity: 0, x: -60, duration: 0.3, ease: EI }, 22.4);
+      // stamp
+      tl.fromTo("#stamp", { opacity: 0, scale: 2.2, rotation: -30 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.28, ease: "power4.in" }, 23.42);
+      tl.to("#stamp", { rotation: 4, duration: 1.6, ease: "none" }, 23.7);
+      tl.to("#stamp", { opacity: 0, duration: 0.25 }, 25.05);
+      tl.fromTo("#t_flash", { opacity: 0 }, { opacity: 0.9, duration: 0.08 }, 25.28);
+
+      // captions
+      CAPS.forEach((c, i) => {
+        const [s, e] = c; const id = "#cap" + i;
+        const n = document.querySelectorAll(id + " .w").length;
+        tl.set(id, { opacity: 1 }, s - 0.02);
+        tl.fromTo(id + " .w", { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.22, ease: E, stagger: Math.min(0.12, (e - s) * 0.7 / n) }, s);
+        tl.to(id, { opacity: 0, duration: 0.12 }, Math.max(s + 0.3, e - 0.04));
+      });
+
+      // S4 proof
+      tl.fromTo("#pc1", { y: 900, rotation: -18 }, { y: 0, rotation: -9, duration: 0.5, ease: X }, 25.45);
+      tl.fromTo("#pc2", { y: 900, rotation: 18 }, { y: 0, rotation: 7, duration: 0.5, ease: X }, 25.78);
+      tl.fromTo("#pc3", { y: 900, rotation: -6 }, { y: 0, rotation: -1, duration: 0.5, ease: X }, 26.08);
+      tl.fromTo("#p_q", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 25.72);
+      tl.fromTo("#p_nt", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 26.72);
+      tl.fromTo("#p_ul", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: E }, 27.05);
+      tl.to(["#pc1", "#pc2", "#pc3"], { y: -1300, opacity: 0, duration: 0.45, ease: "power3.in", stagger: 0.04 }, 27.55);
+      tl.to(["#p_q", "#p_nt", "#p_ul"], { opacity: 0, duration: 0.25 }, 27.6);
+      tl.fromTo("#p_real", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: X }, 27.92);
+      tl.to("#p_cc", { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: E }, 28.2);
+      tl.to("#p_ck", { attr: { "stroke-dashoffset": 0 }, duration: 0.3, ease: E }, 28.45);
+      tl.to("#p_real", { scale: 0.92, opacity: 0, duration: 0.3, ease: EI }, 29.2);
+
+      // S5 value
+      tl.fromTo("#v5", { scale: 1.15 }, { scale: 1.0, duration: 3.1, ease: "power1.out" }, 29.4);
+      tl.fromTo("#v_a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 29.65);
+      tl.fromTo("#v_b", { opacity: 0, y: 80, scale: 1.1 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: X }, 30.6);
+      tl.fromTo("#v_c", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: X }, 31.2);
+      tl.fromTo(["#ch1", "#ch2", "#ch3"], { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.4, ease: X, stagger: 0.22 }, 30.9);
+
+      // S6 CTA
+      tl.fromTo("#c_card", { opacity: 0, y: 120, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: X }, 32.45);
+      tl.fromTo("#c_bag", { y: -420, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "bounce.out" }, 32.3);
+      tl.fromTo("#c_t1", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: E }, 32.58);
+      tl.fromTo("#c_t2", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, ease: E }, 32.95);
+      tl.fromTo("#c_ripple", { scale: 0.4, opacity: 1 }, { scale: 1.9, opacity: 0, duration: 0.6, ease: "power2.out", repeat: 2 }, 33.05);
+      tl.to("#c_bag", { scale: 0.9, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, 33.05);
+      tl.fromTo("#c_arrow", { opacity: 0, x: 40, y: -40 }, { opacity: 1, x: 0, y: 0, duration: 0.35, ease: E }, 33.25);
+      tl.to("#c_arrow", { x: -14, y: 14, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 33.6);
+      tl.fromTo("#c_btn", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 33.55);
+      tl.fromTo("#c_shine", { x: 0 }, { x: 980, duration: 0.7, ease: "power2.inOut" }, 33.85);
+      tl.fromTo("#end", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 34.55);
+      tl.to(["#c_card", "#c_bagwrap", "#c_t1", "#c_t2", "#c_arrow", "#c_btn"], { opacity: 0, duration: 0.2 }, 34.95);
+      tl.fromTo("#end .abs.center", { y: 40 }, { y: 0, duration: 0.8, ease: E }, 34.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

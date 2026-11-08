@@ -1,0 +1,5 @@
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;font-display:block;src:url('./BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;font-display:block;src:url('./BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:block;src:url('./Manrope.woff2') format('woff2');}
+@font-face{font-family:'Syncopate';font-style:normal;font-weight:400;font-display:block;src:url('./Syncopate-normal-400.woff2') format('woff2');}
+@font-face{font-family:'Syncopate';font-style:normal;font-weight:700;font-display:block;src:url('./Syncopate-normal-700.woff2') format('woff2');}
