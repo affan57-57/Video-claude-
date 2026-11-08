@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=block" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #0b090c;
+        --ink: #f6efe4;
+        --gold: #e2c391;
+        --gold-deep: #b8925a;
+        --rose: #a3121f;
+        --rose-deep: #2a0307;
+        --violet: #5b35b0;
+        --violet-deep: #0d0820;
+        --serif: "Bodoni Moda", serif;
+        --sans: "Manrope", "Helvetica Neue", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); font-family: var(--sans); color: var(--ink); }
+      .scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; visibility: hidden; }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .abs { position: absolute; }
+      .full { position: absolute; inset: 0; }
+      .cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .serif { font-family: var(--serif); }
+      .label { font-family: var(--sans); font-weight: 600; font-size: 26px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); }
+      .hair { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+      .center-x { left: 50%; transform: translateX(-50%); }
+      .vignette { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 40%, transparent 35%, rgba(0,0,0,.78) 100%); pointer-events: none; }
+      .grain { position: absolute; inset: -50%; opacity: .07; mix-blend-mode: overlay; pointer-events: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+      .chip { position: absolute; display: flex; align-items: center; gap: 16px; padding: 18px 30px; border-radius: 999px;
+        background: rgba(18,14,18,.55); border: 1.5px solid rgba(226,195,145,.55); backdrop-filter: blur(14px);
+        font-weight: 700; font-size: 32px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+      .chip i { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 18px var(--gold); display: block; }
+      .glass { position: absolute; border-radius: 34px; background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.05));
+        border: 1.5px solid rgba(255,255,255,.28); backdrop-filter: blur(18px); box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+
+      /* ---------- captions ---------- */
+      #caps { position: absolute; left: 0; right: 0; top: 1395px; height: 260px; z-index: 60; display: flex; justify-content: center; align-items: center; pointer-events: none; }
+      .cg { position: absolute; display: flex; flex-wrap: wrap; justify-content: center; width: 980px; opacity: 0; }
+      .cw { font-family: var(--sans); font-weight: 800; font-size: 82px; line-height: 1.08; letter-spacing: -0.01em; text-transform: uppercase;
+        color: rgba(246,239,228,.42); text-shadow: 0 4px 30px rgba(0,0,0,.55); display: inline-block; margin: 0 .17em; }
+      .cw.on { color: var(--ink); }
+      .cw.g.on { color: var(--gold); font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: none; font-size: 92px; letter-spacing: 0; }
+      .cw.g { font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: none; font-size: 92px; letter-spacing: 0; }
+      #capbar { position: absolute; left: 0; right: 0; top: 1330px; height: 520px; z-index: 55; background: linear-gradient(180deg, transparent, rgba(5,4,6,.55) 35%, rgba(5,4,6,.65) 70%, transparent); pointer-events: none; }
+
+      /* ---------- chrome ---------- */
+      #brandmark { position: absolute; top: 92px; left: 0; right: 0; text-align: center; z-index: 70; font-family: var(--sans); font-weight: 600; font-size: 22px; letter-spacing: .6em; color: rgba(246,239,228,.75); }
+      #progress { position: absolute; top: 0; left: 0; height: 6px; width: 1080px; z-index: 80; transform-origin: 0 50%; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); }
+      #flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 90; pointer-events: none; }
+      #sweep { position: absolute; top: -200px; left: -600px; width: 360px; height: 2400px; z-index: 85; opacity: 0; pointer-events: none;
+        background: linear-gradient(90deg, transparent, rgba(255,240,215,.38), transparent); transform: rotate(18deg); }
+
+      /* ---------- S1 hook ---------- */
+      #s1 { background: #070507; }
+      #s1-word { top: 430px; width: 100%; text-align: center; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 330px; line-height: 1; color: var(--ink); }
+      #s1-word span { display: inline-block; }
+      #s1-q { top: 860px; width: 100%; text-align: center; font-family: var(--sans); font-weight: 800; font-size: 86px; line-height: 1.05; letter-spacing: -.01em; }
+      #s1-q b { color: var(--gold); font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 100px; }
+      #s1-house { top: 1180px; left: 430px; width: 220px; height: 220px; }
+      #s1-ring { top: 260px; left: 90px; width: 900px; height: 900px; border-radius: 50%; border: 2px solid rgba(226,195,145,.35); }
+
+      /* ---------- S2 education ---------- */
+      #s2 { background: radial-gradient(120% 70% at 50% 15%, #13233a 0%, #0a0f1a 55%, #060709 100%); }
+      #s2-title { top: 300px; width: 100%; text-align: center; font-family: var(--serif); font-weight: 500; font-size: 170px; line-height: .95; }
+      #s2-title em { color: var(--gold); }
+      #s2-sub { top: 520px; width: 100%; text-align: center; font-size: 34px; font-weight: 500; letter-spacing: .28em; color: rgba(246,239,228,.75); text-transform: uppercase; }
+      .wave { position: absolute; left: -1080px; width: 3240px; height: 200px; }
+      .cube { position: absolute; width: 70px; height: 70px; transform-style: preserve-3d; }
+      .cube div { position: absolute; width: 70px; height: 70px; background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(205,225,240,.55)); border: 1px solid rgba(255,255,255,.9); }
+      .tile { position: absolute; width: 380px; height: 250px; border-radius: 28px; padding: 26px 30px; }
+      .tile .sym { font-family: var(--serif); font-size: 120px; font-weight: 600; line-height: 1; color: var(--ink); }
+      .tile .num { position: absolute; top: 26px; right: 30px; font-size: 26px; font-weight: 700; color: var(--gold); letter-spacing: .1em; }
+      .tile .nm { font-size: 30px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-top: 18px; }
+
+      /* ---------- S3 skin ---------- */
+      #s3 { background: radial-gradient(90% 60% at 50% 35%, #2a2118 0%, #0d0a08 70%); }
+      #s3-ring { top: 300px; left: 240px; width: 600px; height: 600px; }
+      #s3-label { top: 980px; width: 100%; text-align: center; }
+
+      /* ---------- S4 brand ---------- */
+      #s4-img { background: url(assets/p_studio_dark.jpg) center 40%/cover no-repeat; }
+      #s4-path { top: 250px; left: 90px; width: 900px; height: 200px; }
+      #s4-logo { top: 520px; left: 90px; width: 900px; height: 900px; mix-blend-mode: screen; }
+      #s4-dim { background: rgba(4,3,6,.0); }
+
+      /* ---------- S5/S6 pump & foam ---------- */
+      .frame { position: absolute; left: 70px; top: 230px; width: 940px; height: 1180px; border-radius: 48px; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.6); border: 2px solid rgba(226,195,145,.4); }
+      .frame video { width: 100%; height: 100%; object-fit: cover; }
+      .lead { position: absolute; height: 2px; background: var(--gold); transform-origin: 0 50%; }
+      .feat { position: absolute; left: 70px; width: 600px; height: 140px; display: flex; align-items: center; gap: 26px; padding: 0 34px; }
+      .feat .ic { width: 78px; height: 78px; flex: none; }
+      .feat .tx { font-size: 44px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
+      .feat .tx small { display: block; font-size: 22px; font-weight: 600; letter-spacing: .3em; color: var(--gold); }
+      .bub { position: absolute; border-radius: 50%; background: radial-gradient(circle at 32% 30%, rgba(255,255,255,.95) 0 8%, rgba(255,255,255,.18) 22%, rgba(255,210,225,.12) 60%, rgba(255,255,255,.55) 100%); border: 1px solid rgba(255,255,255,.4); }
+
+      /* ---------- S7 Woman Glory ---------- */
+      #s7 { background: radial-gradient(100% 70% at 50% 40%, #6d0a14 0%, #2a0307 55%, #0e0103 100%); }
+      #s7-bottle { top: 440px; left: 230px; width: 620px; height: 1180px; background: url(assets/p_studio_dark.jpg) 22% 44%/330% auto no-repeat; border-radius: 30px;
+        -webkit-mask-image: radial-gradient(75% 60% at 50% 48%, #000 55%, transparent 100%); mask-image: radial-gradient(75% 60% at 50% 48%, #000 55%, transparent 100%); }
+      .petal { position: absolute; width: 60px; height: 80px; border-radius: 80% 0 80% 0; background: linear-gradient(135deg, #e0283a, #7a0612); opacity: .85; }
+      .ptitle { position: absolute; width: 100%; text-align: center; font-family: var(--serif); line-height: .9; }
+      .ptitle .a { font-weight: 600; font-size: 96px; letter-spacing: .02em; }
+      .ptitle .b { font-style: italic; font-weight: 500; font-size: 72px; color: var(--gold); }
+
+      /* ---------- S8 Noche ---------- */
+      #s8 { background: radial-gradient(110% 70% at 50% 30%, #3a2276 0%, #160c35 50%, #05030c 100%); }
+      #s8-bottle { top: 440px; left: 230px; width: 620px; height: 1180px; background: url(assets/p_studio_dark.jpg) 79% 44%/330% auto no-repeat;
+        -webkit-mask-image: radial-gradient(75% 60% at 50% 48%, #000 55%, transparent 100%); mask-image: radial-gradient(75% 60% at 50% 48%, #000 55%, transparent 100%); }
+      .star { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px #cbb8ff; }
+      #s8-noche { letter-spacing: .32em; font-weight: 500 !important; }
+
+      /* ---------- S9 daily ---------- */
+      #s9-img { background: url(assets/p_flatlay_pair.jpg) center 45%/cover no-repeat; }
+      #s9-days { top: 330px; left: 90px; width: 900px; display: flex; justify-content: space-between; }
+      .day { width: 112px; height: 150px; border-radius: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+        background: rgba(10,8,10,.45); border: 1.5px solid rgba(246,239,228,.35); backdrop-filter: blur(10px); font-weight: 700; font-size: 26px; letter-spacing: .12em; }
+      .day i { width: 34px; height: 34px; border-radius: 50%; border: 2px solid rgba(246,239,228,.5); display: block; }
+      .day.lit { background: rgba(226,195,145,.92); color: #1a120a; border-color: var(--gold); }
+      .day.lit i { background: #1a120a; border-color: #1a120a; }
+
+      /* ---------- S10 urgency ---------- */
+      #s10 { background: radial-gradient(90% 60% at 50% 40%, #1b1410 0%, #080607 70%); }
+      #s10-big { top: 420px; width: 100%; text-align: center; font-family: var(--serif); font-weight: 800; font-size: 210px; line-height: 1; color: var(--ink); }
+      #s10-bar { top: 760px; left: 140px; width: 800px; height: 34px; border-radius: 99px; border: 2px solid rgba(226,195,145,.6); overflow: hidden; }
+      #s10-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: linear-gradient(90deg, #c2182b, var(--gold)); transform-origin: 0 50%; }
+      #s10-pct { top: 820px; left: 140px; width: 800px; display: flex; justify-content: space-between; font-size: 30px; font-weight: 700; letter-spacing: .2em; }
+      .ticker { position: absolute; left: 0; white-space: nowrap; font-family: var(--sans); font-weight: 800; font-size: 54px; letter-spacing: .3em; color: rgba(226,195,145,.18); }
+
+      /* ---------- S11 CTA ---------- */
+      #s11-img { background: url(assets/p_flatlay_diag.jpg) center/cover no-repeat; filter: blur(14px) brightness(.38) saturate(1.1); transform: scale(1.1); }
+      #s11-bag { top: 360px; left: 340px; width: 400px; height: 440px; }
+      #s11-btn { top: 960px; left: 140px; width: 800px; height: 150px; border-radius: 999px; background: linear-gradient(90deg, #f4c430, #ffd95a); color: #1b1305;
+        display: flex; align-items: center; justify-content: center; gap: 22px; font-weight: 800; font-size: 48px; letter-spacing: .12em; box-shadow: 0 20px 60px rgba(244,196,48,.35); }
+      .ripple { position: absolute; border-radius: 50%; border: 4px solid #ffd95a; }
+
+      /* ---------- S12 end ---------- */
+      #s12 { background: #050406; }
+      #s12-img { top: 980px; left: 0; width: 1080px; height: 940px; background: url(assets/p_studio_dark.jpg) center 46%/cover no-repeat;
+        -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%); mask-image: linear-gradient(180deg, transparent, #000 30%); }
+      #s12-logo { top: 220px; left: 140px; width: 800px; height: 800px; mix-blend-mode: screen; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38" data-width="1080" data-height="1920">
+
+      <!-- ===== S1 HOOK 0 - 2.75 ===== -->
+      <div id="s1" class="scene">
+        <video id="s1-vid" class="full cover" src="assets/pump.mp4" data-start="0" data-duration="2.75" data-media-start="13.5" muted style="filter: blur(6px) brightness(.32) saturate(1.2)"></video>
+        <div id="s1-ring" class="abs"></div>
+        <div class="label abs center-x" id="s1-lbl" style="top:330px">Frescura &nbsp;·&nbsp; Ritual</div>
+        <div id="s1-word" class="abs"><span>S</span><span>p</span><span>a</span><span>?</span></div>
+        <div id="s1-q" class="abs">TANPA <b>keluar</b><br />RUMAH.</div>
+        <svg id="s1-house" class="abs" viewBox="0 0 100 100" fill="none" stroke="#e2c391" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path class="draw" d="M15 48 L50 18 L85 48 M24 41 V84 H76 V41 M42 84 V62 H58 V84" />
+        </svg>
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S2 EDUCATION 2.75 - 7.2 ===== -->
+      <div id="s2" class="clip" data-start="2.75" data-duration="4.45" data-track-index="1">
+        <svg class="wave" id="w1" style="top:1060px" viewBox="0 0 3240 200" preserveAspectRatio="none"><path d="M0 100 Q 135 30 270 100 T 540 100 T 810 100 T 1080 100 T 1350 100 T 1620 100 T 1890 100 T 2160 100 T 2430 100 T 2700 100 T 2970 100 T 3240 100" stroke="rgba(226,195,145,.55)" stroke-width="3" fill="none"/></svg>
+        <svg class="wave" id="w2" style="top:1100px" viewBox="0 0 3240 200" preserveAspectRatio="none"><path d="M0 100 Q 135 160 270 100 T 540 100 T 810 100 T 1080 100 T 1350 100 T 1620 100 T 1890 100 T 2160 100 T 2430 100 T 2700 100 T 2970 100 T 3240 100" stroke="rgba(140,190,230,.45)" stroke-width="2" fill="none"/></svg>
+        <svg class="wave" id="w3" style="top:1150px" viewBox="0 0 3240 200" preserveAspectRatio="none"><path d="M0 100 Q 135 50 270 100 T 540 100 T 810 100 T 1080 100 T 1350 100 T 1620 100 T 1890 100 T 2160 100 T 2430 100 T 2700 100 T 2970 100 T 3240 100" stroke="rgba(246,239,228,.25)" stroke-width="2" fill="none"/></svg>
+        <div class="label abs center-x" id="s2-lbl" style="top:200px">Fakta Spa &nbsp;·&nbsp; 01</div>
+        <div id="s2-title" class="abs"><span class="t1">Garam</span> <em class="t2">Laut</em></div>
+        <div id="s2-sub" class="abs">rahsia rawatan spa</div>
+        <div id="cubes"></div>
+        <div class="tile glass" id="t1" style="left:140px;top:660px"><div class="num">12</div><div class="sym">Mg</div><div class="nm">Magnesium</div></div>
+        <div class="tile glass" id="t2" style="left:560px;top:660px"><div class="num">20</div><div class="sym">Ca</div><div class="nm">Kalsium</div></div>
+        <div class="tile glass" id="t3" style="left:140px;top:940px"><div class="num">19</div><div class="sym">K</div><div class="nm">Kalium</div></div>
+        <div class="tile glass" id="t4" style="left:560px;top:940px"><div class="num">11</div><div class="sym">Na</div><div class="nm">Natrium</div></div>
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S3 SKIN 7.2 - 8.55 ===== -->
+      <div id="s3" class="clip" data-start="7.2" data-duration="1.35" data-track-index="1">
+        <svg id="s3-ring" class="abs" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="88" stroke="rgba(226,195,145,.18)" stroke-width="4" fill="none" />
+          <circle id="s3-arc" cx="100" cy="100" r="88" stroke="#e2c391" stroke-width="5" fill="none" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="553" stroke-dashoffset="553" />
+          <path id="s3-check" d="M62 102 L88 128 L140 74" stroke="#f6efe4" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="130" stroke-dashoffset="130" />
+        </svg>
+        <div id="s3-label" class="abs"><div class="label">Skin Care &nbsp;·&nbsp; Mineral</div></div>
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S4 BRAND 8.55 - 12.15 ===== -->
+      <div id="s4" class="clip" data-start="8.55" data-duration="3.6" data-track-index="1">
+        <div id="s4-img" class="full"></div>
+        <div id="s4-dim" class="full" style="background:linear-gradient(180deg, rgba(5,4,6,.85) 0%, rgba(5,4,6,.25) 35%, rgba(5,4,6,.35) 70%, rgba(5,4,6,.9) 100%)"></div>
+        <svg id="s4-path" class="abs" viewBox="0 0 900 200" fill="none">
+          <g stroke="#e2c391" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M70 120 C 70 80, 110 60, 110 60 C 110 60, 150 80, 150 120 C 150 145, 130 160, 110 160 C 90 160, 70 145, 70 120 Z" />
+            <path d="M40 130 C 50 160, 80 170, 110 170 C 140 170, 170 160, 180 130" />
+            <path id="s4-line" d="M210 115 L690 115" stroke-dasharray="6 14" />
+            <path d="M740 150 H860 M752 150 V100 a20 20 0 0 1 40 0 M792 100 V90 M770 75 l-6 -10 M800 72 l6 -10" />
+          </g>
+          <circle id="s4-dot" cx="210" cy="115" r="9" fill="#e2c391" />
+        </svg>
+        <div class="abs label" style="top:470px;left:90px;width:260px;text-align:center;font-size:22px" id="s4-a">Spa</div>
+        <div class="abs label" style="top:470px;left:720px;width:280px;text-align:center;font-size:22px" id="s4-b">Bilik air anda</div>
+        <img id="s4-logo" class="abs" src="assets/logo.jpg" alt="" />
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S5 PUMP 12.15 - 15.2 ===== -->
+      <div id="s5" class="scene" style="background:radial-gradient(100% 70% at 50% 30%, #2b1a14, #0a0708 70%)">
+        <div class="frame" id="s5-frame"><video id="s5-vid" src="assets/pump.mp4" data-start="12.15" data-duration="3.05" data-media-start="2.2" muted></video></div>
+        <div class="chip" id="c1" style="top:300px;left:40px"><i></i>Foaming</div>
+        <div class="chip" id="c2" style="top:620px;right:40px"><i></i>Ocean Salt</div>
+        <div class="chip" id="c3" style="top:900px;left:40px"><i></i>+ Perfume</div>
+        <div class="label abs center-x" style="top:150px" id="s5-lbl">Foaming Body Shower</div>
+      </div>
+
+      <!-- ===== S6 FOAM 15.2 - 20.15 ===== -->
+      <div id="s6" class="scene" style="background:#0a0708">
+        <video id="s6-v1" class="full cover" src="assets/pump.mp4" data-start="15.2" data-duration="2.9" data-media-start="15.0" muted></video>
+        <video id="s6-v2" class="full cover" src="assets/pump.mp4" data-start="18.1" data-duration="2.05" data-media-start="25.0" muted></video>
+        <div class="full" style="background:linear-gradient(90deg, rgba(8,6,8,.72), rgba(8,6,8,.1) 70%)"></div>
+        <div id="bubs"></div>
+        <div class="feat glass" id="f1" style="top:520px">
+          <svg class="ic" viewBox="0 0 80 80" fill="none" stroke="#e2c391" stroke-width="3"><circle cx="30" cy="44" r="16"/><circle cx="52" cy="34" r="12"/><circle cx="54" cy="58" r="8"/></svg>
+          <div class="tx"><small>01</small>Buih lembut</div>
+        </div>
+        <div class="feat glass" id="f2" style="top:700px">
+          <svg class="ic" viewBox="0 0 80 80" fill="none" stroke="#e2c391" stroke-width="3" stroke-linecap="round"><path d="M40 66 C 14 48 12 22 28 18 C 36 16 40 24 40 28 C 40 24 44 16 52 18 C 68 22 66 48 40 66 Z"/></svg>
+          <div class="tx"><small>02</small>Kulit selesa</div>
+        </div>
+        <div class="feat glass" id="f3" style="top:880px">
+          <svg class="ic" viewBox="0 0 80 80" fill="none" stroke="#e2c391" stroke-width="3" stroke-linecap="round"><path d="M24 64 C 16 52 32 46 24 34 C 18 26 26 18 26 18 M40 64 C 32 52 48 46 40 34 C 34 26 42 18 42 18 M56 64 C 48 52 64 46 56 34 C 50 26 58 18 58 18"/></svg>
+          <div class="tx"><small>03</small>Bilik air wangi</div>
+        </div>
+      </div>
+
+      <!-- ===== S7 WOMAN GLORY 20.15 - 24.1 ===== -->
+      <div id="s7" class="clip" data-start="20.15" data-duration="3.95" data-track-index="1">
+        <div id="petals"></div>
+        <div id="s7-bottle" class="abs"></div>
+        <div class="label abs center-x" style="top:140px" id="s7-lbl">Wangian 01</div>
+        <div class="ptitle" id="s7-title" style="top:215px"><div class="a">WOMAN GLORY</div><div class="b">Bombshell</div></div>
+        <div class="chip" id="c7a" style="top:620px;left:40px"><i></i>Feminine</div>
+        <div class="chip" id="c7b" style="top:800px;right:40px"><i></i>Menyerlah</div>
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S8 NOCHE 24.1 - 27.3 ===== -->
+      <div id="s8" class="clip" data-start="24.1" data-duration="3.2" data-track-index="1">
+        <div id="stars"></div>
+        <div id="s8-bottle" class="abs"></div>
+        <div class="label abs center-x" style="top:140px" id="s8-lbl">Wangian 02</div>
+        <div class="ptitle" id="s8-title" style="top:215px"><div class="a" id="s8-noche">NOCHE</div><div class="b">Midnight Fantasy</div></div>
+        <div class="chip" id="c8a" style="top:620px;left:40px"><i></i>Lembut</div>
+        <div class="chip" id="c8b" style="top:800px;right:40px"><i></i>Misteri</div>
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S9 DAILY 27.3 - 29.5 ===== -->
+      <div id="s9" class="clip" data-start="27.3" data-duration="2.2" data-track-index="1">
+        <div id="s9-img" class="full"></div>
+        <div class="full" style="background:linear-gradient(180deg, rgba(6,5,6,.82), rgba(6,5,6,.2) 40%, rgba(6,5,6,.5))"></div>
+        <div class="label abs center-x" style="top:220px" id="s9-lbl">Ritual Harian</div>
+        <div id="s9-days" class="abs">
+          <div class="day"><i></i>ISN</div><div class="day"><i></i>SEL</div><div class="day"><i></i>RAB</div><div class="day"><i></i>KHA</div><div class="day"><i></i>JUM</div><div class="day"><i></i>SAB</div><div class="day"><i></i>AHD</div>
+        </div>
+      </div>
+
+      <!-- ===== S10 URGENCY 29.5 - 32.25 ===== -->
+      <div id="s10" class="clip" data-start="29.5" data-duration="2.75" data-track-index="1">
+        <div class="ticker" id="tk1" style="top:1060px">LIMITED BATCH · STOK TERHAD · LIMITED BATCH · STOK TERHAD · LIMITED BATCH · STOK TERHAD ·</div>
+        <div class="ticker" id="tk2" style="top:1150px">STOK TERHAD · LIMITED BATCH · STOK TERHAD · LIMITED BATCH · STOK TERHAD · LIMITED BATCH ·</div>
+        <div class="label abs center-x" style="top:330px" id="s10-lbl">Batch ini</div>
+        <div id="s10-big" class="abs">TERHAD</div>
+        <div id="s10-bar" class="abs"><div id="s10-fill"></div></div>
+        <div id="s10-pct" class="abs"><span>STOK</span><span id="s10-num">100%</span></div>
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== S11 CTA 32.25 - 35.3 ===== -->
+      <div id="s11" class="clip" data-start="32.25" data-duration="3.05" data-track-index="1">
+        <div id="s11-img" class="full"></div>
+        <div class="label abs center-x" style="top:240px" id="s11-lbl">Tekan sekarang</div>
+        <div class="ripple" id="rp1" style="left:390px;top:430px;width:300px;height:300px"></div>
+        <div class="ripple" id="rp2" style="left:390px;top:430px;width:300px;height:300px"></div>
+        <svg id="s11-bag" class="abs" viewBox="0 0 100 110">
+          <defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd95a"/><stop offset="1" stop-color="#f0b51c"/></linearGradient></defs>
+          <path d="M14 34 H86 L92 98 Q92 104 86 104 H14 Q8 104 8 98 Z" fill="url(#bg1)"/>
+          <path d="M32 44 V30 a18 18 0 0 1 36 0 V44" stroke="#1b1305" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="32" cy="46" r="4" fill="#1b1305"/><circle cx="68" cy="46" r="4" fill="#1b1305"/>
+          <path d="M36 74 l10 10 l20 -22" stroke="#1b1305" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div id="s11-btn" class="abs">CHECK OUT <span style="font-family:var(--serif);font-style:italic;letter-spacing:0">→</span></div>
+        <svg id="s11-hand" class="abs" style="top:700px;left:620px;width:150px;height:150px" viewBox="0 0 60 60"><circle cx="30" cy="30" r="14" fill="rgba(255,255,255,.85)"/><circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/></svg>
+      </div>
+
+      <!-- ===== S12 END 35.3 - 38 ===== -->
+      <div id="s12" class="clip" data-start="35.3" data-duration="2.7" data-track-index="1">
+        <div id="s12-img" class="abs"></div>
+        <img id="s12-logo" class="abs" src="assets/logo.jpg" alt="" />
+        <div class="vignette"></div>
+      </div>
+
+      <!-- ===== chrome / captions ===== -->
+      <div id="capbar" class="clip" data-start="2.75" data-duration="32.5" data-track-index="5" style="height:520px;top:1330px"></div>
+      <div id="caps" class="clip" data-start="2.75" data-duration="32.5" data-track-index="6" style="top:1395px;height:260px"></div>
+      <div id="brandmark" class="clip" data-start="2.75" data-duration="32.55" data-track-index="7" style="top:92px;height:40px">FRESCURA BODY</div>
+      <div id="progress" class="clip" data-start="0" data-duration="38" data-track-index="8" style="height:6px"></div>
+      <div id="sweep" class="clip" data-start="0" data-duration="38" data-track-index="9"></div>
+      <div id="flash" class="clip" data-start="0" data-duration="38" data-track-index="10"></div>
+      <div class="grain clip" data-start="0" data-duration="38" data-track-index="11" style="inset:-50%;width:auto;height:auto"></div>
+    </div>
+
+    <script>
+      const CAPS = /*CAPS*/[{"s": 0.3, "e": 0.84, "w": [{"t": "Nak", "s": 0.3, "g": false}, {"t": "rasa", "s": 0.38, "g": false}, {"t": "macam", "s": 0.7, "g": false}]}, {"s": 0.84, "e": 1.42, "w": [{"t": "pergi", "s": 0.84, "g": false}, {"t": "spa", "s": 1.16, "g": true}]}, {"s": 1.6, "e": 2.26, "w": [{"t": "tapi", "s": 1.6, "g": false}, {"t": "tak", "s": 1.94, "g": false}, {"t": "nak", "s": 2.14, "g": false}]}, {"s": 2.26, "e": 2.68, "w": [{"t": "keluar", "s": 2.26, "g": false}, {"t": "rumah", "s": 2.48, "g": false}]}, {"s": 2.84, "e": 3.7, "w": [{"t": "Dalam", "s": 2.84, "g": false}, {"t": "rawatan", "s": 3.12, "g": false}, {"t": "spa", "s": 3.46, "g": true}]}, {"s": 3.92, "e": 5.06, "w": [{"t": "garam", "s": 3.92, "g": true}, {"t": "laut", "s": 4.3, "g": true}, {"t": "selalu", "s": 4.44, "g": false}]}, {"s": 5.06, "e": 6.52, "w": [{"t": "digunakan", "s": 5.06, "g": false}, {"t": "kerana", "s": 5.64, "g": false}, {"t": "mineral", "s": 6.3, "g": true}]}, {"s": 6.52, "e": 7.16, "w": [{"t": "semula", "s": 6.52, "g": false}, {"t": "jadinya", "s": 6.74, "g": false}]}, {"s": 7.3, "e": 8.26, "w": [{"t": "Bagus", "s": 7.3, "g": false}, {"t": "untuk", "s": 7.66, "g": false}, {"t": "penjagaan", "s": 7.8, "g": false}]}, {"s": 8.26, "e": 8.6, "w": [{"t": "kulit", "s": 8.26, "g": true}]}, {"s": 8.6, "e": 9.24, "w": [{"t": "Sekarang", "s": 8.6, "g": true}, {"t": "kamu", "s": 8.9, "g": false}, {"t": "boleh", "s": 9.04, "g": false}]}, {"s": 9.24, "e": 10.02, "w": [{"t": "bawa", "s": 9.24, "g": false}, {"t": "pengalaman", "s": 9.48, "g": false}, {"t": "itu", "s": 9.86, "g": false}]}, {"s": 10.02, "e": 10.72, "w": [{"t": "ke", "s": 10.02, "g": false}, {"t": "bilik", "s": 10.28, "g": false}, {"t": "air", "s": 10.54, "g": false}]}, {"s": 10.72, "e": 11.68, "w": [{"t": "sendiri", "s": 10.72, "g": false}, {"t": "dengan", "s": 10.98, "g": false}, {"t": "Frescura", "s": 11.36, "g": true}]}, {"s": 11.68, "e": 12.03, "w": [{"t": "Body", "s": 11.68, "g": true}]}, {"s": 12.24, "e": 13.08, "w": [{"t": "Foaming", "s": 12.24, "g": true}, {"t": "Body", "s": 12.66, "g": true}, {"t": "Shower", "s": 12.86, "g": false}]}, {"s": 13.08, "e": 14.34, "w": [{"t": "ini", "s": 13.08, "g": false}, {"t": "mengandungi", "s": 13.34, "g": false}, {"t": "garam", "s": 14.04, "g": true}]}, {"s": 14.34, "e": 15.04, "w": [{"t": "laut", "s": 14.34, "g": true}, {"t": "dan", "s": 14.5, "g": false}, {"t": "perfume", "s": 14.78, "g": true}]}, {"s": 15.3, "e": 16.14, "w": [{"t": "Buihnya", "s": 15.3, "g": false}, {"t": "lembut", "s": 15.66, "g": true}]}, {"s": 16.2, "e": 17.94, "w": [{"t": "kulit", "s": 16.2, "g": true}, {"t": "terasa", "s": 16.56, "g": false}, {"t": "selesa", "s": 17.14, "g": true}]}, {"s": 17.94, "e": 19.0, "w": [{"t": "dan", "s": 17.94, "g": false}, {"t": "bilik", "s": 18.36, "g": false}, {"t": "air", "s": 18.78, "g": false}]}, {"s": 19.0, "e": 20.06, "w": [{"t": "pun", "s": 19.0, "g": false}, {"t": "berbau", "s": 19.26, "g": false}, {"t": "wangi", "s": 19.72, "g": true}]}, {"s": 20.24, "e": 21.36, "w": [{"t": "Woman", "s": 20.24, "g": true}, {"t": "Glory", "s": 20.58, "g": true}, {"t": "Bombshell", "s": 20.84, "g": true}]}, {"s": 21.36, "e": 22.64, "w": [{"t": "untuk", "s": 21.36, "g": false}, {"t": "wangian", "s": 21.7, "g": false}, {"t": "yang", "s": 22.36, "g": false}]}, {"s": 22.64, "e": 23.6, "w": [{"t": "feminine", "s": 22.64, "g": true}, {"t": "dan", "s": 23.02, "g": false}, {"t": "yang", "s": 23.36, "g": false}]}, {"s": 23.6, "e": 24.0, "w": [{"t": "menyerlah", "s": 23.6, "g": true}]}, {"s": 24.18, "e": 25.18, "w": [{"t": "Noche", "s": 24.18, "g": true}, {"t": "Midnight", "s": 24.44, "g": true}, {"t": "Fantasy", "s": 24.81, "g": true}]}, {"s": 25.18, "e": 26.26, "w": [{"t": "untuk", "s": 25.18, "g": false}, {"t": "wangian", "s": 25.48, "g": false}, {"t": "lembut", "s": 25.82, "g": true}]}, {"s": 26.26, "e": 27.24, "w": [{"t": "yang", "s": 26.26, "g": false}, {"t": "misteri", "s": 26.5, "g": true}]}, {"s": 27.38, "e": 28.62, "w": [{"t": "Spa", "s": 27.38, "g": true}, {"t": "setiap", "s": 27.86, "g": true}, {"t": "hari", "s": 28.38, "g": true}]}, {"s": 28.62, "e": 29.34, "w": [{"t": "tak", "s": 28.62, "g": false}, {"t": "perlu", "s": 28.92, "g": false}, {"t": "keluar", "s": 29.12, "g": false}]}, {"s": 29.34, "e": 29.56, "w": [{"t": "rumah", "s": 29.34, "g": false}]}, {"s": 29.56, "e": 30.38, "w": [{"t": "Tapi", "s": 29.56, "g": false}, {"t": "saya", "s": 29.84, "g": false}, {"t": "bagitahu", "s": 30.0, "g": false}]}, {"s": 30.5, "e": 31.32, "w": [{"t": "stok", "s": 30.5, "g": false}, {"t": "batch", "s": 30.8, "g": false}, {"t": "ini", "s": 31.1, "g": false}]}, {"s": 31.32, "e": 32.26, "w": [{"t": "sangat", "s": 31.32, "g": false}, {"t": "sangat", "s": 31.66, "g": false}, {"t": "terhad", "s": 31.94, "g": true}]}, {"s": 32.32, "e": 33.06, "w": [{"t": "Tekan", "s": 32.32, "g": false}, {"t": "beg", "s": 32.64, "g": true}, {"t": "kuning", "s": 32.85, "g": true}]}, {"s": 33.06, "e": 33.54, "w": [{"t": "dan", "s": 33.06, "g": false}, {"t": "check", "s": 33.2, "g": false}, {"t": "out", "s": 33.38, "g": false}]}, {"s": 33.54, "e": 34.62, "w": [{"t": "sekarang", "s": 33.54, "g": true}, {"t": "sebelum", "s": 33.76, "g": false}, {"t": "anda", "s": 34.5, "g": false}]}, {"s": 34.62, "e": 35.06, "w": [{"t": "terlambat", "s": 34.62, "g": false}]}]/*ENDCAPS*/;
+      // deterministic PRNG
+      let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+      const tl = gsap.timeline({ paused: true });
+      const E = "expo.out", P4 = "power4.out";
+
+      // ---------- global chrome ----------
+      tl.fromTo("#progress", { scaleX: 0 }, { scaleX: 1, duration: 38, ease: "none" }, 0);
+      // transition flashes + light sweeps at scene cuts
+      const cuts = [2.75, 7.2, 8.55, 12.15, 15.2, 20.15, 24.1, 27.3, 29.5, 32.25, 35.3];
+      tl.set("#sweep", { x: -300, opacity: 0 }, 0);
+      cuts.forEach((t) => {
+        tl.set("#sweep", { x: -300, opacity: 0.9 }, t - 0.12);
+        tl.to("#sweep", { x: 1900, duration: 0.55, ease: "power2.inOut", immediateRender: false }, t - 0.12);
+        tl.set("#sweep", { opacity: 0 }, t + 0.45);
+      });
+      tl.set("#flash", { opacity: 0.85 }, 0);
+      [[0, 0.35], [20.15, 0.3], [29.5, 0.3]].forEach(([t, d], i) => {
+        if (i) tl.set("#flash", { opacity: 0.5 }, t);
+        tl.to("#flash", { opacity: 0, duration: d, ease: "power2.out" }, t);
+      });
+      // untimed scene wrappers that hold timed <video>s: toggle visibility on the root timeline
+      [["#s1", 0, 2.75], ["#s5", 12.15, 15.2], ["#s6", 15.2, 20.15]].forEach(([s, a, b]) => {
+        tl.set(s, { visibility: "visible" }, a); tl.set(s, { visibility: "hidden" }, b);
+      });
+      tl.fromTo("#brandmark", { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, duration: 1, ease: E }, 2.8);
+
+      // ---------- captions (karaoke, word-level) ----------
+      const capRoot = $("#caps");
+      CAPS.forEach((g, gi) => {
+        const el = document.createElement("div"); el.className = "cg";
+        g.w.forEach((w) => { const s = document.createElement("span"); s.className = "cw" + (w.g ? " g" : ""); s.textContent = w.t; el.appendChild(s); });
+        capRoot.appendChild(el);
+        const words = [...el.children];
+        tl.fromTo(el, { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: P4 }, g.s - 0.04);
+        g.w.forEach((w, i) => {
+          tl.set(words[i], { className: "cw" + (w.g ? " g" : "") + " on" }, w.s);
+          tl.fromTo(words[i], { scale: 1.18 }, { scale: 1, duration: 0.25, ease: "back.out(3)", immediateRender: false }, w.s);
+        });
+        const nx = CAPS[gi + 1] ? CAPS[gi + 1].s - 0.04 : g.e + 0.3;
+        const out = Math.min(g.e + 0.15, nx) - 0.09;
+        tl.to(el, { opacity: 0, y: -20, duration: 0.08, ease: "power2.in" }, out);
+      });
+
+      // ---------- S1 HOOK ----------
+      tl.fromTo("#s1-vid", { scale: 1.25 }, { scale: 1.05, duration: 2.75, ease: "none" }, 0);
+      tl.fromTo("#s1-ring", { scale: 0.2, opacity: 1 }, { scale: 1.25, opacity: 0, duration: 1.2, ease: E }, 0.02);
+      tl.fromTo("#s1-lbl", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, 0.05);
+      tl.fromTo("#s1-word span", { opacity: 0, yPercent: 60, filter: "blur(20px)", scale: 1.4 },
+        { opacity: 1, yPercent: 0, filter: "blur(0px)", scale: 1, duration: 0.55, stagger: 0.08, ease: E }, 0.02);
+      tl.to("#s1-word", { scale: 0.62, y: -150, duration: 0.5, ease: "power3.inOut" }, 1.5);
+      tl.to("#s1-lbl", { opacity: 0, duration: 0.25 }, 1.45);
+      tl.fromTo("#s1-q", { opacity: 0, y: 80, clipPath: "inset(0 0 100% 0)" }, { opacity: 1, y: -150, clipPath: "inset(0 0 0% 0)", duration: 0.5, ease: E }, 1.6);
+      tl.fromTo("#s1-house .draw", { strokeDasharray: 400, strokeDashoffset: 400 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 1.75);
+      tl.fromTo("#s1-house", { opacity: 0, y: -60 }, { opacity: 1, y: -150, duration: 0.4 }, 1.75);
+      tl.to("#s1-word, #s1-q, #s1-house", { scale: 1.6, opacity: 0, filter: "blur(16px)", duration: 0.3, ease: "power2.in" }, 2.47);
+
+      // ---------- S2 EDUCATION ----------
+      const T2 = 2.75;
+      ["#w1", "#w2", "#w3"].forEach((w, i) => tl.fromTo(w, { x: 0 }, { x: (i % 2 ? 1 : -1) * 540 + (i % 2 ? -540 : 540) * 0, duration: 4.45, ease: "none" }, T2));
+      tl.fromTo("#s2-lbl", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.8, ease: E }, T2 + 0.05);
+      tl.fromTo("#s2-title .t1", { opacity: 0, x: -120, filter: "blur(14px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: E }, T2 + 0.85);
+      tl.fromTo("#s2-title .t2", { opacity: 0, x: 120, filter: "blur(14px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: E }, T2 + 1.15);
+      tl.fromTo("#s2-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, T2 + 0.2);
+      tl.to("#s2-sub", { opacity: 0, duration: 0.3 }, T2 + 0.8);
+      tl.fromTo("#s2-title", { y: 260 }, { y: 0, duration: 0.01 }, T2);
+      // salt crystals
+      const cubes = $("#cubes");
+      for (let i = 0; i < 9; i++) {
+        const c = document.createElement("div"); c.className = "cube";
+        const sz = 34 + rnd() * 46; c.style.width = c.style.height = sz + "px";
+        ["translateZ(" + sz / 2 + "px)", "rotateY(180deg) translateZ(" + sz / 2 + "px)", "rotateY(90deg) translateZ(" + sz / 2 + "px)", "rotateY(-90deg) translateZ(" + sz / 2 + "px)", "rotateX(90deg) translateZ(" + sz / 2 + "px)", "rotateX(-90deg) translateZ(" + sz / 2 + "px)"]
+          .forEach((tf) => { const f = document.createElement("div"); f.style.transform = tf; f.style.width = f.style.height = sz + "px"; c.appendChild(f); });
+        c.style.left = 80 + rnd() * 880 + "px"; c.style.top = "0px"; cubes.appendChild(c);
+        const rx = rnd() * 360, ry = rnd() * 360;
+        tl.fromTo(c, { y: -200, rotationX: rx, rotationY: ry, opacity: 0.9 }, { y: 620 + rnd() * 420, rotationX: rx + 300, rotationY: ry + 240, duration: 1.4 + rnd() * 0.5, ease: "power2.in" }, T2 + 1.0 + i * 0.07);
+        tl.to(c, { opacity: 0, duration: 0.3 }, T2 + 2.75);
+      }
+      // mineral tiles (on "kerana mineral")
+      tl.to("#s2-title", { y: -40, scale: 0.72, duration: 0.5, ease: "power3.inOut" }, T2 + 2.75);
+      ["#t1", "#t2", "#t3", "#t4"].forEach((t, i) =>
+        tl.fromTo(t, { opacity: 0, y: 80, rotationX: -50, scale: 0.85 }, { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, T2 + 2.85 + i * 0.13));
+      tl.to("#t1, #t2, #t3, #t4", { y: -10, duration: 0.8, ease: "sine.inOut" }, T2 + 3.6);
+
+      // ---------- S3 SKIN ----------
+      const T3 = 7.2;
+      tl.fromTo("#s3-ring", { scale: 0.6, opacity: 0, rotation: -40 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: E }, T3);
+      tl.to("#s3-arc", { strokeDashoffset: 0, duration: 0.75, ease: "power3.inOut" }, T3 + 0.05);
+      tl.to("#s3-check", { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, T3 + 0.5);
+      tl.fromTo("#s3-label", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4 }, T3 + 0.25);
+      tl.to("#s3-ring", { scale: 1.06, duration: 0.5, ease: "sine.inOut" }, T3 + 0.85);
+
+      // ---------- S4 BRAND ----------
+      const T4 = 8.55;
+      tl.fromTo("#s4-img", { scale: 1.3, filter: "blur(10px) brightness(.5)" }, { scale: 1.08, filter: "blur(0px) brightness(.75)", duration: 2.4, ease: "power2.out" }, T4);
+      tl.fromTo("#s4-path", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, T4 + 0.1);
+      tl.fromTo("#s4-a, #s4-b", { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.25 }, T4 + 0.3);
+      tl.fromTo("#s4-dot", { attr: { cx: 210 } }, { attr: { cx: 690 }, duration: 1.4, ease: "power2.inOut" }, T4 + 0.5);
+      tl.to("#s4-path, #s4-a, #s4-b", { opacity: 0, y: -30, duration: 0.35 }, T4 + 2.45);
+      tl.to("#s4-img", { filter: "blur(8px) brightness(.32)", duration: 0.5 }, T4 + 2.45);
+      tl.fromTo("#s4-logo", { opacity: 0, scale: 0.7, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: E }, T4 + 2.65);
+      tl.to("#s4-logo", { scale: 1.06, duration: 0.6, ease: "sine.out" }, T4 + 3.0);
+
+      // ---------- S5 PUMP ----------
+      const T5 = 12.15;
+      tl.fromTo("#s5-frame", { clipPath: "inset(50% 0 50% 0 round 48px)", scale: 1.1 }, { clipPath: "inset(0% 0 0% 0 round 48px)", scale: 1, duration: 0.6, ease: E }, T5);
+      tl.fromTo("#s5-frame video", { scale: 1.15 }, { scale: 1.0, duration: 3.05, ease: "none" }, T5);
+      tl.fromTo("#s5-lbl", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T5 + 0.2);
+      [["#c1", 0.3], ["#c2", 1.9], ["#c3", 2.62]].forEach(([c, t]) =>
+        tl.fromTo(c, { opacity: 0, scale: 0.6, x: c === "#c2" ? 60 : -60 }, { opacity: 1, scale: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, T5 + t));
+
+      // ---------- S6 FOAM ----------
+      const T6 = 15.2;
+      tl.fromTo("#s6-v1", { scale: 1.2 }, { scale: 1.02, duration: 2.9, ease: "none" }, T6);
+      tl.fromTo("#s6-v2", { scale: 1.15, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 2.05, ease: "none" }, T6 + 2.9);
+      [["#f1", 0.1], ["#f2", 0.95], ["#f3", 3.05]].forEach(([f, t]) =>
+        tl.fromTo(f, { opacity: 0, x: -140, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: E }, T6 + t));
+      const bubs = $("#bubs");
+      for (let i = 0; i < 22; i++) {
+        const b = document.createElement("div"); b.className = "bub"; const s = 20 + rnd() * 70;
+        b.style.width = b.style.height = s + "px"; b.style.left = rnd() * 1040 + "px"; b.style.top = "1400px"; bubs.appendChild(b);
+        tl.fromTo(b, { y: 0, x: 0, opacity: 0 }, { y: -(900 + rnd() * 700), x: (rnd() - 0.5) * 160, opacity: 0.9, duration: 3.2 + rnd() * 1.5, ease: "sine.out" }, T6 + rnd() * 1.8);
+      }
+
+      // ---------- S7 WOMAN GLORY ----------
+      const T7 = 20.15;
+      tl.fromTo("#s7-bottle", { scale: 1.25, y: 80, opacity: 0, filter: "blur(16px)" }, { scale: 1, y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: E }, T7);
+      tl.to("#s7-bottle", { scale: 1.06, rotation: -1.5, duration: 3.1, ease: "none" }, T7 + 0.8);
+      tl.fromTo("#s7-lbl", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T7 + 0.1);
+      tl.fromTo("#s7-title .a", { opacity: 0, scale: 1.25, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, ease: E }, T7 + 0.15);
+      tl.fromTo("#s7-title .b", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, T7 + 0.55);
+      tl.fromTo("#c7a", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, T7 + 2.3);
+      tl.fromTo("#c7b", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, T7 + 3.2);
+      const petals = $("#petals");
+      for (let i = 0; i < 16; i++) {
+        const p = document.createElement("div"); p.className = "petal"; const s = 0.4 + rnd() * 0.9;
+        p.style.left = rnd() * 1080 + "px"; p.style.top = "-120px"; p.style.transform = "scale(" + s + ")"; petals.appendChild(p);
+        tl.fromTo(p, { y: 0, rotation: rnd() * 360, x: 0 }, { y: 2100, rotation: "+=" + (200 + rnd() * 300), x: (rnd() - 0.5) * 300, duration: 2.6 + rnd() * 1.6, ease: "none" }, T7 + rnd() * 1.6);
+      }
+
+      // ---------- S8 NOCHE ----------
+      const T8 = 24.1;
+      const stars = $("#stars");
+      for (let i = 0; i < 70; i++) {
+        const s = document.createElement("div"); s.className = "star"; const z = 1 + rnd() * 3;
+        s.style.left = rnd() * 1080 + "px"; s.style.top = rnd() * 1920 + "px"; s.style.width = s.style.height = z + "px"; stars.appendChild(s);
+        tl.fromTo(s, { opacity: 0 }, { opacity: 0.3 + rnd() * 0.7, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, T8 + rnd() * 1.2);
+      }
+      tl.fromTo("#stars", { scale: 1 }, { scale: 1.15, duration: 3.2, ease: "none" }, T8);
+      tl.fromTo("#s8-bottle", { scale: 0.8, opacity: 0, filter: "blur(16px) brightness(1.6)" }, { scale: 1, opacity: 1, filter: "blur(0px) brightness(1)", duration: 0.9, ease: E }, T8);
+      tl.to("#s8-bottle", { scale: 1.06, rotation: 1.5, duration: 2.3, ease: "none" }, T8 + 0.9);
+      tl.fromTo("#s8-lbl", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T8 + 0.1);
+      tl.fromTo("#s8-noche", { opacity: 0, scale: 1.3, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.9, ease: E }, T8 + 0.1);
+      tl.fromTo("#s8-title .b", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, T8 + 0.45);
+      tl.fromTo("#c8a", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, T8 + 1.7);
+      tl.fromTo("#c8b", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.45, ease: "back.out(2)" }, T8 + 2.4);
+
+      // ---------- S9 DAILY ----------
+      const T9 = 27.3;
+      tl.fromTo("#s9-img", { scale: 1.35, rotation: -3 }, { scale: 1.1, rotation: 0, duration: 2.2, ease: "power2.out" }, T9);
+      tl.fromTo("#s9-lbl", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T9 + 0.1);
+      $$(".day").forEach((d, i) => {
+        tl.fromTo(d, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: E }, T9 + 0.05 + i * 0.04);
+        tl.set(d, { className: "day lit" }, T9 + 0.5 + i * 0.2);
+        tl.fromTo(d, { scale: 1.2 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, T9 + 0.5 + i * 0.2);
+      });
+
+      // ---------- S10 URGENCY ----------
+      const T10 = 29.5;
+      tl.fromTo("#tk1", { x: 0 }, { x: -900, duration: 2.75, ease: "none" }, T10);
+      tl.fromTo("#tk2", { x: -900 }, { x: 0, duration: 2.75, ease: "none" }, T10);
+      tl.fromTo("#s10-lbl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, T10 + 0.1);
+      tl.fromTo("#s10-big", { scale: 2.4, opacity: 0, filter: "blur(20px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, T10 + 0.9);
+      tl.fromTo("#s10-bar, #s10-pct", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4 }, T10 + 0.2);
+      tl.fromTo("#s10-fill", { scaleX: 1 }, { scaleX: 0.12, duration: 1.9, ease: "power3.inOut" }, T10 + 0.5);
+      const num = { v: 100 };
+      tl.to(num, { v: 12, duration: 1.9, ease: "power3.inOut", onUpdate: () => ($("#s10-num").textContent = Math.round(num.v) + "%") }, T10 + 0.5);
+      tl.to("#s10-big", { x: 6, duration: 0.05, repeat: 7, yoyo: true }, T10 + 1.4);
+      tl.to("#s10-big", { color: "#e2c391", duration: 0.2 }, T10 + 2.1);
+
+      // ---------- S11 CTA ----------
+      const T11 = 32.25;
+      tl.fromTo("#s11-img", { scale: 1.25 }, { scale: 1.1, duration: 3.05, ease: "none" }, T11);
+      tl.fromTo("#s11-lbl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, T11);
+      tl.fromTo("#s11-bag", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.2)" }, T11 + 0.02);
+      tl.fromTo("#s11-hand", { opacity: 0, x: 140, y: 140 }, { opacity: 1, x: -110, y: -150, duration: 0.45, ease: "power3.out" }, T11 + 0.15);
+      tl.to("#s11-hand", { scale: 0.75, duration: 0.1, yoyo: true, repeat: 1 }, T11 + 0.6);
+      tl.to("#s11-bag", { scale: 0.88, duration: 0.1, yoyo: true, repeat: 1 }, T11 + 0.6);
+      tl.fromTo("#rp1", { scale: 0.6, opacity: 1 }, { scale: 2.2, opacity: 0, duration: 0.8, ease: "power2.out" }, T11 + 0.65);
+      tl.fromTo("#rp2", { scale: 0.6, opacity: 1 }, { scale: 2.2, opacity: 0, duration: 0.8, ease: "power2.out" }, T11 + 0.9);
+      tl.to("#s11-hand", { opacity: 0, duration: 0.3 }, T11 + 1.1);
+      tl.fromTo("#s11-btn", { opacity: 0, y: 80, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, T11 + 0.8);
+      tl.to("#s11-btn", { scale: 1.05, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }, T11 + 1.4);
+      tl.to("#s11-bag", { y: -16, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, T11 + 1.3);
+
+      // ---------- S12 END ----------
+      const T12 = 35.3;
+      tl.fromTo("#s12-img", { opacity: 0, y: 120, scale: 1.1 }, { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: E }, T12);
+      tl.fromTo("#s12-logo", { opacity: 0, scale: 0.6, filter: "blur(24px)", rotation: -8 }, { opacity: 1, scale: 1, filter: "blur(0px)", rotation: 0, duration: 0.9, ease: E }, T12 + 0.05);
+      tl.to("#s12-logo", { scale: 1.04, duration: 1.6, ease: "sine.inOut" }, T12 + 0.95);
+      tl.to("#s12, #s12-logo, #s12-img", { opacity: 0, duration: 0.45 }, 37.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
