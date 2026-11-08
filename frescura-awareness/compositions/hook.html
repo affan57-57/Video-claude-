@@ -1,0 +1,60 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa.woff2") format("woff2"); font-weight: 400 900; font-style: normal; }
+    @font-face { font-family: "DM Serif Display"; src: url("assets/fonts/DMSerifDisplay-Italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/PlusJakartaSans.woff2") format("woff2"); font-weight: 200 800; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0d0a0e; font-family: "Plus Jakarta Sans", sans-serif; color: #f5efe6; }
+    #hook-cam { position: absolute; inset: 0; }
+    #hook-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #hook-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,10,14,0.92) 0%, rgba(13,10,14,0.72) 26%, rgba(13,10,14,0.05) 46%, rgba(13,10,14,0) 70%, rgba(13,10,14,0.55) 100%); }
+    .hook-line { position: absolute; left: 0; width: 1080px; top: 250px; text-align: center; }
+    .hook-eyebrow { font-weight: 600; font-size: 28px; letter-spacing: 0.42em; color: #d9b77e; text-transform: uppercase; margin-bottom: 26px; }
+    .hook-sans { font-weight: 800; font-size: 116px; line-height: 1.0; letter-spacing: -0.03em; }
+    .hook-serif { font-family: "DM Serif Display", serif; font-style: italic; font-weight: 400; font-size: 132px; line-height: 1.04; color: #d9b77e; letter-spacing: -0.01em; }
+    .hook-w { display: inline-block; }
+    #hook-rule { position: absolute; left: 290px; top: 640px; width: 500px; height: 3px; background: #d9b77e; transform-origin: 0 50%; }
+    .hook-tick { position: absolute; width: 56px; height: 56px; border-color: rgba(217,183,126,0.85); border-style: solid; border-width: 0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-cam"><img id="hook-img" src="assets/img/duo.jpg" alt="Frescura Body Noche dan Woman Glory" /></div>
+    <div id="hook-shade"></div>
+    <div class="hook-tick" id="hook-tl" style="left:56px;top:190px;border-top-width:2px;border-left-width:2px"></div>
+    <div class="hook-tick" id="hook-tr" style="right:56px;top:190px;border-top-width:2px;border-right-width:2px"></div>
+
+    <div class="hook-line" id="hook-l1">
+      <div class="hook-eyebrow">Frescura Body &middot; Real Review</div>
+      <div class="hook-sans"><span class="hook-w">Bukan</span> <span class="hook-w">kami</span></div>
+      <div class="hook-serif"><span class="hook-w">yang</span> <span class="hook-w">puji.</span></div>
+    </div>
+    <div class="hook-line" id="hook-l2" data-layout-allow-overlap>
+      <div class="hook-eyebrow">Bukti sebenar</div>
+      <div class="hook-sans"><span class="hook-w">Pelanggan</span> <span class="hook-w">sendiri</span></div>
+      <div class="hook-serif"><span class="hook-w">yang</span> <span class="hook-w">buktikan.</span></div>
+    </div>
+    <div id="hook-rule"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // camera: slow luxury push with a slight drift
+    tl.fromTo("#hook-cam", { scale: 1.16, y: 30 }, { scale: 1.04, y: -10, duration: 2.7, ease: "power2.out" }, 0);
+    tl.fromTo(".hook-tick", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
+    // line 1 is on screen at frame 0 (thumbnail + hook), words snap up as they are said
+    const w1 = gsap.utils.toArray("#hook-l1 .hook-w");
+    tl.fromTo("#hook-l1 .hook-eyebrow", { opacity: 0.5,  }, { opacity: 1, duration: 0.6, ease: "expo.out" }, 0);
+    w1.forEach((w, i) => {
+      tl.fromTo(w, { opacity: i < 2 ? 1 : 0.18, filter: "blur(0px)", scale: 1 }, { opacity: 1, duration: 0.01 }, 0);
+    });
+    tl.fromTo(w1[2], { opacity: 0.18 }, { opacity: 1, duration: 0.12 }, 0.32);
+    tl.fromTo(w1[3], { opacity: 0.18, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, 0.55);
+    tl.to("#hook-l1", { opacity: 0, filter: "blur(10px)", y: -30, duration: 0.18, ease: "power3.in" }, 1.08);
+    // line 2: per-word blur-in on the voice
+    const w2 = gsap.utils.toArray("#hook-l2 .hook-w");
+    tl.fromTo("#hook-l2", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.2);
+    tl.fromTo("#hook-l2 .hook-eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 1.2);
+    const t2 = [1.22, 1.62, 1.86, 2.18];
+    w2.forEach((w, i) => tl.fromTo(w, { opacity: 0, filter: "blur(8px)", y: 18 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power4.out" }, t2[i]));
+    tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 2.25);
+    tl.to("#hook-l2, #hook-rule", { opacity: 0, filter: "blur(8px)", duration: 0.12, ease: "power2.in" }, 2.56);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

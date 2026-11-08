@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse at 50% 42%, #1a1530 0%, #0d0a0e 62%); }
+    #brand-logo { position: absolute; left: 90px; top: 380px; width: 900px; height: 900px; mix-blend-mode: screen; }
+    .brand-dust { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #7fdcff; mix-blend-mode: screen; }
+  </style>
+  <div id="root" data-composition-id="brandcard" data-width="1080" data-height="1920">
+    <img id="brand-logo" src="assets/img/logo.jpg" alt="Frescura Body logo" />
+    <div class="brand-dust" style="left:250px;top:560px"></div>
+    <div class="brand-dust" style="left:820px;top:640px"></div>
+    <div class="brand-dust" style="left:300px;top:1110px"></div>
+    <div class="brand-dust" style="left:760px;top:1160px"></div>
+    <div class="brand-dust" style="left:540px;top:470px"></div>
+    <div class="brand-dust" style="left:900px;top:930px"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#brand-logo", { scale: 1.25, opacity: 0, filter: "blur(18px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.02);
+    tl.fromTo("#brand-logo", { scale: 1 }, { scale: 1.035, duration: 0.55, ease: "none" }, 0.47);
+    gsap.utils.toArray(".brand-dust").forEach((d, i) => {
+      const a = (i / 6) * Math.PI * 2;
+      tl.fromTo(d, { opacity: 0, x: 0, y: 0, scale: 0.4 }, { opacity: 1, x: Math.cos(a) * 60, y: Math.sin(a) * 60, scale: 1, duration: 0.6, ease: "expo.out" }, 0.1 + i * 0.03);
+      tl.to(d, { opacity: 0, duration: 0.25 }, 0.75);
+    });
+    tl.to("#brand-logo", { scale: 3.2, opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 0.85);
+    window.__timelines["brandcard"] = tl;
+  </script>
+</template>

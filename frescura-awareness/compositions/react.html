@@ -1,0 +1,41 @@
+<template>
+  <style>
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/PlusJakartaSans.woff2") format("woff2"); font-weight: 200 800; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0d0a0e; font-family: "Plus Jakarta Sans", sans-serif; color: #f5efe6; }
+    #react-cam { position: absolute; inset: 0; }
+    #react-vid { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #react-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,10,14,0.55) 0%, rgba(13,10,14,0) 22%, rgba(13,10,14,0) 50%, rgba(13,10,14,0.6) 75%, rgba(13,10,14,0.2) 100%); }
+    .react-br { position: absolute; width: 90px; height: 90px; border: 0 solid rgba(245,239,230,0.95); }
+    #react-rec { position: absolute; left: 96px; top: 214px; display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 30px; letter-spacing: 0.2em; }
+    #react-dot { width: 20px; height: 20px; border-radius: 50%; background: #e0464b; }
+    #react-tc { position: absolute; right: 96px; top: 214px; font-weight: 600; font-size: 30px; letter-spacing: 0.12em; font-variant-numeric: tabular-nums; }
+    #react-chip { position: absolute; left: 0; width: 1080px; top: 300px; text-align: center; }
+    #react-chip span { display: inline-block; padding: 16px 34px; border: 1.5px solid rgba(217,183,126,0.9); border-radius: 40px; background: rgba(13,10,14,0.5); color: #d9b77e; font-weight: 700; font-size: 30px; letter-spacing: 0.32em; }
+  </style>
+  <div id="root" data-composition-id="react" data-width="1080" data-height="1920">
+    <div id="react-cam"><video id="react-vid" class="clip" src="assets/broll/pump_wide.mp4" data-start="0" data-duration="2.45" muted playsinline data-playback-rate="1.1"></video></div>
+    <div id="react-shade"></div>
+    <div class="react-br" id="react-b1" style="left:60px;top:180px;border-top-width:4px;border-left-width:4px"></div>
+    <div class="react-br" id="react-b2" style="right:60px;top:180px;border-top-width:4px;border-right-width:4px"></div>
+    <div class="react-br" id="react-b3" style="left:60px;top:1250px;border-bottom-width:4px;border-left-width:4px"></div>
+    <div class="react-br" id="react-b4" style="right:60px;top:1250px;border-bottom-width:4px;border-right-width:4px"></div>
+    <div id="react-rec"><div id="react-dot"></div>REC</div>
+    <div id="react-tc">00:00:00</div>
+    <div id="react-chip"><span>REAKSI PERTAMA</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#react-cam", { scale: 1.08 }, { scale: 1.0, duration: 2.45, ease: "power1.out" }, 0);
+    tl.fromTo(".react-br", { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "expo.out", stagger: 0.04 }, 0);
+    tl.fromTo("#react-rec, #react-tc", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.1);
+    tl.fromTo("#react-chip span", { opacity: 0, filter: "blur(8px)",  }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.15);
+    // REC dot blink + timecode, both driven by the timeline
+    [0.5, 1.0, 1.5, 2.0].forEach((t) => tl.fromTo("#react-dot", { opacity: 1 }, { opacity: 0.15, duration: 0.01 }, t).fromTo("#react-dot", { opacity: 0.15 }, { opacity: 1, duration: 0.01 }, t + 0.25));
+    const tc = { f: 0 };
+    tl.fromTo(tc, { f: 0 }, { f: 73, duration: 2.45, ease: "none", onUpdate: () => {
+      const s = Math.floor(tc.f / 30), fr = Math.floor(tc.f % 30);
+      document.querySelector("#react-tc").textContent = "00:0" + s + ":" + String(fr).padStart(2, "0");
+    } }, 0);
+    window.__timelines["react"] = tl;
+  </script>
+</template>

@@ -1,0 +1,47 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa.woff2") format("woff2"); font-weight: 400 900; font-style: normal; }
+    @font-face { font-family: "DM Serif Display"; src: url("assets/fonts/DMSerifDisplay-Italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/PlusJakartaSans.woff2") format("woff2"); font-weight: 200 800; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #f5efe6; font-family: "Plus Jakarta Sans", sans-serif; color: #0d0a0e; }
+    #price-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 38%, #fffaf2 0%, #efe4d4 60%, #e2d3bd 100%); }
+    #price-img { position: absolute; left: 260px; top: 1010px; width: 560px; height: 760px; object-fit: cover; object-position: 50% 62%; border-radius: 280px 280px 0 0; }
+    #price-eyebrow { position: absolute; left: 0; top: 250px; width: 1080px; text-align: center; font-weight: 700; font-size: 30px; letter-spacing: 0.42em; color: #9a7440; }
+    #price-tag { position: absolute; left: 140px; top: 330px; width: 800px; height: 330px; border-radius: 40px; background: #0d0a0e; color: #f5efe6; display: flex; align-items: center; justify-content: center; gap: 20px; overflow: hidden; }
+    #price-rm { font-weight: 700; font-size: 74px; letter-spacing: 0.06em; color: #d9b77e; margin-right: 10px; }
+    .price-col { position: relative; width: 150px; height: 230px; overflow: hidden; }
+    .price-strip { position: absolute; left: 0; top: 0; width: 150px; }
+    .price-strip div { height: 230px; line-height: 230px; text-align: center; font-family: "Bodoni Moda", serif; font-weight: 500; font-size: 220px; }
+    .price-strip div.q { font-style: italic; color: #d9b77e; }
+    #price-line { position: absolute; left: 0; top: 720px; width: 1080px; text-align: center; font-weight: 800; font-size: 62px; letter-spacing: -0.01em; }
+    #price-line em { font-family: "DM Serif Display", serif; font-style: italic; font-weight: 400; color: #9a7440; font-size: 70px; }
+    #price-sub { position: absolute; left: 0; top: 820px; width: 1080px; text-align: center; font-weight: 600; font-size: 34px; letter-spacing: 0.12em; color: #3a3236; }
+  </style>
+  <div id="root" data-composition-id="price" data-width="1080" data-height="1920">
+    <div id="price-bg"></div>
+    <img id="price-img" src="assets/img/duo.jpg" alt="" data-layout-ignore />
+    <div id="price-eyebrow">HARGA TIKTOK HARI INI</div>
+    <div id="price-tag" data-layout-allow-overflow>
+      <div id="price-rm">RM</div>
+      <div class="price-col"><div class="price-strip" id="price-s1"><div>4</div><div>7</div><div>2</div><div>9</div><div>5</div><div>8</div><div>3</div><div>6</div><div class="q">?</div></div></div>
+      <div class="price-col"><div class="price-strip" id="price-s2"><div>9</div><div>1</div><div>6</div><div>3</div><div>8</div><div>0</div><div>5</div><div>2</div><div>7</div><div>4</div><div class="q">?</div></div></div>
+    </div>
+    <div id="price-line">Berapa <em>TikTok bagi?</em></div>
+    <div id="price-sub">TEKAN BEG KUNING UNTUK TENGOK &#8601;</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#price-img", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 0.0);
+    tl.fromTo("#price-eyebrow", { opacity: 0,  }, { opacity: 1, duration: 0.45, ease: "expo.out" }, 0.05);
+    tl.fromTo("#price-tag", { opacity: 0, scale: 0.85, rotation: -2 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(1.6)" }, 0.05);
+    // slot-machine roll; columns land on "?" with the ping
+    tl.fromTo("#price-s1", { y: 0, filter: "blur(0px)" }, { y: -230 * 8, duration: 1.0, ease: "power3.inOut" }, 0.15);
+    tl.fromTo("#price-s2", { y: 0 }, { y: -230 * 10, duration: 1.07, ease: "power3.inOut" }, 0.15);
+    tl.fromTo(".price-strip", { filter: "blur(0px)" }, { filter: "blur(5px)", duration: 0.3, ease: "power1.in" }, 0.3);
+    tl.to(".price-strip", { filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, 0.95);
+    tl.fromTo("#price-tag", { scale: 1 }, { scale: 1.05, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out" }, 1.22);
+    tl.fromTo("#price-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power4.out" }, 0.75);
+    tl.fromTo("#price-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 1.3);
+    window.__timelines["price"] = tl;
+  </script>
+</template>

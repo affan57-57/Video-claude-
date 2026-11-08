@@ -1,0 +1,25 @@
+<template>
+  <style>
+    @font-face { font-family: "DM Serif Display"; src: url("assets/fonts/DMSerifDisplay-Italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/PlusJakartaSans.woff2") format("woff2"); font-weight: 200 800; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse at 50% 55%, #17132a 0%, #0d0a0e 60%); font-family: "Plus Jakarta Sans", sans-serif; color: #f5efe6; }
+    #end-arch { position: absolute; left: 330px; top: 200px; width: 420px; height: 560px; border-radius: 210px 210px 24px 24px; overflow: hidden; border: 2px solid rgba(217,183,126,0.8); }
+    #end-arch-in { position: absolute; inset: 0; }
+    #end-img { position: absolute; left: -300px; top: -300px; width: 1020px; height: 1813px; object-fit: cover; }
+    #end-logo { position: absolute; left: 190px; top: 700px; width: 700px; height: 700px; mix-blend-mode: screen; }
+    #end-tag { position: absolute; left: 0; top: 1250px; width: 1080px; text-align: center; font-family: "DM Serif Display", serif; font-style: italic; font-weight: 400; font-size: 52px; color: #d9b77e; }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+    <div id="end-arch"><div id="end-arch-in"><img id="end-img" src="assets/img/duo.jpg" alt="Frescura Body" /></div></div>
+    <img id="end-logo" src="assets/img/logo.jpg" alt="Frescura Body logo" data-layout-allow-overlap />
+    <div id="end-tag">Wangi. Lembut. Mewah.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#end-arch", { clipPath: "inset(100% 0% 0% 0% round 210px 210px 24px 24px)", y: 40 }, { clipPath: "inset(0% 0% 0% 0% round 210px 210px 24px 24px)", y: 0, duration: 0.7, ease: "expo.out" }, 0.0);
+    tl.fromTo("#end-arch-in", { scale: 1.25 }, { scale: 1.05, duration: 3.2, ease: "power2.out" }, 0);
+    tl.fromTo("#end-logo", { opacity: 0, scale: 0.86, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.15);
+    tl.fromTo("#end-tag", { opacity: 0,  }, { opacity: 1, duration: 0.7, ease: "expo.out" }, 0.75);
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>
