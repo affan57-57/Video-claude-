@@ -16,12 +16,12 @@
     .pt { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #fff, rgba(255,255,255,0) 70%); }
   </style>
   <div id="root" data-composition-id="s05" data-width="1080" data-height="1920">
-    <div class="cam" id="s05-cam1"><video id="s05-v1" class="clip full" src="assets/broll/skin.mp4" data-start="0" data-duration="1.36" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s05-cam1"><video id="s05-v1" class="clip full" src="assets/broll/skin.mp4" data-start="0" data-duration="1.09" data-track-index="0" muted playsinline></video></div>
     <div id="s05-shade"></div>
     <div id="s05-world">
       <div id="s05-silk"></div>
       <div id="s05-glow"></div>
-      <video id="s05-prod" class="clip" src="assets/product/pump.webm" data-start="1.34" data-duration="1.9" data-media-start="6.66" data-playback-rate="0.34" data-track-index="1" muted playsinline></video>
+      <video id="s05-prod" class="clip" src="assets/product/pump.webm" data-start="1.07" data-duration="1.71" data-media-start="6.66" data-playback-rate="0.34" data-track-index="1" muted playsinline></video>
       <div class="pt" id="s05-p1" style="left:200px;top:900px"></div>
       <div class="pt" id="s05-p2" style="left:850px;top:820px"></div>
       <div class="pt" id="s05-p3" style="left:300px;top:1250px"></div>
@@ -38,13 +38,13 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#s05-cam1", { scale: 1.2, x: -30 }, { scale: 1.05, x: 0, duration: 1.36, ease: "power1.out" }, 0);
     // colour flood into the silk world (background change of the product footage)
-    tl.fromTo("#s05-world", { clipPath: "circle(0px at 540px 1100px)" }, { clipPath: "circle(1300px at 540px 1100px)", duration: 0.55, ease: "power2.inOut" }, 1.2);
-    tl.fromTo("#s05-prod", { y: 90, scale: 0.95 }, { y: 0, scale: 1, duration: 0.8, ease: "expo.out" }, 1.34);
-    tl.fromTo("#s05-lebih", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 1.6);
-    tl.fromTo("#s05-lembut .ch", { opacity: 0.0, filter: "blur(6px)", y: 20 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power3.out", stagger: 0.07 }, 1.86);
-    tl.fromTo("#s05-k", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.5);
-    tl.fromTo(".pt", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1.6, duration: 0.6, ease: "power2.out", stagger: 0.08 }, 1.9);
-    tl.to(".pt", { y: -120, opacity: 0, duration: 0.7, ease: "power1.in", stagger: 0.08 }, 2.55);
+    tl.fromTo("#s05-world", { clipPath: "circle(0px at 540px 1100px)" }, { clipPath: "circle(1300px at 540px 1100px)", duration: 0.55, ease: "power2.inOut" }, 0.94);
+    tl.fromTo("#s05-prod", { y: 90, scale: 0.95 }, { y: 0, scale: 1, duration: 0.8, ease: "expo.out" }, 1.07);
+    tl.fromTo("#s05-lebih", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 1.3);
+    tl.fromTo("#s05-lembut .ch", { opacity: 0.0, filter: "blur(6px)", y: 20 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power3.out", stagger: 0.07 }, 1.54);
+    tl.fromTo("#s05-k", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.11);
+    tl.fromTo(".pt", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1.6, duration: 0.6, ease: "power2.out", stagger: 0.08 }, 1.57);
+    tl.to(".pt", { y: -120, opacity: 0, duration: 0.7, ease: "power1.in", stagger: 0.08 }, 2.2);
     window.__timelines["s05"] = tl;
   </script>
 </template>

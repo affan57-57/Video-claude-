@@ -19,9 +19,9 @@
     #s01-pct { color: #f6f0e6; }
   </style>
   <div id="root" data-composition-id="s01" data-width="1080" data-height="1920">
-    <div class="cam" id="s01-cam1"><video id="s01-v1" class="clip full" src="assets/broll/shower.mp4" data-start="0" data-duration="1.22" data-track-index="0" muted playsinline></video></div>
-    <div class="cam" id="s01-cam2"><video id="s01-v2" class="clip full" src="assets/broll/dryskin.mp4" data-start="1.2" data-duration="0.74" data-track-index="0" muted playsinline></video></div>
-    <div class="cam" id="s01-cam3"><video id="s01-v3" class="clip full" src="assets/broll/glass.mp4" data-start="1.92" data-duration="1.36" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s01-cam1"><video id="s01-v1" class="clip full" src="assets/broll/shower.mp4" data-start="0" data-duration="1.06" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s01-cam2"><video id="s01-v2" class="clip full" src="assets/broll/dryskin.mp4" data-start="1.04" data-duration="0.67" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s01-cam3"><video id="s01-v3" class="clip full" src="assets/broll/glass.mp4" data-start="1.69" data-duration="1.23" data-track-index="0" muted playsinline></video></div>
     <div class="shade"></div>
 
     <div id="s01-hook" class="center">
@@ -48,21 +48,21 @@
     const tl = gsap.timeline({ paused: true });
     // camera: punch-ins
     tl.fromTo("#s01-cam1", { scale: 1.18 }, { scale: 1.0, duration: 1.22, ease: "power2.out" }, 0);
-    tl.fromTo("#s01-cam2", { scale: 1.25, x: 40 }, { scale: 1.08, x: 0, duration: 0.74, ease: "power2.out" }, 1.2);
-    tl.fromTo("#s01-cam3", { scale: 1.12 }, { scale: 1.0, duration: 1.36, ease: "power1.out" }, 1.92);
+    tl.fromTo("#s01-cam2", { scale: 1.25, x: 40 }, { scale: 1.08, x: 0, duration: 0.74, ease: "power2.out" }, 1.04);
+    tl.fromTo("#s01-cam3", { scale: 1.12 }, { scale: 1.0, duration: 1.36, ease: "power1.out" }, 1.69);
     // hook title is on screen at frame 0 (thumbnail)
     tl.fromTo("#s01-l1", { scale: 1.12, opacity: 1 }, { scale: 1, duration: 0.5, ease: "expo.out" }, 0);
     tl.fromTo("#s01-k", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.05);
     // crack draws on "kering"
-    tl.fromTo("#s01-crack .ck", { strokeDasharray: 600, strokeDashoffset: 600 }, { strokeDashoffset: 0, duration: 0.35, ease: "power3.out", stagger: 0.05 }, 1.2);
-    tl.to("#s01-crack", { opacity: 0, duration: 0.15 }, 1.8);
-    tl.to("#s01-hook", { opacity: 0, y: -60, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 1.75);
+    tl.fromTo("#s01-crack .ck", { strokeDasharray: 600, strokeDashoffset: 600 }, { strokeDashoffset: 0, duration: 0.35, ease: "power3.out", stagger: 0.05 }, 1.04);
+    tl.to("#s01-crack", { opacity: 0, duration: 0.15 }, 1.58);
+    tl.to("#s01-hook", { opacity: 0, y: -60, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 1.53);
     // scent meter drains on "bau sabun cepat hilang"
-    tl.fromTo("#s01-meter", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 1.95);
+    tl.fromTo("#s01-meter", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 1.71);
     const pct = { v: 100 };
-    tl.fromTo("#s01-fill", { scaleX: 1 }, { scaleX: 0.08, duration: 0.9, ease: "power2.inOut" }, 2.45);
-    tl.fromTo(pct, { v: 100 }, { v: 8, duration: 0.9, ease: "power2.inOut", onUpdate: () => { document.querySelector("#s01-pct").textContent = Math.round(pct.v) + "%"; } }, 2.45);
-    tl.to("#s01-meter", { opacity: 0, scale: 1.08, filter: "blur(10px)", duration: 0.15, ease: "power3.in" }, 3.12);
+    tl.fromTo("#s01-fill", { scaleX: 1 }, { scaleX: 0.08, duration: 0.9, ease: "power2.inOut" }, 2.17);
+    tl.fromTo(pct, { v: 100 }, { v: 8, duration: 0.9, ease: "power2.inOut", onUpdate: () => { document.querySelector("#s01-pct").textContent = Math.round(pct.v) + "%"; } }, 2.17);
+    tl.to("#s01-meter", { opacity: 0, scale: 1.08, filter: "blur(10px)", duration: 0.15, ease: "power3.in" }, 2.77);
     window.__timelines["s01"] = tl;
   </script>
 </template>

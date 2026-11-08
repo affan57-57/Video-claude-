@@ -1,6 +1,8 @@
 # Video Awareness — Fresh Kura Body (foaming body shower garam laut)
 
-Projek HyperFrames: `film/` (1080×1920, 30 fps, ~42 s). Status: **PREVIEW** — belum render final.
+Projek HyperFrames: `film/` (1080×1920, 30 fps, **35 s**). Status: **PREVIEW** — belum render final.
+
+Versi 35 s: tiada muka langsung (suara sahaja), jeda dirapatkan lagi (25 jeda → 0.06 s) dan suara 1.11× lebih laju (pitch & formant kekal, rubberband). Suara 34.2 s + CTA. Masa dalam jadual di bawah ialah versi 42 s asal; semua babak, kapsyen dan SFX telah dipetakan semula ke garis masa 35 s (`tools/retime.py`).
 
 ## Transkrip (selepas buang jeda janggal)
 
@@ -20,7 +22,7 @@ Projek HyperFrames: `film/` (1080×1920, 30 fps, ~42 s). Status: **PREVIEW** —
 | 34.66 | Kalau dah lama nak cuba, jangan tunggu sampai habis. |
 | 37.92 | Klik link di bawah dan order sekarang. *(CTA)* |
 
-Jeda dibuang: 11 jeda (paling panjang 1.0 s sebelum "Adapun Noche", 0.8 s dalam "dan… Midnight Fantasy"). 42.6 s → 39.9 s.
+Jeda dibuang: 11 jeda janggal (paling panjang 1.0 s sebelum "Adapun Noche", 0.8 s dalam "dan… Midnight Fantasy"), kemudian 25 jeda kecil dirapatkan. 42.6 s → 37.9 s → 34.2 s (tempo 1.11×).
 
 ## Babak
 
@@ -40,7 +42,7 @@ Jeda dibuang: 11 jeda (paling panjang 1.0 s sebelum "Adapun Noche", 0.8 s dalam 
 
 ## Audio
 
-- Suara: DeepFilterNet3 (bunyi bising −14 dB), EQ studio (buang muddy 250 Hz, presence 3 kHz, air 10 kHz), de-esser, compressor, −16 LUFS.
+- Suara: DeepFilterNet3 (bunyi bising −14 dB), EQ studio (buang muddy 250 Hz, presence 3 kHz, air 10 kHz), de-esser, compressor, tempo 1.11×, −17.5 LUFS. Campuran akhir −13.6 LUFS, puncak −1.0 dBTP.
 - Muzik: "Hazy After Hours" — Alejandro Magaña, Mixkit Stock Music Free License, masuk pada groove penuh (15 s).
 - SFX: perpustakaan HyperFrames terbina dalam; puncak setiap bunyi diselaraskan dengan gambar.
 
@@ -52,7 +54,7 @@ Jeda dibuang: 11 jeda (paling panjang 1.0 s sebelum "Adapun Noche", 0.8 s dalam 
 ## Perlu pengesahan
 
 1. Ejaan jenama: "Fresh Kura Body" (dari transkrip) — betul?
-2. Video asal tiada muka (hanya lantai), jadi tiada syot muka 2 s.
+2. Tiada muka langsung — suara sahaja (seperti diminta).
 3. Gambar produk tambahan belum diterima — still Bombshell sekarang dari video pump.
 
 ## Bina semula

@@ -20,7 +20,7 @@
     <div id="s03-stage"></div>
     <div id="s03-floor"></div>
     <svg id="s03-arch" viewBox="0 0 780 1240" data-layout-ignore><path d="M10 1240 L10 390 A380 380 0 0 1 770 390 L770 1240" /></svg>
-    <video id="s03-prod" class="clip" src="assets/product/pump.webm" data-start="0" data-duration="3.75" data-media-start="0" data-track-index="0" muted playsinline></video>
+    <video id="s03-prod" class="clip" src="assets/product/pump.webm" data-start="0" data-duration="3.29" data-media-start="0" data-track-index="0" muted playsinline></video>
     <div id="s03-shine" data-layout-ignore></div>
     <div id="s03-title" class="center">
       <div class="kicker" id="s03-k">Perkenalkan</div>
@@ -36,12 +36,12 @@
     tl.fromTo("#s03-stage", { scale: 1.25, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 0);
     tl.fromTo("#s03-arch path", { strokeDasharray: 2900, strokeDashoffset: 2900 }, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" }, 0.05);
     tl.fromTo("#s03-prod", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "expo.out" }, 0);
-    tl.fromTo("#s03-k", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.0);
+    tl.fromTo("#s03-k", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0);
     tl.fromTo("#s03-name", { opacity: 0, filter: "blur(10px)", scale: 1.06 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.3, ease: "power4.out" }, 0.05);
-    tl.fromTo("#s03-shine", { x: 0 }, { x: 1700, duration: 0.9, ease: "power2.inOut" }, 0.35);
-    tl.fromTo("#s03-c1", { opacity: 0, x: -80, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 1.09);
-    tl.fromTo("#s03-c2", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 3.03);
-    tl.fromTo("#s03-shine", { x: 0 }, { x: 1700, duration: 0.6, ease: "power2.inOut", immediateRender: false }, 3.05);
+    tl.fromTo("#s03-shine", { x: 0 }, { x: 1700, duration: 0.9, ease: "power2.inOut" }, 0.24);
+    tl.fromTo("#s03-c1", { opacity: 0, x: -80, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.91);
+    tl.fromTo("#s03-c2", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 2.66);
+    tl.fromTo("#s03-shine", { x: 0 }, { x: 1700, duration: 0.6, ease: "power2.inOut", immediateRender: false }, 2.68);
     window.__timelines["s03"] = tl;
   </script>
 </template>
