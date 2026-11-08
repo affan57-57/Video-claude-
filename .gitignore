@@ -3,3 +3,4 @@ hf/node_modules/
 hf/frescura/.hyperframes/
 hf/frescura/assets/pump.mp4
 hf/frescura/assets/feedback.mp4
+__pycache__/
