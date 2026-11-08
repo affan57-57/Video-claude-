@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a0b; font-family: Montserrat, sans-serif; color: #f6f0e6; }
+    .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .cam { position: absolute; inset: 0; overflow: hidden; }
+    .center { position: absolute; left: 0; right: 0; text-align: center; }
+    .kicker { font: 600 30px/1 Montserrat; letter-spacing: .38em; color: #d9b57a; text-transform: uppercase; }
+    #s10-shade { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 45%, rgba(12,10,11,.55), rgba(12,10,11,.92)); }
+    #s10-a { top: 260px; }
+    #s10-stok { font: 900 190px/0.9 Montserrat; letter-spacing: .02em; color: #f6f0e6; }
+    #s10-terhad { font: italic 700 130px/1 'Playfair Display'; color: #d9b57a; margin-top: 4px; }
+    #s10-stamp { position: absolute; left: 560px; top: 655px; padding: 14px 26px; border: 4px solid #c8323f; border-radius: 12px; color: #c8323f; font: 900 40px/1 Montserrat; letter-spacing: .1em; }
+    #s10-meter { position: absolute; left: 140px; top: 820px; width: 800px; }
+    #s10-bar { position: relative; height: 34px; border-radius: 999px; background: rgba(246,240,230,.14); border: 1.5px solid rgba(246,240,230,.4); overflow: hidden; }
+    #s10-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 800px; border-radius: 999px; background: linear-gradient(90deg, #c8323f, #d9b57a); transform-origin: 0 50%; }
+    #s10-row { display: flex; justify-content: space-between; margin-top: 20px; font: 700 30px/1 Montserrat; letter-spacing: .18em; }
+    #s10-left { color: #f6f0e6; }
+    #s10-b { top: 1010px; }
+    #s10-b1 { font: 800 76px/1.05 Montserrat; letter-spacing: .04em; color: #f6f0e6; }
+    #s10-b2 { font: italic 700 96px/1.1 'Playfair Display'; color: #d9b57a; }
+    #s10-dot { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: #c8323f; margin-right: 14px; vertical-align: middle; box-shadow: 0 0 18px #c8323f; }
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1080" data-height="1920">
+    <div class="cam" id="s10-cam"><video id="s10-v1" class="clip full" src="assets/broll/bubblesv.mp4" data-start="0" data-duration="5.15" data-track-index="0" muted playsinline></video></div>
+    <div id="s10-shade"></div>
+    <div id="s10-a" class="center" data-layout-allow-overlap>
+      <div id="s10-stok">STOK</div>
+      <div id="s10-terhad">terhad</div>
+    </div>
+    <div id="s10-stamp" data-layout-allow-overlap>SANGAT-SANGAT</div>
+    <div id="s10-meter">
+      <div id="s10-bar"><div id="s10-fill"></div></div>
+      <div id="s10-row"><span class="kicker" style="font-size:28px;letter-spacing:.2em"><span id="s10-dot"></span>Baki stok batch ini</span><span id="s10-left">100%</span></div>
+    </div>
+    <div id="s10-b" class="center">
+      <div id="s10-b1">JANGAN TUNGGU</div>
+      <div id="s10-b2">sampai habis</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s10-cam", { scale: 1.2 }, { scale: 1.0, duration: 5.15, ease: "none" }, 0);
+    tl.fromTo("#s10-stok", { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0.05);
+    tl.fromTo("#s10-terhad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.5);
+    tl.fromTo("#s10-stamp", { opacity: 0, scale: 2.4, rotation: -4 }, { opacity: 1, scale: 1, rotation: 8, duration: 0.25, ease: "power4.in" }, 0.85);
+    tl.fromTo("#s10-meter", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 0.4);
+    const st = { v: 100 };
+    const upd = () => { document.querySelector("#s10-left").textContent = Math.round(st.v) + "%"; };
+    tl.fromTo("#s10-fill", { scaleX: 1 }, { scaleX: 0.18, duration: 1.2, ease: "power2.inOut" }, 0.9);
+    tl.fromTo(st, { v: 100 }, { v: 18, duration: 1.2, ease: "power2.inOut", onUpdate: upd }, 0.9);
+    tl.fromTo("#s10-b1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 3.25);
+    tl.fromTo("#s10-b2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 4.6);
+    tl.to("#s10-fill", { scaleX: 0.05, duration: 0.8, ease: "power2.inOut" }, 4.0);
+    tl.to(st, { v: 5, duration: 0.8, ease: "power2.inOut", onUpdate: upd }, 4.0);
+    tl.fromTo("#s10-dot", { opacity: 1 }, { opacity: 0.2, duration: 0.25, yoyo: true, repeat: 7, ease: "none" }, 1.0);
+    window.__timelines["s10"] = tl;
+  </script>
+</template>

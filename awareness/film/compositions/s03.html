@@ -1,0 +1,47 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a0b; font-family: Montserrat, sans-serif; color: #f6f0e6; }
+    .center { position: absolute; left: 0; right: 0; text-align: center; }
+    .kicker { font: 600 30px/1 Montserrat; letter-spacing: .38em; color: #d9b57a; text-transform: uppercase; }
+    #s03-stage { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 45% at 50% 62%, #6d1424 0%, #3a0a14 45%, #120709 80%, #0c0a0b 100%); }
+    #s03-floor { position: absolute; left: -100px; right: -100px; top: 1560px; height: 420px; background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(217,181,122,.28), rgba(217,181,122,0) 70%); }
+    #s03-arch { position: absolute; left: 150px; top: 520px; width: 780px; height: 1240px; }
+    #s03-arch path { fill: none; stroke: #d9b57a; stroke-width: 2.5; opacity: .75; }
+    #s03-shine { position: absolute; left: -400px; top: 0; width: 260px; height: 1920px; background: linear-gradient(90deg, rgba(255,240,215,0), rgba(255,240,215,.12), rgba(255,240,215,0)); transform: skewX(-18deg); }
+    #s03-prod { position: absolute; left: 60px; top: 330px; width: 928px; height: 1696px; }
+    #s03-title { top: 190px; }
+    #s03-name { font: 700 104px/1 'Playfair Display'; color: #f6f0e6; margin-top: 22px; }
+    #s03-chips { position: absolute; left: 0; right: 0; top: 960px; }
+    .chip { position: absolute; padding: 20px 36px; border: 2px solid rgba(217,181,122,.9); border-radius: 999px; background: rgba(12,10,11,.62); font: 700 32px/1 Montserrat; letter-spacing: .14em; color: #f6f0e6; white-space: nowrap; }
+    #s03-c1 { left: 70px; top: 0; }
+    #s03-c2 { right: 70px; top: 130px; color: #0c0a0b; background: #d9b57a; border-color: #d9b57a; }
+  </style>
+  <div id="root" data-composition-id="s03" data-width="1080" data-height="1920">
+    <div id="s03-stage"></div>
+    <div id="s03-floor"></div>
+    <svg id="s03-arch" viewBox="0 0 780 1240" data-layout-ignore><path d="M10 1240 L10 390 A380 380 0 0 1 770 390 L770 1240" /></svg>
+    <video id="s03-prod" class="clip" src="assets/product/pump.webm" data-start="0" data-duration="3.75" data-media-start="0" data-track-index="0" muted playsinline></video>
+    <div id="s03-shine" data-layout-ignore></div>
+    <div id="s03-title" class="center">
+      <div class="kicker" id="s03-k">Perkenalkan</div>
+      <div id="s03-name">Fresh Kura Body</div>
+    </div>
+    <div id="s03-chips">
+      <div class="chip" id="s03-c1">FOAMING BODY SHOWER</div>
+      <div class="chip" id="s03-c2">+ GARAM LAUT</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s03-stage", { scale: 1.25, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 0);
+    tl.fromTo("#s03-arch path", { strokeDasharray: 2900, strokeDashoffset: 2900 }, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" }, 0.05);
+    tl.fromTo("#s03-prod", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "expo.out" }, 0);
+    tl.fromTo("#s03-k", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.0);
+    tl.fromTo("#s03-name", { opacity: 0, filter: "blur(10px)", scale: 1.06 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.3, ease: "power4.out" }, 0.05);
+    tl.fromTo("#s03-shine", { x: 0 }, { x: 1700, duration: 0.9, ease: "power2.inOut" }, 0.35);
+    tl.fromTo("#s03-c1", { opacity: 0, x: -80, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 1.09);
+    tl.fromTo("#s03-c2", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 3.03);
+    tl.fromTo("#s03-shine", { x: 0 }, { x: 1700, duration: 0.6, ease: "power2.inOut", immediateRender: false }, 3.05);
+    window.__timelines["s03"] = tl;
+  </script>
+</template>

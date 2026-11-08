@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a0b; font-family: Montserrat, sans-serif; color: #f6f0e6; }
+    .center { position: absolute; left: 0; right: 0; text-align: center; }
+    .kicker { font: 600 30px/1 Montserrat; letter-spacing: .38em; color: #d9b57a; text-transform: uppercase; }
+    #s07-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 35%, #2a1f1a 0%, #0c0a0b 70%); }
+    .hair { position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, rgba(217,181,122,0), rgba(217,181,122,.35), rgba(217,181,122,0)); }
+    #s07-head { top: 190px; }
+    #s07-two { font: 700 300px/0.9 'Playfair Display'; color: #d9b57a; }
+    #s07-pil { font: 800 56px/1 Montserrat; letter-spacing: .4em; padding-left: .4em; margin-top: 6px; }
+    .card { position: absolute; top: 640px; width: 470px; height: 560px; border-radius: 34px; overflow: hidden; border: 2px solid rgba(217,181,122,.8); }
+    #s07-cardA { left: 50px; background: radial-gradient(ellipse at 50% 70%, #8e1b2c, #3a0a14 60%, #1a0609); }
+    #s07-cardB { right: 50px; background: radial-gradient(ellipse at 50% 70%, #6b3fa0, #2a1450 60%, #120a20); }
+    #s07-bottle { position: absolute; left: 85px; top: 30px; width: 300px; height: 400px; object-fit: contain; }
+    #s07-noche { position: absolute; left: 0; top: 0; width: 470px; height: 440px; object-fit: cover; }
+    .cap { position: absolute; left: 0; right: 0; bottom: 0; height: 140px; background: rgba(12,10,11,.82); text-align: center; padding-top: 24px; }
+    .cap .t { font: 700 40px/1 'Playfair Display'; color: #f6f0e6; }
+    .cap .s { font: 700 28px/1 Montserrat; letter-spacing: .12em; color: #d9b57a; margin-top: 14px; }
+  </style>
+  <div id="root" data-composition-id="s07" data-width="1080" data-height="1920">
+    <div id="s07-bg"></div>
+    <div class="hair" style="left:180px"></div><div class="hair" style="left:540px"></div><div class="hair" style="left:900px"></div>
+    <div id="s07-head" class="center">
+      <div class="kicker" id="s07-k">Ada</div>
+      <div id="s07-two">2</div>
+      <div id="s07-pil">PILIHAN</div>
+    </div>
+    <div class="card" id="s07-cardA">
+      <img id="s07-bottle" src="assets/product/bombshell.png" alt="Woman Glory Bombshell" />
+      <div class="cap"><div class="t">Woman Glory</div><div class="s">BOMBSHELL</div></div>
+    </div>
+    <div class="card" id="s07-cardB">
+      <video id="s07-noche" class="clip" src="assets/product/noche_clip.mp4" data-start="2.5" data-duration="1.2" data-media-start="1.0" data-track-index="0" muted playsinline></video>
+      <div class="cap"><div class="t">Noche</div><div class="s">MIDNIGHT FANTASY</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s07-bg", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0);
+    tl.fromTo(".hair", { scaleY: 0 }, { scaleY: 1, duration: 0.8, ease: "power2.inOut", stagger: 0.08 }, 0);
+    tl.fromTo("#s07-k", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.04);
+    tl.fromTo("#s07-two", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0.5);
+    tl.fromTo("#s07-pil", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.74);
+    tl.fromTo("#s07-cardA", { opacity: 0, x: -520, rotation: -6 }, { opacity: 1, x: 0, rotation: -3, duration: 0.6, ease: "expo.out" }, 1.14);
+    tl.fromTo("#s07-cardB", { opacity: 0, x: 520, rotation: 6 }, { opacity: 1, x: 0, rotation: 3, duration: 0.6, ease: "expo.out" }, 2.52);
+    tl.to("#s07-cardA", { scale: 0.96, opacity: 0.75, duration: 0.4, ease: "power2.out" }, 2.6);
+    window.__timelines["s07"] = tl;
+  </script>
+</template>

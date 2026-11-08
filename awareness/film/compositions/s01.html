@@ -1,0 +1,68 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a0b; font-family: Montserrat, sans-serif; color: #f6f0e6; }
+    .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .cam { position: absolute; inset: 0; overflow: hidden; }
+    .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,6,7,.72) 0%, rgba(8,6,7,.15) 34%, rgba(8,6,7,.1) 60%, rgba(8,6,7,.78) 100%); }
+    .kicker { font: 600 30px/1 Montserrat; letter-spacing: .38em; color: #d9b57a; text-transform: uppercase; }
+    .center { position: absolute; left: 0; right: 0; text-align: center; }
+    #s01-hook { top: 330px; }
+    #s01-l1 { font: 900 150px/0.95 Montserrat; letter-spacing: -.02em; color: #f6f0e6; }
+    #s01-crack { position: absolute; left: 140px; top: 760px; width: 800px; height: 420px; }
+    #s01-crack path { fill: none; stroke: #f6f0e6; stroke-width: 3; stroke-linecap: round; opacity: .85; }
+    #s01-meter { top: 420px; }
+    #s01-m-title { font: 900 104px/1 Montserrat; letter-spacing: -.01em; }
+    #s01-m-title2 { font: italic 700 92px/1.1 'Playfair Display'; color: #d9b57a; margin-top: 8px; }
+    #s01-bar { position: relative; width: 760px; height: 26px; margin: 56px auto 0; border-radius: 999px; background: rgba(246,240,230,.18); border: 1.5px solid rgba(246,240,230,.4); overflow: hidden; }
+    #s01-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 760px; border-radius: 999px; background: linear-gradient(90deg, #b4232f, #d9b57a); transform-origin: 0 50%; }
+    #s01-mrow { display: flex; justify-content: space-between; width: 760px; margin: 18px auto 0; font: 600 30px/1 Montserrat; letter-spacing: .2em; }
+    #s01-pct { color: #f6f0e6; }
+  </style>
+  <div id="root" data-composition-id="s01" data-width="1080" data-height="1920">
+    <div class="cam" id="s01-cam1"><video id="s01-v1" class="clip full" src="assets/broll/shower.mp4" data-start="0" data-duration="1.22" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s01-cam2"><video id="s01-v2" class="clip full" src="assets/broll/dryskin.mp4" data-start="1.2" data-duration="0.74" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s01-cam3"><video id="s01-v3" class="clip full" src="assets/broll/glass.mp4" data-start="1.92" data-duration="1.36" data-track-index="0" muted playsinline></video></div>
+    <div class="shade"></div>
+
+    <div id="s01-hook" class="center">
+      <div class="kicker" id="s01-k" style="font-size:40px">Lepas mandi</div>
+      <div id="s01-l1" style="margin-top:34px">KULIT<br />KERING?</div>
+    </div>
+
+    <svg id="s01-crack" viewBox="0 0 800 420" data-layout-ignore>
+      <path class="ck" d="M400 0 L380 80 L420 140 L360 230 L400 300 L370 420" />
+      <path class="ck" d="M380 80 L260 120 L180 100 L60 160" />
+      <path class="ck" d="M420 140 L560 170 L640 140 L760 200" />
+      <path class="ck" d="M360 230 L240 270 L120 330" />
+      <path class="ck" d="M400 300 L540 330 L660 400" />
+    </svg>
+
+    <div id="s01-meter" class="center">
+      <div id="s01-m-title">BAU SABUN</div>
+      <div id="s01-m-title2">cepat hilang</div>
+      <div id="s01-bar"><div id="s01-fill"></div></div>
+      <div id="s01-mrow"><span class="kicker" style="font-size:28px">Wangian</span><span id="s01-pct">100%</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // camera: punch-ins
+    tl.fromTo("#s01-cam1", { scale: 1.18 }, { scale: 1.0, duration: 1.22, ease: "power2.out" }, 0);
+    tl.fromTo("#s01-cam2", { scale: 1.25, x: 40 }, { scale: 1.08, x: 0, duration: 0.74, ease: "power2.out" }, 1.2);
+    tl.fromTo("#s01-cam3", { scale: 1.12 }, { scale: 1.0, duration: 1.36, ease: "power1.out" }, 1.92);
+    // hook title is on screen at frame 0 (thumbnail)
+    tl.fromTo("#s01-l1", { scale: 1.12, opacity: 1 }, { scale: 1, duration: 0.5, ease: "expo.out" }, 0);
+    tl.fromTo("#s01-k", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.05);
+    // crack draws on "kering"
+    tl.fromTo("#s01-crack .ck", { strokeDasharray: 600, strokeDashoffset: 600 }, { strokeDashoffset: 0, duration: 0.35, ease: "power3.out", stagger: 0.05 }, 1.2);
+    tl.to("#s01-crack", { opacity: 0, duration: 0.15 }, 1.8);
+    tl.to("#s01-hook", { opacity: 0, y: -60, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 1.75);
+    // scent meter drains on "bau sabun cepat hilang"
+    tl.fromTo("#s01-meter", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 1.95);
+    const pct = { v: 100 };
+    tl.fromTo("#s01-fill", { scaleX: 1 }, { scaleX: 0.08, duration: 0.9, ease: "power2.inOut" }, 2.45);
+    tl.fromTo(pct, { v: 100 }, { v: 8, duration: 0.9, ease: "power2.inOut", onUpdate: () => { document.querySelector("#s01-pct").textContent = Math.round(pct.v) + "%"; } }, 2.45);
+    tl.to("#s01-meter", { opacity: 0, scale: 1.08, filter: "blur(10px)", duration: 0.15, ease: "power3.in" }, 3.12);
+    window.__timelines["s01"] = tl;
+  </script>
+</template>

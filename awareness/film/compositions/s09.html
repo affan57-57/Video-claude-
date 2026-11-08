@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a0b; font-family: Montserrat, sans-serif; color: #f6f0e6; }
+    .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .cam { position: absolute; inset: 0; overflow: hidden; }
+    .center { position: absolute; left: 0; right: 0; text-align: center; }
+    #s09-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,6,26,.75) 0%, rgba(14,6,26,.25) 40%, rgba(14,6,26,.35) 70%, rgba(14,6,26,.85) 100%); }
+    #s09-title { top: 200px; }
+    #s09-t { font: 700 150px/1 'Playfair Display'; letter-spacing: .12em; padding-left: .12em; color: #f6f0e6; }
+    #s09-s { font: 600 36px/1 Montserrat; letter-spacing: .42em; padding-left: .42em; color: #c9a8f0; margin-top: 22px; }
+    #s09-card { position: absolute; left: 230px; top: 470px; width: 620px; height: 730px; border-radius: 40px; overflow: hidden; border: 2px solid rgba(201,168,240,.85); box-shadow: 0 0 80px rgba(140,80,220,.45); }
+    #s09-clip { position: absolute; left: 0; top: 0; width: 620px; height: 730px; object-fit: cover; }
+    .tag { position: absolute; padding: 20px 40px; border-radius: 999px; font: 800 40px/1 Montserrat; letter-spacing: .2em; white-space: nowrap; }
+    #s09-tag1 { left: 60px; top: 880px; background: #f6f0e6; color: #4b2380; }
+    #s09-tag2 { right: 60px; top: 1030px; background: #4b2380; color: #f6f0e6; border: 2px solid #c9a8f0; }
+    .star { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px #c9a8f0; }
+  </style>
+  <div id="root" data-composition-id="s09" data-width="1080" data-height="1920">
+    <div class="cam" id="s09-cam1"><video id="s09-v1" class="clip full" src="assets/broll/city.mp4" data-start="0" data-duration="2.3" data-track-index="0" muted playsinline></video></div>
+    <div class="cam" id="s09-cam2"><video id="s09-v2" class="clip full" src="assets/broll/purple.mp4" data-start="2.28" data-duration="2.41" data-track-index="0" muted playsinline></video></div>
+    <div id="s09-shade"></div>
+    <div class="star" style="left:120px;top:420px"></div><div class="star" style="left:940px;top:360px"></div><div class="star" style="left:980px;top:1380px"></div><div class="star" style="left:90px;top:1300px"></div><div class="star" style="left:540px;top:140px"></div>
+    <div id="s09-card"><video id="s09-clip" class="clip" src="assets/product/noche_clip.mp4" data-start="0.4" data-duration="4.29" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+    <div id="s09-title" class="center">
+      <div id="s09-t">NOCHE</div>
+      <div id="s09-s">MIDNIGHT FANTASY</div>
+    </div>
+    <div class="tag" id="s09-tag1">LEMBUT</div>
+    <div class="tag" id="s09-tag2">MISTERI</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s09-cam1", { scale: 1.25 }, { scale: 1.05, duration: 2.3, ease: "power1.out" }, 0);
+    tl.fromTo("#s09-cam2", { scale: 1.15, rotation: 3 }, { scale: 1.0, rotation: 0, duration: 2.41, ease: "power1.out" }, 2.28);
+    tl.fromTo(".star", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out", stagger: 0.1 }, 0.1);
+    tl.fromTo("#s09-card", { opacity: 0, y: 200, scale: 0.9, clipPath: "inset(40% 0% 40% 0% round 40px)" }, { opacity: 1, y: 0, scale: 1, clipPath: "inset(0% 0% 0% 0% round 40px)", duration: 0.8, ease: "expo.out" }, 0.4);
+    tl.fromTo("#s09-t", { opacity: 0, scale: 1.18, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.58);
+    tl.fromTo("#s09-s", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 1.1);
+    tl.fromTo("#s09-tag1", { opacity: 0, x: -120, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 3.16);
+    tl.fromTo("#s09-tag2", { opacity: 0, x: 120, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 3.86);
+    window.__timelines["s09"] = tl;
+  </script>
+</template>
