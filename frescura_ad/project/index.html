@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:500 800;font-display:block;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:500 800;font-display:block;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300 900;font-display:block;src:url('assets/fonts/Outfit-normal.woff2') format('woff2');}
+:root{
+  --ink:#0b0a0c; --ivory:#f4eee6; --champ:#e2c99b; --gold:#d6b47a; --rose:#e0304e; --yellow:#ffc531;
+  --sans:'Outfit',sans-serif; --serif:'Bodoni Moda',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#000;font-family:var(--sans);color:var(--ivory)}
+#stage{position:absolute;inset:0;transform-origin:50% 50%}
+.clip{position:absolute;inset:0}
+.vid,.bgimg{width:1080px;height:1920px;object-fit:cover;transform-origin:50% 50%}
+.scene{z-index:3}
+#v_foam{z-index:2}
+#s_foam{z-index:4}
+.tint{position:absolute;inset:0}
+.center-stack{position:absolute;left:0;width:100%;text-align:center}
+.eyebrow{font-family:var(--sans);font-weight:500;font-size:24px;letter-spacing:.42em;color:var(--champ);text-transform:uppercase}
+.eyebrow.ink{color:#6d5a3d}
+.mega{font-family:var(--sans);font-weight:900;font-size:190px;line-height:.95;letter-spacing:-.02em;color:var(--ivory);text-shadow:0 10px 60px rgba(0,0,0,.45)}
+.mega .ch{display:inline-block;white-space:pre}
+.serif-xl{font-family:var(--serif);font-style:italic;font-weight:600;font-size:176px;line-height:1.05;color:var(--champ);letter-spacing:-.01em;text-shadow:0 10px 50px rgba(0,0,0,.5)}
+.serif-xl.rose{color:var(--rose)} .serif-xl.yellow{color:var(--yellow)}
+.gold{color:var(--gold)}
+.hairline{width:520px;height:2px;margin:36px auto 0;background:linear-gradient(90deg,transparent,var(--champ),transparent);transform-origin:50% 50%}
+.outline{font-family:var(--sans);font-weight:900;font-size:260px;line-height:1;letter-spacing:.02em;color:transparent;-webkit-text-stroke:3px var(--ivory)}
+.glass{background:rgba(20,16,18,.38);border:1.5px solid rgba(244,238,230,.28);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);box-shadow:0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.18)}
+.pill{position:absolute;left:50%;padding:16px 30px;border-radius:100px;font-weight:600;font-size:26px;letter-spacing:.32em;display:flex;align-items:center;gap:16px;white-space:nowrap}
+.dot{width:16px;height:16px;border-radius:50%;background:var(--rose);box-shadow:0 0 18px var(--rose)}
+/* hook product card */
+#pc_wrap{position:absolute;left:0;top:200px;width:100%;display:flex;flex-direction:column;align-items:center;perspective:1600px}
+.wordmark{font-family:var(--sans);font-weight:300;font-size:54px;letter-spacing:.5em;margin-left:.5em;color:var(--ivory);margin-bottom:40px}
+.card{position:relative;width:560px;height:910px;border-radius:40px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 1.5px rgba(226,201,155,.5)}
+.card img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.sheen{position:absolute;inset:-20%;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.45) 50%,transparent 60%);transform:translateX(-120%)}
+/* captions */
+#caps{z-index:6;pointer-events:none}
+.cap{position:absolute;left:90px;width:880px;top:1395px;text-align:center;font-family:var(--sans);font-weight:700;font-size:78px;line-height:1.12;letter-spacing:-.01em;color:#fff;opacity:0;
+  text-shadow:0 4px 24px rgba(0,0,0,.55),0 2px 4px rgba(0,0,0,.4)}
+.cap .w{display:inline-block;opacity:0}
+.cap .k{font-family:var(--serif);font-style:italic;font-weight:700;font-size:92px;color:var(--champ);letter-spacing:0}
+.cap.fb .k{color:#ffd9e0}
+.cap.q{top:300px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:60px;color:var(--ivory)}
+.cap.q .qmark{font-family:var(--sans);font-style:normal;font-weight:600;font-size:30px;letter-spacing:.3em;color:var(--champ);display:block;margin-bottom:10px}
+/* badges */
+.badge{position:absolute;padding:30px 44px 34px;border-radius:34px;text-align:center;min-width:330px}
+.b-ico{font-size:34px;color:var(--champ)}
+.b-serif{font-family:var(--serif);font-style:italic;font-weight:700;font-size:110px;line-height:1;color:var(--ivory)}
+.b-sans{font-weight:600;font-size:24px;letter-spacing:.5em;margin-left:.5em;color:var(--champ);margin-top:10px}
+.minicard{position:absolute;right:66px;top:440px;width:300px;border-radius:26px;overflow:hidden;background:#140c0e;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1.5px rgba(226,201,155,.55)}
+.minicard img{display:block;width:300px;height:620px;object-fit:cover}
+.mc-cap{padding:16px 18px 20px;text-align:center}
+.mc-cap b{display:block;font-weight:700;font-size:22px;letter-spacing:.26em}
+.mc-cap i{font-family:var(--serif);font-size:34px;color:var(--champ)}
+#scent{position:absolute;right:60px;top:110px;width:300px;height:400px;fill:none;stroke:var(--champ);stroke-width:3;stroke-linecap:round;opacity:.9}
+#stamp{position:absolute;left:40%;top:860px;width:420px;height:420px;margin-left:-210px;color:#ffe8ec;filter:drop-shadow(0 10px 30px rgba(0,0,0,.5))}
+.stampsvg{width:100%;height:100%}
+/* meter */
+.panel{position:absolute;left:80px;width:920px;border-radius:36px;padding:40px 48px 44px}
+.track{position:relative;height:18px;border-radius:20px;background:rgba(255,255,255,.18);margin-top:30px;overflow:visible}
+.track.big{height:34px}
+.fill{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:20px;background:linear-gradient(90deg,#b08a58,var(--champ),#fff6e6);transform-origin:0 50%}
+.rosefill{background:linear-gradient(90deg,#7a0e22,var(--rose),#ff8a9c)}
+.knob{position:absolute;top:50%;left:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(226,201,155,.35),0 6px 20px rgba(0,0,0,.4)}
+.m-labels{display:flex;justify-content:space-between;align-items:center;margin-top:26px;font-family:var(--serif);font-style:italic;font-size:44px}
+.m-labels .arrow{font-family:var(--sans);font-style:normal;color:var(--champ);font-size:38px}
+.m-res{margin-top:22px;text-align:center;font-weight:600;font-size:40px;letter-spacing:.06em}
+.m-res i{font-family:var(--serif);font-size:64px;color:var(--champ)}
+/* education */
+.ivory{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#fbf7f1,#efe6da 70%,#e6dbcc)}
+.arch{position:absolute;left:150px;top:120px;width:780px;height:800px;border-radius:390px 390px 36px 36px;overflow:hidden;box-shadow:0 30px 80px rgba(70,50,30,.25);border:2px solid rgba(160,130,90,.5)}
+#v_edu{z-index:4;left:150px;top:120px;width:780px;height:800px;border-radius:390px 390px 36px 36px}
+#s_edu .ivory{z-index:0}
+#s_edu{z-index:3}
+.e-title{position:absolute;left:0;width:100%;top:1010px;text-align:center;font-family:var(--serif);font-style:italic;font-weight:600;font-size:104px;color:var(--ink);line-height:1}
+.e-title .sans{font-family:var(--sans);font-style:normal;font-weight:800;font-size:64px;letter-spacing:.04em;vertical-align:middle}
+.rows{position:absolute;left:110px;width:860px;top:1160px}
+.row{display:flex;align-items:center;gap:30px;padding:24px 0;border-top:1.5px solid rgba(110,90,60,.35);color:var(--ink)}
+.row .num{font-family:var(--serif);font-style:italic;font-weight:600;font-size:64px;color:#a8864f;width:90px}
+.row .txt{flex:1;display:flex;flex-direction:column}
+.row .txt b{font-weight:800;font-size:46px;letter-spacing:.1em}
+.row .txt span{font-weight:400;font-size:32px;color:#5b4d40;margin-top:4px}
+.row .ico svg{width:84px;height:84px;fill:none;stroke:#a8864f;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+/* cta */
+.cta-btn{position:absolute;left:50%;padding:30px 64px;border-radius:100px;background:var(--ivory);color:var(--ink);font-weight:800;font-size:46px;letter-spacing:.2em;white-space:nowrap;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.cta-btn span{color:#a8864f}
+.yellowbtn{background:var(--yellow);color:#1a1408}
+.ring{position:absolute;inset:-6px;border-radius:100px;border:3px solid var(--champ);opacity:0}
+.sb-top{display:flex;justify-content:space-between;align-items:center}
+.hot{font-weight:800;font-size:26px;letter-spacing:.22em;color:#fff;background:var(--rose);padding:10px 18px;border-radius:10px}
+.ticks{display:flex;justify-content:space-between;margin-top:18px}
+.ticks i{width:2px;height:16px;background:rgba(255,255,255,.35)}
+.glitch-layer{position:absolute;left:0;width:100%;top:540px;text-align:center;font-family:var(--serif);font-style:italic;font-weight:600;font-size:176px;opacity:0;mix-blend-mode:screen}
+.glitch-layer.r{color:#ff1f4b}.glitch-layer.c{color:#1fe3ff}
+#ticket{position:absolute;left:110px;top:760px;width:860px;height:420px;border-radius:30px;background:linear-gradient(135deg,#fbf6ee,#efe3cf);color:var(--ink);display:flex;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.55)}
+#ticket::before,#ticket::after{content:"";position:absolute;left:560px;width:60px;height:60px;border-radius:50%;background:#0d0b0c}
+#ticket::before{top:-30px}#ticket::after{bottom:-30px}
+.t-left{width:590px;padding:56px 56px;display:flex;flex-direction:column;justify-content:center}
+.t-serif{font-family:var(--serif);font-style:italic;font-weight:700;font-size:96px;line-height:1.05;margin-top:10px}
+.t-small{font-size:30px;color:#6d5a3d;margin-top:8px;letter-spacing:.06em}
+.t-div{position:absolute;left:589px;top:40px;bottom:40px;border-left:3px dashed rgba(100,80,50,.4)}
+.t-right{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.t-rm{font-weight:800;font-size:44px;letter-spacing:.2em;color:#a8864f}
+.t-q{font-family:var(--serif);font-weight:700;font-size:120px;line-height:1}
+.t-q span{display:inline-block}
+#bagwrap{position:absolute;left:50%;top:620px;width:400px;height:440px;margin-left:-200px}
+.bag{width:400px;height:440px;filter:drop-shadow(0 30px 60px rgba(255,197,49,.35))}
+.ripple{position:absolute;left:50%;top:58%;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:5px solid var(--yellow);opacity:0}
+.finger{position:absolute;left:58%;top:62%;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 0 0 14px rgba(255,255,255,.25);opacity:0}
+.arrow-dl{position:absolute;left:120px;top:1500px;font-size:150px;color:var(--yellow);font-weight:300;opacity:0}
+/* end */
+#logo{position:absolute;left:90px;top:400px;width:900px;height:900px}
+#logo_glow{position:absolute;left:190px;top:500px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(60,180,255,.35),transparent 65%);opacity:0}
+/* frame */
+#frame{z-index:7;pointer-events:none}
+.fr-border{position:absolute;inset:34px;border:1.5px solid rgba(244,238,230,.32);border-radius:6px}
+.fr-tl,.fr-tr,.fr-bl,.fr-br{position:absolute;font-weight:500;font-size:19px;letter-spacing:.42em;color:rgba(244,238,230,.85);background:transparent;padding:0 14px}
+.fr-tl{top:60px;left:60px}.fr-tr{top:60px;right:56px}.fr-bl{bottom:58px;left:60px}.fr-br{bottom:58px;right:56px}
+/* fx */
+#fx{z-index:9;pointer-events:none}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+#wipe{position:absolute;inset:0;background:var(--ivory)}
+#iris{position:absolute;inset:0;background:#000;opacity:0}
+#grain{position:absolute;inset:-200px;background:url(assets/img/grain.png);opacity:.07;mix-blend-mode:overlay}
+#vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.42) 100%)}
+
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="31.800" data-width="1080" data-height="1920" data-fps="30">
+<div id="stage">
+<video id="v_hook1" class="clip vid" src="assets/video/pump_press.mp4" data-start="0.000" data-duration="2.660" data-media-start="0.000" muted playsinline ></video>
+<video id="v_hook2" class="clip vid" src="assets/video/pump_close.mp4" data-start="2.660" data-duration="2.840" data-media-start="0.300" muted playsinline ></video>
+<video id="v_fb" class="clip vid" src="assets/video/feedback_cut.mp4" data-start="5.500" data-duration="9.029" data-media-start="0.000" muted playsinline ></video>
+<video id="v_foam" class="clip vid" src="assets/video/foam_palm.mp4" data-start="8.800" data-duration="3.100" data-media-start="0.000" muted playsinline ></video>
+<video id="v_edu" class="clip vid" src="assets/video/foam_lather.mp4" data-start="14.530" data-duration="4.300" data-media-start="0.000" muted playsinline ></video>
+<img id="i_cta" class="clip bgimg" src="assets/img/products.jpg" data-start="18.830" data-duration="2.870" />
+<video id="v_stock" class="clip vid" src="assets/video/pump_press.mp4" data-start="21.700" data-duration="3.260" data-media-start="0.600" muted playsinline ></video>
+<video id="v_voucher" class="clip vid" src="assets/video/foam_lather.mp4" data-start="24.930" data-duration="2.730" data-media-start="1.200" muted playsinline ></video>
+<div id="s_hook" class="clip scene " data-start="0.000" data-duration="2.660">
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.72),rgba(8,6,8,.45) 45%,rgba(8,6,8,.85))"></div>
+  <div id="hk" class="center-stack" style="top:560px">
+    <div id="hk_eyebrow" class="eyebrow">FRESCURA BODY &nbsp;·&nbsp; REAL REVIEW</div>
+    <div id="hk1" class="mega" style="font-size:168px"><span class="ch">A</span><span class="ch">P</span><span class="ch">A</span><span class="ch"> </span><span class="ch">K</span><span class="ch">A</span><span class="ch">T</span><span class="ch">A</span></div>
+    <div id="hk2" class="serif-xl">pelanggan<span class="gold">?</span></div>
+    <div id="hk_line" class="hairline"></div>
+  </div>
+  <div id="pc_wrap"><div id="pc_word" class="wordmark">FRESCURA BODY</div>
+    <div id="pcard" class="card"><img src="assets/img/products.jpg"/><div id="pc_sheen" class="sheen"></div></div>
+</div>
+</div>
+<div id="s_hook2" class="clip scene " data-start="2.660" data-duration="2.940">
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.75),rgba(8,6,8,.25) 50%,rgba(8,6,8,.8))"></div>
+  <div class="center-stack" style="top:300px">
+    <div id="tg1" class="mega" style="font-size:180px">TENGOK</div>
+    <div id="tg2" class="serif-xl" style="margin-top:-30px">sendiri<span class="gold">.</span></div>
+    <div id="tg_line" class="hairline"></div>
+  </div>
+  <div id="rec" class="pill glass" style="top:820px"><span class="dot"></span>REAL FEEDBACK</div>
+</div>
+<div id="s_fb" class="clip scene " data-start="5.500" data-duration="9.029">
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.55),rgba(8,6,8,0) 30%,rgba(8,6,8,0) 62%,rgba(8,6,8,.7))"></div>
+  <div id="fb_tag" class="pill glass" style="top:150px;left:72px"><span class="dot"></span>PELANGGAN SEBENAR</div>
+  <div id="b_lembut" class="badge glass" style="top:560px;right:70px">
+    <div class="b-ico">✦</div><div class="b-serif">lembut</div><div class="b-sans">SANGAT</div></div>
+  <div id="glory" class="minicard"><img src="assets/img/glory.jpg"/><div class="mc-cap"><b>WOMAN GLORY</b><i>Bombshell</i></div></div>
+  <svg id="scent" viewBox="0 0 300 400"><path id="sc1" d="M60 390 C 20 300, 110 260, 70 170 S 120 40, 90 0"/><path id="sc2" d="M150 390 C 110 300, 200 260, 160 170 S 210 40, 180 0"/><path id="sc3" d="M240 390 C 200 300, 290 260, 250 170 S 300 40, 270 0"/></svg>
+  <div id="b_wangi" class="badge glass" style="top:430px;left:70px"><div class="b-ico">✓</div><div class="b-serif">wangi</div><div class="b-sans">TAHAN LAMA</div></div>
+  <div id="stamp"><svg viewBox="0 0 300 300" class="stampsvg"><defs><path id="sc" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0"/></defs>
+<circle cx="150" cy="150" r="140" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="150" cy="150" r="88" fill="none" stroke="currentColor" stroke-width="2"/>
+<text font-family="Outfit" font-weight="800" font-size="27" letter-spacing="7" fill="currentColor"><textPath href="#sc">REAL REVIEW ✦ TAK TIPU ✦ REAL REVIEW ✦</textPath></text>
+<text x="150" y="168" text-anchor="middle" font-family="Bodoni Moda" font-style="italic" font-weight="700" font-size="64" fill="currentColor">100%</text></svg></div>
+</div>
+<div id="s_foam" class="clip scene " data-start="8.800" data-duration="3.100">
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.65),rgba(8,6,8,0) 40%,rgba(8,6,8,.6))"></div>
+  <div id="meter" class="glass panel" style="top:250px">
+    <div class="eyebrow dark-on-glass">TAHAP KELEMBUTAN KULIT</div>
+    <div class="track"><div id="m_fill" class="fill"></div><div id="m_knob" class="knob"></div></div>
+    <div class="m-labels"><span id="ml1">Mula-mula</span><span class="arrow">⟶</span><span id="ml2">Lama-lama</span></div>
+    <div id="m_res" class="m-res">makin <i>lembut</i> ✦</div>
+  </div>
+</div>
+<div id="s_edu" class="clip scene " data-start="14.530" data-duration="4.300">
+  <div class="ivory"></div>
+  <div id="arch" class="arch"></div>
+  <div id="e_eyebrow" class="eyebrow ink" style="position:absolute;top:960px;width:100%;text-align:center">EDUKASI &nbsp;·&nbsp; GENTLE FOAMING BODY SHOWER</div>
+  <div id="e_title" class="e-title"><span class="sans">Kenapa</span> <i>rasa lembut?</i></div>
+  <div class="rows">
+    <div class="row" id="r1"><div class="num">01</div><div class="txt"><b>OCEAN SALT</b><span>Bersihkan &amp; segarkan kulit</span></div><div class="ico"><svg viewBox="0 0 64 64"><path d="M6 26c6-6 12-6 18 0s12 6 18 0 12-6 16-2M6 38c6-6 12-6 18 0s12 6 18 0 12-6 16-2" /></svg></div></div>
+    <div class="row" id="r2"><div class="num">02</div><div class="txt"><b>AROMATHERAPY</b><span>Wangian yang menenangkan</span></div><div class="ico"><svg viewBox="0 0 64 64"><path d="M14 50C14 26 30 12 54 10c0 24-14 40-38 40zM14 50l22-22" /></svg></div></div>
+    <div class="row" id="r3"><div class="num">03</div><div class="txt"><b>GENTLE FOAMING</b><span>Buih lembut, mesra kulit</span></div><div class="ico"><svg viewBox="0 0 64 64"><circle cx="24" cy="36" r="14"/><circle cx="44" cy="22" r="8"/><circle cx="46" cy="46" r="5"/></svg></div></div>
+  </div>
+</div>
+<div id="s_cta1" class="clip scene " data-start="18.830" data-duration="2.870">
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.7),rgba(8,6,8,.1) 40%,rgba(8,6,8,.75))"></div>
+  <div class="center-stack" style="top:230px">
+    <div id="nk1" class="mega" style="font-size:170px">NAK</div>
+    <div id="nk2" class="serif-xl" style="margin-top:-36px">cuba<span class="gold">?</span></div>
+  </div>
+  <div id="co_btn" class="cta-btn" style="top:1090px">CHECK OUT <span>⟶</span><div id="co_ring" class="ring"></div></div>
+</div>
+<div id="s_stock" class="clip scene " data-start="21.700" data-duration="3.230">
+  <div class="tint" style="background:radial-gradient(ellipse at 50% 40%,rgba(60,6,16,.55),rgba(8,4,6,.92) 75%)"></div>
+  <div class="center-stack" style="top:300px">
+    <div id="st1" class="outline">STOK</div>
+    <div id="st2" class="serif-xl rose" style="margin-top:-40px">terhad<span>!</span></div>
+  </div>
+  <div id="stockbox" class="glass panel" style="top:820px">
+    <div class="sb-top"><span class="eyebrow">BAKI STOK · TIKTOK SHOP</span><span id="sb_hot" class="hot">HAMPIR HABIS</span></div>
+    <div class="track big"><div id="s_fill" class="fill rosefill"></div></div>
+    <div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div id="glitchR" class="glitch-layer r">terhad!</div><div id="glitchC" class="glitch-layer c">terhad!</div>
+</div>
+<div id="s_voucher" class="clip scene " data-start="24.930" data-duration="2.760">
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,6,8,.8),rgba(8,6,8,.45) 50%,rgba(8,6,8,.85))"></div>
+  <div class="center-stack" style="top:250px">
+    <div id="vc1" class="eyebrow" style="font-size:30px">CUBA TENGOK</div>
+    <div id="vc2" class="serif-xl" style="font-size:150px">berapa<span class="gold">?</span></div>
+  </div>
+  <div id="ticket"><div class="t-left"><div class="eyebrow ink" style="font-size:22px">VOUCHER</div><div class="t-serif">TikTok Shop</div><div class="t-small">untuk korang</div></div>
+    <div class="t-div"></div><div class="t-right"><div class="t-rm">RM</div><div class="t-q"><span id="q1">?</span><span id="q2">?</span><span id="q3">?</span></div></div>
+    <div id="t_sheen" class="sheen"></div></div>
+</div>
+<div id="s_bag" class="clip scene " data-start="27.660" data-duration="1.530">
+  <div class="tint" style="background:radial-gradient(circle at 50% 42%,#2a2210 0%,#0c0a08 60%)"></div>
+  <div class="center-stack" style="top:190px">
+    <div id="tk1" class="mega" style="font-size:160px">TEKAN</div>
+    <div id="tk2" class="serif-xl yellow" style="margin-top:-30px;font-size:150px">beg kuning</div>
+  </div>
+  <div id="bagwrap"><svg viewBox="0 0 200 220" class="bag"><path d="M28 70h144l-12 132a14 14 0 0 1-14 12H54a14 14 0 0 1-14-12z" fill="#FFC531"/>
+<path d="M28 70h144l-3 30H31z" fill="#F2A900" opacity=".55"/><path d="M68 92V60a32 32 0 0 1 64 0v32" fill="none" stroke="#1a1408" stroke-width="12" stroke-linecap="round"/>
+<circle cx="68" cy="96" r="8" fill="#1a1408"/><circle cx="132" cy="96" r="8" fill="#1a1408"/></svg><div id="ripple1" class="ripple"></div><div id="ripple2" class="ripple"></div>
+    <div id="finger" class="finger"></div></div>
+  <div id="arrow" class="arrow-dl">↙</div>
+  <div id="co2" class="cta-btn yellowbtn" style="top:1170px">CHECK OUT SEKARANG</div>
+</div>
+<div id="s_end" class="clip scene " data-start="29.190" data-duration="2.610">
+  <div style="position:absolute;inset:0;background:#000"></div>
+  <div id="logo_glow"></div>
+  <img id="logo" src="assets/img/logo.jpg"/>
+  <div id="end_t1" class="eyebrow" style="position:absolute;top:1340px;width:100%;text-align:center;font-size:28px">DAPATKAN DI TIKTOK SHOP</div>
+  <div id="end_t2" class="e-title" style="top:1400px;color:#f4eee6;font-size:78px"><i>Noche</i> <span class="sans" style="font-size:50px">&amp;</span> <i>Woman Glory</i></div>
+  <div id="fadeout" style="position:absolute;inset:0;background:#000;opacity:0"></div>
+</div>
+</div>
+
+<div id="caps" class="clip" data-start="0" data-duration="31.800"><div class="cap vo" id="c0"><span class="w" id="c0w0">selepas</span> <span class="w" id="c0w1">cuba</span> <span class="w k" id="c0w2">FRESCURA</span> <span class="w k" id="c0w3">BODY</span></div>
+<div class="cap vo" id="c1"><span class="w" id="c1w0">korang</span> <span class="w" id="c1w1">kena</span> <span class="w" id="c1w2">tengok</span> <span class="w" id="c1w3">sendiri</span></div>
+<div class="cap vo" id="c2"><span class="w k" id="c2w0">feedback</span> <span class="w" id="c2w1">mereka</span> <span class="w" id="c2w2">ini.</span></div>
+<div class="cap q" id="c3"><span class="qmark">Q —</span><span class="w" id="c3w0">Rasa</span> <span class="w" id="c3w1">apa</span> <span class="w" id="c3w2">testing</span> <span class="w" id="c3w3">kita</span> <span class="w" id="c3w4">bagi</span> <span class="w" id="c3w5">tu?</span></div>
+<div class="cap fb" id="c4"><span class="w" id="c4w0">Alhamdulillah,</span> <span class="w" id="c4w1">rasa</span> <span class="w" id="c4w2">dia</span></div>
+<div class="cap fb" id="c5"><span class="w k" id="c5w0">lembut</span> <span class="w" id="c5w1">sangat.</span></div>
+<div class="cap fb" id="c6"><span class="w" id="c6w0">Mula-mula</span> <span class="w" id="c6w1">pakai</span> <span class="w" id="c6w2">tu</span> <span class="w" id="c6w3">tak</span> <span class="w" id="c6w4">rasa</span> <span class="w" id="c6w5">sangat,</span></div>
+<div class="cap fb" id="c7"><span class="w k" id="c7w0">lama-lama</span> <span class="w" id="c7w1">dia</span> <span class="w" id="c7w2">rasa</span> <span class="w k" id="c7w3">lembut.</span></div>
+<div class="cap q" id="c8"><span class="qmark">Q —</span><span class="w" id="c8w0">Wangi</span> <span class="w" id="c8w1">tak,</span> <span class="w" id="c8w2">Kak?</span></div>
+<div class="cap fb" id="c9"><span class="w" id="c9w0">Kalau</span> <span class="w" id="c9w1">yang</span> <span class="w" id="c9w2">ni,</span> <span class="w k" id="c9w3">wangi!</span></div>
+<div class="cap fb" id="c10"><span class="w" id="c10w0">Tak</span> <span class="w k" id="c10w1">tipu</span> <span class="w" id="c10w2">lah</span> <span class="w" id="c10w3">ni!</span></div>
+<div class="cap vo" id="c11"><span class="w" id="c11w0">Kalau</span> <span class="w" id="c11w1">korang</span> <span class="w" id="c11w2">pun</span> <span class="w" id="c11w3">nak</span> <span class="w k" id="c11w4">cuba,</span></div>
+<div class="cap vo" id="c12"><span class="w" id="c12w0">cepat</span> <span class="w k" id="c12w1">check</span> <span class="w k" id="c12w2">out!</span></div>
+<div class="cap vo" id="c13"><span class="w" id="c13w0">Stok</span> <span class="w" id="c13w1">yang</span> <span class="w" id="c13w2">tinggal</span> <span class="w" id="c13w3">di</span> <span class="w k" id="c13w4">TikTok</span> <span class="w k" id="c13w5">Shop</span></div>
+<div class="cap vo" id="c14"><span class="w" id="c14w0">memang</span> <span class="w" id="c14w1">sangat-sangat</span> <span class="w k" id="c14w2">terhad!</span></div>
+<div class="cap vo" id="c15"><span class="w" id="c15w0">Cuba</span> <span class="w" id="c15w1">korang</span> <span class="w" id="c15w2">tengok</span> <span class="w k" id="c15w3">berapa</span></div>
+<div class="cap vo" id="c16"><span class="w" id="c16w0">yang</span> <span class="w k" id="c16w1">TikTok</span> <span class="w" id="c16w2">bagi</span> <span class="w" id="c16w3">dekat</span> <span class="w" id="c16w4">korang.</span></div>
+<div class="cap vo" id="c17"><span class="w" id="c17w0">Tekan</span> <span class="w k" id="c17w1">beg</span> <span class="w k" id="c17w2">kuning</span> <span class="w" id="c17w3">ni</span> <span class="w" id="c17w4">sekarang</span></div>
+<div class="cap vo" id="c18"><span class="w" id="c18w0">dan</span> <span class="w k" id="c18w1">check</span> <span class="w k" id="c18w2">out!</span></div></div>
+<div id="frame" class="clip" data-start="0" data-duration="29.190">
+  <div class="fr-border"></div>
+  <div class="fr-tl">FRESCURA BODY</div><div class="fr-tr">Nº 01 — REVIEW</div>
+  <div class="fr-bl">SOFT | FRAGRANT</div><div id="fr_time" class="fr-br">500 ML</div>
+</div>
+<div id="fx" class="clip" data-start="0" data-duration="31.800">
+  <div id="flash"></div><div id="wipe"></div><div id="iris"></div>
+  <div id="grain"></div><div id="vignette"></div>
+</div>
+<audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="31.800" data-volume="1"></audio>
+
+</div>
+<script>
+const C = {"FB_OUT": 5.5, "FB_END": 14.528571428571427, "E0": 14.53, "E1": 18.83, "END0": 29.19, "END1": 31.8, "TOTAL": 31.8, "LEMBUT": 8.243, "LAMA": 10.624, "LEMBUT2": 11.557, "WANGI_Q": 11.957, "WANGI": 13.31, "TIPU": 13.633, "CUBA": 20.212, "CEPAT": 20.703, "CHECK": 21.321, "TIKTOK": 22.826, "SANGAT": 23.771, "TERHAD": 24.608, "BERAPA": 25.905, "TIKTOK2": 26.615, "TEKAN": 27.726, "BEG": 28.054, "CHECK2": 28.69};
+const CAPS = [{"kind": "vo", "start": 1.55, "end": 2.66, "words": [["selepas", 1.173, 1.645, false], ["cuba", 1.645, 2.009, false], ["FRESCURA", 2.009, 2.391, true], ["BODY", 2.391, 2.664, true]]}, {"kind": "vo", "start": 2.66, "end": 4.096, "words": [["korang", 2.7, 3.318, false], ["kena", 3.318, 3.5, false], ["tengok", 3.5, 3.918, false], ["sendiri", 3.918, 4.136, false]]}, {"kind": "vo", "start": 4.096, "end": 5.498, "words": [["feedback", 4.136, 4.755, true], ["mereka", 4.755, 5.045, false], ["ini.", 5.045, 5.336, false]]}, {"kind": "q", "start": 5.498, "end": 6.946, "words": [["Rasa", 5.538, 5.881, false], ["apa", 5.881, 6.014, false], ["testing", 6.014, 6.262, false], ["kita", 6.262, 6.548, false], ["bagi", 6.548, 6.871, false], ["tu?", 6.871, 6.986, false]]}, {"kind": "fb", "start": 6.946, "end": 8.203000000000001, "words": [["Alhamdulillah,", 6.986, 7.69, false], ["rasa", 7.69, 7.938, false], ["dia", 7.938, 8.243, false]]}, {"kind": "fb", "start": 8.203000000000001, "end": 8.793000000000001, "words": [["lembut", 8.243, 8.586, true], ["sangat.", 8.586, 8.833, false]]}, {"kind": "fb", "start": 8.793000000000001, "end": 10.584000000000001, "words": [["Mula-mula", 8.833, 9.71, false], ["pakai", 9.71, 9.843, false], ["tu", 9.843, 10.09, false], ["tak", 10.09, 10.224, false], ["rasa", 10.224, 10.395, false], ["sangat,", 10.395, 10.624, false]]}, {"kind": "fb", "start": 10.584000000000001, "end": 11.917000000000002, "words": [["lama-lama", 10.624, 11.271, true], ["dia", 11.271, 11.443, false], ["rasa", 11.443, 11.557, false], ["lembut.", 11.557, 11.9, true]]}, {"kind": "q", "start": 11.917000000000002, "end": 12.679, "words": [["Wangi", 11.957, 12.414, false], ["tak,", 12.414, 12.548, false], ["Kak?", 12.548, 12.719, false]]}, {"kind": "fb", "start": 12.679, "end": 13.574000000000002, "words": [["Kalau", 12.719, 13.024, false], ["yang", 13.024, 13.214, false], ["ni,", 13.214, 13.31, false], ["wangi!", 13.31, 13.557, true]]}, {"kind": "fb", "start": 13.574000000000002, "end": 14.53, "words": [["Tak", 13.614, 13.995, false], ["tipu", 13.995, 14.281, true], ["lah", 14.281, 14.319, false], ["ni!", 14.319, 14.49, false]]}, {"kind": "vo", "start": 18.863, "end": 20.663, "words": [["Kalau", 18.903, 19.412, false], ["korang", 19.412, 19.921, false], ["pun", 19.921, 20.066, false], ["nak", 20.066, 20.212, false], ["cuba,", 20.212, 20.703, true]]}, {"kind": "vo", "start": 20.663, "end": 21.768, "words": [["cepat", 20.703, 21.321, false], ["check", 21.321, 21.43, true], ["out!", 21.43, 21.612, true]]}, {"kind": "vo", "start": 21.768, "end": 23.295, "words": [["Stok", 21.808, 22.317, false], ["yang", 22.317, 22.408, false], ["tinggal", 22.408, 22.717, false], ["di", 22.717, 22.826, false], ["TikTok", 22.826, 23.08, true], ["Shop", 23.08, 23.335, true]]}, {"kind": "vo", "start": 23.295, "end": 24.956, "words": [["memang", 23.335, 23.771, false], ["sangat-sangat", 23.771, 24.608, false], ["terhad!", 24.608, 24.862, true]]}, {"kind": "vo", "start": 24.956, "end": 26.356, "words": [["Cuba", 24.996, 25.396, false], ["korang", 25.396, 25.596, false], ["tengok", 25.596, 25.905, false], ["berapa", 25.905, 26.396, true]]}, {"kind": "vo", "start": 26.356, "end": 27.686, "words": [["yang", 26.396, 26.615, false], ["TikTok", 26.615, 26.887, true], ["bagi", 26.887, 27.251, false], ["dekat", 27.251, 27.378, false], ["korang.", 27.378, 27.615, false]]}, {"kind": "vo", "start": 27.686, "end": 28.414, "words": [["Tekan", 27.726, 28.054, false], ["beg", 28.054, 28.145, true], ["kuning", 28.145, 28.254, true], ["ni", 28.254, 28.326, false], ["sekarang", 28.326, 28.454, false]]}, {"kind": "vo", "start": 28.414, "end": 29.240000000000002, "words": [["dan", 28.454, 28.69, false], ["check", 28.69, 28.926, true], ["out!", 28.926, 29.072, true]]}];
+const tl = gsap.timeline({ paused: true });
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const INIT = new Map();
+const ft = (t, el, from, to) => {
+  const m = INIT.get(el) || {}; Object.keys(from).forEach((k) => { if (!(k in m) || t < m[k][0]) m[k] = [t, from[k]]; }); INIT.set(el, m);
+  return tl.fromTo(el, from, Object.assign({ immediateRender: false }, to), t);
+};
+const IN = (t, el, d = 0.5, extra = {}) => ft(t, el, Object.assign({ opacity: 0, y: 40, filter: "blur(14px)" }, extra.from || {}),
+  Object.assign({ opacity: 1, y: 0, x: 0, scale: 1, filter: "blur(0px)", duration: d, ease: "expo.out" }, extra.to || {}));
+const OUT = (t, el, d = 0.3, extra = {}) => tl.to(el, Object.assign({ opacity: 0, y: -40, filter: "blur(12px)", duration: d, ease: "power2.in" }, extra), t);
+const flash = (t, a = 0.85, d = 0.28) => ft(t, "#flash", { opacity: a }, { opacity: 0, duration: d, ease: "power2.out" });
+const punch = (t, el, s = 1.06) => ft(t, el, { scale: s }, { scale: 1, duration: 0.45, ease: "expo.out" });
+
+// ---------- global: grain jitter, slow pushes on footage ----------
+tl.fromTo("#grain", { x: 0, y: 0 }, { x: 180, y: -140, duration: C.TOTAL, ease: "steps(" + Math.round(C.TOTAL * 12) + ")", immediateRender: false }, 0);
+ft(0, "#v_hook1", { scale: 1.28 }, { scale: 1.08, duration: 2.66, ease: "power2.out" });
+ft(2.66, "#v_hook2", { scale: 1.25 }, { scale: 1.05, duration: 2.84, ease: "power1.out" });
+ft(C.FB_OUT, "#v_fb", { scale: 1.12 }, { scale: 1.0, duration: C.FB_END - C.FB_OUT, ease: "none" });
+ft(8.8, "#v_foam", { scale: 1.2 }, { scale: 1.04, duration: 3.1, ease: "power1.out" });
+ft(C.E1, "#i_cta", { scale: 1.0 }, { scale: 1.14, duration: 21.7 - C.E1, ease: "none" });
+ft(21.7, "#v_stock", { scale: 1.35, rotation: -2 }, { scale: 1.15, rotation: 0, duration: 3.26, ease: "none" });
+ft(24.93, "#v_voucher", { scale: 1.3 }, { scale: 1.1, duration: 2.73, ease: "none" });
+
+// ---------- HOOK 0 – 2.66 ----------
+flash(0, 1, 0.35);
+ft(0, "#v_hook1", { filter: "blur(18px) brightness(1.6)" }, { filter: "blur(0px) brightness(1)", duration: 0.55, ease: "power3.out" });
+IN(0.15, "#hk_eyebrow", 0.6, { from: { y: 0, letterSpacing: "1.2em" }, to: { letterSpacing: "0.42em" } });
+$$("#hk1 .ch").forEach((c, i) => ft(0.02 + i * 0.035, c, { opacity: 0, scale: 2.4, filter: "blur(20px)", y: -30 }, { opacity: 1, scale: 1, filter: "blur(0px)", y: 0, duration: 0.42, ease: "expo.out" }));
+IN(0.32, "#hk2", 0.7, { from: { y: 90, scale: 0.9 } });
+ft(0.5, "#hk_line", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.8, ease: "expo.out" });
+tl.to("#hk", { scale: 1.06, duration: 1.2, ease: "none" }, 0.35);
+OUT(1.5, "#hk", 0.28, { y: -140 });
+ft(1.5, "#v_hook1", { filter: "blur(0px) brightness(1)" }, { filter: "blur(10px) brightness(.55)", duration: 0.4, ease: "power2.out" });
+ft(1.55, "#pc_word", { opacity: 0, letterSpacing: "1.1em" }, { opacity: 1, letterSpacing: "0.5em", duration: 0.9, ease: "expo.out" });
+ft(1.58, "#pcard", { opacity: 0, y: 700, rotationX: 38, scale: 0.75 }, { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.75, ease: "expo.out" });
+ft(2.05, "#pc_sheen", { x: "-120%" }, { x: "120%", duration: 0.7, ease: "power2.inOut" });
+tl.to("#pcard", { scale: 1.04, duration: 0.9, ease: "none" }, 2.0);
+tl.set("#pc_wrap", { opacity: 1 }, 0);
+// whip into hook2
+flash(2.62, 0.6, 0.2);
+ft(2.66, "#s_hook2", { filter: "blur(16px)", scale: 1.15 }, { filter: "blur(0px)", scale: 1, duration: 0.35, ease: "expo.out" });
+ft(2.72, "#tg1", { opacity: 0, clipPath: "inset(0 0 100% 0)", y: 60 }, { opacity: 1, clipPath: "inset(0 0 0% 0)", y: 0, duration: 0.5, ease: "expo.out" });
+IN(2.95, "#tg2", 0.6, { from: { x: 120, y: 0 } });
+ft(3.15, "#tg_line", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" });
+ft(3.92, "#rec", { opacity: 0, scale: 0.6, xPercent: -50, x: 0 }, { opacity: 1, scale: 1, xPercent: -50, duration: 0.45, ease: "back.out(2.2)" });
+tl.to("#rec .dot", { opacity: 0.2, duration: 0.25, repeat: 5, yoyo: true, ease: "none" }, 4.0);
+tl.to("#s_hook2 .center-stack", { scale: 1.08, duration: 2.6, ease: "none" }, 2.9);
+// iris into feedback
+ft(5.28, "#iris", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.in" });
+ft(5.5, "#iris", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power2.out" });
+ft(5.5, "#v_fb", { clipPath: "circle(0% at 50% 45%)" }, { clipPath: "circle(80% at 50% 45%)", duration: 0.55, ease: "expo.out" });
+
+// ---------- FEEDBACK 5.5 – 14.53 ----------
+IN(5.62, "#fb_tag", 0.5, { from: { x: -60, y: 0 } });
+tl.to("#fb_tag .dot", { opacity: 0.2, duration: 0.3, repeat: 9, yoyo: true, ease: "none" }, 5.8);
+ft(C.LEMBUT - 0.05, "#b_lembut", { opacity: 0, scale: 0.5, rotation: 8, filter: "blur(10px)" }, { opacity: 1, scale: 1, rotation: -3, filter: "blur(0px)", duration: 0.55, ease: "back.out(1.8)" });
+tl.to("#b_lembut", { y: -20, duration: 1.0, ease: "sine.inOut" }, C.LEMBUT + 0.5);
+OUT(9.5, "#b_lembut", 0.3, { scale: 0.85, y: -60 });
+tl.set("#s_fb", { zIndex: 5 }, 9.4);  // badge floats above b-roll briefly
+// J-cut b-roll (foam) 8.8 – 11.9 with educational meter
+ft(8.8, "#v_foam", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.inOut" });
+ft(8.8, "#s_foam", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.inOut" });
+IN(9.05, "#meter", 0.6, { from: { y: -60 } });
+ft(9.2, "#m_fill", { scaleX: 0.12 }, { scaleX: 0.3, duration: 1.2, ease: "power1.inOut" });
+ft(9.2, "#m_knob", { x: 99 }, { x: 247, duration: 1.2, ease: "power1.inOut" });
+tl.to("#m_fill", { scaleX: 1, duration: 1.2, ease: "power3.inOut" }, C.LAMA);
+tl.to("#m_knob", { x: 824, duration: 1.2, ease: "power3.inOut" }, C.LAMA);
+ft(9.2, "#ml1", { opacity: 0.3 }, { opacity: 1, duration: 0.3 });
+ft(C.LAMA, "#ml2", { opacity: 0.3 }, { opacity: 1, color: "#e2c99b", duration: 0.3 });
+ft(C.LEMBUT2 - 0.05, "#m_res", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" });
+ft(11.88, "#v_foam", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 100% 0% 0%)", duration: 0.3, ease: "expo.in", immediateRender: false });
+ft(11.88, "#s_foam", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 100% 0% 0%)", duration: 0.3, ease: "expo.in" });
+// wangi
+ft(12.75, "#glory", { opacity: 0, x: 380, rotation: 14 }, { opacity: 1, x: 0, rotation: 5, duration: 0.6, ease: "expo.out" });
+["#sc1", "#sc2", "#sc3"].forEach((p, i) => {
+  const L = 560; ft(C.WANGI - 0.1 + i * 0.08, p, { strokeDasharray: L, strokeDashoffset: L, opacity: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" });
+  tl.to(p, { opacity: 0, y: -60, duration: 0.5 }, C.WANGI + 0.9 + i * 0.08);
+});
+ft(C.WANGI - 0.05, "#b_wangi", { opacity: 0, scale: 0.5, rotation: -8 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.5, ease: "back.out(2)" });
+// stamp
+ft(C.TIPU, "#stamp", { opacity: 0, scale: 2.6, rotation: -30 }, { opacity: 0.95, scale: 1, rotation: -12, duration: 0.22, ease: "power4.in" });
+tl.to("#stamp", { rotation: -6, duration: 0.9, ease: "sine.out" }, C.TIPU + 0.25);
+[[14, -10], [-12, 8], [8, -4], [-4, 2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TIPU + 0.22 + i * 0.04));
+flash(C.TIPU + 0.21, 0.35, 0.2);
+// wipe to edu
+ft(C.E0 - 0.28, "#wipe", { yPercent: 100 }, { yPercent: 0, duration: 0.28, ease: "expo.in" });
+ft(C.E0, "#wipe", { yPercent: 0 }, { yPercent: -100, duration: 0.42, ease: "expo.out", immediateRender: false });
+
+// ---------- EDUCATION ----------
+const E = C.E0;
+ft(E, "#v_edu", { clipPath: "inset(100% 0% 0% 0% round 390px 390px 36px 36px)" }, { clipPath: "inset(0% 0% 0% 0% round 390px 390px 36px 36px)", duration: 0.7, ease: "expo.out" });
+ft(E, "#v_edu", { scale: 1.2 }, { scale: 1.0, duration: C.E1 - E, ease: "power1.out" });
+IN(E + 0.15, "#e_eyebrow", 0.5, { from: { y: 0, letterSpacing: "0.9em" }, to: { letterSpacing: "0.42em" } });
+IN(E + 0.25, "#e_title", 0.6, { from: { y: 60 } });
+["#r1", "#r2", "#r3"].forEach((r, i) => {
+  const t = E + 0.75 + i * 0.7;
+  ft(t, r, { opacity: 0, x: -80, borderTopColor: "rgba(110,90,60,0)" }, { opacity: 1, x: 0, borderTopColor: "rgba(110,90,60,.35)", duration: 0.5, ease: "expo.out" });
+  ft(t + 0.1, r + " .num", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.5)" });
+  ft(t + 0.15, r + " .ico svg", { opacity: 0, rotation: -30, scale: 0.5 }, { opacity: 1, rotation: 0, scale: 1, duration: 0.5, ease: "back.out(2)" });
+});
+tl.to(".rows", { y: -14, duration: 2.5, ease: "sine.inOut" }, E + 1.8);
+tl.set("#frame", { opacity: 0 }, E); tl.set("#frame", { opacity: 1 }, C.E1);
+// whip into CTA
+flash(C.E1 - 0.05, 0.9, 0.3);
+ft(C.E1 - 0.25, "#s_edu", { scale: 1, filter: "blur(0px)" }, { scale: 1.25, filter: "blur(18px)", duration: 0.25, ease: "power3.in" });
+
+// ---------- CTA 1 ----------
+ft(C.E1, "#i_cta", { filter: "blur(20px) brightness(1.4)" }, { filter: "blur(0px) brightness(1)", duration: 0.5, ease: "power3.out" });
+ft(C.CUBA - 1.0, "#nk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" });
+IN(C.CUBA - 0.05, "#nk2", 0.55, { from: { y: 70 } });
+punch(C.CUBA, "#nk1", 1.08);
+ft(C.CHECK - 0.15, "#co_btn", { opacity: 0, scale: 0.5, xPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "back.out(2.2)" });
+ft(C.CHECK + 0.1, "#co_ring", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.35, duration: 0.6, ease: "power2.out" });
+tl.to("#co_btn span", { x: 16, duration: 0.18, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.CHECK + 0.1);
+
+// ---------- STOCK ----------
+flash(21.68, 0.5, 0.2);
+ft(21.72, "#st1", { opacity: 0, scale: 0.6, letterSpacing: "0.3em" }, { opacity: 1, scale: 1, letterSpacing: "0.02em", duration: 0.6, ease: "expo.out" });
+ft(21.95, "#stockbox", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
+ft(22.0, "#s_fill", { scaleX: 1 }, { scaleX: 0.12, duration: 2.5, ease: "power2.inOut" });
+ft(C.TERHAD - 0.05, "#st2", { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" });
+ft(23.2, "#sb_hot", { opacity: 0 }, { opacity: 1, duration: 0.1 });
+tl.to("#sb_hot", { opacity: 0.25, duration: 0.18, repeat: 7, yoyo: true, ease: "none" }, 23.4);
+[[-14, 0.9], [10, 0.6], [-6, 0.8], [0, 0]].forEach(([x, o], i) => {
+  tl.set("#glitchR", { opacity: o, x: x, y: 0 }, C.TERHAD + i * 0.05);
+  tl.set("#glitchC", { opacity: o, x: -x, y: 0 }, C.TERHAD + i * 0.05);
+});
+[[12, -6], [-10, 6], [6, -2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TERHAD + i * 0.04));
+
+// ---------- VOUCHER ----------
+ft(24.93, "#s_voucher", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" });
+IN(25.0, "#vc1", 0.5, { from: { y: 0, letterSpacing: "1em" }, to: { letterSpacing: "0.42em" } });
+IN(C.BERAPA - 0.05, "#vc2", 0.5, { from: { y: 60, scale: 1.2 } });
+ft(25.05, "#ticket", { opacity: 0, y: 500, rotation: -16 }, { opacity: 1, y: 0, rotation: -4, duration: 0.7, ease: "expo.out" });
+["#q1", "#q2", "#q3"].forEach((q, i) => {
+  ft(C.BERAPA + i * 0.08, q, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(3)" });
+  tl.to(q, { y: -14, duration: 0.22, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.BERAPA + 0.5 + i * 0.1);
+});
+ft(C.TIKTOK2, "#t_sheen", { x: "-120%" }, { x: "120%", duration: 0.7, ease: "power2.inOut" });
+punch(C.TIKTOK2, "#ticket", 1.06);
+tl.to("#ticket", { rotation: 2, duration: 1.4, ease: "sine.inOut" }, 25.8);
+
+// ---------- BAG ----------
+flash(27.62, 0.5, 0.2);
+ft(27.68, "#tk1", { opacity: 0, scale: 1.8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" });
+ft(27.72, "#bagwrap", { opacity: 0, scale: 0.3, y: 200, rotation: -12 }, { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.55, ease: "back.out(1.8)" });
+IN(C.BEG - 0.06, "#tk2", 0.45, { from: { y: 50, scale: 1.2 } });
+ft(C.BEG - 0.25, "#finger", { opacity: 0, x: 120, y: 120, scale: 1.3 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.25, ease: "power2.out" });
+ft(C.BEG, "#finger", { scale: 1 }, { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.inOut" });
+ft(C.BEG, "#bagwrap .bag", { scaleY: 1, scaleX: 1 }, { scaleY: 0.88, scaleX: 1.08, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.inOut" });
+ft(C.BEG, "#ripple1", { opacity: 1, scale: 0.3 }, { opacity: 0, scale: 2.4, duration: 0.7, ease: "power2.out" });
+ft(C.BEG + 0.15, "#ripple2", { opacity: 1, scale: 0.3 }, { opacity: 0, scale: 2.8, duration: 0.8, ease: "power2.out" });
+ft(C.BEG + 0.2, "#arrow", { opacity: 0, x: 60, y: -60 }, { opacity: 1, x: 0, y: 0, duration: 0.35, ease: "back.out(2)" });
+tl.to("#arrow", { x: -18, y: 18, duration: 0.22, repeat: 3, yoyo: true, ease: "sine.inOut" }, C.BEG + 0.55);
+ft(C.CHECK2 - 0.1, "#co2", { opacity: 0, scale: 0.5, xPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, duration: 0.45, ease: "back.out(2.2)" });
+tl.to("#bagwrap", { y: -16, duration: 0.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, C.BEG + 0.3);
+
+// ---------- END CARD ----------
+ft(C.END0, "#logo", { opacity: 0, scale: 0.82, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.9, ease: "expo.out" });
+ft(C.END0 + 0.2, "#logo_glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.2, duration: 1.2, ease: "power2.out" });
+tl.to("#logo_glow", { opacity: 0.55, duration: 0.6, repeat: 1, yoyo: true, ease: "sine.inOut" }, C.END0 + 1.4);
+tl.to("#logo", { scale: 1.04, duration: 2.0, ease: "none" }, C.END0 + 0.9);
+IN(C.END0 + 0.7, "#end_t1", 0.6, { from: { y: 0, letterSpacing: "1em" }, to: { letterSpacing: "0.42em" } });
+IN(C.END0 + 0.95, "#end_t2", 0.6);
+ft(C.END1 - 0.45, "#fadeout", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.in" });
+
+// ---------- CAPTIONS ----------
+CAPS.forEach((g, i) => {
+  const el = "#c" + i;
+  ft(g.start, el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.18, ease: "power3.out" });
+  tl.to(el, { opacity: 0, y: -16, duration: 0.12, ease: "power2.in" }, Math.max(g.start + 0.2, g.end - 0.12));
+  g.words.forEach((w, j) => {
+    const t = Math.max(g.start, w[1] - 0.03);
+    const k = w[3];
+    ft(t, "#c" + i + "w" + j, { opacity: 0, y: k ? 30 : 18, scale: k ? 1.35 : 1, filter: "blur(6px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: k ? 0.32 : 0.16, ease: k ? "back.out(2.4)" : "power3.out" });
+  });
+});
+
+// pre-roll state: every element starts at its earliest "from" values (hidden until its cue)
+INIT.forEach((m, el) => { const v = {}; Object.keys(m).forEach((k) => { if (m[k][0] > 0.001) v[k] = m[k][1]; }); if (Object.keys(v).length) tl.set(el, v, 0); });
+tl.set(["#rec", "#co_btn", "#co2"], { xPercent: -50 }, 0);
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+
+</script>
+</body>
+</html>
