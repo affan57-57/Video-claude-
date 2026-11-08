@@ -1,0 +1,19 @@
+{
+  "name": "hf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/bodoni-moda": "^5.2.5",
+    "@fontsource/italiana": "^5.2.5",
+    "@fontsource/outfit": "^5.2.5",
+    "gsap": "^3.13.0",
+    "hyperframes": "^0.9.23"
+  }
+}

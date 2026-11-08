@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Bodoni Moda"; font-style: normal; font-weight: 400; src: url("assets/fonts/bodoni-moda-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Bodoni Moda"; font-style: normal; font-weight: 500; src: url("assets/fonts/bodoni-moda-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Bodoni Moda"; font-style: italic; font-weight: 400; src: url("assets/fonts/bodoni-moda-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Bodoni Moda"; font-style: italic; font-weight: 600; src: url("assets/fonts/bodoni-moda-latin-600-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 300; src: url("assets/fonts/outfit-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 400; src: url("assets/fonts/outfit-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 500; src: url("assets/fonts/outfit-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 600; src: url("assets/fonts/outfit-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 700; src: url("assets/fonts/outfit-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 800; src: url("assets/fonts/outfit-latin-800-normal.woff2") format("woff2"); }
+
+      :root {
+        --ink: #0b0a09;
+        --ivory: #f6f0e7;
+        --gold: #e2c28a;
+        --gold-deep: #b8925a;
+        --cyan: #7ee8ff;
+        --coral: #ff7a62;
+        --bag: #ffc62e;
+        --serif: "Bodoni Moda", serif;
+        --sans: "Outfit", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); font-family: var(--sans); color: var(--ivory); }
+      .clip, .wrap { position: absolute; inset: 0; overflow: hidden; }
+      .fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .abs { position: absolute; }
+      .center-x { left: 0; right: 0; text-align: center; }
+      .shade-b { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 48%, rgba(0,0,0,.78) 100%); }
+      .vignette { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); pointer-events: none; }
+      .eyebrow { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: .42em; text-transform: uppercase; color: var(--gold); }
+      .glass { background: rgba(14,12,10,.42); border: 1.5px solid rgba(226,194,138,.55); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); }
+
+      /* ---------- captions ---------- */
+      .cap { position: absolute; left: 60px; right: 60px; text-align: center; opacity: 0; }
+      .cap .w { display: inline-block; margin: 0 .13em; opacity: 0; will-change: transform, opacity, filter; }
+      .cap.big { font-weight: 800; font-size: 96px; line-height: 1.04; text-transform: uppercase; letter-spacing: .005em;
+                 text-shadow: 0 6px 30px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.5); }
+      .cap .e { font-family: var(--serif); font-style: italic; font-weight: 600; text-transform: none; color: var(--gold); font-size: 1.16em; letter-spacing: 0; }
+      .cap.q { font-weight: 600; font-size: 58px; line-height: 1.2; color: #fff; }
+      .cap.q .inner { display: inline-block; padding: 26px 40px 30px; border-radius: 34px; }
+      .cap.q .tag { display: block; font-size: 24px; letter-spacing: .38em; font-weight: 500; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; }
+
+      /* ---------- hook ---------- */
+      .hook { position: absolute; left: 50px; right: 50px; top: 760px; text-align: center; }
+      .hook .l1 { font-weight: 800; font-size: 122px; line-height: .98; text-transform: uppercase; letter-spacing: -.005em; text-shadow: 0 8px 40px rgba(0,0,0,.6); }
+      .hook .l2 { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 158px; line-height: 1.05; color: var(--gold); text-shadow: 0 8px 40px rgba(0,0,0,.6); }
+      .hook .w { display: inline-block; margin: 0 .1em; opacity: 0; }
+      .rule { position: absolute; height: 2px; background: linear-gradient(90deg, rgba(226,194,138,0), var(--gold), rgba(226,194,138,0)); }
+
+      /* ---------- testimonial ---------- */
+      .badge { position: absolute; left: 56px; top: 190px; padding: 18px 28px 18px 26px; border-radius: 999px; display: flex; align-items: center; gap: 18px; opacity: 0; }
+      .badge .txt { font-weight: 600; font-size: 28px; letter-spacing: .26em; text-transform: uppercase; }
+      .stars { display: flex; gap: 6px; }
+      .stars svg { width: 30px; height: 30px; opacity: 0; }
+      .pill { position: absolute; left: 56px; padding: 18px 34px 18px 22px; border-radius: 999px; display: flex; align-items: center; gap: 18px;
+              font-weight: 700; font-size: 46px; letter-spacing: .14em; text-transform: uppercase; opacity: 0; }
+      .pill .ck { width: 54px; height: 54px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; }
+      .stamp { position: absolute; right: 70px; top: 760px; width: 300px; height: 300px; border-radius: 50%; border: 4px solid var(--gold);
+               display: grid; place-items: center; text-align: center; opacity: 0; background: rgba(11,10,9,.35); backdrop-filter: blur(10px); }
+      .stamp .s1 { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 64px; color: var(--gold); line-height: 1; }
+      .stamp .s2 { font-weight: 700; font-size: 26px; letter-spacing: .3em; text-transform: uppercase; margin-top: 10px; }
+      .stamp .ring { position: absolute; inset: 14px; border-radius: 50%; border: 1.5px dashed rgba(226,194,138,.7); }
+
+      /* ---------- education ---------- */
+      .edu-title { position: absolute; left: 70px; right: 70px; top: 700px; text-align: center; }
+      .edu-title .k { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 150px; color: var(--gold); line-height: 1; }
+      .edu-title .t { font-weight: 800; font-size: 118px; text-transform: uppercase; line-height: 1.02; margin-top: 12px; }
+      .card { position: absolute; left: 50px; right: 50px; top: 1030px; border-radius: 44px; padding: 46px 52px 54px; overflow: hidden; }
+      .card .num { position: absolute; right: 44px; top: 4px; font-family: var(--serif); font-weight: 500; font-size: 230px; line-height: 1; color: transparent; -webkit-text-stroke: 2px rgba(226,194,138,.8); }
+      .card .seg { display: flex; gap: 10px; margin-bottom: 34px; width: 300px; }
+      .card .seg i { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.22); position: relative; overflow: hidden; }
+      .card .seg i b { position: absolute; inset: 0; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+      .card .ttl { font-weight: 800; font-size: 92px; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
+      .card .sub { font-family: var(--serif); font-style: italic; font-size: 50px; color: var(--gold); margin-top: 14px; }
+      .card .dsc { font-weight: 400; font-size: 46px; line-height: 1.32; margin-top: 26px; color: rgba(255,255,255,.92); max-width: 860px; }
+      .icon { position: absolute; left: 50%; top: 330px; width: 300px; height: 300px; margin-left: -150px; }
+
+      /* ---------- CTA ---------- */
+      .half { position: absolute; top: 0; bottom: 0; width: 540px; overflow: hidden; }
+      .half img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .vlabel { position: absolute; top: 210px; width: 540px; text-align: center; }
+      .vlabel .n { font-weight: 700; font-size: 44px; letter-spacing: .32em; text-transform: uppercase; }
+      .vlabel .s { font-family: var(--serif); font-style: italic; font-size: 40px; color: var(--gold); margin-top: 6px; }
+      .stock { position: absolute; left: 90px; right: 90px; top: 690px; border-radius: 36px; padding: 34px 40px 38px; opacity: 0; }
+      .stock .row { display: flex; justify-content: space-between; align-items: center; }
+      .stock .lbl { font-weight: 800; font-size: 50px; letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 18px; }
+      .stock .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 22px var(--coral); }
+      .stock .pct { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 64px; color: var(--gold); }
+      .stock .bar { height: 16px; border-radius: 8px; background: rgba(255,255,255,.18); margin-top: 26px; overflow: hidden; }
+      .stock .bar b { display: block; height: 100%; width: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--coral), var(--gold)); transform-origin: left; }
+      .stock .note { font-weight: 400; font-size: 34px; margin-top: 18px; color: rgba(255,255,255,.85); letter-spacing: .04em; }
+      .ivory { position: absolute; inset: 0; background: radial-gradient(90% 60% at 50% 35%, #fffaf2 0%, var(--ivory) 55%, #e9dfcf 100%); }
+      .arch { position: absolute; left: 250px; top: 230px; width: 580px; height: 780px; border-radius: 290px 290px 36px 36px; overflow: hidden;
+              box-shadow: 0 40px 80px rgba(60,40,10,.28); border: 3px solid var(--gold-deep); }
+      .arch img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+      .bag { position: absolute; left: 540px; top: 1000px; width: 250px; height: 250px; margin-left: -125px; margin-top: -125px; }
+      .cta1 { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; color: var(--ink); }
+      .cta1 .a { font-weight: 800; font-size: 128px; letter-spacing: .01em; line-height: 1; }
+      .cta1 .b { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 120px; color: var(--gold-deep); line-height: 1.05; }
+      .btn { position: absolute; left: 140px; right: 140px; top: 1430px; height: 128px; border-radius: 64px; background: var(--ink); color: var(--ivory);
+             display: flex; align-items: center; justify-content: center; gap: 22px; font-weight: 700; font-size: 44px; letter-spacing: .2em; text-transform: uppercase; overflow: hidden; }
+      .btn .y { color: var(--bag); }
+      .btn .sheen { position: absolute; top: 0; bottom: 0; width: 160px; left: -200px; background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.2), rgba(255,255,255,0)); }
+      .ripple { position: absolute; left: 540px; top: 1000px; width: 260px; height: 260px; margin: -130px 0 0 -130px; border-radius: 50%; border: 5px solid var(--bag); opacity: 0; }
+      .finger { position: absolute; left: 600px; top: 1060px; width: 150px; height: 150px; opacity: 0; }
+      .tawaran { position: absolute; left: 80px; right: 80px; top: 1600px; text-align: center; font-weight: 500; font-size: 40px; color: #3a2f22; letter-spacing: .03em; }
+      .tawaran em { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--gold-deep); font-size: 1.2em; }
+
+      /* ---------- end card ---------- */
+      .logo { position: absolute; left: 90px; top: 510px; width: 900px; height: 900px; }
+      .logo img { width: 100%; height: 100%; }
+      .sweep { position: absolute; top: -200px; bottom: -200px; width: 220px; left: -700px; transform: rotate(18deg);
+               background: linear-gradient(90deg, rgba(126,232,255,0), rgba(190,245,255,.38), rgba(126,232,255,0)); mix-blend-mode: screen; }
+      .endline { position: absolute; left: 0; right: 0; top: 1470px; text-align: center; }
+      .endline .t1 { font-family: var(--serif); font-style: italic; font-size: 64px; color: var(--gold); }
+      .endline .t2 { font-weight: 600; font-size: 34px; letter-spacing: .34em; text-transform: uppercase; margin-top: 18px; color: rgba(255,255,255,.85); }
+
+      /* ---------- global overlays ---------- */
+      #progress { position: absolute; left: 0; top: 0; height: 7px; width: 1080px; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); transform-origin: left; transform: scaleX(0); z-index: 60; }
+      #grain { position: absolute; inset: -40px; z-index: 55; opacity: .07; mix-blend-mode: overlay; pointer-events: none; }
+      #frame { position: absolute; inset: 34px; border: 1.5px solid rgba(226,194,138,.38); border-radius: 26px; z-index: 50; pointer-events: none; opacity: 0; }
+      #brandmark { position: absolute; top: 96px; left: 0; right: 0; text-align: center; z-index: 50; font-weight: 500; font-size: 26px; letter-spacing: .6em; color: rgba(255,255,255,.8); opacity: 0; }
+      #flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 70; pointer-events: none; }
+      #leak { position: absolute; inset: -300px; z-index: 69; opacity: 0; mix-blend-mode: screen; pointer-events: none;
+              background: radial-gradient(40% 30% at 30% 40%, rgba(255,190,120,.85), rgba(255,140,80,0) 70%), radial-gradient(35% 25% at 70% 60%, rgba(255,230,190,.7), rgba(255,200,150,0) 70%); }
+      #wipe { position: absolute; inset: 0; z-index: 68; background: var(--ink); opacity: 0; }
+      #wipe::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--gold); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="32.3" data-width="1080" data-height="1920">
+
+      <!-- ================= S1 HOOK 0 - 3.35 ================= -->
+      <div id="s1a" class="wrap" style="z-index:1">
+        <video id="v1a" class="fill" src="assets/pump.mp4" muted playsinline data-start="0" data-duration="1.27" data-media-start="3.0"></video>
+      </div>
+      <div id="s1b" class="wrap" style="z-index:1">
+        <video id="v1b" class="fill" src="assets/pump.mp4" muted playsinline data-start="1.27" data-duration="2.1" data-media-start="11.2"></video>
+      </div>
+      <section id="s1ui" class="clip" data-start="0" data-duration="3.35" data-track-index="2" style="z-index:10">
+        <div class="shade-b" style="background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.15) 30%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.75))"></div>
+        <div id="h-rule1" class="rule" style="left:140px;right:140px;top:700px;transform:scaleX(0)"></div>
+        <div id="h-rule2" class="rule" style="left:140px;right:140px;top:1240px;transform:scaleX(0)"></div>
+        <div class="hook" id="hook1">
+          <div class="l1"><span class="w" data-t="0.22">Kami</span><span class="w" data-t="0.48">tak</span><span class="w" data-t="0.56">perlu</span></div>
+          <div class="l2"><span class="w" data-t="0.70">cakap</span><span class="w" data-t="0.98">banyak.</span></div>
+        </div>
+        <div class="hook" id="hook2" style="top:700px">
+          <div class="l1"><span class="w" data-t="1.30">Biar</span></div>
+          <div class="l2" style="font-size:176px"><span class="w" data-t="1.80">pelanggan</span></div>
+          <div class="l1" style="font-size:96px;margin-top:46px"><span class="w" data-t="2.24">sendiri</span><span class="w" data-t="2.44">yang</span><span class="w" data-t="2.68">cerita.</span></div>
+          <svg id="swoosh" width="760" height="60" viewBox="0 0 760 60" style="position:absolute;left:110px;top:296px">
+            <path d="M10 40 C 200 8, 520 8, 750 30" fill="none" stroke="#e2c28a" stroke-width="7" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ================= S2 PRODUCT / LISTEN 3.35 - 6.62 ================= -->
+      <section id="s2" class="clip" data-start="3.3" data-duration="3.36" data-track-index="0" style="z-index:1">
+        <img id="s2img" class="fill" src="assets/product.jpg" alt="" />
+        <div class="shade-b"></div>
+        <div id="s2dark" class="abs" style="inset:0;background:radial-gradient(70% 50% at 50% 50%,rgba(0,0,0,.72),rgba(0,0,0,.92));opacity:0"></div>
+      </section>
+      <section id="s2ui" class="clip" data-start="3.3" data-duration="3.36" data-track-index="2" style="z-index:10">
+        <div class="abs center-x" style="top:240px">
+          <div class="eyebrow" id="s2eyebrow" style="opacity:0">Real · Review · Real · Result</div>
+        </div>
+        <div class="abs center-x" id="s2title" style="top:300px;font-weight:800;font-size:112px;letter-spacing:.02em;line-height:1;text-shadow:0 6px 30px rgba(0,0,0,.5)">
+          <span class="w" style="display:inline-block;opacity:0" data-t="3.35">DENGAR</span>
+          <span class="w" style="display:inline-block;opacity:0" data-t="3.58">SAMPAI</span><br />
+          <span class="w" style="display:inline-block;opacity:0;font-family:var(--serif);font-style:italic;font-weight:600;color:var(--gold);font-size:150px" data-t="3.78">habis</span>
+        </div>
+        <div id="wave" class="abs" style="left:240px;width:600px;top:640px;height:110px;display:flex;align-items:center;justify-content:space-between;opacity:0"></div>
+        <div class="abs center-x" id="s2sub" style="top:800px;opacity:0"><span class="glass" style="display:inline-block;padding:18px 36px;border-radius:999px;font-weight:500;font-size:50px;letter-spacing:.03em">apa yang mereka katakan tentang&hellip;</span></div>
+        <div id="chips" class="abs" style="left:0;right:0;top:1400px;display:flex;justify-content:center;gap:18px">
+          <div class="glass chip" style="padding:16px 28px;border-radius:999px;font-weight:600;font-size:30px;letter-spacing:.16em;text-transform:uppercase;opacity:0">Ocean Salt</div>
+          <div class="glass chip" style="padding:16px 28px;border-radius:999px;font-weight:600;font-size:30px;letter-spacing:.16em;text-transform:uppercase;opacity:0">Aromatherapy</div>
+          <div class="glass chip" style="padding:16px 28px;border-radius:999px;font-weight:600;font-size:30px;letter-spacing:.16em;text-transform:uppercase;opacity:0">Gentle Foam</div>
+        </div>
+        <div id="s2logo" class="abs" style="left:190px;top:600px;width:700px;height:700px;opacity:0"><img src="assets/logo.png" alt="" style="width:100%;height:100%" /></div>
+      </section>
+
+      <!-- ================= S3 TESTIMONIAL 6.62 - 15.14 ================= -->
+      <div id="t1" class="wrap" style="z-index:1">
+        <video id="vid1" class="fill" src="assets/feedback.mp4" muted playsinline data-start="6.62" data-duration="2.86" data-media-start="0.10"></video>
+      </div>
+      <div id="t2" class="wrap" style="z-index:1">
+        <video id="vid2" class="fill" src="assets/feedback.mp4" muted playsinline data-start="9.48" data-duration="1.72" data-media-start="4.62"></video>
+      </div>
+      <div id="t3" class="wrap" style="z-index:1">
+        <video id="vid3" class="fill" src="assets/feedback.mp4" muted playsinline data-start="11.2" data-duration="2.04" data-media-start="7.66"></video>
+      </div>
+      <div id="t4" class="wrap" style="z-index:1">
+        <video id="vid4" class="fill" src="assets/feedback.mp4" muted playsinline data-start="13.24" data-duration="1.92" data-media-start="9.90"></video>
+      </div>
+      <section id="s3ui" class="clip" data-start="6.62" data-duration="8.52" data-track-index="2" style="z-index:10">
+        <div class="shade-b" style="background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 52%,rgba(0,0,0,.7))"></div>
+        <div class="badge glass" id="badge">
+          <div class="stars" id="stars"></div>
+          <div class="txt">Real Customer</div>
+        </div>
+        <div class="pill glass" id="pill1" style="top:300px"><div class="ck"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#0b0a09" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Wangi</div>
+        <div class="pill glass" id="pill2" style="top:410px"><div class="ck"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#0b0a09" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Lembut</div>
+        <div class="stamp" id="stamp"><div class="ring"></div><div><div class="s1">Dah beli!</div><div class="s2">Repeat ✓</div></div></div>
+      </section>
+
+      <!-- captions (word timed) -->
+      <div id="caps" style="position:absolute;inset:0;z-index:20"></div>
+
+      <!-- ================= S4 EDUCATION 15.14 - 22.45 ================= -->
+      <div id="e0" class="wrap" style="z-index:1">
+        <video id="e0v" class="fill" src="assets/pump.mp4" muted playsinline data-start="15.14" data-duration="1.4" data-media-start="17.0" style="filter:blur(10px) brightness(.5)"></video>
+      </div>
+      <div id="e1" class="wrap" style="z-index:2">
+        <video id="vid5" class="fill" src="assets/pump.mp4" muted playsinline data-start="16.5" data-duration="1.84" data-media-start="4.2"></video>
+      </div>
+      <div id="e2" class="wrap" style="z-index:2">
+        <video id="vid6" class="fill" src="assets/pump.mp4" muted playsinline data-start="18.3" data-duration="1.84" data-media-start="24.5"></video>
+      </div>
+      <div id="e3" class="wrap" style="z-index:2">
+        <video id="vid7" class="fill" src="assets/pump.mp4" muted playsinline data-start="20.1" data-duration="2.4" data-media-start="29.5"></video>
+      </div>
+      <section id="e0ui" class="clip" data-start="15.14" data-duration="1.4" data-track-index="2" style="z-index:10">
+        <div class="abs center-x" style="top:560px"><div class="eyebrow" id="e0eb">Edukasi · 3 Rahsia</div></div>
+        <div class="edu-title">
+          <div class="k" id="e0k">Kenapa</div>
+          <div class="t" id="e0t">Wangi &amp;<br />Lembut?</div>
+        </div>
+        <div id="e0rule" class="rule" style="left:300px;right:300px;top:1170px;transform:scaleX(0)"></div>
+        <div class="abs center-x" id="e0n" style="top:1210px;font-family:var(--serif);font-style:italic;font-size:46px;color:var(--gold)">01 — 03</div>
+      </section>
+      <section id="e1ui" class="clip" data-start="16.5" data-duration="1.84" data-track-index="2" style="z-index:10">
+        <div class="shade-b" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 25%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.6))"></div>
+        <svg class="icon" id="ic1" viewBox="0 0 300 300"></svg>
+        <div class="card glass" id="card1">
+          <div class="num">01</div>
+          <div class="seg"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+          <div class="ttl">Gentle Foaming</div>
+          <div class="sub">buih lembut, terus dari pump</div>
+          <div class="dsc">Tekan sekali — buih padat &amp; lembut. Tak perlu span, tak perlu gosok kuat.</div>
+        </div>
+      </section>
+      <section id="e2ui" class="clip" data-start="18.3" data-duration="1.84" data-track-index="2" style="z-index:10">
+        <div class="shade-b" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 25%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.6))"></div>
+        <svg class="icon" id="ic2" viewBox="0 0 300 300"></svg>
+        <div class="card glass" id="card2">
+          <div class="num">02</div>
+          <div class="seg"><i><b style="transform:scaleX(1)"></b></i><i><b></b></i><i><b></b></i></div>
+          <div class="ttl">Ocean Salt</div>
+          <div class="sub">garam laut, bersih yang lembut</div>
+          <div class="dsc">Membersih dengan lembut — kulit terasa segar, licin &amp; tak kering.</div>
+        </div>
+      </section>
+      <section id="e3ui" class="clip" data-start="20.1" data-duration="2.4" data-track-index="2" style="z-index:10">
+        <div class="shade-b" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 25%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.6))"></div>
+        <svg class="icon" id="ic3" viewBox="0 0 300 300"></svg>
+        <div class="card glass" id="card3">
+          <div class="num">03</div>
+          <div class="seg"><i><b style="transform:scaleX(1)"></b></i><i><b style="transform:scaleX(1)"></b></i><i><b></b></i></div>
+          <div class="ttl">Aromatherapy</div>
+          <div class="sub">haruman yang menenangkan</div>
+          <div class="dsc">Wangian aromaterapi buat mandi rasa macam spa — wangi lepas mandi.</div>
+        </div>
+      </section>
+
+      <!-- ================= S5 CTA 22.45 - 29.62 ================= -->
+      <section id="c1" class="clip" data-start="22.4" data-duration="3.7" data-track-index="0" style="z-index:1">
+        <div class="half" id="hl" style="left:0"><img src="assets/noche.jpg" alt="" /></div>
+        <div class="half" id="hr" style="left:540px"><img src="assets/glory.jpg" alt="" /></div>
+        <div class="shade-b" style="background:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.1) 26%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.8))"></div>
+        <div id="divider" class="abs" style="left:538px;width:4px;top:0;bottom:0;background:var(--gold);transform:scaleY(0)"></div>
+        <div class="vlabel" id="vl1" style="left:0"><div class="n">Noche</div><div class="s">midnight fantasy</div></div>
+        <div class="vlabel" id="vl2" style="left:540px"><div class="n">Woman Glory</div><div class="s">bombshell</div></div>
+        <div class="stock glass" id="stock">
+          <div class="row"><div class="lbl"><span class="dot" id="sdot"></span>Stok Terhad</div><div class="pct" id="spct">100%</div></div>
+          <div class="bar"><b id="sbar"></b></div>
+          <div class="note">500ml · Siapa cepat, dia dapat</div>
+        </div>
+      </section>
+      <section id="c2" class="clip" data-start="26.05" data-duration="3.6" data-track-index="0" style="z-index:3">
+        <div class="ivory"></div>
+        <div class="arch" id="arch"><img src="assets/product.jpg" alt="" id="archimg" /></div>
+        <div class="ripple" id="rip1"></div>
+        <div class="ripple" id="rip2"></div>
+        <svg class="bag" id="bag" viewBox="0 0 200 200">
+          <defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd85a"/><stop offset="1" stop-color="#ffb800"/></linearGradient></defs>
+          <path d="M70 70 C70 30, 130 30, 130 70" fill="none" stroke="#0b0a09" stroke-width="12" stroke-linecap="round"/>
+          <rect x="34" y="62" width="132" height="122" rx="26" fill="url(#bg1)" stroke="#0b0a09" stroke-width="8"/>
+          <path d="M72 108 C 76 132, 124 132, 128 108" fill="none" stroke="#0b0a09" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+        <svg class="finger" id="finger" viewBox="0 0 100 100"><circle cx="38" cy="38" r="22" fill="rgba(255,255,255,.9)" stroke="#0b0a09" stroke-width="4"/><circle cx="38" cy="38" r="8" fill="#0b0a09"/></svg>
+        <div class="cta1">
+          <div class="a" id="ca"><span class="w" style="display:inline-block;opacity:0">CHECKOUT</span></div>
+          <div class="b" id="cb"><span class="w" style="display:inline-block;opacity:0">sekarang</span></div>
+        </div>
+        <div class="btn" id="btn"><div class="sheen" id="sheen"></div><span>Tekan</span><span class="y">Beg Kuning</span></div>
+        <div class="tawaran" id="tawaran">&amp; tengok <em>tawaran istimewa</em> untuk korang</div>
+      </section>
+
+      <!-- ================= S6 END 29.62 - 32.3 ================= -->
+      <section id="s6" class="clip" data-start="29.6" data-duration="2.7" data-track-index="0" style="z-index:4;background:#000;opacity:0">
+        <div class="abs" style="inset:0;background:radial-gradient(50% 35% at 50% 47%,rgba(60,120,255,.22),rgba(0,0,0,0) 70%)"></div>
+        <div class="logo" id="elogo"><img src="assets/logo.png" alt="" /></div>
+        <div class="sweep" id="esweep"></div>
+        <div class="endline"><div class="t1" id="et1">wangi · lembut · mewah</div><div class="t2" id="et2">Tekan beg kuning sekarang</div></div>
+      </section>
+
+      <!-- ================= global ================= -->
+      <div id="frame"></div>
+      <div id="brandmark">FRESCURA BODY</div>
+      <svg id="grain" width="1160" height="2000"><filter id="nz"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2"/></filter><rect width="100%" height="100%" filter="url(#nz)"/></svg>
+      <div id="wipe"></div>
+      <div id="leak"></div>
+      <div id="flash"></div>
+      <div id="progress"></div>
+
+      <audio id="mix" src="assets/mix.wav" data-start="0" data-duration="32.3" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const D = 32.3;
+
+      // word reveal: rise + de-blur
+      function wordIn(el, t, opt = {}) {
+        tl.fromTo(el, { opacity: 0, y: opt.y ?? 46, scale: opt.s ?? 1.12, filter: "blur(12px)" },
+          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: opt.d ?? 0.26, ease: "power3.out" }, t);
+      }
+
+      /* ---------- captions ---------- */
+      const CAPS = [
+        { cls: "q", top: 1240, t0: 6.62, t1: 9.42, tag: "Kami tanya", w: [["Tadi", 6.62], ["kita", 6.86], ["pergi", 6.96], ["tester", 7.2], ["dekat", 7.52], ["Kak", 7.96], ["kan,", 8.22], ["so", 8.32], ["far", 8.54], ["Kak", 8.68], ["rasa", 8.86], ["macam", 9.04], ["mana?", 9.22]] },
+        { cls: "big", top: 1210, t0: 9.5, t1: 11.16, w: [["Rasa", 9.56], ["wangi,", 9.82, 1], ["lembut.", 10.34, 1]] },
+        { cls: "q", top: 1240, t0: 11.2, t1: 13.2, tag: "Kami tanya", w: [["Memang", 11.22], ["tak", 11.44], ["tipu", 11.64], ["lah", 12.0], ["ni,", 12.12], ["wangi", 12.3], ["dan", 12.56], ["lembut", 12.68], ["tu?", 12.94]] },
+        { cls: "big", top: 1210, t0: 13.24, t1: 15.1, w: [["Allah..", 13.24], ["dah", 13.62], ["beli,", 13.92], ["dah beli!", 14.4, 1]] },
+        { cls: "big", top: 1250, t0: 22.45, t1: 23.76, w: [["So", 22.45], ["korang", 22.62], ["jangan", 22.86], ["tunggu", 23.04], ["lama-lama.", 23.4, 1]] },
+        { cls: "big", top: 1250, t0: 23.78, t1: 24.72, w: [["Stok", 23.78], ["terhad", 24.14, 1]] },
+        { cls: "big", top: 1250, t0: 24.74, t1: 26.05, w: [["Siapa", 24.76], ["cepat,", 25.2], ["dia", 25.58], ["dapat.", 25.84, 1]] },
+      ];
+      const capsRoot = $("#caps");
+      CAPS.forEach((c, i) => {
+        const el = document.createElement("div");
+        el.className = "cap " + c.cls; el.style.top = c.top + "px";
+        const host = document.createElement("div");
+        if (c.cls === "q") { host.className = "inner glass"; const tg = document.createElement("span"); tg.className = "tag"; tg.textContent = c.tag; host.appendChild(tg); }
+        c.w.forEach(([txt, t, em]) => { const s = document.createElement("span"); s.className = "w" + (em ? " e" : ""); s.textContent = txt; s.dataset.t = t; host.appendChild(s); host.appendChild(document.createTextNode(" ")); });
+        if (c.cls === "q") el.appendChild(host); else Array.from(host.childNodes).forEach((n) => el.appendChild(n));
+        capsRoot.appendChild(el);
+        tl.set(el, { opacity: 1 }, c.t0 - 0.02);
+        if (c.cls === "q") tl.fromTo(host, { y: 30, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, c.t0 - 0.02);
+        el.querySelectorAll(".w").forEach((w) => wordIn(w, +w.dataset.t - 0.04, c.cls === "q" ? { y: 18, s: 1.0, d: 0.18 } : { y: 50, s: 1.18 }));
+        tl.to(el, { opacity: 0, y: -16, filter: "blur(6px)", duration: 0.14, ease: "power2.in" }, c.t1 - 0.12);
+      });
+
+      /* ---------- S1 hook ---------- */
+      tl.fromTo("#s1a", { scale: 1.32 }, { scale: 1.06, duration: 1.27, ease: "expo.out" }, 0);
+      tl.fromTo("#s1b", { scale: 1.0 }, { scale: 1.14, duration: 2.1, ease: "none" }, 1.27);
+      tl.fromTo(["#h-rule1", "#h-rule2"], { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out", stagger: 0.06 }, 0.05);
+      $$("#hook1 .w").forEach((w) => wordIn(w, +w.dataset.t - 0.04, { y: 70, s: 1.5, d: 0.22 }));
+      tl.to("#hook1", { opacity: 0, scale: 0.92, filter: "blur(10px)", duration: 0.12 }, 1.2);
+      $$("#hook2 .w").forEach((w) => wordIn(w, +w.dataset.t - 0.04, { y: 70, s: 1.5, d: 0.24 }));
+      tl.to("#swoosh path", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 1.95);
+      tl.fromTo(["#s1a", "#s1ui"], { x: 0 }, { keyframes: [{ x: -14 }, { x: 11 }, { x: -7 }, { x: 4 }, { x: 0 }], duration: 0.28, ease: "none" }, 0.02);
+      tl.to("#hook2", { y: -40, opacity: 0, filter: "blur(10px)", duration: 0.16 }, 3.18);
+      tl.to(["#h-rule1", "#h-rule2"], { opacity: 0, duration: 0.15 }, 3.15);
+      tl.fromTo("#flash", { opacity: 0.55 }, { opacity: 0, duration: 0.16, immediateRender: false }, 1.27);
+      tl.fromTo("#brandmark", { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, 0.3);
+      tl.fromTo("#frame", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 0.1);
+
+      /* ---------- S2 ---------- */
+      tl.fromTo("#leak", { opacity: 0, x: -300, rotation: 0 }, { keyframes: [{ opacity: 0.95, x: 0, duration: 0.18 }, { opacity: 0, x: 300, duration: 0.32 }], rotation: 10, ease: "power1.inOut" }, 3.18);
+      tl.fromTo("#s2img", { scale: 1.08, y: 30 }, { scale: 1.24, y: -40, duration: 3.36, ease: "none" }, 3.3);
+      tl.fromTo("#s2eyebrow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4 }, 3.35);
+      $$("#s2title .w").forEach((w) => wordIn(w, +w.dataset.t - 0.04, { y: 60, s: 1.3, d: 0.24 }));
+      // waveform
+      const wave = $("#wave");
+      for (let i = 0; i < 30; i++) { const b = document.createElement("i"); b.style.cssText = "display:block;width:8px;height:100%;border-radius:4px;background:#e2c28a;transform-origin:50% 50%"; wave.appendChild(b); }
+      tl.fromTo("#wave", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 3.5);
+      Array.from(wave.children).forEach((b, i) => {
+        const amp = 0.25 + 0.75 * Math.abs(Math.sin(i * 0.55));
+        tl.fromTo(b, { scaleY: 0.12 }, { scaleY: amp, duration: 0.16 + (i % 5) * 0.025, ease: "sine.inOut", yoyo: true, repeat: 15 }, 3.5 + (i % 7) * 0.02);
+      });
+      tl.fromTo("#s2sub", { opacity: 0, y: 24, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35 }, 4.26);
+      tl.fromTo(".chip", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.16, ease: "back.out(1.6)" }, 4.4);
+      // reveal brand on "Frescura Body"
+      tl.to(["#s2title", "#wave", "#s2sub", "#s2eyebrow"], { opacity: 0, y: -30, filter: "blur(10px)", duration: 0.22 }, 5.72);
+      tl.to(".chip", { y: 140, duration: 0.3, ease: "power2.inOut" }, 5.72);
+      tl.to("#s2dark", { opacity: 1, duration: 0.3 }, 5.7);
+      tl.fromTo("#s2logo", { opacity: 0, scale: 0.7, filter: "blur(24px) brightness(2)" }, { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)", duration: 0.5, ease: "expo.out" }, 5.82);
+      tl.to("#s2logo", { scale: 1.06, duration: 0.5, ease: "none" }, 6.32);
+
+      /* ---------- S3 testimonial ---------- */
+      tl.fromTo("#flash", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 6.62);
+      tl.fromTo("#t1", { scale: 1.0 }, { scale: 1.06, duration: 2.86, ease: "none" }, 6.62);
+      tl.fromTo("#t2", { scale: 1.2 }, { scale: 1.24, duration: 1.72, ease: "none" }, 9.48);
+      tl.fromTo("#t3", { scale: 1.04 }, { scale: 1.1, duration: 2.04, ease: "none" }, 11.2);
+      tl.fromTo("#t4", { scale: 1.18 }, { scale: 1.12, duration: 1.92, ease: "none" }, 13.24);
+      const stars = $("#stars");
+      for (let i = 0; i < 5; i++) stars.insertAdjacentHTML("beforeend", '<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" fill="#e2c28a"/></svg>');
+      tl.fromTo("#badge", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 6.78);
+      tl.fromTo("#stars svg", { opacity: 0, scale: 0, rotation: -60 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.25, stagger: 0.1, ease: "back.out(2.5)" }, 6.95);
+      tl.fromTo("#pill1", { opacity: 0, x: -80, scale: 0.8 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 9.74);
+      tl.fromTo("#pill2", { opacity: 0, x: -80, scale: 0.8 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 10.36);
+      tl.to(["#pill1", "#pill2"], { opacity: 0, x: -40, duration: 0.25, stagger: 0.05 }, 12.9);
+      tl.fromTo("#stamp", { opacity: 0, scale: 2.2, rotation: -35 }, { opacity: 1, scale: 1, rotation: -10, duration: 0.3, ease: "back.out(1.4)" }, 13.62);
+      tl.to("#stamp .ring", { rotation: 90, duration: 1.4, ease: "none" }, 13.7);
+      tl.fromTo("#flash", { opacity: 0.25 }, { opacity: 0, duration: 0.1, immediateRender: false }, 9.48);
+      tl.fromTo("#flash", { opacity: 0.25 }, { opacity: 0, duration: 0.1, immediateRender: false }, 11.2);
+      tl.fromTo("#flash", { opacity: 0.25 }, { opacity: 0, duration: 0.1, immediateRender: false }, 13.24);
+
+      /* ---------- S4 education ---------- */
+      tl.set("#wipe", { yPercent: 100, opacity: 1 }, 0);
+      tl.to("#wipe", { keyframes: [{ yPercent: 0, duration: 0.2, ease: "power3.in" }, { yPercent: -100, duration: 0.26, ease: "power3.out" }] }, 14.96);
+      tl.fromTo("#e0v", { scale: 1.3 }, { scale: 1.1, duration: 1.4, ease: "power2.out" }, 15.14);
+      tl.fromTo("#e0eb", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.5 }, 15.2);
+      tl.fromTo("#e0k", { opacity: 0, y: 60, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 15.3);
+      tl.fromTo("#e0t", { opacity: 0, y: 60, scale: 1.15, filter: "blur(14px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 15.5);
+      tl.fromTo("#e0rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 15.7);
+      tl.fromTo("#e0n", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 15.85);
+
+      // icons
+      const NS = "http://www.w3.org/2000/svg";
+      function svgEl(parent, tag, attrs) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+      const ic1 = $("#ic1");     // rising foam bubbles
+      [[90, 210, 34], [150, 230, 48], [210, 205, 30], [120, 160, 22], [185, 150, 26], [150, 110, 16], [100, 110, 12], [205, 100, 14]].forEach(([x, y, r], i) => {
+        const c = svgEl(ic1, "circle", { cx: x, cy: y, r, fill: "rgba(255,255,255,.14)", stroke: "#e2c28a", "stroke-width": 3 });
+        tl.fromTo(c, { opacity: 0, scale: 0, y: 40, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, y: -10, duration: 0.45, ease: "back.out(2)" }, 16.62 + i * 0.07);
+      });
+      const ic2 = $("#ic2");     // salt crystal + waves
+      const cr = svgEl(ic2, "path", { d: "M150 50 L205 105 L150 160 L95 105 Z M95 105 L205 105 M150 50 L150 160", fill: "none", stroke: "#e2c28a", "stroke-width": 4, "stroke-linejoin": "round", "stroke-dasharray": 600, "stroke-dashoffset": 600 });
+      tl.to(cr, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 18.42);
+      [200, 228, 256].forEach((y, i) => {
+        const p = svgEl(ic2, "path", { d: `M40 ${y} q 27 -18 55 0 t 55 0 t 55 0 t 55 0`, fill: "none", stroke: i ? "rgba(255,255,255,.6)" : "#e2c28a", "stroke-width": 4, "stroke-linecap": "round", "stroke-dasharray": 300, "stroke-dashoffset": 300 });
+        tl.to(p, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 18.55 + i * 0.1);
+      });
+      const ic3 = $("#ic3");     // lavender sprig + aroma lines
+      const stem = svgEl(ic3, "path", { d: "M150 270 C 150 200, 145 140, 150 60", fill: "none", stroke: "#e2c28a", "stroke-width": 4, "stroke-linecap": "round", "stroke-dasharray": 260, "stroke-dashoffset": 260 });
+      tl.to(stem, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 20.22);
+      for (let i = 0; i < 7; i++) {
+        const y = 80 + i * 22, s = i % 2 ? 1 : -1;
+        const leaf = svgEl(ic3, "ellipse", { cx: 150 + s * 16, cy: y, rx: 14, ry: 8, fill: "#b9a3e8", transform: `rotate(${s * -30} ${150 + s * 16} ${y})` });
+        tl.fromTo(leaf, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 20.4 + i * 0.05);
+      }
+      [[80, 1], [220, -1]].forEach(([x, s], i) => {
+        const p = svgEl(ic3, "path", { d: `M${x} 230 c ${s * 20} -25 ${-s * 20} -45 0 -70 s ${-s * 20} -45 0 -70`, fill: "none", stroke: "rgba(255,255,255,.65)", "stroke-width": 3.5, "stroke-linecap": "round", "stroke-dasharray": 200, "stroke-dashoffset": 200 });
+        tl.to(p, { strokeDashoffset: 0, duration: 0.8, ease: "sine.out" }, 20.5 + i * 0.12);
+      });
+
+      [["#e1", "#card1", 16.5, 1.84], ["#e2", "#card2", 18.3, 1.84], ["#e3", "#card3", 20.1, 2.4]].forEach(([v, c, t, d], i) => {
+        tl.fromTo(v, { x: 260, scale: 1.18, filter: "blur(18px)" }, { x: 0, scale: 1.05, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, t);
+        tl.to(v, { scale: 1.0, duration: d - 0.32, ease: "none" }, t + 0.32);
+        tl.fromTo(c, { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "expo.out" }, t + 0.06);
+        tl.fromTo(`${c} .num`, { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, t + 0.12);
+        tl.fromTo(`${c} .ttl`, { y: 30, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.3 }, t + 0.18);
+        tl.fromTo(`${c} .sub`, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 }, t + 0.3);
+        tl.fromTo(`${c} .dsc`, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 }, t + 0.42);
+        tl.fromTo(`${c} .seg i:nth-child(${i + 1}) b`, { scaleX: 0 }, { scaleX: 1, duration: d - 0.3, ease: "none" }, t + 0.2);
+        tl.fromTo("#flash", { opacity: 0.18 }, { opacity: 0, duration: 0.12, immediateRender: false }, t);
+      });
+
+      /* ---------- S5 CTA ---------- */
+      tl.fromTo("#hl", { yPercent: -100 }, { yPercent: 0, duration: 0.45, ease: "expo.out" }, 22.4);
+      tl.fromTo("#hr", { yPercent: 100 }, { yPercent: 0, duration: 0.45, ease: "expo.out" }, 22.4);
+      tl.fromTo("#hl img", { scale: 1.25 }, { scale: 1.08, duration: 3.7, ease: "power1.out" }, 22.4);
+      tl.fromTo("#hr img", { scale: 1.25 }, { scale: 1.08, duration: 3.7, ease: "power1.out" }, 22.4);
+      tl.fromTo("#divider", { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: "expo.out" }, 22.55);
+      tl.fromTo(["#vl1", "#vl2"], { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }, 22.7);
+      tl.fromTo("#stock", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 23.78);
+      const pct = { v: 100 };
+      tl.to(pct, { v: 14, duration: 1.6, ease: "power2.inOut", onUpdate: () => { $("#spct").textContent = Math.round(pct.v) + "%"; } }, 24.0);
+      tl.fromTo("#sbar", { scaleX: 1 }, { scaleX: 0.14, duration: 1.6, ease: "power2.inOut" }, 24.0);
+      tl.fromTo("#sdot", { opacity: 1 }, { opacity: 0.25, duration: 0.22, yoyo: true, repeat: 9, ease: "sine.inOut" }, 23.9);
+      // CTA 2
+      tl.fromTo("#c2", { clipPath: "inset(100% 0% 0% 0% round 0px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 0.4, ease: "expo.inOut" }, 26.0);
+      tl.fromTo("#arch", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 26.1);
+      tl.fromTo("#archimg", { scale: 1.3 }, { scale: 1.05, duration: 3.5, ease: "power1.out" }, 26.1);
+      wordIn("#ca .w", 26.08, { y: 60, s: 1.3, d: 0.26 });
+      wordIn("#cb .w", 26.58, { y: 40, s: 1.2, d: 0.26 });
+      tl.fromTo("#bag", { scale: 0, rotation: -25 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }, 26.55);
+      tl.fromTo("#finger", { opacity: 0, x: 80, y: 80 }, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power2.out" }, 26.55);
+      tl.to("#finger", { scale: 0.82, duration: 0.08, yoyo: true, repeat: 1 }, 26.8);
+      tl.to("#bag", { scale: 0.9, duration: 0.08, yoyo: true, repeat: 1 }, 26.8);
+      tl.fromTo("#rip1", { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 1.9, duration: 0.7, ease: "power2.out" }, 26.82);
+      tl.fromTo("#rip2", { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 1.9, duration: 0.7, ease: "power2.out" }, 27.45);
+      tl.to("#bag", { keyframes: [{ y: -50, scale: 1.12, duration: 0.16 }, { y: 0, scale: 1, duration: 0.3, ease: "bounce.out" }] }, 27.4);
+      tl.to("#finger", { opacity: 0, duration: 0.25 }, 27.7);
+      tl.fromTo("#btn", { y: 80, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 26.8);
+      tl.fromTo("#btn .y", { color: "#f6f0e7" }, { color: "#ffc62e", duration: 0.2 }, 27.2);
+      tl.fromTo("#sheen", { x: 0 }, { x: 1100, duration: 0.8, ease: "power2.inOut" }, 27.5);
+      tl.fromTo("#sheen", { x: 0 }, { x: 1100, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 28.6);
+      tl.fromTo("#tawaran", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4 }, 27.72);
+      tl.to("#frame", { opacity: 0, duration: 0.2 }, 26.0);
+      tl.to("#brandmark", { color: "rgba(11,10,9,.7)", duration: 0.2 }, 26.0);
+
+      /* ---------- S6 end ---------- */
+      tl.fromTo("#s6", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 29.6);
+      tl.to("#brandmark", { opacity: 0, duration: 0.2 }, 29.6);
+      tl.fromTo("#elogo", { opacity: 0, scale: 0.8, filter: "blur(30px) brightness(2.5)" }, { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)", duration: 0.8, ease: "expo.out" }, 29.72);
+      tl.to("#elogo", { scale: 1.05, duration: 1.6, ease: "none" }, 30.55);
+      tl.fromTo("#esweep", { x: 0 }, { x: 2300, duration: 1.0, ease: "power2.inOut" }, 30.3);
+      tl.fromTo("#et1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, 30.4);
+      tl.fromTo("#et2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.6 }, 30.6);
+      tl.to("#s6", { opacity: 0, duration: 0.35 }, 31.95);
+
+      /* ---------- global ---------- */
+      tl.fromTo("#progress", { scaleX: 0 }, { scaleX: 1, duration: D, ease: "none" }, 0);
+      tl.fromTo("#grain", { x: 0, y: 0 }, { keyframes: [{ x: -20, y: 10 }, { x: 15, y: -18 }, { x: -8, y: 22 }, { x: 0, y: 0 }], duration: 0.4, repeat: 80, ease: "steps(1)" }, 0);
+      tl.set({}, {}, D);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
