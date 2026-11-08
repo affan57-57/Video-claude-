@@ -336,7 +336,7 @@ SC.append(scene("asmr", s, e, """
 
 # ---------------------------------------------------------------- S10 VARIANTS
 s, e = word("Dua"), word("Stok")
-t_var = word("varian"); t_wo = word("Woman"); t_bo = word("Bombshell"); t_na = word("Nature"); t_fa = word("Fantasy")
+t_var = word("varian"); t_wo = word("Woman"); t_bo = word("Bombshell"); t_na = word("Midnight"); t_fa = word("Fantasy")
 SC.append(scene("variants", s, e, """
 #v-k{left:0;width:1080px;top:215px;text-align:center;color:var(--wine)}
 #v-t{left:0;width:1080px;top:260px;text-align:center;color:var(--ink);font-size:110px}
@@ -360,7 +360,7 @@ SC.append(scene("variants", s, e, """
       <div class="v-cap"><b>Woman Glory</b><i style="color:var(--rose)">BOMBSHELL</i></div></div>
     <div id="v-c2" class="v-card"><div id="v-pump"></div><div id="v-bot"></div><div id="v-bl" data-layout-ignore>FRESCURA</div>
       <div class="v-no" data-layout-allow-overlap>02</div>
-      <div class="v-cap"><b>Nature Man</b><i style="color:var(--sea2)">FANTASY</i></div></div>
+      <div class="v-cap"><b>Midnight</b><i style="color:var(--sea2)">FANTASY</i></div></div>
 """, f"""
     tl.fromTo('#v-k',{{opacity:0}},{{opacity:1,duration:.3}},0.02);
     tl.fromTo('#v-t',{{opacity:0,filter:'blur(10px)'}},{{opacity:1,filter:'blur(0px)',duration:.35}},0.02);
@@ -499,7 +499,7 @@ SC.append(scene("endcard", s, e, """
     <div id="e-line" class="hair"></div>
     <div id="e-tag" class="abs disp it">Ocean salt &times; perfume</div>
     <div id="e-cta" class="abs"><span>&#128717; TEKAN BEG KUNING</span></div>
-    <div id="e-v" class="abs lbl">Woman Glory &middot; Nature Man</div>
+    <div id="e-v" class="abs lbl">Bombshell &middot; Midnight Fantasy</div>
 """, """
     tl.fromTo('#e-logo',{opacity:0,scale:1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.9,ease:'expo.out'},0.05);
     tl.fromTo('#e-body',{opacity:0},{opacity:1,duration:.4},0.4);
@@ -513,7 +513,7 @@ json.dump(SC, open(os.path.join(P, "scenes.json"), "w"), indent=1)
 
 # ================================================================= CAPTIONS
 KEY = {"garam", "laut", "dapur", "mineral", "mineralnya", "hilang", "spa", "frescura", "body", "perfume", "lembut", "wangi",
-       "bombshell", "fantasy", "terhad", "batch", "kuning", "beg", "sekarang", "terlambat", "kulit", "disejat", "diproses", "habis"}
+       "bombshell", "fantasy", "midnight", "terhad", "batch", "kuning", "beg", "sekarang", "terlambat", "kulit", "disejat", "diproses", "habis"}
 words = [x for x in W]
 groups = []; cur = []
 for i, x in enumerate(words):
@@ -611,7 +611,7 @@ SFX = [  # file, time, volume
     ("soapbub", sc["feel"]["start"] + .05, .5), ("sparkle", T("lembut", 0, -.1), .5), ("glitter", T("wangi", 0, -.2), .45),
     ("soapbub", sc["asmr"]["start"] + .05, .7), ("bubble", sc["asmr"]["start"] + .7, .4), ("bubble", sc["asmr"]["start"] + 1.2, .4),
     ("whoosh", sc["variants"]["start"] - .1, .6), ("whoosh-short", T("Woman", 0, -.3), .5), ("pop", T("Woman", 0, .05), .45),
-    ("whoosh-short", T("Nature", 0, -.3), .5), ("pop", T("Nature", 0, .05), .45),
+    ("whoosh-short", T("Midnight", 0, -.3), .5), ("pop", T("Midnight", 0, .05), .45),
     ("impact-bass-2", sc["stok"]["start"] - 1.75, .55), ("stamp", T("terhad", 0, -.05), .6),
     ("stamp", T("habis", 0, .2), .9), ("whoosh-short", T("tunggu", 0, .2), .45),
     ("whoosh", sc["cta"]["start"] - .1, .6), ("click", T("kuning", 0, -.01), .9), ("pop", T("kuning", 0, .12), .55),
