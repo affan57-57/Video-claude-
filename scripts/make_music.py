@@ -1,8 +1,9 @@
 """Original minimal-luxury deep-house bed, 120 BPM, written for the Frescura Body awareness cut.
 
-Downbeats land on odd film seconds (1, 3, 5 ... 29) so the drop hits at 7.0 s and the urgency
-section at 19.0 s. Sections: intro (0-7, filtered, under the hook voice), drop (7-19, the foam demo),
-drive (19-27, urgency + CTA, ticking 16ths), outro (27-end, last chord rings out).
+Downbeats land every 2 s from OFFSET (1.5, 3.5 ... ) so the drop hits at 13.5 s and the urgency
+section at 25.5 s. Sections: intro (0-7, filtered, under the hook voice), break (7-13.5, no drums,
+under the customer feedback), drop (13.5-25.5, the foam demo), drive (25.5-33.5, urgency + CTA,
+ticking 16ths), outro (33.5-end, last chord rings out).
 Usage: python make_music.py out.wav [duration_s]
 """
 import sys
@@ -10,11 +11,12 @@ import numpy as np, soundfile as sf
 from scipy.signal import butter, sosfilt, fftconvolve
 
 SR = 48000
-DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 31.0
+DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 37.0
 BPM = 120.0
 BEAT = 60 / BPM
-OFFSET = 1.0                    # first downbeat (bar line) in film time
-DROP, DRIVE, OUTRO = 7.0, 19.0, 27.0
+OFFSET = 1.5                    # first downbeat (bar line) in film time
+BREAK = 7.0                     # customer feedback: drums out, keys + pad only
+DROP, DRIVE, OUTRO = 13.5, 25.5, 33.5
 rng = np.random.default_rng(11)
 N = int(DUR * SR)
 
@@ -91,11 +93,11 @@ nbars = int((DUR - bar0) / (4 * BEAT)) + 1
 for b in range(nbars):
     t0 = bar0 + b * 4 * BEAT
     ci = b % 4
-    sec = 'intro' if t0 < DROP - 1e-6 else 'drop' if t0 < DRIVE - 1e-6 else 'drive' if t0 < OUTRO - 1e-6 else 'outro'
+    sec = 'intro' if t0 < BREAK - 1e-6 else 'break' if t0 < DROP - 1e-6 else 'drop' if t0 < DRIVE - 1e-6 else 'drive' if t0 < OUTRO - 1e-6 else 'outro'
     for q in range(4):
         tb = t0 + q * BEAT
         if tb < 0 or tb >= DUR: continue
-        if sec in ('drop', 'drive') or (sec == 'intro' and tb >= 1.0):
+        if sec in ('drop', 'drive') or (sec == 'intro' and tb >= OFFSET):
             g = 0.75 if sec == 'intro' else 1.0
             place(drums, kick(), tb, g)
             i = int(tb * SR); L = int(0.22 * SR)
@@ -104,7 +106,7 @@ for b in range(nbars):
                 side[i:i + len(e)] = np.minimum(side[i:i + len(e)], e)
         if sec in ('drop', 'drive') and q in (1, 3):
             place(drums, clap(), tb, 0.55, 0.05)
-        if sec != 'outro':
+        if sec not in ('outro', 'break'):
             place(drums, hat(open_=sec in ('drop', 'drive')), tb + BEAT / 2, 0.8 if sec != 'intro' else 0.5, 0.25)
         if sec == 'drive':
             for s16 in range(4):
@@ -112,10 +114,13 @@ for b in range(nbars):
         elif sec == 'drop':
             place(drums, shaker(), tb + BEAT * 0.25, 0.4, -0.3); place(drums, shaker(), tb + BEAT * 0.75, 0.5, -0.3)
         # offbeat bass
-        if sec != 'outro' and tb >= 1.0:
+        if sec not in ('outro', 'break') and tb >= OFFSET:
             place(bassb, bass(ROOTS[ci], BEAT * 0.45), tb + BEAT / 2, 0.8 if sec == 'intro' else 1.0)
     # keys: stab on 1 and the "and" of 2
-    if sec != 'outro':
+    if sec == 'break':
+        place(music, keys(CHORDS[ci], 2.0), t0, 0.6, -0.1)
+        place(music, pluck(ARP[ci][0] + 12), t0 + 2 * BEAT, 0.5, 0.4)
+    elif sec != 'outro':
         place(music, keys(CHORDS[ci], 1.2), t0, 0.9, -0.1)
         place(music, keys(CHORDS[ci], 0.8), t0 + 1.5 * BEAT, 0.55, 0.1)
     else:
@@ -127,7 +132,7 @@ for b in range(nbars):
             place(music, pluck(ARP[ci][k % 4] + (12 if k >= 4 and sec == 'drive' else 0)), t0 + k * BEAT / 2 + BEAT / 4, 0.55, (-0.5, 0.5)[k % 2])
 
 # intro high-pass/low-pass shaping: filter opens into the drop
-cut = np.clip((np.arange(N) / SR - 0.0) / (DROP - 0.0), 0, 1)
+cut = np.clip((np.arange(N) / SR) / BREAK, 0, 1)
 music_lp = lp(music, 1400); music = music_lp * (1 - cut[:, None] ** 3) + music * (cut[:, None] ** 3)
 pad_mix = padb * side[:, None]
 bus = drums * 0.9 + bassb * side[:, None] * 0.95 + music * side[:, None] * 0.9 + pad_mix * 0.9
