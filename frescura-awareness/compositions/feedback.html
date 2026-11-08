@@ -16,9 +16,9 @@
     #fb-tag i { display: block; font-family: "DM Serif Display", serif; font-style: italic; font-size: 32px; color: #ff8a8a; }
   </style>
   <div id="root" data-composition-id="feedback" data-width="1080" data-height="1920">
-    <div class="fb-cam" id="fb-cam1"><video id="fb-v1" class="clip fb-vid" src="assets/broll/feedback.mp4" data-start="0" data-duration="2.18" data-media-start="0.1" muted playsinline></video></div>
-    <div class="fb-cam" id="fb-cam2"><video id="fb-v2" class="clip fb-vid" src="assets/broll/feedback.mp4" data-start="2.18" data-duration="1.0" data-media-start="8.98" muted playsinline></video></div>
-    <div class="fb-cam" id="fb-cam3"><video id="fb-v3" class="clip fb-vid" src="assets/broll/feedback.mp4" data-start="3.18" data-duration="3.32" data-media-start="10.72" muted playsinline></video></div>
+    <div class="fb-cam" id="fb-cam1"><video id="fb-v1" class="clip fb-vid" src="assets/broll/feedback.mp4" data-start="0" data-duration="5.19" data-media-start="0.07" muted playsinline></video></div>
+    <div class="fb-cam" id="fb-cam2"><video id="fb-v2" class="clip fb-vid" src="assets/broll/feedback.mp4" data-start="5.19" data-duration="1.0" data-media-start="8.98" muted playsinline></video></div>
+    <div class="fb-cam" id="fb-cam3"><video id="fb-v3" class="clip fb-vid" src="assets/broll/feedback.mp4" data-start="6.19" data-duration="3.31" data-media-start="10.72" muted playsinline></video></div>
     <div id="fb-shade"></div>
     <div id="fb-frame" data-layout-ignore></div>
     <div id="fb-quote" data-layout-ignore>&ldquo;</div>
@@ -28,16 +28,18 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     // a different framing on each cut hides the jump cuts
-    tl.fromTo("#fb-cam1", { scale: 1.0 }, { scale: 1.06, duration: 2.18, ease: "none" }, 0);
-    tl.fromTo("#fb-cam2", { scale: 1.16, y: 60 }, { scale: 1.2, y: 60, duration: 1.0, ease: "none" }, 2.18);
-    tl.fromTo("#fb-cam3", { scale: 1.04 }, { scale: 1.12, duration: 3.32, ease: "none" }, 3.18);
+    tl.fromTo("#fb-cam1", { scale: 1.0 }, { scale: 1.06, duration: 2.6, ease: "none" }, 0);
+    tl.to("#fb-cam1", { scale: 1.14, y: 40, duration: 0.01 }, 2.6); // punch-in on "mula-mula"
+    tl.to("#fb-cam1", { scale: 1.18, y: 40, duration: 2.58, ease: "none" }, 2.61);
+    tl.fromTo("#fb-cam2", { scale: 1.16, y: 60 }, { scale: 1.2, y: 60, duration: 1.0, ease: "none" }, 5.19);
+    tl.fromTo("#fb-cam3", { scale: 1.04 }, { scale: 1.12, duration: 3.31, ease: "none" }, 6.19);
     tl.fromTo("#fb-frame", { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0.05);
     tl.fromTo("#fb-chip span", { opacity: 0, y: -20, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2)" }, 0.2);
     tl.fromTo("#fb-chip i", { opacity: 1 }, { opacity: 0.2, duration: 0.01 }, 1.2);
     tl.fromTo("#fb-chip i", { opacity: 0.2 }, { opacity: 1, duration: 0.01 }, 1.45);
     tl.fromTo("#fb-quote", { opacity: 0, y: 30 }, { opacity: 0.9, y: 0, duration: 0.5, ease: "expo.out" }, 0.3);
-    tl.fromTo("#fb-tag", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 3.4);
-    tl.to("#fb-tag", { opacity: 0, duration: 0.15 }, 6.2);
+    tl.fromTo("#fb-tag", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 6.4);
+    tl.to("#fb-tag", { opacity: 0, duration: 0.15 }, 9.2);
     window.__timelines["feedback"] = tl;
   </script>
 </template>
