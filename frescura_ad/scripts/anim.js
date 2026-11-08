@@ -75,7 +75,8 @@ ft(C.TIPU, "#stamp", { opacity: 0, scale: 2.6, rotation: -30 }, { opacity: 0.95,
 tl.to("#stamp", { rotation: -6, duration: 0.9, ease: "sine.out" }, C.TIPU + 0.25);
 [[14, -10], [-12, 8], [8, -4], [-4, 2], [0, 0]].forEach(([x, y], i) => tl.to("#stage", { x, y, duration: 0.04, ease: "none" }, C.TIPU + 0.22 + i * 0.04));
 flash(C.TIPU + 0.21, 0.35, 0.2);
-tl.to(["#glory", "#b_wangi"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, C.TERIMA - 0.2);
+tl.to("#b_wangi", { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, C.TIPU + 0.55);
+tl.to("#glory", { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, ease: "power2.in" }, C.TERIMA - 0.2);
 OUT(C.TERIMA - 0.2, "#stamp", 0.35, { scale: 0.8 });
 ft(C.TERIMA, "#thanks", { opacity: 0, scale: 0.6, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(2)" });
 // whip into closing

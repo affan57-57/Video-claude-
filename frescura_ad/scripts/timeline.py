@@ -1,9 +1,9 @@
 # Single source of truth for the edit: voice EDL, captions, SFX cues, scene times.
 MAIN_TEMPO = 1.10   # "laju sikit" — voiceover 10% faster (pitch preserved, rubberband)
-FB_TEMPO = 1.05     # customer testimonial, 5% faster
+FB_TEMPO = 1.00     # customer testimonial: full clip, natural speed, nothing cut
 
 # Structure: INTRO (main VO) -> FEEDBACK (long, customer on screen) -> CLOSING (main VO) -> logo
-FB_SEGS = [(0.00, 12.32), (12.82, 20.45)]   # only the 0.5 s dead gap removed
+FB_SEGS = [(0.00, 21.28)]   # whole feedback video, uncut
 FB_OUT = 5.50
 
 def fb_out_segs():
@@ -50,7 +50,7 @@ CAPS = [
     ("fb", f, [("Mula-mula", 5.78, 6.70, 0), ("pakai", 6.70, 6.84, 0), ("tu", 6.84, 7.10, 0), ("tak", 7.10, 7.24, 0), ("rasa", 7.24, 7.42, 0), ("sangat,", 7.42, 7.66, 0)]),
     ("fb", f, [("lama-lama", 7.66, 8.34, K), ("dia", 8.34, 8.52, 0), ("rasa", 8.52, 8.64, 0), ("lembut.", 8.64, 9.00, K)]),
     ("q", f, [("Oh,", 9.00, 9.12, 0), ("mula-mula", 9.12, 9.38, 0), ("tak", 9.38, 9.46, 0), ("rasa", 9.46, 9.58, 0), ("lembut,", 9.58, 9.88, 0)]),
-    ("q", f, [("dah", 10.42, 10.68, 0), ("lama-lama", 10.68, 11.16, 0), ("baru", 11.16, 11.50, 0), ("rasa", 11.50, 11.96, 0), ("lah.", 11.96, 12.14, 0)]),
+    ("q", f, [("Oh,", 9.88, 10.42, 0), ("dah", 10.42, 10.68, 0), ("lama-lama", 10.68, 11.16, 0), ("baru", 11.16, 11.50, 0), ("rasa", 11.50, 11.96, 0), ("lah.", 11.96, 12.14, 0)]),
     ("q", f, [("Wangi", 12.86, 13.34, 0), ("tak,", 13.34, 13.48, 0), ("Kak?", 13.48, 13.66, 0)]),
     ("fb", f, [("Kalau", 13.66, 13.98, 0), ("yang", 13.98, 14.18, 0), ("ni,", 14.18, 14.28, 0), ("wangi!", 14.28, 14.54, K)]),
     ("fb", f, [("Kalau", 14.54, 14.68, 0), ("bagi", 14.68, 14.94, 0), ("saya,", 14.94, 15.00, 0), ("yang", 15.00, 15.14, 0), ("ni", 15.14, 15.26, 0)]),
@@ -58,6 +58,7 @@ CAPS = [
     ("fb", f, [("Tak", 15.94, 16.34, 0), ("tipu", 16.34, 16.64, K), ("lah", 16.64, 16.68, 0), ("ni!", 16.68, 16.86, 0)]),
     ("q", f, [("Tak", 16.86, 17.36, 0), ("tipu", 17.36, 17.72, 0), ("tu?", 17.72, 17.78, 0), ("Oh", 17.78, 17.96, 0), ("okay.", 17.96, 18.24, 0)]),
     ("fb", f, [("Terima", 18.24, 18.66, 0), ("kasih!", 18.66, 19.22, K)]),
+    ("fb", f, [("Terima", 19.22, 19.52, 0), ("kasih.", 19.52, 20.38, 0)]),
     ("vo", m, [("Kalau", 7.40, 7.96, 0), ("korang", 7.96, 8.52, 0), ("pun", 8.52, 8.68, 0), ("nak", 8.68, 8.84, 0), ("cuba,", 8.84, 9.38, K)]),
     ("vo", m, [("cepat", 9.38, 10.06, 0), ("check", 10.06, 10.18, K), ("out!", 10.18, 10.38, K)]),
     ("vo", m, [("Stok", 10.68, 11.24, 0), ("yang", 11.24, 11.34, 0), ("tinggal", 11.34, 11.68, 0), ("di", 11.68, 11.80, 0), ("TikTok", 11.80, 12.08, K), ("Shop", 12.08, 12.36, K)]),
