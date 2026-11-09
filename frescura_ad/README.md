@@ -1,6 +1,6 @@
 # FRESCURA BODY — awareness/review ad (HyperFrames)
 
-PREVIEW only (`output/frescura_PREVIEW.mp4`, watermarked 720p). The final 1080x1920 render waits for approval.
+Final: `output/FRESCURA_BODY_final_1080x1920.mp4` (40 s, 1080x1920 30fps, H.264 + AAC 320k, -11.3 LUFS). Preview: `output/frescura_PREVIEW.mp4`.
 
 - `project/` — HyperFrames composition (`index.html`) + assets (graded B-roll clips, product images, fonts, final audio mix).
   Render: `cd project && npx hyperframes@0.9.23 render -q high -o final.mp4`
