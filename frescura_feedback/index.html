@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Unbounded:wght@300..800&family=Instrument+Sans:wght@400..700&display=block" rel="stylesheet">
+<style>
+:root{
+  --ground:#07070a; --ink:#f5efe6; --gold:#d9bf8f; --gold2:#f1dcb2; --cyan:#7fe9ff; --rose:#c3142d;
+  --serif:'Bodoni Moda', serif; --disp:'Unbounded', sans-serif; --sans:'Instrument Sans', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground);}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ground);font-family:var(--sans);color:var(--ink)}
+.clip{position:absolute;inset:0}
+.full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.layer{position:absolute;inset:0;pointer-events:none}
+.vign{background:radial-gradient(ellipse 80% 65% at 50% 45%,rgba(0,0,0,0) 40%,rgba(0,0,0,.78) 100%)}
+.shade-b{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 52%,rgba(0,0,0,.82) 100%)}
+/* captions */
+#cap{position:absolute;left:70px;right:70px;top:1330px;text-align:center;z-index:40}
+.cl{position:absolute;left:0;right:0;top:0;opacity:0;line-height:1.08}
+.w{display:inline-block;font-family:var(--disp);font-weight:600;font-size:66px;letter-spacing:-.01em;text-transform:uppercase;margin:0 .14em;color:var(--ink);text-shadow:0 4px 30px rgba(0,0,0,.75)}
+.w.em{font-family:var(--serif);font-style:italic;font-weight:700;text-transform:none;font-size:92px;color:var(--gold2);letter-spacing:-.015em}
+.w.on{color:var(--gold2)}
+/* chrome */
+#frame{position:absolute;inset:34px;border:1.5px solid rgba(241,220,178,.28);z-index:60}
+#brand{position:absolute;top:74px;left:0;right:0;text-align:center;font-family:var(--disp);font-weight:400;font-size:28px;letter-spacing:.62em;color:rgba(245,239,230,.92);z-index:61}
+#brand b{color:var(--cyan);font-weight:400}
+#prog{position:absolute;left:70px;right:70px;bottom:80px;height:3px;background:rgba(255,255,255,.14);z-index:61}
+#progf{height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--cyan));transform-origin:0 50%}
+#idx{position:absolute;right:76px;bottom:104px;font-family:var(--disp);font-size:28px;letter-spacing:.3em;color:rgba(245,239,230,.85);z-index:61}
+.grain{position:absolute;inset:-60px;z-index:58;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>")}
+/* hook */
+.hero{position:absolute;left:0;right:0;text-align:center;font-family:var(--serif);font-style:italic;font-weight:800;color:var(--ink);line-height:.9}
+#hJangan{top:520px;font-size:250px;letter-spacing:-.03em}
+#hBeli{top:780px;font-size:250px;letter-spacing:-.03em;color:var(--gold2)}
+#hStrike{position:absolute;left:250px;width:580px;top:905px;height:10px;background:var(--cyan);box-shadow:0 0 30px var(--cyan);transform-origin:0 50%}
+.tag{position:absolute;display:flex;align-items:center;gap:16px;padding:16px 28px;border:1.5px solid rgba(241,220,178,.55);border-radius:999px;background:rgba(10,10,12,.55);backdrop-filter:blur(10px);font-family:var(--disp);font-size:24px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+.dot{width:14px;height:14px;border-radius:50%;background:#ff3b4f;box-shadow:0 0 16px #ff3b4f}
+.chip{position:absolute;right:76px;display:flex;align-items:center;gap:18px;padding:18px 26px 18px 18px;background:rgba(8,8,10,.62);border-left:3px solid var(--gold);backdrop-filter:blur(12px);font-family:var(--disp);font-weight:500;font-size:26px;letter-spacing:.14em;color:var(--ink)}
+.chip i{font-style:normal;font-family:var(--serif);font-weight:700;font-style:italic;font-size:34px;color:var(--gold2);width:52px;text-align:center}
+.chip small{display:block;font-family:var(--sans);font-size:21px;letter-spacing:.04em;color:rgba(245,239,230,.72);margin-top:4px;text-transform:none;font-weight:400}
+.kicker{font-family:var(--disp);font-size:24px;letter-spacing:.5em;color:var(--gold);text-transform:uppercase}
+/* feedback */
+#fbBg{filter:blur(40px) brightness(.45) saturate(1.2);transform:scale(1.15)}
+#fbVid{position:absolute;top:0;left:24px;width:1032px;height:1920px;object-fit:cover}
+#fbTag{position:absolute;top:150px;left:50%;white-space:nowrap}
+/* CTA */
+#bag{position:absolute;left:390px;top:520px;width:300px;height:300px}
+#ring1,#ring2{position:absolute;left:340px;top:470px;width:400px;height:400px;border-radius:50%;border:2px solid rgba(255,207,51,.8)}
+#cta1{position:absolute;top:900px;left:0;right:0;text-align:center}
+#btn{position:absolute;left:190px;top:1090px;width:700px;height:130px;border-radius:999px;background:linear-gradient(90deg,#f1dcb2,#d9bf8f);color:#0b0b0d;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:38px;letter-spacing:.12em;box-shadow:0 20px 60px rgba(217,191,143,.35)}
+#tap{position:absolute;left:640px;top:1150px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 0 14px rgba(255,255,255,.25)}
+/* stock */
+#stock{position:absolute;left:110px;right:110px;top:300px}
+#stock .row{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--disp);letter-spacing:.3em;font-size:24px;color:var(--ink)}
+#pct{font-family:var(--serif);font-style:italic;font-weight:800;font-size:120px;letter-spacing:-.02em;color:var(--gold2)}
+#bar{margin-top:20px;height:16px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
+#barf{height:100%;width:100%;background:linear-gradient(90deg,#ff3b4f,var(--gold));transform-origin:0 50%}
+#stamp{position:absolute;left:0;right:0;top:640px;text-align:center}
+#stamp span{display:inline-block;padding:20px 46px;border:4px solid #ff3b4f;color:#ff3b4f;font-family:var(--disp);font-weight:800;font-size:76px;letter-spacing:.18em;transform:rotate(-6deg);background:rgba(10,0,2,.45);text-shadow:0 0 30px rgba(255,59,79,.6)}
+/* end */
+#logo{position:absolute;left:140px;top:430px;width:800px;height:800px;mix-blend-mode:screen;object-fit:cover}
+#endRing{position:absolute;left:190px;top:480px;width:700px;height:700px;border-radius:50%;border:2px dashed rgba(127,233,255,.45)}
+#endLine{position:absolute;left:0;right:0;top:1260px;text-align:center}
+.lux{font-family:var(--serif);font-style:italic;font-weight:500;font-size:64px;color:var(--ink)}
+.flash{background:#fff;opacity:0;z-index:70}
+.leak{z-index:69;opacity:0;mix-blend-mode:screen;background:radial-gradient(circle at 30% 40%,rgba(255,210,150,.95),rgba(255,120,80,.4) 35%,rgba(0,0,0,0) 65%)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="30.5" data-width="1080" data-height="1920">
+
+  <!-- ===== S1 HOOK 0 - 2.45: product hero ===== -->
+  <div id="s1" class="clip" data-start="0" data-duration="2.45" data-track-index="1">
+    <img id="s1img" class="full" src="assets/bottles.jpg" style="object-position:50% 40%">
+    <div class="layer vign"></div><div class="layer" id="s1dark" style="background:#000"></div>
+    <div id="hJangan" class="hero">Jangan</div>
+    <div id="hBeli" class="hero">beli.</div>
+    <div id="hStrike"></div>
+  </div>
+
+  <!-- ===== S2 real experience 2.45 - 4.55: pump on table ===== -->
+  <video id="v2" class="clip full" src="assets/foam.mp4" data-start="2.45" data-duration="2.15" data-media-start="1.6" muted data-track-index="2"></video>
+  <!-- ===== S2b 4.55 - 6.0: pump into palm ===== -->
+  <video id="v3" class="clip full" src="assets/foam.mp4" data-start="4.55" data-duration="1.5" data-media-start="12.2" muted data-track-index="2"></video>
+  <div id="s2ov" class="clip" data-start="2.45" data-duration="3.55" data-track-index="3">
+    <div class="layer shade-b"></div>
+    <div id="tagLive" class="tag" style="left:76px;top:170px"><span class="dot"></span>Real experience</div>
+    <div id="tagMall" class="tag" style="left:76px;top:250px">
+      <svg width="22" height="28" viewBox="0 0 22 28"><path d="M11 0C5 0 0 4.7 0 10.6 0 18 11 28 11 28s11-10 11-17.4C22 4.7 17 0 11 0zm0 15a4.4 4.4 0 1 1 0-8.8 4.4 4.4 0 0 1 0 8.8z" fill="#d9bf8f"/></svg>Promosi · Mall</div>
+    <div id="ch1" class="chip" style="top:560px"><i>01</i><div>AROMATHERAPY<small>Wangian menenangkan</small></div></div>
+    <div id="ch2" class="chip" style="top:690px"><i>02</i><div>OCEAN SALT<small>Rasa segar & bersih</small></div></div>
+    <div id="ch3" class="chip" style="top:820px"><i>03</i><div>GENTLE FOAMING<small>Buih lembut terus dari pump</small></div></div>
+  </div>
+
+  <!-- ===== S3 FEEDBACK 6.0 - 18.3 (untouched) ===== -->
+  <video id="fbBg" class="clip full" src="assets/feedback.mp4" data-start="6.0" data-duration="12.3" data-media-start="0" muted data-track-index="1"></video>
+  <video id="fbVid" class="clip" src="assets/feedback.mp4" data-start="6.0" data-duration="12.3" data-media-start="0" muted data-track-index="2" style="inset:auto"></video>
+  <div id="s3ov" class="clip" data-start="6.0" data-duration="2.6" data-track-index="3">
+    <div id="fbTag" class="tag"><span style="color:var(--gold2);letter-spacing:.1em">★★★★★</span>Feedback pelanggan</div>
+  </div>
+
+  <!-- ===== S4 closing a: lather 18.3 - 19.6 ===== -->
+  <video id="v4" class="clip full" src="assets/foam.mp4" data-start="18.3" data-duration="1.35" data-media-start="21.0" muted data-track-index="2"></video>
+  <!-- S4b giliran korang 19.6 - 21.2 : product -->
+  <div id="s4b" class="clip" data-start="19.6" data-duration="1.6" data-track-index="1">
+    <img id="s4img" class="full" src="assets/bottles.jpg" style="object-position:50% 45%">
+    <div class="layer vign"></div>
+    <div class="kicker" id="s4k" style="position:absolute;top:240px;left:0;right:0;text-align:center">Sekarang</div>
+  </div>
+  <div id="s4ov" class="clip" data-start="18.3" data-duration="2.9" data-track-index="3"><div class="layer shade-b"></div></div>
+
+  <!-- ===== S5 CTA 21.2 - 22.85 ===== -->
+  <div id="s5" class="clip" data-start="21.2" data-duration="1.65" data-track-index="1">
+    <div class="layer" style="background:radial-gradient(circle at 50% 40%,#1b1712 0%,#07070a 70%)"></div>
+    <div id="ring1"></div><div id="ring2"></div>
+    <svg id="bag" viewBox="0 0 100 100">
+      <path d="M34 34V26a16 16 0 0 1 32 0v8" fill="none" stroke="#ffcf33" stroke-width="6" stroke-linecap="round"/>
+      <path d="M16 32h68l-6 56a6 6 0 0 1-6 5H28a6 6 0 0 1-6-5z" fill="#ffcf33"/>
+      <path d="M38 50a12 12 0 0 0 24 0" fill="none" stroke="#7a5a00" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div id="cta1"><div class="kicker">Tekan</div><div class="lux" style="font-size:96px;font-weight:700;margin-top:10px">beg <span style="color:#ffcf33">kuning</span></div></div>
+    <div id="btn">CHECK OUT SEKARANG</div>
+    <div id="tap"></div>
+  </div>
+
+  <!-- ===== S6 stock terhad 22.85 - 26.45 ===== -->
+  <video id="v6" class="clip full" src="assets/foam.mp4" data-start="22.85" data-duration="3.6" data-media-start="28.0" muted data-track-index="2"></video>
+  <div id="s6ov" class="clip" data-start="22.85" data-duration="3.6" data-track-index="3">
+    <div class="layer" style="background:rgba(5,5,8,.42)"></div><div class="layer shade-b"></div>
+    <div id="stock"><div class="row"><span>STOK SEMASA</span><span id="pct">100%</span></div><div id="bar"><div id="barf"></div></div></div>
+    <div id="stamp"><span>TERHAD</span></div>
+  </div>
+
+  <!-- ===== S7 end card 26.45 - 30.5 ===== -->
+  <div id="s7" class="clip" data-start="26.45" data-duration="4.05" data-track-index="1">
+    <img class="full" id="s7bg" src="assets/bottles.jpg" style="opacity:.22;filter:blur(6px)">
+    <div class="layer" style="background:radial-gradient(circle at 50% 44%,rgba(7,7,10,.2),#07070a 72%)"></div>
+    <div id="endRing"></div>
+    <img id="logo" src="assets/logo.jpg">
+    <div id="endLine">
+      <div class="lux" id="e1">Lembut. Wangi. <span style="color:var(--gold2)">Mewah.</span></div>
+      <div class="kicker" id="e2" style="margin-top:34px;font-size:28px">Woman Glory · Noche · 500ml</div>
+      <div id="e3" class="tag" style="position:relative;display:inline-flex;margin-top:56px;border-color:#ffcf33">
+        <svg width="26" height="26" viewBox="0 0 100 100"><path d="M16 32h68l-6 56a6 6 0 0 1-6 5H28a6 6 0 0 1-6-5z" fill="#ffcf33"/><path d="M33 34V28a17 17 0 0 1 34 0v6" fill="none" stroke="#ffcf33" stroke-width="8"/></svg>Checkout sekarang</div>
+    </div>
+  </div>
+
+  <!-- ===== persistent chrome ===== -->
+  <div class="grain" id="grain"></div>
+  <div id="frame"></div>
+  <div id="brand">FRESCURA <b>BODY</b></div>
+  <div id="prog"><div id="progf"></div></div>
+  <div id="idx">01</div>
+  <div id="cap" data-layout-allow-overlap></div>
+  <div id="flash" class="layer flash"></div>
+  <div id="leak" class="layer leak"></div>
+</div>
+
+<script>
+// ---------- captions (word timings from transcript, film time) ----------
+const LINES = [
+  // intro voice starts 0.35s
+  {t0:0.67,t1:1.73,w:[["sebelum",.67],["korang",1.09],["tengok",1.31]]},
+  {t0:1.73,t1:2.41,w:[["feedback",1.73,1],["ni.",1.93]]},
+  {t0:2.41,t1:3.81,w:[["Ini",2.41],["pengalaman",2.89,1],["sebenar",3.39]]},
+  {t0:3.81,t1:4.37,w:[["pelanggan",3.81],["kami",4.19]]},
+  {t0:4.37,t1:5.85,w:[["ketika",4.37],["promosi",4.95],["di",5.39],["mall.",5.47,1]]},
+  // closing voice starts 18.45s
+  {t0:18.45,t1:19.55,w:[["Ha,",18.45],["dah",18.65],["tengok",18.81],["sendiri",18.97,1],["kan?",19.17]]},
+  {t0:19.67,t1:21.21,w:[["giliran",20.15],["korang",20.61,1],["pula.",20.97]]},
+  {t0:22.0,t1:22.83,w:[["dan",21.97],["check out",22.31,1],["sekarang",22.65]]},
+  {t0:22.83,t1:24.33,w:[["sebelum",22.83],["stok",23.45],["habis.",23.85,1]]},
+  {t0:24.33,t1:25.09,w:[["Sebab",24.33],["stok",24.73],["kami",24.97]]},
+  {t0:25.09,t1:26.3,w:[["sangat-sangat",25.09,1],["terhad.",25.87]]},
+];
+const cap = document.getElementById('cap');
+LINES.forEach((L,i)=>{
+  const d=document.createElement('div'); d.className='cl'; d.id='cl'+i;
+  L.w.forEach(([txt,t,em],j)=>{const s=document.createElement('span'); s.className='w'+(em?' em':''); s.id=`w${i}_${j}`; s.textContent=txt; d.appendChild(s);});
+  cap.appendChild(d);
+});
+
+const tl = gsap.timeline({ paused: true });
+gsap.set('#fbTag',{xPercent:-50}); gsap.set('#hStrike',{scaleX:0}); gsap.set('#flash',{opacity:0});
+const E='power3.out', EI='power2.inOut';
+
+// captions animate in word by word
+LINES.forEach((L,i)=>{
+  tl.set('#cl'+i,{opacity:1},L.t0);
+  L.w.forEach(([txt,t,em],j)=>{
+    const id=`#w${i}_${j}`;
+    tl.fromTo(id,{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.22,ease:E},Math.max(L.t0,t-0.04));
+    if(!em){ tl.to(id,{color:'#f1dcb2',duration:.08},t); tl.to(id,{color:'#f5efe6',duration:.2},t+0.3); }
+    else { tl.fromTo(id,{scale:1.25},{scale:1,duration:.4,ease:'back.out(2)'},t); }
+  });
+  tl.to('#cl'+i,{opacity:0,y:-20,filter:'blur(8px)',duration:.16,ease:'power2.in'},L.t1-0.12);
+  tl.set('#cl'+i,{y:0},L.t1+0.05);
+});
+// hide caption track during feedback & CTA
+// ---------- persistent chrome ----------
+tl.fromTo('#progf',{scaleX:0},{scaleX:1,duration:30.5,ease:'none'},0);
+tl.fromTo('#frame',{opacity:0,scale:1.04},{opacity:1,scale:1,duration:.7,ease:E},0.05);
+tl.fromTo('#brand',{opacity:0,scale:1.25},{opacity:1,scale:1,duration:1,ease:E},0.1);
+for(let k=0;k<61;k++){ tl.set('#grain',{x:(k*37)%60-30,y:(k*53)%60-30},k*0.5); }
+const IDX=[0,2.45,6.0,18.3,21.2,22.85,26.45]; const idxEl=document.getElementById('idx');
+tl.to({p:0},{p:1,duration:30.5,ease:'none',onUpdate(){const t=tl.time(); let n=0; IDX.forEach((v,i)=>{if(t>=v)n=i;}); idxEl.textContent='0'+(n+1)+' / 07';}},0);
+tl.to(['#brand','#frame','#idx','#prog'],{opacity:0,duration:.2},5.9); tl.to(['#brand','#frame','#idx','#prog'],{opacity:1,duration:.3},18.3);
+
+// ---------- S1 hook ----------
+tl.fromTo('#s1img',{scale:1.32,filter:'brightness(.35) blur(6px)'},{scale:1.08,filter:'brightness(.75) blur(0px)',duration:2.45,ease:'power2.out'},0);
+tl.fromTo('#s1dark',{opacity:1},{opacity:.35,duration:.6},0.1);
+tl.fromTo('#hJangan',{opacity:0,scale:2.4,filter:'blur(30px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.28,ease:'expo.out'},0.08);
+tl.fromTo('#hBeli',{opacity:0,y:120,skewY:8},{opacity:1,y:0,skewY:0,duration:.3,ease:'expo.out'},0.40);
+tl.fromTo('#hStrike',{scaleX:0},{scaleX:1,duration:.35,ease:'expo.inOut'},0.62);
+tl.to('#root',{x:-14,duration:.04,yoyo:true,repeat:3,ease:'none'},0.1); tl.set('#root',{x:0},0.3);
+tl.to(['#hJangan','#hBeli','#hStrike'],{y:-330,scale:.62,duration:.6,ease:EI},1.05);
+tl.to(['#hJangan','#hBeli','#hStrike'],{opacity:0,filter:'blur(12px)',duration:.25},2.2);
+
+// ---------- S2 real experience ----------
+tl.fromTo('#v2',{scale:1.18},{scale:1.04,duration:2.15,ease:'power1.out'},2.45);
+tl.fromTo('#v3',{scale:1.25},{scale:1.08,duration:1.05,ease:'power1.out'},4.55);
+tl.fromTo('#tagLive',{opacity:0,x:-60},{opacity:1,x:0,duration:.4,ease:E},2.55);
+tl.to('#tagLive .dot',{opacity:.2,duration:.3,yoyo:true,repeat:5},2.9);
+tl.fromTo('#tagMall',{opacity:0,x:-60},{opacity:1,x:0,duration:.4,ease:E},2.75);
+[['#ch1',3.05],['#ch2',3.45],['#ch3',3.85]].forEach(([id,t])=>{
+  tl.fromTo(id,{opacity:0,x:120,clipPath:'inset(0 0 0 100%)'},{opacity:1,x:0,clipPath:'inset(0 0 0 0%)',duration:.45,ease:'expo.out'},t);
+});
+tl.to(['#ch1','#ch2','#ch3','#tagLive','#tagMall'],{opacity:0,x:40,duration:.25,stagger:.04},5.55);
+// transition into feedback
+tl.fromTo('#leak',{opacity:0,scale:.6},{opacity:.9,scale:1.6,duration:.3,ease:'power2.in'},5.72);
+tl.to('#leak',{opacity:0,duration:.45},6.02);
+tl.to('#flash',{opacity:.85,duration:.08},5.94); tl.to('#flash',{opacity:0,duration:.3},6.02);
+tl.to('#v3',{scale:1.6,filter:'blur(14px)',duration:.4,ease:'power2.in'},5.6);
+
+// ---------- S3 feedback ----------
+tl.fromTo('#fbVid',{scale:1.12,opacity:.0},{scale:1,opacity:1,duration:.4,ease:E},6.0);
+tl.fromTo('#fbTag',{opacity:0,y:-30},{opacity:1,y:0,duration:.4,ease:E},6.25);
+tl.to('#fbTag',{opacity:0,y:-20,duration:.3},8.2);
+// out of feedback
+tl.to('#flash',{opacity:.8,duration:.06},18.22); tl.to('#flash',{opacity:0,duration:.3},18.3);
+
+// ---------- S4 ----------
+tl.fromTo('#v4',{scale:1.35,rotation:-2},{scale:1.08,rotation:0,duration:1.35,ease:'power2.out'},18.3);
+tl.fromTo('#s4img',{scale:1.5,filter:'brightness(.5)'},{scale:1.12,filter:'brightness(.8)',duration:1.6,ease:'expo.out'},19.6);
+tl.fromTo('#s4k',{opacity:0,scale:1.4},{opacity:1,scale:1,duration:.6,ease:E},19.62);
+
+// ---------- S5 CTA ----------
+tl.fromTo('#bag',{y:-700,rotation:-18,scale:.8},{y:0,rotation:0,scale:1,duration:.55,ease:'bounce.out'},21.2);
+tl.fromTo('#ring1',{scale:.6,opacity:.9},{scale:1.6,opacity:0,duration:.9,ease:'power2.out'},21.62);
+tl.fromTo('#ring2',{scale:.6,opacity:.9},{scale:1.6,opacity:0,duration:.9,ease:'power2.out'},21.95);
+tl.fromTo('#cta1',{opacity:0,y:40},{opacity:1,y:0,duration:.35,ease:E},21.3);
+tl.fromTo('#btn',{opacity:0,y:80,scale:.9},{opacity:1,y:0,scale:1,duration:.4,ease:'back.out(1.8)'},21.6);
+tl.fromTo('#tap',{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.18,ease:E},22.25);
+tl.to('#btn',{scale:.93,duration:.08,yoyo:true,repeat:1},22.38);
+tl.to('#tap',{opacity:0,scale:.6,duration:.2},22.55);
+tl.to('#bag',{scale:1.08,duration:.15,yoyo:true,repeat:3,ease:'sine.inOut'},22.0);
+
+// ---------- S6 stock ----------
+tl.fromTo('#v6',{scale:1.2},{scale:1.04,duration:3.6,ease:'none'},22.85);
+tl.fromTo('#stock',{opacity:0,y:-40},{opacity:1,y:0,duration:.4,ease:E},22.9);
+const pc={v:100}; tl.to(pc,{v:7,duration:2.1,ease:'power2.inOut',onUpdate:()=>{document.getElementById('pct').textContent=Math.round(pc.v)+'%';}},23.2);
+tl.fromTo('#barf',{scaleX:1},{scaleX:.07,duration:2.1,ease:'power2.inOut'},23.2);
+tl.fromTo('#stamp span',{opacity:0,scale:2.6},{opacity:1,scale:1,duration:.22,ease:'expo.in'},25.05);
+tl.to('#root',{x:12,duration:.04,yoyo:true,repeat:3,ease:'none'},25.27); tl.set('#root',{x:0},25.45);
+tl.to(['#stock','#stamp'],{opacity:0,duration:.25},26.2);
+
+// ---------- S7 end ----------
+tl.to('#flash',{opacity:.6,duration:.06},26.42); tl.to('#flash',{opacity:0,duration:.4},26.48);
+tl.fromTo('#logo',{opacity:0,scale:.75,filter:'blur(18px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.9,ease:'expo.out'},26.5);
+tl.fromTo('#endRing',{opacity:0,rotation:0,scale:.8},{opacity:1,rotation:120,scale:1,duration:4,ease:'power1.out'},26.5);
+tl.fromTo('#s7bg',{scale:1.2},{scale:1.05,duration:4.05,ease:'none'},26.45);
+tl.fromTo('#e1',{opacity:0,y:40,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.6,ease:E},26.95);
+tl.fromTo('#e2',{opacity:0,scale:1.3},{opacity:1,scale:1,duration:.7,ease:E},27.25);
+tl.fromTo('#e3',{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:'back.out(2)'},27.55);
+tl.to('#e3',{scale:1.06,duration:.35,yoyo:true,repeat:3,ease:'sine.inOut'},28.6);
+tl.to('#root',{opacity:0,duration:.35},30.12);
+
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
