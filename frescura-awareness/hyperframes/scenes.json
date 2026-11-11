@@ -2,71 +2,71 @@
  {
   "id": "hook",
   "start": 0.0,
-  "end": 2.29
+  "end": 2.4
  },
  {
   "id": "dapur",
-  "start": 2.29,
-  "end": 6.25
+  "start": 2.4,
+  "end": 6.42
  },
  {
   "id": "laut",
-  "start": 6.25,
-  "end": 9.33
+  "start": 6.42,
+  "end": 10.11
  },
  {
   "id": "mineral",
-  "start": 9.33,
-  "end": 11.61
+  "start": 10.11,
+  "end": 12.62
  },
  {
   "id": "spa",
-  "start": 11.61,
-  "end": 15.41
+  "start": 12.62,
+  "end": 16.42
  },
  {
   "id": "brand",
-  "start": 15.41,
-  "end": 16.71
+  "start": 16.42,
+  "end": 17.77
  },
  {
   "id": "formula",
-  "start": 16.71,
-  "end": 20.57
+  "start": 17.77,
+  "end": 21.49
  },
  {
   "id": "feel",
-  "start": 20.57,
-  "end": 23.64
+  "start": 21.49,
+  "end": 24.45
  },
  {
   "id": "asmr",
-  "start": 23.64,
-  "end": 25.85
+  "start": 24.45,
+  "end": 26.03
  },
  {
   "id": "variants",
-  "start": 25.85,
-  "end": 29.59
+  "start": 26.03,
+  "end": 30.02
  },
  {
   "id": "stok",
-  "start": 29.59,
-  "end": 30.91
+  "start": 30.02,
+  "end": 31.4
  },
  {
   "id": "batch",
-  "start": 30.91,
-  "end": 33.59
+  "start": 31.4,
+  "end": 34.34
  },
  {
   "id": "cta",
-  "start": 33.59,
-  "end": 37.95
+  "start": 34.34,
+  "end": 38.86
  },
  {
   "id": "endcard",
-  "start": 37.95,
-  "end": 43.0
+  "start": 38.86,
+  "end": 44.0
  }
 ]

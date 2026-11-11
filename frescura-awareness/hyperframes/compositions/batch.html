@@ -39,7 +39,7 @@
   <div id="root" data-composition-id="batch" data-width="1080" data-height="1920">
 
 
-    <div id="n-card" class="abs"><img id="n-img" src="assets/img/bottle.jpg" alt=""></div>
+    <div id="n-card" class="abs"><img id="n-img" src="assets/img/duo_dark.jpg" alt=""></div>
     <div id="n-stamp" class="abs">HABIS</div>
     <div id="n-line" class="abs"></div>
     <div id="n-d1" class="n-dot" style="left:122px;background:var(--ivory)"></div>
@@ -52,19 +52,19 @@
   </div>
   <script>
   (function(){
-    const T0=30.91;
+    const T0=31.4;
     const at=t=>Math.max(0,+(t-T0).toFixed(3));
     const tl=gsap.timeline({paused:true});
     let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
 
     tl.fromTo('#n-card',{y:60,opacity:0},{y:0,opacity:1,duration:.4,ease:'expo.out'},0);
-    tl.fromTo('#n-img',{scale:1.3},{scale:1.1,duration:2.68,ease:'none'},0);
-    tl.fromTo('#n-stamp',{scale:2,opacity:0,rotation:-14},{scale:1,opacity:1,rotation:-8,duration:.22,ease:'power4.in'},at(31.21)+.05);
-    tl.to('#n-img',{filter:'grayscale(1)',opacity:.45,duration:.3},at(31.21)+.25);
-    tl.fromTo('#n-t',{opacity:0},{opacity:1,duration:.35},at(32.27)-.2);
-    tl.fromTo('#n-run',{x:0},{x:800,duration:1.4,ease:'power2.inOut'},at(32.27));
+    tl.fromTo('#n-img',{scale:1.3},{scale:1.1,duration:2.94,ease:'none'},0);
+    tl.fromTo('#n-stamp',{scale:2,opacity:0,rotation:-14},{scale:1,opacity:1,rotation:-8,duration:.22,ease:'power4.in'},at(31.66)+.05);
+    tl.to('#n-img',{filter:'grayscale(1)',opacity:.45,duration:.3},at(31.66)+.25);
+    tl.fromTo('#n-t',{opacity:0},{opacity:1,duration:.35},at(32.78)-.2);
+    tl.fromTo('#n-run',{x:0},{x:800,duration:1.4,ease:'power2.inOut'},at(32.78));
 
-    tl.set({},{},2.68);
+    tl.set({},{},2.94);
     window.__timelines["batch"]=tl;
   })();
   </script>

@@ -47,7 +47,7 @@
   </div>
   <script>
   (function(){
-    const T0=29.59;
+    const T0=30.02;
     const at=t=>Math.max(0,+(t-T0).toFixed(3));
     const tl=gsap.timeline({paused:true});
     let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
@@ -55,11 +55,11 @@
     tl.fromTo('#k-bg',{clipPath:'circle(0% at 50% 45%)'},{clipPath:'circle(150% at 50% 45%)',duration:.4,ease:'power3.out'},0);
     tl.fromTo('#k-t',{scale:1.6,opacity:0},{scale:1,opacity:1,duration:.3,ease:'power4.in'},0.05);
     tl.fromTo('#k-k',{opacity:0},{opacity:1,duration:.3},0.2);
-    tl.fromTo('#k-s',{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:'expo.out'},at(30.59)-.15);
+    tl.fromTo('#k-s',{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:'expo.out'},at(31.0)-.15);
     tl.fromTo(['#k-track','#k-lbl'],{opacity:0},{opacity:1,duration:.3},0.3);
-    tl.fromTo('#k-fill',{scaleX:.42},{scaleX:.07,duration:1.02,ease:'power2.inOut'},0.3);
+    tl.fromTo('#k-fill',{scaleX:.42},{scaleX:.07,duration:1.08,ease:'power2.inOut'},0.3);
 
-    tl.set({},{},1.32);
+    tl.set({},{},1.38);
     window.__timelines["stok"]=tl;
   })();
   </script>

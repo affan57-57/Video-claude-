@@ -49,7 +49,7 @@
   </div>
   <script>
   (function(){
-    const T0=9.33;
+    const T0=10.11;
     const at=t=>Math.max(0,+(t-T0).toFixed(3));
     const tl=gsap.timeline({paused:true});
     let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
@@ -57,11 +57,11 @@
     const P=[[90,440],[740,440],[90,780],[740,780]], F=[[-400,0],[400,0],[-400,0],[400,0]];
     P.forEach((p,i)=>{const c=document.getElementById('m-e'+i);c.style.left=p[0]+'px';c.style.top=p[1]+'px';});
     tl.fromTo('#m-core',{scale:0,rotation:0},{scale:1,rotation:45,duration:.6,ease:'expo.out'},0);
-    tl.fromTo('#m-title',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.35},at(9.83)-.1);
-    P.forEach((p,i)=>tl.fromTo('#m-e'+i,{x:F[i][0],opacity:0},{x:0,opacity:1,duration:.45,ease:'expo.out'},at(10.27)+i*.16));
-    tl.fromTo('#m-stamp',{scale:1.8,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:-3,duration:.28,ease:'power4.in'},at(10.93)-.1);
+    tl.fromTo('#m-title',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.35},at(10.58)-.1);
+    P.forEach((p,i)=>tl.fromTo('#m-e'+i,{x:F[i][0],opacity:0},{x:0,opacity:1,duration:.45,ease:'expo.out'},at(11.04)+i*.16));
+    tl.fromTo('#m-stamp',{scale:1.8,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:-3,duration:.28,ease:'power4.in'},at(11.7)-.1);
 
-    tl.set({},{},2.28);
+    tl.set({},{},2.51);
     window.__timelines["mineral"]=tl;
   })();
   </script>

@@ -65,13 +65,13 @@
     // frame 0 already shows the hook line (thumbnail)
     tl.fromTo('#h-l1',{y:30,scale:1.06},{y:0,scale:1,duration:1.2,ease:'expo.out'},0);
     tl.fromTo('#h-l2',{y:40,scale:1.06},{y:0,scale:1,duration:1.2,ease:'expo.out'},0);
-    tl.fromTo('#h-k2',{opacity:0},{opacity:1,duration:.3},at(1.47));
-    tl.fromTo('#h-neq',{scale:0,rotation:-90},{scale:1,rotation:0,duration:.5,ease:'back.out(1.6)'},at(1.91));
-    tl.fromTo('#h-q',{opacity:0,scale:1.3,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.4,ease:'power3.out'},at(1.75));
+    tl.fromTo('#h-k2',{opacity:0},{opacity:1,duration:.3},at(1.36));
+    tl.fromTo('#h-neq',{scale:0,rotation:-90},{scale:1,rotation:0,duration:.5,ease:'back.out(1.6)'},at(1.82));
+    tl.fromTo('#h-q',{opacity:0,scale:1.3,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.4,ease:'power3.out'},at(1.64));
     for(let i=0;i<26;i++) tl.fromTo('#h-g'+i,{y:0,opacity:.9},{y:-60-rnd()*90,opacity:.2,duration:2.3,ease:'none'},0);
     tl.to('#h-top',{y:-30,duration:2.3,ease:'none'},0);
 
-    tl.set({},{},2.29);
+    tl.set({},{},2.4);
     window.__timelines["hook"]=tl;
   })();
   </script>

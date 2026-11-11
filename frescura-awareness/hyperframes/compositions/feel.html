@@ -43,16 +43,16 @@
   </div>
   <script>
   (function(){
-    const T0=20.57;
+    const T0=21.49;
     const at=t=>Math.max(0,+(t-T0).toFixed(3));
     const tl=gsap.timeline({paused:true});
     let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
 
     tl.fromTo('#fe-k1',{opacity:0},{opacity:1,duration:.3},0.05);
-    tl.fromTo('#fe-1',{opacity:0,filter:'blur(14px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:.5,ease:'expo.out'},at(21.63)-.1);
-    tl.fromTo('#fe-2',{opacity:0,filter:'blur(14px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:.5,ease:'expo.out'},at(22.51)-.1);
+    tl.fromTo('#fe-1',{opacity:0,filter:'blur(14px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:.5,ease:'expo.out'},at(22.44)-.1);
+    tl.fromTo('#fe-2',{opacity:0,filter:'blur(14px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:.5,ease:'expo.out'},at(23.32)-.1);
 
-    tl.set({},{},3.07);
+    tl.set({},{},2.96);
     window.__timelines["feel"]=tl;
   })();
   </script>

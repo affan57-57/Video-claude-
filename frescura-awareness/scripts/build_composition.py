@@ -3,7 +3,7 @@
 import json, os, sys
 P = sys.argv[1]
 W = json.load(open(os.path.join(P, "transcript.json")))
-DUR = 43.0
+DUR = 44.0
 os.makedirs(os.path.join(P, "compositions"), exist_ok=True)
 
 FONTS = """
@@ -225,7 +225,7 @@ SC.append(scene("mineral", s, e, """
 
 # ---------------------------------------------------------------- S5 SPA (footage overlay)
 s, e = word("Sebab"), word("spa") + 0.32
-t_kul = word("perjagaan"); t_spa = word("spa")
+t_kul = word("penjagaan"); t_spa = word("spa")
 SC.append(scene("spa", s, e, """
 #sp-scrim{left:0;top:0;width:1080px;height:760px;background:linear-gradient(180deg, rgba(23,18,18,.55) 0%, rgba(23,18,18,0) 100%)}
 #sp-k{left:0;width:1080px;top:230px;text-align:center;color:var(--ivory);font-size:30px}
@@ -246,26 +246,21 @@ SC.append(scene("spa", s, e, """
     tl.fromTo('#sp-c2',{{x:1080}},{{x:0,duration:.5,ease:'expo.out'}},at({t_spa})-.15);
 """))
 
-# ---------------------------------------------------------------- S6 BRAND REVEAL (footage overlay)
+# ---------------------------------------------------------------- S6 BRAND REVEAL (real logo)
 s, e = word("spa") + 0.32, word("FRESCURA")
 SC.append(scene("brand", s, e, """
-#b-flash{left:0;top:0;width:1080px;height:1920px;background:var(--paper)}
-#b-scrim{left:0;top:0;width:1080px;height:1920px;background:radial-gradient(80% 50% at 50% 35%, rgba(23,18,18,.15), rgba(23,18,18,.55))}
-#b-logo{left:0;width:1080px;top:230px;text-align:center;color:var(--ivory);font-size:118px;letter-spacing:.18em}
-#b-sub{left:0;width:1080px;top:385px;text-align:center;color:var(--gold);font-size:30px}
-#b-line{left:340px;top:362px;width:400px}
+#b-glow{left:140px;top:420px;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle, rgba(64,170,255,.28) 0%, rgba(64,170,255,0) 65%)}
+#b-logo{left:150px;top:420px;width:780px;height:780px}
+#b-flash{left:0;top:0;width:1080px;height:1920px;background:#E8F4FF}
 """, """
-    <div id="b-scrim" class="abs"></div>
-    <div id="b-logo" class="abs ital">Frescura</div>
-    <div id="b-line" class="hair"></div>
-    <div id="b-sub" class="abs lbl">Body &middot; Ocean salt</div>
+    <div id="b-glow" class="abs"></div>
+    <img id="b-logo" class="abs" src="assets/img/logo.png" alt="FRESCURA BODY">
     <div id="b-flash" class="abs"></div>
 """, """
-    tl.fromTo('#b-flash',{opacity:1},{opacity:0,duration:.35,ease:'power2.out'},0);
-    tl.fromTo('#b-logo',{opacity:0,scale:1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.7,ease:'expo.out'},0.05);
-    tl.fromTo('#b-line',{scaleX:0},{scaleX:1,duration:.6,ease:'power3.inOut'},0.3);
-    tl.fromTo('#b-sub',{opacity:0},{opacity:1,duration:.3},0.12);
-"""))
+    tl.fromTo('#b-flash',{opacity:.9},{opacity:0,duration:.3,ease:'power2.out'},0);
+    tl.fromTo('#b-logo',{opacity:0,scale:1.35,filter:'blur(14px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.7,ease:'expo.out'},0.02);
+    tl.fromTo('#b-glow',{scale:.6,opacity:0},{scale:1,opacity:1,duration:.9,ease:'expo.out'},0.05);
+""", bg="#0B111C"))
 
 # ---------------------------------------------------------------- S7 FORMULA (footage overlay)
 s, e = word("FRESCURA"), word("Kulit")
@@ -331,19 +326,19 @@ SC.append(scene("asmr", s, e, """
     <div id="a-tag" class="abs"><span>Ocean salt &middot; Gentle foam</span></div>
 """, """
     tl.fromTo('#a-big',{opacity:0,y:20},{opacity:1,y:0,duration:.6,ease:'expo.out'},0.1);
-    tl.fromTo('#a-tag',{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:'expo.out'},0.4);
+    tl.fromTo('#a-tag',{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:'expo.out'},0.12);
 """))
 
 # ---------------------------------------------------------------- S10 VARIANTS
 s, e = word("Dua"), word("Stok")
-t_var = word("varian"); t_wo = word("Woman"); t_bo = word("Bombshell"); t_na = word("Midnight"); t_fa = word("Fantasy")
+t_var = word("varian"); t_wo = word("Woman"); t_bo = word("Bombshell"); t_na = word("Noche"); t_fa = word("Fantasy")
 SC.append(scene("variants", s, e, """
 #v-k{left:0;width:1080px;top:215px;text-align:center;color:var(--wine)}
 #v-t{left:0;width:1080px;top:260px;text-align:center;color:var(--ink);font-size:110px}
 .v-card{position:absolute;top:440px;width:450px;height:700px;border-radius:34px;overflow:hidden;box-shadow:0 30px 80px rgba(23,18,18,.22)}
-#v-c1{left:55px;background:var(--wine)}
-#v-c2{left:575px;background:radial-gradient(120% 80% at 50% 25%, #2A6B78 0%, #0F2E37 75%)}
-#v-img{position:absolute;left:0;top:0;width:450px;height:520px;object-fit:cover;object-position:50% 58%}
+#v-c1{left:55px;background:#0E1621}
+#v-c2{left:575px;background:#0E1621}
+.v-img{position:absolute;left:0;top:10px;width:450px;height:500px;object-fit:contain}
 .v-cap{position:absolute;left:0;bottom:0;width:450px;height:200px;padding:28px 30px;background:var(--paper)}
 .v-cap b{display:block;font-family:'Bodoni Moda';font-style:italic;font-weight:500;font-size:50px;color:var(--ink);line-height:1}
 .v-cap i{display:block;font-style:normal;font-family:'Manrope';font-weight:800;font-size:28px;letter-spacing:.3em;margin-top:16px}
@@ -355,18 +350,19 @@ SC.append(scene("variants", s, e, """
 """, """
     <div id="v-k" class="abs lbl">Pilih aroma anda</div>
     <div id="v-t" class="abs disp">2 <span class="it" style="color:var(--wine)">varian</span></div>
-    <div id="v-c1" class="v-card"><img id="v-img" src="assets/img/bottle.jpg" alt="">
+    <div id="v-c1" class="v-card"><img id="v-img" class="v-img" src="assets/img/bottle_womanglory.jpg" alt="">
       <div class="v-no">01</div>
       <div class="v-cap"><b>Woman Glory</b><i style="color:var(--rose)">BOMBSHELL</i></div></div>
-    <div id="v-c2" class="v-card"><div id="v-pump"></div><div id="v-bot"></div><div id="v-bl" data-layout-ignore>FRESCURA</div>
+    <div id="v-c2" class="v-card"><img id="v-img2" class="v-img" src="assets/img/bottle_noche.jpg" alt="">
       <div class="v-no" data-layout-allow-overlap>02</div>
-      <div class="v-cap"><b>Midnight</b><i style="color:var(--sea2)">FANTASY</i></div></div>
+      <div class="v-cap"><b>Noche</b><i style="color:#5B3FA0">MIDNIGHT FANTASY</i></div></div>
 """, f"""
     tl.fromTo('#v-k',{{opacity:0}},{{opacity:1,duration:.3}},0.02);
     tl.fromTo('#v-t',{{opacity:0,filter:'blur(10px)'}},{{opacity:1,filter:'blur(0px)',duration:.35}},0.02);
     tl.fromTo('#v-c1',{{y:1800,rotation:-6}},{{y:0,rotation:-2,duration:.7,ease:'expo.out'}},at({t_wo})-.25);
     tl.fromTo('#v-img',{{scale:1.25}},{{scale:1,duration:2.5,ease:'power2.out'}},at({t_wo})-.25);
     tl.fromTo('#v-c2',{{y:1800,rotation:6}},{{y:0,rotation:2,duration:.7,ease:'expo.out'}},at({t_na})-.25);
+    tl.fromTo('#v-img2',{{scale:1.25}},{{scale:1,duration:2.0,ease:'power2.out'}},at({t_na})-.25);
 """, bg="var(--ivory)"))
 
 # ---------------------------------------------------------------- S11 STOCK LIMITED (over footage)
@@ -410,7 +406,7 @@ SC.append(scene("batch", s, e, """
 #n-run{left:122px;top:952px;width:20px;height:20px;border-radius:50%;background:var(--gold)}
 #n-t{left:0;width:1080px;top:860px;text-align:center;color:#F6D9DE;font-size:58px}
 """, """
-    <div id="n-card" class="abs"><img id="n-img" src="assets/img/bottle.jpg" alt=""></div>
+    <div id="n-card" class="abs"><img id="n-img" src="assets/img/duo_dark.jpg" alt=""></div>
     <div id="n-stamp" class="abs">HABIS</div>
     <div id="n-line" class="abs"></div>
     <div id="n-d1" class="n-dot" style="left:122px;background:var(--ivory)"></div>
@@ -433,7 +429,7 @@ s, e = word("Klik"), word("terlambat") + 0.42
 t_link = word("link"); t_bawah = word("bawah"); t_tek = word("tekan"); t_kun = word("kuning"); t_chk = word("check"); t_sek = word("sekarang"); t_seb = word("sebelum")
 SC.append(scene("cta", s, e, """
 #c-phone{left:240px;top:250px;width:600px;height:1000px;border-radius:70px;background:var(--paper);border:12px solid var(--ink);overflow:hidden;box-shadow:0 40px 100px rgba(23,18,18,.25)}
-#c-img{position:absolute;left:0;top:0;width:576px;height:560px;object-fit:cover;object-position:50% 55%}
+#c-img{position:absolute;left:0;top:0;width:576px;height:560px;object-fit:cover;object-position:50% 52%}
 #c-ttl{position:absolute;left:36px;top:590px;font-family:'Italiana';font-size:40px;letter-spacing:.24em;color:var(--ink)}
 #c-sub{position:absolute;left:36px;top:650px;font-family:'Manrope';font-weight:600;font-size:28px;color:var(--muted);letter-spacing:.06em}
 #c-bag{position:absolute;left:36px;top:760px;width:504px;height:110px;border-radius:55px;background:var(--yellow);
@@ -450,7 +446,7 @@ SC.append(scene("cta", s, e, """
 """, """
     <div id="c-k" class="abs lbl">Cara beli</div>
     <div id="c-phone" class="abs">
-      <img id="c-img" src="assets/img/bottle.jpg" alt="">
+      <img id="c-img" src="assets/img/duo_lifestyle.jpg" alt="">
       <div id="c-ttl">FRESCURA BODY</div>
       <div id="c-sub">Ocean Salt &middot; Perfumed Foam Shower</div>
       <div id="c-bag" data-layout-allow-overlap>&#128717; TEKAN BEG KUNING</div>
@@ -484,26 +480,22 @@ SC.append(scene("cta", s, e, """
 # ---------------------------------------------------------------- S14 END CARD (footage overlay)
 s, e = word("terlambat") + 0.42, DUR
 SC.append(scene("endcard", s, e, """
-#e-scrim{left:0;top:0;width:1080px;height:1920px;background:linear-gradient(180deg, rgba(23,18,18,.72) 0%, rgba(23,18,18,.15) 45%, rgba(23,18,18,.65) 100%)}
-#e-logo{left:0;width:1080px;top:290px;text-align:center;color:var(--ivory);font-size:120px;letter-spacing:.2em}
+#e-scrim{left:0;top:0;width:1080px;height:1920px;background:linear-gradient(180deg, #0B111C 0%, #0B111C 14%, rgba(11,17,28,0) 32%, rgba(11,17,28,0) 62%, rgba(11,17,28,.75) 100%)}
+#e-logo{left:320px;top:130px;width:440px;height:440px}
 #e-body{left:0;width:1080px;top:440px;text-align:center;color:var(--ivory);font-size:34px}
 #e-line{left:390px;top:500px;width:300px}
-#e-tag{left:0;width:1080px;top:530px;text-align:center;color:var(--ivory);font-size:56px}
-#e-cta{left:0;width:1080px;top:1150px;text-align:center}
+#e-tag{left:0;width:1080px;top:575px;text-align:center;color:var(--ivory);font-size:56px}
+#e-cta{left:0;width:1080px;top:1200px;text-align:center}
 #e-cta span{display:inline-block;padding:24px 48px;border-radius:70px;background:var(--yellow);color:var(--ink);font-family:'Manrope';font-weight:800;font-size:38px;letter-spacing:.08em}
-#e-v{left:0;width:1080px;top:1270px;text-align:center;color:rgba(244,239,232,.9);font-size:28px}
+#e-v{left:190px;width:700px;top:1300px;padding:12px 0;border-radius:40px;background:rgba(11,17,28,.72);text-align:center;color:rgba(244,239,232,.9);font-size:28px}
 """, """
     <div id="e-scrim" class="abs"></div>
-    <div id="e-logo" class="abs ital">Frescura</div>
-    <div id="e-body" class="abs lbl">Body</div>
-    <div id="e-line" class="hair"></div>
+    <img id="e-logo" class="abs" src="assets/img/logo.png" alt="FRESCURA BODY">
     <div id="e-tag" class="abs disp it">Ocean salt &times; perfume</div>
     <div id="e-cta" class="abs"><span>&#128717; TEKAN BEG KUNING</span></div>
     <div id="e-v" class="abs lbl">Bombshell &middot; Midnight Fantasy</div>
 """, """
     tl.fromTo('#e-logo',{opacity:0,scale:1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.9,ease:'expo.out'},0.05);
-    tl.fromTo('#e-body',{opacity:0},{opacity:1,duration:.4},0.4);
-    tl.fromTo('#e-line',{scaleX:0},{scaleX:1,duration:.6,ease:'power3.inOut'},0.45);
     tl.fromTo('#e-tag',{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:'expo.out'},0.7);
     tl.fromTo('#e-cta',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.45,ease:'back.out(2)'},1.1);
     tl.fromTo('#e-v',{opacity:0},{opacity:1,duration:.4},1.4);
@@ -513,7 +505,7 @@ json.dump(SC, open(os.path.join(P, "scenes.json"), "w"), indent=1)
 
 # ================================================================= CAPTIONS
 KEY = {"garam", "laut", "dapur", "mineral", "mineralnya", "hilang", "spa", "frescura", "body", "perfume", "lembut", "wangi",
-       "bombshell", "fantasy", "midnight", "terhad", "batch", "kuning", "beg", "sekarang", "terlambat", "kulit", "disejat", "diproses", "habis"}
+       "bombshell", "fantasy", "midnight", "noche", "terhad", "batch", "kuning", "beg", "sekarang", "terlambat", "kulit", "disejat", "diproses", "habis"}
 words = [x for x in W]
 groups = []; cur = []
 for i, x in enumerate(words):
@@ -585,13 +577,11 @@ for gi_, st, en, ws in cap_js[:3]: print(gi_, st, en)
 sc = {x["id"]: x for x in SC}
 def T(w, i=0, d=0.0): return round(word(w, i) + d, 3)
 FOOT = [  # id, start, end, media_start, rate, zoom_from, zoom_to
-    ("f-spa", sc["spa"]["start"], sc["spa"]["end"], 17.0, 1.0, 1.0, 1.14),
-    ("f-brand", sc["brand"]["start"], sc["brand"]["end"], 0.0, 1.0, 1.18, 1.0),
+    ("f-spa", sc["spa"]["start"], T("rawatan", 0, -.1), 17.0, 1.0, 1.0, 1.14),
     ("f-form", sc["formula"]["start"], sc["formula"]["end"], 2.4, 1.0, 1.0, 1.1),
     ("f-feel", sc["feel"]["start"], sc["feel"]["end"], 10.6, 1.0, 1.08, 1.2),
     ("f-asmr", sc["asmr"]["start"], sc["asmr"]["end"], 25.0, 0.8, 1.1, 1.0),
     ("f-stok", sc["stok"]["start"], sc["stok"]["end"], 28.0, 1.0, 1.1, 1.2),
-    ("f-end", sc["endcard"]["start"], DUR, 1.6, 1.0, 1.0, 1.08),
 ]
 SFX = [  # file, time, volume
     ("impact-bass-1", 0.0, .8), ("whoosh-short", T("tak", 0, -.15), .6), ("stamp", T("tak", 0, .02), .75),
@@ -604,14 +594,14 @@ SFX = [  # file, time, volume
     ("pop", T("semula", 0, -.1), .45), ("pop", T("semula", 0, .06), .45), ("pop", T("semula", 0, .22), .45), ("pop", T("semula", 0, .38), .45),
     ("stamp", T("masih", 0, .15), .8),
     ("whoosh-short", sc["spa"]["start"] - .1, .6), ("soapbub", sc["spa"]["start"] + .1, .5),
-    ("whoosh-short", T("perjagaan", 0, -.05), .45), ("whoosh", T("spa", 0, -.25), .45),
+    ("whoosh-short", T("penjagaan", 0, -.05), .45), ("whoosh", T("spa", 0, -.25), .45),
     ("whoosh-cinematic", sc["brand"]["start"] - 2.45, .4), ("impact-bass-1", sc["brand"]["start"] - .05, .95), ("sparkle", sc["brand"]["start"] + .15, .5),
     ("pump", sc["formula"]["start"] + .2, .6), ("pop", T("garam", 2, -.05), .5), ("pop", T("digabungkan", 0), .5), ("pop", T("perfume", 0, -.1), .5),
     ("ping", T("perfume", 0, .5), .3),
     ("soapbub", sc["feel"]["start"] + .05, .5), ("sparkle", T("lembut", 0, -.1), .5), ("glitter", T("wangi", 0, -.2), .45),
     ("soapbub", sc["asmr"]["start"] + .05, .7), ("bubble", sc["asmr"]["start"] + .7, .4), ("bubble", sc["asmr"]["start"] + 1.2, .4),
     ("whoosh", sc["variants"]["start"] - .1, .6), ("whoosh-short", T("Woman", 0, -.3), .5), ("pop", T("Woman", 0, .05), .45),
-    ("whoosh-short", T("Midnight", 0, -.3), .5), ("pop", T("Midnight", 0, .05), .45),
+    ("whoosh-short", T("Noche", 0, -.3), .5), ("pop", T("Noche", 0, .05), .45),
     ("impact-bass-2", sc["stok"]["start"] - 1.75, .55), ("stamp", T("terhad", 0, -.05), .6),
     ("stamp", T("habis", 0, .2), .9), ("whoosh-short", T("tunggu", 0, .2), .45),
     ("whoosh", sc["cta"]["start"] - .1, .6), ("click", T("kuning", 0, -.01), .9), ("pop", T("kuning", 0, .12), .55),
@@ -623,7 +613,15 @@ hosts = []
 z = 5
 for x in SC:
     hosts.append(f'''      <div id="{x["id"]}" data-composition-id="{x["id"]}" data-composition-src="compositions/{x["id"]}.html" data-start="{x["start"]:.3f}" data-duration="{x["end"]-x["start"]:.3f}" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>''')
+STILLS = [  # id, src, start, end, zoom_from, zoom_to, origin
+    ("i-life", "duo_lifestyle.jpg", T("rawatan", 0, -.1), sc["spa"]["end"], 1.12, 1.0, "50% 60%"),
+    ("i-end", "duo_dark.jpg", sc["endcard"]["start"], DUR, 1.02, 1.045, "50% 100%"),
+]
 vids = []; vjs = []
+for iid, src, a, b, z0, z1, org in STILLS:
+    vids.append(f'''      <div id="{iid}-w" class="fw" style="transform-origin:{org}"><img id="{iid}" class="clip" src="assets/img/{src}" alt="" data-start="{a:.3f}" data-duration="{b-a:.3f}" data-track-index="1"></div>''')
+    dy = 290 if iid == "i-end" else 0
+    vjs.append(f"tl.fromTo('#{iid}-w',{{scale:{z0},y:{dy}}},{{scale:{z1},y:{dy},duration:{b-a:.3f},ease:'none'}},{a:.3f});")
 for vid, a, b, ms, rate, z0, z1 in FOOT:
     vids.append(f'''      <div id="{vid}-w" class="fw"><video id="{vid}" class="clip" src="assets/video/pump.mp4" data-start="{a:.3f}" data-duration="{b-a:.3f}" data-media-start="{ms}" data-playback-rate="{rate}" data-track-index="1" muted playsinline></video></div>''')
     vjs.append(f"tl.fromTo('#{vid}-w',{{scale:{z0}}},{{scale:{z1},duration:{b-a:.3f},ease:'none'}},{a:.3f});")
@@ -647,9 +645,9 @@ index = f"""<!doctype html>
     <style>
       * {{ margin:0; padding:0; box-sizing:border-box; }}
       html, body {{ margin:0; width:1080px; height:1920px; overflow:hidden; background:#171212; }}
-      #root {{ width:100%; height:100%; position:relative; background:#171212; }}
+      #root {{ width:100%; height:100%; position:relative; background:#0B111C; }}
       .fw {{ position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; z-index:1; }}
-      .fw video {{ position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover; }}
+      .fw video, .fw img {{ position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover; }}
     </style>
   </head>
   <body>

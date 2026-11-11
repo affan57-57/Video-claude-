@@ -58,7 +58,7 @@
   </div>
   <script>
   (function(){
-    const T0=2.29;
+    const T0=2.4;
     const at=t=>Math.max(0,+(t-T0).toFixed(3));
     const tl=gsap.timeline({paused:true});
     let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
@@ -73,16 +73,16 @@
     pos.forEach((p,i)=>tl.fromTo('#d-c'+i,{x:-260,scale:0},{x:0,scale:1,duration:.5,ease:'back.out(1.7)'},0.25+i*.08));
     tl.fromTo('#d-meter',{opacity:0},{opacity:1,duration:.3},0.5);
     // into the process gate
-    tl.to('#d-cube',{x:320,duration:.9,ease:'power2.inOut'},at(3.69));
-    pos.forEach((p,i)=>tl.to('#d-c'+i,{x:320,duration:.9,ease:'power2.inOut'},at(3.69)));
-    tl.to('#d-gate',{backgroundPosition:'80px 0px',duration:.9,ease:'none'},at(3.69));
+    tl.to('#d-cube',{x:320,duration:.9,ease:'power2.inOut'},at(3.72));
+    pos.forEach((p,i)=>tl.to('#d-c'+i,{x:320,duration:.9,ease:'power2.inOut'},at(3.72)));
+    tl.to('#d-gate',{backgroundPosition:'80px 0px',duration:.9,ease:'none'},at(3.72));
     // stripped off: minerals fall and grey out
-    pos.forEach((p,i)=>tl.to('#d-c'+i,{y:520,rotation:(i-1)*40,backgroundColor:'#BDB4AC',opacity:0,duration:.9,ease:'power3.in'},at(4.91)+i*.1));
-    tl.to('#d-cube',{x:620,duration:.9,ease:'power2.inOut'},at(4.91));
-    tl.fromTo('#d-fill',{scaleX:1},{scaleX:.08,backgroundColor:'#C23A4B',duration:1.0,ease:'power2.inOut'},at(4.91));
-    tl.fromTo('#d-lost',{opacity:0,y:30},{opacity:1,y:0,duration:.35,ease:'power4.out'},at(5.33)-.1);
+    pos.forEach((p,i)=>tl.to('#d-c'+i,{y:520,rotation:(i-1)*40,backgroundColor:'#BDB4AC',opacity:0,duration:.9,ease:'power3.in'},at(4.94)+i*.1));
+    tl.to('#d-cube',{x:620,duration:.9,ease:'power2.inOut'},at(4.94));
+    tl.fromTo('#d-fill',{scaleX:1},{scaleX:.08,backgroundColor:'#C23A4B',duration:1.0,ease:'power2.inOut'},at(4.94));
+    tl.fromTo('#d-lost',{opacity:0,y:30},{opacity:1,y:0,duration:.35,ease:'power4.out'},at(5.36)-.1);
 
-    tl.set({},{},3.96);
+    tl.set({},{},4.02);
     window.__timelines["dapur"]=tl;
   })();
   </script>
