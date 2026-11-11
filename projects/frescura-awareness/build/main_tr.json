@@ -1,0 +1,662 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.38,
+  "text": " Pada pagi dan malam, mandi pagi untuk rasa segar, mandi malam untuk rasa tenang.",
+  "words": [
+   {
+    "w": " Pada",
+    "s": 0.0,
+    "e": 0.08
+   },
+   {
+    "w": " pagi",
+    "s": 0.08,
+    "e": 0.26
+   },
+   {
+    "w": " dan",
+    "s": 0.26,
+    "e": 0.42
+   },
+   {
+    "w": " malam,",
+    "s": 0.42,
+    "e": 0.94
+   },
+   {
+    "w": " mandi",
+    "s": 0.94,
+    "e": 1.38
+   },
+   {
+    "w": " pagi",
+    "s": 1.38,
+    "e": 1.78
+   },
+   {
+    "w": " untuk",
+    "s": 1.78,
+    "e": 1.98
+   },
+   {
+    "w": " rasa",
+    "s": 1.98,
+    "e": 2.22
+   },
+   {
+    "w": " segar,",
+    "s": 2.22,
+    "e": 2.7
+   },
+   {
+    "w": " mandi",
+    "s": 2.8,
+    "e": 3.2
+   },
+   {
+    "w": " malam",
+    "s": 3.2,
+    "e": 3.52
+   },
+   {
+    "w": " untuk",
+    "s": 3.52,
+    "e": 3.72
+   },
+   {
+    "w": " rasa",
+    "s": 3.72,
+    "e": 3.96
+   },
+   {
+    "w": " tenang.",
+    "s": 3.96,
+    "e": 4.38
+   }
+  ]
+ },
+ {
+  "start": 4.6,
+  "end": 6.46,
+  "text": " Fresh Cura Body sesuai untuk kedua-duanya.",
+  "words": [
+   {
+    "w": " Fresh",
+    "s": 4.6,
+    "e": 4.98
+   },
+   {
+    "w": " Cura",
+    "s": 4.98,
+    "e": 5.18
+   },
+   {
+    "w": " Body",
+    "s": 5.18,
+    "e": 5.36
+   },
+   {
+    "w": " sesuai",
+    "s": 5.36,
+    "e": 5.76
+   },
+   {
+    "w": " untuk",
+    "s": 5.76,
+    "e": 5.92
+   },
+   {
+    "w": " kedua",
+    "s": 5.92,
+    "e": 6.2
+   },
+   {
+    "w": "-duanya.",
+    "s": 6.2,
+    "e": 6.46
+   }
+  ]
+ },
+ {
+  "start": 6.64,
+  "end": 12.82,
+  "text": " Fresh Cura Body mengandungi garam laut, bahan semula jadi yang kaya mineral dan sudah lama digunakan dalam perjagaan kulit.",
+  "words": [
+   {
+    "w": " Fresh",
+    "s": 6.64,
+    "e": 6.9
+   },
+   {
+    "w": " Cura",
+    "s": 6.9,
+    "e": 7.12
+   },
+   {
+    "w": " Body",
+    "s": 7.12,
+    "e": 7.36
+   },
+   {
+    "w": " mengandungi",
+    "s": 7.36,
+    "e": 7.98
+   },
+   {
+    "w": " garam",
+    "s": 7.98,
+    "e": 8.2
+   },
+   {
+    "w": " laut,",
+    "s": 8.2,
+    "e": 8.4
+   },
+   {
+    "w": " bahan",
+    "s": 8.56,
+    "e": 8.96
+   },
+   {
+    "w": " semula",
+    "s": 8.96,
+    "e": 9.16
+   },
+   {
+    "w": " jadi",
+    "s": 9.16,
+    "e": 9.32
+   },
+   {
+    "w": " yang",
+    "s": 9.32,
+    "e": 9.56
+   },
+   {
+    "w": " kaya",
+    "s": 9.56,
+    "e": 9.96
+   },
+   {
+    "w": " mineral",
+    "s": 9.96,
+    "e": 10.18
+   },
+   {
+    "w": " dan",
+    "s": 10.18,
+    "e": 10.84
+   },
+   {
+    "w": " sudah",
+    "s": 10.84,
+    "e": 11.06
+   },
+   {
+    "w": " lama",
+    "s": 11.06,
+    "e": 11.28
+   },
+   {
+    "w": " digunakan",
+    "s": 11.28,
+    "e": 11.76
+   },
+   {
+    "w": " dalam",
+    "s": 11.76,
+    "e": 12.08
+   },
+   {
+    "w": " perjagaan",
+    "s": 12.08,
+    "e": 12.5
+   },
+   {
+    "w": " kulit.",
+    "s": 12.5,
+    "e": 12.82
+   }
+  ]
+ },
+ {
+  "start": 12.94,
+  "end": 15.26,
+  "text": " Kulit terasa lebih lembut selepas mandi.",
+  "words": [
+   {
+    "w": " Kulit",
+    "s": 12.94,
+    "e": 13.54
+   },
+   {
+    "w": " terasa",
+    "s": 13.54,
+    "e": 13.88
+   },
+   {
+    "w": " lebih",
+    "s": 13.88,
+    "e": 14.04
+   },
+   {
+    "w": " lembut",
+    "s": 14.04,
+    "e": 14.44
+   },
+   {
+    "w": " selepas",
+    "s": 14.44,
+    "e": 14.8
+   },
+   {
+    "w": " mandi.",
+    "s": 14.8,
+    "e": 15.26
+   }
+  ]
+ },
+ {
+  "start": 15.26,
+  "end": 23.74,
+  "text": " Ia juga digabungkan dengan parfum Pai Pai, Pilih Woman Glory Bombshell yang feminine dan menyerulah untuk mulakan hari.",
+  "words": [
+   {
+    "w": " Ia",
+    "s": 15.26,
+    "e": 15.54
+   },
+   {
+    "w": " juga",
+    "s": 15.54,
+    "e": 15.72
+   },
+   {
+    "w": " digabungkan",
+    "s": 15.72,
+    "e": 16.28
+   },
+   {
+    "w": " dengan",
+    "s": 16.28,
+    "e": 16.54
+   },
+   {
+    "w": " parfum",
+    "s": 16.54,
+    "e": 16.94
+   },
+   {
+    "w": " Pai",
+    "s": 16.94,
+    "e": 17.4
+   },
+   {
+    "w": " Pai,",
+    "s": 17.4,
+    "e": 17.76
+   },
+   {
+    "w": " Pilih",
+    "s": 17.94,
+    "e": 18.62
+   },
+   {
+    "w": " Woman",
+    "s": 18.62,
+    "e": 18.76
+   },
+   {
+    "w": " Glory",
+    "s": 18.76,
+    "e": 19.02
+   },
+   {
+    "w": " Bombshell",
+    "s": 19.02,
+    "e": 19.62
+   },
+   {
+    "w": " yang",
+    "s": 19.62,
+    "e": 20.36
+   },
+   {
+    "w": " feminine",
+    "s": 20.36,
+    "e": 21.44
+   },
+   {
+    "w": " dan",
+    "s": 21.44,
+    "e": 22.08
+   },
+   {
+    "w": " menyerulah",
+    "s": 22.08,
+    "e": 22.72
+   },
+   {
+    "w": " untuk",
+    "s": 22.72,
+    "e": 23.02
+   },
+   {
+    "w": " mulakan",
+    "s": 23.02,
+    "e": 23.42
+   },
+   {
+    "w": " hari.",
+    "s": 23.42,
+    "e": 23.74
+   }
+  ]
+ },
+ {
+  "start": 23.74,
+  "end": 32.26,
+  "text": " Malam pula, Noche Minervatasi yang lebih lembut dan manis serta misteri untuk tujuan kita berehatkan kita punya badan.",
+  "words": [
+   {
+    "w": " Malam",
+    "s": 23.74,
+    "e": 24.66
+   },
+   {
+    "w": " pula,",
+    "s": 24.66,
+    "e": 24.94
+   },
+   {
+    "w": " Noche",
+    "s": 24.96,
+    "e": 25.22
+   },
+   {
+    "w": " Minervatasi",
+    "s": 25.22,
+    "e": 25.78
+   },
+   {
+    "w": " yang",
+    "s": 25.78,
+    "e": 26.0
+   },
+   {
+    "w": " lebih",
+    "s": 26.0,
+    "e": 26.24
+   },
+   {
+    "w": " lembut",
+    "s": 26.24,
+    "e": 26.74
+   },
+   {
+    "w": " dan",
+    "s": 26.74,
+    "e": 27.02
+   },
+   {
+    "w": " manis",
+    "s": 27.02,
+    "e": 28.3
+   },
+   {
+    "w": " serta",
+    "s": 28.3,
+    "e": 28.84
+   },
+   {
+    "w": " misteri",
+    "s": 28.84,
+    "e": 29.38
+   },
+   {
+    "w": " untuk",
+    "s": 29.38,
+    "e": 30.0
+   },
+   {
+    "w": " tujuan",
+    "s": 30.0,
+    "e": 30.4
+   },
+   {
+    "w": " kita",
+    "s": 30.4,
+    "e": 30.58
+   },
+   {
+    "w": " berehatkan",
+    "s": 30.58,
+    "e": 31.22
+   },
+   {
+    "w": " kita",
+    "s": 31.22,
+    "e": 31.56
+   },
+   {
+    "w": " punya",
+    "s": 31.56,
+    "e": 31.78
+   },
+   {
+    "w": " badan.",
+    "s": 31.78,
+    "e": 32.26
+   }
+  ]
+ },
+ {
+  "start": 32.28,
+  "end": 33.9,
+  "text": " Stok pesen ni sangat-sangat terhad.",
+  "words": [
+   {
+    "w": " Stok",
+    "s": 32.28,
+    "e": 32.8
+   },
+   {
+    "w": " pesen",
+    "s": 32.8,
+    "e": 33.0
+   },
+   {
+    "w": " ni",
+    "s": 33.0,
+    "e": 33.12
+   },
+   {
+    "w": " sangat",
+    "s": 33.12,
+    "e": 33.3
+   },
+   {
+    "w": "-sangat",
+    "s": 33.3,
+    "e": 33.58
+   },
+   {
+    "w": " terhad.",
+    "s": 33.58,
+    "e": 33.9
+   }
+  ]
+ },
+ {
+  "start": 34.0,
+  "end": 37.7,
+  "text": " Kalau nak sepasang pagi dan malam, order sekarang sebelum habis.",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 34.0,
+    "e": 34.3
+   },
+   {
+    "w": " nak",
+    "s": 34.3,
+    "e": 34.5
+   },
+   {
+    "w": " sepasang",
+    "s": 34.5,
+    "e": 35.14
+   },
+   {
+    "w": " pagi",
+    "s": 35.14,
+    "e": 35.64
+   },
+   {
+    "w": " dan",
+    "s": 35.64,
+    "e": 35.7
+   },
+   {
+    "w": " malam,",
+    "s": 35.7,
+    "e": 36.1
+   },
+   {
+    "w": " order",
+    "s": 36.1,
+    "e": 36.54
+   },
+   {
+    "w": " sekarang",
+    "s": 36.54,
+    "e": 36.8
+   },
+   {
+    "w": " sebelum",
+    "s": 36.8,
+    "e": 37.26
+   },
+   {
+    "w": " habis.",
+    "s": 37.26,
+    "e": 37.7
+   }
+  ]
+ },
+ {
+  "start": 37.76,
+  "end": 39.52,
+  "text": " Tekan bekku ni dan check out sekarang.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 37.76,
+    "e": 38.32
+   },
+   {
+    "w": " bekku",
+    "s": 38.32,
+    "e": 38.54
+   },
+   {
+    "w": " ni",
+    "s": 38.54,
+    "e": 38.72
+   },
+   {
+    "w": " dan",
+    "s": 38.72,
+    "e": 38.94
+   },
+   {
+    "w": " check",
+    "s": 38.94,
+    "e": 39.16
+   },
+   {
+    "w": " out",
+    "s": 39.16,
+    "e": 39.28
+   },
+   {
+    "w": " sekarang.",
+    "s": 39.28,
+    "e": 39.52
+   }
+  ]
+ },
+ {
+  "start": 39.86,
+  "end": 43.46,
+  "text": " Klik link di bawah, tekan bekku ni, check out sekarang sebelum anda terlambat.",
+  "words": [
+   {
+    "w": " Klik",
+    "s": 39.86,
+    "e": 40.42
+   },
+   {
+    "w": " link",
+    "s": 40.42,
+    "e": 40.58
+   },
+   {
+    "w": " di",
+    "s": 40.58,
+    "e": 40.78
+   },
+   {
+    "w": " bawah,",
+    "s": 40.78,
+    "e": 41.12
+   },
+   {
+    "w": " tekan",
+    "s": 41.12,
+    "e": 41.44
+   },
+   {
+    "w": " bekku",
+    "s": 41.44,
+    "e": 41.7
+   },
+   {
+    "w": " ni,",
+    "s": 41.7,
+    "e": 41.8
+   },
+   {
+    "w": " check",
+    "s": 41.86,
+    "e": 42.18
+   },
+   {
+    "w": " out",
+    "s": 42.18,
+    "e": 42.32
+   },
+   {
+    "w": " sekarang",
+    "s": 42.32,
+    "e": 42.56
+   },
+   {
+    "w": " sebelum",
+    "s": 42.56,
+    "e": 42.94
+   },
+   {
+    "w": " anda",
+    "s": 42.94,
+    "e": 43.06
+   },
+   {
+    "w": " terlambat.",
+    "s": 43.06,
+    "e": 43.46
+   }
+  ]
+ }
+]
