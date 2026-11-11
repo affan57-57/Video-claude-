@@ -37,7 +37,6 @@
       .clip { position: absolute; inset: 0; overflow: hidden; }
       .scene { position: absolute; inset: 0; overflow: hidden; visibility: hidden; opacity: 0; }
       .layer { position: absolute; inset: 0; }
-      #haBg { visibility: hidden; opacity: 0; }
       .abs { position: absolute; }
       .full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
       .center { left: 0; right: 0; text-align: center; }
@@ -121,7 +120,6 @@
       #thanks { position: absolute; left: 0; right: 0; top: 1180px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 64px; color: var(--gold-hi); opacity: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
 
       /* ---------- scene 6: closing ---------- */
-      #ha { top: 640px; font-size: 470px; line-height: 1; color: var(--gold-hi); }
       #versus { top: 560px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
       .vs { position: relative; padding: 22px 46px; border-radius: 999px; font-size: 40px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; }
       .vs.no { background: rgba(16,13,12,0.6); color: rgba(243,237,228,0.75); border: 1px solid rgba(243,237,228,0.35); }
@@ -154,10 +152,10 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0.0" data-duration="33.5" data-width="1080" data-height="1920" data-fps="30">
+    <div id="root" data-composition-id="main" data-start="0.0" data-duration="32.96" data-width="1080" data-height="1920" data-fps="30">
 
       <!-- soundtrack: voice (denoised, studio chain), SFX and ducked music, mixed by scripts/mix.py from cues.json -->
-      <audio id="master" src="assets/audio/master.wav" data-start="0.0" data-duration="33.5" data-track-index="20" data-volume="1"></audio>
+      <audio id="master" src="assets/audio/master.wav" data-start="0.0" data-duration="32.96" data-track-index="20" data-volume="1"></audio>
 
       <!-- ===== S1 HOOK: "Pelanggan dah cuba." ===== -->
       <div id="s1" class="scene">
@@ -233,10 +231,8 @@
 
       <!-- ===== S6: "Ha! Jangan sekadar tengok orang lain beli." ===== -->
       <div id="s6" class="scene">
-        <video id="v6" class="full" src="assets/video/foam_a.mp4" data-start="21.1" data-duration="4.35" data-media-start="0" muted playsinline></video>
+        <video id="v6" class="full" src="assets/video/foam_a.mp4" data-start="21.1" data-duration="3.81" data-media-start="0" muted playsinline></video>
         <div class="shade-all"></div>
-        <div id="haBg" class="abs" style="inset: 0; background: var(--ink)"></div>
-        <div id="ha" class="abs center serif it">Ha!</div>
         <div id="versus" class="abs center">
           <div class="vs no" id="vsNo">Tengok je<i></i></div>
           <div class="vs yes" id="vsYes"><em>Beli</em> &amp; rasa sendiri</div>
@@ -305,20 +301,20 @@
 
 
       // scene windows (wrappers are untimed so nested videos keep their own data-start)
-      tl.set("#s1", { autoAlpha: 1 }, 0); tl.set("#s1", { autoAlpha: 0 }, 1.42);
+      tl.set("#s1", { autoAlpha: 1 }, 0.0); tl.set("#s1", { autoAlpha: 0 }, 1.42);
       tl.set("#s2", { autoAlpha: 1 }, 1.35); tl.set("#s2", { autoAlpha: 0 }, 2.95);
       tl.set("#s3", { autoAlpha: 1 }, 2.85); tl.set("#s3", { autoAlpha: 0 }, 6.5);
       tl.set("#s4", { autoAlpha: 1 }, 6.45); tl.set("#s4", { autoAlpha: 0 }, 21.15);
-      tl.set("#s6", { autoAlpha: 1 }, 21.1); tl.set("#s6", { autoAlpha: 0 }, 25.45);
-      tl.set("#s7", { autoAlpha: 1 }, 25.4); tl.set("#s7", { autoAlpha: 0 }, 27.9);
-      tl.set("#s8", { autoAlpha: 1 }, 27.85); tl.set("#s8", { autoAlpha: 0 }, 29.8);
-      tl.set("#s9", { autoAlpha: 1 }, 29.75); tl.set("#s9", { autoAlpha: 0 }, 33.5);
+      tl.set("#s6", { autoAlpha: 1 }, 21.1); tl.set("#s6", { autoAlpha: 0 }, 24.91);
+      tl.set("#s7", { autoAlpha: 1 }, 24.86); tl.set("#s7", { autoAlpha: 0 }, 27.36);
+      tl.set("#s8", { autoAlpha: 1 }, 27.31); tl.set("#s8", { autoAlpha: 0 }, 29.26);
+      tl.set("#s9", { autoAlpha: 1 }, 29.21); tl.set("#s9", { autoAlpha: 0 }, 32.96);
       // ---------- global ----------
-      tl.to("#progress b", { scaleX: 1, duration: 33.5, ease: "none" }, 0.0);
-      tl.to("#grain", { x: 140, y: -90, duration: 33.5, ease: "steps(402)" }, 0.0);
+      tl.to("#progress b", { scaleX: 1, duration: 32.96, ease: "none" }, 0.0);
+      tl.to("#grain", { x: 140, y: -90, duration: 32.96, ease: "steps(396)" }, 0.0);
       tl.fromTo("#bug", { autoAlpha: 0, x: -20 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: E }, 0.563);
-      tl.to("#bug", { autoAlpha: 0, duration: 0.3 }, 29.586);
-      tl.to("#progress", { autoAlpha: 0, duration: 0.3 }, 29.586);
+      tl.to("#bug", { autoAlpha: 0, duration: 0.3 }, 29.046);
+      tl.to("#progress", { autoAlpha: 0, duration: 0.3 }, 29.046);
       const flash = (t, a = 0.85, d = 0.35) => tl.fromTo("#flash", { opacity: a }, { opacity: 0, duration: d, ease: "power2.out", immediateRender: false }, t);
       const shake = (sel, t, amt = 14, n = 6) => {
         for (let i = 0; i < n; i++) tl.to(sel, { x: (i % 2 ? -1 : 1) * amt * (1 - i / n), y: (i % 3 - 1) * amt * 0.5 * (1 - i / n), duration: 0.035, ease: "none" }, t + i * 0.035);
@@ -399,49 +395,43 @@
       tl.to(["#checks", "#stamp", "#thanks", "#tag"], { autoAlpha: 0, duration: 0.3 }, 20.85);
 
       // ---------- S6 closing ----------
-      tl.set("#haBg", { autoAlpha: 1 }, 21.1);
-      tl.fromTo("#ha", { scale: 2.4, autoAlpha: 0, filter: "blur(20px)" }, { scale: 1, autoAlpha: 1, filter: "blur(0px)", duration: 0.22, ease: "power4.in" }, 21.1);
-      flash(21.348, 0.9, 0.35);
-      shake("#ha", 21.366, 22);
-      tl.to("#ha", { scale: 1.1, duration: 0.4, ease: "none" }, 21.393);
-      tl.to("#ha", { autoAlpha: 0, scale: 0.7, filter: "blur(12px)", duration: 0.2, ease: "power2.in" }, 21.755);
-      tl.to("#haBg", { autoAlpha: 0, duration: 0.25 }, 21.782);
-      tl.fromTo("#v6", { scale: 1.3 }, { scale: 1.06, duration: 3.0, ease: "power2.out" }, 21.755);
-      tl.fromTo("#vsNo", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, 22.6);
-      tl.to("#vsNo i", { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, 23.9);
-      tl.to("#vsNo", { opacity: 0.55, duration: 0.3 }, 24.0);
-      tl.fromTo("#vsYes", { autoAlpha: 0, y: 40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(2)" }, 24.45);
+      flash(21.12, 0.8, 0.3);
+      tl.fromTo("#v6", { scale: 1.3 }, { scale: 1.06, duration: 3.0, ease: "power2.out" }, 21.215);
+      tl.fromTo("#vsNo", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: E }, 22.06);
+      tl.to("#vsNo i", { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, 23.36);
+      tl.to("#vsNo", { opacity: 0.55, duration: 0.3 }, 23.46);
+      tl.fromTo("#vsYes", { autoAlpha: 0, y: 40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(2)" }, 23.91);
 
       // ---------- S7 products ----------
-      tl.fromTo("#s7", { clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 0.45, ease: P3 }, 25.4);
-      tl.fromTo("#s7 .label", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 25.603);
-      tl.fromTo("#pc1", { y: 160, autoAlpha: 0, rotation: -4 }, { y: 0, autoAlpha: 1, rotation: 0, duration: 0.7, ease: E }, 25.603);
-      tl.fromTo("#pc2", { y: 220, autoAlpha: 0, rotation: 4 }, { y: 40, autoAlpha: 1, rotation: 0, duration: 0.7, ease: E }, 25.912);
-      tl.fromTo(".pcard img", { scale: 1.3 }, { scale: 1.05, duration: 2.4, ease: "power1.out" }, 25.603);
-      tl.fromTo(".pcard .sweep", { xPercent: -160, skewX: -18 }, { xPercent: 330, skewX: -18, duration: 0.9, ease: "power2.inOut", stagger: 0.25 }, 26.29);
-      tl.fromTo("#specs span", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E, stagger: 0.09 }, 26.29);
-      tl.fromTo("#stock", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E }, 27.126);
+      tl.fromTo("#s7", { clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 0.45, ease: P3 }, 24.86);
+      tl.fromTo("#s7 .label", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 25.063);
+      tl.fromTo("#pc1", { y: 160, autoAlpha: 0, rotation: -4 }, { y: 0, autoAlpha: 1, rotation: 0, duration: 0.7, ease: E }, 25.063);
+      tl.fromTo("#pc2", { y: 220, autoAlpha: 0, rotation: 4 }, { y: 40, autoAlpha: 1, rotation: 0, duration: 0.7, ease: E }, 25.372);
+      tl.fromTo(".pcard img", { scale: 1.3 }, { scale: 1.05, duration: 2.4, ease: "power1.out" }, 25.063);
+      tl.fromTo(".pcard .sweep", { xPercent: -160, skewX: -18 }, { xPercent: 330, skewX: -18, duration: 0.9, ease: "power2.inOut", stagger: 0.25 }, 25.75);
+      tl.fromTo("#specs span", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E, stagger: 0.09 }, 25.75);
+      tl.fromTo("#stock", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: E }, 26.586);
       const pct = { v: 100 };
-      tl.fromTo("#stockbar", { scaleX: 1 }, { scaleX: 0.14, duration: 0.8, ease: "power2.inOut" }, 27.217);
-      tl.to(pct, { v: 14, duration: 0.8, ease: "power2.inOut", onUpdate: () => (document.getElementById("pct").textContent = Math.round(pct.v) + "%") }, 27.217);
+      tl.fromTo("#stockbar", { scaleX: 1 }, { scaleX: 0.14, duration: 0.8, ease: "power2.inOut" }, 26.677);
+      tl.to(pct, { v: 14, duration: 0.8, ease: "power2.inOut", onUpdate: () => (document.getElementById("pct").textContent = Math.round(pct.v) + "%") }, 26.677);
 
       // ---------- S8 CTA ----------
-      tl.fromTo("#s8", { clipPath: "circle(0% at 50% 40%)" }, { clipPath: "circle(120% at 50% 40%)", duration: 0.4, ease: "power3.out" }, 27.85);
-      tl.fromTo("#ctaTop", { autoAlpha: 0, scale: 1.3 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: E }, 27.92);
-      tl.fromTo("#bagwrap", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.2)" }, 27.897);
-      tl.to("#bagwrap", { scale: 0.9, duration: 0.08, ease: "power2.in" }, 28.541);
-      tl.to("#bagwrap", { scale: 1.05, duration: 0.25, ease: "back.out(3)" }, 28.649);
-      [["#r1", 28.577], ["#r2", 28.896]].forEach(([r, t]) => tl.fromTo(r, { scale: 0.7, opacity: 0.9 }, { scale: 1.7, opacity: 0, duration: 0.7, ease: "power2.out" }, t));
-      tl.fromTo("#arrow", { autoAlpha: 0, y: -30 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: E }, 28.248);
-      for (let i = 0; i < 3; i++) tl.to("#arrow", { y: i % 2 ? 0 : 26, duration: 0.25, ease: "sine.inOut" }, 28.6 + i * 0.25);
+      tl.fromTo("#s8", { clipPath: "circle(0% at 50% 40%)" }, { clipPath: "circle(120% at 50% 40%)", duration: 0.4, ease: "power3.out" }, 27.31);
+      tl.fromTo("#ctaTop", { autoAlpha: 0, scale: 1.3 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: E }, 27.38);
+      tl.fromTo("#bagwrap", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.2)" }, 27.357);
+      tl.to("#bagwrap", { scale: 0.9, duration: 0.08, ease: "power2.in" }, 28.001);
+      tl.to("#bagwrap", { scale: 1.05, duration: 0.25, ease: "back.out(3)" }, 28.109);
+      [["#r1", 28.037], ["#r2", 28.356]].forEach(([r, t]) => tl.fromTo(r, { scale: 0.7, opacity: 0.9 }, { scale: 1.7, opacity: 0, duration: 0.7, ease: "power2.out" }, t));
+      tl.fromTo("#arrow", { autoAlpha: 0, y: -30 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: E }, 27.708);
+      for (let i = 0; i < 3; i++) tl.to("#arrow", { y: i % 2 ? 0 : 26, duration: 0.25, ease: "sine.inOut" }, 28.06 + i * 0.25);
 
       // ---------- S9 end card ----------
-      tl.fromTo("#s9 > *", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 29.75);
-      tl.fromTo("#logo", { scale: 0.8, autoAlpha: 0, filter: "blur(18px)" }, { scale: 1, autoAlpha: 1, filter: "blur(0px)", duration: 1.0, ease: E }, 29.796);
-      tl.to("#logo", { scale: 1.06, duration: 3, ease: "none" }, 30.71);
-      tl.fromTo("#endsub", { autoAlpha: 0, scale: 1.3 }, { autoAlpha: 1, scale: 1, duration: 0.9, ease: E }, 30.299);
-      tl.fromTo("#endnames", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: E }, 30.665);
-      tl.to("#s9 > *", { opacity: 0, duration: 0.5, ease: "power1.in" }, 33.043);
+      tl.fromTo("#s9 > *", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 29.21);
+      tl.fromTo("#logo", { scale: 0.8, autoAlpha: 0, filter: "blur(18px)" }, { scale: 1, autoAlpha: 1, filter: "blur(0px)", duration: 1.0, ease: E }, 29.256);
+      tl.to("#logo", { scale: 1.06, duration: 3, ease: "none" }, 30.17);
+      tl.fromTo("#endsub", { autoAlpha: 0, scale: 1.3 }, { autoAlpha: 1, scale: 1, duration: 0.9, ease: E }, 29.759);
+      tl.fromTo("#endnames", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: E }, 30.125);
+      tl.to("#s9 > *", { opacity: 0, duration: 0.5, ease: "power1.in" }, 32.503);
 
       // ---------- captions (phrase pop, accent word in gold italic serif) ----------
       // [start, end, text, theme] — *word* marks the accent word
@@ -460,13 +450,13 @@
         [18.5, 19.05, "Tak, *tak tipu.*", ""],
         [19.05, 19.95, "Oh, terima kasih kak.", ""],
         [19.95, 21.05, "Sampai *jumpa.*", ""],
-        [21.782, 22.62, "Jangan *sekadar*", ""],
-        [22.62, 25.355, "tengok orang lain *beli.*", ""],
-        [25.5, 26.17, "Tekan *beg kuning*", "dark low"],
-        [26.17, 27.15, "dan dapatkan *sekarang*", "dark low"],
-        [27.15, 27.85, "sebelum stok *habis!*", "dark low"],
-        [27.85, 28.6, "Check out *sekarang*", "low"],
-        [28.6, 29.75, "di *beg kuning.*", "low"],
+        [21.242, 22.08, "Jangan *sekadar*", ""],
+        [22.08, 24.815, "tengok orang lain *beli.*", ""],
+        [24.96, 25.63, "Tekan *beg kuning*", "dark low"],
+        [25.63, 26.61, "dan dapatkan *sekarang*", "dark low"],
+        [26.61, 27.31, "sebelum stok *habis!*", "dark low"],
+        [27.31, 28.06, "Check out *sekarang*", "low"],
+        [28.06, 29.21, "di *beg kuning.*", "low"],
       ];
       const capRoot = document.getElementById("captions");
       caps.forEach(([a, b, text, theme], i) => {
