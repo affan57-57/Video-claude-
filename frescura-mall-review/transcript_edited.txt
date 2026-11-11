@@ -1,0 +1,39 @@
+===== wav/voice.wav
+[  0.00-  3.38]  Ini antara pengalaman kami ketika bawa First Kura Bodi ke mall.
+    Ini@0.00-0.10 antara@0.10-0.38 pengalaman@0.38-0.96 kami@0.96-1.20 ketika@1.20-1.72 bawa@1.72-2.14 First@2.14-2.48 Kura@2.48-2.68 Bodi@2.68-2.94 ke@2.94-3.16 mall.@3.16-3.38
+[  3.72-  7.14]  Jom tengok apa reaksi dan feedback pelanggan yang datang mencuba.
+    Jom@3.72-4.16 tengok@4.16-4.70 apa@4.70-4.90 reaksi@4.90-5.26 dan@5.26-5.52 feedback@5.52-5.80 pelanggan@5.80-6.22 yang@6.22-6.40 datang@6.40-6.84 mencuba.@6.84-7.14
+[  7.38-  9.24]  So, apa yang pengalaman lah?
+    So,@7.38-7.82 apa@7.90-8.06 yang@8.06-8.40 pengalaman@8.40-9.00 lah?@9.00-9.24
+[  9.26- 10.52]  Kau rasa wangi tak sabun ni?
+    Kau@9.26-9.38 rasa@9.38-9.50 wangi@9.50-9.88 tak@9.88-10.08 sabun@10.08-10.40 ni?@10.40-10.52
+[ 10.70- 11.34]  Dia baik.
+    Dia@10.70-11.14 baik.@11.14-11.34
+[ 11.70- 12.54]  Tangan dia lembut.
+    Tangan@11.70-12.14 dia@12.14-12.30 lembut.@12.30-12.54
+[ 12.84- 13.80]  Memang tangan lembut lah.
+    Memang@12.84-13.14 tangan@13.14-13.34 lembut@13.34-13.64 lah.@13.64-13.80
+[ 13.86- 14.50]  Tangan lembut.
+    Tangan@13.86-14.22 lembut.@14.22-14.50
+[ 14.54- 15.52]  Tapi wangi ni tak tipu lah.
+    Tapi@14.54-14.66 wangi@14.66-14.90 ni@14.90-15.02 tak@15.02-15.14 tipu@15.14-15.44 lah.@15.44-15.52
+[ 15.70- 16.34]  Haa, wangi tak tipu.
+    Haa,@15.70-15.82 wangi@15.88-16.08 tak@16.08-16.24 tipu.@16.24-16.34
+[ 16.34- 16.64]  Betul ke?
+    Betul@16.34-16.54 ke?@16.54-16.64
+[ 16.72- 17.40]  Kau tak tipu?
+    Kau@16.72-17.00 tak@17.00-17.08 tipu?@17.08-17.40
+[ 17.64- 20.00]  Memang tak tipu lah kan memang wangi lah.
+    Memang@17.64-18.08 tak@18.08-19.00 tipu@19.00-19.24 lah@19.24-19.30 kan@19.30-19.46 memang@19.46-19.62 wangi@19.62-19.84 lah.@19.84-20.00
+[ 20.10- 20.80]  Masih banyak kan lah.
+    Masih@20.10-20.38 banyak@20.38-20.52 kan@20.52-20.68 lah.@20.68-20.80
+[ 20.84- 21.34]  Terima kasih.
+    Terima@20.84-21.28 kasih.@21.28-21.34
+[ 22.06- 26.40]  So, sekarang korang pula untuk dapatkan First Kura Bodi melalui TikTok Shop.
+    So,@22.06-22.50 sekarang@22.60-23.04 korang@23.04-23.62 pula@23.62-23.86 untuk@23.86-24.00 dapatkan@24.00-24.48 First@24.48-24.78 Kura@24.78-24.98 Bodi@24.98-25.24 melalui@25.24-25.74 TikTok@25.74-26.10 Shop.@26.10-26.40
+[ 26.68- 28.10]  Stok sangat tak banyak.
+    Stok@26.68-27.12 sangat@27.12-27.52 tak@27.52-27.90 banyak.@27.90-28.10
+[ 28.10- 30.02]  Hanya cuba check out dan tengok bekuniskan.
+    Hanya@28.10-28.18 cuba@28.18-28.66 check@28.66-28.80 out@28.80-29.00 dan@29.00-29.18 tengok@29.18-29.54 bekuniskan.@29.54-30.02
+[ 30.30- 32.42]  Lihat berapa TikTok pergi dekat korang.
+    Lihat@30.30-30.82 berapa@30.82-31.32 TikTok@31.32-31.68 pergi@31.68-31.96 dekat@31.96-32.16 korang.@32.16-32.42

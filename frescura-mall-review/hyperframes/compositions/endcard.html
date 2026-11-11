@@ -1,0 +1,43 @@
+<template>
+  <style>
+    @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:block;src:url('assets/fonts/CormorantGaramond-500i.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:block;src:url('assets/fonts/CormorantGaramond-600i.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/CormorantGaramond-600.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/PlusJakartaSans-500.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:block;src:url('assets/fonts/PlusJakartaSans-700.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:block;src:url('assets/fonts/PlusJakartaSans-800.woff2') format('woff2');}
+    #root { position:absolute; inset:0; 
+  --ivory:#F4EEE6; --ivory2:#EAE1D4; --ink:#141113; --ink2:#2B2528;
+  --gold:#D9B77A; --gold2:#B8925A; --rose:#7C1830; --noche:#2B1F5E; --bag:#F6C433;
+  --serif:'Cormorant Garamond', 'EB Garamond', serif; --sans:'Plus Jakarta Sans', 'Inter', sans-serif;
+ font-family:var(--sans); }
+    #root * { box-sizing:border-box; }
+    
+    #ec-bg { position:absolute; inset:0; background:#000; }
+    #ec-logo { position:absolute; left:90px; top:330px; width:900px; height:900px; object-fit:contain; }
+    #ec-cta { position:absolute; left:0; right:0; top:1160px; text-align:center; color:var(--ivory); }
+    #ec-cta span { display:block; font:italic 600 60px/1 var(--serif); color:var(--gold); }
+    #ec-cta b { display:inline-block; margin-top:18px; font:800 56px/1 var(--sans); letter-spacing:.08em; padding:24px 44px; border-radius:50px; border:2px solid var(--gold); }
+    #ec-line { position:absolute; left:0; right:0; top:1390px; text-align:center; color:rgba(244,238,230,.7); font:700 30px/1 var(--sans); letter-spacing:.3em; text-transform:uppercase; }
+
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+
+    <div id="ec-bg"></div>
+    <img id="ec-logo" src="assets/img/logo.jpg" alt="Frescura Body"/>
+    <div id="ec-cta"><span>Dapatkan di</span><b>TikTok Shop</b></div>
+    <div id="ec-line">tekan beg kuning &middot; stok terhad</div>
+
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#ec-logo", {scale:1.25, opacity:0}, {scale:1, opacity:1, duration:0.9, ease:"expo.out"}, 0.0);
+    tl.fromTo("#ec-cta", {y:40, opacity:0}, {y:0, opacity:1, duration:0.5, ease:"power3.out"}, 0.55);
+    tl.fromTo("#ec-line", {opacity:0}, {opacity:1, duration:0.4}, 0.55);
+    tl.to("#ec-logo", {scale:1.04, duration:1.6, ease:"none"}, 0.95);
+
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>

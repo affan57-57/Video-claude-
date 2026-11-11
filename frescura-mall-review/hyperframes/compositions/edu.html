@@ -1,0 +1,60 @@
+<template>
+  <style>
+    @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:block;src:url('assets/fonts/CormorantGaramond-500i.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:block;src:url('assets/fonts/CormorantGaramond-600i.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/CormorantGaramond-600.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/PlusJakartaSans-500.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:block;src:url('assets/fonts/PlusJakartaSans-700.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:block;src:url('assets/fonts/PlusJakartaSans-800.woff2') format('woff2');}
+    #root { position:absolute; inset:0; 
+  --ivory:#F4EEE6; --ivory2:#EAE1D4; --ink:#141113; --ink2:#2B2528;
+  --gold:#D9B77A; --gold2:#B8925A; --rose:#7C1830; --noche:#2B1F5E; --bag:#F6C433;
+  --serif:'Cormorant Garamond', 'EB Garamond', serif; --sans:'Plus Jakarta Sans', 'Inter', sans-serif;
+ font-family:var(--sans); }
+    #root * { box-sizing:border-box; }
+    
+    #ed-head { position:absolute; left:0; right:0; top:180px; text-align:center; color:var(--ink); }
+    #ed-eyebrow { font:700 30px/1 var(--sans); letter-spacing:.4em; color:var(--gold2); }
+    #ed-title { font:600 84px/1 var(--serif); margin-top:14px; }
+    #ed-title i { color:var(--rose); }
+    .ed-chip { position:absolute; left:120px; width:600px; height:104px; border-radius:26px; background:rgba(244,238,230,.92);
+      display:flex; align-items:center; gap:24px; padding:0 30px; box-shadow:0 18px 50px rgba(20,17,19,.22); opacity:0; }
+    #ed-c1 { top:370px; } #ed-c2 { top:488px; } #ed-c3 { top:606px; }
+    .ed-chip .n { font:italic 600 60px/1 var(--serif); color:var(--gold2); width:70px; }
+    .ed-chip .t b { display:block; font:800 40px/1.05 var(--sans); color:var(--ink); }
+    .ed-chip .t em { display:block; font:italic 500 34px/1.1 var(--serif); color:var(--ink2); margin-top:4px; }
+    #ed-bar { position:absolute; left:0; right:0; margin:0 auto; top:1000px; width:640px; height:92px; border-radius:46px; background:var(--ink);
+      color:var(--ivory); display:flex; align-items:center; justify-content:center; gap:20px; font:800 34px/1 var(--sans); letter-spacing:.16em; opacity:0; }
+    #ed-bar .dot { width:18px; height:18px; border-radius:50%; background:#E0475B; }
+    #ed-bar .play { width:0; height:0; border-left:22px solid var(--gold); border-top:14px solid transparent; border-bottom:14px solid transparent; }
+    #ed-wipe { position:absolute; left:0; right:0; top:0; height:1920px; background:var(--ink); transform-origin:50% 100%; transform:scaleY(0); }
+
+  </style>
+  <div id="root" data-composition-id="edu" data-width="1080" data-height="1920">
+
+    <div id="ed-head">
+      <div id="ed-eyebrow">DALAM SETIAP PAM</div>
+      <div id="ed-title">3 rahsia <i>wangi &amp; lembut</i></div>
+    </div>
+    <div class="ed-chip" id="ed-c1"><span class="n">01</span><span class="t"><b>Aromatherapy</b><em>haruman yang menenangkan</em></span></div>
+    <div class="ed-chip" id="ed-c2"><span class="n">02</span><span class="t"><b>Ocean Salt</b><em>rasa bersih &amp; segar</em></span></div>
+    <div class="ed-chip" id="ed-c3"><span class="n">03</span><span class="t"><b>Gentle Foaming</b><em>busa terus dari pam</em></span></div>
+    <div id="ed-bar"><span class="dot"></span>FEEDBACK PELANGGAN<span class="play"></span></div>
+    <div id="ed-wipe"></div>
+
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#ed-head", {y:-30, opacity:0}, {y:0, opacity:1, duration:0.45, ease:"power3.out"}, 0.05);
+    [["#ed-c1",0.30],["#ed-c2",0.98],["#ed-c3",1.68]].forEach(([s,t]) => {
+      tl.fromTo(s, {x:-80, opacity:0}, {x:0, opacity:1, duration:0.45, ease:"power3.out"}, t);
+    });
+    tl.fromTo("#ed-bar", {y:40, opacity:0, scale:0.9}, {y:0, opacity:1, scale:1, duration:0.4, ease:"back.out(1.8)"}, 2.52);
+    tl.fromTo("#ed-bar .dot", {opacity:1}, {opacity:0.2, duration:0.25, yoyo:true, repeat:5, ease:"none"}, 2.6);
+    tl.fromTo("#ed-wipe", {scaleY:0}, {scaleY:1, duration:0.32, ease:"power3.in"}, 3.38);
+
+    window.__timelines["edu"] = tl;
+  </script>
+</template>

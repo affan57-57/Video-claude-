@@ -1,0 +1,55 @@
+===== wav/F7.wav
+[  0.00-  3.78]  Ini antara pengalaman kami ketika bawa Fresh Kura Bodi ke mall.
+    Ini@0.00-0.08 antara@0.08-0.48 pengalaman@0.48-1.08 kami@1.08-1.36 ketika@1.36-1.92 bawa@1.92-2.40 Fresh@2.40-2.72 Kura@2.72-3.00 Bodi@3.00-3.28 ke@3.28-3.50 mall.@3.50-3.78
+[  4.04-  8.00]  Jom tengok apa reaksi dan feedback pelanggan yang datang mencuba.
+    Jom@4.04-4.64 tengok@4.64-5.26 apa@5.26-5.48 reaksi@5.48-5.96 dan@5.96-6.18 feedback@6.18-6.48 pelanggan@6.48-6.96 yang@6.96-7.18 datang@7.18-7.66 mencuba.@7.66-8.00
+[ 13.18- 18.12]  So, sekarang korang pula untuk dapatkan Fresh Kura Bodi melalui TikTok Shop.
+    So,@13.18-13.78 sekarang@13.86-14.38 korang@14.38-15.02 pula@15.02-15.32 untuk@15.32-15.46 dapatkan@15.46-16.00 Fresh@16.00-16.32 Kura@16.32-16.56 Bodi@16.56-16.86 melalui@16.86-17.44 TikTok@17.44-17.82 Shop.@17.82-18.12
+[ 18.32- 19.94]  Stok sangat tak banyak.
+    Stok@18.32-18.88 sangat@18.88-19.26 tak@19.26-19.72 banyak.@19.72-19.94
+[ 20.06- 21.98]  Cepat check out dan tengok beg kuda sekarang.
+    Cepat@20.06-20.50 check@20.50-20.68 out@20.68-20.88 dan@20.88-21.08 tengok@21.08-21.48 beg@21.48-21.62 kuda@21.62-21.80 sekarang.@21.80-21.98
+[ 22.52- 24.98]  Lihat berapa TikTok bagi dekat korang.
+    Lihat@22.52-23.12 berapa@23.12-23.68 TikTok@23.68-24.16 bagi@24.16-24.50 dekat@24.50-24.68 korang.@24.68-24.98
+===== wav/F6.wav
+[  0.00-  0.50]  bagi tester
+    bagi@0.00-0.24 tester@0.24-0.50
+[  0.50-  2.18]  so apa yang
+    so@0.50-1.38 apa@1.38-1.98 yang@1.98-2.18
+[  2.18-  3.06]  pengalaman lah
+    pengalaman@2.18-2.86 lah@2.86-3.06
+[  3.06-  3.96]  kau rasa wangi tak
+    kau@3.06-3.16 rasa@3.16-3.38 wangi@3.38-3.76 tak@3.76-3.96
+[  3.96-  4.44]  sabun ni
+    sabun@3.96-4.30 ni@4.30-4.44
+[  4.44-  5.44]  dia wangi
+    dia@4.44-4.98 wangi@4.98-5.44
+[  6.38-  7.50]  tangan jadi lembut
+    tangan@6.38-6.96 jadi@6.96-7.06 lembut@7.06-7.50
+[  7.50-  8.62]  memang tangan lembut lah
+    memang@7.50-7.84 tangan@7.84-8.16 lembut@8.16-8.46 lah@8.46-8.62
+[  8.62-  9.92]  tapi wangi ni
+    tapi@8.62-9.46 wangi@9.46-9.80 ni@9.80-9.92
+[  9.92- 10.44]  tak tipu lah
+    tak@9.92-10.06 tipu@10.06-10.36 lah@10.36-10.44
+[ 10.44- 11.60]  betul ke
+    betul@10.44-11.50 ke@11.50-11.60
+[ 11.60- 12.44]  kau tak tipu
+    kau@11.60-11.82 tak@11.82-12.08 tipu@12.08-12.44
+[ 12.44- 13.06]  tipu lah ni
+    tipu@12.44-12.82 lah@12.82-12.90 ni@12.90-13.06
+[ 13.06- 13.56]  tak tipu ni
+    tak@13.06-13.22 tipu@13.22-13.50 ni@13.50-13.56
+[ 13.56- 15.36]  memang tak tipu lah
+    memang@13.56-14.10 tak@14.10-15.02 tipu@15.02-15.32 lah@15.32-15.36
+[ 15.36- 16.12]  memang wangi lah
+    memang@15.36-15.60 wangi@15.60-15.96 lah@15.96-16.12
+[ 16.12- 16.60]  terima kasih banyak
+    terima@16.12-16.56 kasih@16.56-16.60 banyak@16.60-16.60
+[ 16.60- 17.50]  terima kasih
+    terima@16.60-17.10 kasih@17.10-17.50
+===== wav/pump.wav
+[  2.84- 29.80]  Jangan lupa like, share dan subscribe channel ini untuk dapat maklumat terbaru.
+    Jangan@2.84-3.34 lupa@3.34-3.54 like,@3.54-5.64 share@5.64-7.94 dan@7.94-8.06 subscribe@8.06-8.16 channel@8.16-8.52 ini@8.52-8.52 untuk@8.52-8.80 dapat@8.80-9.02 maklumat@9.02-29.58 terbaru.@29.58-29.80
+[ 30.00- 35.24]  Terima kasih kerana menonton!
+    Terima@30.00-32.40 kasih@32.40-34.22 kerana@34.22-35.24 menonton!@35.24-35.24

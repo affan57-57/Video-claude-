@@ -1,0 +1,132 @@
+<template>
+  <style>
+    @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:block;src:url('assets/fonts/CormorantGaramond-500i.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:block;src:url('assets/fonts/CormorantGaramond-600i.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/CormorantGaramond-600.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/PlusJakartaSans-500.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:block;src:url('assets/fonts/PlusJakartaSans-700.woff2') format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:block;src:url('assets/fonts/PlusJakartaSans-800.woff2') format('woff2');}
+    #root { position:absolute; inset:0; 
+  --ivory:#F4EEE6; --ivory2:#EAE1D4; --ink:#141113; --ink2:#2B2528;
+  --gold:#D9B77A; --gold2:#B8925A; --rose:#7C1830; --noche:#2B1F5E; --bag:#F6C433;
+  --serif:'Cormorant Garamond', 'EB Garamond', serif; --sans:'Plus Jakarta Sans', 'Inter', sans-serif;
+ font-family:var(--sans); }
+    #root * { box-sizing:border-box; }
+    
+    #ct-p1, #ct-p2, #ct-p3, #ct-p4 { position:absolute; inset:0; opacity:0; }
+    #ct-p1 { opacity:1; }
+    #ct-eyebrow { position:absolute; left:0; right:0; top:200px; text-align:center; font:800 28px/1 var(--sans); letter-spacing:.4em; color:var(--ink);
+      opacity:0; }
+    .ct-tag { position:absolute; padding:22px 30px; border-radius:24px; background:rgba(20,17,19,.86); color:var(--ivory); opacity:0; box-shadow:0 18px 50px rgba(0,0,0,.25); }
+    .ct-tag b { display:block; font:800 32px/1 var(--sans); letter-spacing:.18em; }
+    .ct-tag i { display:block; font:italic 600 48px/1.05 var(--serif); color:var(--gold); margin-top:8px; }
+    #ct-tag1 { left:60px; top:290px; }
+    #ct-tag2 { right:60px; top:460px; text-align:right; }
+    #ct-shop { position:absolute; left:0; right:0; margin:0 auto; top:1000px; width:460px; height:100px; border-radius:50px; background:var(--gold);
+      color:var(--ink); display:flex; align-items:center; justify-content:center; gap:16px; font:800 44px/1 var(--sans); opacity:0; box-shadow:0 18px 50px rgba(0,0,0,.3); }
+    #ct-p2 { background:linear-gradient(180deg, rgba(14,11,13,.55), rgba(14,11,13,.2) 60%, rgba(14,11,13,.5)); }
+    #ct-stock { position:absolute; left:110px; right:110px; top:330px; padding:46px 50px; border-radius:36px; background:rgba(20,17,19,.82); color:var(--ivory); text-align:center;
+      border:1.5px solid rgba(217,183,122,.6); }
+    #ct-stock .k { font:800 34px/1 var(--sans); letter-spacing:.38em; color:var(--gold); }
+    #ct-stock .num { font:600 200px/1 var(--serif); margin-top:10px; }
+    #ct-stock .num small { font-size:90px; color:var(--gold); }
+    #ct-stock .bar { height:22px; border-radius:11px; background:rgba(244,238,230,.15); margin-top:14px; overflow:hidden; }
+    #ct-fill { height:100%; width:100%; border-radius:11px; background:linear-gradient(90deg,#E0475B,var(--gold)); transform-origin:0 50%; }
+    #ct-stock .v { font:italic 600 52px/1 var(--serif); margin-top:26px; }
+    #ct-p3 { background:radial-gradient(circle at 50% 38%, #FFF8EC 0%, var(--ivory) 45%, var(--ivory2) 100%); }
+    #ct-bagwrap { position:absolute; left:320px; top:280px; width:440px; height:484px; }
+    #ct-badge { position:absolute; right:-20px; top:30px; width:120px; height:120px; border-radius:60px; background:var(--rose); color:#fff; font:800 50px/120px var(--sans); text-align:center; opacity:0; }
+    #ct-ripple, #ct-ripple2 { position:absolute; left:170px; top:250px; width:100px; height:100px; border-radius:50%; border:6px solid var(--ink); opacity:0; }
+    #ct-p3t { position:absolute; left:0; right:0; top:820px; text-align:center; color:var(--ink); }
+    #ct-p3t b { display:block; font:800 96px/1 var(--sans); letter-spacing:.08em; }
+    #ct-p3t i { display:block; font:italic 600 62px/1.1 var(--serif); color:var(--rose); margin-top:10px; }
+    #ct-p4 { background:radial-gradient(circle at 50% 35%, #3A2C78 0%, #221846 45%, #120C24 100%); }
+    #ct-gift { position:absolute; left:0; right:0; top:260px; text-align:center; color:var(--ivory); }
+    #ct-gift .k { font:800 30px/1 var(--sans); letter-spacing:.42em; color:var(--gold); }
+    #ct-disc { position:relative; width:640px; height:384px; margin:40px auto 0; }
+    #ct-disctxt { position:absolute; left:90px; right:0; top:0; bottom:0; display:flex; align-items:center; justify-content:center; gap:10px; color:#1A1230; }
+    #ct-dnum { font:600 220px/1 var(--serif); min-width:150px; display:inline-block; }
+    #ct-disctxt small { font:800 54px/1 var(--sans); }
+    #ct-gift .v { font:600 64px/1.1 var(--serif); margin-top:40px; padding:0 80px; }
+    #ct-gift .v i { color:var(--gold); }
+
+  </style>
+  <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
+
+    <div id="ct-p1">
+      <div id="ct-eyebrow">DUA WANGIAN SIGNATURE</div>
+      <div class="ct-tag" id="ct-tag1"><b>WOMAN GLORY</b><i>Bombshell</i></div>
+      <div class="ct-tag" id="ct-tag2"><b>NOCHE</b><i>Midnight Fantasy</i></div>
+      <div id="ct-shop"><svg viewBox="0 0 24 24" width="46" height="46"><path d="M6 7h12l-1 13H7L6 7zm3 0a3 3 0 0 1 6 0" fill="none" stroke="#141113" stroke-width="2.2" stroke-linejoin="round"/></svg>TikTok Shop</div>
+    </div>
+    <div id="ct-p2">
+      <div id="ct-stock">
+        <div class="k">STOK TERHAD</div>
+        <div class="num"><span id="ct-pct">100</span><small>%</small></div>
+        <div class="bar"><div id="ct-fill"></div></div>
+        <div class="v">tinggal sikit sahaja</div>
+      </div>
+    </div>
+    <div id="ct-p3">
+      <div id="ct-bagwrap">
+        <svg id="ct-bag" viewBox="0 0 200 220" width="440" height="484">
+          <path d="M60 70 a40 40 0 0 1 80 0" fill="none" stroke="#141113" stroke-width="10" stroke-linecap="round"/>
+          <path d="M28 70 h144 l-10 136 a8 8 0 0 1-8 8 H46 a8 8 0 0 1-8-8z" fill="#F6C433"/>
+          <path d="M28 70 h144 l-2 26 H30z" fill="#E2AE1E"/>
+          <circle cx="70" cy="104" r="7" fill="#141113"/><circle cx="130" cy="104" r="7" fill="#141113"/>
+        </svg>
+        <div id="ct-badge">+1</div>
+        <div id="ct-ripple"></div>
+        <div id="ct-ripple2"></div>
+      </div>
+      <div id="ct-p3t"><b>CHECKOUT</b><i>tekan beg kuning sekarang</i></div>
+    </div>
+    <div id="ct-p4">
+      <div id="ct-gift">
+        <div class="k">TIKTOK SHOP</div>
+        <div id="ct-disc">
+          <svg viewBox="0 0 400 240" width="640" height="384"><path d="M60 20 H380 a20 20 0 0 1 20 20 V200 a20 20 0 0 1-20 20 H60 L0 120z" fill="#D9B77A"/><circle cx="62" cy="120" r="16" fill="#1A1230"/></svg>
+          <div id="ct-disctxt"><span id="ct-dnum">?</span><small>% OFF</small></div>
+        </div>
+        <div class="v">Lihat berapa <i>diskaun</i> menanti korang</div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // P1 bottles (21.5 - 26.6)
+    tl.fromTo("#ct-eyebrow", {opacity:0, y:-20}, {opacity:1, y:0, duration:0.4, ease:"power2.out"}, 0.25);
+    tl.fromTo("#ct-tag1", {opacity:0, x:-60}, {opacity:1, x:0, duration:0.45, ease:"power3.out"}, 1.1);
+    tl.fromTo("#ct-tag2", {opacity:0, x:60}, {opacity:1, x:0, duration:0.45, ease:"power3.out"}, 1.9);
+    tl.fromTo("#ct-shop", {opacity:0, scale:0.6, y:30}, {opacity:1, scale:1, y:0, duration:0.45, ease:"back.out(2)"}, 4.22);
+    tl.to("#ct-p1", {opacity:0, duration:0.2}, 4.95);
+    // P2 stock (26.6 - 28.15)
+    tl.fromTo("#ct-p2", {opacity:0}, {opacity:1, duration:0.15}, 5.1);
+    tl.fromTo("#ct-stock", {scale:0.85, y:40}, {scale:1, y:0, duration:0.4, ease:"back.out(1.7)"}, 5.1);
+    tl.fromTo("#ct-fill", {scaleX:1}, {scaleX:0.12, duration:1.1, ease:"power2.inOut"}, 5.35);
+    const pct = {v:100};
+    tl.fromTo(pct, {v:100}, {v:12, duration:1.1, ease:"power2.inOut", onUpdate:() => { document.querySelector("#ct-pct").textContent = Math.round(pct.v); } }, 5.35);
+    tl.to("#ct-p2", {opacity:0, duration:0.15}, 6.55);
+    // P3 bag (28.15 - 30.15)
+    tl.fromTo("#ct-p3", {opacity:0}, {opacity:1, duration:0.12}, 6.62);
+    tl.fromTo("#ct-bagwrap", {y:-500, rotation:-10}, {y:0, rotation:0, duration:0.55, ease:"bounce.out"}, 6.65);
+    tl.fromTo("#ct-p3t", {opacity:0, y:30}, {opacity:1, y:0, duration:0.4, ease:"power3.out"}, 7.05);
+    tl.fromTo("#ct-bag", {scale:1}, {scale:0.9, duration:0.08, yoyo:true, repeat:1, ease:"power2.out", transformOrigin:"50% 60%"}, 8.06);
+    tl.fromTo("#ct-ripple", {opacity:0.9, scale:0.3}, {opacity:0, scale:2.6, duration:0.6, ease:"power2.out"}, 8.06);
+    tl.fromTo("#ct-ripple2", {opacity:0.6, scale:0.3}, {opacity:0, scale:3.6, duration:0.8, ease:"power2.out"}, 8.16);
+    tl.fromTo("#ct-badge", {opacity:0, scale:0}, {opacity:1, scale:1, duration:0.35, ease:"back.out(3)"}, 8.12);
+    tl.to("#ct-p3", {opacity:0, duration:0.12}, 8.58);
+    // P4 discount (30.15 - 32.6)
+    tl.fromTo("#ct-p4", {opacity:0}, {opacity:1, duration:0.15}, 8.65);
+    tl.fromTo("#ct-disc", {scale:0.5, rotation:-18, opacity:0}, {scale:1, rotation:-6, opacity:1, duration:0.5, ease:"back.out(1.8)"}, 8.7);
+    const dn = {v:0}; const seq = ["5","10","15","20","25","?"];
+    tl.fromTo(dn, {v:0}, {v:5.99, duration:1.4, ease:"power1.in", onUpdate:() => { document.querySelector("#ct-dnum").textContent = seq[Math.min(5, Math.floor(dn.v))]; } }, 8.95);
+    tl.fromTo("#ct-gift .v", {opacity:0, y:30}, {opacity:1, y:0, duration:0.4, ease:"power2.out"}, 8.9);
+    tl.to("#ct-disc", {rotation:4, duration:0.12, yoyo:true, repeat:3, ease:"sine.inOut"}, 10.4);
+
+    window.__timelines["cta"] = tl;
+  </script>
+</template>
