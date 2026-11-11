@@ -4,8 +4,9 @@ PROJ = sys.argv[1]
 FONTS = open(os.path.join(PROJ, "assets/fonts/fonts.css")).read()
 W, H = 1080, 1920
 D = 0.68  # extra time kept so the customer's 'dia wangi' is heard in full
-def S(t): return round(t + D, 3) if t >= 11.46 else t
-TOTAL = round(35.2 + D, 2)
+D2 = -1.921  # interviewer's 'Betul ke? Kau tak tipu?' removed (keeps it natural)
+def S(t): return round(t + D2, 3) if t >= 17.47 else (round(t + D, 3) if t >= 11.46 else t)
+TOTAL = round(35.2 + D2, 2)
 
 TOKENS = """
   --ivory:#F4EEE6; --ivory2:#EAE1D4; --ink:#141113; --ink2:#2B2528;
@@ -124,13 +125,6 @@ files["review"] = scene("review", f"""
     <div id="rv-loc">LIVE TESTER &middot; MALL</div>
     <div id="rv-wangi"><i>wangi</i><span>&#10022; haruman aromatherapy</span></div>
     <div class="rv-card" id="rv-foam"><span class="k">GENTLE FOAMING</span><span class="v">Busa lembut &mdash; tangan rasa halus</span></div>
-    <div id="rv-stamp"><svg viewBox="0 0 300 300" width="300" height="300">
-      <circle cx="150" cy="150" r="138" fill="none" stroke="#D9B77A" stroke-width="5"/>
-      <circle cx="150" cy="150" r="120" fill="none" stroke="#D9B77A" stroke-width="2"/>
-      <text x="150" y="140" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="56" fill="#F4EEE6">100%</text>
-      <text x="150" y="196" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-weight="600" font-size="54" fill="#D9B77A">tak tipu</text>
-    </svg></div>
-    <div id="rv-stars"><div class="row">{''.join(f'<span class="st" id="rv-s{i}">&#9733;</span>' for i in range(5))}</div><div class="lbl">5.0 &middot; pelanggan puas hati</div></div>
     <div class="rv-card" id="rv-aroma"><span class="k">AROMATHERAPY</span><span class="v">Wangi lembut yang menenangkan</span></div>
 """, """
     #rv-open { position:absolute; inset:0; background:var(--ink); transform-origin:50% 0%; }
@@ -165,13 +159,6 @@ files["review"] = scene("review", f"""
     // foam cutaway 11.70-12.85
     tl.fromTo("#rv-foam", {{x:-60, opacity:0}}, {{x:0, opacity:1, duration:0.4, ease:"power3.out"}}, {r(11.78)});
     tl.to("#rv-foam", {{opacity:0, x:-30, duration:0.25, ease:"power2.in"}}, {r(13.9)});
-    // stamp tak tipu (15.14)
-    tl.fromTo("#rv-stamp", {{opacity:0, scale:2.2, rotation:-35}}, {{opacity:1, scale:1, rotation:-12, duration:0.32, ease:"power4.in"}}, {r(14.82)});
-    tl.to("#rv-stamp", {{opacity:0, duration:0.3}}, {r(17.3)});
-    // stars 17.8 ...
-    {''.join(f'tl.fromTo("#rv-s{i}", {{opacity:0, scale:0.2, rotation:-40}}, {{opacity:1, scale:1, rotation:0, duration:0.3, ease:"back.out(2.5)"}}, {r(17.80 + i*0.2)});' for i in range(5))}
-    tl.fromTo("#rv-stars .lbl", {{opacity:0, y:16}}, {{opacity:1, y:0, duration:0.35, ease:"power2.out"}}, {r(18.30)});
-    tl.to("#rv-stars", {{opacity:0, duration:0.25}}, {r(19.25)});
     // aroma cutaway 19.30-20.10
     tl.fromTo("#rv-aroma", {{x:-60, opacity:0}}, {{x:0, opacity:1, duration:0.35, ease:"power3.out"}}, {r(19.36)});
     tl.to("#rv-aroma", {{opacity:0, duration:0.25}}, {r(20.9)});
@@ -322,11 +309,9 @@ CAP = [ # start, end, text  ; *word* = highlighted
  (11.70,12.70,"Tangan jadi *lembut*"),
  (12.84,14.50,"Memang tangan *lembut* lah"),
  (14.54,15.60,"Tapi wangi ni *tak tipu!*"),
- (15.70,16.34,"Wangi, tak tipu."),
- (16.34,17.45,"Betul ke? Kau tak tipu?"),
- (17.64,19.30,"Memang *tak tipu* lah"),
- (19.30,20.05,"memang *wangi* lah!"),
- (20.10,21.40,"Terima kasih *banyak!*"),
+ (18.421,19.461,"Memang *tak tipu* lah kan"),
+ (19.461,20.021,"memang *wangi* lah!"),
+ (20.101,21.321,"Terima kasih *banyak!*"),
  (22.06,23.62,"So, sekarang korang pula"),
  (23.62,24.48,"untuk dapatkan"),
  (24.48,25.24,"*Frescura Body*"),
@@ -383,8 +368,7 @@ SFX = [ # file, start, volume
  ("ping",5.80,0.9),("whoosh-cinematic",4.70,0.55),
  ("sparkle",9.42,0.4),
  ("whoosh",11.54,0.8),("whoosh-short",12.69,0.7),
- ("impact-bass-1",15.07,0.5),
- ("pop",17.68,1.1),("click",17.93,1.6),("pop",18.08,1.1),("click",18.33,1.6),("pop",18.48,1.2),("ping",18.55,0.6),
+ 
  ("whoosh",19.14,0.8),("whoosh-short",19.94,0.7),
  ("whoosh",21.34,0.85),("sparkle",21.55,0.5),("pop",22.48,1.2),("click",23.33,1.6),("ping",25.40,0.9),
  ("impact-bass-1",26.55,0.45),("key-press",26.90,2.5),("key-press",27.12,2.5),("key-press",27.34,2.5),("key-press",27.56,2.5),("key-press",27.78,2.5),
@@ -420,27 +404,26 @@ index = f"""<!doctype html>
 {vid("v-press", "pump.mp4", 3.6, 3.7, 10.0, 1.3, 2, CARD)}
 {vid("v-r1", "review.mp4", 7.3, 4.93, 1.015, 1.06, 2, FULL)}
 {vid("v-r2", "review.mp4", 12.23, 3.98, 6.241, 1.06, 2, FULL)}
-{vid("v-r3", "review.mp4", 16.21, 1.94, 10.419, 1.06, 2, FULL)}
-{vid("v-r4", "review.mp4", 18.15, 4.03, 13.415, 1.06, 2, FULL)}
+{vid("v-r4", "review.mp4", 16.22, 3.36, 14.125, 1.06, 2, FULL)}
 {vid("v-foam", "pump.mp4", 12.38, 1.15, 17.0, 1.0, 3, FULL)}
-{vid("v-lather", "pump.mp4", 19.98, 0.8, 26.0, 1.2, 3, FULL)}
-      <div id="kb-clip" class="clip" data-start="22.18" data-duration="5.1" data-track-index="2" style="z-index:2;position:absolute;left:0;top:0;width:1080px;height:1920px;">
+{vid("v-lather", "pump.mp4", 17.38, 0.8, 26.0, 1.2, 3, FULL)}
+      <div id="kb-clip" class="clip" data-start="19.58" data-duration="5.1" data-track-index="2" style="z-index:2;position:absolute;left:0;top:0;width:1080px;height:1920px;">
         <div id="kbwrap"><img id="kb" src="assets/img/bottles.jpg" alt="Frescura Body Woman Glory dan Noche"/></div>
       </div>
-{vid("v-stand", "pump.mp4", 27.28, 1.55, 0.2, 1.0, 2, FULL)}
+{vid("v-stand", "pump.mp4", 24.68, 1.55, 0.2, 1.0, 2, FULL)}
 {host("hook", 0, 3.6, 10)}
 {host("edu", 3.6, 3.7, 10)}
-{host("review", 7.3, 14.88, 10)}
-{host("cta", 22.18, 11.1, 10)}
-{host("endcard", 33.28, 2.6, 10)}
-{host("captions", 0, 33.28, 50, "captions", 4)}
+{host("review", 7.3, 12.28, 10)}
+{host("cta", 19.58, 11.1, 10)}
+{host("endcard", 30.68, 2.6, 10)}
+{host("captions", 0, 30.68, 50, "captions", 4)}
       <audio id="voice" class="clip" src="assets/audio/voice.wav" data-start="0" data-volume="1" data-track-index="9"></audio>
 {sfx_html}
     </div>
     <script>
       window.__timelines = window.__timelines || {{}};
       const tl = gsap.timeline({{ paused: true }});
-      tl.fromTo("#kb", {{scale:1.18, x:30, y:20}}, {{scale:1.02, x:0, y:0, duration:5.1, ease:"power1.out"}}, 22.18);
+      tl.fromTo("#kb", {{scale:1.18, x:30, y:20}}, {{scale:1.02, x:0, y:0, duration:5.1, ease:"power1.out"}}, 19.58);
       window.__timelines["main"] = tl;
     </script>
   </body>
