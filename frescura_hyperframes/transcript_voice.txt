@@ -1,0 +1,16 @@
+===== wav/v_intro16.wav
+[  0.00-  1.00]  STOP SCROLLING!
+    STOP@0.00-0.42 SCROLLING!@0.42-1.00
+[  1.16-  2.56]  Ini feedback pelanggan Fresh KuraBody
+    Ini@1.16-1.28 feedback@1.28-1.56 pelanggan@1.56-1.86 Fresh@1.86-2.06 KuraBody@2.06-2.56
+[  2.56-  5.96]  Korang wajib tengok sendiri apa yang mereka cakap selepas mereka cuba
+    Korang@2.56-2.96 wajib@2.96-3.30 tengok@3.30-3.52 sendiri@3.52-3.80 apa@3.80-4.32 yang@4.32-4.46 mereka@4.46-4.66 cakap@4.66-4.98 selepas@4.98-5.36 mereka@5.36-5.62 cuba@5.62-5.96
+===== wav/v_close16.wav
+[  0.00-  2.50]  Jadi gang, ini peluang korang untuk cuba sendiri.
+    Jadi@0.00-0.28 gang,@0.28-0.52 ini@0.88-0.96 peluang@0.96-1.22 korang@1.22-1.54 untuk@1.54-1.80 cuba@1.80-2.12 sendiri.@2.12-2.50
+[  2.68-  3.44]  So, memang dah tak banyak.
+    So,@2.68-2.68 memang@2.74-2.98 dah@2.98-3.10 tak@3.10-3.20 banyak.@3.20-3.44
+[  3.60-  5.96]  Korang tekan beg kuning sekarang dan check out sekarang.
+    Korang@3.60-3.78 tekan@3.78-4.02 beg@4.02-4.18 kuning@4.18-4.36 sekarang@4.36-4.74 dan@4.74-5.10 check@5.10-5.32 out@5.32-5.40 sekarang.@5.40-5.96
+[  6.08-  9.84]  Pastikan korang dapat semua deskripsi yang TikTok bagi dekat korang.
+    Pastikan@6.08-6.60 korang@6.60-6.92 dapat@6.92-7.40 semua@7.40-7.98 deskripsi@7.98-8.38 yang@8.38-8.68 TikTok@8.68-9.06 bagi@9.06-9.40 dekat@9.40-9.56 korang.@9.56-9.84
