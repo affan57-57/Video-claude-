@@ -3,7 +3,9 @@ import json, os, sys
 PROJ = sys.argv[1]
 FONTS = open(os.path.join(PROJ, "assets/fonts/fonts.css")).read()
 W, H = 1080, 1920
-TOTAL = 35.2
+D = 0.68  # extra time kept so the customer's 'dia wangi' is heard in full
+def S(t): return round(t + D, 3) if t >= 11.46 else t
+TOTAL = round(35.2 + D, 2)
 
 TOKENS = """
   --ivory:#F4EEE6; --ivory2:#EAE1D4; --ink:#141113; --ink2:#2B2528;
@@ -113,7 +115,7 @@ files["edu"] = scene("edu", """
 
 # ---------------------------------------------------------------- REVIEW overlays (7.3 - 21.5)  local t = out - 7.3
 R0 = 7.3
-def r(t): return round(t - R0, 3)
+def r(t): return round(S(t) - R0, 3)
 files["review"] = scene("review", f"""
     <div id="rv-open"></div>
     <div id="rv-scrim"></div>
@@ -159,7 +161,7 @@ files["review"] = scene("review", f"""
     tl.fromTo("#rv-rec .dot", {{opacity:1}}, {{opacity:0.15, duration:0.5, yoyo:true, repeat:27, ease:"sine.inOut"}}, 0.4);
     // wangi (9.50)
     tl.fromTo("#rv-wangi", {{opacity:0, y:30, scale:0.92}}, {{opacity:1, y:0, scale:1, duration:0.45, ease:"back.out(1.6)"}}, {r(9.48)});
-    tl.to("#rv-wangi", {{opacity:0, y:-20, duration:0.3, ease:"power2.in"}}, {r(11.35)});
+    tl.to("#rv-wangi", {{opacity:0, y:-20, duration:0.3, ease:"power2.in"}}, {r(11.55)});
     // foam cutaway 11.70-12.85
     tl.fromTo("#rv-foam", {{x:-60, opacity:0}}, {{x:0, opacity:1, duration:0.4, ease:"power3.out"}}, {r(11.78)});
     tl.to("#rv-foam", {{opacity:0, x:-30, duration:0.25, ease:"power2.in"}}, {r(13.9)});
@@ -316,7 +318,7 @@ CAP = [ # start, end, text  ; *word* = highlighted
  (6.22,7.20,"yang datang *mencuba*"),
  (7.38,9.24,"So, apa pengalaman?"),
  (9.26,10.55,"Rasa *wangi* tak sabun ni?"),
- (10.70,11.45,"Dia *wangi!*"),
+ (10.68,12.25,"Dia *wangi!*"),
  (11.70,12.70,"Tangan jadi *lembut*"),
  (12.84,14.50,"Memang tangan *lembut* lah"),
  (14.54,15.60,"Tapi wangi ni *tak tipu!*"),
@@ -339,6 +341,7 @@ CAP = [ # start, end, text  ; *word* = highlighted
 import re
 body, js = [], []
 for i,(s,e,t) in enumerate(CAP):
+    s, e = S(s), (e if e == 12.25 else S(e))
     parts = re.split(r"(\*[^*]+\*)", t)
     words = []
     for p in parts:
@@ -378,7 +381,7 @@ SFX = [ # file, start, volume
  ("whoosh",1.69,0.85),("pop",1.83,1.3),("sparkle",2.10,0.5),
  ("whoosh-short",3.44,0.85),("pop",3.78,1.3),("click",4.50,1.8),("pop",5.18,1.3),
  ("ping",5.80,0.9),("whoosh-cinematic",4.70,0.55),
- ("sparkle",9.42,0.75),
+ ("sparkle",9.42,0.4),
  ("whoosh",11.54,0.8),("whoosh-short",12.69,0.7),
  ("impact-bass-1",15.07,0.5),
  ("pop",17.68,1.1),("click",17.93,1.6),("pop",18.08,1.1),("click",18.33,1.6),("pop",18.48,1.2),("ping",18.55,0.6),
@@ -390,7 +393,7 @@ SFX = [ # file, start, volume
  ("impact-bass-1",32.56,0.6),("sparkle",32.75,0.55),
 ]
 DUR={"whoosh":0.57,"whoosh-short":0.57,"whoosh-cinematic":5.5,"pop":0.72,"impact-bass-1":2.1,"impact-bass-2":2.59,"riser":3.45,"sparkle":1.8,"click":0.36,"ping":1.32,"key-press":0.43}
-sfx_html = "\n".join(f'      <audio id="sfx{i}" class="clip" src="assets/audio/{f}.mp3" data-start="{s}" data-duration="{DUR[f]}" data-volume="{v}" data-track-index="{10+i}"></audio>' for i,(f,s,v) in enumerate(SFX))
+sfx_html = "\n".join(f'      <audio id="sfx{i}" class="clip" src="assets/audio/{f}.mp3" data-start="{s}" data-duration="{DUR[f]}" data-volume="{v}" data-track-index="{10+i}"></audio>' for i,(f,s,v) in enumerate((f,S(s),v) for f,s,v in SFX))
 
 FULL = "position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;"
 CARD = "position:absolute;left:90px;top:340px;width:900px;height:640px;object-fit:cover;border-radius:40px;box-shadow:0 30px 80px rgba(20,17,19,.28);"
@@ -415,29 +418,29 @@ index = f"""<!doctype html>
 {vid("v-hook", "pump.mp4", 0, 1.85, 15.6, 0.85, 2, FULL)}
 {vid("v-booth", "review.mp4", 1.85, 1.75, 0.0, 1.0, 2, FULL)}
 {vid("v-press", "pump.mp4", 3.6, 3.7, 10.0, 1.3, 2, CARD)}
-{vid("v-r1", "review.mp4", 7.3, 4.25, 1.015, 1.06, 2, FULL)}
-{vid("v-r2", "review.mp4", 11.55, 3.98, 6.241, 1.06, 2, FULL)}
-{vid("v-r3", "review.mp4", 15.53, 1.94, 10.419, 1.06, 2, FULL)}
-{vid("v-r4", "review.mp4", 17.47, 4.03, 13.415, 1.06, 2, FULL)}
-{vid("v-foam", "pump.mp4", 11.7, 1.15, 17.0, 1.0, 3, FULL)}
-{vid("v-lather", "pump.mp4", 19.3, 0.8, 26.0, 1.2, 3, FULL)}
-      <div id="kb-clip" class="clip" data-start="21.5" data-duration="5.1" data-track-index="2" style="z-index:2;position:absolute;left:0;top:0;width:1080px;height:1920px;">
+{vid("v-r1", "review.mp4", 7.3, 4.93, 1.015, 1.06, 2, FULL)}
+{vid("v-r2", "review.mp4", 12.23, 3.98, 6.241, 1.06, 2, FULL)}
+{vid("v-r3", "review.mp4", 16.21, 1.94, 10.419, 1.06, 2, FULL)}
+{vid("v-r4", "review.mp4", 18.15, 4.03, 13.415, 1.06, 2, FULL)}
+{vid("v-foam", "pump.mp4", 12.38, 1.15, 17.0, 1.0, 3, FULL)}
+{vid("v-lather", "pump.mp4", 19.98, 0.8, 26.0, 1.2, 3, FULL)}
+      <div id="kb-clip" class="clip" data-start="22.18" data-duration="5.1" data-track-index="2" style="z-index:2;position:absolute;left:0;top:0;width:1080px;height:1920px;">
         <div id="kbwrap"><img id="kb" src="assets/img/bottles.jpg" alt="Frescura Body Woman Glory dan Noche"/></div>
       </div>
-{vid("v-stand", "pump.mp4", 26.6, 1.55, 0.2, 1.0, 2, FULL)}
+{vid("v-stand", "pump.mp4", 27.28, 1.55, 0.2, 1.0, 2, FULL)}
 {host("hook", 0, 3.6, 10)}
 {host("edu", 3.6, 3.7, 10)}
-{host("review", 7.3, 14.2, 10)}
-{host("cta", 21.5, 11.1, 10)}
-{host("endcard", 32.6, 2.6, 10)}
-{host("captions", 0, 32.6, 50, "captions", 4)}
+{host("review", 7.3, 14.88, 10)}
+{host("cta", 22.18, 11.1, 10)}
+{host("endcard", 33.28, 2.6, 10)}
+{host("captions", 0, 33.28, 50, "captions", 4)}
       <audio id="voice" class="clip" src="assets/audio/voice.wav" data-start="0" data-volume="1" data-track-index="9"></audio>
 {sfx_html}
     </div>
     <script>
       window.__timelines = window.__timelines || {{}};
       const tl = gsap.timeline({{ paused: true }});
-      tl.fromTo("#kb", {{scale:1.18, x:30, y:20}}, {{scale:1.02, x:0, y:0, duration:5.1, ease:"power1.out"}}, 21.5);
+      tl.fromTo("#kb", {{scale:1.18, x:30, y:20}}, {{scale:1.02, x:0, y:0, duration:5.1, ease:"power1.out"}}, 22.18);
       window.__timelines["main"] = tl;
     </script>
   </body>
