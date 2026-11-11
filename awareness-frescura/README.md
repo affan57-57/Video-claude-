@@ -1,6 +1,6 @@
 # FRESCURA BODY — awareness video (HyperFrames)
 
-Preview: `output/frescura_awareness_PREVIEW.mp4` (draft quality, 1080x1920, 36.5 s).
+Preview: `output/frescura_awareness_PREVIEW_v2.mp4` (draft quality, 1080x1920, 36.5 s).
 
 ## Pipeline
 1. Audio (from the awareness clip): Demucs `htdemucs_ft` vocals -> DeepFilterNet3 (14 dB limit, `scripts/run_df2.py`)

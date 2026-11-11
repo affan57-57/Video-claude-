@@ -22,7 +22,9 @@
   .it{font-style:italic}
   .center{left:0;right:0;text-align:center}
   .gold-text{background:linear-gradient(180deg,#F6E3B8 0%,#D2AE70 45%,#9C7A43 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  video.b{position:absolute;object-fit:cover}
+  .b{position:absolute;object-fit:cover}
+  .card img{position:absolute;left:540px;top:0;width:400px;height:470px;object-fit:cover;transform-origin:50% 50%}
+  .card .sb{margin-top:14px;font:500 italic 40px/1 var(--serif);color:var(--gold-lt)}
 
   /* persistent UI */
   #brandmark{position:absolute;top:96px;left:0;right:0;text-align:center;z-index:50;color:var(--ivory)}
@@ -206,24 +208,21 @@
     <div id="s6-eb" class="abs center eyebrow" style="top:250px;color:var(--rose)">03 · Pilih wangian anda</div>
     <div id="s6-a" data-layout-allow-overflow class="card" style="top:320px;background:linear-gradient(135deg,#5E0A15,#B1182B)">
       <div id="s6-petals" class="abs" style="inset:0"></div>
-      <div class="tx"><div class="br">WOMAN GLORY</div><div class="vn">Bombshell</div><div class="ds">Wangian manis</div></div>
+      <img id="i-bomb" src="assets/bomb_card.jpg" alt=""/>
+      <div class="tx"><div class="br">FRESCURA BODY</div><div class="vn">Bombshell</div><div class="sb">Woman Glory</div><div class="ds">Wangian manis</div></div>
     </div>
     <div id="s6-b" data-layout-allow-overflow class="card" style="top:840px;background:linear-gradient(135deg,#0E0A1F,#2C1A4A 70%,#3A2560)">
       <div id="s6-stars" class="abs" style="inset:0"></div>
-      <svg id="s6-moon" class="abs" style="left:700px;top:90px" width="200" height="200" viewBox="0 0 200 200">
-        <defs><mask id="mm"><rect width="200" height="200" fill="#fff"/><circle cx="128" cy="78" r="78" fill="#000"/></mask>
-        <radialGradient id="mg"><stop offset="0" stop-color="#FFF4DA"/><stop offset="1" stop-color="#D9BC84"/></radialGradient></defs>
-        <circle cx="100" cy="100" r="84" fill="url(#mg)" mask="url(#mm)"/>
-      </svg>
-      <div class="tx" style="top:60px"><div class="br">WOMAN GLORY</div><div class="vn" style="font-size:84px">Nocturnal<br/>Fantasy</div><div class="ds">Lembut &amp; misteri</div></div>
+      <img id="i-noche" src="assets/noche_card.jpg" alt=""/>
+      <div class="tx"><div class="br">FRESCURA BODY</div><div class="vn" style="font-style:normal;letter-spacing:.12em">NOCHE</div><div class="sb">Midnight Fantasy</div><div class="ds">Lembut &amp; misteri</div></div>
     </div>
   </div>
-  <video id="v-palm" class="b clip" src="assets/palm.mp4" muted playsinline data-start="20.5" data-duration="5.6" data-media-start="0" data-track-index="2"
-         style="left:610px;top:320px;width:400px;height:470px;z-index:3;border-radius:0 40px 40px 0"></video>
 
   <!-- ============ S7 ROUTINE 26.08–27.74 ============ -->
-  <video id="v-lather" class="b clip" src="assets/lather.mp4" muted playsinline data-start="26.08" data-duration="5.42" data-media-start="0" data-track-index="2"
+  <video id="v-lather" class="b clip" src="assets/lather.mp4" muted playsinline data-start="26.08" data-duration="1.68" data-media-start="0" data-track-index="2"
          style="left:0;top:0;width:1080px;height:1920px;z-index:2"></video>
+  <img id="i-flat" class="b clip" src="assets/flatlay_1080.jpg" alt="" data-start="27.74" data-duration="3.76" data-track-index="2"
+         style="left:0;top:0;width:1080px;height:1920px;z-index:2"/>
   <div id="s7" class="scene clip" data-start="26.08" data-duration="1.68" data-track-index="3" style="z-index:4">
     <div class="abs" style="inset:0;background:rgba(21,6,8,.42)"></div>
     <div id="s7-a" class="abs center serif it" style="top:560px;font-size:130px;font-weight:500">Rutin kecil.</div>
@@ -232,7 +231,7 @@
 
   <!-- ============ S8 STOCK 27.74–31.48 ============ -->
   <div id="s8" class="scene clip" data-start="27.74" data-duration="3.76" data-track-index="3" style="z-index:4">
-    <div id="s8-dim" class="abs" style="inset:0;background:rgba(21,6,8,.72)"></div>
+    <div id="s8-dim" class="abs" style="inset:0;background:linear-gradient(180deg,rgba(21,6,8,.88) 0%,rgba(21,6,8,.72) 45%,rgba(21,6,8,.9) 100%)"></div>
     <div id="s8-eb" class="abs center" style="top:300px;font:800 26px/1 var(--sans);letter-spacing:.4em;color:#FF7A86"><span class="dot-live" id="s8-dot"></span>LIMITED BATCH</div>
     <div id="s8-a" class="abs center serif" style="top:370px;font-size:150px;font-weight:500">Stok</div>
     <div id="s8-b" data-layout-allow-occlusion class="abs center serif it gold-text" style="top:540px;font-size:210px;font-weight:500;line-height:1.05">terhad</div>
@@ -259,15 +258,14 @@
     </svg>
     <div id="s9-btn" class="pill-gold" style="left:180px;top:900px;width:720px;text-align:center">CHECKOUT SEKARANG</div>
     <!-- end card -->
-    <div id="s9-brand" class="abs center serif" style="white-space:nowrap;top:200px;font-size:132px;font-weight:500;letter-spacing:.1em;padding-left:.1em"></div>
-    <div id="s9-body" class="abs center" style="top:362px;font:700 26px/1 var(--sans);letter-spacing:1.1em;padding-left:1.1em;color:var(--gold-lt)">BODY</div>
-    <div id="s9-archline" class="archline" style="left:286px;top:436px;width:508px;height:688px"></div>
+    <img id="s9-logo" class="abs" src="assets/logo.png" alt="FRESCURA BODY" style="left:240px;top:150px;width:600px;height:423px;mix-blend-mode:screen"/>
+    <div id="s9-archline" class="archline" style="left:306px;top:556px;width:468px;height:588px"></div>
     <div id="s9-tag" class="abs center" style="top:1170px;font:700 26px/1 var(--sans);letter-spacing:.34em;padding-left:.34em;color:var(--gold-lt)">OCEAN SALT · FOAMING BODY SHOWER</div>
-    <div id="s9-vars" class="abs center serif it" style="top:1225px;font-size:46px;color:var(--ivory)">Bombshell &nbsp;·&nbsp; Nocturnal Fantasy</div>
+    <div id="s9-vars" class="abs center serif it" style="top:1225px;font-size:46px;color:var(--ivory)">Bombshell &nbsp;·&nbsp; Noche Midnight Fantasy</div>
     <div id="s9-cta" class="abs" style="left:290px;top:1420px;width:500px;padding:26px 0;border-radius:999px;background:#FFC52E;color:#2A1408;text-align:center;font:800 32px/1 var(--sans);letter-spacing:.16em">CHECKOUT SEKARANG</div>
   </div>
-  <video id="v-hero2" class="b clip" src="assets/hero.mp4" muted playsinline data-start="33.1" data-duration="3.4" data-media-start="0.6" data-track-index="2"
-         style="left:300px;top:450px;width:480px;height:660px;z-index:3;border-radius:240px 240px 22px 22px"></video>
+  <img id="v-hero2" class="b clip" src="assets/pedestal.jpg" alt="" data-start="33.1" data-duration="3.4" data-track-index="2"
+         style="left:320px;top:570px;width:440px;height:560px;z-index:3;border-radius:220px 220px 22px 22px;object-position:50% 52%"/>
 
   <!-- ============ persistent layers ============ -->
   <div id="brandmark" data-layout-ignore><span class="n">FRESCURA</span><span class="s">BODY</span></div>
@@ -294,7 +292,7 @@
     '#s2-eb','#s2-t','#s2-st','#s2-sun','#s2-st1','#s2-st2','#s2-st3','#s3-eb','#s3-t','#s3-mg','#s3-ca','#s3-o1','#s3-o2','#s3-l1','#s3-l2',
     '#s4-body','#s4-archline','#s4-c1','#s4-c2','#s4-plus','#s4-res','#v-hero','#s5-one','#s5-pump','#s5-eq','#s5-chip',
     '#s6-eb','#s7-a','#s7-b','#s8-eb','#s8-a','#s8-b','#s8-ml','#s8-mr','#s8-btn','#s8-c1','#s8-c2','#s8-c3',
-    '#s9-q','#s9-bag','#s9-btn','#s9-body','#s9-archline','#s9-tag','#s9-vars','#s9-cta','#v-hero2','#s9-r1','#s9-r2'],{opacity:0});
+    '#s9-q','#s9-bag','#s9-btn','#s9-logo','#s9-archline','#s9-tag','#s9-vars','#s9-cta','#v-hero2','#s9-r1','#s9-r2'],{opacity:0});
   gsap.set('#s3-line',{scaleX:0});
 
   // ---------- global: background colours per scene, caption/brand theme ----------
@@ -400,8 +398,8 @@
   tl.to('#s3',{opacity:0,filter:'blur(12px)',duration:.18},13.58);
 
   // ---------- S4 BRAND ----------
-  const bw=$('#s4-brand'), bw2=$('#s9-brand');
-  'FRESCURA'.split('').forEach(c=>{[bw,bw2].forEach(p=>{const s=document.createElement('span');s.className='ltr';s.textContent=c;s.style.opacity='0';p.appendChild(s)})});
+  const bw=$('#s4-brand');
+  'FRESCURA'.split('').forEach(c=>{const s=document.createElement('span');s.className='ltr';s.textContent=c;s.style.opacity='0';bw.appendChild(s)});
   tl.fromTo('#s4-brand .ltr',{opacity:0,y:60,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.5,ease:'power3.out',stagger:.05,immediateRender:false},13.78);
   tl.fromTo('#s4-brand .ltr',{x:i=>(i-3.5)*46},{x:0,duration:1.2,ease:'expo.out',immediateRender:false},13.78);
   rise('#s4-body',14.25,{y:16,b:6});
@@ -430,7 +428,7 @@
 
   // ---------- S6 VARIANTS ----------
   rise('#s6-eb',20.52,{y:20});
-  tl.fromTo(['#s6-a','#v-palm'],{x:-1100,rotation:-4},{x:0,rotation:0,duration:.6,ease:'expo.out',immediateRender:false},20.5);
+  tl.fromTo('#s6-a',{x:-1100,rotation:-4},{x:0,rotation:0,duration:.6,ease:'expo.out',immediateRender:false},20.5);
   tl.fromTo('#s6-a .tx > *',{opacity:0,y:30},{opacity:1,y:0,duration:.4,stagger:.12,ease:'power3.out',immediateRender:false},20.9);
   const pt=$('#s6-petals');
   for(let i=0;i<12;i++){const x=R()*560, at=20.6+R()*1.2, d=2.4+R()*1.8;
@@ -440,12 +438,13 @@
   tl.fromTo('#s6-b',{x:1100,rotation:4},{x:0,rotation:0,duration:.6,ease:'expo.out',immediateRender:false},23.0);
   tl.fromTo('#s6-b .tx > *',{opacity:0,y:30},{opacity:1,y:0,duration:.4,stagger:.12,ease:'power3.out',immediateRender:false},23.3);
   const stars=$('#s6-stars');
-  for(let i=0;i<26;i++){const e=mk(stars,'star',{left:(R()*940)+'px',top:(R()*470)+'px',opacity:0});
+  for(let i=0;i<26;i++){const e=mk(stars,'star',{left:(R()*500)+'px',top:(R()*470)+'px',opacity:0});
     const s=.6+R()*1.4; tl.fromTo(e,{opacity:0,scale:s*.5},{opacity:.95,scale:s,duration:.5+R()*.5,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},23.2+R()*.8);}
-  tl.fromTo('#s6-moon',{opacity:0,rotation:-30,scale:.7},{opacity:1,rotation:0,scale:1,duration:.9,ease:'expo.out',immediateRender:false},23.3);
-  tl.to(['#s6-a','#v-palm'],{opacity:.5,scale:.96,duration:.4},23.1);
+  tl.fromTo('#i-bomb',{scale:1.18},{scale:1,duration:5.4,ease:'power1.out',immediateRender:false},20.5);
+  tl.fromTo('#i-noche',{scale:1.18},{scale:1,duration:3.0,ease:'power1.out',immediateRender:false},23.0);
+  tl.to('#s6-a',{opacity:.5,scale:.96,duration:.4},23.1);
   tl.to('#s6-b',{boxShadow:'0 0 90px rgba(120,80,200,.55)',duration:.6,yoyo:true,repeat:1},24.9);
-  tl.to(['#s6-a','#s6-b','#v-palm','#s6-eb'],{opacity:0,y:-60,duration:.22,ease:'power2.in'},25.86);
+  tl.to(['#s6-a','#s6-b','#s6-eb'],{opacity:0,y:-60,duration:.22,ease:'power2.in'},25.86);
 
   // ---------- S7 ROUTINE ----------
   tl.fromTo('#v-lather',{scale:1.18},{scale:1.02,duration:1.7,ease:'power2.out',immediateRender:false},26.08);
@@ -453,7 +452,7 @@
   tl.fromTo('#s7-b',{opacity:0,y:50,filter:'blur(16px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.5,ease:'power3.out',immediateRender:false},26.96);
 
   // ---------- S8 STOCK ----------
-  tl.fromTo('#v-lather',{filter:'blur(0px) brightness(1)'},{filter:'blur(16px) brightness(.8)',duration:.4,immediateRender:false},27.7);
+  tl.fromTo('#i-flat',{scale:1.16},{scale:1.0,duration:3.76,ease:'power1.out',immediateRender:false},27.74);
   tl.fromTo('#s8-dim',{opacity:0},{opacity:1,duration:.3,immediateRender:false},27.74);
   rise('#s8-eb',27.78,{y:20}); rise('#s8-a',27.82,{y:50,b:16});
   tl.fromTo('#s8-dot',{boxShadow:'0 0 0 0 rgba(255,59,78,.7)'},{boxShadow:'0 0 0 18px rgba(255,59,78,0)',duration:.6,repeat:5,ease:'power1.out',immediateRender:false},27.8);
@@ -474,10 +473,10 @@
   tl.fromTo('#s9-btn',{opacity:0,y:50,scale:.8},{opacity:1,y:0,scale:1,duration:.45,ease:'back.out(2)',immediateRender:false},32.1);
   tl.to('#s9-btn',{scale:1.05,duration:.2,yoyo:true,repeat:1},32.6);
   tl.to(['#s9-q','#s9-bag','#s9-btn'],{opacity:0,y:-80,filter:'blur(10px)',duration:.25,ease:'power2.in',stagger:.04},32.95);
-  tl.fromTo('#s9-brand .ltr',{opacity:0,y:60,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.5,ease:'power3.out',stagger:.05,immediateRender:false},33.2);
-  tl.fromTo('#s9-brand .ltr',{x:i=>(i-3.5)*46},{x:0,duration:1.2,ease:'expo.out',immediateRender:false},33.2);
-  rise('#s9-body',33.6,{y:16,b:6});
+  tl.fromTo('#s9-logo',{opacity:0,scale:.82,filter:'blur(18px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.9,ease:'expo.out',immediateRender:false},33.2);
+  tl.to('#s9-logo',{scale:1.04,duration:3,ease:'sine.inOut'},34.1);
   tl.fromTo('#v-hero2',{opacity:0,y:120,scale:.9},{opacity:1,y:0,scale:1,duration:.8,ease:'expo.out',immediateRender:false},33.15);
+  tl.fromTo('#v-hero2',{objectPosition:'50% 46%'},{objectPosition:'50% 56%',duration:3.3,ease:'none',immediateRender:false},33.15);
   tl.fromTo('#s9-archline',{opacity:0,scale:1.08},{opacity:1,scale:1,duration:.9,ease:'expo.out',immediateRender:false},33.35);
   rise('#s9-tag',33.8,{y:20}); rise('#s9-vars',34.05,{y:20});
   pop('#s9-cta',34.3,{s:.6});
