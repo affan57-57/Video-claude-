@@ -44,7 +44,7 @@ for i, v in enumerate(blk):
     cur += (tgt - cur) * (0.25 if tgt > cur else 0.03); g[i] = cur
 duck = np.repeat(g, h)[:len(voice)]
 mgain = 10 ** (-17 / 20) * (1 - duck * (1 - 10 ** (-9 / 20)))      # bed -17 dB, ducks a further 9 dB under voice
-end = int(30.2 * SR); fade = np.ones(len(voice)); fade[end:] = np.linspace(1, 0, len(voice) - end) ** 1.5
+end = int(22.95 * SR); fade = np.ones(len(voice)); fade[end:] = np.linspace(1, 0, len(voice) - end) ** 1.5
 mix = st(voice) * 1.0 + sfx + music * (mgain * fade)[:, None]
 sf.write(f"{W}/premaster.wav", mix.astype(np.float32), SR, subtype="FLOAT")
 ff(["-i", f"{W}/premaster.wav", "-af", "loudnorm=I=-12:TP=-1.2:LRA=8:linear=false,alimiter=limit=0.89:attack=3:release=60:level=false,aresample=48000",
