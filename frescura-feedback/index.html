@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Bodoni"; font-weight: 400; font-style: normal; src: url("assets/bodoni-moda-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Bodoni"; font-weight: 400; font-style: italic; src: url("assets/bodoni-moda-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Bodoni"; font-weight: 500; font-style: normal; src: url("assets/bodoni-moda-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Bodoni"; font-weight: 500; font-style: italic; src: url("assets/bodoni-moda-latin-500-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 400; src: url("assets/outfit-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 500; src: url("assets/outfit-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 600; src: url("assets/outfit-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Outfit"; font-weight: 700; src: url("assets/outfit-latin-700-normal.woff2") format("woff2"); }
+      :root {
+        --ivory: #f4eee4;
+        --ink: #17110e;
+        --gold: #d2ae76;
+        --gold-deep: #a47e45;
+        --rose: #a51f2b;
+        --serif: "Bodoni", "Didot", serif;
+        --sans: "Outfit", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); font-family: var(--sans); color: var(--ivory); }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+      .scene { overflow: hidden; }
+      .fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .abs { position: absolute; }
+      .kicker { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: 0.42em; text-transform: uppercase; }
+      .serif { font-family: var(--serif); }
+      .mask { display: block; overflow: hidden; padding: 0.08em 0.06em 0.16em; margin: -0.08em -0.06em -0.16em; }
+      .mask > span { display: inline-block; will-change: transform; }
+
+      /* captions */
+      .cap { position: absolute; left: 70px; right: 70px; top: 1290px; text-align: center; font-family: var(--sans); font-weight: 600; font-size: 70px; line-height: 1.16; letter-spacing: -0.005em; opacity: 0; }
+      .cap .w { display: inline-block; margin: 0 0.12em; }
+      .cap em { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.14em; color: var(--gold); letter-spacing: 0; }
+      .cap.light { color: #fff; text-shadow: 0 4px 26px rgba(0, 0, 0, 0.75), 0 1px 3px rgba(0, 0, 0, 0.6); }
+      .cap.dark { color: var(--ink); }
+      .cap.dark em { color: var(--gold-deep); }
+
+      /* S1 */
+      #s1 .shade { background: linear-gradient(180deg, rgba(23, 17, 14, 0.9) 0%, rgba(23, 17, 14, 0.62) 45%, rgba(23, 17, 14, 0.93) 100%); }
+      #hook { left: 0; right: 0; top: 470px; text-align: center; }
+      #hook .l1 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 168px; line-height: 1; color: var(--ivory); }
+      #hook .l2 { font-family: var(--sans); font-weight: 700; font-size: 150px; line-height: 1.05; letter-spacing: 0.1em; color: var(--gold); margin-top: 6px; padding-left: 0.1em; }
+      #hook .l3 { margin-top: 44px; color: var(--ivory); font-size: 34px; }
+      #hook .l4 { font-family: var(--serif); font-weight: 500; font-size: 92px; letter-spacing: 0.06em; margin-top: 18px; }
+      #ring { left: 90px; top: 330px; width: 900px; height: 900px; }
+      .arch { position: absolute; overflow: hidden; border-radius: 999px 999px 26px 26px; background: #000; }
+      .arch-line { position: absolute; border: 2px solid var(--gold); border-radius: 999px 999px 34px 34px; }
+      #arch1 { left: 190px; top: 250px; width: 700px; height: 980px; opacity: 0; }
+      #arch1line { left: 166px; top: 226px; width: 748px; height: 1028px; opacity: 0; }
+      #wave { left: 0; right: 0; top: 1500px; height: 90px; display: flex; justify-content: center; align-items: center; gap: 9px; }
+      #wave i { display: block; width: 6px; height: 80px; border-radius: 3px; background: var(--gold); transform: scaleY(0.15); }
+      #wipe { background: var(--ivory); }
+
+      /* S2 */
+      #s2 .grad { background: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0.72) 100%); }
+      .frame { position: absolute; inset: 30px; border: 1.5px solid rgba(244, 238, 228, 0.6); border-radius: 30px; }
+      #chip { left: 70px; top: 150px; display: flex; align-items: center; gap: 18px; padding: 20px 34px; border-radius: 999px; background: rgba(244, 238, 228, 0.94); color: var(--ink); font-weight: 600; font-size: 28px; letter-spacing: 0.26em; }
+      #chip b { width: 16px; height: 16px; border-radius: 50%; background: var(--rose); display: block; }
+      .big { position: absolute; font-family: var(--serif); font-style: italic; font-weight: 500; color: #fff; line-height: 1; text-shadow: 0 6px 40px rgba(0, 0, 0, 0.6); opacity: 0; }
+      #wangi { left: 70px; top: 930px; font-size: 250px; }
+      #tally { left: 84px; top: 1200px; display: flex; align-items: center; gap: 22px; opacity: 0; }
+      #tally .d { width: 76px; height: 76px; border-radius: 50%; border: 2.5px solid var(--gold); display: flex; align-items: center; justify-content: center; }
+      #tally .d i { width: 76px; height: 76px; border-radius: 50%; background: var(--gold); display: block; transform: scale(0); }
+      #tally .t { font-weight: 600; font-size: 40px; letter-spacing: 0.24em; margin-left: 12px; color: #fff; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7); opacity: 0; }
+      #pip { left: 70px; top: 270px; width: 380px; height: 540px; border: 3px solid var(--gold); opacity: 0; }
+      #lembut { left: 70px; top: 900px; font-size: 220px; }
+      #licin { left: 70px; top: 1120px; font-size: 220px; color: #ecd3a6; }
+
+      /* S3 */
+      #s3 { background: var(--ivory); color: var(--ink); }
+      #eduk { left: 0; right: 0; top: 190px; text-align: center; color: var(--gold-deep); }
+      #edut { left: 0; right: 0; top: 250px; text-align: center; font-family: var(--serif); font-size: 104px; line-height: 1.05; }
+      #edut em { font-style: italic; }
+      #arch3 { left: 220px; top: 570px; width: 640px; height: 960px; }
+      #arch3line { left: 196px; top: 546px; width: 688px; height: 1008px; border-color: var(--gold-deep); }
+      .pill { position: absolute; display: flex; align-items: center; gap: 20px; padding: 22px 38px 22px 24px; border-radius: 999px; background: var(--ink); color: var(--ivory); font-weight: 600; font-size: 44px; box-shadow: 0 18px 50px rgba(23, 17, 14, 0.28); opacity: 0; }
+      .pill b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; color: var(--ink); background: var(--gold); width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+      #pl1 { left: 60px; top: 760px; }
+      #pl2 { right: 60px; top: 1010px; }
+      #pl3 { left: 60px; top: 1260px; }
+
+      /* S4 */
+      #s4a .shade { background: linear-gradient(180deg, rgba(23, 17, 14, 0.5) 0%, rgba(23, 17, 14, 0) 22%, rgba(23, 17, 14, 0) 48%, rgba(23, 17, 14, 0.9) 78%, rgba(23, 17, 14, 0.94) 100%); }
+      .tag { position: absolute; display: flex; flex-direction: column; gap: 10px; opacity: 0; padding: 26px 34px; border-radius: 26px; background: rgba(23, 17, 14, 0.86); }
+      .tag .n { font-family: var(--serif); font-size: 54px; letter-spacing: 0.08em; color: #fff; }
+      .tag .s { font-weight: 500; font-size: 24px; letter-spacing: 0.34em; color: var(--gold); }
+      .tag .ln { height: 2px; width: 100%; background: var(--gold); transform-origin: left center; }
+      #tag1 { left: 60px; top: 250px; }
+      #tag2 { right: 60px; top: 480px; align-items: flex-end; text-align: right; }
+      #tag2 .ln { transform-origin: right center; }
+      #s4b { background: var(--ink); }
+      #s4b video { opacity: 0.3; }
+      #s4b .shade { background: radial-gradient(circle at 50% 45%, rgba(23, 17, 14, 0.35) 0%, rgba(23, 17, 14, 0.94) 75%); }
+      .blk { position: absolute; left: 0; right: 0; text-align: center; opacity: 0; }
+      #stok { top: 560px; }
+      #stok .k { color: var(--gold); }
+      #stok .h { font-family: var(--serif); font-size: 190px; line-height: 1; margin-top: 30px; }
+      #stok .h em { font-style: italic; }
+      #stok .bar { width: 760px; height: 14px; border-radius: 7px; background: rgba(244, 238, 228, 0.16); margin: 70px auto 0; overflow: hidden; }
+      #stok .bar i { display: block; width: 100%; height: 100%; background: var(--gold); transform-origin: left center; border-radius: 7px; }
+      #stok .lab { display: flex; justify-content: space-between; width: 760px; margin: 22px auto 0; font-size: 26px; letter-spacing: 0.3em; font-weight: 500; color: rgba(244, 238, 228, 0.75); }
+      #co { top: 690px; }
+      #cobtn { display: inline-flex; align-items: center; gap: 26px; padding: 50px 76px; border-radius: 999px; background: var(--gold); color: var(--ink); font-weight: 700; font-size: 62px; letter-spacing: 0.12em; position: relative; }
+      #cobtn .rp { position: absolute; left: 50%; top: 50%; width: 200px; height: 200px; margin: -100px; border-radius: 50%; border: 4px solid var(--ivory); opacity: 0; }
+      #co .sub { font-family: var(--serif); font-style: italic; font-size: 76px; margin-top: 56px; }
+      #beg { top: 500px; }
+      #begico { width: 330px; height: 330px; border-radius: 50%; background: #f6c63c; margin: 0 auto; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 120px rgba(246, 198, 60, 0.45); }
+      #begico .rp { position: absolute; inset: 0; border-radius: 50%; border: 4px solid #f6c63c; opacity: 0; }
+      #beg .h { font-family: var(--serif); font-size: 120px; line-height: 1.05; margin-top: 64px; }
+      #beg .h em { font-style: italic; color: #f6c63c; }
+      #harga { top: 520px; }
+      #ticket { width: 800px; margin: 0 auto; background: var(--ivory); color: var(--ink); border-radius: 34px; padding: 62px 40px 56px; position: relative; }
+      #ticket:before, #ticket:after { content: ""; position: absolute; top: 50%; width: 56px; height: 56px; margin-top: -28px; border-radius: 50%; background: var(--ink); }
+      #ticket:before { left: -28px; } #ticket:after { right: -28px; }
+      #ticket .k { color: var(--gold-deep); font-size: 28px; }
+      #ticket .p { font-family: var(--serif); font-size: 210px; line-height: 1; margin-top: 26px; display: flex; justify-content: center; align-items: baseline; gap: 18px; }
+      #ticket .p small { font-family: var(--sans); font-weight: 600; font-size: 70px; }
+      #ticket .p .dg { display: inline-block; width: 0.62em; height: 1em; overflow: hidden; position: relative; }
+      #ticket .p .dg span { display: block; height: 1em; line-height: 1em; }
+      #harga .h { font-family: var(--serif); font-style: italic; font-size: 82px; margin-top: 60px; }
+
+      /* S5 */
+      #s5 { background: #000; }
+      #logo { left: 40px; top: 400px; width: 1000px; height: 1000px; opacity: 0; }
+      #endk { left: 0; right: 0; top: 1330px; text-align: center; color: var(--gold); opacity: 0; }
+      #endh { left: 0; right: 0; top: 1400px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 84px; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="31.89" data-width="1080" data-height="1920" data-fps="30">
+      <audio id="master" src="assets/master.wav" data-start="0" data-duration="31.89" data-track-index="9" data-volume="1"></audio>
+
+      <!-- S1 HOOK -->
+      <div id="s1" class="clip scene" data-start="0" data-duration="5.9" data-track-index="0">
+        <img id="s1img" class="fill" src="assets/product.jpg" alt="" />
+        <div class="abs fill shade"></div>
+        <svg id="ring" class="abs" viewBox="0 0 900 900"><circle id="ringc" cx="450" cy="450" r="440" fill="none" stroke="#d2ae76" stroke-width="2" stroke-dasharray="2765" stroke-dashoffset="2765" transform="rotate(-90 450 450)" /></svg>
+        <div id="hook" class="abs">
+          <div class="l1"><span class="mask"><span>Pengalaman</span></span></div>
+          <div class="l2"><span class="mask"><span>SEBENAR</span></span></div>
+          <div class="l3 kicker"><span class="mask"><span>pengguna</span></span></div>
+          <div class="l4"><span class="mask"><span>FRESCURA BODY?</span></span></div>
+        </div>
+        <div id="arch1line" class="arch-line"></div>
+        <div id="arch1" class="arch">
+          <video id="v_press" class="fill" src="assets/p_press.mp4" muted playsinline data-start="2.25" data-duration="3.65" data-track-index="1"></video>
+        </div>
+        <div id="wave" class="abs"></div>
+        <div id="wipe" class="abs fill"></div>
+      </div>
+
+      <!-- S2 FEEDBACK -->
+      <div id="s2" class="clip scene" data-start="5.717" data-duration="11.2" data-track-index="2">
+        <div id="fbwrap" class="abs fill">
+          <video id="v_fb" class="fill" src="assets/fb.mp4" muted playsinline data-start="5.717" data-duration="11.06" data-track-index="3"></video>
+        </div>
+        <div class="abs fill grad"></div>
+        <div class="frame"></div>
+        <div id="chip" class="abs"><b></b><span>REAKSI SEBENAR</span></div>
+        <div id="wangi" class="big">Wangi.</div>
+        <div id="tally" class="abs"><div class="d"><i></i></div><div class="d"><i></i></div><div class="d"><i></i></div><div class="t">3 / 3 WANGI</div></div>
+        <div id="pip" class="arch">
+          <video id="v_lather" class="fill" src="assets/p_lather.mp4" muted playsinline data-start="13.9" data-duration="3.0" data-track-index="4"></video>
+        </div>
+        <div id="lembut" class="big">Lembut.</div>
+        <div id="licin" class="big">Licin.</div>
+      </div>
+
+      <!-- S3 EDU -->
+      <div id="s3" class="clip scene" data-start="16.892" data-duration="3.56" data-track-index="5">
+        <div id="eduk" class="abs kicker">Kenapa ramai suka</div>
+        <div id="edut" class="abs"><span class="mask"><span>Foam halus,</span></span><span class="mask"><span><em>terus dari pam.</em></span></span></div>
+        <div id="arch3line" class="arch-line"></div>
+        <div id="arch3" class="arch">
+          <video id="v_top" class="fill" src="assets/p_top.mp4" muted playsinline data-start="16.892" data-duration="3.56" data-track-index="6"></video>
+        </div>
+        <div id="pl1" class="pill"><b>1</b>Ocean Salt</div>
+        <div id="pl2" class="pill"><b>2</b>Aromatherapy</div>
+        <div id="pl3" class="pill"><b>3</b>Gentle Foaming</div>
+      </div>
+
+      <!-- S4a PRODUCT -->
+      <div id="s4a" class="clip scene" data-start="20.442" data-duration="2.5" data-track-index="0">
+        <img id="s4img" class="fill" src="assets/product.jpg" alt="" />
+        <div class="abs fill shade"></div>
+        <div id="tag1" class="tag"><div class="n">NOCHE</div><div class="ln"></div><div class="s">MIDNIGHT FANTASY</div></div>
+        <div id="tag2" class="tag"><div class="n">WOMAN GLORY</div><div class="ln"></div><div class="s">BOMBSHELL</div></div>
+      </div>
+
+      <!-- S4b CTA -->
+      <div id="s4b" class="clip scene" data-start="22.879" data-duration="6.6" data-track-index="2">
+        <video id="v_hand" class="fill" src="assets/p_hand.mp4" muted playsinline data-start="22.879" data-duration="4.9" data-track-index="1"></video>
+        <div class="abs fill shade"></div>
+        <div id="stok" class="blk">
+          <div class="kicker k">Jangan sampai terlepas</div>
+          <div class="h">Stok <em>terhad.</em></div>
+          <div class="bar"><i id="stokbar"></i></div>
+          <div class="lab"><span>STOK</span><span>MAKIN SIKIT</span></div>
+        </div>
+        <div id="co" class="blk">
+          <div id="cobtn"><span>CHECK OUT</span><span class="rp"></span></div>
+          <div class="sub">sekarang.</div>
+        </div>
+        <div id="beg" class="blk">
+          <div id="begico"><span class="rp"></span>
+            <svg width="170" height="170" viewBox="0 0 24 24" fill="none" stroke="#17110e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></svg>
+          </div>
+          <div class="h">Tekan <em>beg kuning</em></div>
+        </div>
+        <div id="harga" class="blk">
+          <div id="ticket">
+            <div class="kicker k">Harga dari TikTok</div>
+            <div class="p"><small>RM</small><span class="dg"><span id="dg1">8<br />3<br />6<br />1<br />9<br />4<br />?</span></span><span class="dg"><span id="dg2">2<br />7<br />5<br />0<br />8<br />3<br />?</span></span></div>
+          </div>
+          <div class="h">Tengok sendiri.</div>
+        </div>
+      </div>
+
+      <!-- S5 END -->
+      <div id="s5" class="clip scene" data-start="29.441" data-duration="2.449" data-track-index="0">
+        <img id="logo" class="abs" src="assets/logo.jpg" alt="" />
+        <div id="endk" class="abs kicker">Check out sekarang</div>
+        <div id="endh" class="abs">Tekan beg kuning.</div>
+      </div>
+
+      <div id="caps" class="clip" data-start="0" data-duration="31.89" data-track-index="8" style="pointer-events: none"></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const T = { A1: [0.35, 2.283], A2: [2.383, 3.334], A3: [3.434, 5.567], FS: 5.717, F1: [5.717, 8.247], F2: [8.247, 11.911], F3: [11.911, 13.946], F4: [13.946, 16.842], ES: 16.892, C1: [20.442, 22.779], C2: [22.879, 25.364], C3: [25.504, 26.292], C4: [26.392, 27.314], C5: [27.454, 29.291], EN: 29.441 };
+      const E = "power4.out";
+
+      /* ---------- captions ---------- */
+      const capsEl = document.getElementById("caps");
+      function cap(t0, t1, html, tone, top) {
+        const d = document.createElement("div");
+        d.className = "cap " + (tone || "light");
+        if (top) d.style.top = top + "px";
+        d.innerHTML = html.split(" | ").map((line) => line.split(" ").map((w) => '<span class="w">' + w.replace(/_/g, " ") + "</span>").join("")).join("<br>");
+        capsEl.appendChild(d);
+        const ws = d.querySelectorAll(".w");
+        const st = Math.min(0.09, ((t1 - t0) * 0.55) / ws.length);
+        tl.set(d, { opacity: 1 }, t0);
+        tl.fromTo(ws, { opacity: 0, y: 34, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.26, ease: E, stagger: st }, t0);
+        tl.to(d, { opacity: 0, y: -16, duration: 0.12, ease: "power2.in" }, t1 - 0.12);
+      }
+
+      /* ---------- S1 hook ---------- */
+      tl.fromTo("#s1img", { scale: 1.22 }, { scale: 1.04, duration: 5.9, ease: "none" }, 0);
+      tl.to("#ringc", { strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut" }, 0.05);
+      tl.fromTo("#ring", { rotation: -20, scale: 0.9 }, { rotation: 0, scale: 1, duration: 2.3, ease: "power2.out" }, 0.05);
+      tl.fromTo("#hook .l1 .mask > span", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: E }, 0.2);
+      tl.fromTo("#hook .l2 .mask > span", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: E }, 0.78);
+      tl.fromTo("#hook .l2", { letterSpacing: "0.3em" }, { letterSpacing: "0.1em", duration: 1.1, ease: "power3.out" }, 0.78);
+      tl.fromTo("#hook .l3 .mask > span", { yPercent: 115 }, { yPercent: 0, duration: 0.4, ease: E }, 1.22);
+      tl.fromTo("#hook .l4 .mask > span", { yPercent: 115 }, { yPercent: 0, duration: 0.5, ease: E }, 1.5);
+      tl.to("#hook", { y: -90, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power2.in" }, T.A2[0] - 0.22);
+      tl.to("#ring", { scale: 1.5, opacity: 0, duration: 0.4, ease: "power2.in" }, T.A2[0] - 0.22);
+      // arch b-roll
+      tl.set("#arch1", { opacity: 1 }, T.A2[0] - 0.12);
+      tl.fromTo("#arch1", { yPercent: 115, scale: 0.86 }, { yPercent: 0, scale: 1, duration: 0.6, ease: E }, T.A2[0] - 0.12);
+      tl.fromTo("#arch1line", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, T.A2[0] + 0.12);
+      tl.fromTo("#v_press", { scale: 1.25 }, { scale: 1.05, duration: 3.5, ease: "none" }, T.A2[0] - 0.12);
+      cap(T.A2[0], T.A2[1] + 0.1, "Jangan <em>ke_mana-mana.</em>", "light", 1330);
+      cap(T.A3[0], T.A3[1] + 0.05, "Jom, <em>dengar_sendiri</em> | apa kata mereka.", "light", 1290);
+      // waveform
+      const wave = document.getElementById("wave");
+      for (let i = 0; i < 34; i++) wave.appendChild(document.createElement("i"));
+      tl.fromTo("#wave", { opacity: 0 }, { opacity: 1, duration: 0.2 }, T.A3[0]);
+      wave.querySelectorAll("i").forEach((b, i) => {
+        const a = 0.25 + 0.75 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.45));
+        tl.fromTo(b, { scaleY: 0.12 }, { scaleY: a, duration: 0.16 + (i % 5) * 0.03, ease: "sine.inOut", repeat: 9, yoyo: true }, T.A3[0] + (i % 7) * 0.03);
+      });
+      // wipe to feedback
+      tl.fromTo("#wipe", { yPercent: 100 }, { yPercent: 0, duration: 0.3, ease: "power3.in" }, T.FS - 0.3);
+
+      /* ---------- S2 feedback ---------- */
+      tl.fromTo("#s2", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: E }, T.FS);
+      tl.fromTo("#fbwrap", { scale: 1.18 }, { scale: 1.0, duration: 0.9, ease: "power3.out" }, T.FS);
+      tl.to("#fbwrap", { scale: 1.07, duration: 10, ease: "none" }, T.FS + 0.9);
+      tl.fromTo(".frame", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, T.FS + 0.25);
+      tl.fromTo("#chip", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: E }, T.FS + 0.35);
+      tl.to("#chip b", { opacity: 0.25, duration: 0.4, repeat: 25, yoyo: true, ease: "sine.inOut" }, T.FS + 0.8);
+      cap(T.F1[0] + 0.1, T.F1[1], "Macam mana <em>sabun</em> | yang kakak bagi tu?");
+      // wangi
+      tl.fromTo("#wangi", { opacity: 0, y: 90, scale: 0.8, filter: "blur(18px)", transformOrigin: "0% 100%" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: E }, T.F2[0] + 0.05);
+      tl.fromTo("#tally", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: E }, T.F2[0] + 1.2);
+      [1.55, 2.2, 2.95].forEach((dt, i) => {
+        tl.to("#tally .d:nth-child(" + (i + 1) + ") i", { scale: 0.72, duration: 0.3, ease: "back.out(3)" }, T.F2[0] + dt);
+      });
+      tl.fromTo("#tally .t", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: E }, T.F2[0] + 2.95);
+      cap(T.F2[0] + 2.1, T.F2[1], "<em>Tiga-tiga</em> wangi!", "light", 1330);
+      tl.to(["#wangi", "#tally"], { opacity: 0, x: -50, duration: 0.2, ease: "power2.in" }, T.F2[1] - 0.2);
+      cap(T.F3[0] + 0.05, T.F3[1], "Tangan macam mana? | <em>Kering_tak?</em>");
+      // lembut / licin
+      tl.fromTo("#pip", { opacity: 0, y: 70, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: E }, T.F4[0]);
+      tl.fromTo("#lembut", { opacity: 0, y: 90, filter: "blur(18px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: E }, T.F4[0] + 0.2);
+      tl.fromTo("#licin", { opacity: 0, x: -160, filter: "blur(18px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: E }, T.F4[0] + 1.6);
+      cap(T.F4[0] + 2.3, T.F4[1], "Alhamdulillah.", "light", 1400);
+
+      /* ---------- S3 edu ---------- */
+      tl.fromTo("#s3", { clipPath: "circle(0% at 50% 55%)" }, { clipPath: "circle(120% at 50% 55%)", duration: 0.55, ease: "power3.out" }, T.ES);
+      tl.fromTo("#eduk", { opacity: 0, letterSpacing: "0.8em" }, { opacity: 1, letterSpacing: "0.42em", duration: 0.6, ease: "power3.out" }, T.ES + 0.1);
+      tl.fromTo("#edut .mask > span", { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: E, stagger: 0.12 }, T.ES + 0.2);
+      tl.fromTo("#arch3", { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: E }, T.ES + 0.15);
+      tl.fromTo("#arch3line", { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, T.ES + 0.4);
+      tl.fromTo("#v_top", { scale: 1.2 }, { scale: 1.02, duration: 3.5, ease: "none" }, T.ES);
+      [["#pl1", -80, 0.95], ["#pl2", 80, 1.65], ["#pl3", -80, 2.35]].forEach(([id, x, dt]) => {
+        tl.fromTo(id, { opacity: 0, x: x, scale: 0.8 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, T.ES + dt);
+      });
+
+      /* ---------- S4a product ---------- */
+      tl.fromTo("#s4a", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: E }, T.C1[0] - 0.02);
+      tl.fromTo("#s4img", { scale: 1.02, y: 0 }, { scale: 1.2, y: -40, duration: 2.6, ease: "power1.out" }, T.C1[0]);
+      [["#tag1", 0.35], ["#tag2", 0.75]].forEach(([id, dt]) => {
+        tl.fromTo(id, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, T.C1[0] + dt);
+        tl.fromTo(id + " .ln", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, T.C1[0] + dt + 0.1);
+      });
+      cap(T.C1[0] + 0.05, T.C1[1] + 0.04, "Korang pun boleh | <em>cuba_sendiri.</em>");
+
+      /* ---------- S4b CTA ---------- */
+      tl.fromTo("#s4b", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: E }, T.C2[0] - 0.02);
+      tl.fromTo("#v_hand", { scale: 1.15 }, { scale: 1.0, duration: 5, ease: "none" }, T.C2[0]);
+      tl.fromTo("#stok", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, T.C2[0] + 0.05);
+      tl.fromTo("#stokbar", { scaleX: 1 }, { scaleX: 0.14, duration: 2.0, ease: "steps(9)" }, T.C2[0] + 0.3);
+      tl.to("#stokbar", { backgroundColor: "#c8323c", duration: 0.3 }, T.C2[0] + 1.7);
+      tl.to("#stok", { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, T.C3[0] - 0.2);
+      // check out
+      tl.fromTo("#co", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, T.C3[0] - 0.02);
+      tl.to("#cobtn", { scale: 0.92, duration: 0.08, ease: "power2.in" }, T.C3[0] + 0.28);
+      tl.to("#cobtn", { scale: 1, duration: 0.3, ease: "back.out(3)" }, T.C3[0] + 0.36);
+      tl.fromTo("#cobtn .rp", { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 5, duration: 0.55, ease: "power2.out" }, T.C3[0] + 0.3);
+      tl.to("#co", { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.16, ease: "power2.in" }, T.C4[0] - 0.17);
+      // beg kuning
+      tl.fromTo("#beg", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, T.C4[0] - 0.02);
+      tl.fromTo("#begico", { scale: 0.3, rotation: -25 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.2)" }, T.C4[0] - 0.02);
+      tl.to("#begico", { scale: 0.88, duration: 0.08 }, T.C4[0] + 0.48);
+      tl.to("#begico", { scale: 1, duration: 0.3, ease: "back.out(3)" }, T.C4[0] + 0.56);
+      tl.fromTo("#begico .rp", { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 2.2, duration: 0.55, ease: "power2.out" }, T.C4[0] + 0.5);
+      tl.to("#beg", { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.16, ease: "power2.in" }, T.C5[0] - 0.17);
+      // harga
+      tl.fromTo("#harga", { opacity: 0 }, { opacity: 1, duration: 0.2 }, T.C5[0] - 0.02);
+      tl.fromTo("#ticket", { rotationX: -80, y: 120, transformPerspective: 1200 }, { rotationX: 0, y: 0, duration: 0.55, ease: "back.out(1.4)" }, T.C5[0] - 0.02);
+      tl.fromTo("#dg1", { yPercent: 0 }, { yPercent: -600, duration: 0.95, ease: "power3.out" }, T.C5[0] + 0.1);
+      tl.fromTo("#dg2", { yPercent: 0 }, { yPercent: -600, duration: 1.1, ease: "power3.out" }, T.C5[0] + 0.1);
+      tl.fromTo("#ticket", { scale: 1 }, { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, T.C5[0] + 0.95);
+      tl.fromTo("#harga .h", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, T.C5[0] + 1.0);
+
+      /* ---------- S5 end ---------- */
+      tl.fromTo("#s5", { opacity: 0 }, { opacity: 1, duration: 0.25 }, T.EN - 0.02);
+      tl.fromTo("#logo", { opacity: 0, scale: 0.82, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, T.EN + 0.02);
+      tl.to("#logo", { scale: 1.05, duration: 1.7, ease: "none" }, T.EN + 0.82);
+      tl.fromTo("#endk", { opacity: 0, letterSpacing: "0.9em" }, { opacity: 1, letterSpacing: "0.42em", duration: 0.7, ease: "power3.out" }, T.EN + 0.3);
+      tl.fromTo("#endh", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, T.EN + 0.4);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
