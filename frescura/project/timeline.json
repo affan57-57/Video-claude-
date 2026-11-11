@@ -1,0 +1,728 @@
+{
+ "edl": [
+  {
+   "section": "intro",
+   "src": "main",
+   "src_in": 0.0,
+   "src_out": 1.64,
+   "speed": 1.13,
+   "tl_in": 0.0,
+   "tl_out": 1.451
+  },
+  {
+   "section": "intro",
+   "src": "main",
+   "src_in": 2.2,
+   "src_out": 6.44,
+   "speed": 1.13,
+   "tl_in": 1.451,
+   "tl_out": 5.204
+  },
+  {
+   "section": "testi",
+   "src": "feedback",
+   "src_in": 2.44,
+   "src_out": 6.46,
+   "speed": 1.07,
+   "tl_in": 5.304,
+   "tl_out": 9.061
+  },
+  {
+   "section": "testi",
+   "src": "feedback",
+   "src_in": 6.64,
+   "src_out": 8.9,
+   "speed": 1.07,
+   "tl_in": 9.061,
+   "tl_out": 11.173
+  },
+  {
+   "section": "testi",
+   "src": "feedback",
+   "src_in": 8.98,
+   "src_out": 11.94,
+   "speed": 1.07,
+   "tl_in": 11.173,
+   "tl_out": 13.939
+  },
+  {
+   "section": "testi",
+   "src": "feedback",
+   "src_in": 12.06,
+   "src_out": 16.6,
+   "speed": 1.07,
+   "tl_in": 13.939,
+   "tl_out": 18.182
+  },
+  {
+   "section": "testi",
+   "src": "feedback",
+   "src_in": 16.68,
+   "src_out": 17.9,
+   "speed": 1.07,
+   "tl_in": 18.182,
+   "tl_out": 19.322
+  },
+  {
+   "section": "closing",
+   "src": "main",
+   "src_in": 7.46,
+   "src_out": 9.26,
+   "speed": 1.13,
+   "tl_in": 19.422,
+   "tl_out": 21.015
+  },
+  {
+   "section": "closing",
+   "src": "main",
+   "src_in": 9.42,
+   "src_out": 17.22,
+   "speed": 1.13,
+   "tl_in": 21.015,
+   "tl_out": 27.918
+  }
+ ],
+ "sections": [
+  {
+   "name": "intro",
+   "start": 0.0,
+   "end": 5.204
+  },
+  {
+   "name": "testi",
+   "start": 5.304,
+   "end": 19.322
+  },
+  {
+   "name": "closing",
+   "start": 19.422,
+   "end": 27.918
+  }
+ ],
+ "words": [
+  {
+   "w": "Masih",
+   "s": 0.0,
+   "e": 0.177,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "ragu",
+   "s": 0.177,
+   "e": 0.407,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "-ragu",
+   "s": 0.407,
+   "e": 0.584,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "nak",
+   "s": 0.584,
+   "e": 0.673,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "cuba",
+   "s": 0.673,
+   "e": 0.92,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "first",
+   "s": 0.92,
+   "e": 1.044,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "Cura",
+   "s": 1.044,
+   "e": 1.239,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "Body?",
+   "s": 1.239,
+   "e": 1.398,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "Sebelum",
+   "s": 1.504,
+   "e": 1.929,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "korang",
+   "s": 1.929,
+   "e": 2.23,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "buat",
+   "s": 2.23,
+   "e": 2.336,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "keputusan,",
+   "s": 2.336,
+   "e": 2.85,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "tengok",
+   "s": 2.903,
+   "e": 3.735,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "dulu",
+   "s": 3.735,
+   "e": 3.876,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "apa",
+   "s": 3.876,
+   "e": 4.407,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "kata",
+   "s": 4.407,
+   "e": 4.637,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "pelanggan",
+   "s": 4.637,
+   "e": 4.991,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "kami.",
+   "s": 4.991,
+   "e": 5.15,
+   "section": "intro",
+   "src": "main"
+  },
+  {
+   "w": "apa",
+   "s": 5.36,
+   "e": 5.864,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "pengalaman",
+   "s": 5.864,
+   "e": 6.313,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "yang",
+   "s": 6.313,
+   "e": 6.406,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "kau",
+   "s": 6.406,
+   "e": 6.537,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "rasa",
+   "s": 6.537,
+   "e": 6.836,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "lah",
+   "s": 6.836,
+   "e": 7.042,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "daripada",
+   "s": 7.042,
+   "e": 7.304,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "testing",
+   "s": 7.304,
+   "e": 7.621,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "yang",
+   "s": 7.621,
+   "e": 7.808,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "kami",
+   "s": 7.808,
+   "e": 7.92,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "bagi",
+   "s": 7.92,
+   "e": 8.163,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "tu,",
+   "s": 8.163,
+   "e": 8.219,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "rasa",
+   "s": 8.332,
+   "e": 8.537,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "apa",
+   "s": 8.537,
+   "e": 8.874,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "tu?",
+   "s": 8.874,
+   "e": 9.023,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Rasa",
+   "s": 9.135,
+   "e": 9.565,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "lembut,",
+   "s": 9.565,
+   "e": 10.201,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "wangi.",
+   "s": 10.201,
+   "e": 11.098,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Memang",
+   "s": 11.229,
+   "e": 11.64,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "lembut",
+   "s": 11.64,
+   "e": 11.92,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "dan",
+   "s": 11.92,
+   "e": 11.958,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "wangi",
+   "s": 11.958,
+   "e": 12.163,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "lah,",
+   "s": 12.163,
+   "e": 12.294,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "tak",
+   "s": 12.313,
+   "e": 12.406,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "tipu.",
+   "s": 12.406,
+   "e": 12.743,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Betul",
+   "s": 13.042,
+   "e": 13.472,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "ke",
+   "s": 13.472,
+   "e": 13.547,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "kau",
+   "s": 13.547,
+   "e": 13.696,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "ni?",
+   "s": 13.696,
+   "e": 13.883,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Ya,",
+   "s": 13.995,
+   "e": 14.275,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "betul.",
+   "s": 14.294,
+   "e": 14.537,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Sangat",
+   "s": 14.537,
+   "e": 14.892,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "-sangat",
+   "s": 14.892,
+   "e": 15.304,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "lembut,",
+   "s": 15.304,
+   "e": 15.659,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "wangi",
+   "s": 15.659,
+   "e": 16.014,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "dan",
+   "s": 16.014,
+   "e": 16.238,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "harumat",
+   "s": 16.238,
+   "e": 17.341,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "yang",
+   "s": 17.341,
+   "e": 17.378,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "menyegarkan",
+   "s": 17.378,
+   "e": 17.827,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "rasa",
+   "s": 17.827,
+   "e": 18.051,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "apa",
+   "s": 18.051,
+   "e": 18.145,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "tu.",
+   "s": 18.145,
+   "e": 18.145,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Memang",
+   "s": 18.238,
+   "e": 18.668,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "fresh",
+   "s": 18.668,
+   "e": 19.023,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "lah.",
+   "s": 19.023,
+   "e": 19.266,
+   "section": "testi",
+   "src": "feedback"
+  },
+  {
+   "w": "Ha,",
+   "s": 19.475,
+   "e": 19.9,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "dah",
+   "s": 20.077,
+   "e": 20.484,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "yakin",
+   "s": 20.484,
+   "e": 20.838,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "kan?",
+   "s": 20.838,
+   "e": 20.962,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "Jangan",
+   "s": 21.068,
+   "e": 21.493,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "tanggul",
+   "s": 21.493,
+   "e": 21.812,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "lagi,",
+   "s": 21.812,
+   "e": 21.971,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "stop",
+   "s": 22.183,
+   "e": 22.626,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "sangat",
+   "s": 22.626,
+   "e": 23.033,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "-sangat",
+   "s": 23.033,
+   "e": 23.369,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "terhad,",
+   "s": 23.369,
+   "e": 23.688,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "tekan",
+   "s": 23.847,
+   "e": 24.272,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "back",
+   "s": 24.272,
+   "e": 24.413,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "kuning",
+   "s": 24.413,
+   "e": 24.626,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "sekarang",
+   "s": 24.626,
+   "e": 24.767,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "dan",
+   "s": 24.767,
+   "e": 25.068,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "check",
+   "s": 25.068,
+   "e": 25.281,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "out",
+   "s": 25.281,
+   "e": 25.405,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "sekarang",
+   "s": 25.405,
+   "e": 25.581,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "tengok",
+   "s": 25.581,
+   "e": 26.254,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "berapa",
+   "s": 26.254,
+   "e": 26.555,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "harga",
+   "s": 26.555,
+   "e": 26.98,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "titok",
+   "s": 26.98,
+   "e": 27.351,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "bagi",
+   "s": 27.351,
+   "e": 27.546,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "dekat",
+   "s": 27.546,
+   "e": 27.67,
+   "section": "closing",
+   "src": "main"
+  },
+  {
+   "w": "kamu.",
+   "s": 27.67,
+   "e": 27.829,
+   "section": "closing",
+   "src": "main"
+  }
+ ],
+ "voice_dur": 28.018
+}
