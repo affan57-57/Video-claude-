@@ -1,4 +1,4 @@
-# Video Awareness — Fresh Kura Body (foaming body shower garam laut)
+# Video Awareness — Frescura Body (foaming body shower garam laut)
 
 Projek HyperFrames: `film/` (1080×1920, 30 fps, **35 s**). Status: **PREVIEW** — belum render final.
 
@@ -10,10 +10,10 @@ Versi 35 s: tiada muka langsung (suara sahaja), jeda dirapatkan lagi (25 jeda �
 | --- | --- |
 | 0.00 | Lepas mandi, kulit rasa kering dan bau sabun cepat hilang. *(HOOK)* |
 | 3.28 | Jom cuba cara lain. |
-| 4.78 | Fresh Kura Body ialah foaming body shower yang mengandungi garam laut. |
+| 4.78 | Frescura Body ialah foaming body shower yang mengandungi garam laut. |
 | 8.54 | Garam laut kaya mineral semula jadi dan sejak dulu digunakan dalam penjagaan kulit. |
 | 14.14 | Ia bantu kulit terasa lebih lembut selepas mandi. |
-| 17.38 | Fresh Kura Body digabungkan dengan perfume. |
+| 17.38 | Frescura Body digabungkan dengan perfume. |
 | 19.76 | Jadi setiap kali mandi, badan berbau wangi. |
 | 22.54 | Ada dua pilihan: Woman Glory Bombshell dan Midnight Fantasy. |
 | 26.20 | Bombshell manis dan menyerlah. |
@@ -53,9 +53,9 @@ Jeda dibuang: 11 jeda janggal (paling panjang 1.0 s sebelum "Adapun Noche", 0.8 
 
 ## Perlu pengesahan
 
-1. Ejaan jenama: "Fresh Kura Body" (dari transkrip) — betul?
+1. Jenama: FRESCURA BODY (disahkan).
 2. Tiada muka langsung — suara sahaja (seperti diminta).
-3. Gambar produk tambahan belum diterima — still Bombshell sekarang dari video pump.
+3. Gambar produk: botol Bombshell & Noche dipotong dari foto studio pelanggan; logo FRESCURA BODY dalam CTA.
 
 ## Bina semula
 

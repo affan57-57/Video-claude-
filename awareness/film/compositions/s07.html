@@ -11,8 +11,8 @@
     .card { position: absolute; top: 640px; width: 470px; height: 560px; border-radius: 34px; overflow: hidden; border: 2px solid rgba(217,181,122,.8); }
     #s07-cardA { left: 50px; background: radial-gradient(ellipse at 50% 70%, #8e1b2c, #3a0a14 60%, #1a0609); }
     #s07-cardB { right: 50px; background: radial-gradient(ellipse at 50% 70%, #6b3fa0, #2a1450 60%, #120a20); }
-    #s07-bottle { position: absolute; left: 85px; top: 30px; width: 300px; height: 400px; object-fit: contain; }
-    #s07-noche { position: absolute; left: 0; top: 0; width: 470px; height: 440px; object-fit: cover; }
+    #s07-bottle { position: absolute; left: 85px; top: 30px; width: 300px; height: 400px; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,.55)); }
+    #s07-noche { position: absolute; left: 85px; top: 30px; width: 300px; height: 400px; object-fit: contain; }
     .cap { position: absolute; left: 0; right: 0; bottom: 0; height: 140px; background: rgba(12,10,11,.82); text-align: center; padding-top: 24px; }
     .cap .t { font: 700 40px/1 'Playfair Display'; color: #f6f0e6; }
     .cap .s { font: 700 28px/1 Montserrat; letter-spacing: .12em; color: #d9b57a; margin-top: 14px; }
@@ -30,7 +30,7 @@
       <div class="cap"><div class="t">Woman Glory</div><div class="s">BOMBSHELL</div></div>
     </div>
     <div class="card" id="s07-cardB">
-      <video id="s07-noche" class="clip" src="assets/product/noche_clip.mp4" data-start="2.07" data-duration="0.91" data-media-start="1.0" data-track-index="0" muted playsinline></video>
+      <img id="s07-noche" src="assets/product/noche.png" alt="Noche Midnight Fantasy" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,.55))" />
       <div class="cap"><div class="t">Noche</div><div class="s">MIDNIGHT FANTASY</div></div>
     </div>
   </div>
