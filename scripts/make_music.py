@@ -1,9 +1,9 @@
 """Original minimal-luxury deep-house bed, 120 BPM, written for the Frescura Body awareness cut.
 
-Downbeats land every 2 s from OFFSET (1, 3, 5 ... ) so the drop hits at 33 s and the urgency
-section at 45 s. Sections: intro (0-7, filtered, under the hook voice), break (7-33, light shaker only,
-under the customer feedback), drop (33-45, the foam demo), drive (45-53, urgency + CTA,
-ticking 16ths), outro (53-end, last chord rings out).
+Downbeats land every 2 s from OFFSET (1, 3, 5 ... ) so the closing (urgency + CTA)
+section lands at 33 s. Sections: intro (0-7, filtered, under the hook voice), break (7-33, light shaker only,
+under the customer feedback), drive (33-41, closing: urgency + CTA,
+ticking 16ths), outro (41-end, last chord rings out).
 Usage: python make_music.py out.wav [duration_s]
 """
 import sys
@@ -11,12 +11,12 @@ import numpy as np, soundfile as sf
 from scipy.signal import butter, sosfilt, fftconvolve
 
 SR = 48000
-DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 56.5
+DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 44.5
 BPM = 120.0
 BEAT = 60 / BPM
 OFFSET = 1.0                    # first downbeat (bar line) in film time
 BREAK = 7.0                     # customer feedback: drums out, keys + pad only
-DROP, DRIVE, OUTRO = 33.0, 45.0, 53.0
+DROP, DRIVE, OUTRO = 33.0, 33.0, 41.0
 rng = np.random.default_rng(11)
 N = int(DUR * SR)
 
