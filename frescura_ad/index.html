@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,500;1,6..96,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+:root{
+  --ground:#07060a; --ink:#f6f1e9; --mute:#b9b1a6; --gold:#dcc08a; --gold2:#f4e2b8; --gold3:#a8854d;
+  --rose:#d01c2e; --violet:#8f6bff; --cyan:#4be6ff; --yellow:#ffc83a;
+  --serif:"Bodoni Moda", serif; --sans:"Manrope", system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ground);font-family:var(--sans);color:var(--ink)}
+.clip{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute}
+.center{left:0;right:0;text-align:center}
+.serif{font-family:var(--serif)}
+.goldtxt{background:linear-gradient(100deg,var(--gold3) 0%,var(--gold2) 30%,#fff7e2 45%,var(--gold) 60%,var(--gold3) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.kicker{font-family:var(--sans);font-weight:700;letter-spacing:.42em;font-size:24px;color:var(--gold);text-transform:uppercase}
+.glass{background:linear-gradient(140deg,rgba(255,255,255,.12),rgba(255,255,255,.03));border:1.5px solid rgba(220,192,138,.45);border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.15)}
+.bg-dark{background:radial-gradient(120% 80% at 50% 30%,#1b1520 0%,#0b090d 55%,#050406 100%)}
+
+/* ---------- global overlays ---------- */
+#grain{position:absolute;inset:-200px;opacity:.07;pointer-events:none;z-index:90;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+#vig{position:absolute;inset:0;z-index:89;pointer-events:none;background:radial-gradient(130% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.65) 100%)}
+#frame{position:absolute;inset:34px;z-index:88;border:1.5px solid rgba(220,192,138,.28);border-radius:6px;pointer-events:none}
+#brandbar{position:absolute;top:70px;left:0;right:0;z-index:87;display:flex;justify-content:center;gap:18px;align-items:center}
+#brandbar span{font-family:var(--sans);font-weight:700;letter-spacing:.5em;font-size:20px;color:rgba(246,241,233,.75)}
+#brandbar i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+#prog{position:absolute;top:34px;left:34px;height:4px;width:1012px;transform-origin:0 50%;z-index:91;background:linear-gradient(90deg,var(--gold3),var(--gold2))}
+#flash{position:absolute;inset:0;z-index:86;pointer-events:none;opacity:0;background:radial-gradient(60% 40% at 50% 45%,#fff6de 0%,rgba(255,232,190,.5) 40%,transparent 75%);mix-blend-mode:screen}
+#sweep{position:absolute;top:-400px;left:-900px;width:520px;height:2800px;z-index:85;opacity:0;pointer-events:none;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,236,196,0) 20%,rgba(255,236,196,.55) 50%,rgba(255,236,196,0) 80%,transparent);filter:blur(10px);mix-blend-mode:screen}
+
+/* ---------- captions ---------- */
+#capbg{position:absolute;left:0;right:0;top:1230px;height:520px;z-index:79;pointer-events:none;background:radial-gradient(60% 45% at 50% 45%,rgba(0,0,0,.55),transparent 75%)}
+#caps{position:absolute;left:60px;right:60px;top:1330px;height:300px;z-index:80;pointer-events:none}
+.cap{position:absolute;left:0;right:0;top:0;text-align:center;opacity:0;line-height:1.08}
+.cap .w{display:inline-block;margin:0 .16em;font-family:var(--sans);font-weight:800;font-size:74px;letter-spacing:.01em;text-transform:uppercase;color:#fffaf1;
+  text-shadow:0 4px 0 rgba(0,0,0,.35),0 10px 40px rgba(0,0,0,.85)}
+.cap .w.hl{font-family:var(--serif);font-style:italic;font-weight:700;text-transform:none;font-size:92px;letter-spacing:0;
+  background:linear-gradient(100deg,#b88e4f,#f8e6bd 40%,#fffaf0 50%,#e6c98f 62%,#a8854d);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 22px rgba(0,0,0,.9))}
+
+/* ---------- S1 hook ---------- */
+#s1 .bgglow{position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 52%,rgba(220,192,138,.22),transparent 70%),radial-gradient(120% 80% at 50% 30%,#19131c,#060507)}
+#hookTop{top:170px}
+#hookWord{top:215px;font-size:250px;font-weight:900;letter-spacing:-.02em;line-height:1}
+#hookSub{top:500px;font-family:var(--serif);font-style:italic;font-size:62px;color:var(--ink)}
+#hookSub b{font-style:italic;color:var(--gold2)}
+.rays{position:absolute;left:540px;top:1000px;width:1600px;height:1600px;margin:-800px 0 0 -800px;opacity:0;
+  background:repeating-conic-gradient(from 0deg,rgba(255,230,180,.20) 0deg 4deg,transparent 4deg 16deg);
+  -webkit-mask:radial-gradient(circle,#000 0%,transparent 62%);mask:radial-gradient(circle,#000 0%,transparent 62%)}
+#gift{position:absolute;left:340px;top:960px;width:400px;height:330px}
+#gift .box{position:absolute;bottom:0;left:0;width:400px;height:280px;border-radius:10px;background:linear-gradient(160deg,#20191d,#0d0a0c);border:2px solid rgba(220,192,138,.55);box-shadow:0 40px 90px rgba(0,0,0,.7)}
+#gift .rib{position:absolute;left:180px;top:0;width:40px;height:100%;background:linear-gradient(90deg,var(--gold3),var(--gold2),var(--gold3))}
+#gift .lid{position:absolute;left:-20px;top:20px;width:440px;height:80px;border-radius:10px;background:linear-gradient(160deg,#2a2126,#120e11);border:2px solid rgba(220,192,138,.6);transform-origin:0% 100%}
+#gift .lid .rib{left:200px;width:40px}
+#gift .bow{position:absolute;left:170px;top:-40px;width:100px;height:60px}
+#gift .bow i{position:absolute;top:0;width:60px;height:56px;border:9px solid var(--gold);border-radius:50%}
+#gift .bow i:first-child{left:-22px;transform:rotate(-25deg)}#gift .bow i:last-child{left:62px;transform:rotate(25deg)}
+#heroDuo{position:absolute;left:290px;top:600px;width:500px;opacity:0;filter:drop-shadow(0 40px 60px rgba(0,0,0,.7))}
+.chip{position:absolute;padding:20px 38px;border-radius:999px;font-family:var(--sans);font-weight:800;font-size:38px;letter-spacing:.18em;color:var(--ink);opacity:0}
+.chip em{font-family:var(--serif);font-style:italic;font-weight:700;letter-spacing:0;color:var(--gold2);margin-right:10px;font-size:40px}
+
+/* ---------- S2 dilemma ---------- */
+#qmark{top:150px;font-size:900px;line-height:1;font-weight:500;color:transparent;-webkit-text-stroke:3px rgba(220,192,138,.55);text-align:center;left:0;right:0}
+.opt{position:absolute;left:160px;width:760px;height:120px;display:flex;align-items:center;justify-content:space-between;padding:0 44px;opacity:0}
+.opt span{font-family:var(--serif);font-size:58px;font-style:italic}
+.opt b{font-family:var(--sans);font-size:26px;letter-spacing:.3em;color:var(--mute);font-weight:700}
+.opt .strike{position:absolute;left:30px;right:30px;top:58px;height:4px;background:var(--rose);transform-origin:0 50%;transform:scaleX(0)}
+#relax{top:1010px;font-size:118px;font-weight:700;opacity:0}
+
+/* ---------- S3 brand ---------- */
+#s3{background:#000}
+#logo{position:absolute;left:90px;top:400px;width:900px;height:900px;mix-blend-mode:screen;opacity:0}
+#ring2{position:absolute;left:190px;top:500px;width:700px;height:700px;border-radius:50%;border:2px solid rgba(75,230,255,.35);opacity:0;box-shadow:0 0 60px rgba(75,230,255,.35), inset 0 0 60px rgba(75,230,255,.2)}
+#brandSub{top:1170px;opacity:0}
+
+/* ---------- S4 pump ---------- */
+.vidframe{position:absolute;overflow:hidden}
+.vidframe video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+#eq{position:absolute;left:110px;top:950px;width:860px;height:220px;display:flex;align-items:center;justify-content:space-around;opacity:0}
+#eq .it{text-align:center}
+#eq .ic{width:96px;height:96px;margin:0 auto 12px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center}
+#eq .lb{font-weight:800;letter-spacing:.2em;font-size:28px}
+#eq .op{font-family:var(--serif);font-size:96px;color:var(--gold2)}
+.crystal{width:42px;height:42px;background:linear-gradient(135deg,#fff,#cfe9ff 50%,#8db9d8);transform:rotate(45deg);border-radius:4px}
+.drop{width:40px;height:54px;background:linear-gradient(160deg,#ffd3e0,#d01c2e);border-radius:50% 50% 50% 50%/60% 60% 40% 40%}
+#s4tag{left:110px;top:220px;opacity:0}
+
+/* ---------- S5 minerals ---------- */
+#s5{background:radial-gradient(90% 60% at 50% 35%,#16202a 0%,#0a0d12 55%,#050608 100%)}
+.salt{position:absolute;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(200,225,245,.55) 45%,rgba(120,160,190,.25));border:1px solid rgba(255,255,255,.6);box-shadow:0 0 30px rgba(180,220,255,.25)}
+#s5title{top:220px}
+#s5h{top:270px;font-size:120px;font-weight:700;line-height:1.02}
+.tile{position:absolute;top:640px;width:270px;height:320px;padding:26px;opacity:0}
+.tile .z{font-family:var(--sans);font-size:24px;color:var(--mute);font-weight:700}
+.tile .sym{font-family:var(--serif);font-size:150px;line-height:1;font-weight:700;margin-top:6px}
+.tile .nm{font-family:var(--sans);font-weight:800;letter-spacing:.14em;font-size:24px;margin-top:12px}
+#s5note{top:1040px;font-family:var(--serif);font-style:italic;font-size:46px;color:var(--ink);opacity:0}
+#s5note b{color:var(--gold2)}
+
+/* ---------- S6 perfume ---------- */
+#s6{background:radial-gradient(90% 60% at 50% 40%,#2a1220 0%,#0e070b 60%,#050305 100%)}
+#arch{position:absolute;left:190px;top:240px;width:700px;height:1000px;border-radius:350px 350px 30px 30px;overflow:hidden;border:2px solid rgba(220,192,138,.6);box-shadow:0 50px 140px rgba(0,0,0,.8),0 0 80px rgba(208,28,46,.25)}
+.vid{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+#vC{left:190px;top:240px;width:700px;height:1000px;border-radius:350px 350px 30px 30px;border:2px solid rgba(220,192,138,.6)}
+.mist{position:absolute}
+.note{position:absolute;padding:16px 30px;font-weight:800;letter-spacing:.24em;font-size:26px;opacity:0}
+#istimewa{top:1140px;font-size:150px;font-weight:700;opacity:0}
+
+/* ---------- S7 everyday ---------- */
+#s7h{top:230px;font-size:96px;font-weight:700;line-height:1.05}
+.day{position:absolute;top:620px;width:118px;height:170px;text-align:center}
+.day .c{width:104px;height:104px;margin:0 auto;border-radius:50%;border:2px solid rgba(220,192,138,.5);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.day .c .f{position:absolute;inset:0;background:linear-gradient(140deg,var(--gold2),var(--gold3));border-radius:50%}
+.day .c svg{position:relative;width:52px;height:52px;opacity:0}
+.day .d{margin-top:14px;font-weight:800;letter-spacing:.18em;font-size:24px;color:var(--mute)}
+#cab{position:absolute;left:390px;top:880px;width:300px;height:360px;opacity:0}
+#cab .body{position:absolute;inset:0;border:3px solid rgba(246,241,233,.55);border-radius:14px;background:linear-gradient(180deg,#1b1719,#0e0c0d)}
+#cab .door{position:absolute;top:14px;bottom:14px;width:128px;border:2px solid rgba(246,241,233,.35);border-radius:8px}
+#cab .x{position:absolute;left:-40px;top:150px;width:380px;height:10px;background:var(--rose);border-radius:6px;transform-origin:50% 50%}
+
+/* ---------- S8 mall boutique ---------- */
+#s8{background:#050405}
+#cam{position:absolute;left:-140px;top:-120px;width:1360px;height:2160px;transform-origin:50% 45%}
+#wall{position:absolute;left:0;top:0;width:1360px;height:1300px;background:
+  linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.6)),
+  repeating-linear-gradient(90deg,#17110f 0 168px,#1f1814 168px 170px,#130e0c 170px 340px),
+  linear-gradient(180deg,#22190f,#0d0a08)}
+#cove{position:absolute;left:0;width:1360px;top:250px;height:6px;background:linear-gradient(90deg,transparent,#ffdca0 15%,#fff1d0 50%,#ffdca0 85%,transparent);box-shadow:0 0 40px 10px rgba(255,210,150,.45),0 60px 160px 40px rgba(255,200,140,.12)}
+#neon{position:absolute;left:0;right:0;top:330px;text-align:center;font-family:var(--sans);font-weight:500;font-size:84px;letter-spacing:.1em;color:#c9f7ff;
+  text-shadow:0 0 6px #fff,0 0 18px var(--cyan),0 0 40px var(--cyan),0 0 90px rgba(75,230,255,.8)}
+#neonSub{position:absolute;left:0;right:0;top:470px;text-align:center;font-weight:700;letter-spacing:.6em;font-size:24px;color:rgba(201,247,255,.8);text-shadow:0 0 14px var(--cyan)}
+#niches{position:absolute;left:0;width:1360px;top:620px;height:260px}
+.niche{position:absolute;top:0;width:150px;height:240px;border-radius:75px 75px 8px 8px;background:linear-gradient(180deg,#2c2118,#120d0a);border:1px solid rgba(220,192,138,.35);box-shadow:inset 0 30px 60px rgba(255,210,150,.15)}
+.niche i{position:absolute;left:52px;bottom:16px;width:46px;height:110px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#f2efe9 0 22%,#7a0f1a 22%,#3a070d)}
+.niche.v i{background:linear-gradient(180deg,#f2efe9 0 22%,#3b2a7a 22%,#191034)}
+#floor{position:absolute;left:-400px;top:1240px;width:2160px;height:1200px;transform:perspective(900px) rotateX(62deg);transform-origin:50% 0%;
+  background:radial-gradient(40% 30% at 35% 20%,rgba(208,28,46,.35),transparent 70%),radial-gradient(40% 30% at 65% 20%,rgba(143,107,255,.35),transparent 70%),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,transparent 2px 240px),repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 2px,transparent 2px 240px),
+  linear-gradient(180deg,#2a2422,#0c0a09)}
+.bokeh{position:absolute;mix-blend-mode:screen}
+.cone{position:absolute;top:0;width:620px;height:1300px;mix-blend-mode:screen;opacity:0}
+.plinth{position:absolute;top:1160px;width:310px;height:520px}
+.plinth .top{position:absolute;left:0;top:0;width:310px;height:80px;border-radius:50%;background:radial-gradient(70% 70% at 50% 40%,#3a3330,#151211);border:1px solid rgba(220,192,138,.45);z-index:2}
+.plinth .bd{position:absolute;left:0;top:40px;width:310px;height:480px;background:linear-gradient(90deg,#0b0909,#2b2523 30%,#3a322f 45%,#191514 75%,#080707);border-left:1px solid rgba(220,192,138,.25);border-right:1px solid rgba(220,192,138,.25)}
+.plinth .bd:after{content:"";position:absolute;left:0;right:0;top:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7}
+.bottle{position:absolute;opacity:0;filter:drop-shadow(0 30px 40px rgba(0,0,0,.8))}
+.vcard{position:absolute;width:470px;padding:30px 34px;opacity:0}
+.vcard .t{font-family:var(--serif);font-weight:700;font-size:58px;line-height:1}
+.vcard .s{font-weight:800;letter-spacing:.32em;font-size:22px;color:var(--gold);margin-top:10px}
+.vcard .d{font-family:var(--serif);font-style:italic;font-size:38px;margin-top:16px;color:var(--ink)}
+#glassSheen{position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.10) 45%,rgba(255,255,255,.02) 52%,transparent 60%);background-size:300% 100%;pointer-events:none}
+#mallTag{top:160px;opacity:0}
+
+/* ---------- S9 scarcity ---------- */
+#s9 .ph{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;object-fit:cover;filter:brightness(.42) saturate(1.1)}
+#s9 .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(80,0,10,.45),rgba(0,0,0,.65))}
+#stamp{position:absolute;left:150px;top:300px;width:780px;padding:30px 0;border:5px solid var(--rose);border-radius:16px;text-align:center;transform:rotate(-6deg);opacity:0}
+#stamp .a{font-weight:800;font-size:120px;letter-spacing:.06em;color:#ff4a5c;line-height:1}
+#stamp .b{font-weight:800;font-size:30px;letter-spacing:.5em;color:#ffb3bb;margin-top:10px}
+#meter{position:absolute;left:150px;top:680px;width:780px;opacity:0}
+#meter .lab{display:flex;justify-content:space-between;align-items:flex-end;font-weight:800;letter-spacing:.22em;font-size:26px}
+#meter .track{margin-top:18px;height:34px;border-radius:20px;border:2px solid rgba(255,255,255,.45);padding:5px;background:rgba(0,0,0,.4)}
+#meter .fill{height:100%;width:100%;border-radius:14px;background:linear-gradient(90deg,#ff4a5c,#ffb36b);transform-origin:0 50%}
+#pct{font-family:var(--serif);font-weight:700;font-size:44px;color:#ffd9a0;letter-spacing:0}
+#clock{position:absolute;left:390px;top:880px;width:300px;height:300px;opacity:0}
+#clock .hand{position:absolute;left:146px;top:40px;width:8px;height:112px;border-radius:4px;background:var(--gold2);transform-origin:50% 100%}
+#wait{top:1170px;font-size:84px;font-weight:700;opacity:0;line-height:1.05}
+
+/* ---------- S10 CTA ---------- */
+#s10 .ph{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;filter:brightness(.62)}
+#s10 .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.05) 30%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.85) 100%)}
+#ctaTop{top:170px}
+#ctaH{top:215px;font-size:112px;font-weight:700;line-height:1.02}
+#bagBtn{position:absolute;left:250px;top:1000px;width:580px;height:150px;border-radius:999px;background:linear-gradient(180deg,#ffd862,#f5b400);display:flex;align-items:center;justify-content:center;gap:26px;box-shadow:0 20px 60px rgba(255,190,40,.45),inset 0 2px 0 rgba(255,255,255,.6);opacity:0}
+#bagBtn span{font-weight:800;font-size:44px;letter-spacing:.14em;color:#1b1204}
+#ripple{position:absolute;left:540px;top:1075px;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:5px solid var(--yellow);opacity:0}
+.arrow{position:absolute;left:510px;width:60px;height:60px;border-right:8px solid var(--yellow);border-bottom:8px solid var(--yellow);transform:rotate(45deg);opacity:0;filter:drop-shadow(0 0 12px rgba(255,200,58,.7))}
+#love{top:1150px;font-size:76px;font-style:italic;font-weight:500;opacity:0;line-height:1.1}
+#endcard{background:#000}
+#endLogo{position:absolute;left:190px;top:420px;width:700px;height:700px;mix-blend-mode:screen;opacity:0}
+#endDuo{position:absolute;left:300px;top:1060px;width:480px;opacity:0}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="39.5" data-width="1080" data-height="1920">
+
+  <audio id="mix" src="assets/mix.wav" data-start="0" data-duration="39.5" data-volume="1"></audio>
+
+  <!-- S1 HOOK 0 - 4.55 -->
+  <section id="s1" class="clip" data-start="0" data-duration="4.6">
+    <div class="bgglow"></div>
+    <div class="rays" id="rays"></div>
+    <div id="hookTop" class="abs center kicker">Idea hadiah · 2026</div>
+    <div id="hookWord" class="abs center serif goldtxt">Hadiah</div>
+    <div id="hookSub" class="abs center">yang dia guna <b>setiap hari</b></div>
+    <img id="heroDuo" src="assets/img/duo_cut.png" alt="" />
+    <div id="gift"><div class="box"><div class="rib"></div></div><div class="lid"><div class="rib"></div><div class="bow"><i></i><i></i></div></div></div>
+    <div class="chip glass" id="c1" style="left:90px;top:700px"><em>untuk</em>KAWAN</div>
+    <div class="chip glass" id="c2" style="left:600px;top:800px"><em>untuk</em>KAKAK</div>
+    <div class="chip glass" id="c3" style="left:260px;top:1210px"><em>untuk</em>ISTERI</div>
+  </section>
+
+  <!-- S2 DILEMMA 4.55 - 6.62 -->
+  <section id="s2" class="clip bg-dark" data-start="4.55" data-duration="2.1">
+    <div id="qmark" class="abs serif">?</div>
+    <div class="opt glass" id="o1" style="top:380px"><span>Bunga</span><b>LAYU</b><i class="strike"></i></div>
+    <div class="opt glass" id="o2" style="top:540px"><span>Coklat</span><b>HABIS</b><i class="strike"></i></div>
+    <div class="opt glass" id="o3" style="top:700px"><span>Hiasan</span><b>SIMPAN</b><i class="strike"></i></div>
+    <div id="relax" class="abs center serif goldtxt">Jangan risau.</div>
+  </section>
+
+  <!-- S3 BRAND 6.62 - 7.70 -->
+  <section id="s3" class="clip" data-start="6.6" data-duration="1.15">
+    <div id="ring2"></div>
+    <img id="logo" src="assets/img/logo.jpg" alt="" />
+    <div id="brandSub" class="abs center kicker">Foaming body shower</div>
+  </section>
+
+  <!-- S4 PUMP + EQUATION 7.70 - 10.80 -->
+  <video id="vA" class="vid" src="assets/vid/pumpA.mp4" data-start="7.7" data-duration="1.72" muted playsinline></video>
+  <video id="vB" class="vid" src="assets/vid/pumpB.mp4" data-start="9.4" data-duration="1.42" muted playsinline></video>
+  <section id="s4" class="clip" data-start="7.7" data-duration="3.12">
+    <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.05) 30%,rgba(0,0,0,.1) 55%,rgba(0,0,0,.75))"></div>
+    <div id="s4tag" class="abs glass" style="padding:22px 34px"><div class="kicker" style="font-size:22px">Formula</div><div class="serif" style="font-size:64px;font-weight:700;margin-top:6px">Foaming <i>Body Shower</i></div></div>
+    <div id="eq" class="glass">
+      <div class="it" id="eq1"><div class="ic"><div class="crystal"></div></div><div class="lb">GARAM LAUT</div></div>
+      <div class="op" id="eqp">+</div>
+      <div class="it" id="eq2"><div class="ic"><div class="drop"></div></div><div class="lb">PERFUME</div></div>
+    </div>
+  </section>
+
+  <!-- S5 MINERALS 10.80 - 14.75 -->
+  <section id="s5" class="clip" data-start="10.8" data-duration="3.97">
+    <div id="salts"></div>
+    <div id="s5title" class="abs center kicker">Edukasi · Garam laut</div>
+    <div id="s5h" class="abs center serif">Kaya <i class="goldtxt">mineral</i><br/>semula jadi</div>
+    <div class="tile glass" id="t1" style="left:75px"><div class="z">12</div><div class="sym goldtxt">Mg</div><div class="nm">MAGNESIUM</div></div>
+    <div class="tile glass" id="t2" style="left:405px"><div class="z">20</div><div class="sym goldtxt">Ca</div><div class="nm">KALSIUM</div></div>
+    <div class="tile glass" id="t3" style="left:735px"><div class="z">19</div><div class="sym goldtxt">K</div><div class="nm">KALIUM</div></div>
+    <div id="s5note" class="abs center">Lama digunakan dalam <b>penjagaan kulit</b></div>
+  </section>
+
+  <!-- S6 PERFUME 14.75 - 18.10 -->
+  <section id="s6" class="clip" data-start="14.75" data-duration="3.37">
+    <div id="arch"></div>
+  </section>
+  <video id="vC" class="vid" src="assets/vid/foamC.mp4" data-start="14.75" data-duration="3.37" muted playsinline></video>
+  <section id="s6b" class="clip" data-start="14.75" data-duration="3.37">
+    <div id="mists"></div>
+    <div class="note glass" id="n1" style="left:70px;top:420px">AROMATHERAPY</div>
+    <div class="note glass" id="n2" style="left:640px;top:700px">PERFUMED</div>
+    <div class="note glass" id="n3" style="left:110px;top:960px">SOFT FOAM</div>
+    
+  </section>
+
+  <!-- S7 EVERYDAY 18.10 - 21.45 -->
+  <section id="s7" class="clip bg-dark" data-start="18.1" data-duration="3.37">
+    <div class="abs center kicker" style="top:180px">Hadiah yang berguna</div>
+    <div id="s7h" class="abs center serif">Dipakai <i class="goldtxt">setiap hari</i></div>
+    <div id="days"></div>
+    <div id="cab"><div class="body"><div class="door" style="left:14px"></div><div class="door" style="right:14px"></div></div><div class="x" id="cabx"></div></div>
+  </section>
+
+  <!-- S8 MALL BOUTIQUE 21.45 - 26.95 -->
+  <section id="s8" class="clip" data-start="21.45" data-duration="5.52">
+    <div id="cam">
+      <div id="wall"></div>
+      <div id="cove"></div>
+      <div id="neon">FRESCURA BODY</div>
+      <div id="neonSub">SOFT | FRAGRANT</div>
+      <div id="niches"></div>
+      <div id="bokehs"></div>
+      <div id="floor"></div>
+      <img class="cone" id="coneL" src="assets/img/cone_red.png" alt="" style="left:200px" />
+      <img class="cone" id="coneR" src="assets/img/cone_violet.png" alt="" style="left:540px" />
+      <div class="plinth" id="pL" style="left:355px"><div class="top"></div><div class="bd"></div></div>
+      <div class="plinth" id="pR" style="left:697px"><div class="top"></div><div class="bd"></div></div>
+      <img class="bottle" id="bWG" src="assets/img/wg_cut.png" alt="" style="left:368px;top:690px;width:284px" />
+      <img class="bottle" id="bNO" src="assets/img/noche_cut.png" alt="" style="left:690px;top:693px;width:325px" />
+    </div>
+    <div id="glassSheen"></div>
+    <div id="mallTag" class="abs center"><div class="kicker">Dua varian eksklusif</div></div>
+    <div class="vcard glass" id="vcWG" style="left:60px;top:240px"><div class="t" style="color:#ff8a95">Woman Glory</div><div class="s">BOMBSHELL</div><div class="d">Manis &amp; menggoda</div></div>
+    <div class="vcard glass" id="vcNO" style="left:550px;top:240px"><div class="t" style="color:#c7b6ff">Noche</div><div class="s">MIDNIGHT FANTASY</div><div class="d">Lembut &amp; misteri</div></div>
+  </section>
+
+  <!-- S9 SCARCITY 26.95 - 31.55 -->
+  <section id="s9" class="clip" data-start="26.95" data-duration="4.62">
+    <img class="ph" id="s9ph" src="assets/img/duo_rain.jpg" alt="" />
+    <div class="tint"></div>
+    <div id="stamp"><div class="a">STOK TERHAD</div><div class="b">BATCH INI SAHAJA</div></div>
+    <div id="meter"><div class="lab"><span>BAKI STOK</span><span id="pct">100%</span></div><div class="track"><div class="fill" id="fill"></div></div></div>
+    <div id="clock"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="136" fill="rgba(0,0,0,.45)" stroke="rgba(220,192,138,.35)" stroke-width="4"/><circle id="clockArc" cx="150" cy="150" r="136" fill="none" stroke="#f4e2b8" stroke-width="8" stroke-linecap="round" stroke-dasharray="854.5" stroke-dashoffset="854.5" transform="rotate(-90 150 150)"/></svg><div class="hand" id="hand"></div></div>
+    
+  </section>
+
+  <!-- S10 CTA 31.55 - 37.95 -->
+  <section id="s10" class="clip" data-start="31.55" data-duration="6.42">
+    <img class="ph" id="s10ph" src="assets/img/duo_hero.jpg" alt="" />
+    <div class="shade"></div>
+    <div id="ctaTop" class="abs center kicker">Checkout sekarang</div>
+    <div id="ctaH" class="abs center serif">Tekan <i class="goldtxt">beg kuning</i></div>
+    <div id="ripple"></div>
+    <div id="bagBtn"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1b1204" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>BELI SEKARANG</span></div>
+    <div class="arrow" id="ar1" style="top:1180px"></div>
+    <div class="arrow" id="ar2" style="top:1230px"></div>
+    <div id="love" class="abs center serif"><span class="kicker" style="font-style:normal">Soft | Fragrant</span><br/>Hadiah mewah untuk<br/><span class="goldtxt" style="font-weight:700">yang tersayang</span></div>
+  </section>
+
+  <!-- END CARD 37.95 - 39.5 -->
+  <section id="endcard" class="clip" data-start="37.95" data-duration="1.55">
+    <img id="endLogo" src="assets/img/logo.jpg" alt="" />
+    <img id="endDuo" src="assets/img/duo_cut.png" alt="" />
+  </section>
+
+  <!-- global overlays -->
+  <div id="capbg"></div>
+  <div id="caps"></div>
+  <div id="sweep"></div>
+  <div id="flash"></div>
+  <div id="brandbar"><i></i><span>FRESCURA BODY</span><i></i></div>
+  <div id="frame"></div>
+  <div id="vig"></div>
+  <div id="grain"></div>
+  <div id="prog"></div>
+</div>
+
+<script>
+(function(){
+  let seed = 20261111;
+  const rnd = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+  const $ = (s) => document.querySelector(s);
+  const mk = (parent, cls, css, html) => { const d = document.createElement("div"); d.className = cls; Object.assign(d.style, css || {}); if (html) d.innerHTML = html; parent.appendChild(d); return d; };
+
+  const salts = [];
+  for (let i = 0; i < 26; i++) { const s = 14 + rnd() * 46; salts.push(mk($("#salts"), "salt", { left: (rnd() * 1080) + "px", top: (rnd() * 1920) + "px", width: s + "px", height: s + "px", opacity: .25 + rnd() * .6, borderRadius: "3px" })); }
+  const mists = [];
+  for (let i = 0; i < 18; i++) { const s = 60 + rnd() * 160; { const im = document.createElement("img"); im.className = "mist"; im.src = "assets/img/blob_pink.png"; Object.assign(im.style, { left: (rnd() * 1080 - 80) + "px", top: (900 + rnd() * 1000) + "px", width: s + "px", height: s + "px", opacity: .3 + rnd() * .5 }); $("#mists").appendChild(im); mists.push(im); } }
+  const dn = ["ISN","SEL","RAB","KHA","JUM","SAB","AHD"]; const days = [];
+  dn.forEach((d, i) => days.push(mk($("#days"), "day", { left: (64 + i * 140) + "px" }, `<div class="c"><div class="f"></div><svg viewBox="0 0 24 24" fill="none" stroke="#120d06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="d">${d}</div>`)));
+  for (let i = 0; i < 8; i++) mk($("#niches"), "niche" + (i % 2 ? " v" : ""), { left: (30 + i * 170) + "px" }, "<i></i>");
+  const bokehs = [];
+  const bc = ["gold","amber","blue","cream"];
+  for (let i = 0; i < 22; i++) { const s = 30 + rnd() * 90; { const im = document.createElement("img"); im.className = "bokeh"; im.src = "assets/img/blob_" + bc[i % 4] + ".png"; Object.assign(im.style, { left: (rnd() * 1360) + "px", top: (560 + rnd() * 600) + "px", width: s * 1.6 + "px", height: s * 1.6 + "px" }); $("#bokehs").appendChild(im); bokehs.push(im); } }
+
+  const CAPS = [
+    [0.00,1.00,"Tengah cari *hadiah*?"],
+    [1.00,2.28,"Untuk *kawan*? *kakak*?"],
+    [2.28,4.55,"Ataupun *isteri* tercinta"],
+    [4.55,5.75,"Tak tahu nak *beli apa*?"],
+    [5.75,6.62,"Jangan *risau*"],
+    [6.62,7.70,"Kita ada *Frescura Body*"],
+    [7.70,9.40,"Foaming *body shower*"],
+    [9.40,10.80,"*Garam laut* + *perfume*"],
+    [10.80,12.40,"Kaya *mineral* semula jadi"],
+    [12.40,14.75,"Untuk *penjagaan kulit*"],
+    [14.75,16.10,"*Perfume* buat waktu mandi"],
+    [16.10,18.10,"Terasa lebih *istimewa*"],
+    [18.10,19.35,"Berguna *setiap hari*"],
+    [19.35,21.45,"Bukan disimpan *dalam almari*"],
+    [21.45,22.40,"Ada *dua varian*"],
+    [22.40,24.30,"*Woman Glory* yang manis"],
+    [24.30,26.95,"*Noche* · lembut & misteri"],
+    [26.95,28.65,"Stok batch ini *sangat terhad*"],
+    [28.65,31.55,"Jangan tunggu *saat akhir*"],
+    [31.55,33.00,"Tekan *beg kuning* di bawah"],
+    [33.00,34.40,"*Checkout* sekarang"],
+    [34.40,35.50,"Sebelum *terlambat*"],
+    [35.50,37.95,"Hargai yang *korang sayang*"]
+  ];
+  const capEls = CAPS.map(([a, b, txt]) => {
+    const parts = []; let hl = false;
+    txt.split(/(\*)/).forEach(p => { if (p === "*") { hl = !hl; return; } p.split(" ").filter(Boolean).forEach(w => parts.push([w, hl])); });
+    const el = mk($("#caps"), "cap", {}, parts.map(([w, h]) => `<span class="w${h ? " hl" : ""}">${w}</span>`).join(" "));
+    return [a, b, el];
+  });
+
+  const tl = gsap.timeline({ paused: true });
+  const E = "expo.out", P = "power3.out", PI = "power2.inOut";
+
+  tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 39.5, ease: "none" }, 0);
+  for (let i = 0; i < 39.5 * 12; i++) tl.set("#grain", { x: Math.round((rnd() - .5) * 180), y: Math.round((rnd() - .5) * 180) }, i / 12);
+  tl.fromTo("#brandbar", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .6, ease: P }, .2);
+
+  capEls.forEach(([a, b, el]) => {
+    const ws = el.querySelectorAll(".w");
+    tl.set(el, { opacity: 1, y: 0 }, a);
+    tl.fromTo(ws, { y: 46, opacity: 0, filter: "blur(10px)", scale: .92 }, { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: .32, ease: E, stagger: .055 }, a);
+    tl.to(el, { opacity: 0, y: -14, duration: .12, ease: "power1.in" }, b - .12);
+  });
+
+  [0, 4.55, 6.62, 7.7, 10.8, 14.75, 18.1, 21.45, 26.95, 31.55, 37.95].forEach(t0 => {
+    tl.fromTo("#flash", { opacity: .85 }, { opacity: 0, duration: .45, ease: "power2.out" }, t0);
+    tl.fromTo("#sweep", { x: 0, opacity: 1 }, { x: 2200, opacity: 1, duration: .55, ease: "power2.inOut" }, Math.max(0, t0 - .2));
+    tl.set("#sweep", { opacity: 0 }, Math.max(0, t0 - .2) + .56);
+  });
+
+  // S1 hook
+  tl.fromTo("#hookWord", { scale: 1.6, opacity: 0, filter: "blur(30px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: .7, ease: E }, 0);
+  tl.fromTo("#hookWord", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 4.5, ease: "none" }, 0);
+  tl.fromTo("#hookTop", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .5, ease: P }, .1);
+  tl.fromTo("#hookSub", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .5, ease: P }, .35);
+  tl.fromTo("#gift", { y: 500, scale: .6, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .55, ease: "back.out(1.6)" }, 0);
+  tl.to("#gift .lid", { rotation: -110, x: -60, y: -60, duration: .5, ease: "power3.out" }, .62);
+  tl.fromTo("#rays", { opacity: 0, scale: .4, rotation: 0 }, { opacity: 1, scale: 1, rotation: 25, duration: 4, ease: "power1.out" }, .62);
+  tl.fromTo("#heroDuo", { y: 420, opacity: 0, scale: .55 }, { y: 0, opacity: 1, scale: 1, duration: .8, ease: E }, .75);
+  tl.to("#gift", { y: 260, opacity: 0, duration: .5, ease: "power2.in" }, 1.1);
+  tl.to("#heroDuo", { y: -20, scale: 1.04, duration: 3, ease: "sine.inOut" }, 1.55);
+  [["#c1", 1.0, -60], ["#c2", 1.8, 60], ["#c3", 3.86, 0]].forEach(([id, t0, dx]) => {
+    tl.fromTo(id, { opacity: 0, scale: .4, x: dx, filter: "blur(8px)" }, { opacity: 1, scale: 1, x: 0, filter: "blur(0px)", duration: .4, ease: "back.out(2)" }, t0);
+    tl.to(id, { y: -24, duration: 2, ease: "sine.inOut" }, t0 + .4);
+  });
+
+  // S2 dilemma
+  tl.fromTo("#qmark", { opacity: 0, scale: 1.4, rotation: -12 }, { opacity: 1, scale: 1, rotation: 0, duration: .6, ease: E }, 4.55);
+  tl.to("#qmark", { rotation: 8, y: 30, duration: 1.5, ease: "sine.inOut" }, 5.15);
+  ["#o1", "#o2", "#o3"].forEach((id, i) => {
+    tl.fromTo(id, { opacity: 0, x: i % 2 ? 300 : -300 }, { opacity: 1, x: 0, duration: .35, ease: E }, 4.62 + i * .14);
+    tl.to(id + " .strike", { scaleX: 1, duration: .25, ease: P }, 5.05 + i * .16);
+    tl.to(id, { opacity: .35, duration: .25 }, 5.2 + i * .16);
+  });
+  tl.to(["#o1", "#o2", "#o3"], { opacity: 0, y: -40, duration: .25, ease: "power2.in" }, 5.72);
+  tl.fromTo("#relax", { opacity: 0, y: 60, filter: "blur(14px)" }, { opacity: 1, y: -380, filter: "blur(0px)", duration: .55, ease: E }, 5.78);
+
+  // S3 brand reveal
+  tl.fromTo("#logo", { opacity: 0, scale: .7, filter: "blur(20px) brightness(2)" }, { opacity: 1, scale: 1, filter: "blur(0px) brightness(1.15)", duration: .6, ease: E }, 6.64);
+  tl.to("#logo", { scale: 1.07, duration: .5, ease: "none" }, 7.24);
+  tl.fromTo("#ring2", { opacity: 0, scale: .3 }, { opacity: 1, scale: 1.35, duration: .7, ease: E }, 6.66);
+  tl.to("#ring2", { opacity: 0, duration: .35 }, 7.36);
+  tl.fromTo("#brandSub", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: .6, ease: E }, 6.9);
+
+  // S4 pump + equation
+  tl.fromTo("#vA", { scale: 1.18 }, { scale: 1.05, duration: 1.7, ease: "power1.out" }, 7.7);
+  tl.fromTo("#vB", { scale: 1.12 }, { scale: 1.0, duration: 1.4, ease: "power1.out" }, 9.4);
+  tl.fromTo("#s4tag", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: .45, ease: E }, 7.8);
+  tl.to("#s4tag", { opacity: 0, x: -60, duration: .25 }, 9.25);
+  tl.fromTo("#eq", { opacity: 0, y: 80, scale: .92 }, { opacity: 1, y: 0, scale: 1, duration: .45, ease: E }, 9.3);
+  tl.fromTo("#eq1", { opacity: 0, scale: .4 }, { opacity: 1, scale: 1, duration: .35, ease: "back.out(2)" }, 9.42);
+  tl.fromTo("#eqp", { opacity: 0, rotation: -90 }, { opacity: 1, rotation: 0, duration: .3, ease: P }, 9.95);
+  tl.fromTo("#eq2", { opacity: 0, scale: .4 }, { opacity: 1, scale: 1, duration: .35, ease: "back.out(2)" }, 10.22);
+
+  // S5 minerals
+  salts.forEach((s, i) => tl.fromTo(s, { y: 120 + (i % 5) * 30, rotation: i * 13 }, { y: -260 - (i % 7) * 40, rotation: i * 13 + 120, duration: 3.95, ease: "none" }, 10.8));
+  tl.fromTo("#s5title", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .4, ease: P }, 10.85);
+  tl.fromTo("#s5h", { opacity: 0, y: 70, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .6, ease: E }, 10.9);
+  [["#t1", 12.3], ["#t2", 12.75], ["#t3", 13.2]].forEach(([id, t0]) => tl.fromTo(id, { opacity: 0, rotationY: -90, y: 60, transformPerspective: 900 }, { opacity: 1, rotationY: 0, y: 0, duration: .5, ease: E }, t0));
+  tl.fromTo("#s5note", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .45, ease: P }, 13.95);
+
+  // S6 perfume
+  tl.fromTo(["#arch", "#vC"], { opacity: 0, y: 160, scale: .9 }, { opacity: 1, y: 0, scale: 1, duration: .6, ease: E }, 14.75);
+  mists.forEach((m, i) => tl.fromTo(m, { y: 0, scale: .6 }, { y: -900 - (i % 5) * 80, scale: 1.6, duration: 3.35, ease: "none" }, 14.75));
+  [["#n1", 15.1], ["#n2", 15.6], ["#n3", 16.15]].forEach(([id, t0], i) => {
+    tl.fromTo(id, { opacity: 0, scale: .6, x: i === 1 ? 80 : -80 }, { opacity: 1, scale: 1, x: 0, duration: .4, ease: "back.out(1.8)" }, t0);
+    tl.to(id, { y: -40, duration: 1.5, ease: "sine.inOut" }, t0 + .4);
+  });
+
+  // S7 everyday
+  tl.fromTo("#s7h", { opacity: 0, y: 60, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .55, ease: E }, 18.1);
+  days.forEach((d, i) => {
+    tl.fromTo(d, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .3, ease: P }, 18.2 + i * .05);
+    tl.fromTo(d.querySelector(".f"), { scale: 0 }, { scale: 1, duration: .22, ease: "back.out(2)" }, 18.8 + i * .17);
+    tl.to(d.querySelector("svg"), { opacity: 1, duration: .15 }, 18.86 + i * .17);
+  });
+  tl.fromTo("#cab", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: .4, ease: P }, 20.3);
+  tl.fromTo("#cabx", { scaleX: 0, rotation: -28 }, { scaleX: 1, rotation: -28, duration: .25, ease: P }, 20.95);
+  tl.to("#cab", { x: 10, duration: .05, repeat: 5, yoyo: true }, 20.95);
+
+  // S8 mall boutique
+  tl.fromTo("#cam", { scale: 1.45, y: 180 }, { scale: 1.0, y: 0, duration: 1.0, ease: "power3.inOut" }, 21.45);
+  tl.to("#cam", { x: 120, scale: 1.06, duration: 1.0, ease: PI }, 22.46);
+  tl.to("#cam", { x: -120, duration: 1.1, ease: PI }, 24.25);
+  tl.to("#cam", { x: 0, scale: 1.0, duration: .9, ease: PI }, 25.9);
+  tl.fromTo("#neon", { opacity: 0 }, { opacity: 1, duration: .08, repeat: 3, yoyo: true }, 21.5);
+  tl.set("#neon", { opacity: 1 }, 21.9);
+  tl.to(["#neon", "#neonSub"], { opacity: .18, duration: .3 }, 22.4);
+  tl.fromTo("#mallTag", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .4 }, 21.6);
+  tl.to("#mallTag", { opacity: 0, duration: .2 }, 22.3);
+  bokehs.forEach((b, i) => tl.fromTo(b, { x: -60 - (i % 4) * 30 }, { x: 120 + (i % 3) * 60, duration: 5.5, ease: "none" }, 21.45));
+  tl.fromTo("#glassSheen", { backgroundPosition: "100% 0" }, { backgroundPosition: "-100% 0", duration: 1.4, ease: PI }, 22.6);
+  tl.fromTo("#glassSheen", { backgroundPosition: "100% 0" }, { backgroundPosition: "-100% 0", duration: 1.4, ease: PI, immediateRender: false }, 24.6);
+  tl.fromTo("#coneL", { opacity: 0 }, { opacity: .9, duration: .3, ease: P }, 22.35);
+  tl.fromTo("#bWG", { opacity: 0, y: -520, scale: .9 }, { opacity: 1, y: 0, scale: 1, duration: .55, ease: "bounce.out" }, 22.0);
+  tl.fromTo("#vcWG", { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .45, ease: E }, 22.45);
+  tl.fromTo("#coneR", { opacity: 0 }, { opacity: .9, duration: .3, ease: P }, 24.3);
+  tl.fromTo("#bNO", { opacity: 0, y: -520, scale: .9 }, { opacity: 1, y: 0, scale: 1, duration: .55, ease: "bounce.out" }, 23.95);
+  tl.fromTo("#vcNO", { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .45, ease: E }, 24.42);
+  tl.to(["#bWG", "#bNO"], { y: -16, duration: .7, ease: "sine.inOut", yoyo: true, repeat: 1 }, 25.3);
+
+  // S9 scarcity
+  tl.fromTo("#s9ph", { scale: 1.0 }, { scale: 1.12, duration: 4.6, ease: "none" }, 26.95);
+  tl.fromTo("#stamp", { opacity: 0, scale: 2.4, rotation: -14 }, { opacity: 1, scale: 1, rotation: -6, duration: .35, ease: "power4.in" }, 27.0);
+  tl.to("#stamp", { x: 8, duration: .04, repeat: 5, yoyo: true }, 27.35);
+  tl.fromTo("#meter", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .4, ease: P }, 27.2);
+  tl.fromTo("#fill", { scaleX: 1 }, { scaleX: .12, duration: 1.3, ease: "power2.inOut" }, 27.4);
+  const pct = { v: 100 };
+  tl.fromTo(pct, { v: 100 }, { v: 12, duration: 1.3, ease: "power2.inOut", onUpdate: () => { $("#pct").textContent = Math.round(pct.v) + "%"; } }, 27.4);
+  tl.fromTo("#clock", { opacity: 0, scale: .6 }, { opacity: 1, scale: 1, duration: .45, ease: "back.out(1.8)" }, 28.7);
+  tl.fromTo("#clockArc", { attr: { "stroke-dashoffset": 854.5 } }, { attr: { "stroke-dashoffset": 0 }, duration: 2.8, ease: "none" }, 28.7);
+  for (let i = 0; i < 6; i++) tl.to("#hand", { rotation: (i + 1) * 60, duration: .12, ease: "back.out(3)" }, 28.7 + i * .5);
+
+  // S10 CTA
+  tl.fromTo("#s10ph", { scale: 1.15, y: 40 }, { scale: 1.0, y: 0, duration: 6.4, ease: "power1.out" }, 31.55);
+  tl.fromTo("#ctaTop", { opacity: 0 }, { opacity: 1, duration: .4 }, 31.6);
+  tl.fromTo("#ctaH", { opacity: 0, y: 60, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .5, ease: E }, 31.6);
+  tl.fromTo("#bagBtn", { opacity: 0, scale: .3 }, { opacity: 1, scale: 1, duration: .45, ease: "back.out(2.2)" }, 31.95);
+  tl.to("#bagBtn", { scale: .9, duration: .08, yoyo: true, repeat: 1 }, 33.05);
+  tl.fromTo("#ripple", { opacity: 1, scale: .4 }, { opacity: 0, scale: 4, duration: .7, ease: P }, 33.05);
+  tl.to("#bagBtn", { scale: 1.06, duration: .5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 33.3);
+  [["#ar1", 0], ["#ar2", .12]].forEach(([id, d]) => {
+    tl.fromTo(id, { opacity: 0, y: -20 }, { opacity: 1, y: 20, duration: .4, ease: "sine.inOut", repeat: 5, yoyo: true }, 32.3 + d);
+    tl.to(id, { opacity: 0, duration: .2 }, 35.2);
+  });
+  tl.to(["#bagBtn", "#ctaH", "#ctaTop"], { opacity: 0, y: -30, duration: .3 }, 35.3);
+  tl.fromTo("#love", { opacity: 0, y: -100, filter: "blur(12px)" }, { opacity: 1, y: -820, filter: "blur(0px)", duration: .6, ease: E }, 35.5);
+
+  // END CARD
+  tl.fromTo("#endLogo", { opacity: 0, scale: .8, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .6, ease: E }, 37.95);
+  tl.fromTo("#endDuo", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: .6, ease: E }, 38.1);
+  tl.to(["#endLogo", "#endDuo", "#brandbar"], { opacity: 0, duration: .45 }, 39.0);
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+  tl.seek(0);
+})();
+</script>
+</body>
+</html>
