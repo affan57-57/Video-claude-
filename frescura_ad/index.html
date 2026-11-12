@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<script src="assets/gsap.min.js"></script>
+<style>
+:root { --ink:#0b0a0c; --ivory:#f6f1ea; --gold:#e3c48e; --gold2:#b8924f; --rose:#9e1027; --plum:#3a1f7a; --serif:'Bodoni Moda',serif; --sans:'Jost',sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:1080px; height:1920px; overflow:hidden; background:var(--ink); }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; background:radial-gradient(120% 70% at 50% 30%, #2a2420 0%, #141113 55%, #0b0a0c 100%); font-family:var(--sans); color:var(--ivory); }
+.clip { position:absolute; }
+.scene { left:0; top:0; width:1080px; height:1920px; }
+.fullvid { object-fit:cover; z-index:1; }
+.archscene { z-index:1; }
+.archbg { position:absolute; inset:0; background:radial-gradient(120% 70% at 50% 30%, #2a2420 0%, #141113 55%, #0b0a0c 100%); }
+.arch { position:absolute; left:100px; top:330px; width:880px; height:1100px; border-radius:440px 440px 26px 26px; overflow:hidden;
+        box-shadow:0 40px 120px rgba(0,0,0,.6), 0 0 0 1.5px rgba(227,196,142,.55); }
+.archvid { left:100px; top:330px; width:880px; height:1100px; object-fit:cover; z-index:1; border-radius:440px 440px 26px 26px; box-shadow:0 40px 120px rgba(0,0,0,.6), 0 0 0 1.5px rgba(227,196,142,.55); }
+.layer { position:absolute; inset:0; pointer-events:none; }
+.gfx { position:absolute; opacity:0; }
+/* typography */
+.eyebrow { font-family:var(--sans); font-weight:500; font-size:30px; letter-spacing:.42em; text-transform:uppercase; color:var(--gold); }
+.display { font-family:var(--serif); font-style:italic; font-weight:500; line-height:.92; letter-spacing:-.01em; color:var(--ivory); text-shadow:0 6px 40px rgba(0,0,0,.55); }
+.caps { font-family:var(--sans); font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+.center { left:0; width:1080px; text-align:center; }
+/* overlays */
+#shade { z-index:3; background:linear-gradient(180deg, rgba(11,10,12,.62) 0%, rgba(11,10,12,0) 26%, rgba(11,10,12,0) 58%, rgba(11,10,12,.78) 100%); }
+#vignette { z-index:20; background:radial-gradient(130% 90% at 50% 50%, transparent 55%, rgba(0,0,0,.55) 100%); }
+#grain { z-index:21; background:url(assets/img/grain.png); opacity:.07; mix-blend-mode:overlay; }
+#frame { z-index:19; position:absolute; inset:34px; border:1px solid rgba(227,196,142,.32); border-radius:4px; }
+#brandbar { z-index:19; top:74px; }
+#brandbar span { font-size:22px; letter-spacing:.6em; color:rgba(246,241,234,.8); font-weight:500; }
+#prog { z-index:19; position:absolute; left:60px; bottom:64px; height:3px; width:960px; background:rgba(255,255,255,.14); border-radius:2px; overflow:hidden; }
+#progfill { height:100%; width:100%; background:linear-gradient(90deg,var(--gold2),var(--gold)); transform-origin:0 50%; transform:scaleX(0); }
+#flash { z-index:18; background:#fff7ea; opacity:0; }
+/* captions */
+#caps { z-index:16; }
+.cap { position:absolute; left:60px; width:960px; top:1520px; text-align:center; opacity:0; font-family:var(--sans); font-weight:600; font-size:74px;
+        line-height:1.08; letter-spacing:-.005em; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.75), 0 1px 3px rgba(0,0,0,.6); }
+.cap .w { display:inline-block; opacity:.55; transform:translateY(10px); }
+.cap .w.k { font-family:var(--serif); font-style:italic; font-weight:600; font-size:86px; color:var(--gold); }
+/* chips, cards */
+.chip { display:inline-flex; align-items:center; gap:16px; padding:18px 30px; border-radius:60px; background:rgba(20,17,19,.55); backdrop-filter:blur(14px);
+        border:1px solid rgba(227,196,142,.45); font-family:var(--sans); font-weight:500; font-size:34px; letter-spacing:.16em; text-transform:uppercase; color:var(--ivory); }
+.chip b { width:12px; height:12px; border-radius:50%; background:var(--gold); box-shadow:0 0 14px var(--gold); }
+.glass { background:rgba(18,15,17,.55); backdrop-filter:blur(18px); border:1px solid rgba(227,196,142,.38); border-radius:28px; }
+.meter { width:520px; height:10px; border-radius:6px; background:rgba(255,255,255,.18); overflow:hidden; }
+.meter i { display:block; height:100%; width:100%; background:linear-gradient(90deg,#e3c48e,#f4e2bd); transform-origin:0 50%; }
+.todo { display:flex; align-items:center; gap:22px; font-size:40px; font-weight:500; letter-spacing:.02em; margin:14px 0; opacity:.35; }
+.todo .bx { width:40px; height:40px; border:2px solid var(--gold); border-radius:10px; position:relative; }
+.todo .bx::after { content:''; position:absolute; left:11px; top:3px; width:11px; height:22px; border:solid var(--gold); border-width:0 4px 4px 0; transform:rotate(45deg) scale(var(--ck,0)); }
+.todo .tx { position:relative; }
+.todo .tx::after { content:''; position:absolute; left:-4px; right:-4px; top:54%; height:3px; background:var(--gold); transform:scaleX(var(--st,0)); transform-origin:0 50%; }
+.stepnum { font-family:var(--serif); font-weight:400; font-size:250px; line-height:1; color:transparent; -webkit-text-stroke:2px var(--gold); }
+.bk { position:absolute; border-radius:50%; background:radial-gradient(circle, rgba(255,226,170,.9), rgba(255,226,170,0) 70%); }
+.sp { position:absolute; width:26px; height:26px; background:radial-gradient(circle, #fff 0 8%, transparent 9%), linear-gradient(90deg, transparent 46%, rgba(255,240,210,.9) 50%, transparent 54%), linear-gradient(0deg, transparent 46%, rgba(255,240,210,.9) 50%, transparent 54%); }
+/* luxury display / podium */
+.podium { position:absolute; left:140px; width:800px; height:212px; filter:drop-shadow(0 40px 60px rgba(0,0,0,.7)); }
+.podium::before { content:''; position:absolute; left:0; right:0; top:75px; height:137px; border-radius:0 0 400px 400px / 0 0 75px 75px; background:linear-gradient(90deg,#6f655b,#cdbfae 45%,#e8ddd0 55%,#7c7166); }
+.podium::after { content:''; position:absolute; left:0; right:0; top:0; height:150px; border-radius:50%; background:radial-gradient(60% 60% at 50% 40%, #faf6f0 0%, #ddd3c6 55%, #a89c8e 100%); box-shadow:inset 0 0 0 1.5px rgba(227,196,142,.7); }
+.spot { position:absolute; left:140px; top:-200px; width:800px; height:1700px; background:radial-gradient(50% 60% at 50% 0%, rgba(255,236,200,.38), rgba(255,236,200,0) 70%);
+        clip-path:polygon(38% 0,62% 0,100% 100%,0 100%); filter:blur(8px); }
+.bottle { position:absolute; filter:drop-shadow(0 30px 40px rgba(0,0,0,.55)); }
+.refl { position:absolute; transform:scaleY(-1); opacity:.22; -webkit-mask-image:linear-gradient(0deg, rgba(0,0,0,.9), transparent 40%); filter:blur(1px); }
+.sweep { position:absolute; top:0; width:220px; height:100%; background:linear-gradient(100deg, transparent, rgba(255,250,235,.55), transparent); mix-blend-mode:soft-light; }
+.btn { display:inline-flex; align-items:center; gap:20px; padding:30px 62px; border-radius:80px; background:linear-gradient(135deg,#f1dcb3,#c79f5c); color:#1a1410;
+       font-family:var(--sans); font-weight:700; font-size:44px; letter-spacing:.2em; text-transform:uppercase; box-shadow:0 18px 60px rgba(227,196,142,.35); }
+.half { position:absolute; top:0; width:540px; height:1920px; overflow:hidden; }
+.logo { position:absolute; filter:drop-shadow(0 0 18px rgba(60,200,255,.35)); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="39.6" data-width="1080" data-height="1920">
+
+<video id="v-a" class="clip scene fullvid" src="assets/v/s01_stress.mp4" data-start="0.0" data-duration="1.65" data-media-start="0" muted playsinline></video>
+<video id="v-b" class="clip scene fullvid" src="assets/v/s02_sweat.mp4" data-start="1.65" data-duration="1.6" data-media-start="0" muted playsinline></video>
+<video id="v-c" class="clip archvid" src="assets/v/s03_tired.mp4" data-start="3.25" data-duration="2.2" data-media-start="0" muted playsinline></video>
+<video id="v-d1" class="clip archvid" src="assets/v/s04_work.mp4" data-start="5.45" data-duration="1.2" data-media-start="0" muted playsinline></video>
+<video id="v-d2" class="clip archvid" src="assets/v/s05_laundry.mp4" data-start="6.65" data-duration="1.4" data-media-start="0" muted playsinline></video>
+<video id="v-d3" class="clip scene fullvid" src="assets/v/s06_cook.mp4" data-start="8.05" data-duration="0.5" data-media-start="0" muted playsinline></video>
+<video id="v-d4" class="clip scene fullvid" src="assets/v/s07_baby.mp4" data-start="8.55" data-duration="0.85" data-media-start="0" muted playsinline></video>
+<video id="v-e" class="clip archvid" src="assets/v/s08_penat.mp4" data-start="9.4" data-duration="1.15" data-media-start="0" muted playsinline></video>
+<video id="v-f1" class="clip archvid" src="assets/v/s09_shower.mp4" data-start="10.55" data-duration="2.2" data-media-start="0" muted playsinline></video>
+<video id="v-f2" class="clip scene fullvid" src="assets/v/s10_wash.mp4" data-start="12.75" data-duration="2.1" data-media-start="0" muted playsinline></video>
+<video id="v-f3" class="clip archvid" src="assets/v/s11_clothes.mp4" data-start="14.85" data-duration="2.1" data-media-start="0" muted playsinline></video>
+<video id="v-g" class="clip scene fullvid" src="assets/v/s12_mallbg.mp4" data-start="16.95" data-duration="4.4" data-media-start="0" muted playsinline></video>
+<video id="v-h" class="clip scene fullvid" src="assets/v/s13_pump.mp4" data-start="21.35" data-duration="2.9" data-media-start="0" muted playsinline></video>
+<video id="v-i" class="clip scene fullvid" src="assets/v/s14_foam.mp4" data-start="24.25" data-duration="1.25" data-media-start="0" muted playsinline></video>
+<video id="v-k" class="clip scene fullvid" src="assets/v/s16_bath.mp4" data-start="29.4" data-duration="2.0" data-media-start="0" muted playsinline></video>
+<video id="v-l" class="clip archvid" src="assets/v/s17_mall.mp4" data-start="31.4" data-duration="1.3" data-media-start="0" muted playsinline></video>
+<video id="v-m" class="clip scene fullvid" src="assets/v/s18_phone.mp4" data-start="32.7" data-duration="1.4" data-media-start="0" muted playsinline></video>
+<video id="v-o" class="clip scene fullvid" src="assets/v/s20_endbg.mp4" data-start="36.0" data-duration="3.6" data-media-start="0" muted playsinline></video>
+
+<!-- J: variant split (motion design) -->
+<div id="sc-j" class="clip scene" data-start="25.5" data-duration="3.9" style="z-index:2">
+  <div class="half" id="j-left" style="left:0;background:radial-gradient(90% 60% at 50% 45%, #c0182f 0%, #6e0a18 55%, #2a050a 100%)">
+    <img src="assets/img/photo1.jpg" style="position:absolute;left:-560px;top:-60px;width:1150px;opacity:.12;filter:blur(6px)" />
+  </div>
+  <div class="half" id="j-right" style="left:540px;background:radial-gradient(2px 2px at 35.9% 48.3%, rgba(255,255,255,0.90), transparent),radial-gradient(1px 1.5px at 77.6% 17.4%, rgba(255,255,255,0.43), transparent),radial-gradient(1.5px 1px at 37.2% 60.8%, rgba(255,255,255,0.63), transparent),radial-gradient(1px 2px at 24.9% 51.2%, rgba(255,255,255,0.64), transparent),radial-gradient(1.5px 1.5px at 16.0% 55.8%, rgba(255,255,255,0.48), transparent),radial-gradient(2.5px 1px at 13.2% 68.1%, rgba(255,255,255,0.40), transparent),radial-gradient(1.5px 1px at 87.2% 20.3%, rgba(255,255,255,0.98), transparent),radial-gradient(1.5px 1px at 94.1% 48.3%, rgba(255,255,255,0.98), transparent),radial-gradient(2.5px 1.5px at 2.2% 29.0%, rgba(255,255,255,0.96), transparent),radial-gradient(2px 1px at 33.2% 57.2%, rgba(255,255,255,0.75), transparent),radial-gradient(2px 1px at 31.0% 57.3%, rgba(255,255,255,0.69), transparent),radial-gradient(2px 1px at 48.1% 49.3%, rgba(255,255,255,0.43), transparent),radial-gradient(1px 2px at 35.8% 28.3%, rgba(255,255,255,0.73), transparent),radial-gradient(2.5px 1.5px at 37.6% 58.9%, rgba(255,255,255,0.67), transparent),radial-gradient(1.5px 2px at 95.5% 13.8%, rgba(255,255,255,0.85), transparent),radial-gradient(2.5px 1.5px at 51.2% 62.5%, rgba(255,255,255,0.55), transparent),radial-gradient(2.5px 1px at 59.0% 54.7%, rgba(255,255,255,0.62), transparent),radial-gradient(2px 1px at 43.3% 68.5%, rgba(255,255,255,0.53), transparent),radial-gradient(2px 1px at 34.0% 64.7%, rgba(255,255,255,0.73), transparent),radial-gradient(2px 2px at 31.7% 12.4%, rgba(255,255,255,0.45), transparent),radial-gradient(1.5px 2px at 68.9% 69.8%, rgba(255,255,255,0.50), transparent),radial-gradient(1px 1px at 98.7% 37.3%, rgba(255,255,255,0.64), transparent),radial-gradient(1.5px 2px at 59.4% 57.8%, rgba(255,255,255,0.67), transparent),radial-gradient(2.5px 1px at 5.6% 64.1%, rgba(255,255,255,0.42), transparent),radial-gradient(2.5px 1.5px at 83.8% 9.1%, rgba(255,255,255,0.84), transparent),radial-gradient(1.5px 2px at 89.6% 29.0%, rgba(255,255,255,0.50), transparent),radial-gradient(2px 1px at 5.9% 29.4%, rgba(255,255,255,0.48), transparent),radial-gradient(1.5px 2px at 45.4% 34.2%, rgba(255,255,255,0.84), transparent),radial-gradient(2.5px 1.5px at 29.1% 28.3%, rgba(255,255,255,0.49), transparent),radial-gradient(2.5px 2px at 96.0% 43.9%, rgba(255,255,255,0.70), transparent),radial-gradient(2px 1px at 8.9% 19.1%, rgba(255,255,255,0.87), transparent),radial-gradient(2px 1px at 78.6% 54.2%, rgba(255,255,255,0.82), transparent),radial-gradient(1px 1.5px at 36.3% 49.3%, rgba(255,255,255,0.57), transparent),radial-gradient(2.5px 1.5px at 77.0% 48.4%, rgba(255,255,255,0.58), transparent),radial-gradient(2px 2px at 17.9% 59.6%, rgba(255,255,255,0.68), transparent),radial-gradient(2px 1.5px at 67.2% 32.4%, rgba(255,255,255,0.89), transparent),radial-gradient(2px 1.5px at 27.4% 24.2%, rgba(255,255,255,0.96), transparent),radial-gradient(2.5px 1.5px at 92.2% 12.1%, rgba(255,255,255,0.92), transparent),radial-gradient(2.5px 1.5px at 95.7% 36.3%, rgba(255,255,255,0.72), transparent),radial-gradient(1.5px 1px at 83.7% 65.6%, rgba(255,255,255,0.69), transparent),radial-gradient(1px 2px at 67.1% 29.2%, rgba(255,255,255,0.77), transparent),radial-gradient(2.5px 1.5px at 62.4% 54.2%, rgba(255,255,255,0.78), transparent),radial-gradient(1px 1px at 16.0% 30.9%, rgba(255,255,255,0.79), transparent),radial-gradient(1.5px 2px at 18.1% 50.3%, rgba(255,255,255,0.99), transparent),radial-gradient(1.5px 1px at 5.4% 9.3%, rgba(255,255,255,0.59), transparent),radial-gradient(1.5px 1.5px at 19.3% 2.5%, rgba(255,255,255,0.68), transparent),radial-gradient(2.5px 2px at 61.2% 41.3%, rgba(255,255,255,0.54), transparent),radial-gradient(2px 1px at 35.1% 66.6%, rgba(255,255,255,0.91), transparent),radial-gradient(1px 2px at 83.1% 26.2%, rgba(255,255,255,0.42), transparent),radial-gradient(2px 1px at 29.5% 35.9%, rgba(255,255,255,0.97), transparent),radial-gradient(2px 1.5px at 81.9% 29.3%, rgba(255,255,255,0.89), transparent),radial-gradient(2px 1.5px at 14.2% 41.7%, rgba(255,255,255,0.74), transparent),radial-gradient(1.5px 1px at 60.9% 24.6%, rgba(255,255,255,0.94), transparent),radial-gradient(1px 1.5px at 10.8% 39.6%, rgba(255,255,255,0.77), transparent),radial-gradient(1.5px 1.5px at 62.9% 62.4%, rgba(255,255,255,0.63), transparent),radial-gradient(2.5px 1px at 49.3% 33.6%, rgba(255,255,255,0.82), transparent),radial-gradient(2.5px 1px at 59.6% 18.2%, rgba(255,255,255,0.99), transparent),radial-gradient(2.5px 1.5px at 41.5% 22.3%, rgba(255,255,255,0.99), transparent),radial-gradient(2.5px 1.5px at 14.3% 1.7%, rgba(255,255,255,0.80), transparent),radial-gradient(2.5px 1px at 29.3% 54.7%, rgba(255,255,255,0.90), transparent),radial-gradient(1px 1.5px at 53.3% 19.2%, rgba(255,255,255,0.96), transparent),radial-gradient(1px 1px at 49.0% 59.1%, rgba(255,255,255,0.83), transparent),radial-gradient(2px 1.5px at 49.2% 69.5%, rgba(255,255,255,0.71), transparent),radial-gradient(1px 1px at 76.0% 21.0%, rgba(255,255,255,0.72), transparent),radial-gradient(2px 2px at 29.7% 37.1%, rgba(255,255,255,0.68), transparent),radial-gradient(2px 2px at 74.5% 41.4%, rgba(255,255,255,0.42), transparent),radial-gradient(2px 2px at 45.6% 64.2%, rgba(255,255,255,0.93), transparent),radial-gradient(1.5px 1px at 43.0% 56.5%, rgba(255,255,255,0.76), transparent),radial-gradient(2.5px 1.5px at 47.6% 47.8%, rgba(255,255,255,0.83), transparent),radial-gradient(2px 1.5px at 83.0% 4.6%, rgba(255,255,255,0.90), transparent),radial-gradient(2.5px 2px at 28.6% 54.7%, rgba(255,255,255,0.95), transparent),radial-gradient(1.5px 1px at 47.8% 38.4%, rgba(255,255,255,0.70), transparent),radial-gradient(2px 2px at 15.4% 41.0%, rgba(255,255,255,0.89), transparent),radial-gradient(1px 2px at 23.0% 57.4%, rgba(255,255,255,0.88), transparent),radial-gradient(1px 1.5px at 72.3% 68.5%, rgba(255,255,255,1.00), transparent),radial-gradient(2.5px 1px at 12.3% 8.6%, rgba(255,255,255,0.77), transparent),radial-gradient(1px 2px at 89.5% 69.6%, rgba(255,255,255,0.82), transparent),radial-gradient(2.5px 1px at 18.3% 13.0%, rgba(255,255,255,0.88), transparent),radial-gradient(1px 2px at 21.3% 38.9%, rgba(255,255,255,0.80), transparent),radial-gradient(1px 1.5px at 5.8% 40.3%, rgba(255,255,255,0.85), transparent),radial-gradient(1.5px 1px at 43.2% 22.0%, rgba(255,255,255,0.76), transparent),radial-gradient(2.5px 1.5px at 93.9% 26.2%, rgba(255,255,255,0.43), transparent),radial-gradient(2px 1px at 56.9% 47.5%, rgba(255,255,255,0.57), transparent),radial-gradient(1.5px 1.5px at 6.3% 16.5%, rgba(255,255,255,0.90), transparent),radial-gradient(2px 2px at 97.5% 56.6%, rgba(255,255,255,0.92), transparent),radial-gradient(2.5px 2px at 38.9% 9.2%, rgba(255,255,255,0.41), transparent),radial-gradient(2px 1px at 57.3% 2.5%, rgba(255,255,255,0.92), transparent),radial-gradient(2.5px 1px at 39.0% 32.4%, rgba(255,255,255,0.98), transparent),radial-gradient(1px 2px at 2.9% 50.8%, rgba(255,255,255,0.43), transparent),radial-gradient(1.5px 1.5px at 68.1% 15.6%, rgba(255,255,255,0.47), transparent), radial-gradient(90% 60% at 50% 45%, #5332a8 0%, #24135a 55%, #0b0620 100%)"></div>
+  <div style="position:absolute;left:539px;top:0;width:2px;height:1920px;background:linear-gradient(180deg,transparent,var(--gold),transparent)" id="j-div"></div>
+  <img id="j-glory" class="bottle" src="assets/img/glory.png" style="left:130px;top:330px;width:280px" />
+  <img id="j-noche" class="bottle" src="assets/img/noche.png" style="left:670px;top:316px;width:286px" />
+  <div id="j-n1" class="gfx" style="left:0;width:540px;top:1215px;text-align:center"><div class="eyebrow" style="font-size:24px">Woman Glory</div><div class="display" style="font-size:84px;margin-top:10px">Bombshell</div></div>
+  <div id="j-n2" class="gfx" style="left:540px;width:540px;top:1215px;text-align:center"><div class="eyebrow" style="font-size:24px">Noche</div><div class="display" style="font-size:84px;margin-top:10px">Midnight<br/>Fantasy</div></div>
+  <div id="j-badge" class="gfx glass" style="left:300px;top:150px;width:480px;padding:26px 0;text-align:center"><div class="eyebrow" style="font-size:24px;letter-spacing:.5em">✦ Pilihan ✦</div><div class="display" style="font-size:76px;font-style:normal;font-weight:600;letter-spacing:.06em">TERBAIK</div></div>
+</div>
+
+<!-- N: pick one -->
+<div id="sc-n" class="clip scene" data-start="34.1" data-duration="1.9" style="z-index:2;background:#0b0a0c">
+  <div id="n-a" class="layer" style="background:radial-gradient(80% 55% at 50% 42%, #c0182f 0%, #5c0814 60%, #1a0306 100%)">
+    <img src="assets/img/glory.png" class="bottle" style="left:375px;top:250px;width:330px" id="n-ga" />
+    <div class="display center" style="position:absolute;top:1270px;font-size:120px">Bombshell</div>
+  </div>
+  <div id="n-b" class="layer" style="opacity:0;background:radial-gradient(2px 2px at 35.9% 48.3%, rgba(255,255,255,0.90), transparent),radial-gradient(1px 1.5px at 77.6% 17.4%, rgba(255,255,255,0.43), transparent),radial-gradient(1.5px 1px at 37.2% 60.8%, rgba(255,255,255,0.63), transparent),radial-gradient(1px 2px at 24.9% 51.2%, rgba(255,255,255,0.64), transparent),radial-gradient(1.5px 1.5px at 16.0% 55.8%, rgba(255,255,255,0.48), transparent),radial-gradient(2.5px 1px at 13.2% 68.1%, rgba(255,255,255,0.40), transparent),radial-gradient(1.5px 1px at 87.2% 20.3%, rgba(255,255,255,0.98), transparent),radial-gradient(1.5px 1px at 94.1% 48.3%, rgba(255,255,255,0.98), transparent),radial-gradient(2.5px 1.5px at 2.2% 29.0%, rgba(255,255,255,0.96), transparent),radial-gradient(2px 1px at 33.2% 57.2%, rgba(255,255,255,0.75), transparent),radial-gradient(2px 1px at 31.0% 57.3%, rgba(255,255,255,0.69), transparent),radial-gradient(2px 1px at 48.1% 49.3%, rgba(255,255,255,0.43), transparent),radial-gradient(1px 2px at 35.8% 28.3%, rgba(255,255,255,0.73), transparent),radial-gradient(2.5px 1.5px at 37.6% 58.9%, rgba(255,255,255,0.67), transparent),radial-gradient(1.5px 2px at 95.5% 13.8%, rgba(255,255,255,0.85), transparent),radial-gradient(2.5px 1.5px at 51.2% 62.5%, rgba(255,255,255,0.55), transparent),radial-gradient(2.5px 1px at 59.0% 54.7%, rgba(255,255,255,0.62), transparent),radial-gradient(2px 1px at 43.3% 68.5%, rgba(255,255,255,0.53), transparent),radial-gradient(2px 1px at 34.0% 64.7%, rgba(255,255,255,0.73), transparent),radial-gradient(2px 2px at 31.7% 12.4%, rgba(255,255,255,0.45), transparent),radial-gradient(1.5px 2px at 68.9% 69.8%, rgba(255,255,255,0.50), transparent),radial-gradient(1px 1px at 98.7% 37.3%, rgba(255,255,255,0.64), transparent),radial-gradient(1.5px 2px at 59.4% 57.8%, rgba(255,255,255,0.67), transparent),radial-gradient(2.5px 1px at 5.6% 64.1%, rgba(255,255,255,0.42), transparent),radial-gradient(2.5px 1.5px at 83.8% 9.1%, rgba(255,255,255,0.84), transparent),radial-gradient(1.5px 2px at 89.6% 29.0%, rgba(255,255,255,0.50), transparent),radial-gradient(2px 1px at 5.9% 29.4%, rgba(255,255,255,0.48), transparent),radial-gradient(1.5px 2px at 45.4% 34.2%, rgba(255,255,255,0.84), transparent),radial-gradient(2.5px 1.5px at 29.1% 28.3%, rgba(255,255,255,0.49), transparent),radial-gradient(2.5px 2px at 96.0% 43.9%, rgba(255,255,255,0.70), transparent),radial-gradient(2px 1px at 8.9% 19.1%, rgba(255,255,255,0.87), transparent),radial-gradient(2px 1px at 78.6% 54.2%, rgba(255,255,255,0.82), transparent),radial-gradient(1px 1.5px at 36.3% 49.3%, rgba(255,255,255,0.57), transparent),radial-gradient(2.5px 1.5px at 77.0% 48.4%, rgba(255,255,255,0.58), transparent),radial-gradient(2px 2px at 17.9% 59.6%, rgba(255,255,255,0.68), transparent),radial-gradient(2px 1.5px at 67.2% 32.4%, rgba(255,255,255,0.89), transparent),radial-gradient(2px 1.5px at 27.4% 24.2%, rgba(255,255,255,0.96), transparent),radial-gradient(2.5px 1.5px at 92.2% 12.1%, rgba(255,255,255,0.92), transparent),radial-gradient(2.5px 1.5px at 95.7% 36.3%, rgba(255,255,255,0.72), transparent),radial-gradient(1.5px 1px at 83.7% 65.6%, rgba(255,255,255,0.69), transparent),radial-gradient(1px 2px at 67.1% 29.2%, rgba(255,255,255,0.77), transparent),radial-gradient(2.5px 1.5px at 62.4% 54.2%, rgba(255,255,255,0.78), transparent),radial-gradient(1px 1px at 16.0% 30.9%, rgba(255,255,255,0.79), transparent),radial-gradient(1.5px 2px at 18.1% 50.3%, rgba(255,255,255,0.99), transparent),radial-gradient(1.5px 1px at 5.4% 9.3%, rgba(255,255,255,0.59), transparent),radial-gradient(1.5px 1.5px at 19.3% 2.5%, rgba(255,255,255,0.68), transparent),radial-gradient(2.5px 2px at 61.2% 41.3%, rgba(255,255,255,0.54), transparent),radial-gradient(2px 1px at 35.1% 66.6%, rgba(255,255,255,0.91), transparent),radial-gradient(1px 2px at 83.1% 26.2%, rgba(255,255,255,0.42), transparent),radial-gradient(2px 1px at 29.5% 35.9%, rgba(255,255,255,0.97), transparent),radial-gradient(2px 1.5px at 81.9% 29.3%, rgba(255,255,255,0.89), transparent),radial-gradient(2px 1.5px at 14.2% 41.7%, rgba(255,255,255,0.74), transparent),radial-gradient(1.5px 1px at 60.9% 24.6%, rgba(255,255,255,0.94), transparent),radial-gradient(1px 1.5px at 10.8% 39.6%, rgba(255,255,255,0.77), transparent),radial-gradient(1.5px 1.5px at 62.9% 62.4%, rgba(255,255,255,0.63), transparent),radial-gradient(2.5px 1px at 49.3% 33.6%, rgba(255,255,255,0.82), transparent),radial-gradient(2.5px 1px at 59.6% 18.2%, rgba(255,255,255,0.99), transparent),radial-gradient(2.5px 1.5px at 41.5% 22.3%, rgba(255,255,255,0.99), transparent),radial-gradient(2.5px 1.5px at 14.3% 1.7%, rgba(255,255,255,0.80), transparent),radial-gradient(2.5px 1px at 29.3% 54.7%, rgba(255,255,255,0.90), transparent),radial-gradient(1px 1.5px at 53.3% 19.2%, rgba(255,255,255,0.96), transparent),radial-gradient(1px 1px at 49.0% 59.1%, rgba(255,255,255,0.83), transparent),radial-gradient(2px 1.5px at 49.2% 69.5%, rgba(255,255,255,0.71), transparent),radial-gradient(1px 1px at 76.0% 21.0%, rgba(255,255,255,0.72), transparent),radial-gradient(2px 2px at 29.7% 37.1%, rgba(255,255,255,0.68), transparent),radial-gradient(2px 2px at 74.5% 41.4%, rgba(255,255,255,0.42), transparent),radial-gradient(2px 2px at 45.6% 64.2%, rgba(255,255,255,0.93), transparent),radial-gradient(1.5px 1px at 43.0% 56.5%, rgba(255,255,255,0.76), transparent),radial-gradient(2.5px 1.5px at 47.6% 47.8%, rgba(255,255,255,0.83), transparent),radial-gradient(2px 1.5px at 83.0% 4.6%, rgba(255,255,255,0.90), transparent),radial-gradient(2.5px 2px at 28.6% 54.7%, rgba(255,255,255,0.95), transparent),radial-gradient(1.5px 1px at 47.8% 38.4%, rgba(255,255,255,0.70), transparent),radial-gradient(2px 2px at 15.4% 41.0%, rgba(255,255,255,0.89), transparent),radial-gradient(1px 2px at 23.0% 57.4%, rgba(255,255,255,0.88), transparent),radial-gradient(1px 1.5px at 72.3% 68.5%, rgba(255,255,255,1.00), transparent),radial-gradient(2.5px 1px at 12.3% 8.6%, rgba(255,255,255,0.77), transparent),radial-gradient(1px 2px at 89.5% 69.6%, rgba(255,255,255,0.82), transparent),radial-gradient(2.5px 1px at 18.3% 13.0%, rgba(255,255,255,0.88), transparent),radial-gradient(1px 2px at 21.3% 38.9%, rgba(255,255,255,0.80), transparent),radial-gradient(1px 1.5px at 5.8% 40.3%, rgba(255,255,255,0.85), transparent),radial-gradient(1.5px 1px at 43.2% 22.0%, rgba(255,255,255,0.76), transparent),radial-gradient(2.5px 1.5px at 93.9% 26.2%, rgba(255,255,255,0.43), transparent),radial-gradient(2px 1px at 56.9% 47.5%, rgba(255,255,255,0.57), transparent),radial-gradient(1.5px 1.5px at 6.3% 16.5%, rgba(255,255,255,0.90), transparent),radial-gradient(2px 2px at 97.5% 56.6%, rgba(255,255,255,0.92), transparent),radial-gradient(2.5px 2px at 38.9% 9.2%, rgba(255,255,255,0.41), transparent),radial-gradient(2px 1px at 57.3% 2.5%, rgba(255,255,255,0.92), transparent),radial-gradient(2.5px 1px at 39.0% 32.4%, rgba(255,255,255,0.98), transparent),radial-gradient(1px 2px at 2.9% 50.8%, rgba(255,255,255,0.43), transparent),radial-gradient(1.5px 1.5px at 68.1% 15.6%, rgba(255,255,255,0.47), transparent), radial-gradient(80% 55% at 50% 42%, #5332a8 0%, #1f1050 60%, #08041a 100%)">
+    <img src="assets/img/noche.png" class="bottle" style="left:372px;top:240px;width:336px" id="n-nb" />
+    <div class="display center" style="position:absolute;top:1270px;font-size:104px">Midnight Fantasy</div>
+  </div>
+  <div id="n-atau" class="gfx center eyebrow" style="top:150px;font-size:34px">Pilih kegemaran anda</div>
+</div>
+
+<!-- G & O luxury mall display layers -->
+<div id="g-stage" class="clip scene" data-start="16.95" data-duration="4.4" style="z-index:4">
+  <div class="layer" style="background:radial-gradient(70% 45% at 50% 55%, rgba(0,0,0,0), rgba(0,0,0,.55))"></div>
+  <div class="layer" id="g-bokeh"><i class="bk" style="left:97.3%;top:64.9%;width:77px;height:77px;opacity:0.20"></i><i class="bk" style="left:62.5%;top:36.9%;width:35px;height:35px;opacity:0.27"></i><i class="bk" style="left:61.4%;top:36.4%;width:46px;height:46px;opacity:0.20"></i><i class="bk" style="left:83.1%;top:63.3%;width:76px;height:76px;opacity:0.30"></i><i class="bk" style="left:85.2%;top:51.6%;width:61px;height:61px;opacity:0.35"></i><i class="bk" style="left:74.0%;top:40.6%;width:25px;height:25px;opacity:0.16"></i><i class="bk" style="left:20.2%;top:8.6%;width:82px;height:82px;opacity:0.32"></i><i class="bk" style="left:76.0%;top:5.0%;width:52px;height:52px;opacity:0.46"></i><i class="bk" style="left:61.9%;top:43.6%;width:52px;height:52px;opacity:0.18"></i><i class="bk" style="left:15.5%;top:19.3%;width:45px;height:45px;opacity:0.28"></i><i class="bk" style="left:88.0%;top:18.7%;width:36px;height:36px;opacity:0.25"></i><i class="bk" style="left:16.2%;top:30.8%;width:35px;height:35px;opacity:0.32"></i></div>
+  <div class="spot" id="g-spot"></div>
+  <div class="podium" id="g-pod" style="top:1255px"></div>
+  <div id="g-bottles" style="position:absolute;left:0;top:0;width:1080px;height:1920px">
+    <img class="refl" src="assets/img/noche.png" style="left:205px;top:1395px;width:300px" />
+    <img class="refl" src="assets/img/glory.png" style="left:560px;top:1395px;width:296px" />
+    <img class="bottle" id="g-noche" src="assets/img/noche.png" style="left:205px;top:520px;width:300px" />
+    <img class="bottle" id="g-glory" src="assets/img/glory.png" style="left:560px;top:548px;width:296px" />
+    <div class="sweep" id="g-sweep" style="left:-260px;height:900px;top:520px"></div>
+  </div>
+  <img class="logo gfx" id="g-logo" src="assets/img/logo.png" style="left:240px;top:60px;width:600px" />
+  <div class="gfx center eyebrow" id="g-tag" style="top:1450px;font-size:28px">The Luxury Foam Collection</div>
+  <div class="layer" id="g-sparks"><i class="sp" style="left:7.9%;top:84.0%;transform:scale(0.70)"></i><i class="sp" style="left:89.4%;top:65.0%;transform:scale(0.94)"></i><i class="sp" style="left:47.5%;top:85.6%;transform:scale(0.49)"></i><i class="sp" style="left:65.2%;top:33.3%;transform:scale(0.94)"></i><i class="sp" style="left:70.6%;top:23.1%;transform:scale(0.56)"></i><i class="sp" style="left:7.2%;top:28.4%;transform:scale(0.46)"></i><i class="sp" style="left:41.1%;top:87.9%;transform:scale(0.69)"></i><i class="sp" style="left:33.1%;top:47.4%;transform:scale(0.63)"></i></div>
+</div>
+
+<div id="o-stage" class="clip scene" data-start="36.0" data-duration="3.6" style="z-index:4">
+  <div class="layer" style="background:radial-gradient(70% 45% at 50% 50%, rgba(0,0,0,.1), rgba(0,0,0,.6))"></div>
+  <div class="spot" style="opacity:.8"></div>
+  <div class="podium" style="top:1000px;transform:scale(.82)"></div>
+  <img class="bottle" id="o-noche" src="assets/img/noche.png" style="left:268px;top:370px;width:260px" />
+  <img class="bottle" id="o-glory" src="assets/img/glory.png" style="left:560px;top:395px;width:256px" />
+  <img class="logo gfx" id="o-logo" src="assets/img/logo.png" style="left:300px;top:20px;width:480px" />
+  <div class="gfx center" id="o-btn" style="top:1190px"><span class="btn">Check Out ➝</span></div>
+  <div class="gfx" id="o-stock" style="left:230px;top:1360px;width:620px;text-align:center">
+     <div class="caps" style="font-size:30px;letter-spacing:.38em;color:var(--gold)">Stok sangat terhad</div>
+     <div class="meter" style="width:620px;margin-top:22px;height:12px"><i id="o-bar" style="background:linear-gradient(90deg,#e05a4f,#e3c48e)"></i></div>
+     <div class="caps" id="o-pct" style="font-size:24px;letter-spacing:.3em;margin-top:16px;color:rgba(246,241,234,.75)">Tinggal sedikit sahaja</div>
+  </div>
+</div>
+
+<div id="shade" class="layer"></div>
+
+<!-- ======= motion graphics ======= -->
+<div class="layer" style="z-index:10">
+  <!-- A hook -->
+  <div id="a-eye" class="gfx center eyebrow" style="top:250px">Kau perasan tak?</div>
+  <div id="a-h1" class="gfx center display" style="top:330px;font-size:200px">Stres?</div>
+  <div id="a-h2" class="gfx center caps" style="top:560px;font-size:58px;letter-spacing:.2em">Badan jadi <span style="font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;color:var(--gold);font-size:80px">melekit</span></div>
+  <!-- B/C symptoms + meter -->
+  <div id="b-meter" class="gfx glass" style="left:120px;top:150px;width:840px;padding:30px 40px">
+     <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="eyebrow" style="font-size:24px">Tahap kesegaran</span><span id="b-pct" class="caps" style="font-size:44px;color:var(--gold)">100%</span></div>
+     <div class="meter" style="width:760px;margin-top:18px"><i id="b-bar"></i></div>
+  </div>
+  <div id="b-c1" class="gfx" style="left:110px;top:1120px"><span class="chip"><b></b>Melekit</span></div>
+  <div id="b-c2" class="gfx" style="left:370px;top:1230px"><span class="chip"><b></b>Berpeluh</span></div>
+  <div id="b-c3" class="gfx" style="left:250px;top:1340px"><span class="chip"><b></b>Tak segar</span></div>
+  <!-- D checklist + clock -->
+  <div id="d-card" class="gfx glass" style="left:110px;top:120px;width:860px;padding:34px 46px">
+     <div style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow" style="font-size:24px">Lepas kerja</span>
+     <span class="caps" style="font-size:46px;font-family:var(--serif);font-style:italic;text-transform:none;color:var(--gold)" id="d-clock">17:30</span></div>
+     <div style="display:flex;gap:34px;margin-top:10px">
+     <div class="todo" id="d-t1"><span class="bx"></span><span class="tx">Rumah</span></div>
+     <div class="todo" id="d-t2"><span class="bx"></span><span class="tx">Masak</span></div>
+     <div class="todo" id="d-t3"><span class="bx"></span><span class="tx">Anak</span></div></div>
+  </div>
+  <!-- E penat -->
+  <div id="e-h" class="gfx center display" style="top:150px;font-size:118px">Memang <span style="color:var(--gold)">penat.</span></div>
+  <div id="e-bat" class="gfx" style="left:440px;top:1440px;width:200px;height:84px;border:3px solid var(--ivory);border-radius:16px;padding:8px">
+     <div id="e-batfill" style="height:100%;width:100%;background:var(--gold);border-radius:8px;transform-origin:0 50%"></div>
+     <div style="position:absolute;right:-16px;top:24px;width:10px;height:30px;background:var(--ivory);border-radius:0 4px 4px 0"></div></div>
+  <!-- F routine steps -->
+  <div id="f-head" class="gfx center" style="top:120px"><div class="eyebrow" style="font-size:26px">Sebab tu — jangan abaikan</div><div class="display" style="font-size:96px;margin-top:14px">Rutin Mandi</div></div>
+  <div id="f-dots" class="gfx center" style="top:1450px"></div>
+  <div id="f-s1" class="gfx" style="left:90px;top:1080px"><div class="stepnum">01</div></div>
+  <div id="f-s1t" class="gfx" style="left:110px;top:1340px" ><span class="chip"><b></b>Mandi setiap hari</span></div>
+  <div id="f-s2" class="gfx" style="left:90px;top:300px"><div class="stepnum">02</div></div>
+  <div id="f-s2t" class="gfx glass" style="left:90px;top:570px;padding:26px 36px"><div class="eyebrow" style="font-size:22px">Langkah 02</div><div class="display" style="font-size:66px;margin-top:8px">Bersihkan badan<br/>selepas berpeluh</div></div>
+  <div id="f-s3" class="gfx" style="left:90px;top:1080px"><div class="stepnum">03</div></div>
+  <div id="f-s3t" class="gfx" style="left:110px;top:1340px"><span class="chip"><b></b>Tukar pakaian bersih</span></div>
+  <!-- G brand words -->
+  <div id="g-h" class="gfx center" style="top:1530px"></div>
+  <!-- H pump callouts -->
+  <div id="h-h" class="gfx center" style="top:150px"><div class="eyebrow" style="font-size:26px">Terus daripada botol</div><div class="display" style="font-size:150px;margin-top:6px">Buih <span style="color:var(--gold)">Lembut</span></div></div>
+  <div id="h-c1" class="gfx" style="left:600px;top:560px"><span class="chip"><b></b>Foam pump</span></div>
+  <div id="h-c2" class="gfx glass" style="left:96px;top:1080px;padding:22px 30px;width:420px">
+     <div class="eyebrow" style="font-size:20px">Formula</div>
+     <div class="caps" style="font-size:30px;margin-top:10px;line-height:1.5;letter-spacing:.12em">Ocean Salt<br/>Aromatherapy<br/>Gentle Foaming</div></div>
+  <!-- I -->
+  <div id="i-h" class="gfx center" style="top:220px"><div class="eyebrow" style="font-size:26px">Pilihan wangian</div><div class="display" style="font-size:150px;margin-top:6px">Feminin</div></div>
+  <!-- K / L -->
+  <div id="k-h" class="gfx center display" style="top:210px;font-size:230px">Girls,</div>
+  <div id="k-s" class="gfx center caps" style="top:470px;font-size:46px;letter-spacing:.28em">jangan biarkan diri</div>
+  <div id="l-h" class="gfx center" style="top:130px"><div class="eyebrow" style="font-size:26px">Self-care itu wajib</div><div class="display" style="font-size:110px;margin-top:10px">Jangan <span style="color:var(--gold)">terabai.</span></div></div>
+  <!-- M -->
+  <div id="m-h" class="gfx center" style="top:190px"><div class="eyebrow" style="font-size:28px">Jom upgrade rutin mandi</div><div class="display" style="font-size:170px;margin-top:6px">Tukar<br/><span style="color:var(--gold)">Sekarang</span></div></div>
+</div>
+
+<div id="caps" class="layer">
+<div class="cap" data-s="0.0" data-e="0.62"><span class="w" data-t="0.0">Kau</span> <span class="w" data-t="0.18">perasan</span> <span class="w" data-t="0.36">tak,</span></div>
+<div class="cap" data-s="0.62" data-e="1.68"><span class="w" data-t="0.62">bila</span> <span class="w k" data-t="0.96">stres,</span></div>
+<div class="cap" data-s="1.68" data-e="2.44"><span class="w" data-t="1.68">satu</span> <span class="w" data-t="1.8">badan</span> <span class="w" data-t="2.1">rasa</span></div>
+<div class="cap" data-s="2.44" data-e="3.26"><span class="w k" data-t="2.44">melekit,</span></div>
+<div class="cap" data-s="3.26" data-e="4.38"><span class="w k" data-t="3.26">berpeluh</span> <span class="w" data-t="3.64">dan</span> <span class="w" data-t="3.88">langsung</span></div>
+<div class="cap" data-s="4.38" data-e="5.54"><span class="w" data-t="4.38">tak</span> <span class="w k" data-t="4.58">segar.</span></div>
+<div class="cap" data-s="5.54" data-e="6.62"><span class="w" data-t="5.54">Balik</span> <span class="w" data-t="5.82">kerja</span> <span class="w" data-t="6.18">pula,</span></div>
+<div class="cap" data-s="6.62" data-e="7.38"><span class="w" data-t="6.62">terus</span> <span class="w" data-t="6.76">sambung</span> <span class="w" data-t="7.08">urus</span></div>
+<div class="cap" data-s="7.38" data-e="8.12"><span class="w" data-t="7.38">rumah,</span></div>
+<div class="cap" data-s="8.12" data-e="8.9"><span class="w" data-t="8.12">masak</span> <span class="w" data-t="8.4">dan</span> <span class="w" data-t="8.58">jaga</span></div>
+<div class="cap" data-s="8.9" data-e="9.44"><span class="w" data-t="8.9">anak.</span></div>
+<div class="cap" data-s="9.44" data-e="10.58"><span class="w" data-t="9.44">Memang</span> <span class="w k" data-t="9.86">penat.</span></div>
+<div class="cap" data-s="10.58" data-e="11.05"><span class="w" data-t="10.58">Sebab</span> <span class="w" data-t="10.8">tu,</span></div>
+<div class="cap" data-s="11.05" data-e="12.16"><span class="w" data-t="11.05">jangan</span> <span class="w" data-t="11.42">abaikan</span> <span class="w" data-t="11.82">rutin</span></div>
+<div class="cap" data-s="12.16" data-e="12.8"><span class="w k" data-t="12.16">mandi,</span></div>
+<div class="cap" data-s="12.8" data-e="14.26"><span class="w" data-t="12.8">bersihkan</span> <span class="w" data-t="13.22">badan</span> <span class="w" data-t="13.82">selepas</span></div>
+<div class="cap" data-s="14.26" data-e="15.3"><span class="w k" data-t="14.26">berpeluh</span> <span class="w" data-t="14.7">dan</span> <span class="w" data-t="14.9">tukar</span></div>
+<div class="cap" data-s="15.3" data-e="16.32"><span class="w" data-t="15.3">pakaian</span> <span class="w" data-t="15.74">kepada</span> <span class="w" data-t="16.08">yang</span></div>
+<div class="cap" data-s="16.32" data-e="17.0"><span class="w k" data-t="16.32">bersih.</span></div>
+<div class="cap" data-s="17.0" data-e="18.42"><span class="w" data-t="17.0">Pastinya</span> <span class="w k" data-t="17.75">Frescura</span> <span class="w k" data-t="18.2">Body</span></div>
+<div class="cap" data-s="18.42" data-e="20.0"><span class="w" data-t="18.42">untuk</span> <span class="w" data-t="18.76">melengkapkan</span> <span class="w" data-t="19.54">rutin</span></div>
+<div class="cap" data-s="20.0" data-e="21.35"><span class="w" data-t="20.0">mandi</span> <span class="w" data-t="20.5">korang.</span></div>
+<div class="cap" data-s="21.35" data-e="22.64"><span class="w" data-t="21.35">Nikmati</span> <span class="w k" data-t="21.82">buih</span> <span class="w k" data-t="22.14">lembut</span></div>
+<div class="cap" data-s="22.64" data-e="23.62"><span class="w" data-t="22.64">terus</span> <span class="w" data-t="22.94">daripada</span> <span class="w" data-t="23.3">botol</span></div>
+<div class="cap" data-s="23.62" data-e="24.66"><span class="w" data-t="23.62">dengan</span> <span class="w" data-t="23.88">pilihan</span> <span class="w" data-t="24.3">wangian</span></div>
+<div class="cap" data-s="24.66" data-e="25.55"><span class="w k" data-t="24.66">feminin.</span></div>
+<div class="cap" data-s="25.55" data-e="26.0"><span class="w k" data-t="25.55">Bombshell,</span></div>
+<div class="cap" data-s="26.0" data-e="26.76"><span class="w k" data-t="26.0">Midnight</span> <span class="w k" data-t="26.25">Fantasy,</span></div>
+<div class="cap" data-s="26.76" data-e="27.66"><span class="w" data-t="26.76">itulah</span> <span class="w" data-t="27.14">pilihan</span> <span class="w" data-t="27.5">yang</span></div>
+<div class="cap" data-s="27.66" data-e="28.3"><span class="w k" data-t="27.66">terbaik,</span></div>
+<div class="cap" data-s="28.3" data-e="29.45"><span class="w" data-t="28.3">yang</span> <span class="w" data-t="28.56">menyenangkan.</span></div>
+<div class="cap" data-s="29.45" data-e="30.2"><span class="w k" data-t="29.45">Girls,</span></div>
+<div class="cap" data-s="30.2" data-e="31.26"><span class="w" data-t="30.2">jangan</span> <span class="w" data-t="30.52">biarkan</span> <span class="w" data-t="30.88">diri</span></div>
+<div class="cap" data-s="31.26" data-e="32.72"><span class="w" data-t="31.26">sendiri</span> <span class="w" data-t="31.64">terus</span> <span class="w k" data-t="32.06">terabai.</span></div>
+<div class="cap" data-s="32.72" data-e="34.1"><span class="w" data-t="32.72">Tukar</span> <span class="w k" data-t="33.34">sekarang,</span></div>
+<div class="cap" data-s="34.1" data-e="35.18"><span class="w" data-t="34.1">pilih</span> <span class="w k" data-t="34.24">Bombshell</span> <span class="w" data-t="34.74">ataupun</span></div>
+<div class="cap" data-s="35.18" data-e="36.15"><span class="w k" data-t="35.18">Midnight</span> <span class="w k" data-t="35.4">Fantasy,</span></div>
+<div class="cap" data-s="36.15" data-e="36.8"><span class="w k" data-t="36.15">check</span> <span class="w k" data-t="36.38">out</span> <span class="w" data-t="36.5">terus,</span></div>
+<div class="cap" data-s="36.8" data-e="37.75"><span class="w" data-t="36.8">stok</span> <span class="w" data-t="37.15">sangat</span> <span class="w" data-t="37.45">sangat</span></div>
+<div class="cap" data-s="37.75" data-e="38.9"><span class="w k" data-t="37.75">terhad.</span></div>
+</div>
+
+<div id="flash" class="layer"></div>
+<div id="vignette" class="layer"></div>
+<div id="grain" class="layer"></div>
+<div id="frame"></div>
+<div id="brandbar" class="gfx center" style="opacity:1"><span>FRESCURA · BODY</span></div>
+<div id="prog"><div id="progfill"></div></div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const q = s => document.querySelector(s);
+const E = "expo.out", P4 = "power4.out";
+const IN = (sel, t, v={}) => tl.fromTo(sel, Object.assign({opacity:0, y:60, filter:"blur(14px)"}, v.from||{}), Object.assign({opacity:1, y:0, x:0, filter:"blur(0px)", duration:.55, ease:E}, v.to||{}), t);
+const OUT = (sel, t, d=.25) => tl.to(sel, {opacity:0, filter:"blur(10px)", duration:d, ease:"power2.in"}, t);
+const FLASH = (t, o=.55) => tl.fromTo("#flash", {opacity:o}, {opacity:0, duration:.35, ease:"power2.out"}, t);
+const SPLIT = (sel) => { const el=q(sel); const txt=el.textContent; el.innerHTML = [...txt].map(c=>`<span style="display:inline-block">${c===' '?'&nbsp;':c}</span>`).join(''); return el.children; };
+
+// progress bar
+tl.fromTo("#progfill", {scaleX:0}, {scaleX:1, duration:39.6, ease:"none"}, 0);
+
+// ---- scene punch-in transitions on every video/scene
+const cuts = [["a", 0.0, 1.65, "full"], ["b", 1.65, 3.25, "full"], ["c", 3.25, 5.45, "arch"], ["d1", 5.45, 6.65, "arch"], ["d2", 6.65, 8.05, "arch"], ["d3", 8.05, 8.55, "full"], ["d4", 8.55, 9.4, "full"], ["e", 9.4, 10.55, "arch"], ["f1", 10.55, 12.75, "arch"], ["f2", 12.75, 14.85, "full"], ["f3", 14.85, 16.95, "arch"], ["g", 16.95, 21.35, "bg"], ["h", 21.35, 24.25, "full"], ["i", 24.25, 25.5, "full"], ["k", 29.4, 31.4, "full"], ["l", 31.4, 32.7, "arch"], ["m", 32.7, 34.1, "full"], ["o", 36.0, 39.6, "bg"]];
+cuts.forEach(([id,s,e,mode]) => {
+  const el = q("#v-"+id);
+  if (mode==="arch") {
+    tl.fromTo(el, {scale:1.08, y:80, opacity:0}, {scale:1, y:0, opacity:1, duration:.5, ease:E}, s);
+    tl.to(el, {scale:1.03, duration:Math.max(.1,e-s-.5), ease:"none"}, s+.5);
+  } else {
+    tl.fromTo(el, {scale:1.16, filter:"blur(10px)"}, {scale:1.02, filter:"blur(0px)", duration:.45, ease:E}, s);
+    tl.to(el, {scale:1.0, duration:Math.max(.1,e-s-.45), ease:"none"}, s+.45);
+  }
+});
+
+// ---- A hook
+FLASH(0, .9);
+SPLIT("#a-h1");
+tl.set("#a-h1", {opacity:1}, 0.9);
+IN("#a-eye", 0.02, {to:{duration:.4}});
+tl.fromTo("#a-h1 span", {opacity:0, y:120, rotateX:-70, filter:"blur(18px)"}, {opacity:1, y:0, rotateX:0, filter:"blur(0px)", duration:.6, ease:E, stagger:.05}, 0.9);
+tl.fromTo("#a-h1", {scale:1.25}, {scale:1, duration:1.2, ease:P4}, 0.9);
+IN("#a-h2", 2.05);
+OUT(["#a-eye","#a-h1","#a-h2"], 3.05);
+// ---- B meter & chips
+IN("#b-meter", 2.3);
+const pct = {v:100};
+tl.to(pct, {v:18, duration:2.6, ease:"power2.inOut", onUpdate:()=>{ q("#b-pct").textContent = Math.round(pct.v)+"%"; }}, 2.5);
+tl.fromTo("#b-bar", {scaleX:1}, {scaleX:.18, duration:2.6, ease:"power2.inOut"}, 2.5);
+tl.to("#b-bar", {background:"linear-gradient(90deg,#d9534f,#e3a07a)", duration:1.2}, 3.6);
+IN("#b-c1", 2.44, {from:{x:-80,y:0}}); IN("#b-c2", 3.26, {from:{x:80,y:0}}); IN("#b-c3", 4.40, {from:{x:-80,y:0}});
+OUT(["#b-meter","#b-c1","#b-c2","#b-c3"], 5.3);
+// ---- D checklist
+IN("#d-card", 5.5);
+const clk = {m:17*60+30};
+tl.to(clk, {m:23*60, duration:3.8, ease:"power1.in", onUpdate:()=>{ const m=Math.round(clk.m); q("#d-clock").textContent = String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0"); }}, 5.55);
+[["#d-t1",7.15],["#d-t2",8.12],["#d-t3",8.70]].forEach(([s,t])=>{
+  tl.to(s, {opacity:1, duration:.15}, t);
+  tl.fromTo(s+" .bx", {"--ck":0}, {"--ck":1, duration:.3, ease:"back.out(3)"}, t);
+  tl.fromTo(s+" .tx", {"--st":0}, {"--st":1, duration:.35, ease:P4}, t+.08);
+});
+OUT("#d-card", 9.3);
+// ---- E penat
+IN("#e-h", 9.42, {from:{scale:1.25, y:0}, to:{scale:1}});
+IN("#e-bat", 9.6, {from:{y:30}});
+tl.fromTo("#e-batfill", {scaleX:.9}, {scaleX:.06, duration:.8, ease:"power3.in"}, 9.7);
+tl.to("#e-batfill", {background:"#e0524a", duration:.2}, 10.2);
+tl.to("#e-bat", {opacity:.25, duration:.08, yoyo:true, repeat:3}, 10.25);
+OUT(["#e-h","#e-bat"], 10.48, .12);
+// ---- F routine
+FLASH(10.55, .35);
+IN("#f-head", 10.6);
+IN("#f-s1", 11.8, {from:{x:-60,y:0}}); IN("#f-s1t", 12.1, {from:{y:30}});
+OUT(["#f-s1","#f-s1t"], 12.65, .15);
+OUT("#f-head", 12.65, .15);
+IN("#f-s2", 12.85, {from:{x:-60,y:0}}); IN("#f-s2t", 13.1);
+OUT(["#f-s2","#f-s2t"], 14.75, .15);
+IN("#f-s3", 14.95, {from:{x:-60,y:0}}); IN("#f-s3t", 15.3, {from:{y:30}});
+OUT(["#f-s3","#f-s3t"], 16.8, .15);
+// ---- G luxury mall reveal
+FLASH(16.95, .6);
+tl.fromTo("#g-stage", {scale:1.12}, {scale:1, duration:4.4, ease:"power2.out"}, 16.95);
+tl.fromTo("#g-spot", {opacity:0}, {opacity:1, duration:.8}, 17.0);
+tl.fromTo("#g-pod", {opacity:0, y:120, scale:.8}, {opacity:1, y:0, scale:1, duration:.8, ease:E}, 17.05);
+tl.fromTo("#g-bottles", {y:700, opacity:0}, {y:0, opacity:1, duration:1.0, ease:"expo.out"}, 17.4);
+tl.fromTo("#g-noche", {rotation:-6}, {rotation:0, duration:1.2, ease:E}, 17.4);
+tl.fromTo("#g-glory", {rotation:6}, {rotation:0, duration:1.2, ease:E}, 17.4);
+tl.fromTo("#g-sweep", {x:0}, {x:1500, duration:1.3, ease:"power2.inOut"}, 18.4);
+tl.fromTo("#g-sweep", {x:0}, {x:1500, duration:1.3, ease:"power2.inOut", immediateRender:false}, 20.0);
+tl.fromTo("#g-logo", {opacity:0, scale:.6, filter:"blur(20px)"}, {opacity:1, scale:1, filter:"blur(0px)", duration:.8, ease:E}, 17.75);
+IN("#g-tag", 18.8, {from:{y:20}});
+tl.fromTo("#g-bokeh .bk", {y:0}, {y:-120, duration:4.4, ease:"none", stagger:{each:.02}}, 16.95);
+tl.fromTo("#g-sparks .sp", {opacity:0, scale:0}, {opacity:1, scale:1, duration:.3, stagger:{each:.09, yoyo:true, repeat:1}, ease:"power2.out"}, 17.9);
+tl.to("#g-stage", {opacity:0, duration:.2}, 21.2);
+// ---- H pump
+IN("#h-h", 21.45);
+IN("#h-c1", 22.0, {from:{x:60,y:0}});
+IN("#h-c2", 22.6, {from:{x:-60,y:0}});
+OUT(["#h-h","#h-c1","#h-c2"], 24.15, .15);
+// ---- I feminin
+IN("#i-h", 24.3);
+OUT("#i-h", 25.4, .12);
+// ---- J variants
+FLASH(25.5, .4);
+tl.fromTo("#j-left", {xPercent:-100}, {xPercent:0, duration:.5, ease:E}, 25.5);
+tl.fromTo("#j-right", {xPercent:100}, {xPercent:0, duration:.5, ease:E}, 25.95);
+tl.fromTo("#j-glory", {x:-500, rotation:-12, opacity:0}, {x:0, rotation:0, opacity:1, duration:.7, ease:E}, 25.55);
+tl.fromTo("#j-noche", {x:500, rotation:12, opacity:0}, {x:0, rotation:0, opacity:1, duration:.7, ease:E}, 26.0);
+IN("#j-n1", 25.75); IN("#j-n2", 26.2);
+tl.fromTo("#j-div", {scaleY:0}, {scaleY:1, duration:.8, ease:E}, 25.9);
+tl.fromTo("#j-badge", {opacity:0, scale:1.6, filter:"blur(16px)"}, {opacity:1, scale:1, filter:"blur(0px)", duration:.5, ease:"back.out(1.6)"}, 27.1);
+tl.to(["#j-glory","#j-noche"], {y:-24, duration:1.4, ease:"sine.inOut", yoyo:true, repeat:1}, 26.6);
+// ---- K/L
+IN("#k-h", 29.45, {from:{y:0, scale:1.3}, to:{scale:1}});
+IN("#k-s", 30.2);
+OUT(["#k-h","#k-s"], 31.3, .12);
+IN("#l-h", 31.45);
+OUT("#l-h", 32.6, .12);
+// ---- M
+FLASH(32.7, .4);
+IN("#m-h", 32.72, {from:{scale:1.2, y:0}, to:{scale:1}});
+OUT("#m-h", 34.0, .12);
+// ---- N pick
+IN("#n-atau", 34.15, {from:{y:20}});
+tl.fromTo("#n-ga", {scale:.7, y:200, opacity:0}, {scale:1, y:0, opacity:1, duration:.6, ease:E}, 34.15);
+tl.fromTo("#n-b", {clipPath:"circle(0% at 50% 45%)", opacity:1}, {clipPath:"circle(80% at 50% 45%)", opacity:1, duration:.55, ease:"power3.inOut"}, 35.05);
+tl.fromTo("#n-nb", {scale:.8, rotation:8}, {scale:1, rotation:0, duration:.7, ease:E}, 35.1);
+// ---- O end card
+FLASH(36.0, .5);
+tl.fromTo("#o-stage", {scale:1.1}, {scale:1, duration:3.6, ease:"power2.out"}, 36.0);
+tl.fromTo(["#o-noche","#o-glory"], {y:500, opacity:0}, {y:0, opacity:1, duration:.8, ease:E, stagger:.08}, 36.0);
+tl.fromTo("#o-logo", {opacity:0, scale:.7}, {opacity:1, scale:1, duration:.7, ease:E}, 36.1);
+tl.fromTo("#o-btn", {opacity:0, y:40, scale:.8}, {opacity:1, y:0, scale:1, duration:.5, ease:"back.out(2)"}, 36.15);
+tl.to("#o-btn", {scale:1.07, duration:.35, ease:"sine.inOut", yoyo:true, repeat:5}, 36.7);
+IN("#o-stock", 36.8, {from:{y:30}});
+tl.fromTo("#o-bar", {scaleX:1}, {scaleX:.12, duration:1.9, ease:"power3.inOut"}, 36.9);
+// ---- captions (word pop)
+document.querySelectorAll(".cap").forEach(c => {
+  const s = +c.dataset.s, e = +c.dataset.e;
+  tl.fromTo(c, {opacity:0, y:24}, {opacity:1, y:0, duration:.14, ease:P4}, s);
+  c.querySelectorAll(".w").forEach(w => {
+    tl.to(w, {opacity:1, y:0, duration:.14, ease:"back.out(2.5)"}, +w.dataset.t);
+  });
+  tl.to(c, {opacity:0, duration:.08}, e - .08);
+});
+// hide captions on end-card bottom zone (button/stock live there)
+tl.set("#caps", {y:0}, 0);
+tl.to("#caps", {y:110, duration:.3, ease:P4}, 36.0);
+tl.to("#brandbar", {opacity:0, duration:.3}, 16.95); tl.to("#brandbar", {opacity:1, duration:.3}, 21.35);
+tl.to("#brandbar", {opacity:0, duration:.3}, 35.9);
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
