@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-400-normal.woff2); font-weight: 400; }
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-500-normal.woff2); font-weight: 500; }
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-600-normal.woff2); font-weight: 600; }
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-700-normal.woff2); font-weight: 700; }
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-400-italic.woff2); font-weight: 400; font-style: italic; }
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-500-italic.woff2); font-weight: 500; font-style: italic; }
+      @font-face { font-family: "Bodoni"; src: url(assets/fonts/bodoni-moda-latin-600-italic.woff2); font-weight: 600; font-style: italic; }
+      @font-face { font-family: "Inst"; src: url(assets/fonts/instrument-sans-latin-400-normal.woff2); font-weight: 400; }
+      @font-face { font-family: "Inst"; src: url(assets/fonts/instrument-sans-latin-500-normal.woff2); font-weight: 500; }
+      @font-face { font-family: "Inst"; src: url(assets/fonts/instrument-sans-latin-600-normal.woff2); font-weight: 600; }
+      @font-face { font-family: "Italiana"; src: url(assets/fonts/italiana-latin-400-normal.woff2); }
+      :root {
+        --ivory: #f5f0e8; --sand: #e9dfd0; --ink: #12100e; --ink2: #3a332c;
+        --gold: #c8a46a; --gold2: #ead3a2; --wine: #6d1020; --violet: #3b2a6b;
+        --serif: "Bodoni", serif; --sans: "Inst", sans-serif; --deco: "Italiana", serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--sans); color: var(--ink); }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .abs { position: absolute; }
+      .center { left: 0; right: 0; text-align: center; }
+      .dark { background: radial-gradient(120% 80% at 50% 35%, #2a2420 0%, #12100e 55%, #070605 100%); color: var(--ivory); }
+      .ivory { background: radial-gradient(130% 90% at 50% 30%, #fbf8f3 0%, var(--ivory) 55%, var(--sand) 100%); }
+      .kicker { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: .38em; text-transform: uppercase; }
+      .serif { font-family: var(--serif); }
+      .ital { font-style: italic; }
+      .gold { color: var(--gold); }
+      .goldtx { background: linear-gradient(100deg, #9c7a43 0%, #ead3a2 35%, #c8a46a 55%, #f6e7c5 70%, #a8844b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .rule { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+      video, .media { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      .vwrap { position: absolute; inset: 0; overflow: hidden; }
+      .shade { position: absolute; inset: 0; }
+      .chip { display: inline-flex; align-items: center; gap: 18px; padding: 22px 38px; border-radius: 999px; font-family: var(--sans); font-weight: 600; font-size: 34px; letter-spacing: .14em; text-transform: uppercase; }
+      .glass { background: rgba(18, 16, 14, .52); border: 1.5px solid rgba(234, 211, 162, .55); color: var(--ivory); backdrop-filter: blur(14px); }
+      .glassL { background: rgba(255, 252, 247, .72); border: 1.5px solid rgba(200, 164, 106, .7); color: var(--ink); }
+      .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); display: inline-block; }
+
+      /* global overlays */
+      #grain { position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay; z-index: 80; }
+      #frame { position: absolute; inset: 34px; border: 1.5px solid rgba(200, 164, 106, .45); z-index: 81; pointer-events: none; }
+      #brandtag { position: absolute; top: 66px; left: 0; right: 0; text-align: center; z-index: 82; font-family: var(--deco); font-size: 34px; letter-spacing: .5em; color: rgb(165,135,87); }
+      #wipe { position: absolute; top: -200px; left: -1400px; width: 900px; height: 2400px; z-index: 79; pointer-events: none;
+        background: linear-gradient(90deg, rgba(255,240,210,0) 0%, rgba(255,236,200,.85) 45%, rgba(255,255,255,.95) 50%, rgba(255,236,200,.85) 55%, rgba(255,240,210,0) 100%); transform: rotate(12deg); filter: blur(10px); }
+
+      /* captions */
+      #caps { position: absolute; left: 70px; right: 70px; top: 1480px; height: 260px; z-index: 90; }
+      .cap { position: absolute; left: 0; right: 0; top: 0; text-align: center; opacity: 0; }
+      .cap .pill { display: inline-block; padding: 18px 36px 24px; border-radius: 28px; background: rgba(14, 12, 11, .62); border: 1.5px solid rgba(234, 211, 162, .35); }
+      .cw { display: inline-block; font-family: var(--sans); font-weight: 600; font-size: 66px; line-height: 1.12; letter-spacing: -.01em; color: rgba(245, 240, 232, .55); margin: 0 9px; }
+      .cw.k { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 74px; letter-spacing: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="34.6" data-width="1080" data-height="1920">
+      <audio id="mix" src="assets/audio/final_mix.wav" data-start="0" data-duration="34.6" data-volume="1"></audio>
+
+      <!-- S1 HOOK -->
+      <div id="s1" class="clip dark" data-start="0" data-duration="2.1">
+        <svg class="abs" id="s1waves" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0">
+          <g fill="none" stroke="#c8a46a" stroke-width="2" opacity=".55">
+            <path id="w1" d="M-100 760 C 150 660, 330 860, 540 760 S 930 660, 1180 760" />
+            <path id="w2" d="M-100 820 C 150 720, 330 920, 540 820 S 930 720, 1180 820" opacity=".6" />
+            <path id="w3" d="M-100 1180 C 150 1080, 330 1280, 540 1180 S 930 1080, 1180 1180" opacity=".45" />
+          </g>
+        </svg>
+        <div class="abs center kicker gold" id="s1k" style="top:470px">Fakta Kebersihan · 01</div>
+        <div class="abs center serif" id="s1a" style="top:560px;font-size:120px;font-weight:500;letter-spacing:.06em">TAHU TAK?</div>
+        <div class="abs center serif ital goldtx" id="s1b" style="top:820px;font-size:250px;font-weight:600;line-height:1">Bau</div>
+        <div class="abs center serif" id="s1c" style="top:1070px;font-size:150px;font-weight:700;letter-spacing:.18em">BADAN</div>
+        <div class="abs rule" id="s1r" style="top:1260px;left:240px;width:600px"></div>
+        <div class="abs center kicker" id="s1d" style="top:1300px;color:#e9dfd0;font-size:30px">yang kurang menyenangkan</div>
+      </div>
+
+      <!-- S2 COUPLE / DISTANCE -->
+      <div id="s2" class="clip ivory" data-start="2.0" data-duration="3.3">
+        <div class="abs center kicker" style="top:250px;color:var(--ink2)" id="s2k">Kesan pada hubungan</div>
+        <div class="abs center serif" id="s2t" style="top:320px;font-size:104px;font-weight:500;line-height:1.05">Pasangan rasa<br /><span class="ital goldtx" style="font-weight:600">kurang selesa</span></div>
+        <svg class="abs" width="1080" height="700" viewBox="0 0 1080 700" style="left:0;top:690px">
+          <g id="pA"><circle cx="0" cy="0" r="62" fill="none" stroke="#12100e" stroke-width="5" /><path d="M-105 220 C -105 120, 105 120, 105 220" fill="none" stroke="#12100e" stroke-width="5" /></g>
+          <g id="pB"><circle cx="0" cy="0" r="62" fill="none" stroke="#12100e" stroke-width="5" /><path d="M-105 220 C -105 120, 105 120, 105 220" fill="none" stroke="#12100e" stroke-width="5" /></g>
+          <g id="odor" fill="none" stroke="#c8a46a" stroke-width="4" stroke-linecap="round">
+            <path d="M520 60 c -30 -40, 30 -60, 0 -100" /><path d="M560 80 c -30 -40, 30 -60, 0 -100" /><path d="M480 80 c -30 -40, 30 -60, 0 -100" />
+          </g>
+          <line id="dist" x1="300" y1="330" x2="780" y2="330" stroke="#c8a46a" stroke-width="3" stroke-dasharray="10 10" />
+        </svg>
+        <div class="abs center kicker gold" id="s2d" style="top:1060px;font-size:30px">jarak · ketika bersama</div>
+      </div>
+
+      <!-- S3 CHAT BUBBLE -->
+      <div id="s3" class="clip ivory" data-start="5.2" data-duration="4.45">
+        <div class="abs center kicker" style="top:250px;color:var(--ink2)" id="s3k">Jangan tunggu sampai</div>
+        <div class="abs center serif ital" id="s3t" style="top:310px;font-size:150px;font-weight:600">orang tegur</div>
+        <div class="abs" id="bub1" style="left:120px;top:620px;width:700px;padding:36px 44px;border-radius:44px 44px 44px 10px;background:#fff;box-shadow:0 30px 60px rgba(60,40,20,.15);font-size:46px;font-weight:500">“Eh… bau apa ni?”</div>
+        <div class="abs" id="bub2" style="left:300px;top:820px;width:660px;padding:36px 44px;border-radius:44px 44px 10px 44px;background:var(--ink);color:var(--ivory);box-shadow:0 30px 60px rgba(0,0,0,.2);font-size:44px;font-weight:500">“Kau tak perasan ke?”</div>
+        <div class="abs" id="s3x" style="left:0;right:0;top:600px;height:420px">
+          <div class="abs" style="left:110px;top:200px;width:860px;height:8px;background:var(--wine);transform-origin:left center" id="s3strike"></div>
+        </div>
+        <div class="abs center" id="s3b" style="top:1120px">
+          <div class="kicker" style="color:var(--ink2);font-size:28px">Ambil berat tentang</div>
+          <div class="serif goldtx" style="font-size:118px;font-weight:700;letter-spacing:.04em;margin-top:14px">KEBERSIHAN</div>
+          <div class="serif ital" style="font-size:86px;font-weight:500;margin-top:-10px">badan</div>
+        </div>
+      </div>
+
+      <!-- S4 EDUCATIONAL BODY ZONES -->
+      <div id="s4" class="clip ivory" data-start="9.6" data-duration="4.7">
+        <div class="abs center kicker gold" id="s4k" style="top:230px">Panduan · Mandi dengan betul</div>
+        <div class="abs center serif" id="s4t" style="top:285px;font-size:96px;font-weight:600">Zon <span class="ital goldtx">mudah berpeluh</span></div>
+        <svg class="abs" id="body" width="520" height="1000" viewBox="0 0 520 1000" style="left:40px;top:460px">
+          <g fill="none" stroke="#12100e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" id="bodyPath">
+            <circle cx="260" cy="95" r="62" />
+            <path d="M235 158 L235 190 M285 158 L285 190" />
+            <path d="M235 190 C 170 195, 135 215, 125 270 L 95 470 C 92 500, 110 505, 120 480 L 160 330" />
+            <path d="M285 190 C 350 195, 385 215, 395 270 L 425 470 C 428 500, 410 505, 400 480 L 360 330" />
+            <path d="M160 330 L 165 520 C 160 560, 170 600, 180 640 L 195 930 L 245 930 L 255 650 L 265 650 L 275 930 L 325 930 L 340 640 C 350 600, 360 560, 355 520 L 360 330" />
+          </g>
+          <g id="zones" fill="#c8a46a">
+            <g class="zone" id="z1" transform="translate(140 300)"><circle r="16" /><circle class="ring" r="16" fill="none" stroke="#c8a46a" stroke-width="3" /></g>
+            <g class="zone" id="z2" transform="translate(380 300)"><circle r="16" /><circle class="ring" r="16" fill="none" stroke="#c8a46a" stroke-width="3" /></g>
+            <g class="zone" id="z3" transform="translate(260 180)"><circle r="16" /><circle class="ring" r="16" fill="none" stroke="#c8a46a" stroke-width="3" /></g>
+            <g class="zone" id="z4" transform="translate(260 600)"><circle r="16" /><circle class="ring" r="16" fill="none" stroke="#c8a46a" stroke-width="3" /></g>
+            <g class="zone" id="z5" transform="translate(220 900)"><circle r="16" /><circle class="ring" r="16" fill="none" stroke="#c8a46a" stroke-width="3" /></g>
+          </g>
+        </svg>
+        <div class="abs" id="s4list" style="left:560px;top:560px;width:470px">
+          <div class="li" style="margin-bottom:46px"><div class="kicker gold" style="font-size:30px">01</div><div class="serif" style="font-size:54px;font-weight:600">Leher</div></div>
+          <div class="li" style="margin-bottom:46px"><div class="kicker gold" style="font-size:30px">02</div><div class="serif" style="font-size:54px;font-weight:600">Ketiak</div></div>
+          <div class="li" style="margin-bottom:46px"><div class="kicker gold" style="font-size:30px">03</div><div class="serif" style="font-size:54px;font-weight:600">Celah lipatan</div></div>
+          <div class="li" style="margin-bottom:46px"><div class="kicker gold" style="font-size:30px">04</div><div class="serif" style="font-size:54px;font-weight:600">Kaki</div></div>
+        </div>
+        <div class="abs" id="s4eq" style="left:560px;top:1200px;width:470px;font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.12em;color:var(--ink2)">PELUH <span class="gold">+</span> BAKTERI<br /><span class="gold">=</span> <span class="serif ital" style="font-size:52px;letter-spacing:0;color:var(--wine)">bau badan</span></div>
+      </div>
+
+      <!-- S5 SELF-CARE (b-roll foam squish) -->
+      <div id="s5" class="clip" data-start="14.25" data-duration="2.55">
+        <div class="vwrap" id="s5v"><video src="assets/video/pump.mp4" data-start="14.25" data-duration="2.55" data-media-start="21.6" muted></video></div>
+        <div class="shade" style="background:linear-gradient(180deg, rgba(10,8,6,.82) 0%, rgba(10,8,6,.45) 34%, rgba(10,8,6,.05) 48%, rgba(10,8,6,.1) 60%, rgba(10,8,6,.7) 100%)"></div>
+        <div class="abs center kicker" id="s5k" style="top:240px;color:var(--gold2)">Penjagaan diri</div>
+        <div class="abs center serif ital" id="s5t" style="top:300px;font-size:140px;font-weight:600;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.4)">jangan ambil</div>
+        <div class="abs center serif goldtx" id="s5t2" style="top:470px;font-size:170px;font-weight:700;letter-spacing:.1em">MUDAH</div>
+      </div>
+
+      <!-- S6 FOAM B-ROLL: pump keluar buih -->
+      <div id="s6" class="clip" data-start="16.75" data-duration="4.45">
+        <div class="vwrap" id="s6va"><video src="assets/video/pump.mp4" data-start="16.75" data-duration="2.25" data-media-start="2.3" muted></video></div>
+        <div class="vwrap" id="s6vb" style="opacity:0"><video src="assets/video/pump.mp4" data-start="18.95" data-duration="2.25" data-media-start="10.6" muted></video></div>
+        <div class="shade" style="background:linear-gradient(180deg, rgba(10,8,6,.78) 0%, rgba(10,8,6,.2) 30%, rgba(10,8,6,0) 40%, rgba(10,8,6,0) 62%, rgba(10,8,6,.65) 100%)"></div>
+        <div class="abs center kicker" id="s6k" style="top:230px;color:var(--gold2)">Pump · terus keluar buih</div>
+        <div class="abs" id="c1" style="left:90px;top:330px"><span class="chip glass"><span class="dot"></span>Buih lembut</span></div>
+        <div class="abs" id="c2" style="right:90px;top:460px"><span class="chip glass"><span class="dot"></span>Wangi feminin</span></div>
+        <svg class="abs" width="1080" height="1920" style="left:0;top:0" viewBox="0 0 1080 1920">
+          <path id="call1" d="M260 420 L 260 640 L 420 760" fill="none" stroke="#ead3a2" stroke-width="3" />
+          <circle id="call1d" cx="420" cy="760" r="12" fill="#ead3a2" />
+        </svg>
+        <div class="abs center serif ital" id="s6t" style="top:300px;font-size:92px;font-weight:600;color:#fff;text-shadow:0 8px 30px rgba(0,0,0,.45)">buih <span class="goldtx">lembut &amp; wangi</span></div>
+      </div>
+
+      <!-- S7 LUXURY MALL BOUTIQUE -->
+      <div id="s7" class="clip" data-start="21.15" data-duration="1.95" style="background:linear-gradient(180deg,#0c0a09 0%,#1b1612 55%,#2a221b 100%)">
+        <div id="bokeh" class="abs" style="inset:0"></div>
+        <div class="abs" id="spot1" style="left:120px;top:-200px;width:360px;height:1500px;background:linear-gradient(180deg,rgba(255,236,200,.28),rgba(255,236,200,0));transform:rotate(14deg);filter:blur(30px)"></div>
+        <div class="abs" id="spot2" style="right:120px;top:-200px;width:360px;height:1500px;background:linear-gradient(180deg,rgba(255,236,200,.28),rgba(255,236,200,0));transform:rotate(-14deg);filter:blur(30px)"></div>
+        <div class="abs" id="vitrine" style="left:190px;top:470px;width:700px;height:960px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px rgba(200,164,106,.6), 0 60px 140px rgba(255,220,160,.18)">
+          <img class="media" src="assets/img/podium.jpg" style="width:700px;height:1244px;top:-200px" id="vitimg" />
+          <div class="abs" id="glint" style="top:-100px;left:-500px;width:260px;height:1300px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:rotate(18deg)"></div>
+        </div>
+        <div class="abs" style="left:150px;top:1430px;width:780px;height:46px;background:linear-gradient(180deg,#d9cbb4,#9c8b72);border-radius:4px"></div>
+        <div class="abs" style="left:190px;top:1476px;width:700px;height:200px;background:linear-gradient(180deg,rgba(200,164,106,.25),rgba(200,164,106,0));filter:blur(14px)"></div>
+        <div class="abs center kicker" id="s7k" style="top:250px;color:var(--gold2)">Pastinya pilihan korang</div>
+        <div class="abs center" id="s7t" style="top:310px;font-family:var(--deco);font-size:96px;letter-spacing:.1em;color:#fff">FRESCURA</div>
+        <div class="abs center kicker" id="s7s" style="top:1560px;color:var(--gold2);font-size:30px;letter-spacing:.6em">BODY · SOFT | FRAGRANT</div>
+      </div>
+
+      <!-- S8 VARIANTS -->
+      <div id="s8" class="clip" data-start="23.05" data-duration="2.35">
+        <div class="vwrap" id="s8v"><img class="media" src="assets/img/flatlay.jpg" /></div>
+        <div class="shade" style="background:linear-gradient(180deg, rgba(20,14,8,.55) 0%, rgba(20,14,8,0) 26%, rgba(20,14,8,0) 70%, rgba(20,14,8,.6) 100%)"></div>
+        <div class="abs center serif ital" id="s8t" style="top:180px;font-size:170px;font-weight:600;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.35)">Girls,</div>
+        <div class="abs center kicker" id="s8k" style="top:410px;color:#fff;font-size:30px">jangan fikir lama-lama</div>
+        <div class="abs" id="v1" style="left:110px;top:1060px"><span class="chip glass" style="font-size:28px"><span class="dot" style="background:#7b5cd6"></span>Noche</span></div>
+        <div class="abs" id="v2" style="right:110px;top:1060px"><span class="chip glass" style="font-size:28px"><span class="dot" style="background:#c2182f"></span>Woman Glory</span></div>
+        <div class="abs center" id="s8f" style="top:1180px"><span class="chip glass" style="font-size:26px;letter-spacing:.2em;padding:18px 34px">Ocean salt · Aromatherapy · Foam</span></div>
+      </div>
+
+      <!-- S9 CTA -->
+      <div id="s9" class="clip ivory" data-start="25.35" data-duration="3.3">
+        <div class="abs center kicker gold" id="s9k" style="top:240px">3 langkah mudah</div>
+        <div class="abs" id="step1" style="left:90px;top:320px;width:900px;height:300px">
+          <svg width="230" height="250" viewBox="0 0 230 250" class="abs" style="left:0;top:20px" id="bag">
+            <path d="M70 80 C 70 30, 160 30, 160 80" fill="none" stroke="#12100e" stroke-width="10" stroke-linecap="round" />
+            <rect x="25" y="80" width="180" height="160" rx="22" fill="#f5c518" stroke="#12100e" stroke-width="6" />
+            <path d="M85 140 L 105 165 L 150 115" fill="none" stroke="#12100e" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="abs" id="ripple" style="left:70px;top:120px;width:90px;height:90px;border-radius:50%;border:5px solid #c8a46a;opacity:0"></div>
+          <div class="abs" style="left:270px;top:70px"><div class="kicker gold" style="font-size:30px">01</div><div class="serif" style="font-size:76px;font-weight:600">Tekan <span class="ital" style="color:#b88a00">beg kuning</span></div></div>
+        </div>
+        <div class="abs" id="step2" style="left:90px;top:680px;width:900px;height:280px">
+          <div class="abs" id="sw1" style="left:20px;top:40px;width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#7b5cd6,#2b1f5c);box-shadow:0 0 0 6px #f5f0e8, 0 0 0 8px #c8a46a"></div>
+          <div class="abs" id="sw2" style="left:130px;top:40px;width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#d42a40,#5c0a16);box-shadow:0 0 0 6px #f5f0e8"></div>
+          <div class="abs" style="left:270px;top:20px"><div class="kicker gold" style="font-size:30px">02</div><div class="serif" style="font-size:76px;font-weight:600">Pilih <span class="ital goldtx">wangian</span></div></div>
+        </div>
+        <div class="abs center" id="step3" style="top:1000px">
+          <div class="kicker gold" style="font-size:30px">03</div>
+          <div id="btn" style="display:inline-block;margin-top:24px;padding:40px 110px;border-radius:999px;background:var(--ink);color:var(--ivory);font-family:var(--sans);font-weight:600;font-size:52px;letter-spacing:.22em;box-shadow:0 30px 60px rgba(0,0,0,.25)">CHECK OUT</div>
+          <div class="serif ital" style="font-size:62px;margin-top:26px;color:var(--wine)">sekarang</div>
+        </div>
+        <svg class="abs" id="finger" width="140" height="180" viewBox="0 0 140 180" style="left:640px;top:1150px">
+          <path d="M50 20 C 50 5, 75 5, 75 20 L 75 85 L 110 92 C 128 96, 132 110, 128 125 L 115 170 L 45 170 L 22 115 C 15 100, 30 88, 45 100 L 50 105 Z" fill="#fff" stroke="#12100e" stroke-width="5" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <!-- S10 STOCK RUNNING OUT -->
+      <div id="s10" class="clip" data-start="28.6" data-duration="2.3">
+        <div class="vwrap" id="s10v"><video src="assets/video/pump.mp4" data-start="28.6" data-duration="2.3" data-media-start="29.5" muted></video></div>
+        <div class="shade" style="background:rgba(12,10,8,.55)"></div>
+        <div class="abs center kicker" id="s10k" style="top:500px;color:var(--gold2)">Sebelum stok</div>
+        <div class="abs center" id="s10t" style="top:570px;font-family:var(--deco);font-size:96px;letter-spacing:.1em;color:#fff">FRESCURA</div>
+        <div class="abs center serif ital goldtx" id="s10h" style="top:720px;font-size:190px;font-weight:600">habis!</div>
+        <div class="abs" style="left:170px;top:1010px;width:740px">
+          <div style="display:flex;justify-content:space-between" class="kicker"><span style="color:#fff;font-size:30px">Stok</span><span id="pct" style="color:var(--gold2);font-size:30px">TERHAD</span></div>
+          <div style="margin-top:18px;height:22px;border-radius:11px;background:rgba(255,255,255,.18);overflow:hidden">
+            <div id="bar" style="height:100%;width:100%;background:linear-gradient(90deg,#8a1424,#d33a4e);transform-origin:left center;border-radius:11px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- S11 NANTI MENYESAL -->
+      <div id="s11" class="clip dark" data-start="30.85" data-duration="1.45">
+        <div class="vwrap" id="s11v" style="opacity:.32"><img class="media" src="assets/img/podium.jpg" /></div>
+        <div class="abs center kicker gold" id="s11k" style="top:690px">Nanti</div>
+        <div class="abs center serif ital" id="s11t" style="top:760px;font-size:180px;font-weight:600;color:#fff">menyesal</div>
+        <div class="abs center serif" id="s11p" style="top:980px;font-size:90px;font-weight:500;letter-spacing:.3em;color:var(--gold2)">PULA</div>
+      </div>
+
+      <!-- S12 END CARD -->
+      <div id="s12" class="clip" data-start="32.25" data-duration="2.35" style="background:#000">
+        <img class="abs" id="logo" src="assets/img/logo.jpg" style="left:90px;top:420px;width:900px;height:900px" />
+        <div class="abs center kicker" id="s12k" style="top:1330px;color:var(--gold2);font-size:30px">Tekan beg kuning sekarang</div>
+        <div class="abs" id="s12bag" style="left:490px;top:1420px;width:100px;height:100px">
+          <svg width="100" height="110" viewBox="0 0 230 250"><path d="M70 80 C 70 30, 160 30, 160 80" fill="none" stroke="#f5c518" stroke-width="12" stroke-linecap="round" /><rect x="25" y="80" width="180" height="160" rx="22" fill="#f5c518" /></svg>
+        </div>
+      </div>
+
+      <!-- global overlays -->
+      <div id="wipe"></div>
+      <svg id="grain" width="1080" height="1920"><filter id="gn"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" /></filter><rect width="1080" height="1920" filter="url(#gn)" /></svg>
+      <div id="frame"></div>
+      <div id="brandtag">FRESCURA BODY</div>
+      <div id="caps"></div>
+    </div>
+
+    <script src="words.js"></script>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const $ = (s) => document.querySelector(s);
+      const E = "power3.out", E4 = "expo.out";
+
+      // ---------- global: brand tag hide on hook/end, wipes at scene cuts ----------
+      tl.set("#brandtag", { opacity: 0 }, 0).to("#brandtag", { opacity: 1, duration: .4 }, 2.1).to("#brandtag", { opacity: 0, duration: .2 }, 32.1);
+      [2.0, 5.2, 9.6, 14.25, 16.75, 21.15, 23.05, 25.35, 28.6, 30.85, 32.25].forEach((t) => {
+        tl.fromTo("#wipe", { x: 0 }, { x: 3000, duration: .42, ease: "power2.inOut" }, t - .2);
+      });
+
+      // ---------- S1 hook ----------
+      tl.from("#s1a", { y: 60, opacity: 0, scale: 1.25, duration: .45, ease: E4 }, 0.02);
+      tl.from("#s1k", { opacity: 0, letterSpacing: "1em", duration: .6, ease: E }, 0.05);
+      tl.fromTo("#s1b", { opacity: 0, scale: 2.4, filter: "blur(30px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .55, ease: E4 }, .5);
+      tl.from("#s1c", { opacity: 0, y: 80, letterSpacing: ".6em", duration: .5, ease: E4 }, .72);
+      tl.fromTo("#s1", { x: 0 }, { keyframes: [{ x: -14, duration: .04 }, { x: 12, duration: .04 }, { x: -8, duration: .04 }, { x: 0, duration: .05 }] }, .52);
+      tl.from("#s1r", { scaleX: 0, duration: .6, ease: E }, 1.1);
+      tl.from("#s1d", { opacity: 0, y: 20, duration: .4, ease: E }, 1.45);
+      tl.fromTo(["#w1", "#w2", "#w3"], { x: -80 }, { x: 80, duration: 2.1, ease: "none" }, 0);
+      tl.to("#s1a", { scale: 1.06, duration: 1.6, ease: "none" }, .5);
+
+      // ---------- S2 couple ----------
+      tl.from("#s2k", { opacity: 0, y: 20, duration: .4, ease: E }, 2.15);
+      tl.from("#s2t", { opacity: 0, y: 50, duration: .6, ease: E4 }, 2.2);
+      tl.fromTo("#pA", { x: 420, y: 200, opacity: 0 }, { opacity: 1, duration: .4 }, 2.4);
+      tl.fromTo("#pB", { x: 660, y: 200, opacity: 0 }, { opacity: 1, duration: .4 }, 2.4);
+      tl.to("#pA", { x: 230, rotation: -8, duration: 1.4, ease: "power2.inOut" }, 3.4);
+      tl.to("#pB", { x: 850, rotation: 8, duration: 1.4, ease: "power2.inOut" }, 3.4);
+      tl.fromTo("#odor", { opacity: 0, y: 160 }, { opacity: 1, y: 120, duration: .6, ease: E }, 2.9);
+      tl.to("#odor", { y: 60, duration: 1.6, ease: "none" }, 3.5);
+      tl.fromTo("#dist", { scaleX: 0, transformOrigin: "540px 330px" }, { scaleX: 1.15, duration: 1.4, ease: "power2.inOut" }, 3.5);
+      tl.from("#s2d", { opacity: 0, duration: .4 }, 4.0);
+
+      // ---------- S3 chat ----------
+      tl.from("#s3k", { opacity: 0, y: 20, duration: .4, ease: E }, 5.3);
+      tl.from("#s3t", { opacity: 0, scale: .8, duration: .5, ease: "back.out(1.7)" }, 5.5);
+      tl.from("#bub1", { opacity: 0, scale: .4, x: -80, transformOrigin: "left bottom", duration: .45, ease: "back.out(1.8)" }, 6.2);
+      tl.from("#bub2", { opacity: 0, scale: .4, x: 80, transformOrigin: "right bottom", duration: .45, ease: "back.out(1.8)" }, 6.7);
+      tl.fromTo("#s3strike", { scaleX: 0 }, { scaleX: 1, duration: .3, ease: "power2.in" }, 7.25);
+      tl.to(["#bub1", "#bub2", "#s3strike"], { opacity: .12, filter: "blur(4px)", duration: .4 }, 7.55);
+      tl.from("#s3b", { opacity: 0, y: 70, duration: .6, ease: E4 }, 7.8);
+      tl.to("#s3b", { scale: 1.05, duration: 1.6, ease: "none" }, 8.2);
+
+      // ---------- S4 body zones ----------
+      tl.from("#s4k", { opacity: 0, letterSpacing: ".9em", duration: .6, ease: E }, 9.7);
+      tl.from("#s4t", { opacity: 0, y: 40, duration: .5, ease: E4 }, 9.75);
+      tl.from("#body", { opacity: 0, x: -60, duration: .6, ease: E }, 9.9);
+      ["#z3", "#z1", "#z4", "#z5"].forEach((z, i) => {
+        const t = 11.4 + i * .38;
+        tl.from(z, { scale: 0, transformOrigin: "center", duration: .35, ease: "back.out(3)" }, t);
+        tl.fromTo(z + " .ring", { attr: { r: 16 }, opacity: 1 }, { attr: { r: 60 }, opacity: 0, duration: .9, ease: "power2.out" }, t + .1);
+        tl.fromTo(z + " .ring", { attr: { r: 16 }, opacity: 1 }, { attr: { r: 60 }, opacity: 0, duration: .9, ease: "power2.out" }, t + 1.0);
+      });
+      tl.from("#z2", { scale: 0, transformOrigin: "center", duration: .35, ease: "back.out(3)" }, 11.6);
+      document.querySelectorAll("#s4list .li").forEach((el, i) => tl.from(el, { opacity: 0, x: 60, duration: .4, ease: E }, 11.45 + i * .38));
+      tl.from("#s4eq", { opacity: 0, y: 30, duration: .5, ease: E }, 13.1);
+
+      // ---------- S5 self care ----------
+      tl.fromTo("#s5v", { scale: 1.18 }, { scale: 1.0, duration: 2.55, ease: "none" }, 14.25);
+      tl.from("#s5k", { opacity: 0, y: 20, duration: .4 }, 14.35);
+      tl.from("#s5t", { opacity: 0, y: 50, duration: .5, ease: E4 }, 14.9);
+      tl.fromTo("#s5t2", { opacity: 0, scale: 1.6, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .5, ease: E4 }, 15.75);
+
+      // ---------- S6 foam ----------
+      tl.fromTo("#s6va", { scale: 1.12 }, { scale: 1.0, duration: 2.3, ease: "none" }, 16.75);
+      tl.set("#s6vb", { opacity: 1 }, 18.95);
+      tl.fromTo("#s6vb", { scale: 1.0 }, { scale: 1.15, duration: 2.25, ease: "none" }, 18.95);
+      tl.from("#s6k", { opacity: 0, y: 20, duration: .4 }, 16.85);
+      tl.from("#c1", { opacity: 0, x: -80, duration: .45, ease: "back.out(1.6)" }, 19.0);
+      tl.from("#c2", { opacity: 0, x: 80, duration: .45, ease: "back.out(1.6)" }, 20.1);
+      tl.fromTo("#call1", { strokeDasharray: 600, strokeDashoffset: 600 }, { strokeDashoffset: 0, duration: .6, ease: E }, 19.25);
+      tl.from("#call1d", { scale: 0, transformOrigin: "center", duration: .3, ease: "back.out(3)" }, 19.75);
+      tl.from("#s6t", { opacity: 0, y: 40, duration: .5, ease: E4 }, 17.3);
+      tl.to("#s6t", { opacity: 0, duration: .3 }, 18.8);
+
+      // ---------- S7 boutique ----------
+      (function bokeh() {
+        let seed = 12345; const r = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+        const box = $("#bokeh");
+        for (let i = 0; i < 26; i++) {
+          const d = document.createElement("div"); const s = 30 + r() * 120;
+          d.style.cssText = `position:absolute;left:${r() * 1080}px;top:${r() * 1920}px;width:${s}px;height:${s}px;border-radius:50%;` +
+            `background:radial-gradient(circle, rgba(255,${200 + r() * 40 | 0},${140 + r() * 60 | 0},${.25 + r() * .3}) 0%, rgba(255,220,160,0) 70%);filter:blur(${2 + r() * 6}px)`;
+          box.appendChild(d);
+          tl.fromTo(d, { y: 0, opacity: .3 + r() * .7 }, { y: -80 - r() * 160, duration: 1.95, ease: "none" }, 21.15);
+        }
+      })();
+      tl.from("#vitrine", { opacity: 0, y: 120, scale: .9, duration: .6, ease: E4 }, 21.2);
+      tl.fromTo("#vitimg", { scale: 1.15 }, { scale: 1.0, duration: 1.95, ease: "none" }, 21.15);
+      tl.fromTo("#glint", { x: 0 }, { x: 1400, duration: .9, ease: "power2.inOut" }, 21.6);
+      tl.fromTo(["#spot1", "#spot2"], { opacity: 0 }, { opacity: 1, duration: .4 }, 21.15);
+      tl.fromTo("#s7t", { opacity: 0, letterSpacing: ".6em" }, { opacity: 1, letterSpacing: ".1em", duration: .7, ease: E4 }, 21.5);
+      tl.from("#s7k", { opacity: 0, y: 20, duration: .4 }, 21.25);
+      tl.from("#s7s", { opacity: 0, duration: .5 }, 22.0);
+
+      // ---------- S8 variants ----------
+      tl.fromTo("#s8v", { scale: 1.25, rotation: -2 }, { scale: 1.05, rotation: 0, duration: 2.35, ease: "power1.out" }, 23.05);
+      tl.fromTo("#s8t", { opacity: 0, y: 60, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .5, ease: E4 }, 23.1);
+      tl.from("#s8k", { opacity: 0, y: 20, duration: .4 }, 24.0);
+      tl.from("#v1", { opacity: 0, y: 40, duration: .4, ease: "back.out(1.6)" }, 24.1);
+      tl.from("#v2", { opacity: 0, y: 40, duration: .4, ease: "back.out(1.6)" }, 24.25);
+      tl.from("#s8f", { opacity: 0, duration: .4 }, 24.5);
+
+      // ---------- S9 CTA ----------
+      tl.from("#s9k", { opacity: 0, letterSpacing: ".9em", duration: .5 }, 25.4);
+      tl.from("#step1", { opacity: 0, x: -80, duration: .45, ease: E4 }, 25.4);
+      tl.fromTo("#bag", { scale: 1 }, { keyframes: [{ scale: .86, duration: .08 }, { scale: 1.08, duration: .14 }, { scale: 1, duration: .14 }], transformOrigin: "center" }, 25.75);
+      tl.fromTo("#ripple", { scale: .4, opacity: 1 }, { scale: 2.4, opacity: 0, duration: .6, ease: "power2.out" }, 25.75);
+      tl.from("#step2", { opacity: 0, x: -80, duration: .45, ease: E4 }, 26.2);
+      tl.to("#sw1", { boxShadow: "0 0 0 6px #f5f0e8, 0 0 0 8px rgba(200,164,106,0)", duration: .2 }, 26.95);
+      tl.to("#sw2", { boxShadow: "0 0 0 6px #f5f0e8, 0 0 0 8px #c8a46a", scale: 1.1, duration: .2 }, 26.95);
+      tl.from("#step3", { opacity: 0, y: 60, duration: .45, ease: E4 }, 27.55);
+      tl.fromTo("#finger", { x: 160, y: 200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: .35, ease: E }, 27.75);
+      tl.to("#btn", { keyframes: [{ scale: .92, duration: .08 }, { scale: 1.04, duration: .12 }, { scale: 1, duration: .1 }], background: "#6d1020" }, 28.1);
+      tl.to("#finger", { scale: .9, y: 10, duration: .08 }, 28.1).to("#finger", { scale: 1, y: 0, duration: .12 }, 28.18);
+
+      // ---------- S10 stock ----------
+      tl.fromTo("#s10v", { scale: 1.1 }, { scale: 1.0, duration: 2.3, ease: "none" }, 28.6);
+      tl.from("#s10k", { opacity: 0, y: 20, duration: .35 }, 28.65);
+      tl.fromTo("#s10t", { opacity: 0, letterSpacing: ".5em" }, { opacity: 1, letterSpacing: ".1em", duration: .5, ease: E4 }, 28.75);
+      tl.fromTo("#s10h", { opacity: 0, scale: 2, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .45, ease: E4 }, 29.65);
+      tl.fromTo("#bar", { scaleX: 1 }, { scaleX: .08, duration: 1.8, ease: "power2.in" }, 28.8);
+      tl.fromTo("#pct", { opacity: 1 }, { keyframes: [{ opacity: .2, duration: .12 }, { opacity: 1, duration: .12 }, { opacity: .2, duration: .12 }, { opacity: 1, duration: .12 }] }, 29.9);
+
+      // ---------- S11 ----------
+      tl.fromTo("#s11v", { scale: 1.2 }, { scale: 1.05, duration: 1.45, ease: "none" }, 30.85);
+      tl.from("#s11k", { opacity: 0, duration: .3 }, 30.88);
+      tl.fromTo("#s11t", { opacity: 0, y: 60, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .45, ease: E4 }, 31.1);
+      tl.from("#s11p", { opacity: 0, letterSpacing: ".8em", duration: .45, ease: E4 }, 31.8);
+
+      // ---------- S12 end card ----------
+      tl.fromTo("#logo", { opacity: 0, scale: .7, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .7, ease: E4 }, 32.3);
+      tl.to("#logo", { scale: 1.06, duration: 1.6, ease: "none" }, 33.0);
+      tl.from("#s12k", { opacity: 0, y: 20, duration: .4 }, 32.55);
+      tl.from("#s12bag", { opacity: 0, y: 40, duration: .4, ease: "back.out(2)" }, 33.1);
+      tl.to("#s12bag", { keyframes: [{ y: -14, duration: .2 }, { y: 0, duration: .25 }, { y: -10, duration: .2 }, { y: 0, duration: .25 }] }, 33.6);
+
+      // ---------- captions (word-by-word karaoke) ----------
+      const KEY = new Set(["bau", "badan", "pasangan", "selesa", "tegur", "kebersihan", "mandi", "betul", "berpeluh", "penjagaan", "mudah", "buih", "lembut", "wangi", "feminin", "frescura", "body", "girls", "beg", "kuning", "wangian", "check", "out", "sekarang", "habis", "menyesal"]);
+      const clean = (w) => w.toLowerCase().replace(/[^a-z\-]/g, "");
+      const groups = []; let g = [];
+      WORDS.forEach((w, i) => {
+        g.push(w);
+        const end = /[.,?!]$/.test(w.w); const next = WORDS[i + 1];
+        const gap = next ? next.s - w.e : 1;
+        if (end || g.length >= 3 || gap > .25 || !next) { groups.push(g); g = []; }
+      });
+      const caps = $("#caps");
+      groups.forEach((grp, gi) => {
+        const d = document.createElement("div"); d.className = "cap";
+        const p = document.createElement("span"); p.className = "pill"; d.appendChild(p);
+        const spans = grp.map((w) => {
+          const s = document.createElement("span"); const isK = KEY.has(clean(w.w));
+          s.className = "cw" + (isK ? " k" : ""); s.textContent = w.w.replace(/[.,]$/, ""); p.appendChild(s); return [s, w, isK];
+        });
+        caps.appendChild(d);
+        const t0 = grp[0].s, t1 = gi + 1 < groups.length ? groups[gi + 1][0].s : Math.min(32.25, grp[grp.length - 1].e + .3);
+        tl.fromTo(d, { opacity: 0, y: 24, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .14, ease: E }, Math.max(0, t0 - .04));
+        tl.set(d, { opacity: 0 }, t1 - .001);
+        spans.forEach(([s, w, isK]) => {
+          tl.to(s, { color: isK ? "#ead3a2" : "#ffffff", scale: 1.06, duration: .08 }, w.s);
+          tl.to(s, { scale: 1, duration: .12 }, w.s + .08);
+        });
+      });
+      // captions hidden during hook headline & end card (headline already says it)
+      tl.set("#caps", { opacity: 0 }, 0).set("#caps", { opacity: 1 }, 2.0).set("#caps", { opacity: 0 }, 32.25);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
