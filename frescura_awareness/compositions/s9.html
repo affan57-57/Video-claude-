@@ -1,0 +1,82 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#s9-bg{background:radial-gradient(900px 1000px at 50% 40%,#231a12,#0b0908 70%);}
+#s9-a{top:520px;font-size:110px;font-weight:500;line-height:1}
+#s9-b{top:650px;font-size:70px;font-weight:400;opacity:.8}
+#s9-c{top:740px;font-size:168px;font-weight:800;letter-spacing:.04em;color:#d8b77a;line-height:1}
+#s9-line{left:140px;top:960px;width:800px;height:3px;background:#d8b77a;transform-origin:left center}
+#s9-end{position:absolute;inset:0}
+#s9-glow{left:90px;top:120px;width:900px;height:900px;background:radial-gradient(closest-side,rgba(255,220,170,.28),transparent 70%)}
+#s9-logo{left:240px;top:200px;width:600px;height:600px;mix-blend-mode:screen}
+#s9-logo img{width:100%;height:100%}
+#s9-pl{left:250px;top:1060px;width:580px;height:90px;border-radius:50%;background:radial-gradient(closest-side,#3c3026,#1d1612);box-shadow:0 0 0 3px #c9a86a inset,0 0 60px rgba(216,183,122,.3)}
+.s9-bt{position:absolute;top:640px;height:450px;filter:drop-shadow(0 24px 30px rgba(0,0,0,.6))}
+#s9-g{left:380px}#s9-n{left:560px}
+#s9-cta{position:absolute;left:0;width:1080px;top:1190px;text-align:center}
+#s9-cta span{display:inline-block;padding:24px 48px;border-radius:60px;background:#f2c94c;color:#0d0b0a;font-weight:700;font-size:34px;letter-spacing:.12em;text-transform:uppercase}
+#s9-sub{top:1295px;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a}
+</style>
+<div id="root" data-composition-id="s9" data-width="1080" data-height="1920" data-start="0" data-duration="4.3">
+
+<div id="s9-bg" class="full"></div>
+<div id="s9-kin" class="full">
+<div id="s9-a" class="abs center it">Jangan tunggu</div>
+<div id="s9-b" class="abs center it">sampai</div>
+<div id="s9-c" class="abs center">TERLEPAS.</div>
+<div id="s9-line" class="abs"></div>
+</div>
+<div id="s9-end">
+<div id="s9-glow" class="abs"></div>
+<div id="s9-logo" class="abs"><img src="assets/img/logo.jpg"/></div>
+<img id="s9-g" class="s9-bt" src="assets/img/bt_glory.png"/><img id="s9-n" class="s9-bt" src="assets/img/bt_noche.png"/>
+<div id="s9-pl" class="abs"></div>
+<div id="s9-cta"><span>Tekan beg kuning · Checkout</span></div>
+<div id="s9-sub" class="abs center">Stok terhad</div>
+</div>
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#s9-a',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.3,ease:'expo.out'},0.05);
+tl.fromTo('#s9-b',{opacity:0},{opacity:.8,duration:.3},0.95);
+tl.fromTo('#s9-c',{opacity:0,scale:1.6,filter:'blur(14px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.45,ease:'expo.out'},1.36);
+shake(tl,'#s9-kin',1.4,18,5);
+tl.fromTo('#s9-line',{scaleX:1},{scaleX:0,duration:1.85,ease:'none'},0.05);
+tl.to('#s9-kin',{opacity:0,scale:.9,filter:'blur(12px)',duration:.25,ease:'power3.in'},1.95);
+tl.set('#s9-end',{opacity:0},0);
+tl.to('#s9-end',{opacity:1,duration:.3},2.05);
+tl.fromTo('#s9-logo',{scale:1.2,filter:'blur(12px)'},{scale:1,filter:'blur(0px)',duration:.8,ease:'expo.out',immediateRender:false},2.05);
+tl.fromTo(['#s9-g','#s9-n'],{y:120,opacity:0},{y:0,opacity:1,duration:.7,stagger:.1,ease:'expo.out',immediateRender:false},2.15);
+tl.fromTo('#s9-cta span',{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:'expo.out',immediateRender:false},2.45);
+tl.fromTo('#s9-sub',{opacity:0},{opacity:1,duration:.4,immediateRender:false},2.35);
+
+tl.set({}, {}, 4.29);
+window.__timelines["s9"] = tl;
+})();
+</script>
+</template>

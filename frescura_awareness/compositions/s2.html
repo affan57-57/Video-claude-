@@ -1,0 +1,75 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#s2-bg{background:radial-gradient(800px 800px at 50% 42%,#1f1712,#0b0908 70%);}
+#s2-k{top:240px;}
+#s2-t{top:290px;font-size:120px;font-weight:500;line-height:1;}
+#s2-t b{font-family:'Bodoni Moda';font-weight:800;font-style:normal;color:#d8b77a;font-size:150px;}
+#s2-donut{left:240px;top:440px;width:600px;height:600px;}
+#s2-c1{top:655px;font-size:28px;letter-spacing:.18em;text-transform:uppercase;color:#f4eee6;opacity:.8}
+#s2-c2{top:690px;font-size:150px;font-weight:700;line-height:1;color:#e0566e;}
+#s2-busy{top:695px;font-size:96px;font-weight:800;letter-spacing:.12em;}
+#s2-legend{left:90px;top:1060px;width:900px;width:860px;display:flex;flex-wrap:wrap;gap:12px 34px;justify-content:center;font-size:30px;}
+.s2-lg{display:flex;align-items:center;gap:12px;opacity:.9}.s2-lg i{width:18px;height:18px;border-radius:50%;display:inline-block}.s2-lg b{color:#d8b77a;font-weight:600}
+#s2-note{top:1160px;font-size:20px;letter-spacing:.3em;opacity:.45;text-transform:uppercase}
+</style>
+<div id="root" data-composition-id="s2" data-width="1080" data-height="1920" data-start="0" data-duration="4.55">
+
+<div id="s2-bg" class="full"></div>
+<div id="s2-wrap" class="full">
+<div id="s2-k" class="abs center eyebrow">Fakta harian · ilustrasi</div>
+<div id="s2-t" class="abs center it"><b id="s2-num">24</b> jam sehari</div>
+<svg id="s2-donut" class="abs" viewBox="0 0 600 600"><circle cx="300" cy="300" r="250" fill="none" stroke="rgba(244,238,230,.07)" stroke-width="50"/><circle id="s2-seg0" cx="300" cy="300" r="250" fill="none" stroke="#d8b77a" stroke-width="50" stroke-dasharray="0 1570.796325" transform="rotate(-90 300 300)" stroke-linecap="butt"/><circle id="s2-seg1" cx="300" cy="300" r="250" fill="none" stroke="#a8916b" stroke-width="50" stroke-dasharray="0 1570.796325" transform="rotate(54.0 300 300)" stroke-linecap="butt"/><circle id="s2-seg2" cx="300" cy="300" r="250" fill="none" stroke="#5d5246" stroke-width="50" stroke-dasharray="0 1570.796325" transform="rotate(169.2 300 300)" stroke-linecap="butt"/><circle id="s2-seg3" cx="300" cy="300" r="250" fill="none" stroke="#e0566e" stroke-width="64" stroke-dasharray="0 1570.796325" transform="rotate(262.8 300 300)" stroke-linecap="butt"/></svg>
+<div id="s2-busy" class="abs center serif">SIBUK.</div>
+<div id="s2-c1" class="abs center">Masa untuk diri</div>
+<div id="s2-c2" class="abs center serif">≈ 0</div>
+<div id="s2-legend" class="abs"><div class="s2-lg" id="s2-lg0"><i style="background:#d8b77a"></i>Keluarga <b>40%</b></div><div class="s2-lg" id="s2-lg1"><i style="background:#a8916b"></i>Rumah & kerja <b>32%</b></div><div class="s2-lg" id="s2-lg2"><i style="background:#5d5246"></i>Tidur <b>26%</b></div><div class="s2-lg" id="s2-lg3"><i style="background:#e0566e"></i>Diri sendiri <b>2%</b></div></div>
+
+</div>
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+
+var cnt={v:0};var num=document.getElementById('s2-num');
+tl.fromTo(cnt,{v:0},{v:24,duration:.9,ease:'power2.out',onUpdate:function(){num.textContent=Math.round(cnt.v)}},0.05);
+inBlur(tl,'#s2-k',0,.4);inBlur(tl,'#s2-t',0.02,.45);
+tl.fromTo('#s2-donut',{opacity:0,scale:1.6,rotation:-30},{opacity:1,scale:1,rotation:0,duration:.8,ease:'expo.out'},0);
+tl.fromTo('#s2-seg0',{attr:{'stroke-dasharray':'0 1570.8'}},{attr:{'stroke-dasharray':'622.3 1570.8'},duration:0.55,ease:'power3.out'},1.69);tl.fromTo('#s2-seg1',{attr:{'stroke-dasharray':'0 1570.8'}},{attr:{'stroke-dasharray':'496.7 1570.8'},duration:0.55,ease:'power3.out'},2.19);tl.fromTo('#s2-seg2',{attr:{'stroke-dasharray':'0 1570.8'}},{attr:{'stroke-dasharray':'402.4 1570.8'},duration:0.55,ease:'power3.out'},2.6);tl.fromTo('#s2-seg3',{attr:{'stroke-dasharray':'0 1570.8'}},{attr:{'stroke-dasharray':'31.4 1570.8'},duration:0.25,ease:'power3.out'},3.9);
+slam(tl,'#s2-busy',1.29,1.4);
+outBlur(tl,'#s2-busy',3.05,.16);
+inBlur(tl,'#s2-c1',3.15,.35);
+slam(tl,'#s2-c2',4.0,1.6);
+tl.fromTo('#s2-seg3',{filter:'drop-shadow(0 0 0px #e0566e)'},{filter:'drop-shadow(0 0 22px #e0566e)',duration:.4,ease:'power2.out'},3.95);
+tl.fromTo('.s2-lg',{opacity:0,y:16},{opacity:.9,y:0,duration:.35,stagger:.4,ease:'expo.out'},1.75);
+
+tl.to('#s2-wrap',{x:-260,opacity:0,filter:'blur(14px)',duration:.25,ease:'power3.in'},4.3);
+
+tl.set({}, {}, 4.54);
+window.__timelines["s2"] = tl;
+})();
+</script>
+</template>

@@ -1,0 +1,80 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#s7-bg{background:radial-gradient(800px 800px at 50% 35%,#2a2010,#0b0908 70%);}
+#s7-t1{top:230px;font-size:92px;font-weight:500}
+#s7-t2{top:330px;font-size:120px;font-weight:800;letter-spacing:.08em;color:#f2c94c;line-height:1}
+#s7-btn{left:400px;top:520px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe28a,#f2c94c 45%,#c99a1e);box-shadow:0 30px 80px rgba(242,201,76,.35);display:flex;align-items:center;justify-content:center}
+#s7-btn svg path{fill:none;stroke:#0d0b0a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#s7-rip{left:400px;top:520px;width:280px;height:280px;border-radius:50%;border:3px solid #f2c94c}
+#s7-tip{left:600px;top:760px;width:70px;height:70px;border-radius:50%;background:rgba(244,238,230,.92);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+#s7-card{left:110px;top:850px;width:860px;height:190px;border-radius:28px;background:rgba(244,238,230,.06);border:1.5px solid rgba(216,183,122,.4);display:flex;align-items:center;padding:0 28px;box-sizing:border-box;gap:22px}
+#s7-card .th{display:flex;gap:4px;height:150px}#s7-card .th img{height:150px}
+#s7-card .tx{flex:1}#s7-card .tx .a{font-family:'Bodoni Moda';font-style:italic;font-size:42px}#s7-card .tx .b{font-size:28px;letter-spacing:.3em;color:#d8b77a;text-transform:uppercase;margin-top:6px}
+#s7-co{position:relative;padding:20px 30px;border-radius:40px;background:#f2c94c;color:#0d0b0a;font-weight:700;font-size:30px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+#s7-ok{position:absolute;inset:0;border-radius:40px;background:#2e7d4f;color:#fff;display:flex;align-items:center;justify-content:center;opacity:0}
+#s7-stk{left:150px;top:1075px;width:780px}
+#s7-stk .lb{display:flex;justify-content:space-between;font-size:30px;letter-spacing:.32em;text-transform:uppercase}
+#s7-stk .lb b{color:#e0566e}
+#s7-stk .bar{margin-top:12px;height:12px;border-radius:6px;background:rgba(244,238,230,.12);overflow:hidden}
+#s7-fill{height:100%;width:100%;background:linear-gradient(90deg,#e0566e,#f2c94c);border-radius:6px;transform-origin:left center}
+</style>
+<div id="root" data-composition-id="s7" data-width="1080" data-height="1920" data-start="0" data-duration="3.05">
+
+<div id="s7-bg" class="full"></div>
+<div id="s7-t1" class="abs center it">Tekan</div>
+<div id="s7-t2" class="abs center">BEG KUNING</div>
+<div id="s7-rip" class="abs"></div>
+<div id="s7-btn" class="abs"><svg width="140" height="140" viewBox="0 0 96 96"><path d="M22 36 H74 L78 84 H18 Z"/><path d="M36 36 V28 A12 12 0 0 1 60 28 V36"/></svg></div>
+<div id="s7-tip" class="abs"></div>
+<div id="s7-card" class="abs"><div class="th"><img src="assets/img/bt_glory.png"/><img src="assets/img/bt_noche.png"/></div><div class="tx"><div class="a">Frescura Body</div><div class="b">Foaming · 500 ml</div></div><div id="s7-co">Checkout<div id="s7-ok">✓ Done</div></div></div>
+<div id="s7-stk" class="abs"><div class="lb"><span>Stok</span><b id="s7-pc">Terhad</b></div><div class="bar"><div id="s7-fill"></div></div></div>
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#s7-t1',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.3,ease:'expo.out'},0.02);
+tl.fromTo('#s7-t2',{opacity:0,scaleX:1.5,filter:'blur(10px)'},{opacity:1,scaleX:1,filter:'blur(0px)',duration:.5,ease:'expo.out'},0.4);
+tl.fromTo('#s7-btn',{scale:0,rotation:-30},{scale:1,rotation:0,duration:.45,ease:'back.out(1.6)'},0.1);
+tl.fromTo('#s7-tip',{x:220,y:260,opacity:0},{x:0,y:0,opacity:1,duration:.4,ease:'power3.out'},0.2);
+tl.to('#s7-tip',{scale:.8,duration:.07},0.6);tl.to('#s7-tip',{scale:1,duration:.12},0.67);
+tl.to('#s7-btn',{scale:.9,duration:.07},0.6);tl.to('#s7-btn',{scale:1,duration:.28,ease:'back.out(2)'},0.67);
+tl.fromTo('#s7-rip',{scale:1,opacity:.9},{scale:1.7,opacity:0,duration:.6,ease:'power2.out'},0.62);
+tl.fromTo('#s7-card',{opacity:0,y:80},{opacity:1,y:0,duration:.5,ease:'expo.out'},0.95);
+tl.to('#s7-tip',{x:330,y:175,duration:.4,ease:'power3.inOut'},1.0);
+tl.to('#s7-co',{scale:.92,duration:.07},1.44);tl.to('#s7-co',{scale:1,duration:.25,ease:'back.out(2)'},1.51);
+tl.to('#s7-ok',{opacity:1,duration:.15},1.52);
+tl.to('#s7-tip',{opacity:0,duration:.2},1.75);
+tl.fromTo('#s7-stk',{opacity:0,y:30},{opacity:1,y:0,duration:.35,ease:'expo.out'},2.3);
+tl.fromTo('#s7-fill',{scaleX:1},{scaleX:.12,duration:.55,ease:'power3.out'},2.5);
+tl.to(['#s7-card','#s7-stk','#s7-btn','#s7-t1','#s7-t2'],{opacity:0,filter:'blur(10px)',duration:.2,ease:'power2.in'},2.84);
+
+tl.set({}, {}, 3.04);
+window.__timelines["s7"] = tl;
+})();
+</script>
+</template>

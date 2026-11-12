@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0b0908}
+#bgfill{position:absolute;inset:0;background:#0b0908}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="37.4" data-width="1080" data-height="1920" data-fps="30">
+<div id="bgfill"></div>
+<div id="s1" data-composition-id="s1" data-composition-src="compositions/s1.html" data-start="0" data-duration="7.0" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+<div id="s2" data-composition-id="s2" data-composition-src="compositions/s2.html" data-start="7.0" data-duration="4.55" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:11"></div>
+<div id="s3" data-composition-id="s3" data-composition-src="compositions/s3.html" data-start="11.55" data-duration="4.3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:12"></div>
+<div id="s4" data-composition-id="s4" data-composition-src="compositions/s4.html" data-start="15.85" data-duration="3.43" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:13"></div>
+<div id="s5" data-composition-id="s5" data-composition-src="compositions/s5.html" data-start="19.28" data-duration="5.32" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:14"></div>
+<div id="pump" data-composition-id="pump" data-composition-src="compositions/pump.html" data-start="21.15" data-duration="2.15" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:15"></div>
+<div id="s6" data-composition-id="s6" data-composition-src="compositions/s6.html" data-start="24.6" data-duration="3.3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:16"></div>
+<div id="s7" data-composition-id="s7" data-composition-src="compositions/s7.html" data-start="27.9" data-duration="3.05" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:17"></div>
+<div id="s8" data-composition-id="s8" data-composition-src="compositions/s8.html" data-start="30.95" data-duration="2.15" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:18"></div>
+<div id="s9" data-composition-id="s9" data-composition-src="compositions/s9.html" data-start="33.1" data-duration="4.3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:19"></div>
+<div id="chrome" data-composition-id="chrome" data-composition-src="compositions/chrome.html" data-start="0" data-duration="37.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:40"></div>
+<div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="37.4" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:50"></div>
+<audio id="mix" class="clip" src="assets/audio/mix.wav" data-start="0" data-duration="37.4" data-volume="1" data-track-index="4"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.set({}, {}, 37.39);
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

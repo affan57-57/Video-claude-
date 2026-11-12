@@ -1,0 +1,117 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#s5-bg{background:linear-gradient(180deg,#0a0807 0%,#1a130e 34%,#2a1f16 40%,#120d0a 60%,#080706 100%);}
+#s5-cam{position:absolute;inset:0;transform-origin:50% 40%;}
+#s5-atr{left:240px;top:430px;width:600px;height:420px;background:radial-gradient(closest-side,rgba(255,232,190,.85),rgba(255,214,160,.25) 45%,transparent 75%);filter:blur(6px)}
+.s5-plane{position:absolute;left:-600px;width:2280px;}
+#s5-ceil{top:-1200px;height:1840px;transform-origin:50% 100%;transform:perspective(700px) rotateX(-72deg);
+ background:repeating-linear-gradient(90deg,transparent 0 120px,rgba(255,236,200,.9) 120px 126px,transparent 126px 252px),
+ repeating-linear-gradient(0deg,#120d09 0 160px,#1b140e 160px 164px);}
+#s5-floor{top:640px;height:1840px;transform-origin:50% 0%;transform:perspective(700px) rotateX(72deg);
+ background:radial-gradient(500px 900px at 50% 0%,rgba(255,226,180,.55),transparent 70%),
+ repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 2px,transparent 2px 230px),
+ repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 230px),
+ linear-gradient(180deg,#3a2c20,#1a130e 40%,#0c0907);}
+.s5-wall{position:absolute;top:120px;width:1200px;height:1100px;
+ background:linear-gradient(180deg,rgba(255,220,170,.0),rgba(255,214,160,.22) 30%,rgba(255,214,160,.12) 70%,transparent),#140f0b;overflow:hidden}
+#s5-wl{left:-1170px;transform-origin:100% 50%;transform:perspective(800px) rotateY(74deg);}
+#s5-wr{left:1050px;transform-origin:0% 50%;transform:perspective(800px) rotateY(-74deg);}
+.s5-m{position:absolute;top:0;bottom:0;width:6px;background:linear-gradient(180deg,#8a6a3c,#e4c68a,#8a6a3c);}
+#s5-sign{left:200px;top:40px;width:680px;height:680px;mix-blend-mode:screen;}
+#s5-sign img{width:100%;height:100%;}
+#s5-beam{left:140px;top:300px;width:800px;height:1000px;background:linear-gradient(180deg,rgba(255,240,210,.0),rgba(255,240,210,.28) 50%,rgba(255,240,210,.0));clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);mix-blend-mode:screen;filter:blur(8px)}
+#s5-pl{left:180px;top:1110px;width:720px;height:330px;}
+#s5-pl .top{position:absolute;left:0;top:0;width:720px;height:110px;border-radius:50%;background:radial-gradient(closest-side,#3c3026,#1d1612);box-shadow:0 0 0 3px #c9a86a inset,0 0 60px rgba(216,183,122,.35)}
+#s5-pl .body{position:absolute;left:0;top:55px;width:720px;height:270px;background:linear-gradient(90deg,#0d0a08,#2a2018 35%,#3a2d22 50%,#2a2018 65%,#0d0a08);border-radius:0 0 50% 50%/0 0 60px 60px}
+.s5-bt{position:absolute;bottom:810px;height:600px;filter:drop-shadow(0 30px 30px rgba(0,0,0,.55));}
+#s5-g{left:330px}#s5-n{left:560px}
+.s5-ref{position:absolute;top:1170px;height:600px;transform:scaleY(-1);opacity:.16;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 45%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 45%)}
+.s5-bk{position:absolute;border-radius:50%;filter:blur(2px)}
+#s5-pre{top:860px;font-size:76px;font-weight:500;}
+.s5-lab{position:absolute;top:700px;width:270px;}
+.s5-lab .nm{font-family:'Bodoni Moda';font-style:italic;font-size:50px;line-height:1.05}
+.s5-lab .sub{font-size:28px;letter-spacing:.36em;text-transform:uppercase;color:#d8b77a;margin-top:12px}
+#s5-lg{left:36px;text-align:right}#s5-ln{left:784px}
+.s5-lk{position:absolute;top:760px;height:2px;background:#d8b77a}
+#s5-lkg{left:240px;width:70px}#s5-lkn{left:770px;width:70px}
+#s5-feat{top:540px;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a}
+</style>
+<div id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-start="0" data-duration="5.32">
+
+<div id="s5-bg" class="full"></div>
+<div id="s5-cam">
+  <div id="s5-ceil" class="s5-plane"></div>
+  <div id="s5-floor" class="s5-plane"></div>
+  <div id="s5-wl" class="s5-wall"><div class="s5-m" style="left:0%"></div><div class="s5-m" style="left:12%"></div><div class="s5-m" style="left:24%"></div><div class="s5-m" style="left:36%"></div><div class="s5-m" style="left:48%"></div><div class="s5-m" style="left:60%"></div><div class="s5-m" style="left:72%"></div><div class="s5-m" style="left:84%"></div><div class="s5-m" style="left:96%"></div></div>
+  <div id="s5-wr" class="s5-wall"><div class="s5-m" style="left:0%"></div><div class="s5-m" style="left:12%"></div><div class="s5-m" style="left:24%"></div><div class="s5-m" style="left:36%"></div><div class="s5-m" style="left:48%"></div><div class="s5-m" style="left:60%"></div><div class="s5-m" style="left:72%"></div><div class="s5-m" style="left:84%"></div><div class="s5-m" style="left:96%"></div></div>
+  <div id="s5-atr" class="abs"></div>
+  <div id="s5-bks" class="full"><div class="s5-bk" style="left:463px;top:814px;width:118px;height:118px;opacity:0.48;background:radial-gradient(circle,#ffd9a0 0%,transparent 70%)"></div><div class="s5-bk" style="left:893px;top:590px;width:113px;height:113px;opacity:0.17;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:171px;top:841px;width:90px;height:90px;opacity:0.45;background:radial-gradient(circle,#e8d1ff 0%,transparent 70%)"></div><div class="s5-bk" style="left:1053px;top:288px;width:103px;height:103px;opacity:0.24;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:775px;top:652px;width:53px;height:53px;opacity:0.47;background:radial-gradient(circle,#e8d1ff 0%,transparent 70%)"></div><div class="s5-bk" style="left:266px;top:227px;width:47px;height:47px;opacity:0.37;background:radial-gradient(circle,#e8d1ff 0%,transparent 70%)"></div><div class="s5-bk" style="left:199px;top:350px;width:30px;height:30px;opacity:0.49;background:radial-gradient(circle,#ffd9a0 0%,transparent 70%)"></div><div class="s5-bk" style="left:368px;top:521px;width:51px;height:51px;opacity:0.46;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:582px;top:487px;width:99px;height:99px;opacity:0.46;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:312px;top:1494px;width:55px;height:55px;opacity:0.49;background:radial-gradient(circle,#e8d1ff 0%,transparent 70%)"></div><div class="s5-bk" style="left:551px;top:124px;width:76px;height:76px;opacity:0.30;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:480px;top:213px;width:72px;height:72px;opacity:0.26;background:radial-gradient(circle,#ffd9a0 0%,transparent 70%)"></div><div class="s5-bk" style="left:632px;top:215px;width:69px;height:69px;opacity:0.27;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:924px;top:726px;width:53px;height:53px;opacity:0.32;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:56px;top:604px;width:32px;height:32px;opacity:0.48;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:767px;top:117px;width:100px;height:100px;opacity:0.43;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:710px;top:1264px;width:31px;height:31px;opacity:0.31;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:342px;top:323px;width:61px;height:61px;opacity:0.48;background:radial-gradient(circle,#e8d1ff 0%,transparent 70%)"></div><div class="s5-bk" style="left:645px;top:1129px;width:75px;height:75px;opacity:0.46;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:887px;top:301px;width:105px;height:105px;opacity:0.41;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:545px;top:155px;width:85px;height:85px;opacity:0.48;background:radial-gradient(circle,#ffd9a0 0%,transparent 70%)"></div><div class="s5-bk" style="left:366px;top:777px;width:95px;height:95px;opacity:0.36;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:636px;top:644px;width:119px;height:119px;opacity:0.34;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div><div class="s5-bk" style="left:588px;top:707px;width:52px;height:52px;opacity:0.43;background:radial-gradient(circle,#fff1d8 0%,transparent 70%)"></div><div class="s5-bk" style="left:573px;top:1070px;width:50px;height:50px;opacity:0.40;background:radial-gradient(circle,#ffd9a0 0%,transparent 70%)"></div><div class="s5-bk" style="left:1032px;top:911px;width:34px;height:34px;opacity:0.23;background:radial-gradient(circle,#f7c58a 0%,transparent 70%)"></div></div>
+  <div id="s5-sign" class="abs"><img src="assets/img/logo.jpg"/></div>
+  <div id="s5-beam" class="abs"></div>
+  <div id="s5-pl" class="abs"><div class="top"></div><div class="body"></div></div>
+  <img id="s5-gr" class="s5-ref" src="assets/img/bt_glory.png" style="left:330px"/>
+  <img id="s5-nr" class="s5-ref" src="assets/img/bt_noche.png" style="left:560px"/>
+  <img id="s5-g" class="s5-bt" src="assets/img/bt_glory.png"/>
+  <img id="s5-n" class="s5-bt" src="assets/img/bt_noche.png"/>
+</div>
+<div id="s5-pre" class="abs center it">Pastinya,</div>
+
+<div id="s5-lg" class="s5-lab"><div class="nm">Bombshell</div><div class="sub">Woman Glory</div></div>
+<div id="s5-ln" class="s5-lab"><div class="nm">Midnight<br/>Fantasy</div><div class="sub">Noche</div></div>
+
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#s5-cam',{scale:1.45,y:220,filter:'blur(16px)'},{scale:1.0,y:0,filter:'blur(0px)',duration:1.3,ease:'expo.out'},0);
+tl.to('#s5-cam',{scale:1.06,y:-30,duration:3.75,ease:'power1.inOut'},1.3);
+tl.fromTo('#s5-ceil',{backgroundPosition:'0px 0px, 0px 0px'},{backgroundPosition:'0px 0px, 0px 820px',duration:5.32,ease:'power2.out'},0);
+tl.fromTo('#s5-floor',{backgroundPosition:'0px 0px, 0px 0px, 0px -900px, 0px 0px'},{backgroundPosition:'0px 0px, 0px 0px, 0px 0px, 0px 0px',duration:5.32,ease:'power2.out'},0);
+tl.fromTo('#s5-bks',{x:0},{x:-60,duration:5.32,ease:'none'},0);
+// neon sign flicker on (Frescura)
+tl.fromTo('#s5-sign',{opacity:0,scale:.92},{opacity:0,scale:.92,duration:.01},0);
+[0,.06,.12,.2,.28].forEach(function(d,i){tl.to('#s5-sign',{opacity:i%2?0.25:1,scale:1,duration:.03,ease:'none'},0.58+d);});
+tl.to('#s5-sign',{opacity:1,duration:.05},0.9);
+tl.fromTo('#s5-beam',{opacity:0},{opacity:1,duration:.5,ease:'power2.out'},0.05);
+tl.fromTo(['#s5-g','#s5-n'],{y:160,opacity:0,filter:'blur(10px)'},{y:0,opacity:1,filter:'blur(0px)',duration:.9,stagger:.12,ease:'expo.out'},0.05);
+tl.fromTo(['#s5-gr','#s5-nr'],{y:-160,opacity:0},{y:0,opacity:.16,duration:.9,stagger:.12,ease:'expo.out'},0.05);
+tl.fromTo('#s5-pre',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.3,ease:'expo.out'},0.03);
+tl.to('#s5-pre',{opacity:0,filter:'blur(8px)',duration:.2},0.85);
+// fragrance labels (after the pump overlay, 3.47+)
+
+tl.fromTo('#s5-lg',{opacity:0,x:-40,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45,ease:'expo.out'},3.6);
+tl.fromTo('#s5-ln',{opacity:0,x:40,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45,ease:'expo.out'},3.75);
+
+tl.to('#s5-cam',{opacity:0,filter:'blur(14px)',scale:1.25,duration:.22,ease:'power3.in'},5.08);
+tl.to('.s5-lab',{opacity:0,duration:.18},5.08);
+
+tl.set({}, {}, 5.3100000000000005);
+window.__timelines["s5"] = tl;
+})();
+</script>
+</template>

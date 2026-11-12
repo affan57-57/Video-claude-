@@ -1,0 +1,98 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#s1-bg{background:radial-gradient(900px 900px at 50% 38%,#2a1f17 0%,#120e0b 55%,#0b0908 100%);}
+#s1-k{top:250px;}
+#s1-t1{top:300px;font-size:84px;font-weight:500;}
+#s1-t2{top:385px;font-size:150px;font-weight:800;letter-spacing:-.02em;line-height:1;}
+.s1-row{left:110px;width:860px;height:124px;border:1.5px solid rgba(216,183,122,.35);border-radius:62px;background:linear-gradient(90deg,rgba(244,238,230,.07),rgba(244,238,230,.02));display:flex;align-items:center;padding:0 34px 0 22px;box-sizing:border-box;}
+.s1-ic{width:84px;height:84px;border-radius:50%;background:rgba(216,183,122,.08);display:flex;align-items:center;justify-content:center;}
+.s1-lab{margin-left:28px;font-size:50px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.s1-ok{margin-left:auto;font-size:34px;color:#d8b77a;display:flex;align-items:center;gap:10px;font-weight:500;}
+.s1-ok .it{font-size:36px;color:#f4eee6;opacity:.75}
+#s1-me{top:440px;}
+#s1-ring{left:390px;top:560px;width:300px;height:300px;}
+#s1-q{left:390px;top:560px;width:300px;height:300px;font-size:190px;line-height:300px;text-align:center;color:#f4eee6;}
+#s1-a1{top:880px;font-size:118px;font-weight:500;line-height:1;}
+#s1-a2{top:1000px;font-size:104px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1;}
+</style>
+<div id="root" data-composition-id="s1" data-width="1080" data-height="1920" data-start="0" data-duration="7.0">
+
+<div id="s1-bg" class="full"></div>
+<div id="s1-wrap" class="full">
+  <div id="s1-k" class="abs center eyebrow">Realiti setiap wanita</div>
+  <div id="s1-t1" class="abs center it">Semua dapat</div>
+  <div id="s1-t2" class="abs center serif">perhatian.</div>
+  
+<div id="s1-row0" class="abs s1-row" style="top:640px">
+  <div class="s1-ic"><svg class="s1-svg0" width="78" height="78" viewBox="0 0 96 96"><circle class="ln" pathLength="1" cx="48" cy="30" r="14"/><path class="ln" pathLength="1" d="M18 84 C18 62 32 54 48 54 C64 54 78 62 78 84"/><path class="ln" pathLength="1" d="M48 56 L43 66 L48 80 L53 66 Z"/></svg></div>
+  <div class="s1-lab">Suami</div>
+  <div class="s1-ok"><span class="it">dapat</span> perhatian <svg width="44" height="44" viewBox="0 0 96 96"><path class="ln s1-ck0" pathLength="1" d="M28 50 L43 65 L70 34"/></svg></div>
+</div>
+<div id="s1-row1" class="abs s1-row" style="top:790px">
+  <div class="s1-ic"><svg class="s1-svg1" width="78" height="78" viewBox="0 0 96 96"><circle class="ln" pathLength="1" cx="48" cy="38" r="12"/><path class="ln" pathLength="1" d="M30 84 C30 68 38 60 48 60 C58 60 66 68 66 84"/><path class="ln" pathLength="1" d="M38 28 Q48 16 58 28"/></svg></div>
+  <div class="s1-lab">Anak</div>
+  <div class="s1-ok"><span class="it">dapat</span> perhatian <svg width="44" height="44" viewBox="0 0 96 96"><path class="ln s1-ck1" pathLength="1" d="M28 50 L43 65 L70 34"/></svg></div>
+</div>
+<div id="s1-row2" class="abs s1-row" style="top:940px">
+  <div class="s1-ic"><svg class="s1-svg2" width="78" height="78" viewBox="0 0 96 96"><path class="ln" pathLength="1" d="M14 46 L48 18 L82 46"/><path class="ln" pathLength="1" d="M24 40 V82 H72 V40"/><path class="ln" pathLength="1" d="M41 82 V60 H55 V82"/></svg></div>
+  <div class="s1-lab">Rumah</div>
+  <div class="s1-ok"><span class="it">dapat</span> perhatian <svg width="44" height="44" viewBox="0 0 96 96"><path class="ln s1-ck2" pathLength="1" d="M28 50 L43 65 L70 34"/></svg></div>
+</div>
+  <div id="s1-me" class="abs center eyebrow" style="font-size:34px;color:#f4eee6;letter-spacing:.5em">Diri sendiri</div>
+  <svg id="s1-ring" class="abs" viewBox="0 0 300 300"><circle cx="150" cy="150" r="140" fill="none" stroke="#d8b77a" stroke-width="3" stroke-dasharray="10 14"/></svg>
+  <div id="s1-q" class="abs it">?</div>
+  <div id="s1-a1" class="abs center it">Siapa</div>
+  <div id="s1-a2" class="abs center gold">nak jaga?</div>
+</div>
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#s1-k',{opacity:0,scaleX:1.3},{opacity:1,scaleX:1,duration:.9,ease:'expo.out'},0);
+tl.fromTo('#s1-t2',{scale:1.08},{scale:1,duration:1.2,ease:'expo.out'},0);
+tl.fromTo('#s1-row0',{opacity:0,x:-60,clipPath:'inset(0 100% 0 0 round 62px)'},{opacity:1,x:0,clipPath:'inset(0 0% 0 0 round 62px)',duration:.55,ease:'expo.out'},0.2);draw(tl,'.s1-svg0 .ln',0.25,.6);draw(tl,'.s1-ck0',0.7,.35);tl.fromTo('#s1-row1',{opacity:0,x:-60,clipPath:'inset(0 100% 0 0 round 62px)'},{opacity:1,x:0,clipPath:'inset(0 0% 0 0 round 62px)',duration:.55,ease:'expo.out'},1.72);draw(tl,'.s1-svg1 .ln',1.77,.6);draw(tl,'.s1-ck1',2.22,.35);tl.fromTo('#s1-row2',{opacity:0,x:-60,clipPath:'inset(0 100% 0 0 round 62px)'},{opacity:1,x:0,clipPath:'inset(0 0% 0 0 round 62px)',duration:.55,ease:'expo.out'},2.7800000000000002);draw(tl,'.s1-svg2 .ln',2.83,.6);draw(tl,'.s1-ck2',3.2800000000000002,.35);
+// collapse family rows, focus on self
+tl.to('.s1-row',{opacity:0,y:-40,filter:'blur(8px)',duration:.3,stagger:.05,ease:'power3.in'},4.25);
+outBlur(tl,'#s1-t1',4.25);outBlur(tl,'#s1-t2',4.28);outBlur(tl,'#s1-k',4.3);
+tl.set(['#s1-me','#s1-ring','#s1-q','#s1-a1','#s1-a2'],{opacity:0},0);
+inBlur(tl,'#s1-me',4.5,.4,{from:{scaleX:1.4},to:{scaleX:1}});
+tl.fromTo('#s1-ring',{opacity:0,scale:.6,rotation:-40},{opacity:1,scale:1,rotation:0,duration:.7,ease:'expo.out',immediateRender:false},4.55);
+tl.to('#s1-ring',{rotation:40,duration:2.2,ease:'none'},5.25);
+slam(tl,'#s1-q',5.05,1.6);
+slam(tl,'#s1-a1',5.71,1.3);
+slam(tl,'#s1-a2',6.08,1.45);
+shake(tl,'#s1-wrap',6.1,22,3);
+// ring opens into the next world (S2 donut)
+tl.to('#s1-ring',{scale:3.2,opacity:0,duration:.35,ease:'power3.in'},6.62);
+tl.to(['#s1-q','#s1-me','#s1-a1','#s1-a2'],{opacity:0,filter:'blur(10px)',duration:.25,ease:'power2.in'},6.66);
+
+tl.set({}, {}, 6.99);
+window.__timelines["s1"] = tl;
+})();
+</script>
+</template>
