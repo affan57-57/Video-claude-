@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait"
+  data-composition-variables='[{"id":"preview","type":"boolean","label":"Preview watermark","default":true}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Bodoni Moda"; src: url(assets/fonts/bodoni.woff2) format("woff2"); font-weight: 400 900; font-style: normal; font-display: block; }
+      @font-face { font-family: "Bodoni Moda"; src: url(assets/fonts/bodoni-italic.woff2) format("woff2"); font-weight: 400 900; font-style: italic; font-display: block; }
+      @font-face { font-family: "Urbanist"; src: url(assets/fonts/urbanist.woff2) format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+      :root {
+        --ivory: #f5efe6; --pearl: #fbf8f3; --noir: #14060a; --wine: #5e0c19; --rose: #8e1a2c;
+        --gold: #cfae74; --gold-2: #ecd7a8; --blush: #f2cdd2; --ink: #22100f;
+        --serif: "Bodoni Moda", serif; --sans: "Urbanist", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--noir); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--sans); color: var(--ivory); }
+      .clip { position: absolute; inset: 0; }
+      .scene { overflow: hidden; }
+      .abs { position: absolute; }
+      .fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .serif { font-family: var(--serif); }
+      .it { font-style: italic; }
+      .label { font-family: var(--sans); font-weight: 600; letter-spacing: .42em; text-transform: uppercase; font-size: 24px; }
+      .gold { color: var(--gold); }
+      .rule { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+      .center-x { left: 0; right: 0; text-align: center; }
+
+      /* ---------- S1 hook ---------- */
+      #s1 { background: transparent; } #v1, #v5, #v7 { z-index: 0; }
+      #s1 .shade { background: linear-gradient(180deg, rgba(20,6,10,.25) 0%, rgba(20,6,10,.55) 40%, rgba(20,6,10,.92) 100%); }
+      #s1 .h-small { top: 470px; font-weight: 800; font-size: 92px; letter-spacing: .06em; }
+      #s1 .h-big { top: 590px; font-size: 230px; line-height: .9; font-weight: 500; color: var(--gold-2); }
+      #s1 .h-big2 { top: 800px; font-size: 200px; line-height: .9; font-weight: 800; letter-spacing: .02em; }
+      #s1 .edu { top: 1180px; }
+      #s1 .edu .t1 { font-size: 66px; font-weight: 500; }
+      #s1 .edu .t2 { font-size: 66px; font-weight: 500; font-style: italic; color: var(--gold-2); }
+
+      /* ---------- S2 iceberg (ivory) ---------- */
+      #s2 { background: radial-gradient(120% 80% at 50% 20%, var(--pearl), var(--ivory) 60%, #eadfd0); color: var(--ink); }
+      #s2 .title { top: 210px; font-size: 92px; line-height: 1; font-weight: 500; }
+      #s2 svg { position: absolute; left: 0; top: 0; }
+      #s2 .tag { font-family: var(--sans); font-weight: 800; font-size: 40px; letter-spacing: .14em; }
+      #s2 .stamp { left: 610px; top: 1180px; padding: 14px 26px; border: 4px solid var(--rose); color: var(--rose); font-weight: 900; font-size: 46px; letter-spacing: .16em; transform: rotate(-8deg); }
+
+      /* ---------- S3 three steps ---------- */
+      #s3 { background: radial-gradient(130% 90% at 50% 0%, #3d0a15, var(--noir) 70%); }
+      #arch { left: 190px; top: 150px; width: 700px; height: 700px; border-radius: 350px 350px 24px 24px; overflow: hidden; border: 2px solid rgba(207,174,116,.6); }
+      #s3 .arch-ring { left: 172px; top: 132px; width: 736px; height: 736px; border-radius: 368px 368px 36px 36px; border: 1px solid rgba(207,174,116,.35); }
+      #s3 .hdr { top: 880px; font-size: 64px; font-weight: 500; }
+      #s3 .card { left: 90px; width: 900px; height: 150px; border-radius: 22px; background: rgba(245,239,230,.06); border: 1px solid rgba(207,174,116,.35); display: flex; align-items: center; gap: 34px; padding: 0 36px; }
+      #s3 .num { font-family: var(--serif); font-style: italic; font-size: 76px; color: var(--gold); width: 110px; }
+      #s3 .ct { font-weight: 800; font-size: 46px; letter-spacing: .02em; line-height: 1.05; }
+      #s3 .cs { font-weight: 500; font-size: 28px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-2); opacity: .8; margin-top: 6px; }
+      #s3 .chk { margin-left: auto; width: 64px; height: 64px; }
+
+      /* ---------- S4 mall display reveal ---------- */
+      #s4 { background: radial-gradient(90% 60% at 50% 38%, #3b0c16 0%, #1a0509 55%, #070203 100%); }
+      #s4 .beam { top: -200px; width: 520px; height: 1900px; background: linear-gradient(180deg, rgba(255,236,205,.30), rgba(255,236,205,0) 85%); filter: blur(28px); transform-origin: 50% 0%; }
+      #s4 .spot { left: 140px; top: 260px; width: 800px; height: 1200px; background: radial-gradient(50% 45% at 50% 55%, rgba(255,226,190,.32), rgba(255,226,190,0) 70%); }
+      #s4 .floor { left: 0; top: 1330px; width: 1080px; height: 590px; background: linear-gradient(180deg, #2a0910, #0b0305); }
+      #s4 .ped { left: 240px; top: 1270px; width: 600px; height: 110px; border-radius: 50%; background: radial-gradient(60% 60% at 50% 40%, #f7efe4, #cdbba3 60%, #8f7b63); box-shadow: 0 40px 90px rgba(0,0,0,.6); }
+      #s4 .ped-body { left: 240px; top: 1325px; width: 600px; height: 160px; background: linear-gradient(90deg, #b7a58d, #f3eadd 45%, #a8957c); }
+      #s4 .ped-base { left: 240px; top: 1430px; width: 600px; height: 110px; border-radius: 50%; background: #8d7a62; }
+      #s4 .bottle { left: 365px; top: 560px; width: 350px; }
+      #s4 .refl { left: 365px; top: 1500px; width: 350px; transform: scaleY(-1); opacity: .18; -webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,.9), transparent 45%); mask-image: linear-gradient(0deg, rgba(0,0,0,.9), transparent 45%); }
+      #s4 .sheen { left: 365px; top: 560px; width: 350px; height: 822px; overflow: hidden; -webkit-mask-image: url(assets/bottle.png); mask-image: url(assets/bottle.png); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; mix-blend-mode: screen; }
+      #s4 .sheen i { position: absolute; top: -10%; left: -60%; width: 40%; height: 120%; background: linear-gradient(90deg, transparent, rgba(255,245,225,.75), transparent); transform: skewX(-18deg); }
+      #s4 .q { top: 760px; font-size: 92px; line-height: 1.05; font-weight: 500; }
+      #s4 .brand { top: 200px; }
+      #s4 .brand .b1 { font-size: 30px; letter-spacing: .7em; font-weight: 600; color: var(--gold); padding-left: .7em; }
+      #s4 .brand .b2 { font-size: 128px; font-style: italic; font-weight: 500; margin-top: 10px; color: var(--pearl); }
+      #s4 .brand .b3 { font-size: 26px; letter-spacing: .5em; font-weight: 600; margin-top: 18px; color: var(--gold-2); padding-left: .5em; }
+      #s4 .flare { left: 240px; top: 500px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,240,215,.9), rgba(255,240,215,0) 60%); mix-blend-mode: screen; }
+
+      /* ---------- S5 features ---------- */
+      #s5 { background: transparent; }
+      .feat { overflow: hidden; }
+      .feat .big { left: 70px; bottom: 560px; font-size: 150px; line-height: .92; font-weight: 500; }
+      .feat .idx { left: 76px; bottom: 870px; }
+      .feat .sub { left: 76px; bottom: 500px; font-size: 30px; letter-spacing: .32em; font-weight: 600; text-transform: uppercase; color: var(--gold-2); }
+      #f2 { background: radial-gradient(100% 70% at 50% 30%, #dfe9ec, #b9ccd3 55%, #7f97a2); color: #0f2027; }
+      #f2 .sub { color: #1f3a46; }
+      #f3 { background: radial-gradient(100% 70% at 50% 30%, #f8dde1, #e9b3bc 55%, #b86a78); color: var(--noir); }
+      #f3 .sub { color: var(--wine); }
+      .crystal { width: 46px; height: 46px; background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(210,228,235,.6) 50%, rgba(255,255,255,.2)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 8px 20px rgba(30,60,80,.18); }
+      .petal { width: 120px; height: 170px; border-radius: 60% 60% 60% 60% / 80% 80% 40% 40%; background: radial-gradient(70% 70% at 40% 30%, #ffffff, #f5a9b6 45%, #b23a50); opacity: .85; }
+      .mini-bottle { right: 70px; bottom: 560px; width: 200px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+
+      /* ---------- S6 one bottle, two scents ---------- */
+      #s6 { background: radial-gradient(90% 60% at 50% 45%, #fbf6ef, #efe4d6 60%, #d9c8b3); color: var(--ink); }
+      #s6 .one { top: 170px; font-size: 760px; line-height: 1; font-style: italic; font-weight: 500; color: rgba(142,26,44,.10); }
+      #s6 .t { top: 180px; font-size: 76px; font-weight: 500; }
+      #s6 .bottle { left: 395px; top: 520px; width: 290px; filter: drop-shadow(0 40px 50px rgba(60,20,20,.35)); }
+      #s6 .chip { padding: 22px 34px; border-radius: 999px; background: var(--wine); color: var(--pearl); font-weight: 800; font-size: 40px; letter-spacing: .16em; box-shadow: 0 20px 40px rgba(94,12,25,.3); }
+      #s6 .chip.alt { background: var(--noir); }
+      #s6 .ln { height: 2px; background: var(--gold); transform-origin: 0 50%; }
+
+      /* ---------- S7 girls ---------- */
+      #s7 .shade { background: linear-gradient(180deg, rgba(20,6,10,.15), rgba(20,6,10,.7) 60%, rgba(20,6,10,.95)); }
+      #s7 .g { top: 560px; font-size: 300px; font-style: italic; font-weight: 500; color: var(--gold-2); }
+
+      /* ---------- S8 end card ---------- */
+      #s8 { background: radial-gradient(90% 60% at 50% 40%, #fffaf4, #f3e6da 55%, #e4cfc0); color: var(--ink); }
+      #s8 .bottle { left: 380px; top: 470px; width: 320px; filter: drop-shadow(0 40px 60px rgba(70,20,25,.35)); }
+      #s8 .ped { left: 250px; top: 1200px; width: 580px; height: 100px; border-radius: 50%; background: radial-gradient(60% 60% at 50% 40%, #ffffff, #e7d9c6 60%, #bfa98d); }
+      #s8 .ped-body { left: 250px; top: 1250px; width: 580px; height: 120px; background: linear-gradient(90deg, #d8c6ae, #fffaf2 45%, #cdb9a0); }
+      #s8 .ped-base { left: 250px; top: 1320px; width: 580px; height: 100px; border-radius: 50%; background: #c7b398; }
+      #s8 .lock { top: 150px; }
+      #s8 .lock .b1 { font-size: 30px; letter-spacing: .7em; font-weight: 700; color: var(--rose); padding-left: .7em; }
+      #s8 .lock .b2 { font-size: 120px; font-style: italic; font-weight: 500; }
+      #s8 .cta { left: 190px; top: 1520px; width: 700px; height: 124px; border-radius: 999px; background: var(--wine); color: var(--pearl); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 44px; letter-spacing: .2em; box-shadow: 0 24px 50px rgba(94,12,25,.35); }
+      #s8 .vars { top: 1450px; font-size: 28px; letter-spacing: .34em; font-weight: 700; color: var(--rose); }
+      #foam { left: 790px; top: 820px; width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 3px solid var(--pearl); box-shadow: 0 20px 40px rgba(0,0,0,.2); }
+
+      /* ---------- global ---------- */
+      #wipe { z-index: 50; pointer-events: none; }
+      #wipe .bar { position: absolute; top: -300px; left: -1400px; width: 1100px; height: 2600px; background: linear-gradient(90deg, rgba(236,215,168,0), var(--gold-2) 30%, var(--pearl) 50%, var(--gold-2) 70%, rgba(236,215,168,0)); transform: skewX(-14deg); }
+      #frame { z-index: 40; pointer-events: none; }
+      #frame .edge { position: absolute; left: 40px; top: 40px; right: 40px; bottom: 40px; border: 1px solid rgba(207,174,116,.45); }
+      #frame .mark { position: absolute; top: 66px; left: 0; right: 0; text-align: center; font-size: 20px; letter-spacing: .6em; font-weight: 700; color: var(--gold); padding-left: .6em; }
+      #frame .prog { position: absolute; left: 40px; bottom: 40px; height: 4px; width: 1000px; background: var(--gold); transform-origin: 0 50%; }
+      #caps { z-index: 45; pointer-events: none; }
+      #caps .line { position: absolute; left: 70px; right: 70px; top: 1590px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 18px; opacity: 0; }
+      #caps .pill { position: absolute; left: 90px; right: 90px; top: 1560px; height: 150px; border-radius: 34px; background: rgba(20,6,10,.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(207,174,116,.35); opacity: 0; }
+      #caps .w { font-family: var(--sans); font-weight: 800; font-size: 66px; line-height: 1.25; letter-spacing: .01em; text-transform: uppercase; color: var(--pearl); text-shadow: 0 4px 18px rgba(0,0,0,.45); }
+      #caps .w.k { font-family: var(--serif); font-style: italic; font-weight: 600; text-transform: none; font-size: 74px; color: var(--gold-2); }
+      #grain { z-index: 60; pointer-events: none; opacity: .07; mix-blend-mode: overlay; }
+      #wm { z-index: 70; position: absolute; right: 64px; top: 110px; font-size: 22px; letter-spacing: .4em; font-weight: 800; color: rgba(255,255,255,.55); background: rgba(0,0,0,.25); padding: 10px 16px; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="32" data-width="1080" data-height="1920">
+
+      <audio id="mix" class="clip" data-start="0" data-duration="32" data-volume="1" src="assets/mix.m4a"></audio>
+
+      <video id="v1" class="fill" data-start="0" data-duration="5.45" data-media-start="2.6" muted playsinline src="assets/pump.mp4"></video>
+      <!-- S1 HOOK -->
+      <div id="s1" class="clip scene" data-start="0" data-duration="5.45">
+        <div class="clip shade"></div>
+        <div class="clip" id="s1dim" style="background:rgba(20,6,10,.62);opacity:0"></div>
+        <div class="abs center-x label gold" id="s1lab" style="top:380px">Body Care Notes · 01</div>
+        <div class="abs center-x h-small" id="h1">JANGAN TUNGGU</div>
+        <div class="abs center-x h-big serif it" id="h2">suami</div>
+        <div class="abs center-x h-big2" id="h3">TEGUR.</div>
+        <div class="abs center-x edu" id="edu">
+          <div class="label gold" style="margin-bottom:26px">Ambil berat tentang</div>
+          <div class="serif t1" id="e1">Kebersihan</div>
+          <div class="serif t2" id="e2">&amp; penjagaan badan</div>
+          <div class="rule" id="erule" style="width:520px;margin:34px auto 0"></div>
+        </div>
+      </div>
+
+      <!-- S2 ICEBERG -->
+      <div id="s2" class="clip scene" data-start="5.45" data-duration="4.95">
+        <div class="abs center-x label" style="top:150px;color:var(--rose)">Fakta asas</div>
+        <div class="abs center-x title serif" id="s2t">Cantik di <span class="it">luar</span>…</div>
+        <svg width="1080" height="1920" viewBox="0 0 1080 1920">
+          <defs>
+            <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8e1a2c" stop-opacity=".10"/><stop offset="1" stop-color="#8e1a2c" stop-opacity=".02"/></linearGradient>
+          </defs>
+          <rect id="seaRect" x="0" y="820" width="1080" height="1100" fill="url(#sea)"/>
+          <path id="water" d="M60 820 Q 180 800 300 820 T 540 820 T 780 820 T 1020 820" fill="none" stroke="#8e1a2c" stroke-width="3" stroke-dasharray="1200" stroke-dashoffset="1200"/>
+          <path id="tip" d="M440 820 L520 560 L560 600 L640 820 Z" fill="#fbf8f3" stroke="#22100f" stroke-width="3" stroke-dasharray="800" stroke-dashoffset="800"/>
+          <path id="mass" d="M440 820 L250 1080 L320 1330 L560 1460 L800 1300 L860 1040 L640 820 Z" fill="#f2cdd2" fill-opacity=".55" stroke="#8e1a2c" stroke-width="3" stroke-dasharray="2400" stroke-dashoffset="2400"/>
+        </svg>
+        <div class="abs tag" id="tagTop" style="left:660px;top:610px">CANTIK<br/>DI LUAR</div>
+        <div class="abs" id="tagTopLine" style="left:575px;top:660px;width:70px;height:2px;background:var(--ink)"></div>
+        <div class="abs tag center-x" id="tagBot" style="top:1040px;color:var(--wine)">PENJAGAAN<br/>ASAS BADAN</div>
+        <div class="abs stamp" id="stamp">TERLUPA?</div>
+      </div>
+
+      <!-- S3 THREE STEPS -->
+      <div id="s3" class="clip scene" data-start="10.4" data-duration="6.0">
+        <div class="abs arch-ring" id="archRing"></div>
+        <div class="abs center-x hdr serif" id="s3h"><span class="it gold">3</span> Langkah Asas</div>
+        <div class="abs card" id="c1" style="top:1000px"><div class="num">01</div><div><div class="ct">MANDI TERATUR</div><div class="cs">Rutin harian</div></div>
+          <svg class="chk" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#cfae74" stroke-width="2"/><path class="ck" d="M19 33 L28 42 L46 23" fill="none" stroke="#ecd7a8" stroke-width="5" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="44"/></svg></div>
+        <div class="abs card" id="c2" style="top:1170px"><div class="num">02</div><div><div class="ct">BERSIH SEMPURNA</div><div class="cs">Seluruh badan</div></div>
+          <svg class="chk" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#cfae74" stroke-width="2"/><path class="ck" d="M19 33 L28 42 L46 23" fill="none" stroke="#ecd7a8" stroke-width="5" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="44"/></svg></div>
+        <div class="abs card" id="c3" style="top:1340px"><div class="num">03</div><div><div class="ct">PRODUK SESUAI</div><div class="cs">Pilih dengan bijak</div></div>
+          <svg class="chk" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#cfae74" stroke-width="2"/><path class="ck" d="M19 33 L28 42 L46 23" fill="none" stroke="#ecd7a8" stroke-width="5" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="44"/></svg></div>
+      </div>
+
+      <div class="abs arch" id="arch" style="z-index:2"><video id="v3" class="fill" data-start="10.4" data-duration="6.0" data-media-start="25.5" muted playsinline src="assets/pump.mp4"></video></div>
+      <!-- S4 MALL DISPLAY REVEAL -->
+      <div id="s4" class="clip scene" data-start="16.4" data-duration="4.15">
+        <div class="abs beam" id="bm1" style="left:80px"></div>
+        <div class="abs beam" id="bm2" style="left:480px"></div>
+        <div class="abs spot" id="spot"></div>
+        <div class="abs floor"></div>
+        <div class="abs ped-base" id="pb"></div>
+        <div class="abs ped-body" id="pbd"></div>
+        <div class="abs ped" id="pt"></div>
+        <img class="abs refl" id="refl" src="assets/bottle.png" />
+        <img class="abs bottle" id="b4" src="assets/bottle.png" />
+        <div class="abs sheen" id="sheen"><i id="sheenBar"></i></div>
+        <div class="abs flare" id="flare"></div>
+        <div class="abs center-x q serif" id="q">Pengalaman mandi<br/>yang lebih <span class="it gold">menarik</span></div>
+        <div class="abs center-x brand" id="brand">
+          <div class="b1">FRESCURA BODY</div>
+          <div class="b2 serif">Woman Glory</div>
+          <div class="b3">AROMATHERAPY · OCEAN SALT</div>
+        </div>
+      </div>
+
+      <video id="v5" class="fill" data-start="20.55" data-duration="2.75" data-media-start="13.6" muted playsinline src="assets/pump.mp4"></video>
+      <!-- S5 FEATURES -->
+      <div id="s5" class="clip scene" data-start="20.55" data-duration="2.75">
+        <div id="f1" class="clip feat">
+          <div class="clip" style="background:linear-gradient(180deg,rgba(20,6,10,0) 30%,rgba(20,6,10,.85) 75%)"></div>
+          <div class="abs idx label gold">i — Tekstur</div>
+          <div class="abs big serif">Buih<br/><span class="it" style="color:var(--blush)">lembut</span></div>
+          <div class="abs sub">Gentle foaming</div>
+        </div>
+        <div id="f2" class="clip feat">
+          <div id="crys"></div>
+          <svg class="abs" style="left:0;top:330px" width="1080" height="300" viewBox="0 0 1080 300"><path id="wave" d="M0 150 Q 135 60 270 150 T 540 150 T 810 150 T 1080 150" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="1400" stroke-dashoffset="1400"/></svg>
+          <div class="abs idx label" style="color:#1f3a46">ii — Mineral</div>
+          <div class="abs big serif">Garam<br/><span class="it">laut</span></div>
+          <div class="abs sub">Ocean salt</div>
+          <img class="abs mini-bottle" src="assets/bottle.png" />
+        </div>
+        <div id="f3" class="clip feat">
+          <div id="petals"></div>
+          <div class="abs idx label" style="color:var(--wine)">iii — Aroma</div>
+          <div class="abs big serif">Wangian<br/><span class="it" style="color:var(--wine)">feminin</span></div>
+          <div class="abs sub">Aromatherapy</div>
+          <img class="abs mini-bottle" src="assets/bottle.png" />
+        </div>
+      </div>
+
+      <!-- S6 ONE BOTTLE TWO SCENTS -->
+      <div id="s6" class="clip scene" data-start="23.3" data-duration="2.4">
+        <div class="abs center-x one serif" id="one">1</div>
+        <div class="abs center-x t serif" id="s6t">Dalam <span class="it" style="color:var(--rose)">satu</span> botol</div>
+        <img class="abs bottle" id="b6" src="assets/bottle.png" />
+        <div class="abs ln" id="ln1" style="left:250px;top:1000px;width:170px;transform:rotate(-20deg)"></div>
+        <div class="abs ln" id="ln2" style="left:660px;top:1060px;width:170px;transform:rotate(20deg)"></div>
+        <div class="abs chip" id="ch1" style="left:60px;top:1350px">BOMBSHELL</div>
+        <div class="abs chip alt" id="ch2" style="right:60px;top:1350px">MINA FANTASIA</div>
+      </div>
+
+      <video id="v7" class="fill" data-start="25.7" data-duration="2.75" data-media-start="30.0" muted playsinline src="assets/pump.mp4"></video>
+      <!-- S7 GIRLS -->
+      <div id="s7" class="clip scene" data-start="25.7" data-duration="2.75">
+        <div class="clip shade"></div>
+        <div class="abs center-x g serif" id="girls">Girls,</div>
+        <div class="abs center-x label gold" id="s7l" style="top:930px">Jangan sekadar tengok</div>
+      </div>
+
+      <!-- S8 END CARD -->
+      <div id="s8" class="clip scene" data-start="28.45" data-duration="3.55">
+        <div class="abs center-x lock" id="lock"><div class="b1">FRESCURA BODY</div><div class="b2 serif">Woman Glory</div>
+          <div class="rule" style="width:420px;margin:16px auto 0"></div></div>
+                <div class="abs ped-base"></div><div class="abs ped-body"></div><div class="abs ped"></div>
+        <img class="abs bottle" id="b8" src="assets/bottle.png" />
+        <div class="abs center-x vars" id="vars">BOMBSHELL · MINA FANTASIA</div>
+        <div class="abs cta" id="cta">DAPATKAN SEKARANG</div>
+      </div>
+
+      <div class="abs foam" id="foam" style="z-index:2"><video id="v8" class="fill" data-start="28.45" data-duration="3.55" data-media-start="8.2" muted playsinline src="assets/pump.mp4"></video></div>
+      <!-- global overlays -->
+      <div id="frame" class="clip" data-start="0" data-duration="32"><div class="edge"></div><div class="mark" id="mark">FRESCURA · BODY</div><div class="prog" id="prog"></div></div>
+      <div id="caps" class="clip" data-start="0" data-duration="32"><div class="pill" id="pill"></div></div>
+      <div id="wipe" class="clip" data-start="0" data-duration="32"><div class="bar" id="bar"></div></div>
+      <svg id="grain" class="clip" data-start="0" data-duration="32" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg>
+      <div id="wm" class="clip" data-start="0" data-duration="32" style="inset:auto">PREVIEW</div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const V = (s) => s + 0.35; // voice offset into film time
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : { preview: true };
+      if (!vars.preview) document.getElementById("wm").style.display = "none";
+
+      // ---- helpers
+      const inUp = (el, at, d = 0.55, y = 60) => tl.fromTo(el, { opacity: 0, y, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: d, ease: "expo.out" }, at);
+      const slam = (el, at, s = 1.6) => tl.fromTo(el, { opacity: 0, scale: s, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power4.out" }, at);
+      const out = (el, at, d = 0.3) => tl.to(el, { opacity: 0, y: -30, filter: "blur(8px)", duration: d, ease: "power2.in" }, at);
+      const draw = (el, at, d = 0.8) => tl.to(el, { strokeDashoffset: 0, duration: d, ease: "power2.inOut" }, at);
+      const wipe = (at) => tl.fromTo("#bar", { x: 0 }, { x: 3000, duration: 0.5, ease: "power3.inOut" }, at - 0.25);
+      const kb = (el, at, d, s0 = 1.08, s1 = 1.22) => tl.fromTo(el, { scale: s0 }, { scale: s1, duration: d, ease: "none" }, at);
+
+      // ---- global frame + progress
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 32, ease: "none" }, 0);
+      tl.fromTo("#frame .edge", { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, 0);
+      tl.fromTo("#grain", { x: 0 }, { x: -40, duration: 32, ease: "steps(320)" }, 0);
+      [5.45, 10.4, 16.4, 20.55, 23.3, 25.7, 28.45].forEach(wipe);
+
+      // ---- S1 hook
+      kb("#v1", 0, 5.45, 1.25, 1.05);
+      tl.fromTo("#s1lab", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.9, ease: "expo.out" }, 0.05);
+      slam("#h1", 0.02, 1.3);
+      slam("#h2", V(0.40), 1.8);
+      slam("#h3", V(0.84), 2.0);
+      tl.fromTo("#s1", { x: 0 }, { keyframes: [{ x: -14, duration: .04 }, { x: 12, duration: .04 }, { x: -6, duration: .04 }, { x: 0, duration: .05 }] }, V(0.84));
+      tl.to("#s1lab", { opacity: 0, duration: 0.25 }, V(2.85));
+      tl.to("#s1dim", { opacity: 1, duration: 0.5 }, V(2.9));
+      tl.to(["#h1", "#h2", "#h3"], { y: -170, scale: 0.78, duration: 0.6, ease: "expo.inOut" }, V(2.9));
+      inUp("#edu .label", V(2.95));
+      inUp("#e1", V(3.1), 0.6, 80);
+      inUp("#e2", V(4.0), 0.6, 80);
+      tl.fromTo("#erule", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "expo.out" }, V(4.3));
+
+      // ---- S2 iceberg (5.45–10.4)
+      inUp("#s2t", 5.5, 0.6);
+      draw("#water", 5.6, 0.9);
+      tl.fromTo("#seaRect", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 5.8);
+      draw("#tip", V(6.76), 0.7);
+      inUp("#tagTop", V(7.0), 0.5, 30);
+      tl.fromTo("#tagTopLine", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.4 }, V(7.0));
+      tl.to("#s2t", { opacity: 0.35, duration: 0.3 }, V(8.3));
+      draw("#mass", V(8.32), 1.0);
+      inUp("#tagBot", V(8.7), 0.6, 40);
+      slam("#stamp", V(8.4), 2.2);
+      tl.to("#s2 svg, #tagTop, #tagTopLine, #tagBot, #stamp", { y: -30, duration: 4.9, ease: "none" }, 5.45);
+
+      // ---- S3 steps (10.4–16.4)
+      tl.fromTo("#arch", { clipPath: "inset(100% 0 0 0)" }, { clipPath: "inset(0% 0 0 0)", duration: 0.8, ease: "expo.out" }, 10.4);
+      tl.fromTo("#archRing", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.9, ease: "expo.out" }, 10.5);
+      tl.set("#arch", { opacity: 0 }, 0); tl.set("#arch", { opacity: 1 }, 10.4); tl.set("#arch", { opacity: 0 }, 16.4);
+      tl.set("#foam", { opacity: 0 }, 0);
+      kb("#v3", 10.4, 6.0, 1.15, 1.32);
+      inUp("#s3h", 10.5, 0.6);
+      [["#c1", V(9.94)], ["#c2", V(11.94)], ["#c3", V(14.02)]].forEach(([c, at]) => {
+        tl.fromTo(c, { opacity: 0, x: 120, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, at);
+        tl.fromTo(c, { borderColor: "rgba(236,215,168,1)", background: "rgba(207,174,116,.22)" }, { borderColor: "rgba(207,174,116,.35)", background: "rgba(245,239,230,.06)", duration: 1.2 }, at + 0.3);
+        draw(c + " .ck", at + 0.25, 0.4);
+      });
+
+      // ---- S4 mall display (16.4–20.55)
+      tl.fromTo("#bm1", { rotation: 22, opacity: 0 }, { rotation: -6, opacity: 1, duration: 2.0, ease: "sine.inOut" }, 16.4);
+      tl.fromTo("#bm2", { rotation: -22, opacity: 0 }, { rotation: 6, opacity: 1, duration: 2.0, ease: "sine.inOut" }, 16.4);
+      inUp("#q", 16.5, 0.7);
+      tl.fromTo("#spot", { opacity: 0 }, { opacity: 0.35, duration: 1.2 }, 16.6);
+      tl.fromTo(["#pt", "#pbd", "#pb"], { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", stagger: 0.05 }, 16.9);
+      const R = V(18.08);
+      tl.to("#q", { opacity: 0, scale: 0.9, filter: "blur(12px)", duration: 0.3, ease: "power2.in" }, R - 0.3);
+      tl.to("#spot", { opacity: 1, duration: 0.2 }, R);
+      tl.fromTo("#flare", { opacity: 0, scale: 0.4 }, { keyframes: [{ opacity: 1, scale: 1.3, duration: 0.18 }, { opacity: 0, scale: 1.8, duration: 0.7 }] }, R);
+      tl.fromTo(["#b4", "#refl"], { opacity: 0, y: 160 }, { opacity: (i) => (i ? 0.18 : 1), y: 0, duration: 0.9, ease: "expo.out" }, R);
+      tl.fromTo("#sheen", { opacity: 0, y: 160 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" }, R);
+      tl.fromTo("#sheenBar", { xPercent: 0 }, { xPercent: 480, duration: 1.0, ease: "power2.inOut" }, R + 0.5);
+      tl.fromTo("#b4", { scale: 1 }, { scale: 1.05, duration: 2.0, ease: "none" }, R + 0.9);
+      tl.fromTo("#brand .b1", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.9, ease: "expo.out" }, V(18.58));
+      inUp("#brand .b2", V(18.8), 0.6, 40);
+      inUp("#brand .b3", V(19.3), 0.5, 20);
+      tl.to(["#bm1", "#bm2"], { rotation: (i) => (i ? -8 : 8), duration: 2.2, ease: "sine.inOut" }, R);
+
+      // ---- S5 features (20.55–23.3), quick cuts
+      const F1 = 20.55, F2 = V(20.80) - 0.1, F3 = V(21.60) - 0.1;
+      tl.set("#f2", { opacity: 0 }, 0); tl.set("#f3", { opacity: 0 }, 0);
+      kb("#v5", F1, 2.75, 1.1, 1.3);
+      inUp("#f1 .big", F1 + 0.05, 0.45, 80); inUp("#f1 .idx", F1 + 0.1, 0.4, 20); inUp("#f1 .sub", F1 + 0.2, 0.4, 20);
+      tl.fromTo("#f2", { opacity: 0, clipPath: "circle(0% at 50% 60%)" }, { opacity: 1, clipPath: "circle(120% at 50% 60%)", duration: 0.45, ease: "expo.inOut" }, F2);
+      draw("#wave", F2 + 0.1, 0.8);
+      inUp("#f2 .big", F2 + 0.1, 0.45, 80); inUp("#f2 .idx", F2 + 0.15, 0.4, 20); inUp("#f2 .sub", F2 + 0.25, 0.4, 20);
+      inUp("#f2 .mini-bottle", F2 + 0.15, 0.5, 120);
+      tl.fromTo("#f3", { opacity: 0, clipPath: "circle(0% at 50% 60%)" }, { opacity: 1, clipPath: "circle(120% at 50% 60%)", duration: 0.45, ease: "expo.inOut" }, F3);
+      inUp("#f3 .big", F3 + 0.1, 0.45, 80); inUp("#f3 .idx", F3 + 0.15, 0.4, 20); inUp("#f3 .sub", F3 + 0.25, 0.4, 20);
+      inUp("#f3 .mini-bottle", F3 + 0.15, 0.5, 120);
+      // salt crystals + rose petals (seeded, deterministic)
+      let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      const crys = document.getElementById("crys");
+      for (let i = 0; i < 16; i++) {
+        const c = document.createElement("div"); c.className = "abs crystal";
+        const s = 24 + rnd() * 50; Object.assign(c.style, { left: 40 + rnd() * 1000 + "px", top: 120 + rnd() * 900 + "px", width: s + "px", height: s + "px" });
+        crys.appendChild(c);
+        tl.fromTo(c, { opacity: 0, y: 120, rotation: rnd() * 90 }, { opacity: 0.95, y: -60 - rnd() * 120, rotation: "+=" + (60 + rnd() * 120), duration: 1.0, ease: "power2.out" }, F2 + rnd() * 0.3);
+      }
+      const pet = document.getElementById("petals");
+      for (let i = 0; i < 9; i++) {
+        const p = document.createElement("div"); p.className = "abs petal";
+        const sc = 0.5 + rnd() * 0.9; Object.assign(p.style, { left: 60 + rnd() * 900 + "px", top: 100 + rnd() * 820 + "px" });
+        pet.appendChild(p);
+        tl.fromTo(p, { opacity: 0, scale: sc * 0.4, rotation: rnd() * 360 }, { opacity: 0.85, scale: sc, rotation: "+=" + (90 + rnd() * 120), x: -80 + rnd() * 160, y: 60 + rnd() * 80, duration: 1.3, ease: "power2.out" }, F3 + rnd() * 0.25);
+      }
+
+      // ---- S6 one bottle (23.3–25.7)
+      tl.fromTo("#one", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.9, ease: "expo.out" }, 23.3);
+      inUp("#s6t", 23.35, 0.5);
+      tl.fromTo("#b6", { opacity: 0, y: 100, rotation: -4 }, { opacity: 1, y: 0, rotation: 0, duration: 0.7, ease: "expo.out" }, 23.35);
+      tl.fromTo("#b6", { scale: 1 }, { scale: 1.04, duration: 2.2, ease: "none" }, 23.6);
+      tl.fromTo("#ln1", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, V(23.8) - 0.1);
+      slam("#ch1", V(23.8), 1.5);
+      tl.fromTo("#ln2", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, V(24.5) - 0.1);
+      slam("#ch2", V(24.5), 1.5);
+
+      // ---- S7 girls (25.7–28.45)
+      kb("#v7", 25.7, 2.75, 1.2, 1.05);
+      slam("#girls", V(25.36), 1.7);
+      tl.fromTo("#s7l", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, V(26.0));
+      tl.to("#girls", { y: -40, duration: 2.4, ease: "none" }, V(25.7));
+
+      // ---- S8 end card (28.45–32)
+      tl.fromTo("#lock", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "expo.out" }, 28.5);
+      tl.fromTo("#b8", { opacity: 0, y: 140 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" }, 28.45);
+      tl.fromTo("#b8", { scale: 1 }, { scale: 1.04, duration: 3.0, ease: "none" }, 29.2);
+      tl.fromTo("#foam", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.8)" }, 29.0);
+      inUp("#vars", 29.2, 0.5, 20);
+      tl.fromTo("#cta", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 29.6);
+      tl.to("#cta", { scale: 1.05, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 3 }, 30.2);
+      tl.to("#root", { opacity: 0, duration: 0.6, ease: "power2.in" }, 31.4);
+
+      // ---- captions (word-timed, voice offset 0.35s). k = luxury serif keyword
+      const W = [
+        // [text, start(voice time), key?]
+        ["Kadang-kadang", 4.96], ["kita", 5.36], ["terlalu", 5.50], ["fokus", 5.86, 1],
+        ["nak", 6.52], ["nampak", 6.76], ["cantik", 7.00, 1], ["di", 7.38], ["luar", 7.44],
+        ["tetapi", 7.78], ["terlupa", 8.32, 1], ["penjagaan", 8.68], ["asas", 9.24, 1], ["badan.", 9.58],
+        ["Pastikan", 9.94], ["korang", 10.24], ["mandi", 10.52, 1], ["secara", 10.96], ["teratur,", 11.30],
+        ["bersihkan", 11.94], ["badan", 12.42], ["dengan", 12.86], ["sempurna", 13.02, 1],
+        ["dan", 13.66], ["pilih", 14.02], ["produk", 14.44], ["mandian", 14.58], ["yang", 15.24], ["sesuai.", 15.40, 1],
+        ["Kalau", 15.86], ["nak", 16.16], ["pengalaman", 16.32], ["mandi", 16.80], ["yang", 17.20], ["lebih", 17.36], ["menarik,", 17.58, 1],
+        ["pastinya", 18.08], ["Frescura", 18.58, 1], ["Body", 19.12, 1],
+        ["menggabungkan", 19.40], ["buih", 20.12], ["lembut,", 20.40, 1], ["garam", 20.80], ["laut", 21.24, 1],
+        ["dan", 21.36], ["wangian", 21.60], ["feminin", 21.96, 1],
+        ["dalam", 22.32], ["satu", 22.90, 1], ["botol", 23.16], ["iaitu", 23.52],
+        ["Bombshell", 23.80, 1], ["dan", 24.22], ["Mina", 24.50, 1], ["Fantasia.", 24.70, 1],
+        ["Girls,", 25.36, 1], ["jangan", 25.98], ["jadi", 26.26], ["orang", 26.52], ["yang", 26.76],
+        ["tengok", 26.96, 1], ["video", 27.36], ["hari", 27.52], ["ni.", 27.68],
+      ];
+      // group into short lines (max ~3 words / 16 chars), break at punctuation
+      const groups = []; let g = [];
+      W.forEach((w, i) => {
+        g.push(w);
+        const len = g.map((x) => x[0]).join(" ").length;
+        const next = W[i + 1];
+        if (/[.,]$/.test(w[0]) || len > 15 || g.length >= 3 || !next) { groups.push(g); g = []; }
+      });
+      const caps = document.getElementById("caps");
+      const DARK_BG = [[5.45, 10.4], [V(20.80) - 0.1, 25.7]]; // light scenes -> show glass pill for legibility
+      groups.forEach((grp, gi) => {
+        const line = document.createElement("div"); line.className = "line";
+        const t0 = V(grp[0][1]) - 0.06;
+        const nextG = groups[gi + 1]; const t1 = nextG ? V(nextG[0][1]) - 0.06 : V(28.0);
+        grp.forEach((w) => {
+          const s = document.createElement("span"); s.className = "w" + (w[2] ? " k" : ""); s.textContent = w[0];
+          line.appendChild(s);
+          tl.fromTo(s, { opacity: 0.0, y: 26, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.16, ease: "back.out(2)" }, V(w[1]) - 0.04);
+        });
+        caps.appendChild(line);
+        tl.set(line, { opacity: 1 }, t0);
+        tl.set(line, { opacity: 0 }, t1);
+      });
+      DARK_BG.forEach(([a, b]) => { tl.fromTo("#pill", { opacity: 0 }, { opacity: 1, duration: 0.2 }, a); tl.to("#pill", { opacity: 0, duration: 0.2 }, b - 0.2); });
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
