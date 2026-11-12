@@ -1,0 +1,59 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; }
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Jost"; src: url("assets/fonts/Jost-normal.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(110% 70% at 50% 28%, #241b13 0%, #0c0a09 68%); }
+    #hk-arch { position: absolute; left: 110px; top: 240px; width: 860px; height: 900px; border-radius: 430px 430px 26px 26px; overflow: hidden; background: #000; }
+    .hk-cam { position: absolute; inset: 0; }
+    .hk-cam video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #hk-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,10,9,0) 38%, rgba(12,10,9,.55) 66%, rgba(12,10,9,.94) 100%); }
+    #hk-rim { position: absolute; left: 88px; top: 218px; width: 904px; height: 944px; border: 2px solid rgba(217,183,121,.6); border-radius: 452px 452px 36px 36px; }
+    #hk-eyebrow { position: absolute; left: 0; width: 1080px; top: 760px; text-align: center; font-family: "Jost"; font-weight: 500; font-size: 30px; letter-spacing: .42em; color: #d9b779; text-transform: uppercase; }
+    #hk-title { position: absolute; left: 0; width: 1080px; top: 808px; text-align: center; font-family: "Bodoni Moda"; font-weight: 500; font-size: 128px; line-height: 1.02; letter-spacing: -.01em; }
+    #hk-title span { display: inline-block; background: linear-gradient(100deg, #f5efe6 0%, #f5efe6 42%, #fff3cf 50%, #f5efe6 58%, #f5efe6 100%); background-size: 320% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #hk-title span.gold { font-style: italic; background-image: linear-gradient(100deg, #d9b779 0%, #d9b779 42%, #fff1c2 50%, #d9b779 58%, #d9b779 100%); }
+    #hk-tags { position: absolute; left: 0; width: 1080px; top: 1000px; display: flex; justify-content: center; gap: 20px; }
+    .hk-tag { display: inline-flex; align-items: center; gap: 12px; font-family: "Jost"; font-weight: 600; font-size: 34px; letter-spacing: .2em; color: #0c0a09; background: #d9b779; padding: 14px 28px 14px 22px; border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .hk-tag svg { width: 30px; height: 30px; }
+    .hk-tag path { fill: none; stroke: #0c0a09; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-arch">
+      <div class="hk-cam" id="hk-cam1"><video id="hk-v1" class="clip" src="assets/broll/couple.mp4" data-start="0" data-duration="1.7" muted playsinline></video></div>
+      <div class="hk-cam" id="hk-cam2"><video id="hk-v2" class="clip" src="assets/broll/hands.mp4" data-start="1.7" data-duration="1.6" muted playsinline></video></div>
+      <div class="hk-cam" id="hk-cam3"><video id="hk-v3" class="clip" src="assets/broll/smellroses.mp4" data-start="3.3" data-duration="1.4" muted playsinline></video></div>
+      <div id="hk-shade"></div>
+    </div>
+    <div id="hk-rim"></div>
+    <div id="hk-eyebrow">Korang rasa…</div>
+    <div id="hk-title" data-layout-allow-overlap><span id="hk-w1">Suami</span> <span id="hk-w2" class="gold">suka</span> <span id="hk-w3">tak?</span></div>
+    <div id="hk-tags">
+      <div class="hk-tag" id="hk-t1"><svg viewBox="0 0 30 30"><path d="M6 16 l6 6 l12 -13"/></svg>KEMAS</div>
+      <div class="hk-tag" id="hk-t2"><svg viewBox="0 0 30 30"><path d="M6 16 l6 6 l12 -13"/></svg>BERSIH</div>
+      <div class="hk-tag" id="hk-t3"><svg viewBox="0 0 30 30"><path d="M6 16 l6 6 l12 -13"/></svg>WANGI</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // camera: each shot pushes in slowly; each new shot lands slightly large and settles (cut on motion)
+    tl.fromTo("#hk-cam1", { scale: 1.16 }, { scale: 1.02, duration: 1.7, ease: "power2.out" }, 0);
+    tl.fromTo("#hk-cam2", { scale: 1.14, x: 40 }, { scale: 1.02, x: 0, duration: 1.6, ease: "power3.out" }, 1.7);
+    tl.fromTo("#hk-cam3", { scale: 1.14, x: -40 }, { scale: 1.03, x: 0, duration: 1.4, ease: "power3.out" }, 3.3);
+    // rim draws in around the arch
+    tl.fromTo("#hk-rim", { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 0);
+    // hook title is on screen at frame 0; a gold light sweep crosses it
+    tl.fromTo("#hk-title span", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 1.1, ease: "power2.inOut", stagger: 0.08 }, 0.05);
+    tl.fromTo("#hk-eyebrow", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "expo.out" }, 0.05);
+    tl.fromTo("#hk-w2", { y: 0 }, { y: -6, duration: 0.25, ease: "power2.out" }, 0.98);
+    tl.to("#hk-w2", { y: 0, duration: 0.3, ease: "power2.inOut" }, 1.23);
+    // tags land on the spoken words: kemas 2.86, bersih 3.34, wangi 4.18
+    [["#hk-t1", 2.86], ["#hk-t2", 3.34], ["#hk-t3", 4.18]].forEach(([id, t]) => {
+      tl.fromTo(id, { opacity: 0, y: 26, scale: 0.82, filter: "blur(6px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "back.out(1.5)" }, t - 0.06);
+      tl.to(id + " path", { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t + 0.06);
+    });
+    // exit: whole stage blurs out into the next scene
+    tl.to("#root", { opacity: 0.0, filter: "blur(10px)", duration: 0.14, ease: "power2.in" }, 4.55);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

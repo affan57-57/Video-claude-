@@ -1,0 +1,45 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; }
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Jost"; src: url("assets/fonts/Jost-normal.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a09; }
+    #st-cam { position: absolute; inset: 0; }
+    #st-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #st-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,10,9,.92) 0%, rgba(12,10,9,.55) 22%, rgba(12,10,9,0) 32%, rgba(12,10,9,0) 50%, rgba(12,10,9,.8) 62%, rgba(12,10,9,.95) 100%); }
+    #st-h1 { position: absolute; left: 0; width: 1080px; top: 222px; text-align: center; font-family: "Bodoni Moda"; font-weight: 500; font-size: 118px; line-height: 1; color: #f5efe6; }
+    #st-h1 span { display: inline-block; }
+    #st-h2 { position: absolute; left: 0; width: 1080px; top: 350px; text-align: center; font-family: "Bodoni Moda"; font-style: italic; font-weight: 500; font-size: 96px; line-height: 1; color: #d9b779; }
+    #st-card { position: absolute; left: 110px; top: 1010px; width: 860px; height: 132px; border-radius: 26px; background: rgba(20,16,13,.78); border: 1.5px solid rgba(217,183,121,.55); }
+    #st-label { position: absolute; left: 36px; top: 28px; font-family: "Jost"; font-weight: 600; font-size: 28px; letter-spacing: .3em; color: #f5efe6; }
+    #st-state { position: absolute; right: 36px; top: 28px; font-family: "Jost"; font-weight: 600; font-size: 28px; letter-spacing: .2em; color: #e2485f; }
+    #st-track { position: absolute; left: 36px; right: 36px; top: 84px; height: 18px; border-radius: 9px; background: rgba(245,239,230,.14); overflow: hidden; }
+    #st-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 9px; background: linear-gradient(90deg, #b3122e, #d9b779); transform-origin: 0 50%; }
+  </style>
+  <div id="root" data-composition-id="stock" data-width="1080" data-height="1920">
+    <div id="st-cam"><img id="st-img" src="assets/img/duo-wood-flat.jpg" alt="Frescura Body duo" /></div>
+    <div id="st-shade"></div>
+    <div id="st-h1"><span>Jangan</span> <span>tunggu</span></div>
+    <div id="st-h2">sampai habis.</div>
+    <div id="st-card">
+      <div id="st-label">STOK PILIHAN</div>
+      <div id="st-state">HAMPIR HABIS</div>
+      <div id="st-track"><div id="st-fill"></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#st-cam", { scale: 1.1, y: 60 }, { scale: 1.02, y: 40, duration: 2.9, ease: "power1.out" }, 0);
+    // "jangan" (0.04), "tunggu" (0.38): per-word blur in
+    tl.fromTo("#st-h1 span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power4.out", stagger: 0.32 }, 0.02);
+    tl.fromTo("#st-card", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.25);
+    // the meter drops in steps on the clock ticks (0.6, 1.0, 1.4, 1.8) and empties on "habis" (2.32)
+    [[0.6, 0.78], [1.0, 0.6], [1.4, 0.44], [1.8, 0.3], [2.32, 0.1]].forEach(([t, v]) => {
+      tl.to("#st-fill", { scaleX: v, duration: 0.22, ease: "power3.out" }, t);
+    });
+    tl.fromTo("#st-state", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 1.4);
+    tl.fromTo("#st-h2", { opacity: 0, scale: 1.2, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 2.22);
+    tl.fromTo("#st-card", { x: 0 }, { x: 10, duration: 0.05, ease: "none", repeat: 5, yoyo: true }, 2.32);
+    window.__timelines["stock"] = tl;
+  </script>
+</template>

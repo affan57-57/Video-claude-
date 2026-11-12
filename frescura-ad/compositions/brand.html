@@ -1,0 +1,77 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; }
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Jost"; src: url("assets/fonts/Jost-normal.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a09; }
+    #br-cam { position: absolute; inset: 0; }
+    #br-cam video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #br-shade { position: absolute; inset: 0; background: radial-gradient(90% 55% at 50% 52%, rgba(20,15,11,.70) 0%, rgba(12,10,9,.93) 75%); }
+    #br-sweep { position: absolute; left: -500px; top: -200px; width: 360px; height: 2400px; background: linear-gradient(90deg, rgba(255,241,200,0) 0%, rgba(255,241,200,.34) 50%, rgba(255,241,200,0) 100%); transform: rotate(18deg); }
+    #br-mark { position: absolute; left: 0; width: 1080px; top: 560px; text-align: center; transform-origin: 50% 0%; }
+    #br-word { font-family: "Bodoni Moda"; font-weight: 500; font-size: 176px; line-height: 1; letter-spacing: .01em; }
+    #br-word span { display: inline-block; background: linear-gradient(180deg, #fff6df 0%, #e9cf98 45%, #b98d4e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #br-body { margin-top: 14px; font-family: "Jost"; font-weight: 600; font-size: 50px; letter-spacing: .75em; padding-left: .75em; color: #f5efe6; }
+    #br-tag { margin-top: 26px; font-family: "Jost"; font-weight: 500; font-size: 30px; letter-spacing: .5em; padding-left: .5em; color: rgba(217,183,121,.9); }
+    #br-line { position: absolute; left: 340px; width: 400px; top: 530px; height: 2px; background: #d9b779; transform-origin: 50% 50%; }
+    #br-badge { position: absolute; left: 0; width: 1080px; top: 400px; text-align: center; font-family: "Jost"; font-weight: 600; font-size: 34px; letter-spacing: .24em; color: #f5efe6; text-transform: uppercase; }
+    #br-badge em { font-family: "Bodoni Moda"; font-style: italic; font-weight: 500; font-size: 92px; letter-spacing: 0; color: #d9b779; vertical-align: -14px; margin-right: 14px; }
+    .br-beam { position: absolute; top: 0; width: 520px; height: 1260px; background: linear-gradient(180deg, rgba(255,236,200,.0) 0%, rgba(255,236,200,.16) 55%, rgba(255,236,200,.0) 100%); clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); }
+    #br-beam1 { left: 110px; } #br-beam2 { left: 450px; }
+    .br-glow { position: absolute; width: 560px; height: 560px; border-radius: 50%; top: 620px; }
+    #br-glow1 { left: 90px; background: radial-gradient(circle, rgba(200,20,45,.55) 0%, rgba(200,20,45,0) 65%); }
+    #br-glow2 { left: 430px; background: radial-gradient(circle, rgba(120,80,230,.55) 0%, rgba(120,80,230,0) 65%); }
+    #br-podium { position: absolute; left: 150px; top: 1072px; width: 780px; height: 70px; border-radius: 50%; border: 2px solid rgba(217,183,121,.75); background: radial-gradient(ellipse, rgba(217,183,121,.22) 0%, rgba(217,183,121,0) 70%); }
+    .br-bottle { position: absolute; top: 545px; height: 560px; }
+    #br-b1 { left: 190px; } #br-b2 { left: 696px; }
+    .br-name { position: absolute; top: 520px; font-family: "Bodoni Moda"; font-style: italic; font-weight: 500; font-size: 46px; color: #f5efe6; line-height: 1.05; }
+    .br-name small { display: block; font-family: "Jost"; font-style: normal; font-weight: 600; font-size: 28px; letter-spacing: .22em; color: #d9b779; margin-bottom: 6px; }
+    #br-n1 { left: 404px; top: 600px; } #br-n2 { left: 404px; text-align: right; width: 276px; top: 860px; }
+  </style>
+  <div id="root" data-composition-id="brand" data-width="1080" data-height="1920">
+    <div id="br-cam"><video id="br-v" class="clip" src="assets/broll/mall.mp4" data-start="0" data-duration="4.6" muted playsinline></video></div>
+    <div id="br-shade"></div>
+    <div class="br-beam" id="br-beam1"></div><div class="br-beam" id="br-beam2"></div>
+    <div class="br-glow" id="br-glow1"></div><div class="br-glow" id="br-glow2"></div>
+    <div id="br-podium"></div>
+    <img class="br-bottle" id="br-b1" src="assets/img/bottle-bombshell.png" alt="Woman Glory Bombshell" />
+    <img class="br-bottle" id="br-b2" src="assets/img/bottle-noche.png" alt="Noche Midnight Fantasy" />
+    <div class="br-name" id="br-n1" data-layout-allow-overlap><small>WOMAN GLORY</small>Bombshell</div>
+    <div class="br-name" id="br-n2" data-layout-allow-overlap><small>NOCHE</small>Midnight<br/>Fantasy</div>
+    <div id="br-line"></div>
+    <div id="br-mark">
+      <div id="br-word"><span>F</span><span>r</span><span>e</span><span>s</span><span>c</span><span>u</span><span>r</span><span>a</span></div>
+      <div id="br-body">BODY</div>
+      <div id="br-tag">SOFT | FRAGRANT</div>
+    </div>
+    <div id="br-badge"><em>2</em>Pilihan wangian feminine</div>
+    <div id="br-sweep" data-layout-ignore></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#br-cam", { scale: 1.12, x: 30 }, { scale: 1.02, x: -30, duration: 4.6, ease: "none" }, 0);
+    // the one big moment: light sweep + wordmark letters (lands on "Frescura" 0.06)
+    tl.fromTo("#br-sweep", { x: 0 }, { x: 1900, duration: 0.9, ease: "power2.inOut" }, 0.0);
+    tl.fromTo("#br-word span", { opacity: 0.0, filter: "blur(10px)", y: 30 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.4, ease: "expo.out", stagger: 0.035 }, 0.04);
+    tl.fromTo("#br-body", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "expo.out" }, 0.3);
+    tl.fromTo("#br-tag", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.6);
+    tl.fromTo("#br-line", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 0.2);
+    // "dua" (1.10): wordmark carries up and shrinks into a header
+    tl.to("#br-mark", { y: -360, scale: 0.5, duration: 0.6, ease: "power3.inOut" }, 1.0);
+    tl.to("#br-line", { y: -340, scaleX: 0.5, opacity: 0, duration: 0.5, ease: "power3.inOut" }, 1.0);
+    tl.fromTo("#br-badge", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 1.25);
+    tl.fromTo("#br-podium", { opacity: 0, scaleX: 0.2 }, { opacity: 1, scaleX: 1, duration: 0.7, ease: "expo.out" }, 1.5);
+    tl.fromTo(".br-beam", { opacity: 0 }, { opacity: 0.5, duration: 0.6, ease: "power2.out", stagger: 0.2 }, 1.6);
+    // "Bombshell" (3.06)
+    tl.fromTo("#br-b1", { x: -420, opacity: 0, filter: "blur(12px)", rotation: -8 }, { x: 0, opacity: 1, filter: "blur(0px)", rotation: 0, duration: 0.6, ease: "expo.out" }, 3.0);
+    tl.fromTo("#br-glow1", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 3.0);
+    tl.to("#br-beam1", { opacity: 1, duration: 0.3, ease: "power2.out" }, 3.0);
+    tl.fromTo("#br-n1", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 3.2);
+    // "Midnight Fantasy" (3.84)
+    tl.fromTo("#br-b2", { x: 420, opacity: 0, filter: "blur(12px)", rotation: 8 }, { x: 0, opacity: 1, filter: "blur(0px)", rotation: 0, duration: 0.6, ease: "expo.out" }, 3.78);
+    tl.fromTo("#br-glow2", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 3.78);
+    tl.to("#br-beam2", { opacity: 1, duration: 0.3, ease: "power2.out" }, 3.78);
+    tl.fromTo("#br-n2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 3.96);
+    window.__timelines["brand"] = tl;
+  </script>
+</template>

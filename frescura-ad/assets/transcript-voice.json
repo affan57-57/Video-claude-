@@ -1,0 +1,481 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.5,
+  "text": " Orang rasa suami suka tak kalau isteri sentiasa nampak kemas, bersih dan wangi?",
+  "words": [
+   {
+    "w": " Orang",
+    "s": 0.0,
+    "e": 0.08
+   },
+   {
+    "w": " rasa",
+    "s": 0.08,
+    "e": 0.32
+   },
+   {
+    "w": " suami",
+    "s": 0.32,
+    "e": 0.88
+   },
+   {
+    "w": " suka",
+    "s": 0.88,
+    "e": 1.04
+   },
+   {
+    "w": " tak",
+    "s": 1.04,
+    "e": 1.34
+   },
+   {
+    "w": " kalau",
+    "s": 1.34,
+    "e": 1.58
+   },
+   {
+    "w": " isteri",
+    "s": 1.58,
+    "e": 2.06
+   },
+   {
+    "w": " sentiasa",
+    "s": 2.06,
+    "e": 2.54
+   },
+   {
+    "w": " nampak",
+    "s": 2.54,
+    "e": 2.76
+   },
+   {
+    "w": " kemas,",
+    "s": 2.76,
+    "e": 3.18
+   },
+   {
+    "w": " bersih",
+    "s": 3.24,
+    "e": 3.72
+   },
+   {
+    "w": " dan",
+    "s": 3.72,
+    "e": 4.08
+   },
+   {
+    "w": " wangi?",
+    "s": 4.08,
+    "e": 4.5
+   }
+  ]
+ },
+ {
+  "start": 4.66,
+  "end": 8.2,
+  "text": " Sebenarnya, penjagaan diri bukan bermaksud kena bersolek setiap masa.",
+  "words": [
+   {
+    "w": " Sebenarnya,",
+    "s": 4.66,
+    "e": 5.2
+   },
+   {
+    "w": " penjagaan",
+    "s": 5.24,
+    "e": 5.72
+   },
+   {
+    "w": " diri",
+    "s": 5.72,
+    "e": 6.0
+   },
+   {
+    "w": " bukan",
+    "s": 6.0,
+    "e": 6.26
+   },
+   {
+    "w": " bermaksud",
+    "s": 6.26,
+    "e": 6.82
+   },
+   {
+    "w": " kena",
+    "s": 6.82,
+    "e": 7.1
+   },
+   {
+    "w": " bersolek",
+    "s": 7.1,
+    "e": 7.58
+   },
+   {
+    "w": " setiap",
+    "s": 7.58,
+    "e": 7.94
+   },
+   {
+    "w": " masa.",
+    "s": 7.94,
+    "e": 8.2
+   }
+  ]
+ },
+ {
+  "start": 8.36,
+  "end": 14.06,
+  "text": " Tetapi mulakan dengan perkara asal seperti kebersihan badan, pakaian bersih dan rutin mandi yang teratur.",
+  "words": [
+   {
+    "w": " Tetapi",
+    "s": 8.36,
+    "e": 8.82
+   },
+   {
+    "w": " mulakan",
+    "s": 8.82,
+    "e": 9.2
+   },
+   {
+    "w": " dengan",
+    "s": 9.2,
+    "e": 9.64
+   },
+   {
+    "w": " perkara",
+    "s": 9.64,
+    "e": 10.16
+   },
+   {
+    "w": " asal",
+    "s": 10.16,
+    "e": 10.48
+   },
+   {
+    "w": " seperti",
+    "s": 10.48,
+    "e": 10.84
+   },
+   {
+    "w": " kebersihan",
+    "s": 10.84,
+    "e": 11.5
+   },
+   {
+    "w": " badan,",
+    "s": 11.5,
+    "e": 11.86
+   },
+   {
+    "w": " pakaian",
+    "s": 11.88,
+    "e": 12.14
+   },
+   {
+    "w": " bersih",
+    "s": 12.14,
+    "e": 12.56
+   },
+   {
+    "w": " dan",
+    "s": 12.56,
+    "e": 12.74
+   },
+   {
+    "w": " rutin",
+    "s": 12.74,
+    "e": 13.14
+   },
+   {
+    "w": " mandi",
+    "s": 13.14,
+    "e": 13.42
+   },
+   {
+    "w": " yang",
+    "s": 13.42,
+    "e": 13.62
+   },
+   {
+    "w": " teratur.",
+    "s": 13.62,
+    "e": 14.06
+   }
+  ]
+ },
+ {
+  "start": 14.24,
+  "end": 16.12,
+  "text": " Benda kecil macam ni pun penting.",
+  "words": [
+   {
+    "w": " Benda",
+    "s": 14.24,
+    "e": 14.42
+   },
+   {
+    "w": " kecil",
+    "s": 14.42,
+    "e": 14.7
+   },
+   {
+    "w": " macam",
+    "s": 14.7,
+    "e": 14.84
+   },
+   {
+    "w": " ni",
+    "s": 14.84,
+    "e": 15.04
+   },
+   {
+    "w": " pun",
+    "s": 15.04,
+    "e": 15.36
+   },
+   {
+    "w": " penting.",
+    "s": 15.36,
+    "e": 16.12
+   }
+  ]
+ },
+ {
+  "start": 16.24,
+  "end": 23.8,
+  "text": " Kalau nak pengalaman mandi yang lebih istimewa, pastinya Fresh Kura Bodi ada dua pilihan wangian feminine iaitu bombshell dan minat fantasi.",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 16.24,
+    "e": 16.52
+   },
+   {
+    "w": " nak",
+    "s": 16.52,
+    "e": 16.84
+   },
+   {
+    "w": " pengalaman",
+    "s": 16.84,
+    "e": 17.34
+   },
+   {
+    "w": " mandi",
+    "s": 17.34,
+    "e": 17.72
+   },
+   {
+    "w": " yang",
+    "s": 17.72,
+    "e": 17.9
+   },
+   {
+    "w": " lebih",
+    "s": 17.9,
+    "e": 18.24
+   },
+   {
+    "w": " istimewa,",
+    "s": 18.24,
+    "e": 18.9
+   },
+   {
+    "w": " pastinya",
+    "s": 18.94,
+    "e": 19.36
+   },
+   {
+    "w": " Fresh",
+    "s": 19.36,
+    "e": 19.58
+   },
+   {
+    "w": " Kura",
+    "s": 19.58,
+    "e": 19.84
+   },
+   {
+    "w": " Bodi",
+    "s": 19.84,
+    "e": 20.14
+   },
+   {
+    "w": " ada",
+    "s": 20.14,
+    "e": 20.4
+   },
+   {
+    "w": " dua",
+    "s": 20.4,
+    "e": 20.68
+   },
+   {
+    "w": " pilihan",
+    "s": 20.68,
+    "e": 21.1
+   },
+   {
+    "w": " wangian",
+    "s": 21.1,
+    "e": 21.42
+   },
+   {
+    "w": " feminine",
+    "s": 21.42,
+    "e": 21.78
+   },
+   {
+    "w": " iaitu",
+    "s": 21.78,
+    "e": 22.36
+   },
+   {
+    "w": " bombshell",
+    "s": 22.36,
+    "e": 22.78
+   },
+   {
+    "w": " dan",
+    "s": 22.78,
+    "e": 23.14
+   },
+   {
+    "w": " minat",
+    "s": 23.14,
+    "e": 23.44
+   },
+   {
+    "w": " fantasi.",
+    "s": 23.44,
+    "e": 23.8
+   }
+  ]
+ },
+ {
+  "start": 23.96,
+  "end": 28.84,
+  "text": " Nak bombshell atau minat fantasi, jangan tunggu sampai stok pilihan korang habis.",
+  "words": [
+   {
+    "w": " Nak",
+    "s": 23.96,
+    "e": 24.34
+   },
+   {
+    "w": " bombshell",
+    "s": 24.34,
+    "e": 24.8
+   },
+   {
+    "w": " atau",
+    "s": 24.8,
+    "e": 25.14
+   },
+   {
+    "w": " minat",
+    "s": 25.14,
+    "e": 25.42
+   },
+   {
+    "w": " fantasi,",
+    "s": 25.42,
+    "e": 25.84
+   },
+   {
+    "w": " jangan",
+    "s": 25.94,
+    "e": 26.28
+   },
+   {
+    "w": " tunggu",
+    "s": 26.28,
+    "e": 26.84
+   },
+   {
+    "w": " sampai",
+    "s": 26.84,
+    "e": 27.06
+   },
+   {
+    "w": " stok",
+    "s": 27.06,
+    "e": 27.52
+   },
+   {
+    "w": " pilihan",
+    "s": 27.52,
+    "e": 27.86
+   },
+   {
+    "w": " korang",
+    "s": 27.86,
+    "e": 28.22
+   },
+   {
+    "w": " habis.",
+    "s": 28.22,
+    "e": 28.84
+   }
+  ]
+ },
+ {
+  "start": 28.84,
+  "end": 32.32,
+  "text": " Tekan bekunis sekarang, pilih wangian kegemaran dan check out terus.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 28.84,
+    "e": 29.24
+   },
+   {
+    "w": " bekunis",
+    "s": 29.24,
+    "e": 29.58
+   },
+   {
+    "w": " sekarang,",
+    "s": 29.58,
+    "e": 29.78
+   },
+   {
+    "w": " pilih",
+    "s": 29.94,
+    "e": 30.38
+   },
+   {
+    "w": " wangian",
+    "s": 30.38,
+    "e": 30.94
+   },
+   {
+    "w": " kegemaran",
+    "s": 30.94,
+    "e": 31.52
+   },
+   {
+    "w": " dan",
+    "s": 31.52,
+    "e": 31.66
+   },
+   {
+    "w": " check",
+    "s": 31.66,
+    "e": 31.96
+   },
+   {
+    "w": " out",
+    "s": 31.96,
+    "e": 32.14
+   },
+   {
+    "w": " terus.",
+    "s": 32.14,
+    "e": 32.32
+   }
+  ]
+ }
+]

@@ -1,0 +1,46 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Jost"; src: url("assets/fonts/Jost-normal.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0a09; }
+    .ch-half { position: absolute; top: 0; width: 540px; height: 1920px; overflow: hidden; }
+    #ch-left { left: 0; } #ch-right { left: 540px; }
+    .ch-cam { position: absolute; inset: 0; }
+    .ch-cam video { position: absolute; left: 0; top: 0; width: 540px; height: 1920px; object-fit: cover; }
+    .ch-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,10,9,.75) 0%, rgba(12,10,9,.2) 30%, rgba(12,10,9,.35) 60%, rgba(12,10,9,.9) 100%); }
+    .ch-bottle { position: absolute; top: 470px; height: 640px; }
+    #ch-b1 { left: 158px; } #ch-b2 { left: 698px; }
+    .ch-name { position: absolute; top: 232px; width: 540px; text-align: center; font-family: "Bodoni Moda"; font-style: italic; font-weight: 500; font-size: 66px; line-height: 1; color: #f5efe6; text-shadow: 0 4px 24px rgba(0,0,0,.6); }
+    .ch-name small { display: block; font-family: "Jost"; font-style: normal; font-weight: 600; font-size: 28px; letter-spacing: .26em; color: #d9b779; margin-bottom: 12px; }
+    #ch-n1 { left: 0; } #ch-n2 { left: 540px; }
+    #ch-seam { position: absolute; left: 539px; top: 0; width: 2px; height: 1920px; background: linear-gradient(180deg, rgba(217,183,121,0), #d9b779 30%, #d9b779 70%, rgba(217,183,121,0)); transform-origin: 50% 50%; }
+    #ch-or { position: absolute; left: 440px; top: 690px; width: 200px; height: 200px; border-radius: 50%; background: #0c0a09; border: 2px solid #d9b779; display: flex; align-items: center; justify-content: center; font-family: "Bodoni Moda"; font-style: italic; font-weight: 500; font-size: 60px; color: #d9b779; box-shadow: 0 0 60px rgba(217,183,121,.35); }
+  </style>
+  <div id="root" data-composition-id="choose" data-width="1080" data-height="1920">
+    <div class="ch-half" id="ch-left"><div class="ch-cam" id="ch-cam1"><video id="ch-v1" class="clip" src="assets/broll/redroses.mp4" data-start="0" data-duration="2" muted playsinline></video></div><div class="ch-shade"></div></div>
+    <div class="ch-half" id="ch-right"><div class="ch-cam" id="ch-cam2"><video id="ch-v2" class="clip" src="assets/broll/stars.mp4" data-start="0" data-duration="2" muted playsinline></video></div><div class="ch-shade"></div></div>
+    <div id="ch-seam"></div>
+    <div class="ch-name" id="ch-n1"><small>WOMAN GLORY</small>Bombshell</div>
+    <div class="ch-name" id="ch-n2"><small>NOCHE</small>Midnight Fantasy</div>
+    <img class="ch-bottle" id="ch-b1" src="assets/img/bottle-bombshell.png" alt="Bombshell" />
+    <img class="ch-bottle" id="ch-b2" src="assets/img/bottle-noche.png" alt="Midnight Fantasy" />
+    <div id="ch-or">atau</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // halves whip in from opposite sides
+    tl.fromTo("#ch-left", { x: -540 }, { x: 0, duration: 0.45, ease: "power4.out" }, 0);
+    tl.fromTo("#ch-right", { x: 540 }, { x: 0, duration: 0.45, ease: "power4.out" }, 0);
+    tl.fromTo("#ch-cam1", { scale: 1.2 }, { scale: 1.05, duration: 2, ease: "power2.out" }, 0);
+    tl.fromTo("#ch-cam2", { scale: 1.2 }, { scale: 1.05, duration: 2, ease: "power2.out" }, 0);
+    tl.fromTo("#ch-seam", { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: "expo.out" }, 0.2);
+    // "Bombshell" (0.44) then "Midnight Fantasy" (1.24)
+    tl.fromTo("#ch-b1", { y: 120, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.3);
+    tl.fromTo("#ch-n1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.4);
+    tl.fromTo("#ch-b2", { y: 120, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 1.1);
+    tl.fromTo("#ch-n2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 1.2);
+    // "atau" (0.90)
+    tl.fromTo("#ch-or", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.4)" }, 0.82);
+    window.__timelines["choose"] = tl;
+  </script>
+</template>

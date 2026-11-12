@@ -1,0 +1,68 @@
+<template>
+  <style>
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; }
+    @font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/BodoniModa-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+    @font-face { font-family: "Jost"; src: url("assets/fonts/Jost-normal.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(100% 60% at 50% 45%, #1e1813 0%, #0c0a09 72%); }
+    #bs-stage { position: absolute; inset: 0; }
+    #bs-chip { position: absolute; left: 0; width: 1080px; top: 222px; text-align: center; }
+    #bs-chip b { display: inline-flex; align-items: center; gap: 12px; font-family: "Jost"; font-weight: 600; font-size: 30px; letter-spacing: .4em; padding: 12px 26px 12px 34px; color: #0c0a09; background: #d9b779; border-radius: 999px; }
+    #bs-kicker { position: absolute; left: 0; width: 1080px; top: 306px; text-align: center; font-family: "Jost"; font-weight: 500; font-size: 36px; letter-spacing: .26em; color: rgba(245,239,230,.85); text-transform: uppercase; }
+    #bs-title { position: absolute; left: 0; width: 1080px; top: 352px; text-align: center; font-family: "Bodoni Moda"; font-style: italic; font-weight: 500; font-size: 112px; line-height: 1.05; color: #d9b779; }
+    #bs-win { position: absolute; left: 90px; top: 500px; width: 900px; height: 440px; border-radius: 30px; overflow: hidden; background: #15110e; }
+    .bs-cam { position: absolute; inset: 0; }
+    .bs-cam video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #bs-num { position: absolute; right: 26px; top: 14px; font-family: "Bodoni Moda"; font-style: italic; font-size: 120px; line-height: 1; color: rgba(245,239,230,.92); text-shadow: 0 6px 30px rgba(0,0,0,.6); }
+    #bs-list { position: absolute; left: 90px; width: 900px; top: 968px; }
+    .bs-row { position: relative; display: flex; align-items: center; height: 64px; border-bottom: 1px solid rgba(217,183,121,.28); font-family: "Jost"; font-weight: 500; font-size: 40px; letter-spacing: .03em; color: #f5efe6; }
+    .bs-row em { font-family: "Bodoni Moda"; font-style: italic; font-size: 40px; color: #d9b779; width: 82px; }
+    .bs-row svg { position: absolute; right: 6px; top: 16px; width: 32px; height: 32px; }
+    .bs-row path { fill: none; stroke: #d9b779; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; }
+  </style>
+  <div id="root" data-composition-id="basics" data-width="1080" data-height="1920">
+    <div id="bs-stage">
+      <div id="bs-chip"><b>FAKTA</b></div>
+      <div id="bs-kicker">Mulakan dengan</div>
+      <div id="bs-title">perkara asas</div>
+      <div id="bs-win">
+        <div class="bs-cam" id="bs-cam1"><video id="bs-v1" class="clip" src="assets/broll/handsoap.mp4" data-start="1.0" data-duration="2.58" muted playsinline></video></div>
+        <div class="bs-cam" id="bs-cam2"><video id="bs-v2" class="clip" src="assets/broll/steamclothes.mp4" data-start="3.58" data-duration="0.86" muted playsinline></video></div>
+        <div class="bs-cam" id="bs-cam3"><video id="bs-v3" class="clip" src="assets/broll/showerstream.mp4" data-start="4.44" data-duration="1.41" muted playsinline></video></div>
+        <div id="bs-num">01</div>
+      </div>
+      <div id="bs-list">
+        <div class="bs-row" id="bs-r1"><em>01</em>Kebersihan badan<svg viewBox="0 0 30 30"><path d="M6 16 l6 6 l12 -13"/></svg></div>
+        <div class="bs-row" id="bs-r2"><em>02</em>Pakaian bersih<svg viewBox="0 0 30 30"><path d="M6 16 l6 6 l12 -13"/></svg></div>
+        <div class="bs-row" id="bs-r3"><em>03</em>Rutin mandi teratur<svg viewBox="0 0 30 30"><path d="M6 16 l6 6 l12 -13"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#bs-chip b", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.04);
+    tl.fromTo("#bs-kicker", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.4);
+    // "asas" (1.86): letters ink in from grey
+    tl.fromTo("#bs-title", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 1.74);
+    // window opens like a vitrine shutter
+    tl.fromTo("#bs-win", { clipPath: "inset(0% 50% 0% 50% round 30px)" }, { clipPath: "inset(0% 0% 0% 0% round 30px)", duration: 0.7, ease: "expo.out" }, 0.9);
+    tl.fromTo("#bs-cam1", { scale: 1.16 }, { scale: 1.02, duration: 2.6, ease: "power2.out" }, 1.0);
+    tl.fromTo("#bs-cam2", { scale: 1.14, x: 50 }, { scale: 1.02, x: 0, duration: 0.86, ease: "power3.out" }, 3.58);
+    tl.fromTo("#bs-cam3", { scale: 1.14, y: -40 }, { scale: 1.03, y: 0, duration: 1.41, ease: "power3.out" }, 4.44);
+    tl.fromTo(".bs-row", { opacity: 0, x: -24 }, { opacity: 0.32, x: 0, duration: 0.5, ease: "expo.out", stagger: 0.07 }, 1.1);
+    tl.fromTo("#bs-num", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 2.5);
+    // each row lights on its word: kebersihan 2.54, pakaian 3.58, rutin 4.44
+    const rows = [["#bs-r1", 2.54, "01"], ["#bs-r2", 3.58, "02"], ["#bs-r3", 4.44, "03"]];
+    rows.forEach(([id, t, n], i) => {
+      tl.to(id, { opacity: 1, duration: 0.18, ease: "power2.out" }, t - 0.04);
+      tl.fromTo(id + " em", { scale: 1 }, { scale: 1.25, duration: 0.16, ease: "power2.out", transformOrigin: "0% 50%" }, t - 0.04);
+      tl.to(id + " em", { scale: 1, duration: 0.3, ease: "power2.inOut" }, t + 0.14);
+      tl.to(id + " path", { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t + 0.1);
+      if (i > 0) {
+        tl.set("#bs-num", { textContent: n }, t);
+        tl.fromTo("#bs-num", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, t);
+      }
+    });
+    tl.to("#bs-stage", { opacity: 0, filter: "blur(10px)", duration: 0.14, ease: "power2.in" }, 5.7);
+    window.__timelines["basics"] = tl;
+  </script>
+</template>

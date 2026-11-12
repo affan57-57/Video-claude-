@@ -1,0 +1,23 @@
+<template>
+  <style>
+    @font-face { font-family: "Jost"; src: url("assets/fonts/Jost-normal.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #cr-frame { position: absolute; left: 28px; top: 28px; right: 28px; bottom: 28px; border: 1.5px solid rgba(217,183,121,.38); border-radius: 18px; }
+    #cr-bug { position: absolute; left: 0; width: 1080px; top: 176px; text-align: center; font-family: "Jost"; font-weight: 600; font-size: 28px; letter-spacing: .5em; padding-left: .55em; color: rgba(217,183,121,.85); }
+  </style>
+  <div id="root" data-composition-id="chrome" data-width="1080" data-height="1920">
+    <div id="cr-frame" data-layout-ignore></div>
+    <div id="cr-bug">FRESCURA BODY</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cr-frame", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0);
+    tl.fromTo("#cr-bug", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+    // the brand scene and end card carry their own wordmark
+    tl.to("#cr-bug", { opacity: 0, duration: 0.15, ease: "power2.in" }, 19.3);
+    tl.to("#cr-bug", { opacity: 1, duration: 0.3, ease: "power2.out" }, 24.05);
+    tl.to("#cr-bug", { opacity: 0, duration: 0.15, ease: "power2.in" }, 32.5);
+    tl.to("#cr-frame", { opacity: 1, duration: 2.0, ease: "none" }, 33);
+    window.__timelines["chrome"] = tl;
+  </script>
+</template>
