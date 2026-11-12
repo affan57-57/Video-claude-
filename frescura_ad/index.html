@@ -294,9 +294,9 @@ IN("#a-eye", 0.02, {to:{duration:.4}});
 tl.fromTo("#a-h1 span", {opacity:0, y:120, rotateX:-70, filter:"blur(18px)"}, {opacity:1, y:0, rotateX:0, filter:"blur(0px)", duration:.6, ease:E, stagger:.05}, 0.9);
 tl.fromTo("#a-h1", {scale:1.25}, {scale:1, duration:1.2, ease:P4}, 0.9);
 IN("#a-h2", 2.05);
-OUT(["#a-eye","#a-h1","#a-h2"], 3.05);
+OUT(["#a-eye","#a-h1","#a-h2"], 2.9);
 // ---- B meter & chips
-IN("#b-meter", 2.3);
+IN("#b-meter", 3.0);
 const pct = {v:100};
 tl.to(pct, {v:18, duration:2.6, ease:"power2.inOut", onUpdate:()=>{ q("#b-pct").textContent = Math.round(pct.v)+"%"; }}, 2.5);
 tl.fromTo("#b-bar", {scaleX:1}, {scaleX:.18, duration:2.6, ease:"power2.inOut"}, 2.5);
