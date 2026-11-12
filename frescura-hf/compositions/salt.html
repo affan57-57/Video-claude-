@@ -1,0 +1,88 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-italic.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');}
+
+
+:root{
+  --noir:#0b0908; --espresso:#17110e; --ink:#f6efe4; --mute:#b9ab97;
+  --gold:#d8b46e; --gold-hi:#fff0c9; --gold-lo:#8a6534;
+  --rose:#c8263a; --rose-hi:#ff6b7a; --violet:#6c4fd1; --violet-hi:#b9a3ff;
+  --serif:'Bodoni Moda', serif; --sans:'Manrope', sans-serif;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+#root{position:absolute;inset:0;overflow:hidden;font-family:var(--sans);color:var(--ink);}
+.full{position:absolute;inset:0;}
+.bg-noir{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%, #2a1f19 0%, #140f0c 48%, #070605 100%);}
+.goldtxt{background:linear-gradient(100deg,#7d5a2c 0%,#e9cf98 22%,#fff3d2 34%,#c99d5c 52%,#f7e2b1 70%,#8f6834 100%);
+  background-size:220% 100%; background-position:0% 50%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.kicker{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.serif-i{font-family:var(--serif);font-style:italic;}
+.center-x{position:absolute;left:0;right:0;text-align:center;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;}
+.glass{background:linear-gradient(160deg,rgba(255,240,210,.09),rgba(255,240,210,.02));
+  border:1.5px solid rgba(216,180,110,.55);border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12);}
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe9b8 0%,rgba(255,220,150,.0) 70%);}
+
+
+#s-bg{position:absolute;inset:0;background:radial-gradient(110% 70% at 50% 42%,#20323a 0%,#0d1519 55%,#050708 100%);}
+.xtal{position:absolute;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(200,230,240,.55) 50%,rgba(255,255,255,.25));
+  box-shadow:0 0 18px rgba(220,245,255,.6);border-radius:3px;}
+#s-ring{position:absolute;left:240px;top:420px;width:600px;height:600px;border-radius:50%;border:2px solid rgba(220,245,255,.55);}
+#s-ring2{position:absolute;left:290px;top:470px;width:500px;height:500px;border-radius:50%;border:1px dashed rgba(220,245,255,.4);}
+#s-t{position:absolute;left:0;right:0;top:590px;text-align:center;}
+#s-t .a{font-family:var(--sans);font-weight:800;font-size:40px;letter-spacing:.5em;padding-left:.5em;color:#cfeef7;}
+#s-t .b{font-family:var(--serif);font-style:italic;font-weight:900;font-size:150px;line-height:1.05;margin-top:6px;
+  background:linear-gradient(100deg,#9fc7d3,#ffffff 40%,#bfe3ee 60%,#ffffff 80%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s-t .c{font-family:var(--sans);font-weight:600;font-size:34px;letter-spacing:.12em;color:var(--mute);margin-top:10px;}
+
+  </style>
+  <div id="root" data-composition-id="salt" data-width="1080" data-height="1920">
+
+    <div id="s-bg"></div>
+    <div id="s-ring"></div><div id="s-ring2"></div>
+    <div id="s-x" class="full"></div>
+    <div id="s-t"><div class="a">OCEAN</div><div class="b">Garam Laut</div></div>
+
+  </div>
+  <script>
+  (function(){
+    const root = document.querySelector('[data-composition-id="salt"]');
+    const $ = (s) => root.querySelector(s);
+    const $$ = (s) => Array.from(root.querySelectorAll(s));
+    // seeded PRNG: deterministic decoration
+    let _s = 57133;
+    const rnd = () => (_s = (_s * 16807) % 2147483647) / 2147483647;
+    const tl = gsap.timeline({ paused: true });
+
+    (function(){ const box=$('#s-x');
+      for(let i=0;i<46;i++){ const d=document.createElement('div'); d.className='xtal';
+        const s=8+rnd()*30; d.style.width=s+'px'; d.style.height=s+'px';
+        d.style.left=(rnd()*1080)+'px'; d.style.top=(-100-rnd()*700)+'px'; box.appendChild(d);
+        tl.fromTo(d,{y:0,rotation:rnd()*90,opacity:.95},{y:1500+rnd()*500,rotation:200+rnd()*300,duration:1.05,ease:'power1.in'},0);
+      }})();
+    tl.fromTo('#s-ring',{scale:.5,opacity:0},{scale:1,opacity:1,duration:0.5,ease:'expo.out'},0);
+    tl.fromTo('#s-ring2',{rotation:0},{rotation:90,duration:1.05,ease:'none'},0);
+    tl.fromTo('#s-t .a',{opacity:0},{opacity:1,duration:0.45,ease:'power3.out'},0.02);
+    tl.fromTo('#s-t .b',{opacity:0,scale:1.2,filter:'blur(14px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.35,ease:'expo.out'},0.08);
+    tl.fromTo('#s-t .b',{backgroundPosition:'0% 50%'},{backgroundPosition:'100% 50%',duration:1.0,ease:'none'},0.08);
+    tl.fromTo('#s-t .c',{opacity:0},{opacity:1,duration:0.3},0.4);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["salt"] = tl;
+  })();
+  </script>
+</template>

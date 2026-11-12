@@ -1,0 +1,104 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-italic.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');}
+
+
+:root{
+  --noir:#0b0908; --espresso:#17110e; --ink:#f6efe4; --mute:#b9ab97;
+  --gold:#d8b46e; --gold-hi:#fff0c9; --gold-lo:#8a6534;
+  --rose:#c8263a; --rose-hi:#ff6b7a; --violet:#6c4fd1; --violet-hi:#b9a3ff;
+  --serif:'Bodoni Moda', serif; --sans:'Manrope', sans-serif;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+#root{position:absolute;inset:0;overflow:hidden;font-family:var(--sans);color:var(--ink);}
+.full{position:absolute;inset:0;}
+.bg-noir{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%, #2a1f19 0%, #140f0c 48%, #070605 100%);}
+.goldtxt{background:linear-gradient(100deg,#7d5a2c 0%,#e9cf98 22%,#fff3d2 34%,#c99d5c 52%,#f7e2b1 70%,#8f6834 100%);
+  background-size:220% 100%; background-position:0% 50%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.kicker{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.serif-i{font-family:var(--serif);font-style:italic;}
+.center-x{position:absolute;left:0;right:0;text-align:center;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;}
+.glass{background:linear-gradient(160deg,rgba(255,240,210,.09),rgba(255,240,210,.02));
+  border:1.5px solid rgba(216,180,110,.55);border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12);}
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe9b8 0%,rgba(255,220,150,.0) 70%);}
+
+
+#c-bgL{position:absolute;left:0;top:0;width:540px;height:1920px;background:radial-gradient(90% 50% at 60% 45%,#5a1019 0%,#25080c 60%,#0b0405 100%);}
+#c-bgR{position:absolute;left:540px;top:0;width:540px;height:1920px;background:radial-gradient(90% 50% at 40% 45%,#2c1f66 0%,#120c2c 60%,#05040c 100%);}
+#c-split{position:absolute;left:539px;top:0;width:2px;height:1920px;background:linear-gradient(180deg,transparent,var(--gold),transparent);transform-origin:50% 0;}
+#c-k{top:240px;}
+#c-k2{position:absolute;left:0;right:0;top:290px;text-align:center;font-family:var(--serif);font-style:italic;font-size:76px;color:var(--ink);}
+.c-b{position:absolute;top:400px;width:200px;}
+.c-b img{width:100%;display:block;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6));}
+#c-bL{left:170px;} #c-bR{left:710px;}
+.c-lab{position:absolute;top:1035px;width:540px;text-align:center;}
+.c-lab .n{font-family:var(--serif);font-style:italic;font-weight:900;font-size:52px;line-height:1;white-space:nowrap;}
+.c-lab .d{margin-top:10px;font-family:var(--sans);font-weight:600;font-size:28px;letter-spacing:.24em;color:var(--mute);}
+#c-lL{left:0;} #c-lR{left:540px;}
+.pet{position:absolute;width:34px;height:22px;border-radius:60% 0 60% 0;background:linear-gradient(135deg,#ff5b6e,#9e1020);}
+.star{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 12px 3px rgba(185,163,255,.9);}
+
+  </style>
+  <div id="root" data-composition-id="scents" data-width="1080" data-height="1920">
+
+    <div id="c-bgL"></div><div id="c-bgR"></div><div id="c-split"></div>
+    <div id="c-fx" class="full"></div>
+    <div id="c-k" class="kicker center-x">Pilihan Wangian</div>
+    <div id="c-k2">dua mood, satu mewah</div>
+    <div id="c-bL" class="c-b"><img src="assets/img/bomb_cut.png"></div>
+    <div id="c-bR" class="c-b"><img src="assets/img/noche_cut.png"></div>
+    <div id="c-lL" class="c-lab"><div class="n" style="color:#ff8a97">Bombshell</div><div class="d">ROSE &middot; BERANI</div></div>
+    <div id="c-lR" class="c-lab"><div class="n" style="color:#c9b8ff">Midnight Fantasy</div><div class="d">NOCHE &middot; MISTERI</div></div>
+
+  </div>
+  <script>
+  (function(){
+    const root = document.querySelector('[data-composition-id="scents"]');
+    const $ = (s) => root.querySelector(s);
+    const $$ = (s) => Array.from(root.querySelectorAll(s));
+    // seeded PRNG: deterministic decoration
+    let _s = 85953;
+    const rnd = () => (_s = (_s * 16807) % 2147483647) / 2147483647;
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#c-split',{scaleY:0},{scaleY:1,duration:0.4,ease:'power3.out'},0);
+    tl.fromTo('#c-bgL',{x:-540},{x:0,duration:0.45,ease:'expo.out'},0);
+    tl.fromTo('#c-bgR',{x:540},{x:0,duration:0.45,ease:'expo.out'},0);
+    tl.fromTo('#c-k',{opacity:0,y:-14},{opacity:1,y:0,duration:0.35,ease:'power3.out'},0.07);
+    tl.fromTo('#c-k2',{opacity:0,y:20},{opacity:1,y:0,duration:0.35,ease:'power3.out'},0.45);
+    tl.fromTo('#c-bL',{x:-420,opacity:0,rotation:-10},{x:0,opacity:1,rotation:0,duration:0.5,ease:'expo.out'},0.88);
+    tl.fromTo('#c-lL',{opacity:0,y:30},{opacity:1,y:0,duration:0.35,ease:'power3.out'},0.95);
+    tl.fromTo('#c-bR',{x:420,opacity:0,rotation:10},{x:0,opacity:1,rotation:0,duration:0.5,ease:'expo.out'},1.72);
+    tl.fromTo('#c-lR',{opacity:0,y:30},{opacity:1,y:0,duration:0.35,ease:'power3.out'},1.79);
+    tl.fromTo(['#c-bL','#c-bR'],{y:0},{y:-18,duration:1.4,ease:'sine.inOut'},0.95);
+    (function(){ const box=$('#c-fx');
+      for(let i=0;i<22;i++){ const p=document.createElement('div'); p.className='pet';
+        p.style.left=(rnd()*500)+'px'; p.style.top=(-60-rnd()*300)+'px'; box.appendChild(p);
+        tl.fromTo(p,{y:0,x:0,rotation:rnd()*180,opacity:0},{y:1300+rnd()*700,x:(rnd()-.5)*160,rotation:360+rnd()*360,opacity:1,duration:1.5,ease:'none'},0.9+rnd()*0.2);
+      }
+      for(let i=0;i<40;i++){ const s=document.createElement('div'); s.className='star';
+        s.style.left=(560+rnd()*500)+'px'; s.style.top=(160+rnd()*1150)+'px'; box.appendChild(s);
+        tl.fromTo(s,{scale:0,opacity:0},{scale:1+rnd(),opacity:1,duration:0.2,ease:'power2.out'},1.74+rnd()*0.4);
+        tl.to(s,{opacity:.3,duration:0.2,ease:'sine.inOut'},2.05+rnd()*0.2);
+      }})();
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["scents"] = tl;
+  })();
+  </script>
+</template>

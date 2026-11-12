@@ -1,0 +1,124 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-italic.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');}
+
+
+:root{
+  --noir:#0b0908; --espresso:#17110e; --ink:#f6efe4; --mute:#b9ab97;
+  --gold:#d8b46e; --gold-hi:#fff0c9; --gold-lo:#8a6534;
+  --rose:#c8263a; --rose-hi:#ff6b7a; --violet:#6c4fd1; --violet-hi:#b9a3ff;
+  --serif:'Bodoni Moda', serif; --sans:'Manrope', sans-serif;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+#root{position:absolute;inset:0;overflow:hidden;font-family:var(--sans);color:var(--ink);}
+.full{position:absolute;inset:0;}
+.bg-noir{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%, #2a1f19 0%, #140f0c 48%, #070605 100%);}
+.goldtxt{background:linear-gradient(100deg,#7d5a2c 0%,#e9cf98 22%,#fff3d2 34%,#c99d5c 52%,#f7e2b1 70%,#8f6834 100%);
+  background-size:220% 100%; background-position:0% 50%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.kicker{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.serif-i{font-family:var(--serif);font-style:italic;}
+.center-x{position:absolute;left:0;right:0;text-align:center;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;}
+.glass{background:linear-gradient(160deg,rgba(255,240,210,.09),rgba(255,240,210,.02));
+  border:1.5px solid rgba(216,180,110,.55);border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12);}
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe9b8 0%,rgba(255,220,150,.0) 70%);}
+
+
+#w-t{position:absolute;left:0;right:0;top:250px;text-align:center;}
+#w-t .a{font-family:var(--serif);font-style:italic;font-weight:900;font-size:170px;line-height:.95;}
+#w-t .b{font-family:var(--sans);font-weight:800;font-size:56px;letter-spacing:.3em;padding-left:.3em;margin-top:22px;color:var(--ink);}
+#w-scene{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;}
+#w-scene .ln{fill:none;stroke:var(--ink);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+#w-scene .wv{fill:none;stroke:#b6d36a;stroke-width:6;stroke-linecap:round;stroke-dasharray:4 16;opacity:.9;}
+#w-hand{fill:#17110e;stroke:var(--gold);stroke-width:6;stroke-linejoin:round;}
+#w-ex{position:absolute;left:840px;top:610px;width:90px;height:90px;border-radius:50%;background:var(--rose);
+  color:#fff;font-family:var(--sans);font-weight:800;font-size:64px;line-height:90px;text-align:center;box-shadow:0 0 40px rgba(255,107,122,.7);}
+#w-act{position:absolute;left:0;right:0;top:1060px;text-align:center;}
+#w-act span{display:inline-block;font-family:var(--sans);font-weight:800;font-size:64px;letter-spacing:.12em;color:#1a130d;
+  padding:18px 46px 20px;border-radius:60px;background:linear-gradient(90deg,#c99d5c,#fff0c9,#d8b46e);box-shadow:0 20px 60px rgba(216,180,110,.35);}
+#w-flash{position:absolute;inset:0;background:var(--rose);opacity:0;mix-blend-mode:screen;}
+
+  </style>
+  <div id="root" data-composition-id="wait" data-width="1080" data-height="1920">
+
+    <div class="bg-noir"></div>
+    <div id="w-dust" class="full"></div>
+    <div id="w-t"><div class="a goldtxt">Jangan Tunggu</div><div class="b">SAMPAI&hellip;</div></div>
+    <svg id="w-scene" viewBox="0 0 1080 1920">
+      <g id="w-L">
+        <path class="ln" pathLength="1" d="M300 640 C200 640 150 720 150 800 C150 880 190 930 240 950 L240 1010"/>
+        <path class="ln" pathLength="1" d="M300 640 C380 640 420 690 430 750 L470 800 L432 812 C436 850 430 880 400 900 L360 905 L360 1010"/>
+        <path class="ln" d="M380 735 L392 735"/>
+      </g>
+      <g id="w-R">
+        <path class="ln" pathLength="1" d="M780 640 C880 640 930 720 930 800 C930 880 890 930 840 950 L840 1010"/>
+        <path class="ln" pathLength="1" d="M780 640 C700 640 660 690 650 750 L610 800 L648 812 C644 850 650 880 680 900 L720 905 L720 1010"/>
+        <path class="ln" id="w-eye" d="M690 735 C696 742 704 742 710 735"/>
+      </g>
+      <path class="wv" d="M470 780 C500 760 520 800 550 780 S600 760 620 790"/>
+      <path class="wv" d="M460 820 C490 800 510 840 540 820 S590 800 612 828"/>
+      <path class="wv" d="M470 860 C500 840 520 880 550 860 S600 840 620 866"/>
+      <path id="w-hand" d="M560 760 C560 740 590 736 600 752 L640 760 C660 762 670 790 655 800 L640 845 C632 868 600 872 580 860 L560 840 Z"/>
+    </svg>
+    <div id="w-ex">!</div>
+    <div id="w-act"><span>BERTINDAK SEKARANG</span></div>
+    <div id="w-flash"></div>
+
+  </div>
+  <script>
+  (function(){
+    const root = document.querySelector('[data-composition-id="wait"]');
+    const $ = (s) => root.querySelector(s);
+    const $$ = (s) => Array.from(root.querySelectorAll(s));
+    // seeded PRNG: deterministic decoration
+    let _s = 57264;
+    const rnd = () => (_s = (_s * 16807) % 2147483647) / 2147483647;
+    const tl = gsap.timeline({ paused: true });
+
+    (function(){
+      const box = $('#w-dust');
+      for (let i=0;i<20;i++){
+        const d=document.createElement('div'); d.className='dust';
+        const sz=4+rnd()*(14-4);
+        d.style.width=sz+'px'; d.style.height=sz+'px';
+        d.style.left=(40+rnd()*1000)+'px'; d.style.top=(200+rnd()*1100)+'px';
+        box.appendChild(d);
+        const a=0.25+rnd()*(0.8-0.25);
+        tl.fromTo(d,{opacity:0,x:0,y:0},{opacity:a,duration:0.6,ease:'sine.out'},rnd()*0.4);
+        tl.fromTo(d,{x:0,y:0},{x:(rnd()-0.5)*90,y:-40-rnd()*160,duration:3.72,ease:'none'},0);
+      }
+    })();
+
+    tl.fromTo('#w-t .a',{scale:1.6,opacity:0,filter:'blur(16px)'},{scale:1,opacity:1,filter:'blur(0px)',duration:0.3,ease:'expo.out'},0.0);
+    tl.fromTo('#w-t .a',{backgroundPosition:'0% 50%'},{backgroundPosition:'100% 50%',duration:3.7,ease:'none'},0);
+    tl.fromTo('#w-t .b',{opacity:0,y:20},{opacity:1,y:0,duration:0.3,ease:'power3.out'},1.06);
+    tl.fromTo('#w-L .ln',{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:0.5,ease:'power2.out'},1.18);
+    tl.fromTo('#w-R .ln',{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:0.5,ease:'power2.out'},1.62);
+    tl.fromTo('#w-scene .wv',{opacity:0,strokeDashoffset:80},{opacity:.9,strokeDashoffset:0,duration:1.6,ease:'none',stagger:0.08},1.75);
+    tl.fromTo('#w-hand',{y:260,x:40,opacity:0},{y:0,x:0,opacity:1,duration:0.3,ease:'back.out(1.6)'},2.14);
+    tl.fromTo('#w-R',{x:0},{keyframes:{x:[0,10,-8,6,0]},duration:0.3,ease:'none'},2.44);
+    tl.fromTo('#w-ex',{scale:0,opacity:0},{scale:1,opacity:1,duration:0.25,ease:'back.out(3)'},2.48);
+    tl.fromTo('#w-flash',{opacity:0},{keyframes:{opacity:[0,.22,0]},duration:0.3,ease:'none'},2.48);
+    tl.to(['#w-scene','#w-ex'],{opacity:.25,duration:0.25},3.15);
+    tl.fromTo('#w-act span',{scale:.6,opacity:0},{scale:1,opacity:1,duration:0.3,ease:'back.out(2)'},3.20);
+    tl.to('#w-act span',{scale:.94,duration:0.08,yoyo:true,repeat:1},3.5);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["wait"] = tl;
+  })();
+  </script>
+</template>

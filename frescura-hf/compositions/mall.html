@@ -1,0 +1,175 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-italic.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');}
+
+
+:root{
+  --noir:#0b0908; --espresso:#17110e; --ink:#f6efe4; --mute:#b9ab97;
+  --gold:#d8b46e; --gold-hi:#fff0c9; --gold-lo:#8a6534;
+  --rose:#c8263a; --rose-hi:#ff6b7a; --violet:#6c4fd1; --violet-hi:#b9a3ff;
+  --serif:'Bodoni Moda', serif; --sans:'Manrope', sans-serif;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+#root{position:absolute;inset:0;overflow:hidden;font-family:var(--sans);color:var(--ink);}
+.full{position:absolute;inset:0;}
+.bg-noir{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%, #2a1f19 0%, #140f0c 48%, #070605 100%);}
+.goldtxt{background:linear-gradient(100deg,#7d5a2c 0%,#e9cf98 22%,#fff3d2 34%,#c99d5c 52%,#f7e2b1 70%,#8f6834 100%);
+  background-size:220% 100%; background-position:0% 50%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.kicker{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.serif-i{font-family:var(--serif);font-style:italic;}
+.center-x{position:absolute;left:0;right:0;text-align:center;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;}
+.glass{background:linear-gradient(160deg,rgba(255,240,210,.09),rgba(255,240,210,.02));
+  border:1.5px solid rgba(216,180,110,.55);border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12);}
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe9b8 0%,rgba(255,220,150,.0) 70%);}
+
+
+#m-world{position:absolute;inset:0;transform-origin:50% 62%;}
+#m-set{position:absolute;inset:0;}
+#m-bok{position:absolute;inset:0;}
+.m-b{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,226,160,.55) 0%,rgba(255,226,160,0) 70%);}
+#m-sign{position:absolute;left:0;right:0;top:470px;text-align:center;font-family:var(--serif);font-weight:700;
+  font-size:58px;letter-spacing:.34em;padding-left:.34em;}
+#m-signsub{position:absolute;left:0;right:0;top:546px;text-align:center;font-family:var(--sans);font-weight:600;
+  font-size:28px;letter-spacing:.5em;padding-left:.6em;color:var(--gold);}
+.m-cone{position:absolute;top:-60px;width:520px;height:1500px;transform-origin:50% 0;
+  background:linear-gradient(180deg,rgba(255,236,190,.30),rgba(255,236,190,.06) 70%,rgba(255,236,190,0));
+  clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(6px);mix-blend-mode:screen;}
+.m-pod{position:absolute;width:330px;height:240px;}
+.m-pod .top{position:absolute;left:0;top:0;width:330px;height:70px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 40%,#fbf6ee 0%,#e4dacb 55%,#b9ab97 100%);}
+.m-pod .side{position:absolute;left:0;top:35px;width:330px;height:205px;border-radius:0 0 165px 165px / 0 0 35px 35px;
+  background:linear-gradient(90deg,#8d8173 0%,#e9e0d2 32%,#fffaf2 46%,#d6cbbb 66%,#7c7166 100%);}
+.m-pod .band{position:absolute;left:0;top:48px;width:330px;height:6px;background:linear-gradient(90deg,#8a6534,#fff0c9,#8a6534);}
+.m-btl{position:absolute;width:236px;}
+.m-btl img{display:block;width:100%;}
+.m-btl .refl{position:absolute;left:0;top:100%;width:100%;transform:scaleY(-1);opacity:.22;
+  -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,0) 35%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,0) 35%);}
+.m-halo{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(30px);}
+
+#m-k1{position:absolute;left:0;right:0;top:930px;text-align:center;}
+#m-k1 .a{font-family:var(--sans);font-weight:600;font-size:34px;letter-spacing:.4em;padding-left:.4em;color:var(--gold);}
+#m-k1 .b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:68px;line-height:1.05;margin-top:16px;color:var(--ink);}
+#m-logo{position:absolute;left:290px;top:300px;width:500px;height:500px;mix-blend-mode:screen;}
+#m-logo img{width:100%;height:100%;}
+#m-podL{left:110px;top:1210px;} #m-podR{left:640px;top:1210px;}
+#m-bL{left:157px;top:620px;} #m-bR{left:687px;top:620px;}
+#m-hL{left:15px;top:640px;background:radial-gradient(circle,rgba(200,38,58,.55),rgba(200,38,58,0) 70%);}
+#m-hR{left:545px;top:640px;background:radial-gradient(circle,rgba(108,79,209,.6),rgba(108,79,209,0) 70%);}
+#m-cL{left:15px;} #m-cR{left:545px;}
+#m-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#fff6dc 0%,rgba(255,240,200,0) 60%);opacity:0;}
+#m-sweep{position:absolute;top:0;left:-400px;width:300px;height:1920px;background:linear-gradient(90deg,rgba(255,240,200,0),rgba(255,240,200,.22),rgba(255,240,200,0));clip-path:polygon(30% 0,100% 0,70% 100%,0 100%);}
+
+  </style>
+  <div id="root" data-composition-id="mall" data-width="1080" data-height="1920">
+
+    <div id="m-world">
+      
+      <svg id="m-set" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="m-gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0c9" stop-opacity=".2"/><stop offset=".45" stop-color="#ffe3a3"/><stop offset="1" stop-color="#c99d5c" stop-opacity=".3"/></linearGradient>
+          <radialGradient id="m-lg"><stop offset="0" stop-color="#ffe7b3" stop-opacity=".8"/><stop offset="1" stop-color="#ffe7b3" stop-opacity="0"/></radialGradient>
+          <linearGradient id="m-fr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3a3" stop-opacity=".6"/><stop offset="1" stop-color="#ffe3a3" stop-opacity="0"/></linearGradient>
+          <linearGradient id="m-fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a221d"/><stop offset=".35" stop-color="#1a1411"/><stop offset="1" stop-color="#0b0807"/></linearGradient>
+          <linearGradient id="m-wl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0d0a08"/><stop offset="1" stop-color="#231a15"/></linearGradient>
+          <linearGradient id="m-wr" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0d0a08"/><stop offset="1" stop-color="#231a15"/></linearGradient>
+          <linearGradient id="m-gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d231d"/><stop offset="1" stop-color="#120e0c"/></linearGradient>
+          <radialGradient id="m-shop" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#5a4430"/><stop offset=".6" stop-color="#241b15"/><stop offset="1" stop-color="#120d0a"/></radialGradient>
+        </defs>
+        <rect width="1080" height="1920" fill="#0e0b09"/>
+        <polygon points="0,0 1080,0 700,420 380,420" fill="#120e0c"/>
+        <polygon points="0,0 380,420 380,1180 0,1920" fill="url(#m-wl)"/>
+        <polygon points="1080,0 700,420 700,1180 1080,1920" fill="url(#m-wr)"/>
+        <polygon points="0,1920 380,1180 700,1180 1080,1920" fill="url(#m-fl)"/>
+        <path d="M0 1500 C200 1460 380 1560 620 1480 S980 1520 1080 1450" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/><path d="M0 1760 C260 1700 420 1820 700 1730 S960 1800 1080 1740" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/><path d="M120 1920 C260 1700 420 1560 560 1380" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/><path d="M900 1920 C820 1720 700 1560 610 1400" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/>
+        <rect x="45" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="1013" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="191" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="867" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="290" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="768" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="348" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="710" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="387" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/><rect x="671" y="1180" width="22" height="740" fill="url(#m-fr)" opacity=".5"/>
+        <polygon points="40,64 66,105 66,1790 40,1841" fill="url(#m-gs)"/><polygon points="1040,64 1014,105 1014,1790 1040,1841" fill="url(#m-gs)"/><polygon points="190,303 208,331 208,1512 190,1547" fill="url(#m-gs)"/><polygon points="890,303 872,331 872,1512 890,1547" fill="url(#m-gs)"/><polygon points="292,465 304,484 304,1323 292,1347" fill="url(#m-gs)"/><polygon points="788,465 776,484 776,1323 788,1347" fill="url(#m-gs)"/><polygon points="352,561 360,573 360,1213 352,1229" fill="url(#m-gs)"/><polygon points="728,561 720,573 720,1213 728,1229" fill="url(#m-gs)"/><polygon points="392,624 398,634 398,1139 392,1151" fill="url(#m-gs)"/><polygon points="688,624 682,634 682,1139 688,1151" fill="url(#m-gs)"/>
+        <ellipse cx="138" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="138" cy="60" rx="84" ry="37" fill="url(#m-lg)" opacity=".5"/><ellipse cx="339" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="339" cy="60" rx="84" ry="37" fill="url(#m-lg)" opacity=".5"/><ellipse cx="540" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="60" rx="84" ry="37" fill="url(#m-lg)" opacity=".5"/><ellipse cx="741" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="741" cy="60" rx="84" ry="37" fill="url(#m-lg)" opacity=".5"/><ellipse cx="942" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="942" cy="60" rx="84" ry="37" fill="url(#m-lg)" opacity=".5"/><ellipse cx="208" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="208" cy="200" rx="69" ry="31" fill="url(#m-lg)" opacity=".5"/><ellipse cx="374" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="374" cy="200" rx="69" ry="31" fill="url(#m-lg)" opacity=".5"/><ellipse cx="540" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="200" rx="69" ry="31" fill="url(#m-lg)" opacity=".5"/><ellipse cx="706" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="706" cy="200" rx="69" ry="31" fill="url(#m-lg)" opacity=".5"/><ellipse cx="872" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="872" cy="200" rx="69" ry="31" fill="url(#m-lg)" opacity=".5"/><ellipse cx="259" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="259" cy="300" rx="59" ry="26" fill="url(#m-lg)" opacity=".5"/><ellipse cx="399" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="399" cy="300" rx="59" ry="26" fill="url(#m-lg)" opacity=".5"/><ellipse cx="540" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="300" rx="59" ry="26" fill="url(#m-lg)" opacity=".5"/><ellipse cx="681" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="681" cy="300" rx="59" ry="26" fill="url(#m-lg)" opacity=".5"/><ellipse cx="821" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="821" cy="300" rx="59" ry="26" fill="url(#m-lg)" opacity=".5"/><ellipse cx="294" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="294" cy="370" rx="51" ry="23" fill="url(#m-lg)" opacity=".5"/><ellipse cx="417" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="417" cy="370" rx="51" ry="23" fill="url(#m-lg)" opacity=".5"/><ellipse cx="540" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="370" rx="51" ry="23" fill="url(#m-lg)" opacity=".5"/><ellipse cx="663" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="663" cy="370" rx="51" ry="23" fill="url(#m-lg)" opacity=".5"/><ellipse cx="786" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="786" cy="370" rx="51" ry="23" fill="url(#m-lg)" opacity=".5"/>
+        <rect x="380" y="420" width="320" height="760" fill="url(#m-shop)"/>
+        <rect x="300" y="430" width="480" height="150" fill="#0d0a08"/>
+        <rect x="300" y="430" width="480" height="150" fill="none" stroke="#c99d5c" stroke-width="2.5"/>
+        <rect x="312" y="442" width="456" height="126" fill="none" stroke="rgba(216,180,110,.35)" stroke-width="1"/>
+        <rect x="350" y="580" width="380" height="600" fill="url(#m-gl)" opacity=".9"/>
+        <rect x="350" y="580" width="380" height="600" fill="none" stroke="#c99d5c" stroke-width="3"/>
+        <line x1="540" y1="580" x2="540" y2="1180" stroke="rgba(216,180,110,.5)" stroke-width="2"/>
+        <polygon points="360,590 460,590 380,1170 360,1170" fill="rgba(255,240,210,.06)"/>
+        <polygon points="560,590 600,590 560,880" fill="rgba(255,240,210,.05)"/>
+        <rect x="380" y="1176" width="320" height="6" fill="#c99d5c" opacity=".8"/>
+      </svg>
+      <div id="m-bok" class="full"></div>
+
+      <div id="m-sign" class="goldtxt">FRESCURA</div>
+      <div id="m-signsub">BODY &nbsp;·&nbsp; BOUTIQUE</div>
+      <div id="m-hL" class="m-halo"></div><div id="m-hR" class="m-halo"></div>
+      <div id="m-cL" class="m-cone"></div><div id="m-cR" class="m-cone"></div>
+      <div id="m-podL" class="m-pod"><div class="side"></div><div class="top"></div><div class="band"></div></div>
+      <div id="m-podR" class="m-pod"><div class="side"></div><div class="top"></div><div class="band"></div></div>
+      <div id="m-bL" class="m-btl"><img src="assets/img/bomb_cut.png"><img class="refl" src="assets/img/bomb_cut.png"></div>
+      <div id="m-bR" class="m-btl"><img src="assets/img/noche_cut.png"><img class="refl" src="assets/img/noche_cut.png"></div>
+    </div>
+    <div id="m-k1"><div class="a">PENGALAMAN MANDI</div><div class="b">yang lebih <span class="goldtxt">menyenangkan</span></div></div>
+    <div id="m-logo"><img src="assets/img/logo.jpg"></div>
+    <div id="m-sweep"></div>
+    <div id="m-flash"></div>
+
+  </div>
+  <script>
+  (function(){
+    const root = document.querySelector('[data-composition-id="mall"]');
+    const $ = (s) => root.querySelector(s);
+    const $$ = (s) => Array.from(root.querySelectorAll(s));
+    // seeded PRNG: deterministic decoration
+    let _s = 55299;
+    const rnd = () => (_s = (_s * 16807) % 2147483647) / 2147483647;
+    const tl = gsap.timeline({ paused: true });
+
+    (function(){ const box=$('#m-bok');
+      for(let i=0;i<22;i++){ const b=document.createElement('div'); b.className='m-b';
+        const s=30+rnd()*120; b.style.width=s+'px'; b.style.height=s+'px';
+        b.style.left=(rnd()*1080-s/2)+'px'; b.style.top=(rnd()*1300-s/2)+'px'; box.appendChild(b);
+        tl.fromTo(b,{opacity:0,x:0},{opacity:.2+rnd()*.5,x:(rnd()-.5)*120,duration:4.0,ease:'sine.inOut'},0);
+      } })();
+
+    // dolly in down the mall
+    tl.fromTo('#m-world',{scale:1.55,y:-120,opacity:0},{scale:1.0,y:0,opacity:1,duration:2.6,ease:'expo.out'},0);
+    tl.fromTo('#m-world',{rotation:-1.5},{rotation:0,duration:2.6,ease:'power2.out'},0);
+    tl.fromTo('#m-k1 .a',{opacity:0},{opacity:1,duration:0.6,ease:'power3.out'},0.5);
+    tl.fromTo('#m-k1 .b',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.5,ease:'expo.out'},1.0);
+    tl.to('#m-k1',{opacity:0,y:-30,duration:0.25,ease:'power2.in'},2.55);
+    tl.fromTo('#m-sign',{opacity:.35},{opacity:1,duration:0.2},2.9);
+    tl.fromTo('#m-sign',{backgroundPosition:'0% 50%'},{backgroundPosition:'100% 50%',duration:1.2,ease:'sine.inOut'},2.9);
+    // podiums + bottles rise at "Frescura"
+    tl.fromTo(['#m-podL','#m-podR'],{y:260,opacity:0},{y:0,opacity:1,duration:0.5,ease:'expo.out',stagger:0.06},2.45);
+    tl.fromTo('#m-bL',{y:340,opacity:0,scale:.9},{y:0,opacity:1,scale:1,duration:0.55,ease:'back.out(1.3)'},2.92);
+    tl.fromTo('#m-bR',{y:340,opacity:0,scale:.9},{y:0,opacity:1,scale:1,duration:0.55,ease:'back.out(1.3)'},3.02);
+    tl.fromTo(['#m-hL','#m-hR'],{opacity:0,scale:.6},{opacity:1,scale:1,duration:0.6,ease:'power2.out'},2.95);
+    tl.fromTo(['#m-cL','#m-cR'],{opacity:0,scaleX:.4},{opacity:1,scaleX:1,duration:0.35,ease:'power2.out'},2.92);
+    tl.fromTo('#m-cL',{rotation:-6},{rotation:4,duration:1.1,ease:'sine.inOut'},2.92);
+    tl.fromTo('#m-cR',{rotation:6},{rotation:-4,duration:1.1,ease:'sine.inOut'},2.92);
+    tl.fromTo('#m-flash',{opacity:0},{opacity:.85,duration:0.06},2.94);
+    tl.to('#m-flash',{opacity:0,duration:0.5,ease:'power2.out'},3.0);
+    // neon logo pops over the storefront
+    tl.fromTo('#m-logo',{opacity:0,scale:.3},{opacity:1,scale:.62,y:-110,duration:0.4,ease:'back.out(1.8)'},2.96);
+    tl.fromTo('#m-logo',{filter:'brightness(1)'},{keyframes:{filter:['brightness(1.8)','brightness(.7)','brightness(1.5)','brightness(1)']},duration:0.35,ease:'none'},3.0);
+    tl.fromTo('#m-sweep',{x:0},{x:1900,duration:0.8,ease:'power2.inOut'},3.2);
+    tl.fromTo('#m-world',{scale:1.0},{scale:1.04,duration:1.0,ease:'sine.out'},3.0);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["mall"] = tl;
+  })();
+  </script>
+</template>

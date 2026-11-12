@@ -1,0 +1,213 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-italic.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');}
+
+
+:root{
+  --noir:#0b0908; --espresso:#17110e; --ink:#f6efe4; --mute:#b9ab97;
+  --gold:#d8b46e; --gold-hi:#fff0c9; --gold-lo:#8a6534;
+  --rose:#c8263a; --rose-hi:#ff6b7a; --violet:#6c4fd1; --violet-hi:#b9a3ff;
+  --serif:'Bodoni Moda', serif; --sans:'Manrope', sans-serif;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+#root{position:absolute;inset:0;overflow:hidden;font-family:var(--sans);color:var(--ink);}
+.full{position:absolute;inset:0;}
+.bg-noir{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%, #2a1f19 0%, #140f0c 48%, #070605 100%);}
+.goldtxt{background:linear-gradient(100deg,#7d5a2c 0%,#e9cf98 22%,#fff3d2 34%,#c99d5c 52%,#f7e2b1 70%,#8f6834 100%);
+  background-size:220% 100%; background-position:0% 50%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.kicker{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.serif-i{font-family:var(--serif);font-style:italic;}
+.center-x{position:absolute;left:0;right:0;text-align:center;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;}
+.glass{background:linear-gradient(160deg,rgba(255,240,210,.09),rgba(255,240,210,.02));
+  border:1.5px solid rgba(216,180,110,.55);border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12);}
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe9b8 0%,rgba(255,220,150,.0) 70%);}
+
+
+#k-world{position:absolute;inset:0;transform-origin:50% 62%;}
+#k-set{position:absolute;inset:0;}
+#k-bok{position:absolute;inset:0;}
+.k-b{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,226,160,.55) 0%,rgba(255,226,160,0) 70%);}
+#k-sign{position:absolute;left:0;right:0;top:470px;text-align:center;font-family:var(--serif);font-weight:700;
+  font-size:58px;letter-spacing:.34em;padding-left:.34em;}
+#k-signsub{position:absolute;left:0;right:0;top:546px;text-align:center;font-family:var(--sans);font-weight:600;
+  font-size:28px;letter-spacing:.5em;padding-left:.6em;color:var(--gold);}
+.k-cone{position:absolute;top:-60px;width:520px;height:1500px;transform-origin:50% 0;
+  background:linear-gradient(180deg,rgba(255,236,190,.30),rgba(255,236,190,.06) 70%,rgba(255,236,190,0));
+  clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(6px);mix-blend-mode:screen;}
+.k-pod{position:absolute;width:330px;height:240px;}
+.k-pod .top{position:absolute;left:0;top:0;width:330px;height:70px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 40%,#fbf6ee 0%,#e4dacb 55%,#b9ab97 100%);}
+.k-pod .side{position:absolute;left:0;top:35px;width:330px;height:205px;border-radius:0 0 165px 165px / 0 0 35px 35px;
+  background:linear-gradient(90deg,#8d8173 0%,#e9e0d2 32%,#fffaf2 46%,#d6cbbb 66%,#7c7166 100%);}
+.k-pod .band{position:absolute;left:0;top:48px;width:330px;height:6px;background:linear-gradient(90deg,#8a6534,#fff0c9,#8a6534);}
+.k-btl{position:absolute;width:236px;}
+.k-btl img{display:block;width:100%;}
+.k-btl .refl{position:absolute;left:0;top:100%;width:100%;transform:scaleY(-1);opacity:.22;
+  -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,0) 35%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,0) 35%);}
+.k-halo{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(30px);}
+
+#k-dim{position:absolute;inset:0;background:rgba(8,6,5,.55);}
+#k-bL{left:180px;top:780px;width:200px;} #k-bR{left:700px;top:780px;width:200px;}
+#k-podL{left:115px;top:1240px;} #k-podR{left:635px;top:1240px;}
+#k-cart{position:absolute;left:0;right:0;top:300px;height:640px;}
+#k-basket{position:absolute;left:390px;top:30px;width:300px;height:300px;overflow:visible;}
+#k-tapR{position:absolute;left:470px;top:110px;width:140px;height:140px;border-radius:50%;border:5px solid #ffd21f;}
+#k-finger{position:absolute;left:600px;top:200px;width:150px;height:190px;overflow:visible;}
+#k-l1{position:absolute;left:0;right:0;top:360px;text-align:center;font-family:var(--sans);font-weight:800;font-size:70px;letter-spacing:.04em;}
+#k-l1 .y{color:#1a1200;background:#ffd21f;padding:2px 22px 6px;border-radius:14px;}
+#k-btn{position:absolute;left:0;right:0;top:480px;text-align:center;}
+#k-btn span{display:inline-block;font-family:var(--sans);font-weight:800;font-size:46px;letter-spacing:.2em;padding:24px 56px 26px 66px;
+  border-radius:70px;color:#1a130d;background:linear-gradient(90deg,#c99d5c,#fff0c9,#d8b46e);box-shadow:0 18px 50px rgba(216,180,110,.4);}
+#k-stock{position:absolute;left:150px;right:150px;top:300px;padding:44px 50px;}
+#k-stock .h{display:flex;justify-content:space-between;align-items:baseline;}
+#k-stock .h b{font-family:var(--sans);font-weight:800;font-size:54px;letter-spacing:.14em;}
+#k-stock .h i{font-family:var(--serif);font-style:italic;font-weight:900;font-size:78px;color:var(--rose-hi);font-variant-numeric:tabular-nums;}
+#k-bar{margin-top:26px;height:26px;border-radius:13px;background:rgba(255,255,255,.08);border:1px solid rgba(216,180,110,.4);overflow:hidden;}
+#k-fill{height:100%;width:100%;border-radius:13px;background:linear-gradient(90deg,#c8263a,#ff6b7a);transform-origin:0 50%;}
+#k-stock .s{margin-top:22px;font-family:var(--sans);font-weight:600;font-size:32px;letter-spacing:.1em;color:var(--mute);}
+#k-fast{position:absolute;left:0;right:0;top:330px;text-align:center;}
+#k-fast .a{font-family:var(--serif);font-style:italic;font-weight:900;font-size:150px;line-height:.98;}
+#k-end{position:absolute;left:0;right:0;top:250px;text-align:center;}
+#k-logo{width:560px;height:560px;margin:0 auto;mix-blend-mode:screen;}
+#k-logo img{width:100%;height:100%;}
+#k-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#fff6dc,rgba(255,240,200,0) 60%);opacity:0;}
+
+  </style>
+  <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
+
+    <div id="k-world">
+      
+      <svg id="k-set" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="k-gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0c9" stop-opacity=".2"/><stop offset=".45" stop-color="#ffe3a3"/><stop offset="1" stop-color="#c99d5c" stop-opacity=".3"/></linearGradient>
+          <radialGradient id="k-lg"><stop offset="0" stop-color="#ffe7b3" stop-opacity=".8"/><stop offset="1" stop-color="#ffe7b3" stop-opacity="0"/></radialGradient>
+          <linearGradient id="k-fr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3a3" stop-opacity=".6"/><stop offset="1" stop-color="#ffe3a3" stop-opacity="0"/></linearGradient>
+          <linearGradient id="k-fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a221d"/><stop offset=".35" stop-color="#1a1411"/><stop offset="1" stop-color="#0b0807"/></linearGradient>
+          <linearGradient id="k-wl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0d0a08"/><stop offset="1" stop-color="#231a15"/></linearGradient>
+          <linearGradient id="k-wr" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0d0a08"/><stop offset="1" stop-color="#231a15"/></linearGradient>
+          <linearGradient id="k-gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d231d"/><stop offset="1" stop-color="#120e0c"/></linearGradient>
+          <radialGradient id="k-shop" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#5a4430"/><stop offset=".6" stop-color="#241b15"/><stop offset="1" stop-color="#120d0a"/></radialGradient>
+        </defs>
+        <rect width="1080" height="1920" fill="#0e0b09"/>
+        <polygon points="0,0 1080,0 700,420 380,420" fill="#120e0c"/>
+        <polygon points="0,0 380,420 380,1180 0,1920" fill="url(#k-wl)"/>
+        <polygon points="1080,0 700,420 700,1180 1080,1920" fill="url(#k-wr)"/>
+        <polygon points="0,1920 380,1180 700,1180 1080,1920" fill="url(#k-fl)"/>
+        <path d="M0 1500 C200 1460 380 1560 620 1480 S980 1520 1080 1450" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/><path d="M0 1760 C260 1700 420 1820 700 1730 S960 1800 1080 1740" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/><path d="M120 1920 C260 1700 420 1560 560 1380" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/><path d="M900 1920 C820 1720 700 1560 610 1400" fill="none" stroke="rgba(216,180,110,.16)" stroke-width="3"/>
+        <rect x="45" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="1013" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="191" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="867" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="290" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="768" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="348" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="710" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="387" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/><rect x="671" y="1180" width="22" height="740" fill="url(#k-fr)" opacity=".5"/>
+        <polygon points="40,64 66,105 66,1790 40,1841" fill="url(#k-gs)"/><polygon points="1040,64 1014,105 1014,1790 1040,1841" fill="url(#k-gs)"/><polygon points="190,303 208,331 208,1512 190,1547" fill="url(#k-gs)"/><polygon points="890,303 872,331 872,1512 890,1547" fill="url(#k-gs)"/><polygon points="292,465 304,484 304,1323 292,1347" fill="url(#k-gs)"/><polygon points="788,465 776,484 776,1323 788,1347" fill="url(#k-gs)"/><polygon points="352,561 360,573 360,1213 352,1229" fill="url(#k-gs)"/><polygon points="728,561 720,573 720,1213 728,1229" fill="url(#k-gs)"/><polygon points="392,624 398,634 398,1139 392,1151" fill="url(#k-gs)"/><polygon points="688,624 682,634 682,1139 688,1151" fill="url(#k-gs)"/>
+        <ellipse cx="138" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="138" cy="60" rx="84" ry="37" fill="url(#k-lg)" opacity=".5"/><ellipse cx="339" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="339" cy="60" rx="84" ry="37" fill="url(#k-lg)" opacity=".5"/><ellipse cx="540" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="60" rx="84" ry="37" fill="url(#k-lg)" opacity=".5"/><ellipse cx="741" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="741" cy="60" rx="84" ry="37" fill="url(#k-lg)" opacity=".5"/><ellipse cx="942" cy="60" rx="32" ry="8" fill="#fff4d6" opacity=".9"/><ellipse cx="942" cy="60" rx="84" ry="37" fill="url(#k-lg)" opacity=".5"/><ellipse cx="208" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="208" cy="200" rx="69" ry="31" fill="url(#k-lg)" opacity=".5"/><ellipse cx="374" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="374" cy="200" rx="69" ry="31" fill="url(#k-lg)" opacity=".5"/><ellipse cx="540" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="200" rx="69" ry="31" fill="url(#k-lg)" opacity=".5"/><ellipse cx="706" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="706" cy="200" rx="69" ry="31" fill="url(#k-lg)" opacity=".5"/><ellipse cx="872" cy="200" rx="26" ry="7" fill="#fff4d6" opacity=".9"/><ellipse cx="872" cy="200" rx="69" ry="31" fill="url(#k-lg)" opacity=".5"/><ellipse cx="259" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="259" cy="300" rx="59" ry="26" fill="url(#k-lg)" opacity=".5"/><ellipse cx="399" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="399" cy="300" rx="59" ry="26" fill="url(#k-lg)" opacity=".5"/><ellipse cx="540" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="300" rx="59" ry="26" fill="url(#k-lg)" opacity=".5"/><ellipse cx="681" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="681" cy="300" rx="59" ry="26" fill="url(#k-lg)" opacity=".5"/><ellipse cx="821" cy="300" rx="22" ry="6" fill="#fff4d6" opacity=".9"/><ellipse cx="821" cy="300" rx="59" ry="26" fill="url(#k-lg)" opacity=".5"/><ellipse cx="294" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="294" cy="370" rx="51" ry="23" fill="url(#k-lg)" opacity=".5"/><ellipse cx="417" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="417" cy="370" rx="51" ry="23" fill="url(#k-lg)" opacity=".5"/><ellipse cx="540" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="540" cy="370" rx="51" ry="23" fill="url(#k-lg)" opacity=".5"/><ellipse cx="663" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="663" cy="370" rx="51" ry="23" fill="url(#k-lg)" opacity=".5"/><ellipse cx="786" cy="370" rx="19" ry="5" fill="#fff4d6" opacity=".9"/><ellipse cx="786" cy="370" rx="51" ry="23" fill="url(#k-lg)" opacity=".5"/>
+        <rect x="380" y="420" width="320" height="760" fill="url(#k-shop)"/>
+        <rect x="300" y="430" width="480" height="150" fill="#0d0a08"/>
+        <rect x="300" y="430" width="480" height="150" fill="none" stroke="#c99d5c" stroke-width="2.5"/>
+        <rect x="312" y="442" width="456" height="126" fill="none" stroke="rgba(216,180,110,.35)" stroke-width="1"/>
+        <rect x="350" y="580" width="380" height="600" fill="url(#k-gl)" opacity=".9"/>
+        <rect x="350" y="580" width="380" height="600" fill="none" stroke="#c99d5c" stroke-width="3"/>
+        <line x1="540" y1="580" x2="540" y2="1180" stroke="rgba(216,180,110,.5)" stroke-width="2"/>
+        <polygon points="360,590 460,590 380,1170 360,1170" fill="rgba(255,240,210,.06)"/>
+        <polygon points="560,590 600,590 560,880" fill="rgba(255,240,210,.05)"/>
+        <rect x="380" y="1176" width="320" height="6" fill="#c99d5c" opacity=".8"/>
+      </svg>
+      <div id="k-bok" class="full"></div>
+
+      <div id="k-sign" class="goldtxt" style="position:absolute;left:0;right:0;top:470px;text-align:center;font-family:var(--serif);font-weight:700;font-size:58px;letter-spacing:.34em;padding-left:.34em;">FRESCURA</div>
+      <div id="k-cL" class="k-cone" style="left:20px"></div><div id="k-cR" class="k-cone" style="left:540px"></div>
+      <div id="k-podL" class="k-pod"><div class="side"></div><div class="top"></div><div class="band"></div></div>
+      <div id="k-podR" class="k-pod"><div class="side"></div><div class="top"></div><div class="band"></div></div>
+      <div id="k-bL" class="k-btl"><img src="assets/img/bomb_cut.png"><img class="refl" src="assets/img/bomb_cut.png"></div>
+      <div id="k-bR" class="k-btl"><img src="assets/img/noche_cut.png"><img class="refl" src="assets/img/noche_cut.png"></div>
+    </div>
+    <div id="k-dim"></div>
+    <div id="k-cart">
+      <div id="k-tapR"></div>
+      <svg id="k-basket" viewBox="0 0 300 300">
+        <path d="M60 120 L240 120 L216 250 C214 262 206 268 194 268 L106 268 C94 268 86 262 84 250 Z" fill="#ffd21f"/>
+        <path d="M100 120 C100 60 200 60 200 120" fill="none" stroke="#ffd21f" stroke-width="18" stroke-linecap="round"/>
+        <path d="M110 160 L110 230 M150 160 L150 230 M190 160 L190 230" stroke="#1a1200" stroke-width="12" stroke-linecap="round"/>
+      </svg>
+      <svg id="k-finger" viewBox="0 0 150 190"><path d="M40 10 C52 10 58 18 58 30 L58 92 L70 86 C80 82 92 86 96 96 L108 92 C118 90 128 96 130 106 L138 104 C148 104 150 116 150 124 L146 160 C142 178 128 190 108 190 L70 190 C52 190 40 180 32 164 L6 110 C0 98 8 88 18 90 L24 92 L24 28 C24 18 30 10 40 10 Z" fill="#f6efe4" stroke="#1a130d" stroke-width="5"/></svg>
+      <div id="k-l1">TEKAN <span class="y">BEG KUNING</span></div>
+      <div id="k-btn"><span>CHECK OUT</span></div>
+    </div>
+    <div id="k-stock" class="glass">
+      <div class="h"><b>STOK TERHAD</b><i id="k-pct">100%</i></div>
+      <div id="k-bar"><div id="k-fill"></div></div>
+      <div class="s">Siapa cepat, dia dapat.</div>
+    </div>
+    <div id="k-fast"><div class="a goldtxt">Siapa Cepat,</div><div class="a goldtxt">Dia Dapat.</div></div>
+    <div id="k-end"><div id="k-logo"><img src="assets/img/logo.jpg"></div></div>
+    <div id="k-flash"></div>
+
+  </div>
+  <script>
+  (function(){
+    const root = document.querySelector('[data-composition-id="cta"]');
+    const $ = (s) => root.querySelector(s);
+    const $$ = (s) => Array.from(root.querySelectorAll(s));
+    // seeded PRNG: deterministic decoration
+    let _s = 40889;
+    const rnd = () => (_s = (_s * 16807) % 2147483647) / 2147483647;
+    const tl = gsap.timeline({ paused: true });
+
+    (function(){ const box=$('#k-bok');
+      for(let i=0;i<20;i++){ const b=document.createElement('div'); b.className='k-b';
+        const s=30+rnd()*120; b.style.width=s+'px'; b.style.height=s+'px';
+        b.style.left=(rnd()*1080-s/2)+'px'; b.style.top=(rnd()*1300-s/2)+'px'; box.appendChild(b);
+        tl.fromTo(b,{opacity:0,x:0},{opacity:.2+rnd()*.5,x:(rnd()-.5)*120,duration:7.66,ease:'sine.inOut'},0);
+      } })();
+
+    tl.fromTo('#k-world',{scale:1.08},{scale:1.0,duration:7.6,ease:'sine.out'},0);
+    tl.fromTo(['#k-cL','#k-cR'],{opacity:.6},{opacity:1,duration:0.4},0);
+    // basket + tap
+    tl.fromTo('#k-basket',{scale:0,rotation:-20,opacity:0},{scale:1,rotation:0,opacity:1,duration:0.35,ease:'back.out(2.2)'},0.0);
+    tl.fromTo('#k-l1',{opacity:0,y:30},{opacity:1,y:0,duration:0.3,ease:'power3.out'},0.1);
+    tl.fromTo('#k-finger',{x:160,y:160,opacity:0},{x:0,y:0,opacity:1,duration:0.3,ease:'power3.out'},0.08);
+    tl.to('#k-finger',{x:-50,y:-50,scale:.9,duration:0.12,ease:'power2.in'},0.36);
+    tl.to('#k-finger',{x:0,y:0,scale:1,duration:0.2,ease:'power2.out'},0.5);
+    tl.fromTo('#k-basket',{scale:1},{keyframes:{scale:[1,.88,1.08,1]},duration:0.4,ease:'none'},0.46);
+    tl.fromTo('#k-tapR',{scale:.5,opacity:0},{scale:2.6,keyframes:{opacity:[0,1,0]},duration:0.6,ease:'power2.out'},0.48);
+    tl.to('#k-finger',{x:-50,y:-50,scale:.9,duration:0.1,ease:'power2.in'},1.2);
+    tl.to('#k-finger',{x:0,y:0,scale:1,duration:0.2,ease:'power2.out'},1.3);
+    tl.fromTo('#k-btn span',{scale:.6,opacity:0},{scale:1,opacity:1,duration:0.3,ease:'back.out(2)'},1.28);
+    tl.fromTo('#k-btn span',{scale:1},{keyframes:{scale:[1,.9,1.05,1]},duration:0.35,ease:'none'},1.66);
+    tl.fromTo('#k-btn span',{backgroundPosition:'0% 50%'},{backgroundPosition:'100% 50%',duration:1,ease:'none'},1.3);
+    tl.to('#k-cart',{opacity:0,y:-40,duration:0.25,ease:'power2.in'},2.80);
+    tl.fromTo('#k-sign',{opacity:1},{opacity:0,duration:0.3},0.0);
+    // stock draining
+    tl.fromTo('#k-stock',{opacity:0,y:60},{opacity:1,y:0,duration:0.35,ease:'expo.out'},2.90);
+    const pct={v:100};
+    tl.fromTo(pct,{v:100},{v:7,duration:1.6,ease:'power2.inOut',onUpdate:()=>{$('#k-pct').textContent=Math.round(pct.v)+'%';}},3.0);
+    tl.fromTo('#k-fill',{scaleX:1},{scaleX:.07,duration:1.6,ease:'power2.inOut'},3.0);
+    tl.fromTo('#k-stock',{x:0},{keyframes:{x:[0,-8,8,-5,0]},duration:0.25,ease:'none'},4.4);
+    tl.to('#k-stock',{opacity:0,scale:.92,duration:0.2,ease:'power2.in'},4.58);
+    // siapa cepat dia dapat
+    tl.fromTo('#k-fast .a',{opacity:0,y:60,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.35,ease:'expo.out',stagger:0.38},4.64);
+    tl.fromTo('#k-fast .a',{backgroundPosition:'0% 50%'},{backgroundPosition:'100% 50%',duration:1.4,ease:'sine.inOut'},4.64);
+    tl.fromTo('#k-flash',{opacity:0},{keyframes:{opacity:[0,.7,0]},duration:0.45,ease:'none'},4.62);
+    tl.to('#k-dim',{opacity:.25,duration:0.6},4.7);
+    tl.to('#k-fast',{opacity:0,y:-30,duration:0.25,ease:'power2.in'},6.0);
+    // end card
+    tl.fromTo('#k-logo',{opacity:0,scale:.6},{opacity:1,scale:1,duration:0.5,ease:'back.out(1.6)'},6.12);
+    tl.fromTo('#k-logo',{filter:'brightness(1)'},{keyframes:{filter:['brightness(2)','brightness(.6)','brightness(1.6)','brightness(1)']},duration:0.4,ease:'none'},6.15);
+    tl.fromTo(['#k-bL','#k-bR'],{y:0},{y:-14,duration:2.0,ease:'sine.inOut'},5.6);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["cta"] = tl;
+  })();
+  </script>
+</template>

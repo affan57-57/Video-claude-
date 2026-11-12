@@ -1,0 +1,83 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400;src:url('assets/fonts/bodoni-moda-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:700;src:url('assets/fonts/bodoni-moda-latin-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:900;src:url('assets/fonts/bodoni-moda-latin-900-italic.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;src:url('assets/fonts/manrope-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;src:url('assets/fonts/manrope-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;src:url('assets/fonts/manrope-latin-800-normal.woff2') format('woff2');}
+
+
+:root{
+  --noir:#0b0908; --espresso:#17110e; --ink:#f6efe4; --mute:#b9ab97;
+  --gold:#d8b46e; --gold-hi:#fff0c9; --gold-lo:#8a6534;
+  --rose:#c8263a; --rose-hi:#ff6b7a; --violet:#6c4fd1; --violet-hi:#b9a3ff;
+  --serif:'Bodoni Moda', serif; --sans:'Manrope', sans-serif;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+#root{position:absolute;inset:0;overflow:hidden;font-family:var(--sans);color:var(--ink);}
+.full{position:absolute;inset:0;}
+.bg-noir{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%, #2a1f19 0%, #140f0c 48%, #070605 100%);}
+.goldtxt{background:linear-gradient(100deg,#7d5a2c 0%,#e9cf98 22%,#fff3d2 34%,#c99d5c 52%,#f7e2b1 70%,#8f6834 100%);
+  background-size:220% 100%; background-position:0% 50%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.kicker{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.serif-i{font-family:var(--serif);font-style:italic;}
+.center-x{position:absolute;left:0;right:0;text-align:center;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;}
+.glass{background:linear-gradient(160deg,rgba(255,240,210,.09),rgba(255,240,210,.02));
+  border:1.5px solid rgba(216,180,110,.55);border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12);}
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe9b8 0%,rgba(255,220,150,.0) 70%);}
+
+
+#f-vid{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;}
+#f-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,5,.7) 0%,rgba(8,6,5,0) 30%,rgba(8,6,5,0) 58%,rgba(8,6,5,.72) 100%);}
+#f-t{position:absolute;left:0;right:0;top:230px;text-align:center;}
+#f-t .a{font-family:var(--serif);font-style:italic;font-weight:900;font-size:150px;line-height:1;color:#fff;text-shadow:0 10px 50px rgba(0,0,0,.45);}
+#f-t .b{margin-top:14px;font-family:var(--sans);font-weight:800;font-size:44px;letter-spacing:.34em;padding-left:.34em;color:var(--gold-hi);}
+#f-call{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;}
+#f-call path{fill:none;stroke:#fff0c9;stroke-width:3;}
+#f-call circle{fill:#fff0c9;}
+#f-tag{position:absolute;left:600px;top:640px;padding:14px 26px;border-radius:40px;background:rgba(12,9,7,.55);
+  border:1.5px solid rgba(255,240,201,.7);font-family:var(--sans);font-weight:800;font-size:34px;letter-spacing:.12em;color:#fff6e4;}
+
+  </style>
+  <div id="root" data-composition-id="foam" data-width="1080" data-height="1920">
+
+    <video id="f-vid" class="clip" data-start="0" data-duration="1.9" data-track-index="2" muted playsinline src="assets/video/foam_pump.mp4" data-media-start="0.35"></video>
+    <div id="f-shade"></div>
+    <svg id="f-call" viewBox="0 0 1080 1920"><path id="f-line" pathLength="1" d="M470 930 L560 700 L600 700"/><circle id="f-dot" cx="470" cy="930" r="10"/></svg>
+    <div id="f-tag">TERUS DARI BOTOL</div>
+    <div id="f-t"><div class="a">Buih Lembut</div><div class="b">SOFT FOAM</div></div>
+
+  </div>
+  <script>
+  (function(){
+    const root = document.querySelector('[data-composition-id="foam"]');
+    const $ = (s) => root.querySelector(s);
+    const $$ = (s) => Array.from(root.querySelectorAll(s));
+    // seeded PRNG: deterministic decoration
+    let _s = 54906;
+    const rnd = () => (_s = (_s * 16807) % 2147483647) / 2147483647;
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#f-vid',{scale:1.0},{scale:1.14,duration:1.9,ease:'none'},0);
+    tl.fromTo('#f-t .a',{opacity:0,y:50,filter:'blur(12px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.4,ease:'expo.out'},0.05);
+    tl.fromTo('#f-t .b',{opacity:0},{opacity:1,duration:0.5,ease:'power3.out'},0.4);
+    tl.fromTo('#f-dot',{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:0.2,ease:'back.out(3)'},0.76);
+    tl.fromTo('#f-line',{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:0.3,ease:'power2.out'},0.8);
+    tl.fromTo('#f-tag',{opacity:0,x:-30},{opacity:1,x:0,duration:0.3,ease:'expo.out'},1.0);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["foam"] = tl;
+  })();
+  </script>
+</template>
