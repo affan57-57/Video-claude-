@@ -1,0 +1,56 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:radial-gradient(90% 60% at 50% 40%,#231C16,#0B0A0C 70%)}
+#p-kick{top:250px}
+#p-title{top:300px;font-size:84px}
+#p-title .it{color:var(--gold)}
+.p-arch{top:520px;width:300px;height:560px;border-radius:150px 150px 14px 14px;overflow:hidden;border:1.5px solid rgba(210,178,122,.6);background:#1a1614}
+.p-m{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.p-g{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,10,12,.9))}
+.p-n{position:absolute;left:0;width:100%;bottom:86px;text-align:center;font-family:'Bodoni Moda';font-style:italic;font-size:34px;color:var(--gold)}
+.p-l{position:absolute;left:0;width:100%;bottom:34px;text-align:center;font-size:34px;font-weight:500;letter-spacing:.06em}
+
+  </style>
+  <div id="root" data-composition-id="perlu" data-start="0" data-duration="4.0" data-width="1080" data-height="1920">
+    <div id="p-kick" class="abs center kick">Padahal kita pun perlu</div>
+    <div id="p-title" class="abs center serif">Masa untuk <span class="it">diri.</span></div>
+    <div id="p-a0" class="abs p-arch" style="left:60px"><img class="p-m" src="assets/img/bath_g.jpg" alt=""><div class="p-g"></div>
+      <div class="p-n">01</div><div class="p-l">Berehat</div></div>
+    <div id="p-a1" class="abs p-arch" style="left:390px"><video id="p-vid" class="clip p-m" src="assets/video/foam.mp4" muted playsinline data-start="2.38" data-duration="1.62" data-media-start="26.4" data-track-index="2"></video><div class="p-g"></div>
+      <div class="p-n">02</div><div class="p-l">Kebersihan</div></div>
+    <div id="p-a2" class="abs p-arch" style="left:720px"><img class="p-m" src="assets/img/flatlay.jpg" alt=""><div class="p-g"></div>
+      <div class="p-n">03</div><div class="p-l">Penampilan</div></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#p-kick',{opacity:0,y:-20},{opacity:1,y:0,duration:.4,ease:'expo.out'},.05);
+    tl.fromTo('#p-title',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:.2},0.15);
+    [0.8,2.4,3.12].forEach((t,i)=>{
+      tl.fromTo('#p-a'+i,{clipPath:'inset(100% 0 0 0 round 150px 150px 14px 14px)',y:60},{clipPath:'inset(0% 0 0 0 round 150px 150px 14px 14px)',y:0,duration:.55,ease:'expo.out'},t);
+      tl.fromTo('#p-a'+i+' .p-m',{scale:1.3},{scale:1.05,duration:1.6,ease:'power2.out'},t);
+    });
+    tl.to('#p-a0,#p-a1,#p-a2',{y:-80,opacity:0,duration:.22,ease:'power3.in',stagger:.03},3.75);
+
+    window.__timelines["perlu"] = tl;
+  </script>
+</template>

@@ -1,0 +1,72 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:#0B0A0C}
+#s-paper{left:120px;top:300px;width:840px;height:800px;background:#F4EEE4;border-radius:18px;box-shadow:0 40px 120px rgba(0,0,0,.55);padding:70px 80px;color:#17141A}
+#s-paper h3{font-family:'Bodoni Moda';font-style:italic;font-weight:500;font-size:64px;margin:0 0 10px}
+#s-paper .s-sub{font-size:28px;letter-spacing:.3em;text-transform:uppercase;color:#9C7A45;margin-bottom:34px}
+.s-it{display:flex;align-items:center;gap:26px;font-size:46px;height:104px;border-bottom:1px solid #E2D8C8;position:relative}
+.s-box{width:52px;height:52px;border:2.5px solid #17141A;border-radius:10px;position:relative}
+.s-box svg{position:absolute;left:4px;top:4px;width:40px;height:40px}
+.s-it span{position:relative}
+.s-it em{margin-left:auto;font-style:normal;font-size:26px;letter-spacing:.2em;text-transform:uppercase;color:#8E1022;opacity:0}
+#s-it4 span{color:#9C7A45;font-family:'Bodoni Moda';font-weight:600}
+#s-strike{left:0;top:50%;height:3px;width:100%;background:#8E1022}
+#s-forgot{right:0;font-size:26px;letter-spacing:.2em;text-transform:uppercase;color:#8E1022}
+#s-world{left:0;top:0;width:1080px;height:1920px}
+#s-shade{background:linear-gradient(180deg,rgba(11,10,12,.85),rgba(11,10,12,.5) 28%,rgba(11,10,12,0) 45%,rgba(11,10,12,0) 60%,rgba(11,10,12,.8))}
+#s-title{top:300px;font-size:128px;line-height:.95}
+#s-title .it{color:#F0D9A8}
+#s-k{top:250px}
+
+  </style>
+  <div id="root" data-composition-id="senarai" data-start="0" data-duration="5.56" data-width="1080" data-height="1920">
+    <div id="s-paper" class="abs">
+      <h3>Senarai hari ini</h3><div class="s-sub">Dahulukan semua orang</div>
+      <div class="s-it" id="s-it0"><div class="s-box" id="s-box0"><svg viewBox="0 0 40 40"><path d="M9 21l7 7 15-16" fill="none" stroke="#8E1022" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div><span>Suami</span><em id="s-em0"></em></div><div class="s-it" id="s-it1"><div class="s-box" id="s-box1"><svg viewBox="0 0 40 40"><path d="M9 21l7 7 15-16" fill="none" stroke="#8E1022" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div><span>Anak</span><em id="s-em1"></em></div><div class="s-it" id="s-it2"><div class="s-box" id="s-box2"><svg viewBox="0 0 40 40"><path d="M9 21l7 7 15-16" fill="none" stroke="#8E1022" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div><span>Rumah</span><em id="s-em2"></em></div><div class="s-it" id="s-it3"><div class="s-box" id="s-box3"><svg viewBox="0 0 40 40"><path d="M9 21l7 7 15-16" fill="none" stroke="#8E1022" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div><span>Kerja</span><em id="s-em3"></em></div><div class="s-it" id="s-it4"><div class="s-box" id="s-box4"><svg viewBox="0 0 40 40"><path d="M9 21l7 7 15-16" fill="none" stroke="#B08A4A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div><span>Diri sendiri</span><em id="s-em4">terlupa</em></div>
+    </div>
+    <div id="s-world" class="abs">
+      <img id="s-img" class="full cover" src="assets/img/rosebath_g.jpg" alt="">
+      <div id="s-shade" class="full"></div>
+      <div id="s-k" class="abs center kick">Jangan lupa</div>
+      <div id="s-title" class="abs center serif">Manjakan<br><span class="it">diri.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#s-paper',{opacity:0,y:120,rotation:-4},{opacity:1,y:0,rotation:-1.5,duration:.6,ease:'expo.out'},0);
+    [0,1,2,3,4].forEach(i=>tl.fromTo('#s-it'+i,{opacity:0,x:-30},{opacity:1,x:0,duration:.3,ease:'expo.out'},.15+i*.08));
+    [1.2,1.52,1.86,2.15].forEach((t,i)=>tl.fromTo('#s-box'+i+' path',{strokeDashoffset:1.1},{strokeDashoffset:0,duration:.18,ease:'power3.out'},t));
+    tl.fromTo('#s-it4',{opacity:1},{opacity:.45,duration:.3,immediateRender:false},2.44);
+    tl.fromTo('#s-em4',{opacity:0,x:20},{opacity:1,x:0,duration:.3,ease:'expo.out'},2.5);
+    tl.fromTo('#s-paper',{scale:1},{scale:1.06,duration:.9,ease:'power2.inOut',immediateRender:false},2.8);
+    tl.fromTo('#s-it4',{opacity:.45},{opacity:1,duration:.2,immediateRender:false},3.8);
+    tl.fromTo('#s-box4 path',{strokeDashoffset:1.1},{strokeDashoffset:0,duration:.25,ease:'power3.out'},3.9);
+    tl.fromTo('#s-em4',{opacity:1},{opacity:0,duration:.15,immediateRender:false},3.9);
+    // iris from the last checkbox into the rose bath world
+    tl.fromTo('#s-world',{clipPath:'circle(0% at 230px 1010px)'},{clipPath:'circle(140% at 230px 1010px)',duration:.7,ease:'power3.in'},4.15);
+    tl.fromTo('#s-img',{scale:1.25},{scale:1.05,duration:1.6,ease:'power2.out'},4.15);
+    tl.fromTo('#s-k',{opacity:0},{opacity:1,duration:.3},4.45);
+    tl.fromTo('#s-title',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.35,ease:'expo.out'},4.6);
+
+    window.__timelines["senarai"] = tl;
+  </script>
+</template>

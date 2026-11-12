@@ -1,0 +1,51 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:#0B0A0C}
+.g-f{overflow:hidden}
+#g-shade{background:linear-gradient(180deg,rgba(11,10,12,.9),rgba(11,10,12,.6) 30%,rgba(11,10,12,0) 46%,rgba(11,10,12,0) 62%,rgba(11,10,12,.6))}
+#g-a{top:230px;font-size:120px;color:#F0D9A8}
+#g-b{top:380px;font-size:76px}
+#g-frame{left:40px;top:40px;width:1000px;height:1840px;border:1.5px solid rgba(210,178,122,.55);border-radius:28px}
+
+  </style>
+  <div id="root" data-composition-id="girls" data-start="0" data-duration="3.34" data-width="1080" data-height="1920">
+    <div id="g-f0" class="full g-f"><img class="full cover" src="assets/img/wood.jpg" alt=""></div><div id="g-f1" class="full g-f"><img class="full cover" src="assets/img/stone.jpg" alt=""></div><div id="g-f2" class="full g-f"><img class="full cover" src="assets/img/dark.jpg" alt=""></div><div id="g-f3" class="full g-f"><img class="full cover" src="assets/img/flatlay.jpg" alt=""></div>
+    <div id="g-shade" class="full"></div>
+    <div id="g-frame" class="abs"></div>
+    <div id="g-a" class="abs center it">Girls,</div>
+    <div id="g-b" class="abs center serif">jangan berkira<br>untuk diri sendiri.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    const cuts=[0,0.78,1.54,2.34];
+    cuts.forEach((t,i)=>{
+      tl.fromTo('#g-f'+i,{opacity:0},{opacity:1,duration:.01},t);
+      tl.fromTo('#g-f'+i+' img',{scale:1.22,x:i%2?40:-40},{scale:1.06,x:0,duration:1.4,ease:'power2.out'},t);
+      if(i>0) tl.fromTo('#g-f'+i,{filter:'blur(14px)'},{filter:'blur(0px)',duration:.14},t);
+    });
+    tl.fromTo('#g-frame',{opacity:0,scale:1.04},{opacity:1,scale:1,duration:.6,ease:'expo.out'},.1);
+    tl.fromTo('#g-a',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:.18},0.08);
+    tl.fromTo('#g-b',{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:'expo.out'},1.2);
+
+    window.__timelines["girls"] = tl;
+  </script>
+</template>

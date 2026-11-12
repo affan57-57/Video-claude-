@@ -1,0 +1,49 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:#0B0A0C}
+#d-shade{background:linear-gradient(180deg,rgba(11,10,12,.75) 0%,rgba(11,10,12,.15) 40%,rgba(11,10,12,.85) 100%)}
+#d-a{top:330px;font-size:44px;letter-spacing:.3em;text-transform:uppercase;font-weight:400;color:rgba(245,240,232,.8)}
+#d-b{top:420px;font-size:176px;line-height:.95}
+#d-b span{display:inline-block}
+#d-c{top:820px;font-size:96px;color:var(--gold)}
+#d-line{left:240px;top:780px;width:600px}
+
+  </style>
+  <div id="root" data-composition-id="diri" data-start="0" data-duration="2.56" data-width="1080" data-height="1920">
+    <img id="d-img" class="full cover" src="assets/img/robe_noir.jpg" alt="">
+    <div id="d-shade" class="full"></div>
+    <div id="d-a" class="abs center">Habis tu,</div>
+    <div id="d-b" class="abs center serif"><span>D</span><span>i</span><span>r</span><span>i</span><br><span>S</span><span>e</span><span>n</span><span>d</span><span>i</span><span>r</span><span>i</span></div>
+    <div id="d-line" class="abs hair"></div>
+    <div id="d-c" class="abs center it">siapa nak jaga?</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#d-img',{scale:1.18,opacity:0},{scale:1.04,opacity:1,duration:2.6,ease:'power2.out'},0);
+    tl.fromTo('#d-a',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:.18},0.02);
+    tl.fromTo('#d-b span',{opacity:0,y:40,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.28,ease:'expo.out',stagger:.035},0.8);
+    tl.fromTo('#d-line',{scaleX:0},{scaleX:1,duration:.5,ease:'expo.out'},1.26);
+    tl.fromTo('#d-c',{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'expo.out'},1.42);
+
+    window.__timelines["diri"] = tl;
+  </script>
+</template>

@@ -1,0 +1,57 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:radial-gradient(90% 55% at 50% 38%,#2A2117,#0B0A0C 70%)}
+#b-bag{left:390px;top:270px;width:300px;height:300px}
+#b-glow{left:240px;top:140px;width:600px;height:560px;background:radial-gradient(circle,rgba(255,200,61,.35),transparent 65%)}
+#b-t{top:640px;font-size:112px}
+#b-t .it{color:#FFC83D}
+#b-co{left:250px;top:880px;width:580px;height:96px;border-radius:48px;background:#FFC83D;color:#17141A;font-size:38px;font-weight:600;letter-spacing:.12em;display:flex;align-items:center;justify-content:center;text-transform:uppercase}
+#b-stock{left:150px;top:1030px;width:780px}
+#b-stock .lab{display:flex;justify-content:space-between;font-size:28px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:14px}
+#b-stock .lab b{color:#FF7A6B;font-weight:600}
+#b-bar{height:18px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden}
+#b-fill{height:100%;width:100%;border-radius:9px;background:linear-gradient(90deg,#8E1022,#D2B27A);transform-origin:0 50%}
+#b-arrow{left:70px;top:1340px;width:160px;height:300px}
+
+  </style>
+  <div id="root" data-composition-id="beg" data-start="0" data-duration="3.22" data-width="1080" data-height="1920">
+    <div id="b-glow" class="abs"></div>
+    <svg id="b-bag" class="abs" viewBox="0 0 120 120"><path d="M22 40h76l-6 62a6 6 0 0 1-6 5H34a6 6 0 0 1-6-5z" fill="#FFC83D"/><path d="M42 46V34a18 18 0 0 1 36 0v12" fill="none" stroke="#FFC83D" stroke-width="7" stroke-linecap="round"/><circle cx="42" cy="50" r="4" fill="#17141A"/><circle cx="78" cy="50" r="4" fill="#17141A"/></svg>
+    <div id="b-t" class="abs center serif">Tekan<br><span class="it">beg kuning</span></div>
+    <div id="b-co" class="abs">Check out sekarang</div>
+    <div id="b-stock" class="abs"><div class="lab"><span>Stok</span><b id="b-pct">Terhad</b></div><div id="b-bar"><div id="b-fill"></div></div></div>
+    <svg id="b-arrow" class="abs" viewBox="0 0 160 300" data-layout-allow-caption-zone><path id="b-ap" d="M120 10 C 120 140, 60 180, 40 280 M40 280 l-22 -30 M40 280 l30 -22" fill="none" stroke="#FFC83D" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#b-glow',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.6,ease:'expo.out'},0);
+    tl.fromTo('#b-bag',{opacity:0,scale:.3,rotation:-20},{opacity:1,scale:1,rotation:0,duration:.3,ease:'back.out(2.2)'},0.04);
+    tl.fromTo('#b-bag',{scale:1},{scale:1.12,duration:.12,ease:'power2.out',yoyo:true,repeat:1,immediateRender:false},0.42);
+    tl.fromTo('#b-t',{opacity:0,y:40},{opacity:1,y:0,duration:.4,ease:'expo.out'},0.1);
+    tl.fromTo('#b-co',{opacity:0,scale:.8},{opacity:1,scale:1,duration:.45,ease:'back.out(1.8)'},1.38);
+    tl.fromTo('#b-ap',{strokeDashoffset:1.1},{strokeDashoffset:0,duration:.5,ease:'power2.out'},0.7);
+    tl.fromTo('#b-stock',{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'expo.out'},2.2);
+    tl.fromTo('#b-fill',{scaleX:1},{scaleX:.14,duration:.7,ease:'power3.inOut'},2.52);
+
+    window.__timelines["beg"] = tl;
+  </script>
+</template>

@@ -1,0 +1,45 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:#000}
+#a-logo{left:190px;top:200px;width:700px;height:700px;mix-blend-mode:screen}
+#a-t{top:880px;font-size:88px}
+#a-t .it{color:var(--gold)}
+#a-pair{left:350px;top:1210px;width:380px}
+#a-cta{top:1110px;font-size:30px;letter-spacing:.3em;text-transform:uppercase;color:#FFC83D}
+
+  </style>
+  <div id="root" data-composition-id="akhir" data-start="0" data-duration="3.18" data-width="1080" data-height="1920">
+    <img id="a-logo" class="abs" src="assets/img/logo.jpg" alt="">
+    <div id="a-t" class="abs center serif">Jangan tunggu<br><span class="it">sampai terlepas.</span></div>
+    <div id="a-cta" class="abs center">Tekan beg kuning sekarang</div>
+    <img id="a-pair" class="abs" src="assets/img/pair.png" alt="" data-layout-allow-caption-zone>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#a-logo',{opacity:0,scale:.8,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.8,ease:'expo.out'},0.02);
+    tl.fromTo('#a-t',{opacity:0,y:30},{opacity:1,y:0,duration:.45,ease:'expo.out'},.1);
+    tl.fromTo('#a-cta',{opacity:0,scaleX:1.25},{opacity:1,scaleX:1,duration:.8,ease:'expo.out'},.8);
+    tl.fromTo('#a-pair',{opacity:0,y:120},{opacity:1,y:0,duration:.8,ease:'expo.out'},.4);
+
+    window.__timelines["akhir"] = tl;
+  </script>
+</template>

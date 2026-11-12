@@ -1,0 +1,55 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:#0B0A0C}
+#pl-l{left:0;top:0;width:540px;height:1920px;background:radial-gradient(80% 50% at 50% 45%,#A3142B,#3A0610 75%)}
+#pl-r{left:540px;top:0;width:540px;height:1920px;background:radial-gradient(80% 50% at 50% 45%,#5B48B0,#140E33 75%)}
+#pl-gl{left:85px;top:430px;width:370px}
+#pl-gn{left:575px;top:420px;width:430px}
+#pl-tl{left:0;width:540px;top:250px;text-align:center;font-size:66px}
+#pl-tr{left:540px;width:540px;top:250px;text-align:center;font-size:58px;line-height:1}
+#pl-or{left:440px;top:880px;width:200px;height:200px;border-radius:50%;background:#0B0A0C;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:62px;color:var(--gold)}
+#pl-div{left:539px;top:0;width:2px;height:1920px;background:linear-gradient(180deg,transparent,var(--gold),transparent);transform-origin:50% 0}
+
+  </style>
+  <div id="root" data-composition-id="pilih" data-start="0" data-duration="2.1" data-width="1080" data-height="1920">
+    <div id="pl-l" class="abs"></div><div id="pl-r" class="abs"></div>
+    <img id="pl-gl" class="abs" src="assets/img/glory.png" alt="">
+    <img id="pl-gn" class="abs" src="assets/img/noche.png" alt="">
+    <div id="pl-tl" class="abs serif">Bombshell</div>
+    <div id="pl-tr" class="abs serif">Midnight<br>Fantasy</div>
+    <div id="pl-div" class="abs"></div>
+    <div id="pl-or" class="abs it">atau</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#pl-l',{x:-540},{x:0,duration:.45,ease:'expo.out'},0);
+    tl.fromTo('#pl-r',{x:540},{x:0,duration:.45,ease:'expo.out'},0.05);
+    tl.fromTo('#pl-div',{scaleY:0},{scaleY:1,duration:.5,ease:'expo.out'},.2);
+    tl.fromTo('#pl-gl',{opacity:0,y:200},{opacity:1,y:0,duration:.6,ease:'expo.out'},0.54);
+    tl.fromTo('#pl-tl',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:.18},0.64);
+    tl.fromTo('#pl-or',{opacity:0,scale:.4},{opacity:1,scale:1,duration:.4,ease:'back.out(2)'},1.08);
+    tl.fromTo('#pl-gn',{opacity:0,y:200},{opacity:1,y:0,duration:.6,ease:'expo.out'},1.43);
+    tl.fromTo('#pl-tr',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:.18},1.5);
+
+    window.__timelines["pilih"] = tl;
+  </script>
+</template>

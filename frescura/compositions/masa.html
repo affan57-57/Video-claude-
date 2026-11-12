@@ -1,0 +1,68 @@
+<template>
+  <style>
+
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/jost.woff2') format('woff2');font-weight:100 900;font-style:normal}
+
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ivory)}
+#root *{box-sizing:border-box}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.cover{object-fit:cover}
+.kick{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.01em;line-height:1.02}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+.center{left:0;width:1080px;text-align:center}
+.hair{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+:root{--noir:#0B0A0C;--ivory:#F5F0E8;--gold:#D2B27A;--rose:#8E1022;--violet:#4A3990;--paper:#F2ECE2;--ink:#17141A;--cyan:#5FDcF2}
+#root{background:#F2ECE2;color:#17141A}
+#m-flood{background:#0B0A0C}
+#m-kick{top:200px;color:#9C7A45}
+#m-title{top:250px;font-size:92px;color:#17141A}
+#m-title .it{color:#8E1022}
+#m-ring{left:265px;top:420px;width:550px;height:550px}
+#m-mid{left:265px;top:420px;width:550px;height:550px}
+.m-mm{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#m-mid b{font-family:'Bodoni Moda';font-size:120px;font-weight:600;line-height:1}
+#m-mid span{font-size:30px;letter-spacing:.24em;text-transform:uppercase;color:#6B6170;margin-top:8px}
+#m-leg{left:60px;top:1000px;width:960px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px 30px}
+.m-li{display:flex;align-items:center;gap:12px;font-size:30px}
+.m-li i{width:22px;height:22px;border-radius:50%;display:block}
+.m-li b{font-weight:500;flex:1}
+.m-li span{color:#6B6170}
+#m-m2 b{color:#9C7A45}
+#m-l4 b,#m-l4 span{color:#9C7A45;font-weight:600}
+#m-note{left:0;width:1080px;top:362px;text-align:center;font-size:28px;color:#6E6572;letter-spacing:.1em}
+
+  </style>
+  <div id="root" data-composition-id="masa" data-start="0" data-duration="4.9" data-width="1080" data-height="1920">
+    <div id="m-kick" class="abs center kick">24 jam seorang wanita</div>
+    <div id="m-title" class="abs center serif">Terlalu <span class="it">sibuk</span></div>
+    <svg id="m-ring" class="abs" viewBox="0 0 600 600"><circle cx="300" cy="300" r="250" fill="none" stroke="#E3DACB" stroke-width="70"/><circle id="m-a0" cx="300" cy="300" r="250" fill="none" stroke="#8E1022" stroke-width="70" pathLength="1" stroke-dasharray="0.3333 1" stroke-dashoffset="0.0000" transform="rotate(-90 300 300)"/><circle id="m-a1" cx="300" cy="300" r="250" fill="none" stroke="#B08A5A" stroke-width="70" pathLength="1" stroke-dasharray="0.2500 1" stroke-dashoffset="-0.3333" transform="rotate(-90 300 300)"/><circle id="m-a2" cx="300" cy="300" r="250" fill="none" stroke="#6E6670" stroke-width="70" pathLength="1" stroke-dasharray="0.2917 1" stroke-dashoffset="-0.5833" transform="rotate(-90 300 300)"/><circle id="m-a3" cx="300" cy="300" r="250" fill="none" stroke="#3C3640" stroke-width="70" pathLength="1" stroke-dasharray="0.1042 1" stroke-dashoffset="-0.8750" transform="rotate(-90 300 300)"/><circle id="m-a4" cx="300" cy="300" r="250" fill="none" stroke="#D2B27A" stroke-width="92" pathLength="1" stroke-dasharray="0.0208 1" stroke-dashoffset="-0.9792" transform="rotate(-90 300 300)"/></svg>
+    <div id="m-mid" class="abs"><div id="m-m1" class="m-mm"><b>24j</b><span>sehari</span></div><div id="m-m2" class="m-mm"><b>30</b><span>minit untuk diri</span></div></div>
+    <div id="m-note" class="abs">* ilustrasi purata harian</div>
+    <div id="m-leg" class="abs"><div class="m-li" id="m-l0"><i style="background:#8E1022"></i><b>Keluarga</b><span>8j</span></div><div class="m-li" id="m-l1"><i style="background:#B08A5A"></i><b>Rumah</b><span>6j</span></div><div class="m-li" id="m-l2"><i style="background:#6E6670"></i><b>Tidur</b><span>7j</span></div><div class="m-li" id="m-l3"><i style="background:#3C3640"></i><b>Kerja</b><span>2.5j</span></div><div class="m-li" id="m-l4"><i style="background:#D2B27A"></i><b>Diri sendiri</b><span>0.5j</span></div></div>
+    <div id="m-flood" class="full"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo('#m-flood',{clipPath:'circle(150% at 50% 50%)'},{clipPath:'circle(0% at 50% 50%)',duration:.45,ease:'power2.inOut'},0);
+    tl.fromTo('#m-kick',{opacity:0},{opacity:1,duration:.3},.25);
+    tl.fromTo('#m-title',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:.2},.3);
+    tl.fromTo('#m-ring',{opacity:0,scale:.85,rotation:-30},{opacity:1,scale:1,rotation:0,duration:.8,ease:'expo.out'},.35);
+    const segT=[1.58,2.06,2.52,3.02,3.7];
+    segT.forEach((t,i)=>{
+      tl.fromTo('#m-a'+i,{strokeWidth:0,opacity:0},{strokeWidth:i<4?70:92,opacity:1,duration:.4,ease:'expo.out'},t);
+      tl.fromTo('#m-l'+i,{opacity:0,x:-30},{opacity:1,x:0,duration:.35,ease:'expo.out'},t);
+    });
+    tl.fromTo('#m-m1',{opacity:1},{opacity:0,filter:'blur(8px)',duration:.15},segT[4]);
+    tl.fromTo('#m-m2',{opacity:0,scale:.7},{opacity:1,scale:1,duration:.5,ease:'back.out(2)'},segT[4]+.05);
+    tl.fromTo('#m-note',{opacity:0},{opacity:1,duration:.3},1);
+
+    window.__timelines["masa"] = tl;
+  </script>
+</template>
