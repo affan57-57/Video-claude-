@@ -1,0 +1,63 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.ttf') format('truetype');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.ttf') format('truetype');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#0b0a0c;font-family:'Manrope',sans-serif;color:#f4eee6}
+.full{position:absolute;inset:0}
+.lbl{font-family:'Manrope';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b67a}
+.serif{font-family:'Bodoni Moda';font-weight:500}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:500;color:#e2c48c}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,#d8b67a,transparent)}
+.center{position:absolute;left:0;width:100%;text-align:center}
+.bok{position:absolute;border-radius:50%;pointer-events:none}
+
+#sc-bg{background:linear-gradient(90deg,#2a070b 0%,#120809 50%,#0f0a1f 100%)}
+#sc-top{top:230px}
+#sc-title{top:282px;font-size:92px}
+.sc-arch{position:absolute;top:430px;width:440px;height:760px;border-radius:220px 220px 20px 20px;overflow:hidden;border:1.5px solid rgba(226,196,140,.55)}
+#sc-a1{left:70px;background:radial-gradient(ellipse at 50% 30%,#7a0f18 0%,#2b0508 75%)}
+#sc-a2{left:570px;background:radial-gradient(ellipse at 50% 30%,#3b2a8a 0%,#120a2c 75%)}
+.sc-arch img{position:absolute;left:50%;bottom:170px;height:500px;transform:translateX(-50%)}
+.sc-name{position:absolute;left:0;width:100%;bottom:110px;text-align:center;font-family:'Bodoni Moda';font-size:50px;letter-spacing:.06em}
+.sc-insp{position:absolute;left:0;width:100%;bottom:30px;text-align:center;font-size:28px;line-height:1.25;letter-spacing:.08em;text-transform:uppercase;color:#e2c48c}
+#sc-or{position:absolute;left:465px;top:760px;width:150px;height:150px;border-radius:50%;background:#0b0a0c;border:1.5px solid #e2c48c;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda';font-style:italic;font-size:46px;color:#e2c48c;z-index:3}
+</style>
+<div id="root" data-composition-id="scents" data-width="1080" data-height="1920" data-duration="4.61">
+
+<div id="sc-bg" class="full"></div>
+<div id="sc-top" class="center lbl">Inspirasi wangian</div>
+<div id="sc-title" class="center serif">Pilih <span class="it">aroma</span> kamu</div>
+<div id="sc-a1" class="sc-arch"><img id="sc-g" src="assets/img/glory-cut.png"/><div class="sc-name">WOMAN GLORY</div><div class="sc-insp" id="sc-i1">Inspired by<br>Bombshell</div></div>
+<div id="sc-a2" class="sc-arch"><img id="sc-n" src="assets/img/noche-cut.png"/><div class="sc-name">NOCHE</div><div class="sc-insp" id="sc-i2">Inspired by<br>Midnight Fantasy</div></div>
+<div id="sc-or">atau</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script>
+
+(function(sel,seed,n,tint){var s=seed;function r(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+var host=document.querySelector(sel);for(var i=0;i<n;i++){var d=document.createElement('div');d.className='bok';
+var z=30+r()*150;d.style.width=z+'px';d.style.height=z+'px';d.style.left=(r()*1180-50)+'px';d.style.top=(r()*1300+40)+'px';
+var c=tint[Math.floor(r()*tint.length)];d.style.background='radial-gradient(circle,'+c+' 0%,transparent 68%)';d.style.opacity=(0.25+r()*0.5).toFixed(2);host.appendChild(d);}})
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#sc-top',{opacity:0},{opacity:1,duration:0.25},0.02);
+tl.fromTo('#sc-title',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.2},0.08);
+tl.fromTo('#sc-a1',{y:900},{y:0,duration:0.6,ease:'expo.out'},0.0);
+tl.fromTo('#sc-a2',{y:900},{y:0,duration:0.6,ease:'expo.out'},0.1);
+tl.fromTo('#sc-g',{y:120,opacity:0},{y:0,opacity:1,duration:0.6,ease:'expo.out'},0.35);
+tl.fromTo('#sc-n',{y:120,opacity:0},{y:0,opacity:1,duration:0.6,ease:'expo.out'},0.45);
+tl.fromTo('#sc-i1',{opacity:0,scaleX:1.3,filter:'blur(6px)'},{opacity:1,scaleX:1,filter:'blur(0px)',duration:0.5,ease:'expo.out'},1.9);
+tl.fromTo('#sc-a1',{scale:1},{scale:1.05,duration:0.4,ease:'expo.out'},1.9);
+tl.fromTo('#sc-i2',{opacity:0,scaleX:1.3,filter:'blur(6px)'},{opacity:1,scaleX:1,filter:'blur(0px)',duration:0.5,ease:'expo.out'},2.78);
+tl.to('#sc-a1',{scale:1,duration:0.4,ease:'power2.inOut'},2.78);
+tl.fromTo('#sc-a2',{scale:1},{scale:1.05,duration:0.4,ease:'expo.out'},2.78);
+tl.to('#sc-a2',{scale:1,duration:0.4,ease:'power2.inOut'},3.6);
+tl.fromTo('#sc-or',{scale:0,rotation:-90},{scale:1,rotation:0,duration:0.45,ease:'back.out(1.7)'},3.7);
+
+window.__timelines["scents"] = tl;
+</script>
+</template>

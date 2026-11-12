@@ -1,0 +1,93 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.ttf') format('truetype');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.ttf') format('truetype');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#0b0a0c;font-family:'Manrope',sans-serif;color:#f4eee6}
+.full{position:absolute;inset:0}
+.lbl{font-family:'Manrope';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b67a}
+.serif{font-family:'Bodoni Moda';font-weight:500}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:500;color:#e2c48c}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,#d8b67a,transparent)}
+.center{position:absolute;left:0;width:100%;text-align:center}
+.bok{position:absolute;border-radius:50%;pointer-events:none}
+
+#ct-wall{background:radial-gradient(ellipse 60% 45% at 50% 30%,#2a211b 0%,#120e0d 55%,#070607 100%)}
+.ct-col{position:absolute;top:0;width:40px;height:1380px;background:linear-gradient(90deg,rgba(216,182,122,0),rgba(244,220,170,.22),rgba(216,182,122,0));}
+#ct-floor{position:absolute;left:0;top:1260px;width:100%;height:660px;background:linear-gradient(180deg,#1b1513 0%,#0a0809 60%);}
+#ct-floor:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 270px)}
+#ct-beam{position:absolute;left:190px;top:-200px;width:700px;height:1500px;background:radial-gradient(ellipse 50% 100% at 50% 0%,rgba(255,236,200,.30),rgba(255,236,200,0) 70%);transform-origin:50% 0%}
+#ct-plinth{position:absolute;left:190px;top:1180px;width:700px;height:150px;border-radius:12px;background:linear-gradient(180deg,#262019,#0e0b0a);box-shadow:0 40px 80px rgba(0,0,0,.7)}
+#ct-ptop{position:absolute;left:0;top:0;width:100%;height:10px;border-radius:12px 12px 0 0;background:linear-gradient(90deg,#6d5634,#e2c48c,#6d5634)}
+
+#ct-glass{position:absolute;left:110px;top:520px;width:860px;height:830px;border:2px solid rgba(226,196,140,.5);border-radius:8px;background:linear-gradient(120deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 35%,rgba(255,255,255,.05) 60%,rgba(255,255,255,0) 80%)}
+#ct-sign{top:230px}
+#ct-title{top:290px;font-size:96px}
+.ct-btl{position:absolute;bottom:740px;height:600px}
+.ct-btl img{height:100%;display:block}
+#ct-g{left:270px} #ct-n{left:560px}
+#ct-bag{position:absolute;left:400px;top:560px;width:280px;height:300px;z-index:4}
+#ct-arrow{position:absolute;left:150px;top:1360px;width:160px;height:160px;z-index:4}
+#ct-stock{position:absolute;left:110px;top:1380px;width:860px;padding:26px 34px;border-radius:20px;background:rgba(11,10,12,.8);border:1.5px solid rgba(226,196,140,.6);z-index:4}
+#ct-stock .row{display:flex;justify-content:space-between;align-items:baseline}
+#ct-stock .lbl{font-size:30px}
+#ct-left{font-family:'Bodoni Moda';font-size:56px;color:#e2c48c}
+#ct-bar{margin-top:14px;height:12px;border-radius:8px;background:rgba(255,255,255,.1);overflow:hidden}
+#ct-fill{height:100%;width:100%;background:linear-gradient(90deg,#e2c48c,#b3121e);transform-origin:left center}
+</style>
+<div id="root" data-composition-id="cta" data-width="1080" data-height="1920" data-duration="5.42">
+
+<div id="ct-wall" class="full"></div>
+<div id="ct-cols" class="full">
+ <div class="ct-col" style="left:70px"></div><div class="ct-col" style="left:300px"></div><div class="ct-col" style="left:740px"></div><div class="ct-col" style="left:970px"></div>
+</div>
+<div id="ct-bok" class="full"></div>
+<div id="ct-floor"></div>
+<div id="ct-beam"></div>
+<div id="ct-plinth"><div id="ct-ptop"></div></div>
+
+<div id="ct-glass"></div>
+<div id="ct-g" class="ct-btl"><img src="assets/img/glory-cut.png"/></div>
+<div id="ct-n" class="ct-btl"><img src="assets/img/noche-cut.png"/></div>
+<div id="ct-sign" class="center lbl">Tekan beg kuning</div>
+<div id="ct-title" class="center serif">Check out <span class="it">sekarang</span></div>
+<svg id="ct-bag" viewBox="0 0 280 300"><defs><linearGradient id="ct-yg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd84a"/><stop offset="1" stop-color="#f2a900"/></linearGradient></defs><path d="M90 90 C90 30 190 30 190 90" fill="none" stroke="#ffd84a" stroke-width="16" stroke-linecap="round"/><rect x="30" y="86" width="220" height="200" rx="28" fill="url(#ct-yg)"/><path d="M100 170 l30 30 l55 -60" fill="none" stroke="#0b0a0c" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg id="ct-arrow" viewBox="0 0 160 160" fill="none" stroke="#ffd84a" stroke-width="10" stroke-linecap="round"><path d="M140 20 L30 130 M30 60 L30 130 L100 130"/></svg>
+<div id="ct-stock"><div class="row"><div class="lbl">Stok sangat terhad</div><div id="ct-left">12%</div></div><div id="ct-bar"><div id="ct-fill"></div></div></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script>
+
+(function(sel,seed,n,tint){var s=seed;function r(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+var host=document.querySelector(sel);for(var i=0;i<n;i++){var d=document.createElement('div');d.className='bok';
+var z=30+r()*150;d.style.width=z+'px';d.style.height=z+'px';d.style.left=(r()*1180-50)+'px';d.style.top=(r()*1300+40)+'px';
+var c=tint[Math.floor(r()*tint.length)];d.style.background='radial-gradient(circle,'+c+' 0%,transparent 68%)';d.style.opacity=(0.25+r()*0.5).toFixed(2);host.appendChild(d);}})
+
+const tl = gsap.timeline({ paused: true });
+
+((function(sel,seed,n,tint){var s=seed;function r(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+var host=document.querySelector(sel);for(var i=0;i<n;i++){var d=document.createElement('div');d.className='bok';
+var z=30+r()*150;d.style.width=z+'px';d.style.height=z+'px';d.style.left=(r()*1180-50)+'px';d.style.top=(r()*1300+40)+'px';
+var c=tint[Math.floor(r()*tint.length)];d.style.background='radial-gradient(circle,'+c+' 0%,transparent 68%)';d.style.opacity=(0.25+r()*0.5).toFixed(2);host.appendChild(d);}}))('#ct-bok',77,14,['rgba(255,214,160,.55)','rgba(226,196,140,.5)','rgba(255,240,220,.35)']);
+tl.fromTo('#ct-glass',{opacity:0,scale:1.08},{opacity:1,scale:1,duration:0.5,ease:'expo.out'},0);
+tl.fromTo('#ct-beam',{opacity:0.6},{opacity:1,duration:0.3},0);
+tl.fromTo(['#ct-g','#ct-n'],{y:60,opacity:0},{y:0,opacity:1,duration:0.5,ease:'expo.out',stagger:0.06},0.05);
+tl.fromTo('#ct-sign',{opacity:0},{opacity:1,duration:0.25},0.1);
+// beg kuning lands on "beg" (0.26s)
+tl.fromTo('#ct-bag',{scale:0,y:-200,rotation:-14},{scale:1,y:0,rotation:0,duration:0.55,ease:'back.out(1.8)'},0.26);
+tl.to('#ct-bag',{scale:0.62,x:-250,y:780,duration:0.55,ease:'power3.inOut'},1.0);
+tl.fromTo('#ct-arrow',{opacity:0,x:40,y:-40},{opacity:1,x:0,y:0,duration:0.35,ease:'expo.out'},1.4);
+tl.to('#ct-arrow',{opacity:0,duration:0.2},2.2);
+tl.to('#ct-bag',{opacity:0,duration:0.2},2.2);
+tl.fromTo('#ct-title',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.2},0.92);
+// stok terhad on "stok" (2.36s)
+tl.fromTo('#ct-stock',{opacity:0,y:40},{opacity:1,y:0,duration:0.45,ease:'expo.out'},2.36);
+tl.fromTo('#ct-fill',{scaleX:1},{scaleX:0.12,duration:1.6,ease:'power2.inOut'},2.5);
+tl.fromTo('#ct-left',{opacity:0},{opacity:1,duration:0.3},3.9);
+tl.to(['#ct-glass','#ct-g','#ct-n','#ct-sign','#ct-title','#ct-stock'],{opacity:0,filter:'blur(8px)',duration:0.2,ease:'power3.in'},5.2);
+
+window.__timelines["cta"] = tl;
+</script>
+</template>

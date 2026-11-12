@@ -1,0 +1,58 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.ttf') format('truetype');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.ttf') format('truetype');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#0b0a0c;font-family:'Manrope',sans-serif;color:#f4eee6}
+.full{position:absolute;inset:0}
+.lbl{font-family:'Manrope';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b67a}
+.serif{font-family:'Bodoni Moda';font-weight:500}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:500;color:#e2c48c}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,#d8b67a,transparent)}
+.center{position:absolute;left:0;width:100%;text-align:center}
+.bok{position:absolute;border-radius:50%;pointer-events:none}
+
+#td-frame{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#td-v{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+#td-shade{background:linear-gradient(180deg,rgba(8,7,8,.82) 0%,rgba(8,7,8,.35) 45%,rgba(8,7,8,.85) 100%)}
+#td-top{top:300px}
+#td-l1{top:370px;font-size:98px}
+#td-slot{position:absolute;left:0;width:100%;top:500px;height:190px;overflow:hidden;text-align:center}
+.td-w{position:absolute;left:0;width:100%;font-family:'Bodoni Moda';font-style:italic;font-size:168px;line-height:190px}
+#td-esok{color:#f4eee6}
+#td-hari{color:#e2c48c}
+#td-x{position:absolute;left:330px;top:600px;width:420px;height:5px;background:#e2c48c;transform-origin:left center}
+</style>
+<div id="root" data-composition-id="today" data-width="1080" data-height="1920" data-duration="2.83">
+
+<div id="td-frame"><video id="td-v" class="clip" src="assets/video/pump.mp4" data-start="0" data-duration="2.83" data-media-start="26.5" data-track-index="0" muted playsinline></video></div>
+<div id="td-shade" class="full"></div>
+<div id="td-top" class="center lbl">Jangan tunggu</div>
+<div id="td-l1" class="center serif">mula jaga diri</div>
+<div id="td-slot" data-layout-allow-overlap><div id="td-esok" class="td-w">esok</div><div id="td-hari" class="td-w">hari ini</div></div>
+<div id="td-x"></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script>
+
+(function(sel,seed,n,tint){var s=seed;function r(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+var host=document.querySelector(sel);for(var i=0;i<n;i++){var d=document.createElement('div');d.className='bok';
+var z=30+r()*150;d.style.width=z+'px';d.style.height=z+'px';d.style.left=(r()*1180-50)+'px';d.style.top=(r()*1300+40)+'px';
+var c=tint[Math.floor(r()*tint.length)];d.style.background='radial-gradient(circle,'+c+' 0%,transparent 68%)';d.style.opacity=(0.25+r()*0.5).toFixed(2);host.appendChild(d);}})
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#td-frame',{scale:1.15,x:-30},{scale:1.04,x:0,duration:2.83,ease:'power1.out'},0);
+tl.fromTo('#td-top',{opacity:0},{opacity:1,duration:0.2},0.05);
+tl.fromTo('#td-esok',{yPercent:100},{yPercent:0,duration:0.4,ease:'expo.out'},0.6);
+tl.fromTo('#td-x',{scaleX:0},{scaleX:1,duration:0.25,ease:'power3.out'},1.3);
+tl.to('#td-x',{opacity:0,duration:0.1},1.62);
+tl.to('#td-esok',{yPercent:-100,duration:0.3,ease:'power3.in'},1.62);
+tl.fromTo('#td-hari',{yPercent:100},{yPercent:0,duration:0.4,ease:'expo.out'},1.8);
+tl.fromTo('#td-l1',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.2},0.25);
+
+window.__timelines["today"] = tl;
+</script>
+</template>

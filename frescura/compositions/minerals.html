@@ -1,0 +1,57 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.ttf') format('truetype');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.ttf') format('truetype');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#0b0a0c;font-family:'Manrope',sans-serif;color:#f4eee6}
+.full{position:absolute;inset:0}
+.lbl{font-family:'Manrope';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b67a}
+.serif{font-family:'Bodoni Moda';font-weight:500}
+.it{font-family:'Bodoni Moda';font-style:italic;font-weight:500;color:#e2c48c}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,#d8b67a,transparent)}
+.center{position:absolute;left:0;width:100%;text-align:center}
+.bok{position:absolute;border-radius:50%;pointer-events:none}
+
+#mn-bg{background:radial-gradient(circle at 50% 42%,#1d2730 0%,#0b0d12 60%,#08080a 100%)}
+#mn-top{top:250px}
+#mn-title{top:306px;font-size:96px}
+#mn-cry{position:absolute;left:390px;top:560px;width:300px;height:340px}
+.mn-el{position:absolute;width:250px;height:200px;border-radius:22px;border:1.5px solid rgba(216,182,122,.6);background:rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mn-el b{font-family:'Bodoni Moda';font-size:86px;font-weight:500;line-height:1;color:#f4eee6}
+.mn-el span{margin-top:8px;font-size:28px;letter-spacing:.12em;text-transform:uppercase;color:#d8b67a}
+#mn-mg{left:60px;top:470px} #mn-k{left:770px;top:470px} #mn-ca{left:60px;top:880px} #mn-na{left:770px;top:880px}
+</style>
+<div id="root" data-composition-id="minerals" data-width="1080" data-height="1920" data-duration="1.9">
+
+<div id="mn-bg" class="full"></div>
+<div id="mn-top" class="center lbl">Garam laut</div>
+<div id="mn-title" class="center serif">kaya <span class="it">mineral</span></div>
+<svg id="mn-cry" viewBox="0 0 300 340" fill="none" stroke="#e2c48c" stroke-width="2.5"><path d="M150 10 L280 85 L280 255 L150 330 L20 255 L20 85 Z"/><path d="M150 10 L150 170 L280 85 M150 170 L20 85 M150 170 L150 330" opacity=".6"/><path d="M85 128 L150 92 L215 128 L215 212 L150 248 L85 212 Z" opacity=".4"/></svg>
+<div id="mn-mg" class="mn-el"><b>Mg</b><span>Magnesium</span></div>
+<div id="mn-k" class="mn-el"><b>K</b><span>Kalium</span></div>
+<div id="mn-ca" class="mn-el"><b>Ca</b><span>Kalsium</span></div>
+<div id="mn-na" class="mn-el"><b>Na</b><span>Natrium</span></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script>
+
+(function(sel,seed,n,tint){var s=seed;function r(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+var host=document.querySelector(sel);for(var i=0;i<n;i++){var d=document.createElement('div');d.className='bok';
+var z=30+r()*150;d.style.width=z+'px';d.style.height=z+'px';d.style.left=(r()*1180-50)+'px';d.style.top=(r()*1300+40)+'px';
+var c=tint[Math.floor(r()*tint.length)];d.style.background='radial-gradient(circle,'+c+' 0%,transparent 68%)';d.style.opacity=(0.25+r()*0.5).toFixed(2);host.appendChild(d);}})
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#mn-top',{opacity:0},{opacity:1,duration:0.2},0);
+tl.fromTo('#mn-title',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.18},0.05);
+tl.fromTo('#mn-cry',{scale:0.3,rotation:-40,opacity:0},{scale:1,rotation:0,opacity:1,duration:0.6,ease:'expo.out'},0.0);
+tl.to('#mn-cry',{rotation:12,duration:1.1,ease:'none'},0.6);
+[['#mn-mg',-200,-100],['#mn-k',200,-100],['#mn-ca',-200,100],['#mn-na',200,100]].forEach(function(e,i){
+ tl.fromTo(e[0],{x:-e[1]*-1*0+ (e[1]>0?-260:260),y:(e[2]>0?-200:200),scale:0.3,opacity:0},{x:0,y:0,scale:1,opacity:1,duration:0.5,ease:'back.out(1.3)'},0.36+i*0.12);});
+tl.to(['#mn-mg','#mn-k','#mn-ca','#mn-na','#mn-cry','#mn-title','#mn-top'],{opacity:0,scale:0.9,filter:'blur(8px)',duration:0.18,ease:'power3.in'},1.7);
+
+window.__timelines["minerals"] = tl;
+</script>
+</template>
