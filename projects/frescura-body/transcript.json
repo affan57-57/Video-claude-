@@ -1,0 +1,574 @@
+[
+ {
+  "start": 0.0,
+  "end": 4.02,
+  "text": " Tak risau ke kalau satu hari nanti, suami dah tak rasa seronok nak peluk korang?",
+  "words": [
+   {
+    "w": " Tak",
+    "s": 0.0,
+    "e": 0.02
+   },
+   {
+    "w": " risau",
+    "s": 0.02,
+    "e": 0.4
+   },
+   {
+    "w": " ke",
+    "s": 0.4,
+    "e": 0.56
+   },
+   {
+    "w": " kalau",
+    "s": 0.56,
+    "e": 0.86
+   },
+   {
+    "w": " satu",
+    "s": 0.86,
+    "e": 1.1
+   },
+   {
+    "w": " hari",
+    "s": 1.1,
+    "e": 1.32
+   },
+   {
+    "w": " nanti,",
+    "s": 1.32,
+    "e": 1.74
+   },
+   {
+    "w": " suami",
+    "s": 1.74,
+    "e": 2.32
+   },
+   {
+    "w": " dah",
+    "s": 2.32,
+    "e": 2.44
+   },
+   {
+    "w": " tak",
+    "s": 2.44,
+    "e": 2.6
+   },
+   {
+    "w": " rasa",
+    "s": 2.6,
+    "e": 2.8
+   },
+   {
+    "w": " seronok",
+    "s": 2.8,
+    "e": 3.32
+   },
+   {
+    "w": " nak",
+    "s": 3.32,
+    "e": 3.42
+   },
+   {
+    "w": " peluk",
+    "s": 3.42,
+    "e": 3.7
+   },
+   {
+    "w": " korang?",
+    "s": 3.7,
+    "e": 4.02
+   }
+  ]
+ },
+ {
+  "start": 4.1,
+  "end": 8.48,
+  "text": " Kadang-kadang, kita terlalu sibuk uruskan rumah tangga sampai terlupa nak jaga diri sendiri.",
+  "words": [
+   {
+    "w": " Kadang",
+    "s": 4.1,
+    "e": 4.38
+   },
+   {
+    "w": "-kadang,",
+    "s": 4.38,
+    "e": 4.68
+   },
+   {
+    "w": " kita",
+    "s": 4.68,
+    "e": 4.9
+   },
+   {
+    "w": " terlalu",
+    "s": 4.9,
+    "e": 5.4
+   },
+   {
+    "w": " sibuk",
+    "s": 5.4,
+    "e": 5.78
+   },
+   {
+    "w": " uruskan",
+    "s": 5.78,
+    "e": 6.24
+   },
+   {
+    "w": " rumah",
+    "s": 6.24,
+    "e": 6.42
+   },
+   {
+    "w": " tangga",
+    "s": 6.42,
+    "e": 6.82
+   },
+   {
+    "w": " sampai",
+    "s": 6.82,
+    "e": 7.14
+   },
+   {
+    "w": " terlupa",
+    "s": 7.14,
+    "e": 7.72
+   },
+   {
+    "w": " nak",
+    "s": 7.72,
+    "e": 7.82
+   },
+   {
+    "w": " jaga",
+    "s": 7.82,
+    "e": 8.12
+   },
+   {
+    "w": " diri",
+    "s": 8.12,
+    "e": 8.26
+   },
+   {
+    "w": " sendiri.",
+    "s": 8.26,
+    "e": 8.48
+   }
+  ]
+ },
+ {
+  "start": 8.84,
+  "end": 12.28,
+  "text": " Kepersihan badan dan kesegaran diri pun penting dalam hubungan suami-isteri.",
+  "words": [
+   {
+    "w": " Kepersihan",
+    "s": 8.84,
+    "e": 9.22
+   },
+   {
+    "w": " badan",
+    "s": 9.22,
+    "e": 9.56
+   },
+   {
+    "w": " dan",
+    "s": 9.56,
+    "e": 9.78
+   },
+   {
+    "w": " kesegaran",
+    "s": 9.78,
+    "e": 10.34
+   },
+   {
+    "w": " diri",
+    "s": 10.34,
+    "e": 10.6
+   },
+   {
+    "w": " pun",
+    "s": 10.6,
+    "e": 10.72
+   },
+   {
+    "w": " penting",
+    "s": 10.72,
+    "e": 11.16
+   },
+   {
+    "w": " dalam",
+    "s": 11.16,
+    "e": 11.32
+   },
+   {
+    "w": " hubungan",
+    "s": 11.32,
+    "e": 11.72
+   },
+   {
+    "w": " suami",
+    "s": 11.72,
+    "e": 11.96
+   },
+   {
+    "w": "-isteri.",
+    "s": 11.96,
+    "e": 12.28
+   }
+  ]
+ },
+ {
+  "start": 12.36,
+  "end": 15.8,
+  "text": " Jangan sampai kita sendiri abaikan penjagaan diri.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 12.36,
+    "e": 12.9
+   },
+   {
+    "w": " sampai",
+    "s": 12.9,
+    "e": 13.36
+   },
+   {
+    "w": " kita",
+    "s": 13.36,
+    "e": 13.72
+   },
+   {
+    "w": " sendiri",
+    "s": 13.72,
+    "e": 14.08
+   },
+   {
+    "w": " abaikan",
+    "s": 14.08,
+    "e": 14.86
+   },
+   {
+    "w": " penjagaan",
+    "s": 14.86,
+    "e": 15.52
+   },
+   {
+    "w": " diri.",
+    "s": 15.52,
+    "e": 15.8
+   }
+  ]
+ },
+ {
+  "start": 15.82,
+  "end": 19.16,
+  "text": " Sentiasa tampil bersih, segar dan harum depan suami,",
+  "words": [
+   {
+    "w": " Sentiasa",
+    "s": 15.82,
+    "e": 16.32
+   },
+   {
+    "w": " tampil",
+    "s": 16.32,
+    "e": 16.54
+   },
+   {
+    "w": " bersih,",
+    "s": 16.54,
+    "e": 16.96
+   },
+   {
+    "w": " segar",
+    "s": 16.98,
+    "e": 17.62
+   },
+   {
+    "w": " dan",
+    "s": 17.62,
+    "e": 17.84
+   },
+   {
+    "w": " harum",
+    "s": 17.84,
+    "e": 18.28
+   },
+   {
+    "w": " depan",
+    "s": 18.28,
+    "e": 18.76
+   },
+   {
+    "w": " suami,",
+    "s": 18.76,
+    "e": 19.16
+   }
+  ]
+ },
+ {
+  "start": 19.22,
+  "end": 22.96,
+  "text": " pastinya, fresh kura bodi dengan buih lembut terus daripada botol",
+  "words": [
+   {
+    "w": " pastinya,",
+    "s": 19.22,
+    "e": 19.78
+   },
+   {
+    "w": " fresh",
+    "s": 19.84,
+    "e": 20.04
+   },
+   {
+    "w": " kura",
+    "s": 20.04,
+    "e": 20.34
+   },
+   {
+    "w": " bodi",
+    "s": 20.34,
+    "e": 20.66
+   },
+   {
+    "w": " dengan",
+    "s": 20.66,
+    "e": 20.94
+   },
+   {
+    "w": " buih",
+    "s": 20.94,
+    "e": 21.6
+   },
+   {
+    "w": " lembut",
+    "s": 21.6,
+    "e": 22.02
+   },
+   {
+    "w": " terus",
+    "s": 22.02,
+    "e": 22.28
+   },
+   {
+    "w": " daripada",
+    "s": 22.28,
+    "e": 22.62
+   },
+   {
+    "w": " botol",
+    "s": 22.62,
+    "e": 22.96
+   }
+  ]
+ },
+ {
+  "start": 22.96,
+  "end": 26.0,
+  "text": " dan pilihan wangian, bombshell serta minat fantasi.",
+  "words": [
+   {
+    "w": " dan",
+    "s": 22.96,
+    "e": 23.18
+   },
+   {
+    "w": " pilihan",
+    "s": 23.18,
+    "e": 23.62
+   },
+   {
+    "w": " wangian,",
+    "s": 23.62,
+    "e": 24.02
+   },
+   {
+    "w": " bombshell",
+    "s": 24.12,
+    "e": 24.7
+   },
+   {
+    "w": " serta",
+    "s": 24.7,
+    "e": 25.36
+   },
+   {
+    "w": " minat",
+    "s": 25.36,
+    "e": 25.6
+   },
+   {
+    "w": " fantasi.",
+    "s": 25.6,
+    "e": 26.0
+   }
+  ]
+ },
+ {
+  "start": 26.22,
+  "end": 28.54,
+  "text": " So, jangan tunggu sampai terlupa nak manjakan diri.",
+  "words": [
+   {
+    "w": " So,",
+    "s": 26.22,
+    "e": 26.46
+   },
+   {
+    "w": " jangan",
+    "s": 26.48,
+    "e": 26.72
+   },
+   {
+    "w": " tunggu",
+    "s": 26.72,
+    "e": 27.04
+   },
+   {
+    "w": " sampai",
+    "s": 27.04,
+    "e": 27.26
+   },
+   {
+    "w": " terlupa",
+    "s": 27.26,
+    "e": 27.64
+   },
+   {
+    "w": " nak",
+    "s": 27.64,
+    "e": 27.9
+   },
+   {
+    "w": " manjakan",
+    "s": 27.9,
+    "e": 28.18
+   },
+   {
+    "w": " diri.",
+    "s": 28.18,
+    "e": 28.54
+   }
+  ]
+ },
+ {
+  "start": 28.54,
+  "end": 30.96,
+  "text": " Tekan back kuning sekarang dan check out fresh kura bodi korang.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 28.54,
+    "e": 28.88
+   },
+   {
+    "w": " back",
+    "s": 28.88,
+    "e": 28.98
+   },
+   {
+    "w": " kuning",
+    "s": 28.98,
+    "e": 29.2
+   },
+   {
+    "w": " sekarang",
+    "s": 29.2,
+    "e": 29.34
+   },
+   {
+    "w": " dan",
+    "s": 29.34,
+    "e": 29.66
+   },
+   {
+    "w": " check",
+    "s": 29.66,
+    "e": 29.84
+   },
+   {
+    "w": " out",
+    "s": 29.84,
+    "e": 30.0
+   },
+   {
+    "w": " fresh",
+    "s": 30.0,
+    "e": 30.12
+   },
+   {
+    "w": " kura",
+    "s": 30.12,
+    "e": 30.38
+   },
+   {
+    "w": " bodi",
+    "s": 30.38,
+    "e": 30.64
+   },
+   {
+    "w": " korang.",
+    "s": 30.64,
+    "e": 30.96
+   }
+  ]
+ },
+ {
+  "start": 31.16,
+  "end": 32.62,
+  "text": " Stok memang tak banyak.",
+  "words": [
+   {
+    "w": " Stok",
+    "s": 31.16,
+    "e": 31.68
+   },
+   {
+    "w": " memang",
+    "s": 31.68,
+    "e": 31.9
+   },
+   {
+    "w": " tak",
+    "s": 31.9,
+    "e": 32.42
+   },
+   {
+    "w": " banyak.",
+    "s": 32.42,
+    "e": 32.62
+   }
+  ]
+ },
+ {
+  "start": 32.8,
+  "end": 34.28,
+  "text": " Siapa cepat, dia dapat.",
+  "words": [
+   {
+    "w": " Siapa",
+    "s": 32.8,
+    "e": 33.14
+   },
+   {
+    "w": " cepat,",
+    "s": 33.14,
+    "e": 33.6
+   },
+   {
+    "w": " dia",
+    "s": 33.6,
+    "e": 33.96
+   },
+   {
+    "w": " dapat.",
+    "s": 33.96,
+    "e": 34.28
+   }
+  ]
+ }
+]

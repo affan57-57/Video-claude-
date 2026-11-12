@@ -1,0 +1,25 @@
+set -e
+S=stock; O=hf/frescura/assets/video; mkdir -p $O
+COOL="eq=saturation=0.55:contrast=1.08:brightness=-0.03,colorbalance=bs=0.06:bm=0.03:rh=-0.03"
+WARM="eq=saturation=0.9:contrast=1.06,colorbalance=rh=0.04:gh=0.01:bh=-0.04:rs=0.02:bs=-0.02"
+LUX="eq=saturation=1.0:contrast=1.1:brightness=-0.02,colorbalance=rh=0.03:bh=-0.03"
+mk(){ # name src start dur grade
+ ffmpeg -v error -y -ss $3 -t $4 -i "$2" -an -vf "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,fps=30,$5,format=yuv420p" -c:v libx264 -preset medium -crf 18 -g 15 -movflags +faststart $O/$1.mp4; echo $1; }
+mk hug1 $S/45973.mp4 0.3 2.6 "$COOL"
+mk hug2 $S/42975.mp4 2.0 2.8 "$COOL"
+mk laundry $S/47111.mp4 3.0 2.2 "$COOL"
+mk p_laundry2 $S/45121.mp4 4.0 3.2 "$COOL"
+mk p_mom $S/4549.mp4 2.0 3.2 "$COOL"
+mk p_wash $S/20849.mp4 1.0 3.2 "$COOL"
+mk water $S/34517.mp4 2.0 4.2 "$LUX"
+mk selfcare $S/51169.mp4 0.5 4.0 "$WARM"
+mk rose $S/171.mp4 3.0 2.4 "$LUX"
+mk couple $S/4643.mp4 4.0 2.0 "$WARM"
+mk mall $S/31086.mp4 0.5 2.2 "$WARM"
+mk pumpA src/pump.mov 2.0 1.5 "$LUX"
+mk pumpB src/pump.mov 11.0 2.4 "$LUX"
+mk pumpC src/pump.mov 24.6 1.8 "$LUX"
+mk roses_red $S/6824.mp4 2.0 3.4 "$LUX"
+mk stars $S/46119.mp4 1.0 3.4 "$LUX"
+mk boutique $S/21980.mp4 2.0 1.6 "$WARM"
+mk phone $S/43270.mp4 0.5 2.8 "$WARM"

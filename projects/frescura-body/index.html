@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Bodoni Moda"; src: url(assets/fonts/bodoni.woff2) format("woff2"); font-style: normal; font-weight: 400 900; }
+      @font-face { font-family: "Bodoni Moda"; src: url(assets/fonts/bodoni-italic.woff2) format("woff2"); font-style: italic; font-weight: 400 900; }
+      @font-face { font-family: "Jost"; src: url(assets/fonts/jost.woff2) format("woff2"); font-weight: 300 800; }
+      :root {
+        --ground: #0b0a09;
+        --ink: #f7f2ea;
+        --gold: #d9b779;
+        --gold2: #f3dfb4;
+        --serif: "Bodoni Moda", serif;
+        --sans: "Jost", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--sans); color: var(--ink); background: var(--ground); }
+      .clip { position: absolute; inset: 0; }
+      video.clip, img.full { width: 1080px; height: 1920px; object-fit: cover; }
+      .gold { background: linear-gradient(100deg, #b8904f 0%, #f3dfb4 38%, #d9b779 60%, #fff3d6 80%, #b8904f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .serif { font-family: var(--serif); }
+      .it { font-style: italic; }
+      .shade { background: linear-gradient(180deg, rgba(8,7,6,.55) 0%, rgba(8,7,6,.05) 30%, rgba(8,7,6,.1) 55%, rgba(8,7,6,.78) 100%); }
+      .tag { font-family: var(--sans); font-weight: 500; font-size: 26px; letter-spacing: .42em; text-transform: uppercase; color: var(--gold2); }
+
+      #frame { position: absolute; inset: 34px; border: 1.5px solid rgba(217,183,121,.38); border-radius: 6px; }
+      #brandTop { position: absolute; top: 92px; left: 0; right: 0; text-align: center; font-size: 22px; letter-spacing: .6em; font-weight: 500; color: rgba(247,242,234,.82); }
+      #progress { position: absolute; top: 34px; left: 34px; height: 4px; width: 1012px; transform-origin: 0 50%; background: linear-gradient(90deg,#b8904f,#f3dfb4); }
+      #vignette { z-index: 78; background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); }
+      #grain { z-index: 79; opacity: .09; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); background-size: 300px 300px; inset: -60px; }
+      #flash { z-index: 90; background: #fff8ec; opacity: 0; }
+
+      #cap { z-index: 70; }
+      .chunk { position: absolute; left: 70px; right: 70px; top: 1210px; text-align: center; opacity: 0; visibility: hidden; line-height: 1.08; }
+      .w { display: inline-block; font-family: var(--sans); font-weight: 600; font-size: 70px; letter-spacing: -.005em; margin: 0 .13em; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.5); }
+      .w.acc { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 88px; letter-spacing: -.01em; text-shadow: none; filter: drop-shadow(0 4px 14px rgba(0,0,0,.65)); }
+
+      #hook { z-index: 60; }
+      #h1a { position: absolute; top: 540px; width: 100%; text-align: center; font-size: 44px; }
+      #h1b { position: absolute; top: 650px; width: 100%; text-align: center; font-size: 104px; font-weight: 500; line-height: 1; }
+      #h2a { position: absolute; top: 520px; width: 100%; text-align: center; font-size: 280px; font-weight: 800; letter-spacing: -.03em; line-height: .9; }
+      #h2b { position: absolute; top: 830px; width: 100%; text-align: center; font-family: var(--sans); font-weight: 600; font-size: 64px; letter-spacing: .02em; text-shadow: 0 4px 20px rgba(0,0,0,.5); }
+      #h2c { position: absolute; top: 920px; width: 100%; text-align: center; font-size: 132px; font-weight: 600; line-height: 1; }
+      .mask { overflow: hidden; display: inline-block; padding: 0 .06em .1em; vertical-align: top; }
+      .mask > span { display: inline-block; }
+
+      .glass { background: rgba(20,17,14,.42); border: 1px solid rgba(243,223,180,.35); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px); border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+      #todo { position: absolute; left: 170px; width: 740px; top: 430px; height: auto; bottom: auto; padding: 44px 56px; z-index: 50; }
+      #todo h3 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 58px; margin-bottom: 26px; }
+      .row { display: flex; align-items: center; gap: 28px; font-size: 46px; font-weight: 500; padding: 14px 0; border-top: 1px solid rgba(243,223,180,.18); }
+      .box { width: 54px; height: 54px; border-radius: 50%; border: 2px solid rgba(243,223,180,.7); display: flex; align-items: center; justify-content: center; flex: none; }
+      .box svg { width: 30px; height: 30px; }
+      .row.bad .box { border-color: #ff7a7a; }
+
+      .panel { position: absolute; left: 0; width: 1080px; height: 636px; overflow: hidden; }
+      .panel video.clip { top: -642px; }
+
+      #edu { z-index: 50; }
+      .circ { position: absolute; top: 560px; width: 400px; height: 400px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 44px; font-weight: 600; letter-spacing: .18em; background: radial-gradient(circle, rgba(217,183,121,.2), rgba(217,183,121,.04) 70%); }
+      #cA { left: 150px; justify-content: flex-start; padding-left: 64px; } #cB { left: 530px; justify-content: flex-end; padding-right: 64px; }
+      .circ { font-size: 38px !important; letter-spacing: .12em !important; }
+      #heart { position: absolute; left: 480px; top: 700px; width: 120px; height: 120px; }
+      #eduChip { position: absolute; top: 400px; left: 0; right: 0; display: flex; justify-content: center; }
+      .chip { padding: 16px 34px; border-radius: 999px; border: 1px solid rgba(243,223,180,.6); background: rgba(10,9,8,.5); font-size: 26px; letter-spacing: .38em; font-weight: 500; color: var(--gold2); }
+
+      #ab { z-index: 50; }
+      #abA { position: absolute; top: 330px; width: 100%; text-align: center; font-size: 56px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; text-shadow: 0 4px 20px rgba(0,0,0,.5); }
+      #abB { filter: drop-shadow(0 4px 16px rgba(0,0,0,.75)); position: absolute; top: 410px; width: 100%; text-align: center; font-size: 170px; font-weight: 600; }
+      #strike { position: absolute; top: 530px; left: 250px; width: 580px; height: 10px; background: linear-gradient(90deg,#b8904f,#f3dfb4); transform-origin: 0 50%; border-radius: 6px; }
+      #abC { position: absolute; top: 1240px; width: 100%; text-align: center; text-shadow: 0 4px 24px rgba(0,0,0,.5); }
+      #abC .l1 { font-size: 44px; letter-spacing: .3em; font-weight: 500; text-transform: uppercase; }
+      #abC .l2 { filter: drop-shadow(0 4px 16px rgba(0,0,0,.6)); font-size: 128px; font-weight: 600; line-height: 1.05; }
+
+      #pills { z-index: 50; }
+      .pill { position: absolute; left: 280px; width: 520px; height: 120px; display: flex; align-items: center; justify-content: center; gap: 22px; font-family: var(--serif); font-style: italic; font-size: 70px; font-weight: 600; }
+      .pill i { font-style: normal; font-family: var(--sans); font-size: 30px; letter-spacing: .1em; color: var(--gold); }
+
+      #mallBlur { filter: blur(7px) brightness(.5) saturate(.9); }
+      #reveal { z-index: 40; }
+      #spot { position: absolute; left: 90px; top: -200px; width: 900px; height: 1700px; transform-origin: 50% 0; background: radial-gradient(ellipse 40% 60% at 50% 0%, rgba(255,240,210,.42), rgba(255,240,210,0) 70%); mix-blend-mode: screen; }
+      #podium { position: absolute; left: 140px; top: 1290px; width: 800px; height: 330px; }
+      #podTop { position: absolute; left: 0; top: 0; width: 800px; height: 150px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, #3a3330, #141110 70%); border: 1.5px solid rgba(243,223,180,.55); box-shadow: 0 0 60px rgba(243,223,180,.15) inset; }
+      #podBody { position: absolute; left: 0; top: 75px; width: 800px; height: 250px; background: linear-gradient(90deg,#0d0b0a,#2a2421 45%,#0d0b0a); border-left: 1.5px solid rgba(243,223,180,.3); border-right: 1.5px solid rgba(243,223,180,.3); }
+      #bottles { position: absolute; left: 230px; top: 520px; width: 620px; }
+      #bottles img { width: 620px; display: block; filter: drop-shadow(0 40px 40px rgba(0,0,0,.6)); }
+      #sheen { position: absolute; top: 400px; left: -400px; width: 260px; height: 1000px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,250,235,.55), rgba(255,255,255,0)); transform: rotate(18deg); mix-blend-mode: overlay; }
+      #revTitle { position: absolute; top: 200px; width: 100%; text-align: center; }
+      #revTitle .t { font-family: var(--serif); font-size: 128px; font-weight: 500; letter-spacing: .12em; line-height: 1; }
+      #revTitle .s { margin-top: 26px; }
+
+      #foam { z-index: 50; }
+      .call { position: absolute; display: flex; align-items: center; gap: 18px; }
+      .dot { width: 26px; height: 26px; border-radius: 50%; background: var(--gold2); box-shadow: 0 0 0 10px rgba(243,223,180,.25), 0 0 30px rgba(243,223,180,.8); }
+      .ln { height: 2px; width: 120px; background: var(--gold2); transform-origin: 0 50%; }
+      .lbl { padding: 18px 30px; font-size: 40px; font-weight: 600; letter-spacing: .02em; }
+      #foamTop { position: absolute; top: 300px; width: 100%; display: flex; justify-content: center; }
+
+      #split { z-index: 45; }
+      .half { position: absolute; left: 0; width: 1080px; overflow: hidden; }
+      #hTop { top: 0; height: 960px; clip-path: polygon(0 0,100% 0,100% 90%,0 100%); }
+      #hBot { top: 880px; height: 1040px; clip-path: polygon(0 8%,100% 0,100% 100%,0 100%); }
+      #hTop video.clip { top: -400px; } #hBot video.clip { top: -500px; }
+      .hb { position: absolute; height: 640px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.6)); }
+      .scName { position: absolute; text-shadow: 0 4px 20px rgba(0,0,0,.6); }
+      .scName .a { font-size: 26px; letter-spacing: .42em; font-weight: 500; color: rgba(255,255,255,.9); }
+      .scName .b { font-family: var(--serif); font-size: 96px; font-weight: 600; line-height: 1; margin-top: 10px; }
+      .scName .c { font-family: var(--serif); font-style: italic; font-size: 68px; font-weight: 600; margin-top: 8px; text-shadow: none; }
+      .scName .d { margin-top: 24px; font-size: 26px; letter-spacing: .2em; color: rgba(255,255,255,.85); }
+      #scHead { position: absolute; top: 862px; left: 0; right: 0; display: flex; justify-content: center; }
+
+      #manja { z-index: 50; }
+      #manjaT { filter: drop-shadow(0 4px 18px rgba(0,0,0,.6)); position: absolute; top: 380px; width: 100%; text-align: center; font-size: 150px; font-weight: 600; line-height: 1; text-shadow: 0 6px 30px rgba(0,0,0,.4); }
+
+      #cta { z-index: 50; }
+      #phone { position: absolute; left: 250px; top: 300px; width: 580px; height: 1150px; border-radius: 74px; background: #0c0b0a; border: 10px solid #1d1a18; box-shadow: 0 0 0 2px rgba(243,223,180,.5), 0 60px 120px rgba(0,0,0,.6); overflow: hidden; }
+      #phone img { position: absolute; left: 0; top: 0; width: 560px; height: 840px; object-fit: cover; }
+      #pInfo { position: absolute; left: 0; right: 0; top: 840px; bottom: 0; background: #f6f1ea; color: #1a1612; padding: 26px 34px; }
+      #pInfo .n { font-family: var(--serif); font-size: 40px; font-weight: 600; }
+      #pInfo .m { font-size: 22px; letter-spacing: .25em; color: #7b6a55; margin-top: 6px; }
+      #basket { position: absolute; left: 34px; right: 34px; bottom: 26px; height: 92px; border-radius: 46px; background: #ffd21f; display: flex; align-items: center; justify-content: center; gap: 16px; font-weight: 700; font-size: 34px; color: #1a1612; }
+      #basket svg { width: 44px; height: 44px; }
+      #ripple { position: absolute; left: 510px; top: 1335px; width: 60px; height: 60px; border-radius: 50%; border: 4px solid #fff; opacity: 0; }
+      #finger { position: absolute; left: 520px; top: 1345px; width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,.85); box-shadow: 0 10px 30px rgba(0,0,0,.4); opacity: 0; }
+
+      #urg { z-index: 50; }
+      #stockBox { position: absolute; left: 140px; width: 800px; top: 300px; padding: 40px 48px; }
+      #stockBox .h { display: flex; justify-content: space-between; align-items: center; }
+      #stockBox .h b { font-size: 30px; letter-spacing: .38em; font-weight: 600; color: var(--gold2); }
+      #stockPct { font-family: var(--serif); font-size: 76px; font-weight: 600; }
+      #bar { margin-top: 26px; height: 18px; border-radius: 9px; background: rgba(255,255,255,.15); overflow: hidden; }
+      #barFill { height: 100%; width: 100%; border-radius: 9px; background: linear-gradient(90deg,#b3122a,#e0596c); transform-origin: 0 50%; }
+      #urgT { filter: drop-shadow(0 4px 18px rgba(0,0,0,.6)); position: absolute; top: 1150px; width: 100%; text-align: center; text-shadow: 0 6px 30px rgba(0,0,0,.5); }
+      #urgT .a { font-family: var(--serif); font-size: 140px; font-weight: 600; line-height: 1; }
+      #urgT .b { font-family: var(--serif); font-style: italic; font-size: 150px; font-weight: 600; line-height: 1.05; }
+
+      #endc { z-index: 60; background: radial-gradient(ellipse at 50% 42%, #1d1915 0%, #070606 70%); }
+      #logo { position: absolute; left: 140px; top: 500px; width: 800px; height: 800px; mix-blend-mode: screen; }
+      #endT { position: absolute; top: 1330px; width: 100%; text-align: center; }
+      #endT .a { font-size: 30px; letter-spacing: .5em; color: var(--gold2); font-weight: 500; }
+      #endT .b { margin-top: 40px; display: inline-flex; align-items: center; gap: 16px; padding: 22px 44px; border-radius: 999px; background: #ffd21f; color: #1a1612; font-weight: 700; font-size: 36px; }
+      #endT .b svg { width: 40px; height: 40px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="37.2" data-width="1080" data-height="1920">
+
+      <!-- ================= B-ROLL TRACK ================= -->
+      <video id="v_hug1" class="clip" src="assets/video/hug1.mp4" data-start="0" data-duration="2.1" muted playsinline style="z-index:1"></video>
+      <video id="v_hug2" class="clip" src="assets/video/hug2.mp4" data-start="2.1" data-duration="2.25" muted playsinline style="z-index:1"></video>
+      <video id="v_laundry" class="clip" src="assets/video/laundry.mp4" data-start="4.35" data-duration="1.75" muted playsinline style="z-index:1"></video>
+
+      <div id="panels" style="position:absolute;inset:0;z-index:2;background:#0b0a09;visibility:hidden">
+        <div class="panel" id="pn1" style="top:0"><video id="vp1" class="clip" src="assets/video/p_laundry2.mp4" data-start="6.1" data-duration="2.8" muted playsinline></video></div>
+        <div class="panel" id="pn2" style="top:642px"><video id="vp2" class="clip" src="assets/video/p_mom.mp4" data-start="6.1" data-duration="2.8" muted playsinline></video></div>
+        <div class="panel" id="pn3" style="top:1284px"><video id="vp3" class="clip" src="assets/video/p_wash.mp4" data-start="6.1" data-duration="2.8" muted playsinline></video></div>
+      </div>
+
+      <video id="v_water" class="clip" src="assets/video/water.mp4" data-start="8.9" data-duration="3.7" muted playsinline style="z-index:1"></video>
+      <video id="v_self" class="clip" src="assets/video/selfcare.mp4" data-start="12.6" data-duration="3.5" muted playsinline style="z-index:1;filter:brightness(.72)"></video>
+      <video id="v_rose" class="clip" src="assets/video/rose.mp4" data-start="16.1" data-duration="1.9" muted playsinline style="z-index:1"></video>
+      <video id="v_couple" class="clip" src="assets/video/couple.mp4" data-start="18.0" data-duration="1.5" muted playsinline style="z-index:1"></video>
+      <video id="mallBlur" class="clip" src="assets/video/mall.mp4" data-start="19.5" data-duration="1.4" muted playsinline style="z-index:1"></video>
+      <video id="v_pumpA" class="clip" src="assets/video/pumpA.mp4" data-start="20.9" data-duration="1.0" muted playsinline style="z-index:1"></video>
+      <video id="v_pumpB" class="clip" src="assets/video/pumpB.mp4" data-start="21.9" data-duration="1.3" muted playsinline style="z-index:1"></video>
+      <video id="v_bout" class="clip" src="assets/video/boutique.mp4" data-start="26.3" data-duration="1.1" muted playsinline style="z-index:1"></video>
+      <video id="v_pumpC" class="clip" src="assets/video/pumpC.mp4" data-start="27.4" data-duration="1.4" muted playsinline style="z-index:1"></video>
+      <video id="v_phone" class="clip" src="assets/video/phone.mp4" data-start="28.8" data-duration="2.5" muted playsinline style="z-index:1;filter:blur(10px) brightness(.45)"></video>
+      <img id="i_pair" class="clip full" src="assets/img/flatlay_pair.jpg" data-start="31.3" data-duration="3.3" style="z-index:1" alt="" />
+
+      <div id="shade" class="clip shade" data-start="0" data-duration="37.2" style="z-index:5"></div>
+
+      <!-- S1 HOOK -->
+      <div id="hook" class="clip" data-start="0" data-duration="4.35">
+        <div id="h1a" class="tag">Tak risau ke ?</div>
+        <div id="h1b" class="serif it"><span class="mask" id="h1b1"><span>kalau satu hari</span></span><br /><span class="mask" id="h1b2"><span class="gold">nanti…</span></span></div>
+        <div id="h2a" class="serif"><span class="mask"><span>SUAMI</span></span></div>
+        <div id="h2b">dah tak rasa seronok</div>
+        <div id="h2c" class="serif it"><span class="mask"><span class="gold">nak peluk korang?</span></span></div>
+      </div>
+
+      <!-- S2 CHECKLIST -->
+      <div id="todoWrap" class="clip" data-start="4.5" data-duration="4.4" style="z-index:50">
+        <div id="todo" class="glass">
+          <h3>Rutin harian <span class="gold">isteri</span></h3>
+          <div class="row" id="r1"><div class="box"><svg viewBox="0 0 24 24"><path id="k1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#f3dfb4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div>Kemas rumah</div>
+          <div class="row" id="r2"><div class="box"><svg viewBox="0 0 24 24"><path id="k2" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#f3dfb4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div>Basuh baju</div>
+          <div class="row" id="r3"><div class="box"><svg viewBox="0 0 24 24"><path id="k3" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#f3dfb4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div>Urus anak</div>
+          <div class="row bad" id="r4"><div class="box"><svg viewBox="0 0 24 24"><path id="k4" d="M6 6l12 12M18 6L6 18" fill="none" stroke="#ff7a7a" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1.1"/></svg></div><span id="r4t">Jaga diri sendiri</span></div>
+        </div>
+      </div>
+
+      <!-- S3 EDU -->
+      <div id="edu" class="clip" data-start="8.9" data-duration="3.7">
+        <div id="eduChip"><div class="chip">TAHUKAH ANDA</div></div>
+        <div class="circ" id="cA">BERSIH</div>
+        <div class="circ" id="cB">SEGAR</div>
+        <svg id="heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z" fill="#d9b779"/></svg>
+      </div>
+
+      <!-- S4 ABAIKAN -->
+      <div id="ab" class="clip" data-start="12.6" data-duration="3.5">
+        <div id="abA">Jangan sampai</div>
+        <div id="abB" class="serif it"><span class="gold">abaikan</span></div>
+        <div id="strike"></div>
+        <div id="abC"><div class="l1">kita sendiri lupa</div><div class="l2 serif">Penjagaan <span class="gold it">diri</span></div></div>
+      </div>
+
+      <!-- S5 PILLS -->
+      <div id="pills" class="clip" data-start="16.1" data-duration="3.4">
+        <div class="pill glass" id="pl1" style="top:430px"><i>01</i><span class="gold">Bersih</span></div>
+        <div class="pill glass" id="pl2" style="top:580px"><i>02</i><span class="gold">Segar</span></div>
+        <div class="pill glass" id="pl3" style="top:730px"><i>03</i><span class="gold">Harum</span></div>
+      </div>
+
+      <!-- S6 LUXURY MALL REVEAL -->
+      <div id="reveal" class="clip" data-start="19.5" data-duration="1.4">
+        <div id="spot"></div>
+        <div id="podium"><div id="podBody"></div><div id="podTop"></div></div>
+        <div id="bottles"><img src="assets/img/pair_studio.png" alt="" /></div>
+        <div id="sheen"></div>
+        <div id="revTitle"><div class="t gold">FRESCURA</div><div class="t" style="font-size:72px;letter-spacing:.5em;margin-top:8px">BODY</div><div class="s tag">Soft &nbsp;|&nbsp; Fragrant</div></div>
+      </div>
+
+      <!-- FOAM CALLOUTS -->
+      <div id="foam" class="clip" data-start="20.9" data-duration="2.3">
+        <div id="foamTop"><div class="chip">FOAM PUMP</div></div>
+        <div class="call" id="c1" style="left:110px;top:620px"><div class="dot"></div><div class="ln"></div><div class="lbl glass">Buih <span class="serif it gold" style="font-size:50px">lembut</span></div></div>
+        <div class="call" id="c2" style="left:150px;top:780px"><div class="dot"></div><div class="ln"></div><div class="lbl glass">Terus dari botol</div></div>
+        <div class="call" id="c3" style="left:190px;top:940px"><div class="dot"></div><div class="ln"></div><div class="lbl glass">Tak perlu span</div></div>
+      </div>
+
+      <!-- S7 SCENT SPLIT -->
+      <div id="split" style="position:absolute;inset:0;z-index:45;visibility:hidden">
+        <div class="half" id="hTop">
+          <video id="vRoses" class="clip" src="assets/video/roses_red.mp4" data-start="23.2" data-duration="3.1" muted playsinline style="filter:brightness(.62)"></video>
+          <img class="hb" id="bG" src="assets/img/bottle_glory.png" style="left:600px;top:170px" alt="" />
+          <div class="scName" id="nG" style="left:90px;top:300px"><div class="a">WOMAN GLORY</div><div class="b">Bomb-<br />shell</div><div class="d">ROSE · OCEAN SALT</div></div>
+        </div>
+        <div class="half" id="hBot">
+          <video id="vStars" class="clip" src="assets/video/stars.mp4" data-start="23.2" data-duration="3.1" muted playsinline style="filter:brightness(.85)"></video>
+          <img class="hb" id="bN" src="assets/img/bottle_noche.png" style="left:110px;top:250px" alt="" />
+          <div class="scName" id="nN" style="left:560px;top:400px"><div class="a">NOCHE</div><div class="b" style="font-size:84px">Midnight</div><div class="c gold">Fantasy</div><div class="d">AROMATHERAPY</div></div>
+        </div>
+        <div id="scHead"><div class="chip" style="background:rgba(10,9,8,.85)">2 PILIHAN WANGIAN</div></div>
+      </div>
+
+      <!-- S8 MANJAKAN -->
+      <div id="manja" class="clip" data-start="26.3" data-duration="2.5">
+        <div id="manjaT" class="serif"><span class="mask" id="mj1"><span>Manjakan</span></span><br /><span class="mask" id="mj2"><span class="gold it">diri.</span></span></div>
+      </div>
+
+      <!-- S9 CTA -->
+      <div id="cta" class="clip" data-start="28.8" data-duration="2.5">
+        <div id="phone">
+          <img src="assets/img/flatlay_diag.jpg" alt="" />
+          <div id="pInfo"><div class="n">Frescura Body</div><div class="m">FOAMING BODY SHOWER</div>
+            <div id="basket"><svg viewBox="0 0 24 24"><path d="M3 9h18l-2 11H5L3 9zm4 0l3-6m7 6l-3-6" fill="none" stroke="#1a1612" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Beli Sekarang</div>
+          </div>
+        </div>
+        <div id="ripple"></div><div id="finger"></div>
+      </div>
+
+      <!-- S10 URGENCY -->
+      <div id="urg" class="clip" data-start="31.3" data-duration="3.3">
+        <div id="stockBox" class="glass"><div class="h"><b>STOK TERHAD</b><span id="stockPct" class="gold">100%</span></div><div id="bar"><div id="barFill"></div></div></div>
+        <div id="urgT"><div class="a" id="u1"><span class="mask"><span>Siapa cepat,</span></span></div><div class="b" id="u2"><span class="mask"><span class="gold">dia dapat.</span></span></div></div>
+      </div>
+
+      <!-- END CARD -->
+      <div id="endc" class="clip" data-start="34.6" data-duration="2.6">
+        <img id="logo" src="assets/img/logo.jpg" alt="" />
+        <div id="endT"><div class="a">SOFT &nbsp;|&nbsp; FRAGRANT</div>
+          <div class="b"><svg viewBox="0 0 24 24"><path d="M3 9h18l-2 11H5L3 9zm4 0l3-6m7 6l-3-6" fill="none" stroke="#1a1612" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Tekan beg kuning</div></div>
+      </div>
+
+      <!-- CAPTIONS -->
+      <div id="cap" class="clip" data-start="0" data-duration="37.2"></div>
+
+      <!-- CHROME -->
+      <div id="vignette" class="clip" data-start="0" data-duration="37.2"></div>
+      <div id="grain" class="clip" data-start="0" data-duration="37.2"></div>
+      <div id="chrome" class="clip" data-start="0" data-duration="34.6" style="z-index:80"><div id="frame"></div><div id="brandTop">FRESCURA&nbsp;BODY</div><div id="progress"></div></div>
+      <div id="flash" class="clip" data-start="0" data-duration="37.2"></div>
+
+      <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="37.2" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const O = 0.3; // voice offset in film time
+      // caption chunks: [voiceStart, voiceEnd, [[word, voiceTime, accent]]]
+      const CH = [
+        [4.10, 5.74, [["Kadang-kadang", 4.10], ["kita", 4.68], ["terlalu", 4.90], ["sibuk", 5.40, 1]]],
+        [5.74, 6.80, [["uruskan", 5.78], ["rumah", 6.24, 1], ["tangga", 6.42, 1]]],
+        [6.80, 7.70, [["sampai", 6.82], ["terlupa", 7.14]]],
+        [7.70, 8.70, [["nak", 7.72], ["jaga", 7.82], ["diri", 8.12, 1], ["sendiri.", 8.26, 1]]],
+        [8.84, 9.54, [["Kebersihan", 8.84, 1], ["badan", 9.22]]],
+        [9.54, 10.58, [["dan", 9.56], ["kesegaran", 9.78, 1], ["diri", 10.34]]],
+        [10.58, 11.14, [["pun", 10.60], ["penting", 10.72, 1]]],
+        [11.14, 12.34, [["dalam", 11.16], ["hubungan", 11.32], ["suami-isteri.", 11.72, 1]]],
+        [15.82, 16.52, [["Sentiasa", 15.82], ["tampil", 16.32]]],
+        [16.52, 18.26, [["bersih,", 16.54, 1], ["segar", 16.98, 1], ["dan", 17.62], ["harum", 17.84, 1]]],
+        [18.26, 19.20, [["depan", 18.28], ["suami,", 18.76]]],
+        [19.22, 19.82, [["pastinya", 19.22]]],
+        [20.64, 22.00, [["dengan", 20.66], ["buih", 20.94, 1], ["lembut", 21.60, 1]]],
+        [22.00, 22.96, [["terus", 22.02], ["daripada", 22.28], ["botol", 22.62, 1]]],
+        [22.96, 24.10, [["dan", 22.96], ["pilihan", 23.18], ["wangian", 23.62, 1]]],
+        [26.22, 27.02, [["So,", 26.22], ["jangan", 26.48], ["tunggu", 26.72]]],
+        [27.02, 27.62, [["sampai", 27.04], ["terlupa", 27.26]]],
+        [28.54, 29.32, [["Tekan", 28.54], ["beg", 28.88, 1], ["kuning", 28.98, 1], ["sekarang", 29.20]]],
+        [29.32, 29.98, [["dan", 29.34], ["check", 29.66], ["out", 29.84]]],
+        [29.98, 31.10, [["Frescura", 30.00, 1], ["Body", 30.38, 1], ["korang.", 30.64]]],
+        [31.16, 32.76, [["Stok", 31.16], ["memang", 31.68], ["tak", 31.90], ["banyak.", 32.42, 1]]],
+      ];
+      const cap = document.getElementById("cap");
+      const chunkEls = CH.map((c, i) => {
+        const d = document.createElement("div");
+        d.className = "chunk";
+        d.id = "ch" + i;
+        c[2].forEach(([w, t, a]) => {
+          const s = document.createElement("span");
+          s.className = "w" + (a ? " acc gold" : "");
+          s.textContent = w;
+          d.appendChild(s);
+        });
+        if (i >= 17 && i <= 19) d.style.top = "1520px";
+        cap.appendChild(d);
+        return d;
+      });
+
+      const tl = gsap.timeline({ paused: true });
+      const flash = (t, a = 0.85) => tl.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, t);
+      const kb = (sel, t, d, s0, s1) => tl.fromTo(sel, { scale: s0 }, { scale: s1, duration: d, ease: "power1.out", immediateRender: false }, t);
+      const punch = (sel, t) => tl.fromTo(sel, { scale: 1.28, opacity: 0.4 }, { scale: 1.1, opacity: 1, duration: 0.35, ease: "expo.out", immediateRender: false }, t);
+      const rise = (sel, t, d = 0.45) => tl.fromTo(sel, { yPercent: 110, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: d, ease: "expo.out" }, t);
+
+      // captions
+      tl.set(".chunk", { autoAlpha: 0 }, 0);
+      CH.forEach((c, i) => {
+        const el = chunkEls[i];
+        const s = c[0] + O, e = c[1] + O;
+        tl.set(el, { autoAlpha: 1 }, s - 0.03);
+        el.querySelectorAll(".w").forEach((w, j) => {
+          const wt = c[2][j][1] + O;
+          tl.fromTo(w, { opacity: 0, y: 34, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.24, ease: "back.out(2.2)" }, Math.max(s - 0.03, wt - 0.04));
+        });
+        tl.to(el, { autoAlpha: 0, duration: 0.08, ease: "power1.in" }, e - 0.05);
+      });
+
+      // global
+      tl.fromTo("#progress", { scaleX: 0 }, { scaleX: 1, duration: 34.6, ease: "none" }, 0);
+      tl.fromTo("#grain", { x: 0, y: 0 }, { x: 60, y: 45, duration: 37.2, ease: "steps(220)" }, 0);
+      tl.fromTo("#brandTop", { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" }, 0.1);
+
+      // S1 HOOK
+      flash(0, 1);
+      kb("#v_hug1", 0, 2.1, 1.22, 1.06);
+      kb("#v_hug2", 2.1, 2.25, 1.2, 1.04);
+      tl.fromTo("#h1a", { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0.3);
+      rise("#h1b1 > span", 0.86);
+      rise("#h1b2 > span", 1.55);
+      tl.to(["#h1a", "#h1b"], { opacity: 0, y: -40, duration: 0.2 }, 1.95);
+      flash(2.05, 0.55);
+      tl.fromTo("#h2a .mask > span", { yPercent: 110, scale: 1.3, autoAlpha: 0 }, { yPercent: 0, scale: 1, autoAlpha: 1, duration: 0.5, ease: "expo.out" }, 2.04);
+      tl.fromTo("#h2b", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 2.6);
+      rise("#h2c .mask > span", 3.6);
+      tl.fromTo("#hook", { x: 0 }, { x: 14, duration: 0.04, yoyo: true, repeat: 5, ease: "none" }, 3.98);
+      tl.to("#hook", { opacity: 0, scale: 1.12, duration: 0.2, ease: "power2.in" }, 4.15);
+
+      // S2
+      flash(4.35, 0.9);
+      punch("#v_laundry", 4.35);
+      kb("#v_laundry", 4.7, 1.4, 1.1, 1.0);
+      tl.fromTo("#todo", { opacity: 0, y: 80, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" }, 4.55);
+      tl.fromTo(".row", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, stagger: 0.12, ease: "power3.out" }, 4.8);
+      tl.to("#k1", { strokeDashoffset: 0, duration: 0.25 }, 5.7);
+      tl.to("#k2", { strokeDashoffset: 0, duration: 0.25 }, 6.4);
+      tl.to("#k3", { strokeDashoffset: 0, duration: 0.25 }, 7.05);
+      tl.to("#k4", { strokeDashoffset: 0, duration: 0.25 }, 8.42);
+      tl.fromTo("#r4", { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 8.45);
+      tl.to("#r4t", { color: "#ff9a9a", duration: 0.2 }, 8.42);
+      tl.to("#todo", { opacity: 0, y: -50, duration: 0.18 }, 8.72);
+      tl.fromTo("#pn1", { xPercent: -100 }, { xPercent: 0, duration: 0.45, ease: "expo.out" }, 6.1);
+      tl.fromTo("#pn2", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "expo.out" }, 6.18);
+      tl.fromTo("#pn3", { xPercent: -100 }, { xPercent: 0, duration: 0.45, ease: "expo.out" }, 6.26);
+      tl.to(["#vp1","#vp2","#vp3"], { opacity: 0.45, duration: 0.4 }, 8.3);
+
+      tl.set("#panels", { autoAlpha: 1 }, 6.1); tl.set("#panels", { autoAlpha: 0 }, 8.9);
+      // S3 EDU
+      flash(8.9, 0.7);
+      punch("#v_water", 8.9);
+      kb("#v_water", 9.25, 3.3, 1.1, 1.0);
+      tl.fromTo("#eduChip", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.35 }, 8.95);
+      tl.fromTo("#cA", { opacity: 0, scale: 0.3, x: -140 }, { opacity: 1, scale: 1, x: 0, duration: 0.5, ease: "back.out(1.8)" }, 9.14);
+      tl.fromTo("#cB", { opacity: 0, scale: 0.3, x: 140 }, { opacity: 1, scale: 1, x: 0, duration: 0.5, ease: "back.out(1.8)" }, 10.08);
+      tl.to("#cA", { x: 70, duration: 0.5, ease: "power3.inOut" }, 11.2);
+      tl.to("#cB", { x: -70, duration: 0.5, ease: "power3.inOut" }, 11.2);
+      tl.fromTo("#heart", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1.2, duration: 0.45, ease: "back.out(3)" }, 11.6);
+      tl.to("#heart", { scale: 1, duration: 0.2 }, 12.1);
+
+      // S4
+      flash(12.6, 0.6);
+      punch("#v_self", 12.6);
+      kb("#v_self", 12.95, 3.15, 1.1, 1.0);
+      tl.fromTo("#abA", { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 12.66);
+      tl.fromTo("#abC .l1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, 13.66);
+      tl.fromTo("#abB", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 14.0);
+      tl.fromTo("#strike", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power4.inOut" }, 14.4);
+      tl.to("#abB", { opacity: 0.45, duration: 0.3 }, 14.6);
+      tl.fromTo("#abC .l2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 15.14);
+
+      // S5
+      flash(16.1, 0.6);
+      punch("#v_rose", 16.1);
+      kb("#v_rose", 16.45, 1.55, 1.1, 1.0);
+      flash(18.0, 0.45);
+      kb("#v_couple", 18.0, 1.5, 1.18, 1.04);
+      tl.fromTo("#pl1", { opacity: 0, scale: 0.5, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(2.4)" }, 16.84);
+      tl.fromTo("#pl2", { opacity: 0, scale: 0.5, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(2.4)" }, 17.28);
+      tl.fromTo("#pl3", { opacity: 0, scale: 0.5, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(2.4)" }, 18.14);
+      tl.to("#pills", { opacity: 0, duration: 0.18 }, 19.3);
+
+      // S6 MALL REVEAL
+      flash(19.5, 1);
+      kb("#mallBlur", 19.5, 1.4, 1.2, 1.1);
+      tl.fromTo("#spot", { opacity: 0, rotation: -12 }, { opacity: 1, rotation: 6, duration: 1.4, ease: "power1.inOut" }, 19.5);
+      tl.fromTo("#podium", { y: 260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 19.5);
+      tl.fromTo("#bottles", { y: 420, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "expo.out" }, 19.56);
+      tl.fromTo("#sheen", { x: 0 }, { x: 1700, duration: 0.8, ease: "power2.inOut" }, 20.0);
+      tl.fromTo("#revTitle .t", { opacity: 0, scale: 1.18, y: -20 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "expo.out", stagger: 0.1 }, 20.14);
+      tl.fromTo("#revTitle .s", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 20.4);
+
+      // FOAM
+      flash(20.9, 0.7);
+      punch("#v_pumpA", 20.9);
+      punch("#v_pumpB", 21.9);
+      kb("#v_pumpB", 22.25, 0.95, 1.1, 1.18);
+      tl.fromTo("#foamTop", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3 }, 20.95);
+      [["#c1", 21.24], ["#c2", 22.3], ["#c3", 22.66]].forEach(([c, t]) => {
+        tl.fromTo(c + " .dot", { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, t);
+        tl.fromTo(c + " .ln", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, t + 0.08);
+        tl.fromTo(c + " .lbl", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, t + 0.18);
+      });
+
+      // S7 SPLIT
+      flash(23.2, 0.8);
+      tl.fromTo("#hTop", { xPercent: -100 }, { xPercent: 0, duration: 0.5, ease: "expo.out" }, 23.2);
+      tl.fromTo("#hBot", { xPercent: 100 }, { xPercent: 0, duration: 0.5, ease: "expo.out" }, 23.32);
+      tl.fromTo("#scHead", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 23.5);
+      tl.fromTo("#bG", { y: 120, opacity: 0, rotation: 6 }, { y: 0, opacity: 1, rotation: -3, duration: 0.7, ease: "expo.out" }, 24.3);
+      tl.fromTo("#nG > div", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: "power3.out" }, 24.42);
+      tl.fromTo("#bN", { y: 120, opacity: 0, rotation: -6 }, { y: 0, opacity: 1, rotation: 3, duration: 0.7, ease: "expo.out" }, 25.5);
+      tl.fromTo("#nN > div", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: "power3.out" }, 25.66);
+      kb("#vRoses", 23.2, 3.1, 1.12, 1.0);
+      kb("#vStars", 23.2, 3.1, 1.12, 1.0);
+
+      tl.set("#split", { autoAlpha: 1 }, 23.2); tl.set("#split", { autoAlpha: 0 }, 26.3);
+      // S8
+      flash(26.3, 0.7);
+      punch("#v_bout", 26.3);
+      flash(27.4, 0.5);
+      punch("#v_pumpC", 27.4);
+      rise("#mj1 > span", 27.86);
+      rise("#mj2 > span", 28.14);
+
+      // S9 CTA
+      flash(28.8, 0.8);
+      tl.fromTo("#phone", { y: 700, rotation: 8, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 28.8);
+      tl.fromTo("#phone img", { scale: 1.2 }, { scale: 1, duration: 2.5, ease: "power1.out" }, 28.8);
+      tl.fromTo("#finger", { opacity: 0, x: 120, y: 120 }, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power3.out" }, 28.85);
+      tl.to("#finger", { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1 }, 29.15);
+      tl.fromTo("#ripple", { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 4, duration: 0.6, ease: "power2.out" }, 29.15);
+      tl.fromTo("#basket", { scale: 1 }, { scale: 1.12, duration: 0.18, yoyo: true, repeat: 3, ease: "power1.inOut" }, 29.2);
+      tl.to("#finger", { opacity: 0, duration: 0.2 }, 29.6);
+      tl.to("#phone", { y: -16, duration: 0.6, yoyo: true, repeat: 2, ease: "sine.inOut" }, 29.6);
+
+      // S10 URGENCY
+      flash(31.3, 0.9);
+      kb("#i_pair", 31.3, 3.3, 1.25, 1.05);
+      tl.fromTo("#stockBox", { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 31.35);
+      const pct = { v: 100 };
+      const pEl = document.getElementById("stockPct");
+      tl.fromTo(pct, { v: 100 }, { v: 7, duration: 1.4, ease: "power2.in", onUpdate: () => { pEl.textContent = Math.round(pct.v) + "%"; } }, 31.7);
+      tl.fromTo("#barFill", { scaleX: 1 }, { scaleX: 0.07, duration: 1.4, ease: "power2.in" }, 31.7);
+      tl.fromTo("#stockBox", { x: 0 }, { x: 8, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 33.1);
+      rise("#u1 .mask > span", 33.1);
+      rise("#u2 .mask > span", 33.9);
+
+      // END
+      flash(34.6, 1);
+      tl.fromTo("#logo", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.9, ease: "expo.out" }, 34.65);
+      tl.fromTo("#endT .a", { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 35.0);
+      tl.fromTo("#endT .b", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(2)" }, 35.3);
+      tl.to("#endT .b", { scale: 1.06, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 35.9);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
