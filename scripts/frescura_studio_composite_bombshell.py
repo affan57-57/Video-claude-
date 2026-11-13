@@ -29,6 +29,7 @@ edge=cv2.GaussianBlur((A>0.5).astype(np.float32),(0,0),6)
 rim=np.clip((A-edge)*3,0,1)*(xx>0.6)
 Bl=Bl+rim[...,None]*np.array([0.30,0.25,0.55])*0.6
 Bl=np.clip(Bl,0,1).astype(np.float32)
+np.save('cut_bomb.npy',np.dstack([Bl,A]))
 s=0.80
 Bs=cv2.resize(Bl,None,fx=s,fy=s,interpolation=cv2.INTER_AREA); As=cv2.resize(A,None,fx=s,fy=s,interpolation=cv2.INTER_AREA)
 bh,bw=As.shape
