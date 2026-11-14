@@ -1,0 +1,27 @@
+<style>
+#i-wrap{left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#i-vid{left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+#i-dim{background:linear-gradient(180deg,rgba(11,9,8,.86) 0%,rgba(11,9,8,.55) 50%,rgba(11,9,8,.8) 100%)}
+.i-card{position:absolute;left:90px;width:900px;height:300px}
+.i-card .card{left:0;top:0;width:900px;height:300px}
+#i-c1{top:240px}#i-c2{top:600px}
+.i-n{position:absolute;left:46px;top:40px;font-family:'Bodoni Moda',serif;font-size:110px;color:var(--gold2);line-height:1}
+.i-t{position:absolute;left:210px;top:56px;font-size:60px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.i-s{position:absolute;left:212px;top:140px;font-size:44px;color:var(--gold2)}
+.i-d{position:absolute;left:212px;top:208px;font-size:28px;color:var(--mute);letter-spacing:.06em}
+.i-x{position:absolute;width:22px;height:22px;border:3px solid #e8f1f6;background:rgba(232,241,246,.25)}
+.i-w{position:absolute;right:50px;top:88px;width:130px;height:130px}
+</style>
+<div id="i-wrap" class="abs"><video id="i-vid" class="abs clip" src="assets/video/foam_lather.mp4" data-start="0" data-duration="1.8" data-track-index="1" muted playsinline></video></div>
+<div id="i-dim" class="full"></div>
+<div id="i-c1" class="i-card"><div class="card"></div><div class="i-n">02</div><div class="i-t">Garam laut</div><div class="i-s ital">ocean salt</div><div class="i-d">bersihkan lembut, kulit rasa segar</div>
+ <div class="i-x" style="right:120px;top:70px"></div><div class="i-x" style="right:70px;top:130px"></div><div class="i-x" style="right:150px;top:170px"></div><div class="i-x" style="right:95px;top:215px"></div></div>
+<div id="i-c2" class="i-card"><div class="card"></div><div class="i-n">03</div><div class="i-t">Aromaterapi</div><div class="i-s ital">wangian feminin</div><div class="i-d">tenangkan fikiran selepas penat</div>
+ <svg class="i-w" viewBox="0 0 130 130" fill="none" stroke="#f3dcb0" stroke-width="5" stroke-linecap="round"><path class="i-wp" d="M20 100 C40 70 20 50 45 30"/><path class="i-wp" d="M60 105 C80 75 55 55 80 25"/><path class="i-wp" d="M98 100 C115 72 95 55 112 35"/></svg></div>
+<script>
+tl.fromTo("#i-wrap",{scale:1.12},{scale:1.02,duration:1.8,ease:"none"},0);
+tl.fromTo("#i-c1",{opacity:0,y:80,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.4,ease:"expo.out"},0.04);
+tl.fromTo(S+".i-x",{opacity:0,scale:0,rotate:45},{opacity:1,scale:1,rotate:225,duration:.5,ease:"back.out(2)",stagger:.06},0.2);
+tl.fromTo("#i-c2",{opacity:0,y:80,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.4,ease:"expo.out"},0.6);
+gsap.utils.toArray(S+".i-wp").forEach((p,k)=>{gsap.set(p,{strokeDasharray:120,strokeDashoffset:120});tl.to(p,{strokeDashoffset:0,duration:.5,ease:"power2.out"},0.8+k*.08);});
+</script>

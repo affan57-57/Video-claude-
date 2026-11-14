@@ -1,0 +1,21 @@
+<style>
+#f-wrap{left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#f-vid{left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+#f-grad{background:linear-gradient(180deg,rgba(11,9,8,.82) 0%,rgba(11,9,8,0) 30%,rgba(11,9,8,0) 55%,rgba(11,9,8,.7) 100%)}
+#f-pill{left:90px;top:220px;height:150px;width:900px}
+#f-n{left:0;top:0;font-family:'Bodoni Moda',serif;font-size:120px;line-height:1;color:var(--gold2)}
+#f-a{left:190px;top:12px;font-size:54px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+#f-b{left:192px;top:80px;font-size:44px;color:var(--gold2)}
+#f-line{left:90px;top:390px;width:900px;transform-origin:0 50%}
+</style>
+<div id="f-wrap" class="abs"><video id="f-vid" class="abs clip" src="assets/video/foam_pump.mp4" data-start="0" data-duration="1.68" data-track-index="1" muted playsinline></video></div>
+<div id="f-grad" class="full"></div>
+<div id="f-pill" class="abs"><div id="f-n" class="abs">01</div><div id="f-a" class="abs">Buih lembut</div><div id="f-b" class="abs ital">terus dari botol</div></div>
+<div id="f-line" class="hair"></div>
+<script>
+tl.fromTo("#f-wrap",{scale:1.18},{scale:1.04,duration:1.68,ease:"power2.out"},0);
+tl.fromTo("#f-n",{opacity:0,y:40},{opacity:1,y:0,duration:.35,ease:"expo.out"},0.04);
+tl.fromTo("#f-a",{opacity:0,x:-40},{opacity:1,x:0,duration:.35,ease:"expo.out"},0.1);
+tl.fromTo("#f-b",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.25},0.38);
+tl.fromTo("#f-line",{scaleX:0},{scaleX:1,duration:.6,ease:"expo.out"},0.15);
+</script>

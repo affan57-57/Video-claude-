@@ -1,0 +1,46 @@
+<style>
+#q-wall{background:repeating-linear-gradient(90deg,#1b130e 0 52px,#241a13 52px 56px,#120d0a 56px 108px),#120d0a}
+#q-shade{background:linear-gradient(180deg,rgba(11,9,8,.75) 0%,rgba(11,9,8,0) 28%,rgba(11,9,8,0) 55%,rgba(11,9,8,.9) 100%)}
+#q-floor{left:0;top:1240px;width:1080px;height:680px;background:linear-gradient(180deg,#2a221d,#0b0908 70%),#1a1411}
+#q-floor::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 3px,transparent 3px 70px)}
+.q-cone{position:absolute;top:0;width:520px;height:1300px;background:linear-gradient(180deg,rgba(255,236,200,.55),rgba(255,236,200,0) 85%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);mix-blend-mode:screen;opacity:0}
+#q-c1{left:-110px}#q-c2{left:280px}#q-c3{left:670px}
+.q-lamp{position:absolute;top:0;width:90px;height:20px;border-radius:0 0 45px 45px;background:#f6e7cc;box-shadow:0 0 50px 18px rgba(255,236,200,.7);opacity:.2}
+#q-l1{left:105px}#q-l2{left:495px}#q-l3{left:885px}
+#q-ped{left:240px;top:1090px;width:600px;height:240px}
+#q-pedtop{left:0;top:0;width:600px;height:90px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#f4efe9,#cfc6bc 70%,#a69c90)}
+#q-pedbody{left:30px;top:45px;width:540px;height:200px;background:linear-gradient(90deg,#8d847a,#e9e2da 35%,#fffaf3 50%,#cfc5ba 70%,#7c736a);clip-path:polygon(0 0,100% 0,96% 100%,4% 100%)}
+#q-prod{left:290px;top:405px;width:500px}
+#q-refl{left:290px;top:1132px;width:500px;}
+#q-refl img{width:500px;display:block;transform:scaleY(-1)}
+#q-refl{opacity:.18;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 30%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 30%)}
+#q-glass{left:200px;top:300px;width:680px;height:840px;border:2px solid rgba(255,255,255,.18);border-bottom:none;background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 60%,rgba(255,255,255,.05) 100%)}
+#q-sheen{left:-300px;top:300px;width:160px;height:840px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent)}
+#q-brand{top:235px;font-family:'Jost',sans-serif;font-weight:300;font-size:86px;letter-spacing:.3em;padding-left:.3em;color:var(--ink)}
+#q-brand span{display:inline-block}
+#q-tag{top:345px;font-size:28px;letter-spacing:.6em;color:var(--gold);font-weight:500;padding-left:.6em}
+#q-flash{background:#f6e7cc}
+</style>
+<div id="q-wall" class="full"></div>
+<div id="q-floor" class="abs"></div>
+<div id="q-glass" class="abs"></div>
+<div id="q-refl" class="abs"><img src="assets/img/duo-cut.png" alt=""></div>
+<div id="q-ped" class="abs"><div id="q-pedbody" class="abs"></div><div id="q-pedtop" class="abs"></div></div>
+<img id="q-prod" class="abs" src="assets/img/duo-cut.png" alt="Frescura Body">
+<div id="q-sheen" class="abs"></div>
+<div id="q-shade" class="full"></div>
+<div id="q-c1" class="q-cone"></div><div id="q-c2" class="q-cone"></div><div id="q-c3" class="q-cone"></div>
+<div id="q-l1" class="q-lamp"></div><div id="q-l2" class="q-lamp"></div><div id="q-l3" class="q-lamp"></div>
+<div id="q-brand" class="abs center"><span>F</span><span>R</span><span>E</span><span>S</span><span>C</span><span>U</span><span>R</span><span>A</span> <span>B</span><span>O</span><span>D</span><span>Y</span></div>
+<div id="q-tag" class="abs center">soft | fragrant</div>
+<div id="q-flash" class="full"></div>
+<script>
+tl.fromTo("#q-flash",{opacity:1},{opacity:0,duration:.3,ease:"power2.out"},0);
+tl.fromTo("#q-wall,#q-floor,#q-glass,#q-ped",{scale:1.08},{scale:1,duration:1.48,ease:"power2.out"},0);
+tl.fromTo("#q-prod",{y:120,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.7,ease:"expo.out"},0.02);
+tl.fromTo("#q-refl",{y:-120,opacity:0},{y:0,opacity:.18,duration:.7,ease:"expo.out"},0.02);
+[["#q-c1","#q-l1",.1],["#q-c3","#q-l3",.26],["#q-c2","#q-l2",.42]].forEach(([c,l,t])=>{tl.fromTo(c,{opacity:0},{opacity:.6,duration:.08},t);tl.fromTo(l,{opacity:.2},{opacity:1,duration:.06},t);});
+tl.fromTo("#q-sheen",{x:0,skewX:-18},{x:1500,skewX:-18,duration:.9,ease:"power2.inOut"},0.45);
+tl.fromTo("#q-brand span",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.14,stagger:.035},0.3);
+tl.fromTo("#q-tag",{opacity:0},{opacity:1,duration:.3},0.8);
+</script>

@@ -1,0 +1,39 @@
+<style>
+#u-bg{background:radial-gradient(ellipse 80% 50% at 50% 30%,#2a1c14,#0b0908 72%)}
+#u-t1{top:420px;font-size:46px;color:var(--mute);letter-spacing:.3em;text-transform:uppercase;font-weight:500}
+#u-t2{top:500px;font-size:190px;line-height:1;color:var(--ink)}
+#u-t3{top:700px;font-size:120px;font-weight:700;letter-spacing:.32em;color:var(--gold);padding-left:.32em}
+#u-head{top:262px}
+.u-row{position:absolute;left:80px;width:920px;height:210px}
+#u-r1{top:330px}#u-r2{top:570px}#u-r3{top:810px}
+.u-row .card{left:0;top:0;width:920px;height:210px}
+.u-num{position:absolute;left:44px;top:42px;font-family:'Bodoni Moda',serif;font-size:96px;color:var(--gold);line-height:1}
+.u-lab{position:absolute;left:200px;top:52px;font-size:58px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.u-sub{position:absolute;left:202px;top:126px;font-size:30px;color:var(--mute);letter-spacing:.12em}
+.u-ico{position:absolute;right:46px;top:52px;width:150px;height:106px}
+#u-bat{right:40px;top:62px;width:160px;height:84px;border:5px solid var(--ink);border-radius:16px}
+#u-bat::after{content:"";position:absolute;right:-16px;top:22px;width:10px;height:30px;border-radius:4px;background:var(--ink)}
+#u-lvl{position:absolute;left:7px;top:7px;bottom:7px;width:136px;border-radius:8px;background:#7bd389;transform-origin:0 50%}
+</style>
+<div id="u-bg" class="full"></div>
+<div id="u-t1" class="abs center">isteri pun</div>
+<div id="u-t2" class="abs center ital">manusia</div>
+<div id="u-t3" class="abs center">BIASA</div>
+<div id="u-head" class="abs center kick">3 tanda dia perlukan korang</div>
+<div id="u-r1" class="u-row"><div class="card"></div><div class="u-num">01</div><div class="u-lab">Penat</div><div class="u-sub">tenaga hampir habis</div><div id="u-bat" class="abs"><div id="u-lvl"></div></div></div>
+<div id="u-r2" class="u-row"><div class="card"></div><div class="u-num">02</div><div class="u-lab">Perhatian</div><div class="u-sub">luangkan masa untuk dia</div>
+ <svg class="u-ico" viewBox="0 0 150 106" fill="none" stroke="#f4ede3" stroke-width="6"><path d="M8 53 C35 8 115 8 142 53 C115 98 35 98 8 53Z"/><circle id="u-eye" cx="75" cy="53" r="20" fill="#d9b98c" stroke="none"/></svg></div>
+<div id="u-r3" class="u-row"><div class="card"></div><div class="u-num">03</div><div class="u-lab">Dihargai</div><div class="u-sub">ucap terima kasih</div>
+ <svg class="u-ico" viewBox="0 0 150 106"><path id="u-heart" d="M75 98 C20 62 10 40 22 22 C34 6 60 8 75 30 C90 8 116 6 128 22 C140 40 130 62 75 98Z" fill="#b3182f" stroke="#f3dcb0" stroke-width="4"/></svg></div>
+<script>
+tl.fromTo("#u-t1",{opacity:0,y:20},{opacity:1,y:0,duration:.3,ease:"expo.out"},0.05);
+tl.fromTo("#u-t2",{opacity:0,filter:"blur(14px)",scale:1.08},{opacity:1,filter:"blur(0px)",scale:1,duration:.4,ease:"expo.out"},1.2);
+tl.fromTo("#u-t3",{opacity:0,scale:1.3,filter:"blur(10px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.5,ease:"expo.out"},1.55);
+tl.to("#u-t1,#u-t2,#u-t3",{opacity:0,filter:"blur(10px)",y:-40,duration:.2,ease:"power3.in",stagger:.03},2.0);
+tl.fromTo("#u-head",{opacity:0},{opacity:1,duration:.3},2.2);
+[["#u-r1",2.26],["#u-r2",3.12],["#u-r3",4.82]].forEach(([s,t])=>tl.fromTo(s,{opacity:0,x:-120,filter:"blur(10px)"},{opacity:1,x:0,filter:"blur(0px)",duration:.4,ease:"expo.out"},t));
+tl.fromTo("#u-lvl",{scaleX:1,backgroundColor:"#7bd389"},{scaleX:.12,backgroundColor:"#b3182f",duration:.8,ease:"power2.inOut"},2.5);
+tl.fromTo("#u-eye",{attr:{cx:55}},{attr:{cx:95},duration:.5,ease:"power2.inOut",yoyo:true,repeat:1},3.4);
+tl.fromTo("#u-heart",{scale:.6,transformOrigin:"50% 60%"},{scale:1,duration:.45,ease:"elastic.out(1,.45)"},4.95);
+tl.to("#u-r1,#u-r2",{opacity:.45,duration:.3},4.82);
+</script>

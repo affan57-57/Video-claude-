@@ -1,0 +1,40 @@
+<style>
+#k-sky{background:linear-gradient(180deg,#3b2414 0%,#140d09 60%,#0b0908 100%)}
+#k-night{background:linear-gradient(180deg,#0f1630 0%,#0b0b14 60%,#0b0908 100%);opacity:0}
+#k-head{top:250px}
+#k-ring{left:240px;top:330px;width:600px;height:600px}
+#k-sun{left:510px;top:300px;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,#ffe2a8 0,#f3b562 60%,rgba(243,181,98,0) 72%)}
+#k-moon{left:510px;top:300px;width:60px;height:60px;border-radius:50%;box-shadow:inset -14px 6px 0 0 #e8e4ff;opacity:0}
+#k-num{top:525px;font-family:"Jost",sans-serif;font-size:170px;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.02em}
+#k-sub{top:715px;font-size:30px;letter-spacing:.5em;color:var(--mute);font-weight:500;text-transform:uppercase}
+.k-chip{position:absolute;top:985px;height:92px;line-height:90px;padding:0 34px;border-radius:46px;border:1.5px solid var(--gold);color:var(--ink);
+ font-size:36px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;background:rgba(24,17,13,.85);white-space:nowrap}
+.k-chip b{color:var(--gold);font-weight:700;margin-right:12px}
+#k-c1{left:70px}#k-c2{left:384px}#k-c3{left:640px}
+</style>
+<div id="k-sky" class="full"></div><div id="k-night" class="full"></div>
+<div id="k-head" class="abs center kick">Tugas harian isteri</div>
+<svg id="k-ring" class="abs" viewBox="0 0 600 600">
+  <circle cx="300" cy="300" r="270" fill="none" stroke="rgba(244,237,227,.12)" stroke-width="3"/>
+  <g stroke="rgba(244,237,227,.35)" stroke-width="3">
+    <line x1="300" y1="22" x2="300" y2="48"/><line x1="578" y1="300" x2="552" y2="300"/><line x1="300" y1="578" x2="300" y2="552"/><line x1="22" y1="300" x2="48" y2="300"/>
+  </g>
+  <circle id="k-arc" cx="300" cy="300" r="270" fill="none" stroke="#d9b98c" stroke-width="8" stroke-linecap="round" transform="rotate(-90 300 300)" stroke-dasharray="1696.5" stroke-dashoffset="1696.5"/>
+</svg>
+<div id="k-sun" class="abs"></div><div id="k-moon" class="abs"></div>
+<div id="k-num" class="abs center">24<span style="color:var(--gold)">/</span>7</div>
+<div id="k-sub" class="abs center">pagi → malam</div>
+<div id="k-c1" class="k-chip"><b>01</b>Rumah</div>
+<div id="k-c2" class="k-chip"><b>02</b>Anak</div>
+<div id="k-c3" class="k-chip"><b>03</b>Korang</div>
+<script>
+tl.fromTo("#k-head",{opacity:0,y:-20},{opacity:1,y:0,duration:.35,ease:"expo.out"},0);
+tl.fromTo("#k-arc",{attr:{"stroke-dashoffset":1696.5}},{attr:{"stroke-dashoffset":0},duration:2.6,ease:"power1.inOut"},0.05);
+const o={a:0};tl.to(o,{a:1,duration:2.6,ease:"power1.inOut",onUpdate:()=>{const A=o.a*Math.PI*2-Math.PI/2;const x=540+270*Math.cos(A)-30,y=630+270*Math.sin(A)-30;gsap.set("#k-sun,#k-moon",{left:x,top:y});}},0.05);
+tl.to("#k-sun",{opacity:0,duration:.4},1.4).to("#k-moon",{opacity:1,duration:.4},1.4);
+tl.to("#k-night",{opacity:1,duration:.9,ease:"power2.inOut"},1.1);
+tl.fromTo("#k-num",{opacity:0,scale:.86,filter:"blur(12px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.4,ease:"expo.out"},.1);
+tl.fromTo("#k-sub",{opacity:0},{opacity:1,duration:.3},.35);
+[["#k-c1",1.08],["#k-c2",1.72],["#k-c3",2.02]].forEach(([s,t])=>tl.fromTo(s,{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:.35,ease:"back.out(1.6)"},t));
+tl.to("#k-ring,#k-num,#k-sub,#k-sun,#k-moon",{opacity:0,filter:"blur(10px)",duration:.18,ease:"power2.in"},2.84);
+</script>

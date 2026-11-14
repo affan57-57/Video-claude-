@@ -1,0 +1,37 @@
+<style>
+#g-bg{background:radial-gradient(ellipse 80% 55% at 50% 55%,#3a1a1e 0%,#140b0b 60%,#0b0908 100%)}
+#g-k{top:210px}
+#g-t{top:270px;font-size:140px;color:var(--ink);line-height:1.05}
+#g-box{left:290px;top:610px;width:500px;height:470px}
+#g-base{left:20px;top:150px;width:460px;height:320px;background:linear-gradient(160deg,#9e1428,#5a0a16);border-radius:10px;box-shadow:0 50px 90px rgba(0,0,0,.55)}
+#g-rv{left:215px;top:150px;width:70px;height:320px;background:linear-gradient(90deg,#b8925e,#f3dcb0,#b8925e)}
+#g-lid{left:0;top:80px;width:500px;height:100px;background:linear-gradient(160deg,#b4182f,#6d0c1b);border-radius:12px;transform-origin:50% 100%;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+#g-lr{left:215px;top:0;width:70px;height:100px;background:linear-gradient(90deg,#b8925e,#f3dcb0,#b8925e)}
+#g-bow1,#g-bow2{top:-70px;width:150px;height:90px;border:18px solid #e4c48f;border-radius:50%}
+#g-bow1{left:110px;transform:rotate(-18deg)}#g-bow2{left:240px;transform:rotate(18deg)}
+#g-burst{left:140px;top:430px;width:800px;height:800px;background:radial-gradient(circle,rgba(255,240,210,1) 0%,rgba(243,220,176,.7) 25%,rgba(217,185,140,0) 65%);opacity:0;border-radius:50%}
+#g-flash{background:#f6e7cc;opacity:0}
+.g-sp{position:absolute;width:14px;height:14px;background:#f3dcb0;transform:rotate(45deg);opacity:0}
+</style>
+<div id="g-bg" class="full"></div>
+<div id="g-k" class="abs center kick">Sesekali,</div>
+<div id="g-t" class="abs center ital">manjakan<br>dia.</div>
+<div id="g-burst" class="abs"></div>
+<div id="g-box" class="abs">
+  <div id="g-base" class="abs"></div><div id="g-rv" class="abs"></div>
+  <div id="g-lid" class="abs"><div id="g-lr" class="abs"></div><div id="g-bow1" class="abs"></div><div id="g-bow2" class="abs"></div></div>
+</div>
+<div class="g-sp" style="left:300px;top:700px"></div><div class="g-sp" style="left:760px;top:660px"></div><div class="g-sp" style="left:420px;top:560px"></div>
+<div class="g-sp" style="left:650px;top:540px"></div><div class="g-sp" style="left:220px;top:880px"></div><div class="g-sp" style="left:850px;top:860px"></div>
+<div id="g-flash" class="full"></div>
+<script>
+tl.fromTo("#g-k",{opacity:0,scale:1.2,filter:"blur(8px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.5,ease:"expo.out"},0.02);
+tl.fromTo("#g-t",{opacity:0,filter:"blur(14px)"},{opacity:1,filter:"blur(0px)",duration:.35,ease:"power3.out"},0.55);
+tl.fromTo("#g-box",{opacity:0,y:260,rotate:6},{opacity:1,y:0,rotate:0,duration:.7,ease:"expo.out"},0.1);
+tl.to("#g-box",{rotate:-2,duration:.08,yoyo:true,repeat:5,ease:"none"},2.0);
+tl.to("#g-lid",{y:-420,rotate:-24,x:-80,opacity:0,duration:.6,ease:"power3.in"},2.55);
+tl.fromTo("#g-burst",{opacity:0,scale:.2},{opacity:1,scale:1.5,duration:.55,ease:"expo.out"},2.6);
+tl.fromTo(".g-sp",{opacity:0,scale:0},{opacity:1,scale:1.4,duration:.25,ease:"back.out(3)",stagger:.03},2.62);
+tl.to(".g-sp",{y:-160,duration:.5,ease:"power2.in",stagger:.03},2.88);
+tl.to("#g-flash",{opacity:1,duration:.22,ease:"power2.in"},3.02);
+</script>
