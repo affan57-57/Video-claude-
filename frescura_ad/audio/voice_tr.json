@@ -1,0 +1,583 @@
+[
+ {
+  "start": 0.0,
+  "end": 3.2,
+  "text": " Walaupun dah ada anak tiga, dah bertahun-tahun kahwin.",
+  "words": [
+   {
+    "w": " Walaupun",
+    "s": 0.0,
+    "e": 0.46
+   },
+   {
+    "w": " dah",
+    "s": 0.46,
+    "e": 0.66
+   },
+   {
+    "w": " ada",
+    "s": 0.66,
+    "e": 0.96
+   },
+   {
+    "w": " anak",
+    "s": 0.96,
+    "e": 1.18
+   },
+   {
+    "w": " tiga,",
+    "s": 1.18,
+    "e": 1.68
+   },
+   {
+    "w": " dah",
+    "s": 1.76,
+    "e": 2.0
+   },
+   {
+    "w": " bertahun",
+    "s": 2.0,
+    "e": 2.48
+   },
+   {
+    "w": "-tahun",
+    "s": 2.48,
+    "e": 2.8
+   },
+   {
+    "w": " kahwin.",
+    "s": 2.8,
+    "e": 3.2
+   }
+  ]
+ },
+ {
+  "start": 3.38,
+  "end": 7.56,
+  "text": " Jangan lupa, istri kurang tetap seorang wanita yang nak rasa cantik dan dihargai.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 3.38,
+    "e": 3.72
+   },
+   {
+    "w": " lupa,",
+    "s": 3.72,
+    "e": 4.1
+   },
+   {
+    "w": " istri",
+    "s": 4.36,
+    "e": 4.46
+   },
+   {
+    "w": " kurang",
+    "s": 4.46,
+    "e": 4.74
+   },
+   {
+    "w": " tetap",
+    "s": 4.74,
+    "e": 5.12
+   },
+   {
+    "w": " seorang",
+    "s": 5.12,
+    "e": 5.46
+   },
+   {
+    "w": " wanita",
+    "s": 5.46,
+    "e": 5.9
+   },
+   {
+    "w": " yang",
+    "s": 5.9,
+    "e": 6.12
+   },
+   {
+    "w": " nak",
+    "s": 6.12,
+    "e": 6.32
+   },
+   {
+    "w": " rasa",
+    "s": 6.32,
+    "e": 6.62
+   },
+   {
+    "w": " cantik",
+    "s": 6.62,
+    "e": 6.98
+   },
+   {
+    "w": " dan",
+    "s": 6.98,
+    "e": 7.18
+   },
+   {
+    "w": " dihargai.",
+    "s": 7.18,
+    "e": 7.56
+   }
+  ]
+ },
+ {
+  "start": 7.76,
+  "end": 13.12,
+  "text": " Dia pun nak ada masa untuk menjaga diri, nak rasa segar, nak menikmati perkara kecil yang mengemirakan dirinya.",
+  "words": [
+   {
+    "w": " Dia",
+    "s": 7.76,
+    "e": 8.08
+   },
+   {
+    "w": " pun",
+    "s": 8.08,
+    "e": 8.34
+   },
+   {
+    "w": " nak",
+    "s": 8.34,
+    "e": 8.48
+   },
+   {
+    "w": " ada",
+    "s": 8.48,
+    "e": 8.66
+   },
+   {
+    "w": " masa",
+    "s": 8.66,
+    "e": 8.92
+   },
+   {
+    "w": " untuk",
+    "s": 8.92,
+    "e": 9.2
+   },
+   {
+    "w": " menjaga",
+    "s": 9.2,
+    "e": 9.48
+   },
+   {
+    "w": " diri,",
+    "s": 9.48,
+    "e": 9.76
+   },
+   {
+    "w": " nak",
+    "s": 9.86,
+    "e": 9.9
+   },
+   {
+    "w": " rasa",
+    "s": 9.9,
+    "e": 10.18
+   },
+   {
+    "w": " segar,",
+    "s": 10.18,
+    "e": 10.58
+   },
+   {
+    "w": " nak",
+    "s": 10.74,
+    "e": 10.84
+   },
+   {
+    "w": " menikmati",
+    "s": 10.84,
+    "e": 11.24
+   },
+   {
+    "w": " perkara",
+    "s": 11.24,
+    "e": 11.6
+   },
+   {
+    "w": " kecil",
+    "s": 11.6,
+    "e": 11.92
+   },
+   {
+    "w": " yang",
+    "s": 11.92,
+    "e": 12.08
+   },
+   {
+    "w": " mengemirakan",
+    "s": 12.08,
+    "e": 12.7
+   },
+   {
+    "w": " dirinya.",
+    "s": 12.7,
+    "e": 13.12
+   }
+  ]
+ },
+ {
+  "start": 13.38,
+  "end": 20.82,
+  "text": " Jangan sampai selepas berkahwin, semua perhatian hanya tertumpu pada keluarga sehingga dirinya sendiri dilupakan jadi suami-suami sekalian.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 13.38,
+    "e": 13.56
+   },
+   {
+    "w": " sampai",
+    "s": 13.56,
+    "e": 13.94
+   },
+   {
+    "w": " selepas",
+    "s": 13.94,
+    "e": 14.28
+   },
+   {
+    "w": " berkahwin,",
+    "s": 14.28,
+    "e": 14.78
+   },
+   {
+    "w": " semua",
+    "s": 14.88,
+    "e": 15.06
+   },
+   {
+    "w": " perhatian",
+    "s": 15.06,
+    "e": 15.54
+   },
+   {
+    "w": " hanya",
+    "s": 15.54,
+    "e": 16.0
+   },
+   {
+    "w": " tertumpu",
+    "s": 16.0,
+    "e": 16.38
+   },
+   {
+    "w": " pada",
+    "s": 16.38,
+    "e": 16.6
+   },
+   {
+    "w": " keluarga",
+    "s": 16.6,
+    "e": 17.1
+   },
+   {
+    "w": " sehingga",
+    "s": 17.1,
+    "e": 17.6
+   },
+   {
+    "w": " dirinya",
+    "s": 17.6,
+    "e": 18.08
+   },
+   {
+    "w": " sendiri",
+    "s": 18.08,
+    "e": 18.48
+   },
+   {
+    "w": " dilupakan",
+    "s": 18.48,
+    "e": 19.1
+   },
+   {
+    "w": " jadi",
+    "s": 19.1,
+    "e": 19.52
+   },
+   {
+    "w": " suami",
+    "s": 19.52,
+    "e": 19.92
+   },
+   {
+    "w": "-suami",
+    "s": 19.92,
+    "e": 20.24
+   },
+   {
+    "w": " sekalian.",
+    "s": 20.24,
+    "e": 20.82
+   }
+  ]
+ },
+ {
+  "start": 21.08,
+  "end": 24.96,
+  "text": " Mencakkan istri dengan frost kurang bodi, ada buah yang lembut terus daripada botol,",
+  "words": [
+   {
+    "w": " Mencakkan",
+    "s": 21.08,
+    "e": 21.52
+   },
+   {
+    "w": " istri",
+    "s": 21.52,
+    "e": 21.9
+   },
+   {
+    "w": " dengan",
+    "s": 21.9,
+    "e": 22.16
+   },
+   {
+    "w": " frost",
+    "s": 22.16,
+    "e": 22.4
+   },
+   {
+    "w": " kurang",
+    "s": 22.4,
+    "e": 22.68
+   },
+   {
+    "w": " bodi,",
+    "s": 22.68,
+    "e": 22.96
+   },
+   {
+    "w": " ada",
+    "s": 23.22,
+    "e": 23.42
+   },
+   {
+    "w": " buah",
+    "s": 23.42,
+    "e": 23.56
+   },
+   {
+    "w": " yang",
+    "s": 23.56,
+    "e": 23.68
+   },
+   {
+    "w": " lembut",
+    "s": 23.68,
+    "e": 23.9
+   },
+   {
+    "w": " terus",
+    "s": 23.9,
+    "e": 24.2
+   },
+   {
+    "w": " daripada",
+    "s": 24.2,
+    "e": 24.56
+   },
+   {
+    "w": " botol,",
+    "s": 24.56,
+    "e": 24.96
+   }
+  ]
+ },
+ {
+  "start": 24.96,
+  "end": 28.22,
+  "text": " terusnya pilihan wangi apa fiol, bau, syar, dan minyak patasi.",
+  "words": [
+   {
+    "w": " terusnya",
+    "s": 24.96,
+    "e": 25.36
+   },
+   {
+    "w": " pilihan",
+    "s": 25.36,
+    "e": 25.76
+   },
+   {
+    "w": " wangi",
+    "s": 25.76,
+    "e": 26.1
+   },
+   {
+    "w": " apa",
+    "s": 26.1,
+    "e": 26.34
+   },
+   {
+    "w": " fiol,",
+    "s": 26.34,
+    "e": 26.72
+   },
+   {
+    "w": " bau,",
+    "s": 26.86,
+    "e": 27.02
+   },
+   {
+    "w": " syar,",
+    "s": 27.1,
+    "e": 27.2
+   },
+   {
+    "w": " dan",
+    "s": 27.32,
+    "e": 27.46
+   },
+   {
+    "w": " minyak",
+    "s": 27.46,
+    "e": 27.68
+   },
+   {
+    "w": " patasi.",
+    "s": 27.68,
+    "e": 28.22
+   }
+  ]
+ },
+ {
+  "start": 28.3,
+  "end": 30.86,
+  "text": " Tadakan sesuatu yang boleh dan yang mati setiap hari,",
+  "words": [
+   {
+    "w": " Tadakan",
+    "s": 28.3,
+    "e": 28.62
+   },
+   {
+    "w": " sesuatu",
+    "s": 28.62,
+    "e": 29.06
+   },
+   {
+    "w": " yang",
+    "s": 29.06,
+    "e": 29.28
+   },
+   {
+    "w": " boleh",
+    "s": 29.28,
+    "e": 29.54
+   },
+   {
+    "w": " dan",
+    "s": 29.54,
+    "e": 29.74
+   },
+   {
+    "w": " yang",
+    "s": 29.74,
+    "e": 29.86
+   },
+   {
+    "w": " mati",
+    "s": 29.86,
+    "e": 30.24
+   },
+   {
+    "w": " setiap",
+    "s": 30.24,
+    "e": 30.58
+   },
+   {
+    "w": " hari,",
+    "s": 30.58,
+    "e": 30.86
+   }
+  ]
+ },
+ {
+  "start": 31.0,
+  "end": 35.04,
+  "text": " tak kena guna sekarang dan cek out sebelum stok kita habis sebab sangat-sangat terhad.",
+  "words": [
+   {
+    "w": " tak",
+    "s": 31.0,
+    "e": 31.06
+   },
+   {
+    "w": " kena",
+    "s": 31.06,
+    "e": 31.22
+   },
+   {
+    "w": " guna",
+    "s": 31.22,
+    "e": 31.48
+   },
+   {
+    "w": " sekarang",
+    "s": 31.48,
+    "e": 31.76
+   },
+   {
+    "w": " dan",
+    "s": 31.76,
+    "e": 32.04
+   },
+   {
+    "w": " cek",
+    "s": 32.04,
+    "e": 32.3
+   },
+   {
+    "w": " out",
+    "s": 32.3,
+    "e": 32.38
+   },
+   {
+    "w": " sebelum",
+    "s": 32.38,
+    "e": 32.8
+   },
+   {
+    "w": " stok",
+    "s": 32.8,
+    "e": 32.98
+   },
+   {
+    "w": " kita",
+    "s": 32.98,
+    "e": 33.26
+   },
+   {
+    "w": " habis",
+    "s": 33.26,
+    "e": 33.58
+   },
+   {
+    "w": " sebab",
+    "s": 33.58,
+    "e": 33.98
+   },
+   {
+    "w": " sangat",
+    "s": 33.98,
+    "e": 34.5
+   },
+   {
+    "w": "-sangat",
+    "s": 34.5,
+    "e": 34.8
+   },
+   {
+    "w": " terhad.",
+    "s": 34.8,
+    "e": 35.04
+   }
+  ]
+ }
+]
