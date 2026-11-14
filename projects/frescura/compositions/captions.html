@@ -1,0 +1,342 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-300.woff2') format('woff2');font-weight:300}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-700.woff2') format('woff2');font-weight:700}
+
+#root{position:absolute;inset:0;overflow:hidden;--noir:#0b0908;--esp:#18110d;--ink:#f4ede3;--mute:#b9ad9f;--gold:#d9b98c;--gold2:#f3dcb0;--rose:#b3182f;--violet:#6d4bd6;
+ font-family:'Jost',sans-serif;color:var(--ink);background:var(--noir)}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#root .serif{font-family:'Bodoni Moda',serif;font-weight:500}
+#root .ital{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+#root .kick{font-family:'Jost',sans-serif;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:34px}
+#root .center{left:0;width:1080px;text-align:center}
+#root .glow{position:absolute;border-radius:50%;pointer-events:none}
+#root .hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#root .card{position:absolute;border:1.5px solid rgba(217,185,140,.55);background:linear-gradient(160deg,rgba(40,30,24,.82),rgba(12,10,9,.86));border-radius:28px}
+
+#root{background:transparent}
+#root .grp{position:absolute;left:0;top:1120px;width:1080px;text-align:center;opacity:0;visibility:hidden}
+#root .line{display:inline-block;max-width:960px;padding:10px 20px;
+  text-shadow:0 3px 14px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.95),0 0 40px rgba(0,0,0,.55);
+  font-family:'Jost',sans-serif;font-weight:700;font-size:58px;line-height:1.12;letter-spacing:.02em;text-transform:uppercase;color:#f4ede3}
+#root .w{display:inline-block;transform-origin:50% 70%}
+#root .w.em{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;text-transform:none;font-size:70px;letter-spacing:0;
+  color:#f3dcb0;text-shadow:0 0 22px rgba(217,185,140,.45)}
+</style>
+<div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="40.0">
+<div class="grp" id="cg0"><div class="line"><span class="w" id="c0w0">Suami-suami,</span></div></div>
+<div class="grp" id="cg1"><div class="line"><span class="w" id="c1w0">korang ingat</span> <span class="w" id="c1w1">isteri</span> <span class="w" id="c1w2">ni</span></div></div>
+<div class="grp" id="cg2"><div class="line"><span class="w em" id="c2w0">robot</span> <span class="w" id="c2w1">ke?</span></div></div>
+<div class="grp" id="cg3"><div class="line"><span class="w" id="c3w0">Pagi</span> <span class="w" id="c3w1">sampai</span> <span class="w em" id="c3w2">malam</span></div></div>
+<div class="grp" id="cg4"><div class="line"><span class="w" id="c4w0">uruskan</span> <span class="w" id="c4w1">rumah,</span></div></div>
+<div class="grp" id="cg5"><div class="line"><span class="w" id="c5w0">anak</span> <span class="w" id="c5w1">dan</span> <span class="w" id="c5w2">keperluan</span> <span class="w" id="c5w3">korang.</span></div></div>
+<div class="grp" id="cg6"><div class="line"><span class="w" id="c6w0">Kadang-kadang</span> <span class="w" id="c6w1">kita</span> <span class="w" id="c6w2">terlupa</span></div></div>
+<div class="grp" id="cg7"><div class="line"><span class="w" id="c7w0">isteri</span> <span class="w" id="c7w1">pun</span> <span class="w em" id="c7w2">manusia</span> <span class="w" id="c7w3">biasa.</span></div></div>
+<div class="grp" id="cg8"><div class="line"><span class="w" id="c8w0">Dia</span> <span class="w" id="c8w1">pun</span> <span class="w em" id="c8w2">penat,</span></div></div>
+<div class="grp" id="cg9"><div class="line"><span class="w" id="c9w0">dia</span> <span class="w" id="c9w1">pun</span> <span class="w" id="c9w2">perlukan</span> <span class="w em" id="c9w3">perhatian</span></div></div>
+<div class="grp" id="cg10"><div class="line"><span class="w" id="c10w0">dan</span> <span class="w" id="c10w1">dia</span> <span class="w" id="c10w2">pun</span> <span class="w" id="c10w3">nak</span></div></div>
+<div class="grp" id="cg11"><div class="line"><span class="w" id="c11w0">rasa</span> <span class="w em" id="c11w1">dihargai.</span></div></div>
+<div class="grp" id="cg12"><div class="line"><span class="w" id="c12w0">Jangan</span> <span class="w" id="c12w1">sampai</span> <span class="w" id="c12w2">terlalu</span> <span class="w em" id="c12w3">sibuk</span></div></div>
+<div class="grp" id="cg13"><div class="line"><span class="w" id="c13w0">dengan</span> <span class="w" id="c13w1">urusan</span> <span class="w" id="c13w2">sendiri</span></div></div>
+<div class="grp" id="cg14"><div class="line"><span class="w" id="c14w0">sampai</span> <span class="w" id="c14w1">terlupa</span> <span class="w" id="c14w2">nak</span> <span class="w em" id="c14w3">bahagiakan</span></div></div>
+<div class="grp" id="cg15"><div class="line"><span class="w em" id="c15w0">wanita</span> <span class="w" id="c15w1">yang</span> <span class="w" id="c15w2">sentiasa</span></div></div>
+<div class="grp" id="cg16"><div class="line"><span class="w" id="c16w0">ada</span> <span class="w" id="c16w1">untuk</span> <span class="w" id="c16w2">korang.</span></div></div>
+<div class="grp" id="cg17"><div class="line"><span class="w" id="c17w0">Sesekali</span> <span class="w" id="c17w1">manjakan</span></div></div>
+<div class="grp" id="cg18"><div class="line"><span class="w" id="c18w0">isteri</span> <span class="w" id="c18w1">korang</span> <span class="w" id="c18w2">dengan</span></div></div>
+<div class="grp" id="cg19"><div class="line"><span class="w" id="c19w0">sesuatu</span> <span class="w" id="c19w1">yang</span> <span class="w" id="c19w2">sangat</span> <span class="w em" id="c19w3">istimewa.</span></div></div>
+<div class="grp" id="cg20"><div class="line"><span class="w" id="c20w0">Pastinya</span> <span class="w em" id="c20w1">Frescura</span> <span class="w em" id="c20w2">Body.</span></div></div>
+<div class="grp" id="cg21"><div class="line"><span class="w" id="c21w0">Buih</span> <span class="w" id="c21w1">yang</span> <span class="w em" id="c21w2">lembut</span></div></div>
+<div class="grp" id="cg22"><div class="line"><span class="w" id="c22w0">terus</span> <span class="w" id="c22w1">daripada</span> <span class="w em" id="c22w2">botol,</span></div></div>
+<div class="grp" id="cg23"><div class="line"><span class="w" id="c23w0">garam</span> <span class="w em" id="c23w1">laut</span> <span class="w" id="c23w2">dan</span></div></div>
+<div class="grp" id="cg24"><div class="line"><span class="w" id="c24w0">pilihan</span> <span class="w" id="c24w1">wangian.</span> <span class="w em" id="c24w2">feminin</span></div></div>
+<div class="grp" id="cg25"><div class="line"><span class="w em" id="c25w0">Bombshell</span> <span class="w" id="c25w1">serta</span></div></div>
+<div class="grp" id="cg26"><div class="line"><span class="w em" id="c26w0">Midnight</span> <span class="w em" id="c26w1">Fantasy</span></div></div>
+<div class="grp" id="cg27"><div class="line"><span class="w" id="c27w0">yang</span> <span class="w" id="c27w1">sangat</span> <span class="w em" id="c27w2">misteri</span></div></div>
+<div class="grp" id="cg28"><div class="line"><span class="w" id="c28w0">dan</span> <span class="w em" id="c28w1">seksi.</span></div></div>
+<div class="grp" id="cg29"><div class="line"><span class="w" id="c29w0">Suami-suami,</span></div></div>
+<div class="grp" id="cg30"><div class="line"><span class="w" id="c30w0">jangan</span> <span class="w" id="c30w1">tunggu</span> <span class="w" id="c30w2">isteri</span> <span class="w" id="c30w3">minta</span></div></div>
+<div class="grp" id="cg31"><div class="line"><span class="w" id="c31w0">baru</span> <span class="w" id="c31w1">nak</span> <span class="w" id="c31w2">belikan</span> <span class="w em" id="c31w3">hadiah.</span></div></div>
+<div class="grp" id="cg32"><div class="line"><span class="w" id="c32w0">Tekan</span> <span class="w em" id="c32w1">link</span> <span class="w" id="c32w2">ini</span> <span class="w" id="c32w3">sekarang</span></div></div>
+<div class="grp" id="cg33"><div class="line"><span class="w" id="c33w0">dan</span> <span class="w em" id="c33w1">checkout</span></div></div>
+<div class="grp" id="cg34"><div class="line"><span class="w em" id="c34w0">Frescura</span> <span class="w em" id="c34w1">Body.</span></div></div>
+<div class="grp" id="cg35"><div class="line"><span class="w" id="c35w0">Pastikan</span> <span class="w" id="c35w1">korang</span> <span class="w" id="c35w2">dapat</span> <span class="w" id="c35w3">harga</span></div></div>
+<div class="grp" id="cg36"><div class="line"><span class="w em" id="c36w0">pelancaran</span> <span class="w" id="c36w1">daripada</span> <span class="w em" id="c36w2">TikTok.</span></div></div>
+<div class="grp" id="cg37"><div class="line"><span class="w" id="c37w0">Supaya</span> <span class="w" id="c37w1">isteri</span> <span class="w" id="c37w2">korang</span></div></div>
+<div class="grp" id="cg38"><div class="line"><span class="w em" id="c38w0">cinta</span> <span class="w" id="c38w1">dan</span> <span class="w em" id="c38w2">sayangkan</span> <span class="w" id="c38w3">korang.</span></div></div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const S = "[data-composition-id='captions'] ";
+tl.fromTo("#c0w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},0.120);
+tl.set("#cg0",{opacity:1,visibility:"visible"},0.120);
+tl.to("#cg0",{opacity:0,duration:.1,ease:"power2.in"},0.680);
+tl.set("#cg0",{visibility:"hidden"},0.780);
+tl.fromTo("#c1w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},0.790);
+tl.fromTo("#c1w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},1.150);
+tl.fromTo("#c1w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},1.430);
+tl.set("#cg1",{opacity:1,visibility:"visible"},0.780);
+tl.to("#cg1",{opacity:0,duration:.1,ease:"power2.in"},1.460);
+tl.set("#cg1",{visibility:"hidden"},1.560);
+tl.fromTo("#c2w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},1.570);
+tl.fromTo("#c2w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},1.620);
+tl.fromTo("#c2w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},1.890);
+tl.set("#cg2",{opacity:1,visibility:"visible"},1.560);
+tl.to("#cg2",{opacity:0,duration:.1,ease:"power2.in"},2.120);
+tl.set("#cg2",{visibility:"hidden"},2.220);
+tl.fromTo("#c3w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},2.230);
+tl.fromTo("#c3w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},2.410);
+tl.fromTo("#c3w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},2.650);
+tl.fromTo("#c3w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},2.700);
+tl.set("#cg3",{opacity:1,visibility:"visible"},2.220);
+tl.to("#cg3",{opacity:0,duration:.1,ease:"power2.in"},2.780);
+tl.set("#cg3",{visibility:"hidden"},2.880);
+tl.fromTo("#c4w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},2.890);
+tl.fromTo("#c4w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},3.330);
+tl.set("#cg4",{opacity:1,visibility:"visible"},2.880);
+tl.to("#cg4",{opacity:0,duration:.1,ease:"power2.in"},3.860);
+tl.set("#cg4",{visibility:"hidden"},3.960);
+tl.fromTo("#c5w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},3.970);
+tl.fromTo("#c5w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},4.050);
+tl.fromTo("#c5w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},4.270);
+tl.fromTo("#c5w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},4.730);
+tl.set("#cg5",{opacity:1,visibility:"visible"},3.960);
+tl.to("#cg5",{opacity:0,duration:.1,ease:"power2.in"},5.140);
+tl.set("#cg5",{visibility:"hidden"},5.240);
+tl.fromTo("#c6w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},5.250);
+tl.fromTo("#c6w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},5.410);
+tl.fromTo("#c6w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},5.590);
+tl.set("#cg6",{opacity:1,visibility:"visible"},5.240);
+tl.to("#cg6",{opacity:0,duration:.1,ease:"power2.in"},5.880);
+tl.set("#cg6",{visibility:"hidden"},5.980);
+tl.fromTo("#c7w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},5.990);
+tl.fromTo("#c7w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},6.350);
+tl.fromTo("#c7w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},6.470);
+tl.fromTo("#c7w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},6.520);
+tl.fromTo("#c7w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},6.830);
+tl.set("#cg7",{opacity:1,visibility:"visible"},5.980);
+tl.to("#cg7",{opacity:0,duration:.1,ease:"power2.in"},7.180);
+tl.set("#cg7",{visibility:"hidden"},7.280);
+tl.fromTo("#c8w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},7.290);
+tl.fromTo("#c8w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},7.410);
+tl.fromTo("#c8w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},7.550);
+tl.fromTo("#c8w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},7.600);
+tl.set("#cg8",{opacity:1,visibility:"visible"},7.280);
+tl.to("#cg8",{opacity:0,duration:.1,ease:"power2.in"},7.780);
+tl.set("#cg8",{visibility:"hidden"},7.880);
+tl.fromTo("#c9w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},7.890);
+tl.fromTo("#c9w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},8.030);
+tl.fromTo("#c9w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},8.190);
+tl.fromTo("#c9w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},8.410);
+tl.fromTo("#c9w3",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},8.460);
+tl.set("#cg9",{opacity:1,visibility:"visible"},7.880);
+tl.to("#cg9",{opacity:0,duration:.1,ease:"power2.in"},8.880);
+tl.set("#cg9",{visibility:"hidden"},8.980);
+tl.fromTo("#c10w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},8.990);
+tl.fromTo("#c10w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},9.190);
+tl.fromTo("#c10w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},9.430);
+tl.fromTo("#c10w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},9.650);
+tl.set("#cg10",{opacity:1,visibility:"visible"},8.980);
+tl.to("#cg10",{opacity:0,duration:.1,ease:"power2.in"},9.760);
+tl.set("#cg10",{visibility:"hidden"},9.860);
+tl.fromTo("#c11w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},9.870);
+tl.fromTo("#c11w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},10.110);
+tl.fromTo("#c11w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},10.160);
+tl.set("#cg11",{opacity:1,visibility:"visible"},9.860);
+tl.to("#cg11",{opacity:0,duration:.1,ease:"power2.in"},10.600);
+tl.set("#cg11",{visibility:"hidden"},10.700);
+tl.fromTo("#c12w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},10.710);
+tl.fromTo("#c12w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},10.850);
+tl.fromTo("#c12w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},11.050);
+tl.fromTo("#c12w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},11.310);
+tl.fromTo("#c12w3",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},11.360);
+tl.set("#cg12",{opacity:1,visibility:"visible"},10.700);
+tl.to("#cg12",{opacity:0,duration:.1,ease:"power2.in"},11.620);
+tl.set("#cg12",{visibility:"hidden"},11.720);
+tl.fromTo("#c13w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},11.730);
+tl.fromTo("#c13w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},12.030);
+tl.fromTo("#c13w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},12.350);
+tl.set("#cg13",{opacity:1,visibility:"visible"},11.720);
+tl.to("#cg13",{opacity:0,duration:.1,ease:"power2.in"},12.720);
+tl.set("#cg13",{visibility:"hidden"},12.820);
+tl.fromTo("#c14w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},12.830);
+tl.fromTo("#c14w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},13.310);
+tl.fromTo("#c14w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},13.630);
+tl.fromTo("#c14w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},13.810);
+tl.fromTo("#c14w3",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},13.860);
+tl.set("#cg14",{opacity:1,visibility:"visible"},12.820);
+tl.to("#cg14",{opacity:0,duration:.1,ease:"power2.in"},14.200);
+tl.set("#cg14",{visibility:"hidden"},14.300);
+tl.fromTo("#c15w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},14.310);
+tl.fromTo("#c15w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},14.360);
+tl.fromTo("#c15w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},14.910);
+tl.fromTo("#c15w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},15.130);
+tl.set("#cg15",{opacity:1,visibility:"visible"},14.300);
+tl.to("#cg15",{opacity:0,duration:.1,ease:"power2.in"},15.460);
+tl.set("#cg15",{visibility:"hidden"},15.560);
+tl.fromTo("#c16w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},15.570);
+tl.fromTo("#c16w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},15.710);
+tl.fromTo("#c16w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},15.910);
+tl.set("#cg16",{opacity:1,visibility:"visible"},15.560);
+tl.to("#cg16",{opacity:0,duration:.1,ease:"power2.in"},16.200);
+tl.set("#cg16",{visibility:"hidden"},16.300);
+tl.fromTo("#c17w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},16.310);
+tl.fromTo("#c17w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},16.890);
+tl.set("#cg17",{opacity:1,visibility:"visible"},16.300);
+tl.to("#cg17",{opacity:0,duration:.1,ease:"power2.in"},17.340);
+tl.set("#cg17",{visibility:"hidden"},17.440);
+tl.fromTo("#c18w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},17.450);
+tl.fromTo("#c18w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},17.750);
+tl.fromTo("#c18w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},17.970);
+tl.set("#cg18",{opacity:1,visibility:"visible"},17.440);
+tl.to("#cg18",{opacity:0,duration:.1,ease:"power2.in"},18.060);
+tl.set("#cg18",{visibility:"hidden"},18.160);
+tl.fromTo("#c19w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},18.170);
+tl.fromTo("#c19w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},18.470);
+tl.fromTo("#c19w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},18.650);
+tl.fromTo("#c19w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},18.910);
+tl.fromTo("#c19w3",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},18.960);
+tl.set("#cg19",{opacity:1,visibility:"visible"},18.160);
+tl.to("#cg19",{opacity:0,duration:.1,ease:"power2.in"},19.460);
+tl.set("#cg19",{visibility:"hidden"},19.560);
+tl.fromTo("#c20w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},19.570);
+tl.fromTo("#c20w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},19.870);
+tl.fromTo("#c20w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},19.920);
+tl.fromTo("#c20w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},20.370);
+tl.fromTo("#c20w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},20.420);
+tl.set("#cg20",{opacity:1,visibility:"visible"},19.560);
+tl.to("#cg20",{opacity:0,duration:.1,ease:"power2.in"},20.940);
+tl.set("#cg20",{visibility:"hidden"},21.040);
+tl.fromTo("#c21w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},21.050);
+tl.fromTo("#c21w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},21.150);
+tl.fromTo("#c21w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},21.270);
+tl.fromTo("#c21w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},21.320);
+tl.set("#cg21",{opacity:1,visibility:"visible"},21.040);
+tl.to("#cg21",{opacity:0,duration:.1,ease:"power2.in"},21.420);
+tl.set("#cg21",{visibility:"hidden"},21.520);
+tl.fromTo("#c22w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},21.530);
+tl.fromTo("#c22w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},21.810);
+tl.fromTo("#c22w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},22.130);
+tl.fromTo("#c22w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},22.180);
+tl.set("#cg22",{opacity:1,visibility:"visible"},21.520);
+tl.to("#cg22",{opacity:0,duration:.1,ease:"power2.in"},22.640);
+tl.set("#cg22",{visibility:"hidden"},22.740);
+tl.fromTo("#c23w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},22.750);
+tl.fromTo("#c23w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},22.970);
+tl.fromTo("#c23w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},23.020);
+tl.fromTo("#c23w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},23.150);
+tl.set("#cg23",{opacity:1,visibility:"visible"},22.740);
+tl.to("#cg23",{opacity:0,duration:.1,ease:"power2.in"},23.240);
+tl.set("#cg23",{visibility:"hidden"},23.340);
+tl.fromTo("#c24w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},23.350);
+tl.fromTo("#c24w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},23.650);
+tl.fromTo("#c24w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},24.150);
+tl.fromTo("#c24w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},24.200);
+tl.set("#cg24",{opacity:1,visibility:"visible"},23.340);
+tl.to("#cg24",{opacity:0,duration:.1,ease:"power2.in"},24.440);
+tl.set("#cg24",{visibility:"hidden"},24.540);
+tl.fromTo("#c25w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},24.550);
+tl.fromTo("#c25w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},24.600);
+tl.fromTo("#c25w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},25.070);
+tl.set("#cg25",{opacity:1,visibility:"visible"},24.540);
+tl.to("#cg25",{opacity:0,duration:.1,ease:"power2.in"},25.260);
+tl.set("#cg25",{visibility:"hidden"},25.360);
+tl.fromTo("#c26w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},25.370);
+tl.fromTo("#c26w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},25.420);
+tl.fromTo("#c26w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},25.530);
+tl.fromTo("#c26w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},25.580);
+tl.set("#cg26",{opacity:1,visibility:"visible"},25.360);
+tl.to("#cg26",{opacity:0,duration:.1,ease:"power2.in"},25.780);
+tl.set("#cg26",{visibility:"hidden"},25.880);
+tl.fromTo("#c27w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},25.890);
+tl.fromTo("#c27w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},26.110);
+tl.fromTo("#c27w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},26.370);
+tl.fromTo("#c27w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},26.420);
+tl.set("#cg27",{opacity:1,visibility:"visible"},25.880);
+tl.to("#cg27",{opacity:0,duration:.1,ease:"power2.in"},26.580);
+tl.set("#cg27",{visibility:"hidden"},26.680);
+tl.fromTo("#c28w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},26.690);
+tl.fromTo("#c28w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},26.910);
+tl.fromTo("#c28w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},26.960);
+tl.set("#cg28",{opacity:1,visibility:"visible"},26.680);
+tl.to("#cg28",{opacity:0,duration:.1,ease:"power2.in"},27.220);
+tl.set("#cg28",{visibility:"hidden"},27.320);
+tl.fromTo("#c29w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},27.330);
+tl.set("#cg29",{opacity:1,visibility:"visible"},27.320);
+tl.to("#cg29",{opacity:0,duration:.1,ease:"power2.in"},28.440);
+tl.set("#cg29",{visibility:"hidden"},28.540);
+tl.fromTo("#c30w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},28.550);
+tl.fromTo("#c30w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},28.890);
+tl.fromTo("#c30w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},29.350);
+tl.fromTo("#c30w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},29.670);
+tl.set("#cg30",{opacity:1,visibility:"visible"},28.540);
+tl.to("#cg30",{opacity:0,duration:.1,ease:"power2.in"},29.780);
+tl.set("#cg30",{visibility:"hidden"},29.880);
+tl.fromTo("#c31w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},29.890);
+tl.fromTo("#c31w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},30.130);
+tl.fromTo("#c31w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},30.270);
+tl.fromTo("#c31w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},30.530);
+tl.fromTo("#c31w3",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},30.580);
+tl.set("#cg31",{opacity:1,visibility:"visible"},29.880);
+tl.to("#cg31",{opacity:0,duration:.1,ease:"power2.in"},30.940);
+tl.set("#cg31",{visibility:"hidden"},31.040);
+tl.fromTo("#c32w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},31.050);
+tl.fromTo("#c32w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},31.310);
+tl.fromTo("#c32w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},31.360);
+tl.fromTo("#c32w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},31.390);
+tl.fromTo("#c32w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},31.510);
+tl.set("#cg32",{opacity:1,visibility:"visible"},31.040);
+tl.to("#cg32",{opacity:0,duration:.1,ease:"power2.in"},31.720);
+tl.set("#cg32",{visibility:"hidden"},31.820);
+tl.fromTo("#c33w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},31.830);
+tl.fromTo("#c33w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},32.010);
+tl.fromTo("#c33w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},32.060);
+tl.set("#cg33",{opacity:1,visibility:"visible"},31.820);
+tl.to("#cg33",{opacity:0,duration:.1,ease:"power2.in"},32.260);
+tl.set("#cg33",{visibility:"hidden"},32.360);
+tl.fromTo("#c34w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},32.370);
+tl.fromTo("#c34w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},32.420);
+tl.fromTo("#c34w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},32.750);
+tl.fromTo("#c34w1",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},32.800);
+tl.set("#cg34",{opacity:1,visibility:"visible"},32.360);
+tl.to("#cg34",{opacity:0,duration:.1,ease:"power2.in"},33.140);
+tl.set("#cg34",{visibility:"hidden"},33.240);
+tl.fromTo("#c35w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},33.250);
+tl.fromTo("#c35w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},33.490);
+tl.fromTo("#c35w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},33.690);
+tl.fromTo("#c35w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},33.890);
+tl.set("#cg35",{opacity:1,visibility:"visible"},33.240);
+tl.to("#cg35",{opacity:0,duration:.1,ease:"power2.in"},34.040);
+tl.set("#cg35",{visibility:"hidden"},34.140);
+tl.fromTo("#c36w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},34.150);
+tl.fromTo("#c36w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},34.200);
+tl.fromTo("#c36w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},34.450);
+tl.fromTo("#c36w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},34.690);
+tl.fromTo("#c36w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},34.740);
+tl.set("#cg36",{opacity:1,visibility:"visible"},34.140);
+tl.to("#cg36",{opacity:0,duration:.1,ease:"power2.in"},35.200);
+tl.set("#cg36",{visibility:"hidden"},35.300);
+tl.fromTo("#c37w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},35.310);
+tl.fromTo("#c37w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},35.690);
+tl.fromTo("#c37w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},36.030);
+tl.set("#cg37",{opacity:1,visibility:"visible"},35.300);
+tl.to("#cg37",{opacity:0,duration:.1,ease:"power2.in"},36.240);
+tl.set("#cg37",{visibility:"hidden"},36.340);
+tl.fromTo("#c38w0",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},36.350);
+tl.fromTo("#c38w0",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},36.400);
+tl.fromTo("#c38w1",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},36.770);
+tl.fromTo("#c38w2",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},37.010);
+tl.fromTo("#c38w2",{scale:1.18},{scale:1,duration:.35,ease:"expo.out"},37.060);
+tl.fromTo("#c38w3",{opacity:0,y:26,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.16,ease:"power3.out"},37.590);
+tl.set("#cg38",{opacity:1,visibility:"visible"},36.340);
+tl.to("#cg38",{opacity:0,duration:.1,ease:"power2.in"},38.110);
+tl.set("#cg38",{visibility:"hidden"},38.210);
+window.__timelines["captions"] = tl;
+})();
+</script>
+</template>

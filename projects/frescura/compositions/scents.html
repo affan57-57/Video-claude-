@@ -1,0 +1,78 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-300.woff2') format('woff2');font-weight:300}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-700.woff2') format('woff2');font-weight:700}
+
+#root{position:absolute;inset:0;overflow:hidden;--noir:#0b0908;--esp:#18110d;--ink:#f4ede3;--mute:#b9ad9f;--gold:#d9b98c;--gold2:#f3dcb0;--rose:#b3182f;--violet:#6d4bd6;
+ font-family:'Jost',sans-serif;color:var(--ink);background:var(--noir)}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#root .serif{font-family:'Bodoni Moda',serif;font-weight:500}
+#root .ital{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+#root .kick{font-family:'Jost',sans-serif;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:34px}
+#root .center{left:0;width:1080px;text-align:center}
+#root .glow{position:absolute;border-radius:50%;pointer-events:none}
+#root .hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#root .card{position:absolute;border:1.5px solid rgba(217,185,140,.55);background:linear-gradient(160deg,rgba(40,30,24,.82),rgba(12,10,9,.86));border-radius:28px}
+
+#s-red{background:radial-gradient(ellipse 80% 60% at 50% 55%,#8c1024 0%,#3d0610 55%,#120406 100%)}
+#s-vio{background:radial-gradient(ellipse 80% 60% at 50% 55%,#4a2fa8 0%,#1d1247 55%,#07051a 100%)}
+#s-duo{background:linear-gradient(90deg,#3d0610 0%,#120a10 50%,#1d1247 100%)}
+.s-bottle{position:absolute;top:520px;width:285px}
+#s-b1{left:397px}#s-b2{left:397px}
+.s-k{top:250px}
+.s-t{top:305px;font-size:150px;line-height:1;color:#fff4ea}
+.s-sub{top:470px;font-size:30px;letter-spacing:.42em;padding-left:.42em;color:var(--gold2);font-weight:500;text-transform:uppercase}
+#s-t2{font-size:128px}
+#s-d1{left:200px;top:560px;width:300px}#s-d2{left:580px;top:560px;width:300px}
+#s-w1,#s-w2{top:270px;font-size:150px;font-weight:800;letter-spacing:.06em;color:#fff4ea}
+#s-w1{left:0;width:1080px;text-align:center}
+#s-w2{left:0;width:1080px;text-align:center;top:400px;font-style:italic;font-weight:500;color:var(--gold2)}
+#s-wipe{left:0;top:0;width:1080px;height:1920px;background:#0b0908}
+</style>
+<div id="root" data-composition-id="scents" data-width="1080" data-height="1920" data-duration="2.8">
+<div id="s-red" class="full"></div>
+<div id="s-pR" class="full">
+  <div class="abs center kick s-k">Woman Glory · rose</div>
+  <div id="s-t1" class="abs center ital s-t">Bombshell</div>
+  <img id="s-b1" class="s-bottle" src="assets/img/red-cut.png" alt="Bombshell">
+  <div class="abs center s-sub">feminin · berani</div>
+</div>
+<div id="s-pV" class="full">
+  <div id="s-vio" class="full"></div>
+  <div class="abs center kick s-k">Noche · violet night</div>
+  <div id="s-t2" class="abs center ital s-t">Midnight Fantasy</div>
+  <img id="s-b2" class="s-bottle" src="assets/img/noche-cut.png" alt="Midnight Fantasy">
+  <div class="abs center s-sub">misteri · seksi</div>
+</div>
+<div id="s-pD" class="full">
+  <div id="s-duo" class="full"></div>
+  <img id="s-d1" class="abs" src="assets/img/red-cut.png" alt="">
+  <img id="s-d2" class="abs" src="assets/img/noche-cut.png" alt="">
+  <div id="s-w1" class="abs serif">MISTERI</div>
+  <div id="s-w2" class="abs serif">&amp; seksi.</div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const S = "[data-composition-id='scents'] ";
+tl.fromTo("#s-t1",{opacity:0,scale:1.25,filter:"blur(16px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.4,ease:"expo.out"},0.02);
+tl.fromTo("#s-b1",{y:300,opacity:0,rotate:-8},{y:0,opacity:1,rotate:0,duration:.6,ease:"expo.out"},0.0);
+tl.fromTo("#s-pV",{xPercent:100},{xPercent:0,duration:.34,ease:"power3.inOut"},0.72);
+tl.fromTo("#s-pR",{x:0,opacity:1,filter:"blur(0px)"},{x:-500,opacity:0,filter:"blur(14px)",duration:.34,ease:"power3.inOut"},0.72);
+tl.fromTo("#s-t2",{opacity:0,filter:"blur(12px)"},{opacity:1,filter:"blur(0px)",duration:.3,ease:"power3.out"},0.92);
+tl.fromTo("#s-b2",{y:200,opacity:0,rotate:8},{y:0,opacity:1,rotate:0,duration:.55,ease:"expo.out"},0.8);
+tl.fromTo("#s-pD",{opacity:0,clipPath:"circle(0% at 50% 60%)"},{opacity:1,clipPath:"circle(80% at 50% 60%)",duration:.4,ease:"power3.inOut"},1.5);
+tl.fromTo("#s-d1",{x:200,rotate:6,scale:.9},{x:0,rotate:-4,scale:1,duration:.55,ease:"expo.out"},1.5);
+tl.fromTo("#s-d2",{x:-200,rotate:-6,scale:.9},{x:0,rotate:4,scale:1,duration:.55,ease:"expo.out"},1.5);
+tl.fromTo("#s-w1",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.25,ease:"power4.out"},1.84);
+tl.fromTo("#s-w2",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.25,ease:"power4.out"},2.38);
+window.__timelines["scents"] = tl;
+})();
+</script>
+</template>

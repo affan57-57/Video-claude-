@@ -1,0 +1,76 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-300.woff2') format('woff2');font-weight:300}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-700.woff2') format('woff2');font-weight:700}
+
+#root{position:absolute;inset:0;overflow:hidden;--noir:#0b0908;--esp:#18110d;--ink:#f4ede3;--mute:#b9ad9f;--gold:#d9b98c;--gold2:#f3dcb0;--rose:#b3182f;--violet:#6d4bd6;
+ font-family:'Jost',sans-serif;color:var(--ink);background:var(--noir)}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#root .serif{font-family:'Bodoni Moda',serif;font-weight:500}
+#root .ital{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+#root .kick{font-family:'Jost',sans-serif;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:34px}
+#root .center{left:0;width:1080px;text-align:center}
+#root .glow{position:absolute;border-radius:50%;pointer-events:none}
+#root .hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#root .card{position:absolute;border:1.5px solid rgba(217,185,140,.55);background:linear-gradient(160deg,rgba(40,30,24,.82),rgba(12,10,9,.86));border-radius:28px}
+
+#b-bg{background:radial-gradient(ellipse 70% 50% at 50% 45%,#221812,#0b0908 75%)}
+#b-head{top:240px;font-size:84px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+#b-head2{top:235px;font-size:96px;color:var(--gold2);opacity:0}
+#b-phone{left:250px;top:370px;width:580px;height:730px;border-radius:70px;border:3px solid rgba(217,185,140,.7);
+ background:linear-gradient(170deg,#1d1612,#0c0a09);box-shadow:0 40px 120px rgba(0,0,0,.6),inset 0 0 0 10px #050404;overflow:hidden}
+#b-notch{left:225px;top:22px;width:130px;height:32px;border-radius:16px;background:#050404}
+#b-time{left:0;top:80px;width:580px;text-align:center;font-size:88px;font-weight:300;color:var(--ink)}
+.b-n{position:absolute;left:30px;width:520px;height:104px;border-radius:26px;background:rgba(244,237,227,.1);border:1px solid rgba(244,237,227,.14)}
+.b-n i{position:absolute;left:18px;top:22px;width:60px;height:60px;border-radius:16px}
+.b-n b{position:absolute;left:96px;top:16px;font-size:30px;font-weight:700;color:var(--ink);letter-spacing:.02em}
+.b-n span{position:absolute;left:96px;top:56px;font-size:28px;color:var(--mute)}
+#b-n1{top:220px}#b-n2{top:338px}#b-n3{top:456px}#b-n4{top:574px}#b-n5{top:692px}
+#b-love{left:0;top:0;width:580px;height:770px;background:radial-gradient(circle at 50% 45%,#c2334b 0%,#6e0f1e 55%,#2a0710 100%);opacity:0}
+#b-heart{left:140px;top:170px;width:300px;height:270px}
+#b-lt{left:0;top:470px;width:580px;text-align:center;font-size:62px;line-height:1.1;color:#fff4ea}
+</style>
+<div id="root" data-composition-id="busy" data-width="1080" data-height="1920" data-duration="5.64">
+<div id="b-bg" class="full"></div>
+<div id="b-head" class="abs center">Terlalu sibuk?</div>
+<div id="b-head2" class="abs center ital">Bahagiakan dia.</div>
+<div id="b-phone" class="abs">
+  <div id="b-time" class="abs">21:47</div>
+  <div id="b-n1" class="b-n"><i style="background:#3c6df0"></i><b>Meeting</b><span>9:00 pagi · Bilik 3</span></div>
+  <div id="b-n2" class="b-n"><i style="background:#e0a33c"></i><b>Email: URGENT</b><span>Boss · 14 mesej baru</span></div>
+  <div id="b-n3" class="b-n"><i style="background:#2fbf71"></i><b>Group Geng Kerja</b><span>99+ mesej</span></div>
+  <div id="b-n4" class="b-n"><i style="background:#9b59d0"></i><b>Game</b><span>Daily reward menunggu!</span></div>
+  <div id="b-n5" class="b-n"><i style="background:#e5484d"></i><b>Kerja lebih masa</b><span>Sabtu & Ahad</span></div>
+  <div id="b-love" class="abs">
+    <svg id="b-heart" class="abs" viewBox="0 0 300 270" fill="none"><path id="b-hp" d="M150 250 C40 170 10 110 40 60 C70 12 125 20 150 70 C175 20 230 12 260 60 C290 110 260 170 150 250Z" stroke="#f3dcb0" stroke-width="7" stroke-linecap="round"/></svg>
+    <div id="b-lt" class="abs ital">Dia yang<br>sentiasa ada.</div>
+  </div>
+  <div id="b-notch" class="abs"></div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const S = "[data-composition-id='busy'] ";
+tl.fromTo("#b-head",{opacity:0,y:-30,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.35,ease:"expo.out"},0.05);
+tl.fromTo("#b-phone",{opacity:0,y:140,rotate:-4},{opacity:1,y:0,rotate:0,duration:.6,ease:"expo.out"},0);
+[["#b-n1",.22],["#b-n2",.68],["#b-n3",1.12],["#b-n4",1.58],["#b-n5",2.08]].forEach(([s,t])=>tl.fromTo(s,{opacity:0,y:-60,scale:.92},{opacity:1,y:0,scale:1,duration:.3,ease:"back.out(1.5)"},t));
+tl.to("#b-phone",{x:8,duration:.04,yoyo:true,repeat:5,ease:"none"},2.1);
+tl.to(".b-n",{x:-700,opacity:0,filter:"blur(12px)",duration:.3,ease:"power3.in",stagger:.05},3.05);
+tl.to("#b-time",{opacity:0,duration:.2},3.1);
+tl.to("#b-head",{opacity:0,filter:"blur(10px)",duration:.18},3.1);
+tl.to("#b-head2",{opacity:1,duration:.35,ease:"power2.out"},3.2);
+tl.to("#b-love",{opacity:1,duration:.45,ease:"power2.inOut"},3.25);
+const L=900;gsap.set("#b-hp",{strokeDasharray:L,strokeDashoffset:L});
+tl.to("#b-hp",{strokeDashoffset:0,duration:1.0,ease:"power2.inOut"},3.35);
+tl.fromTo("#b-lt",{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:"expo.out"},4.1);
+tl.to("#b-phone",{scale:1.06,duration:1.8,ease:"power1.inOut"},3.4);
+window.__timelines["busy"] = tl;
+})();
+</script>
+</template>

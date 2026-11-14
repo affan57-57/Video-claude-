@@ -1,0 +1,67 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-300.woff2') format('woff2');font-weight:300}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-700.woff2') format('woff2');font-weight:700}
+
+#root{position:absolute;inset:0;overflow:hidden;--noir:#0b0908;--esp:#18110d;--ink:#f4ede3;--mute:#b9ad9f;--gold:#d9b98c;--gold2:#f3dcb0;--rose:#b3182f;--violet:#6d4bd6;
+ font-family:'Jost',sans-serif;color:var(--ink);background:var(--noir)}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#root .serif{font-family:'Bodoni Moda',serif;font-weight:500}
+#root .ital{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+#root .kick{font-family:'Jost',sans-serif;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:34px}
+#root .center{left:0;width:1080px;text-align:center}
+#root .glow{position:absolute;border-radius:50%;pointer-events:none}
+#root .hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#root .card{position:absolute;border:1.5px solid rgba(217,185,140,.55);background:linear-gradient(160deg,rgba(40,30,24,.82),rgba(12,10,9,.86));border-radius:28px}
+
+#h-bg{background:radial-gradient(ellipse 70% 45% at 50% 38%,#2a1d15 0%,#0b0908 70%)}
+#h-scan{background:repeating-linear-gradient(180deg,rgba(217,185,140,.06) 0 2px,transparent 2px 9px)}
+#h-bot{left:340px;top:250px;width:400px;height:400px}
+#h-kick{top:700px}
+#h-l1{top:780px;font-size:92px;color:var(--ink)}
+#h-l2{top:900px;font-size:220px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+#h-l2 span{display:inline-block}
+#h-ghostR,#h-ghostC{top:900px;font-size:220px;font-weight:800;line-height:1;letter-spacing:-.02em;opacity:0;mix-blend-mode:screen}
+#h-ghostR{color:#ff2c4a}#h-ghostC{color:#3ce8ff}
+#h-strike{left:170px;top:1010px;width:740px;height:10px;background:var(--rose);transform-origin:0 50%;box-shadow:0 0 30px rgba(179,24,47,.8)}
+</style>
+<div id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-duration="2.28">
+<div id="h-bg" class="full"></div>
+<div id="h-scan" class="full"></div>
+<svg id="h-bot" class="abs" viewBox="0 0 400 400" fill="none" stroke="#d9b98c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <line class="hb" x1="200" y1="40" x2="200" y2="95"/><circle class="hb" cx="200" cy="32" r="10"/>
+  <rect class="hb" x="85" y="95" width="230" height="190" rx="46"/>
+  <circle class="hb" id="h-eyeL" cx="155" cy="180" r="18"/><circle class="hb" id="h-eyeR" cx="245" cy="180" r="18"/>
+  <path class="hb" d="M150 240 H250"/><path class="hb" d="M85 170 H55 M315 170 H345"/>
+  <path class="hb" d="M140 300 V350 M260 300 V350"/>
+</svg>
+<div id="h-kick" class="abs center kick">Suami-suami,</div>
+<div id="h-l1" class="abs center ital">korang ingat isteri ni</div>
+<div id="h-ghostR" class="abs center serif">ROBOT?</div>
+<div id="h-ghostC" class="abs center serif">ROBOT?</div>
+<div id="h-l2" class="abs center serif"><span>R</span><span>O</span><span>B</span><span>O</span><span>T</span><span>?</span></div>
+<div id="h-strike" class="abs"></div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const S = "[data-composition-id='hook'] ";
+gsap.utils.toArray(S+".hb").forEach(p=>{const L=p.getTotalLength?p.getTotalLength():600;gsap.set(p,{strokeDasharray:L,strokeDashoffset:L*0.15});tl.to(p,{strokeDashoffset:0,duration:.6,ease:"power2.out"},0);});
+tl.fromTo("#h-bot",{scale:1.12,opacity:.85},{scale:1,opacity:1,duration:.7,ease:"expo.out"},0);
+tl.fromTo("#h-kick",{opacity:1,scale:1.15},{scale:1,duration:.6,ease:"expo.out"},0);
+tl.fromTo("#h-l1",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:.2,ease:"power3.out"},.8);
+tl.fromTo("#h-l2 span",{opacity:0,y:60,scaleY:1.4},{opacity:1,y:0,scaleY:1,duration:.28,ease:"expo.out",stagger:.035},1.58);
+[[1.62,14,-8],[1.68,-10,6],[1.74,6,-4],[1.80,0,0]].forEach(([t,dx,dy])=>{tl.set("#h-ghostR",{opacity:dx?0.8:0,x:dx,y:dy},t);tl.set("#h-ghostC",{opacity:dx?0.8:0,x:-dx,y:-dy},t);});
+tl.to("#h-eyeL,#h-eyeR",{attr:{r:3},duration:.08,ease:"power2.in"},1.62).to("#h-eyeL,#h-eyeR",{attr:{r:18},duration:.1},1.72);
+tl.fromTo("#h-strike",{scaleX:0},{scaleX:1,duration:.22,ease:"power4.out"},1.98);
+tl.to("#h-bot",{opacity:.35,duration:.2},1.98);
+tl.to("#root",{opacity:1,duration:.01},2.27);
+window.__timelines["hook"] = tl;
+})();
+</script>
+</template>

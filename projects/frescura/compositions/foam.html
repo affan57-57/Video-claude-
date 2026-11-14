@@ -1,0 +1,49 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-300.woff2') format('woff2');font-weight:300}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-700.woff2') format('woff2');font-weight:700}
+
+#root{position:absolute;inset:0;overflow:hidden;--noir:#0b0908;--esp:#18110d;--ink:#f4ede3;--mute:#b9ad9f;--gold:#d9b98c;--gold2:#f3dcb0;--rose:#b3182f;--violet:#6d4bd6;
+ font-family:'Jost',sans-serif;color:var(--ink);background:var(--noir)}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#root .serif{font-family:'Bodoni Moda',serif;font-weight:500}
+#root .ital{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+#root .kick{font-family:'Jost',sans-serif;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:34px}
+#root .center{left:0;width:1080px;text-align:center}
+#root .glow{position:absolute;border-radius:50%;pointer-events:none}
+#root .hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#root .card{position:absolute;border:1.5px solid rgba(217,185,140,.55);background:linear-gradient(160deg,rgba(40,30,24,.82),rgba(12,10,9,.86));border-radius:28px}
+
+#f-wrap{left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#f-vid{left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+#f-grad{background:linear-gradient(180deg,rgba(11,9,8,.82) 0%,rgba(11,9,8,0) 30%,rgba(11,9,8,0) 55%,rgba(11,9,8,.7) 100%)}
+#f-pill{left:90px;top:220px;height:150px;width:900px}
+#f-n{left:0;top:0;font-family:'Bodoni Moda',serif;font-size:120px;line-height:1;color:var(--gold2)}
+#f-a{left:190px;top:12px;font-size:54px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+#f-b{left:192px;top:80px;font-size:44px;color:var(--gold2)}
+#f-line{left:90px;top:390px;width:900px;transform-origin:0 50%}
+</style>
+<div id="root" data-composition-id="foam" data-width="1080" data-height="1920" data-duration="1.68">
+<div id="f-wrap" class="abs"><video id="f-vid" class="abs clip" src="assets/video/foam_pump.mp4" data-start="0" data-duration="1.68" data-track-index="1" muted playsinline></video></div>
+<div id="f-grad" class="full"></div>
+<div id="f-pill" class="abs"><div id="f-n" class="abs">01</div><div id="f-a" class="abs">Buih lembut</div><div id="f-b" class="abs ital">terus dari botol</div></div>
+<div id="f-line" class="hair"></div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const S = "[data-composition-id='foam'] ";
+tl.fromTo("#f-wrap",{scale:1.18},{scale:1.04,duration:1.68,ease:"power2.out"},0);
+tl.fromTo("#f-n",{opacity:0,y:40},{opacity:1,y:0,duration:.35,ease:"expo.out"},0.04);
+tl.fromTo("#f-a",{opacity:0,x:-40},{opacity:1,x:0,duration:.35,ease:"expo.out"},0.1);
+tl.fromTo("#f-b",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.25},0.38);
+tl.fromTo("#f-line",{scaleX:0},{scaleX:1,duration:.6,ease:"expo.out"},0.15);
+window.__timelines["foam"] = tl;
+})();
+</script>
+</template>

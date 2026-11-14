@@ -1,0 +1,68 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-300.woff2') format('woff2');font-weight:300}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost-700.woff2') format('woff2');font-weight:700}
+
+#root{position:absolute;inset:0;overflow:hidden;--noir:#0b0908;--esp:#18110d;--ink:#f4ede3;--mute:#b9ad9f;--gold:#d9b98c;--gold2:#f3dcb0;--rose:#b3182f;--violet:#6d4bd6;
+ font-family:'Jost',sans-serif;color:var(--ink);background:var(--noir)}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#root .serif{font-family:'Bodoni Moda',serif;font-weight:500}
+#root .ital{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500}
+#root .kick{font-family:'Jost',sans-serif;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:34px}
+#root .center{left:0;width:1080px;text-align:center}
+#root .glow{position:absolute;border-radius:50%;pointer-events:none}
+#root .hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#root .card{position:absolute;border:1.5px solid rgba(217,185,140,.55);background:linear-gradient(160deg,rgba(40,30,24,.82),rgba(12,10,9,.86));border-radius:28px}
+
+#l-bg{background:radial-gradient(ellipse 70% 50% at 50% 40%,#3a141c,#0b0908 72%)}
+#l-heart{left:240px;top:250px;width:600px;height:540px}
+#l-t1{top:820px;font-size:150px;color:var(--gold2);line-height:1}
+#l-t2{top:975px;font-size:46px;letter-spacing:.42em;padding-left:.42em;font-weight:500;color:var(--ink);text-transform:uppercase}
+#l-end{background:#050405;opacity:0}
+#l-logo{left:240px;top:430px;width:600px;height:600px;border-radius:50%;overflow:hidden}
+#l-logo img{width:600px;height:600px}
+#l-ring{left:215px;top:405px;width:650px;height:650px;border:2px solid rgba(217,185,140,.6);border-radius:50%}
+#l-brand{top:1110px;font-size:40px;letter-spacing:.5em;padding-left:.5em;color:var(--gold);font-weight:500}
+#l-cta{left:240px;top:1190px;width:600px;height:96px;border-radius:48px;border:2px solid var(--gold);text-align:center;line-height:92px;font-size:34px;letter-spacing:.16em;color:var(--ink);font-weight:500}
+#l-cta b{color:var(--gold2)}
+</style>
+<div id="root" data-composition-id="love" data-width="1080" data-height="1920" data-duration="4.68">
+<div id="l-bg" class="full"></div>
+<svg id="l-heart" class="abs" viewBox="0 0 600 540" fill="none">
+  <path id="l-hp" d="M300 500 C90 360 30 250 80 140 C130 30 250 40 300 140 C350 40 470 30 520 140 C570 250 510 360 300 500Z" stroke="#d9b98c" stroke-width="8" stroke-linecap="round"/>
+  <path id="l-ecg" d="M40 300 H200 L230 240 L265 380 L300 200 L335 330 L360 300 H560" stroke="#f3dcb0" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
+<div id="l-t1" class="abs center ital">cinta &amp; sayang</div>
+<div id="l-t2" class="abs center">kekal mekar</div>
+<div id="l-end" class="full">
+  <div id="l-ring" class="abs"></div>
+  <div id="l-logo" class="abs"><img src="assets/img/logo.jpg" alt="Frescura Body"></div>
+  <div id="l-brand" class="abs center">soft | fragrant</div>
+  <div id="l-cta" class="abs">CHECKOUT DI <b>TIKTOK SHOP</b></div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const S = "[data-composition-id='love'] ";
+gsap.set("#l-hp",{strokeDasharray:1400,strokeDashoffset:1400});gsap.set("#l-ecg",{strokeDasharray:800,strokeDashoffset:800});
+tl.to("#l-hp",{strokeDashoffset:0,duration:1.1,ease:"power2.inOut"},0.02);
+tl.to("#l-ecg",{strokeDashoffset:0,duration:.6,ease:"power1.inOut"},0.7);
+tl.to("#l-heart",{scale:1.08,duration:.1,yoyo:true,repeat:3,ease:"power2.out",transformOrigin:"50% 50%"},1.04);
+tl.to("#l-hp",{fill:"rgba(179,24,47,.55)",duration:.4},1.05);
+tl.fromTo("#l-t1",{opacity:0,filter:"blur(14px)",scale:1.1},{opacity:1,filter:"blur(0px)",scale:1,duration:.45,ease:"expo.out"},1.04);
+tl.fromTo("#l-t2",{opacity:0,scale:1.25},{opacity:1,scale:1,duration:.6,ease:"expo.out"},1.7);
+tl.to("#l-end",{opacity:1,duration:.35,ease:"power2.inOut"},2.58);
+tl.fromTo("#l-logo",{scale:.8,opacity:0},{scale:1,opacity:1,duration:.7,ease:"expo.out"},2.62);
+tl.fromTo("#l-ring",{scale:1.4,opacity:0},{scale:1,opacity:1,duration:.8,ease:"expo.out"},2.7);
+tl.fromTo("#l-brand",{opacity:0},{opacity:1,duration:.4},3.0);
+tl.fromTo("#l-cta",{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:"back.out(1.6)"},3.2);
+window.__timelines["love"] = tl;
+})();
+</script>
+</template>
