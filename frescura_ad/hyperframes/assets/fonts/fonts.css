@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(bodonimoda_0.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(bodonimoda_1.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(bodonimoda_2.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Italiana';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(italiana_3.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(manrope_4.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(manrope_5.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(manrope_6.ttf) format('truetype');
+}
