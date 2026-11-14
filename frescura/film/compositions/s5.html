@@ -1,0 +1,80 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+
+.arch{position:absolute;left:240px;top:420px;width:600px;height:1080px;border:2px solid rgba(233,207,148,.7);border-radius:300px 300px 0 0;box-shadow:0 0 40px rgba(233,207,148,.25), inset 0 0 60px rgba(233,207,148,.12)}
+.spot{position:absolute;top:-40px;width:370px;height:1100px;background:linear-gradient(180deg,rgba(255,240,210,.28),rgba(255,240,210,0));clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);mix-blend-mode:screen}
+.btl{position:absolute;width:200px;height:571px}
+.btl img{width:200px;height:571px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.sheen{position:absolute;left:0;top:0;width:200px;height:571px;-webkit-mask-size:100% 100%;mask-size:100% 100%;background:linear-gradient(105deg,rgba(255,255,255,0) 35%,rgba(255,255,255,.55) 48%,rgba(255,255,255,0) 60%);background-size:300% 100%;background-position:100% 0;mix-blend-mode:screen}
+</style>
+<div id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-duration="4.474">
+
+<div class="full" style="background:linear-gradient(180deg,#120F0E 0%,#1C1715 52%,#0A0908 100%)"></div>
+<div id="s5-corr" class="full" style="perspective:900px;perspective-origin:50% 42%">
+  <div class="abs" style="left:0;top:0;width:1080px;height:1920px;transform-style:preserve-3d"><div class="arch" id="s5-a0"></div><div class="arch" id="s5-a1"></div><div class="arch" id="s5-a2"></div><div class="arch" id="s5-a3"></div><div class="arch" id="s5-a4"></div><div class="arch" id="s5-a5"></div></div>
+  <div class="abs" style="left:0;top:960px;width:1080px;height:960px;background:repeating-linear-gradient(90deg,rgba(217,189,134,.0) 0 88px,rgba(217,189,134,.18) 88px 90px),linear-gradient(180deg,#2a2320,#0b0a09);transform:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%)"></div>
+</div>
+<div id="s5-pasti" class="abs center ital" style="top:300px;font-size:84px;font-weight:500">Pastinya,</div>
+<div id="s5-burst" class="abs" style="left:-460px;top:-60px;width:2000px;height:2000px;border-radius:50%;background:radial-gradient(closest-side,rgba(120,220,255,.35),rgba(80,140,255,.08) 45%,rgba(0,0,0,0));opacity:0"></div>
+<img id="s5-logo" class="abs" src="assets/img/logo.jpg" style="left:140px;top:300px;width:800px;height:800px;mix-blend-mode:screen;opacity:0">
+<div id="s5-hero" class="full" style="opacity:0">
+  <div class="abs" style="left:0;top:0;width:1080px;height:1920px;background:radial-gradient(60% 40% at 50% 46%,#3A2E27 0%,#16110F 60%,#080707 100%)"></div>
+  <div class="spot" style="left:150px"></div><div class="spot" style="left:560px"></div>
+  <div id="s5-wordmark" class="abs center label" style="top:290px;font-size:30px;color:#E9D3A0">Frescura Body</div>
+  <div class="abs" style="left:240px;top:880px;width:600px;height:110px;border-radius:50%;background:linear-gradient(180deg,#3b322c,#15110f);box-shadow:0 -2px 0 rgba(233,207,148,.6) inset, 0 40px 80px rgba(0,0,0,.7)"></div>
+  <div class="abs" style="left:240px;top:935px;width:600px;height:60px;background:linear-gradient(180deg,#221c19,#0d0b0a);border-radius:0 0 50% 50%/0 0 40% 40%"></div>
+  <div id="s5-bottles" class="abs" style="left:0;top:0;width:1080px;height:1920px">
+    <div class="btl" id="s5-b1" style="left:320px;top:370px"><img src="assets/img/noche_cut.png"><div class="sheen" style="-webkit-mask-image:url(assets/img/noche_cut.png);mask-image:url(assets/img/noche_cut.png)"></div></div>
+    <div class="btl" id="s5-b2" style="left:560px;top:370px"><img src="assets/img/glory_cut.png"><div class="sheen" style="-webkit-mask-image:url(assets/img/glory_cut.png);mask-image:url(assets/img/glory_cut.png)"></div></div>
+  </div>
+  <div id="s5-copy" class="abs center" style="top:985px">
+    <div class="label" style="color:#F4EEE3;letter-spacing:.22em">Nikmati pengalaman mandi</div>
+    <div class="ital gold" style="font-size:60px;font-weight:500;line-height:1.15;margin-top:6px">buih lembut terus dari botol</div>
+  </div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s5-a0",{z:-2400,opacity:0.15},{z:-500,opacity:1,duration:0.65,ease:"power2.in"},0);
+tl.fromTo("#s5-a1",{z:-1980,opacity:0.27},{z:-80,opacity:1,duration:0.65,ease:"power2.in"},0);
+tl.fromTo("#s5-a2",{z:-1560,opacity:0.39},{z:340,opacity:1,duration:0.65,ease:"power2.in"},0);
+tl.fromTo("#s5-a3",{z:-1140,opacity:0.51},{z:760,opacity:1,duration:0.65,ease:"power2.in"},0);
+tl.fromTo("#s5-a4",{z:-720,opacity:0.63},{z:1180,opacity:1,duration:0.65,ease:"power2.in"},0);
+tl.fromTo("#s5-a5",{z:-300,opacity:0.75},{z:1600,opacity:1,duration:0.65,ease:"power2.in"},0);
+
+tl.fromTo("#s5-pasti",{opacity:0,y:30,},{opacity:1,y:0,duration:.4,ease:"power3.out"},0.0);
+tl.to("#s5-pasti",{opacity:0,y:-20,duration:.2},0.45);
+tl.to("#s5-corr",{opacity:0,duration:.15},0.65);
+tl.fromTo("#s5-burst",{opacity:0,scale:.3},{opacity:1,scale:1,duration:.5,ease:"expo.out"},0.65);
+tl.fromTo("#s5-logo",{opacity:0,scale:1.35,filter:"blur(12px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.45,ease:"expo.out"},0.65);
+tl.to("#s5-logo",{scale:1.06,duration:1.0,ease:"none"},1.10);
+tl.to(["#s5-logo","#s5-burst"],{opacity:0,duration:.25},1.54);
+tl.fromTo("#s5-hero",{opacity:0},{opacity:1,duration:.3},1.54);
+tl.fromTo("#s5-b1",{y:260,opacity:0,rotation:-4},{y:0,opacity:1,rotation:-3,duration:.7,ease:"expo.out"},1.54);
+tl.fromTo("#s5-b2",{y:260,opacity:0,rotation:4},{y:0,opacity:1,rotation:3,duration:.7,ease:"expo.out"},1.64);
+tl.to("#s5-bottles",{y:-14,duration:1.6,ease:"sine.inOut"},2.24);
+tl.fromTo("#s5-b1 .sheen",{backgroundPosition:"100% 0"},{backgroundPosition:"0% 0",duration:.9,ease:"power2.inOut"},2.14);
+tl.fromTo("#s5-b2 .sheen",{backgroundPosition:"100% 0"},{backgroundPosition:"0% 0",duration:.9,ease:"power2.inOut"},2.34);
+tl.fromTo("#s5-wordmark",{opacity:0},{opacity:1,duration:.6},1.54);
+tl.fromTo("#s5-copy .label",{opacity:0,y:20},{opacity:1,y:0,duration:.35},1.69);
+tl.fromTo("#s5-copy .ital",{opacity:0,y:30,backgroundPosition:"100% 0"},{opacity:1,y:0,backgroundPosition:"0% 0",duration:.8,ease:"power3.out"},2.765);
+
+window.__timelines["s5"] = tl;
+</script>
+</template>

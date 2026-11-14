@@ -1,0 +1,46 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+</style>
+<div id="root" data-composition-id="s4" data-width="1080" data-height="1920" data-duration="2.553">
+
+<div class="full" style="background:#0b0a0a"></div>
+<div id="s4-vw" class="full"><video id="s4-v" class="clip full" src="assets/video/pump.mp4" data-start="0" data-duration="2.553" data-media-start="29.6" data-playback-rate="0.8" muted playsinline style="object-fit:cover"></video></div>
+<div class="full" style="background:linear-gradient(180deg,rgba(8,7,7,.85) 0%,rgba(8,7,7,.25) 38%,rgba(8,7,7,.2) 55%,rgba(8,7,7,.9) 100%)"></div>
+<svg class="full grain" viewBox="0 0 1080 1920" data-layout-ignore><filter id="s4-n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/></filter><rect width="1080" height="1920" filter="url(#s4-n)"/></svg>
+<div id="s4-txt" class="abs center" style="top:300px">
+  <div class="label">Berikan dia</div>
+  <div class="serif" style="font-size:78px;font-weight:500;margin-top:22px">sedikit masa</div>
+  <div id="s4-manja" class="ital gold" style="font-size:104px;font-weight:500;line-height:1.1">untuk manjakan</div>
+  <div class="ital" style="font-size:96px;font-weight:500">dirinya.</div>
+</div>
+<div id="s4-flash" class="full" style="background:#FFF3DA;opacity:0"></div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s4-vw",{scale:1.18},{scale:1.02,duration:2.55,ease:"power1.out"},0);
+tl.fromTo("#s4-txt .label",{opacity:0},{opacity:1,duration:.5},0.05);
+tl.fromTo("#s4-txt .serif",{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:"power3.out"},0.61);
+tl.fromTo("#s4-manja",{opacity:0,y:30,clipPath:"inset(0 100% 0 0)"},{opacity:1,y:0,clipPath:"inset(0 0% 0 0)",duration:.6,ease:"power3.out"},1.417);
+tl.fromTo("#s4-txt .ital:last-child",{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:"power3.out"},1.8399999999999999);
+tl.fromTo("#s4-flash",{opacity:0},{opacity:.55,duration:.12},2.41);
+
+window.__timelines["s4"] = tl;
+</script>
+</template>

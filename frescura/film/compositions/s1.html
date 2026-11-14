@@ -1,0 +1,60 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+.chip{display:inline-block;margin:0 10px;padding:16px 30px;border:1.5px solid rgba(217,189,134,.7);border-radius:999px;font-size:34px;font-weight:700;letter-spacing:.08em;color:#F4EEE3;background:rgba(20,16,14,.55)}</style>
+<div id="root" data-composition-id="s1" data-width="1080" data-height="1920" data-duration="5.449">
+
+<div class="full onyx"></div>
+<img class="full" src="assets/img/flatlay_wood_blur.jpg" style="object-fit:cover;opacity:.35" id="s1-bg">
+<div id="s1-beam" class="abs" style="left:-300px;top:-200px;width:520px;height:2400px;background:linear-gradient(90deg,rgba(255,236,196,0),rgba(255,236,196,.16),rgba(255,236,196,0));transform-origin:50% 0"></div>
+<svg class="full grain" viewBox="0 0 1080 1920" data-layout-ignore><filter id="s1-n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/></filter><rect width="1080" height="1920" filter="url(#s1-n)"/></svg>
+<svg class="full" viewBox="0 0 1080 1920" data-layout-ignore><rect id="s1-frame" x="44" y="44" width="992" height="1832" rx="2" class="hair" stroke-dasharray="5648" stroke-dashoffset="5648" opacity=".55"/></svg>
+<div id="s1-tag" class="abs label center" style="top:300px">Pesanan untuk para suami</div>
+<div id="s1-suami" class="abs center ital gold" style="top:360px;font-size:250px;line-height:1.1;font-weight:500">Suami,</div>
+<div id="s1-l2" class="abs center serif" style="top:700px;font-size:60px;font-weight:500;letter-spacing:.01em"><span class="w " style="display:inline-block">jangan</span> <span class="w " style="display:inline-block">sesekali</span> <span class="w " style="display:inline-block">anggap</span></div>
+<div id="s1-isteri" class="abs center serif" style="top:770px;font-size:190px;font-weight:700;letter-spacing:.18em;color:#F7F1E6">ISTERI</div>
+<div id="s1-chips" class="abs center" style="top:1000px;font-size:0">
+  <span class="chip">Rumah</span><span class="chip">Anak</span><span class="chip">Sepanjang hari</span>
+</div>
+<div id="s1-penat" class="abs center" style="top:870px;height:170px">
+  <span class="ital" style="font-size:150px;font-weight:500;position:relative;display:inline-block"><span id="s1-tak">tak</span> penat?<span id="s1-strike" class="abs" style="left:-10px;top:92px;width:262px;height:9px;background:#E3C27F;transform-origin:0 50%"></span></span>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s1-bg",{scale:1.12},{scale:1,duration:5.45,ease:"none"},0);
+tl.fromTo("#s1-beam",{x:-200,rotation:18},{x:1500,rotation:18,duration:2.6,ease:"power2.inOut"},0.05);
+tl.fromTo("#s1-frame",{strokeDashoffset:5648},{strokeDashoffset:0,duration:1.6,ease:"power3.inOut"},0);
+tl.fromTo("#s1-suami",{opacity:.85,scale:1.14,filter:"blur(6px)",backgroundPosition:"100% 0"},{opacity:1,scale:1,filter:"blur(0px)",backgroundPosition:"0% 0",duration:.55,ease:"expo.out"},0);
+tl.fromTo("#s1-tag",{opacity:0},{opacity:1,duration:.7,ease:"power3.out"},0.05);
+tl.to("#s1-suami",{y:-60,scale:.62,duration:.6,ease:"power4.inOut"},0.866);
+tl.fromTo("#s1-l2 .w",{opacity:0,y:40,filter:"blur(8px)"},{opacity:1,y:-30,filter:"blur(0px)",duration:.45,stagger:{each:.28},ease:"power3.out"},0.986);
+tl.fromTo("#s1-isteri",{opacity:0,scale:1.08},{opacity:1,scale:1,duration:.6,ease:"expo.out"},2.313);
+tl.to("#s1-isteri",{y:-90,duration:.5,ease:"power3.inOut"},3.228);
+tl.to("#s1-l2",{y:-110,opacity:.55,duration:.5,ease:"power3.inOut"},3.228);
+tl.fromTo("#s1-chips .chip",{opacity:0,y:30,scale:.9},{opacity:1,y:-60,scale:1,duration:.4,stagger:{each:0.36},ease:"back.out(2)"},3.4280000000000004);
+tl.to("#s1-chips",{opacity:0,y:-40,duration:.25,ease:"power2.in"},4.588);
+tl.fromTo("#s1-penat",{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:.4,ease:"expo.out"},4.808);
+tl.fromTo("#s1-strike",{scaleX:0},{scaleX:1,duration:.28,ease:"power4.out"},5.085);
+tl.to("#s1-tak",{opacity:.35,duration:.2},5.135);
+tl.to("#s1-penat",{scale:1.06,duration:.4,ease:"power2.out"},5.385);
+
+window.__timelines["s1"] = tl;
+</script>
+</template>

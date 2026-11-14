@@ -1,0 +1,70 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+
+.node{position:absolute;width:220px;height:88px;border-radius:999px;border:1.5px solid rgba(233,207,148,.7);background:rgba(18,14,12,.7);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:700;letter-spacing:.04em}
+.dot{position:absolute;width:18px;height:18px;border-radius:50%;background:#FFF1CC;box-shadow:0 0 18px 6px rgba(255,226,160,.8)}
+</style>
+<div id="root" data-composition-id="s8" data-width="1080" data-height="1920" data-duration="4.349">
+
+<div class="full" style="background:#0c0a09"></div>
+<img id="s8-bg" class="full" src="assets/img/flatlay_linen_blur.jpg" style="object-fit:cover;opacity:.55">
+<svg class="full grain" viewBox="0 0 1080 1920" data-layout-ignore><filter id="s8-n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/></filter><rect width="1080" height="1920" filter="url(#s8-n)"/></svg>
+<div id="s8-diagram" class="full">
+  <div class="abs label center" style="top:290px">Siapa jaga siapa?</div>
+  <svg class="full" viewBox="0 0 1080 1920"><line id="s8-ln0" x1="540" y1="620" x2="230" y2="380" stroke="#E9CF94" stroke-width="2.5" stroke-dasharray="10 10" opacity=".8"/><line id="s8-ln1" x1="540" y1="620" x2="850" y2="380" stroke="#E9CF94" stroke-width="2.5" stroke-dasharray="10 10" opacity=".8"/><line id="s8-ln2" x1="540" y1="620" x2="230" y2="860" stroke="#E9CF94" stroke-width="2.5" stroke-dasharray="10 10" opacity=".8"/><line id="s8-ln3" x1="540" y1="620" x2="850" y2="860" stroke="#E9CF94" stroke-width="2.5" stroke-dasharray="10 10" opacity=".8"/></svg>
+  <div class="node" id="s8-n0" style="left:120px;top:336px">Suami</div><div class="node" id="s8-n1" style="left:740px;top:336px">Anak</div><div class="node" id="s8-n2" style="left:120px;top:816px">Rumah</div><div class="node" id="s8-n3" style="left:740px;top:816px">Keluarga</div><div class="dot" id="s8-dt0" style="left:531px;top:611px"></div><div class="dot" id="s8-dt1" style="left:531px;top:611px"></div><div class="dot" id="s8-dt2" style="left:531px;top:611px"></div><div class="dot" id="s8-dt3" style="left:531px;top:611px"></div>
+  <div id="s8-her" class="abs" style="left:420px;top:500px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#F7E3B5,#C9A25E 70%,#8C6A2E);display:flex;align-items:center;justify-content:center;box-shadow:0 0 70px rgba(233,207,148,.5)"><span class="ital" style="font-size:58px;font-weight:600;color:#1A1210">Isteri</span></div>
+  <div id="s8-q" class="abs center serif" style="top:960px;font-size:56px;font-weight:500">Dia jaga <span class="ital gold" style="font-size:70px">semua orang</span></div>
+</div>
+<div id="s8-gift" class="full" style="opacity:0">
+  <img id="s8-photo" class="full" src="assets/img/flatlay_linen_1080.jpg" style="object-fit:cover">
+  <div class="full" style="background:linear-gradient(180deg,rgba(10,8,7,.82) 0%,rgba(10,8,7,.35) 30%,rgba(10,8,7,0) 45%,rgba(10,8,7,0) 62%,rgba(10,8,7,.88) 100%)"></div>
+  <div id="s8-k1" class="abs center label" style="top:300px;color:#F4EEE3">Kali ini, belikan sesuatu</div>
+  <div id="s8-k2" class="abs center ital gold" style="top:350px;font-size:150px;font-weight:500;line-height:1.1">untuk dia.</div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s8-bg",{scale:1.1},{scale:1,duration:4.35,ease:"none"},0);
+tl.fromTo("#s8-her",{scale:0},{scale:1,duration:.5,ease:"back.out(2)"},0.0);
+tl.fromTo("#s8-n0",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:"back.out(2)"},0.25);
+tl.fromTo("#s8-ln0",{strokeDashoffset:0},{strokeDashoffset:-80,duration:2.15,ease:"none"},0);
+tl.fromTo("#s8-dt0",{x:0,y:0,opacity:1},{x:-310,y:-240,duration:.6,ease:"power2.in",repeat:2,repeatDelay:.05},0.50);
+tl.fromTo("#s8-n1",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:"back.out(2)"},0.43);
+tl.fromTo("#s8-ln1",{strokeDashoffset:0},{strokeDashoffset:-80,duration:2.15,ease:"none"},0);
+tl.fromTo("#s8-dt1",{x:0,y:0,opacity:1},{x:310,y:-240,duration:.6,ease:"power2.in",repeat:2,repeatDelay:.05},0.62);
+tl.fromTo("#s8-n2",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:"back.out(2)"},0.61);
+tl.fromTo("#s8-ln2",{strokeDashoffset:0},{strokeDashoffset:-80,duration:2.15,ease:"none"},0);
+tl.fromTo("#s8-dt2",{x:0,y:0,opacity:1},{x:-310,y:240,duration:.6,ease:"power2.in",repeat:2,repeatDelay:.05},0.74);
+tl.fromTo("#s8-n3",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:"back.out(2)"},0.79);
+tl.fromTo("#s8-ln3",{strokeDashoffset:0},{strokeDashoffset:-80,duration:2.15,ease:"none"},0);
+tl.fromTo("#s8-dt3",{x:0,y:0,opacity:1},{x:310,y:240,duration:.6,ease:"power2.in",repeat:2,repeatDelay:.05},0.86);
+
+tl.fromTo("#s8-q",{opacity:0,y:30},{opacity:1,y:0,duration:.45,ease:"power3.out"},1.21);
+tl.to("#s8-her",{scale:1.12,duration:.3,ease:"power2.out"},1.80);
+tl.to("#s8-diagram",{opacity:0,scale:1.1,duration:.35,ease:"power2.in"},2.15);
+tl.fromTo("#s8-gift",{opacity:0},{opacity:1,duration:.35},2.15);
+tl.fromTo("#s8-photo",{scale:1.15},{scale:1.02,duration:2.20,ease:"power1.out"},2.15);
+tl.fromTo("#s8-k1",{opacity:0},{opacity:1,duration:.5},2.25);
+tl.fromTo("#s8-k2",{opacity:0,y:40,filter:"blur(12px)",backgroundPosition:"100% 0"},{opacity:1,y:0,filter:"blur(0px)",backgroundPosition:"0% 0",duration:.8,ease:"expo.out"},3.34);
+
+window.__timelines["s8"] = tl;
+</script>
+</template>

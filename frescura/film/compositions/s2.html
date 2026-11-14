@@ -1,0 +1,72 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+.card{display:flex;align-items:center;gap:26px;height:96px;margin-bottom:14px;padding:0 34px;border-radius:22px;background:linear-gradient(120deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(217,189,134,.35);font-size:40px;font-weight:600;color:#F4EEE3}
+.tick{display:inline-flex;width:40px;height:40px}</style>
+<div id="root" data-composition-id="s2" data-width="1080" data-height="1920" data-duration="3.385">
+
+<div class="full onyx"></div>
+<svg class="full grain" viewBox="0 0 1080 1920" data-layout-ignore><filter id="s2-n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/></filter><rect width="1080" height="1920" filter="url(#s2-n)"/></svg>
+<div id="s2-top" class="abs center" style="top:290px">
+  <div class="label">Bukan kerja 9 ke 5</div>
+  <div class="ital" style="font-size:66px;margin-top:22px;color:#F4EEE3">Tak keluar bekerja&hellip;</div>
+</div>
+<div id="s2-mask" class="abs" style="left:150px;top:450px;width:780px;height:430px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 20%,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 20%,#000 80%,transparent 100%)" data-layout-allow-overflow>
+  <div id="s2-list" class="abs" style="left:0;top:0;width:780px" data-layout-ignore><div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Siapkan sarapan</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Hantar anak ke sekolah</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Basuh &amp; lipat baju</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Kemas rumah</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Masak makan tengah hari</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Ambil anak</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Teman anak belajar</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Masak makan malam</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Cuci pinggan</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Tidurkan anak</div>
+<div class="card"><span class="tick"><svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" class="hair"/><path class="ck" d="M11 21 l6 6 l12 -14" stroke="#E3C27F" stroke-width="3" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg></span>Siapkan esok…</div></div>
+</div>
+<div id="s2-bottom" class="abs center" style="top:890px">
+  <div class="serif" style="font-size:72px;font-weight:600">Kerja rumah</div>
+  <div style="display:flex;justify-content:center;align-items:center;gap:26px;margin-top:6px">
+    <span class="ital gold" style="font-size:96px;font-weight:500">tak pernah habis</span>
+    <span id="s2-inf" style="display:inline-block;width:120px;height:60px"><svg viewBox="0 0 120 60" width="120" height="60"><path d="M60 30 C45 5 10 5 10 30 C10 55 45 55 60 30 C75 5 110 5 110 30 C110 55 75 55 60 30Z" stroke="#E9CF94" stroke-width="6" fill="none"/></svg></span>
+  </div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s2-top",{opacity:0,y:30},{opacity:1,y:0,duration:.45,ease:"power3.out"},0.02);
+tl.fromTo("#s2-list",{y:180},{y:-730,duration:3.38,ease:"power1.in"},0);
+tl.fromTo("#s2-list .card:nth-child(1) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},0.25);
+tl.fromTo("#s2-list .card:nth-child(2) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},0.52);
+tl.fromTo("#s2-list .card:nth-child(3) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},0.79);
+tl.fromTo("#s2-list .card:nth-child(4) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},1.06);
+tl.fromTo("#s2-list .card:nth-child(5) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},1.33);
+tl.fromTo("#s2-list .card:nth-child(6) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},1.60);
+tl.fromTo("#s2-list .card:nth-child(7) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},1.87);
+tl.fromTo("#s2-list .card:nth-child(8) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},2.14);
+tl.fromTo("#s2-list .card:nth-child(9) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},2.41);
+tl.fromTo("#s2-list .card:nth-child(10) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},2.68);
+tl.fromTo("#s2-list .card:nth-child(11) .ck",{strokeDashoffset:30},{strokeDashoffset:0,duration:.18,ease:"power2.out"},2.95);
+
+tl.fromTo("#s2-bottom",{opacity:0,y:50,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},1.8719999999999999);
+tl.fromTo("#s2-inf",{rotation:-90,scale:.4},{rotation:0,scale:1,duration:.7,ease:"back.out(2.2)"},2.447);
+
+window.__timelines["s2"] = tl;
+</script>
+</template>

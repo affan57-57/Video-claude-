@@ -1,0 +1,67 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+
+.stamp{display:block;text-shadow:0 6px 30px rgba(0,0,0,.8);font-family:'Bodoni Moda',serif;font-weight:700;font-size:150px;letter-spacing:.02em;color:#F7F1E6;text-shadow:0 10px 40px rgba(0,0,0,.5)}
+.co{padding:14px 26px;border-radius:22px;background:rgba(14,11,10,.62);border:1px solid rgba(233,207,148,.45)}
+.ring{position:absolute;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;border:3px solid rgba(233,207,148,.9)}
+.pill{display:inline-block;padding:16px 34px;border-radius:999px;background:rgba(15,12,11,.62);border:1px solid rgba(233,207,148,.6);font-size:30px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE3}
+</style>
+<div id="root" data-composition-id="s6" data-width="1080" data-height="1920" data-duration="3.133">
+
+<div class="full" style="background:#0b0a0a"></div>
+<div id="s6-wa" class="full"><video id="s6-va" class="clip full" src="assets/video/pump.mp4" data-start="0" data-duration="1.329" data-media-start="10.3" data-playback-rate="1.15" muted playsinline style="object-fit:cover"></video></div>
+<div id="s6-wb" class="full"><video id="s6-vb" class="clip full" src="assets/video/pump.mp4" data-start="1.329" data-duration="1.804" data-media-start="15.4" data-playback-rate="0.9" muted playsinline style="object-fit:cover"></video></div>
+<div class="full" style="background:linear-gradient(180deg,rgba(8,7,7,.7) 0%,rgba(8,7,7,0) 30%,rgba(8,7,7,0) 58%,rgba(8,7,7,.85) 100%)"></div>
+<div id="s6-ring1" class="ring" style="left:800px;top:690px"></div><div id="s6-ring2" class="ring" style="left:800px;top:690px"></div>
+<div id="s6-tekan" class="abs" style="left:110px;top:620px;text-align:left">
+  <div id="s6-t1" class="stamp">TEKAN.</div><div id="s6-t2" class="stamp ital gold" style="margin-top:-30px">tekan.</div>
+</div>
+<div id="s6-keluar" class="abs center ital" style="top:1060px;font-size:64px;font-weight:500;opacity:0">terus keluar buih</div>
+<div id="s6-callouts" class="full" style="opacity:0">
+  <svg class="full" viewBox="0 0 1080 1920"><path id="s6-l1" d="M520 760 L360 560 L170 560" class="hair" stroke-width="2.5" stroke-dasharray="460" stroke-dashoffset="460"/><path id="s6-l2" d="M640 900 L790 700 L930 700" class="hair" stroke-width="2.5" stroke-dasharray="400" stroke-dashoffset="400"/>
+  <circle id="s6-d1" cx="520" cy="760" r="10" fill="#E9CF94"/><circle id="s6-d2" cx="640" cy="900" r="10" fill="#E9CF94"/></svg>
+  <div id="s6-c1" class="abs co" style="left:130px;top:470px"><div class="label" style="font-size:28px">Tekstur</div><div class="ital gold" style="font-size:82px;font-weight:500;line-height:1">Lembut</div></div>
+  <div id="s6-c2" class="abs co" style="left:700px;top:610px"><div class="label" style="font-size:28px">Buih</div><div class="ital gold" style="font-size:82px;font-weight:500;line-height:1">Gebu</div></div>
+  <div id="s6-chip" class="abs center" style="top:300px"><span class="pill">Gentle Foaming &middot; Siap dari pam</span></div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s6-wa",{scale:1.12},{scale:1.0,duration:1.33,ease:"power2.out"},0);
+tl.fromTo("#s6-wb",{scale:1.0},{scale:1.14,duration:1.80,ease:"power1.inOut"},1.33);
+tl.fromTo("#s6-t1",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.22,ease:"power4.out"},0.04);
+tl.fromTo("#s6-t2",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.22,ease:"power4.out"},0.32);
+tl.fromTo("#s6-ring1",{scale:.2,opacity:1},{scale:1.6,opacity:0,duration:.6,ease:"power2.out"},0.06);
+tl.fromTo("#s6-ring2",{scale:.2,opacity:1},{scale:1.6,opacity:0,duration:.6,ease:"power2.out"},0.34);
+tl.to("#s6-tekan",{y:-40,opacity:.0,duration:.3,ease:"power2.in"},0.771);
+tl.fromTo("#s6-keluar",{opacity:0,y:30},{opacity:1,y:-60,duration:.35,ease:"power3.out"},0.608);
+tl.to("#s6-keluar",{opacity:0,duration:.2},1.28);
+tl.fromTo("#s6-callouts",{opacity:0},{opacity:1,duration:.2},1.33);
+tl.fromTo("#s6-chip",{opacity:0,y:-20},{opacity:1,y:0,duration:.4,ease:"power3.out"},1.43);
+tl.fromTo("#s6-d1",{scale:0,transformOrigin:"50% 50%"},{scale:1,duration:.25,ease:"back.out(3)"},1.84);
+tl.fromTo("#s6-l1",{strokeDashoffset:460},{strokeDashoffset:0,duration:.35,ease:"power2.out"},1.89);
+tl.fromTo("#s6-c1",{opacity:0,x:-30},{opacity:1,x:0,duration:.35,ease:"power3.out"},2.02);
+tl.fromTo("#s6-d2",{scale:0,transformOrigin:"50% 50%"},{scale:1,duration:.25,ease:"back.out(3)"},2.33);
+tl.fromTo("#s6-l2",{strokeDashoffset:400},{strokeDashoffset:0,duration:.35,ease:"power2.out"},2.39);
+tl.fromTo("#s6-c2",{opacity:0,x:30},{opacity:1,x:0,duration:.35,ease:"power3.out"},2.52);
+
+window.__timelines["s6"] = tl;
+</script>
+</template>

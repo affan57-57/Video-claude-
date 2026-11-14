@@ -1,0 +1,406 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+
+#capbox{position:absolute;left:60px;width:960px;top:1125px;height:190px;display:flex;align-items:center;justify-content:center}
+.cg{position:absolute;left:0;width:960px;top:0;height:190px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;column-gap:20px;row-gap:0;opacity:0;visibility:hidden;text-align:center}
+.cw{display:inline-block;font-family:'Manrope',sans-serif;font-weight:800;font-size:68px;line-height:1.12;letter-spacing:-.01em;color:#F7F1E6;opacity:.6;text-shadow:0 4px 22px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.6)}
+.cw.key{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:600;font-size:82px;letter-spacing:0}
+</style>
+<div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="38.4">
+<div id="capbox" data-layout-allow-overflow>
+<div class="cg" id="cap-0"><span class="cw" id="cap-0-0">Suami,</span></div>
+<div class="cg" id="cap-1"><span class="cw" id="cap-1-0">jangan</span> <span class="cw" id="cap-1-1">sesekali</span> <span class="cw" id="cap-1-2">anggap</span></div>
+<div class="cg" id="cap-2"><span class="cw" id="cap-2-0">isteri</span> <span class="cw" id="cap-2-1">yang</span> <span class="cw" id="cap-2-2">menguruskan</span></div>
+<div class="cg" id="cap-3"><span class="cw" id="cap-3-0">rumah</span> <span class="cw" id="cap-3-1">dan</span> <span class="cw" id="cap-3-2">anak</span></div>
+<div class="cg" id="cap-4"><span class="cw" id="cap-4-0">sepanjang</span> <span class="cw" id="cap-4-1">hari</span> <span class="cw" id="cap-4-2">itu</span></div>
+<div class="cg" id="cap-5"><span class="cw" id="cap-5-0">tak</span> <span class="cw key" id="cap-5-1">penat.</span></div>
+<div class="cg" id="cap-6"><span class="cw" id="cap-6-0">Dia</span> <span class="cw" id="cap-6-1">mungkin</span> <span class="cw" id="cap-6-2">tak</span> <span class="cw" id="cap-6-3">keluar</span></div>
+<div class="cg" id="cap-7"><span class="cw" id="cap-7-0">bekerja</span> <span class="cw" id="cap-7-1">macam</span> <span class="cw" id="cap-7-2">korang,</span></div>
+<div class="cg" id="cap-8"><span class="cw" id="cap-8-0">tetapi</span> <span class="cw" id="cap-8-1">kerja</span> <span class="cw" id="cap-8-2">rumah</span></div>
+<div class="cg" id="cap-9"><span class="cw" id="cap-9-0">tak</span> <span class="cw" id="cap-9-1">pernah</span> <span class="cw key" id="cap-9-2">habis.</span></div>
+<div class="cg" id="cap-10"><span class="cw" id="cap-10-0">Dari</span> <span class="cw" id="cap-10-1">pagi</span> <span class="cw" id="cap-10-2">sampai</span> <span class="cw" id="cap-10-3">malam,</span></div>
+<div class="cg" id="cap-11"><span class="cw" id="cap-11-0">ada</span> <span class="cw" id="cap-11-1">saja</span> <span class="cw" id="cap-11-2">yang</span></div>
+<div class="cg" id="cap-12"><span class="cw" id="cap-12-0">perlu</span> <span class="cw" id="cap-12-1">diuruskan</span></div>
+<div class="cg" id="cap-13"><span class="cw" id="cap-13-0">sebab</span> <span class="cw" id="cap-13-1">itu</span> <span class="cw" id="cap-13-2">isteri</span> <span class="cw" id="cap-13-3">pun</span></div>
+<div class="cg" id="cap-14"><span class="cw" id="cap-14-0">perlukan</span> <span class="cw" id="cap-14-1">masa</span> <span class="cw" id="cap-14-2">untuk</span></div>
+<div class="cg" id="cap-15"><span class="cw key" id="cap-15-0">berehat</span> <span class="cw" id="cap-15-1">dan</span></div>
+<div class="cg" id="cap-16"><span class="cw" id="cap-16-0">menjaga</span> <span class="cw key" id="cap-16-1">diri</span> <span class="cw key" id="cap-16-2">sendiri.</span></div>
+<div class="cg" id="cap-17"><span class="cw" id="cap-17-0">Berikan</span> <span class="cw" id="cap-17-1">isteri</span> <span class="cw" id="cap-17-2">sedikit</span></div>
+<div class="cg" id="cap-18"><span class="cw" id="cap-18-0">masa</span> <span class="cw" id="cap-18-1">untuk</span></div>
+<div class="cg" id="cap-19"><span class="cw key" id="cap-19-0">manjakan</span> <span class="cw key" id="cap-19-1">dirinya.</span></div>
+<div class="cg" id="cap-20"><span class="cw" id="cap-20-0">Pastinya,</span></div>
+<div class="cg" id="cap-21"><span class="cw key" id="cap-21-0">Frescura</span> <span class="cw key" id="cap-21-1">Body</span></div>
+<div class="cg" id="cap-22"><span class="cw" id="cap-22-0">nikmati</span> <span class="cw" id="cap-22-1">pengalaman</span> <span class="cw" id="cap-22-2">mandi</span></div>
+<div class="cg" id="cap-23"><span class="cw" id="cap-23-0">yang</span> <span class="cw key" id="cap-23-1">buih</span> <span class="cw key" id="cap-23-2">lembut</span></div>
+<div class="cg" id="cap-24"><span class="cw" id="cap-24-0">terus</span> <span class="cw" id="cap-24-1">daripada</span> <span class="cw" id="cap-24-2">botol.</span></div>
+<div class="cg" id="cap-25"><span class="cw" id="cap-25-0">Tekan-tekan</span></div>
+<div class="cg" id="cap-26"><span class="cw" id="cap-26-0">terus</span> <span class="cw" id="cap-26-1">keluar</span> <span class="cw key" id="cap-26-2">buih</span></div>
+<div class="cg" id="cap-27"><span class="cw" id="cap-27-0">yang</span> <span class="cw key" id="cap-27-1">lembut</span> <span class="cw" id="cap-27-2">dan</span> <span class="cw key" id="cap-27-3">gebu</span></div>
+<div class="cg" id="cap-28"><span class="cw" id="cap-28-0">dengan</span> <span class="cw" id="cap-28-1">bauan</span> <span class="cw" id="cap-28-2">perfume,</span></div>
+<div class="cg" id="cap-29"><span class="cw key" id="cap-29-0">Bombshell</span> <span class="cw" id="cap-29-1">dan</span></div>
+<div class="cg" id="cap-30"><span class="cw key" id="cap-30-0">Midnight</span> <span class="cw key" id="cap-30-1">Fantasy.</span></div>
+<div class="cg" id="cap-31"><span class="cw" id="cap-31-0">Jangan</span> <span class="cw" id="cap-31-1">asyik</span> <span class="cw" id="cap-31-2">suruh</span> <span class="cw" id="cap-31-3">isteri</span></div>
+<div class="cg" id="cap-32"><span class="cw" id="cap-32-0">jaga</span> <span class="cw" id="cap-32-1">semua</span> <span class="cw" id="cap-32-2">orang.</span></div>
+<div class="cg" id="cap-33"><span class="cw" id="cap-33-0">Kali</span> <span class="cw" id="cap-33-1">ini</span> <span class="cw" id="cap-33-2">belikan</span> <span class="cw" id="cap-33-3">sesuatu</span></div>
+<div class="cg" id="cap-34"><span class="cw" id="cap-34-0">untuk</span> <span class="cw key" id="cap-34-1">dia</span> <span class="cw key" id="cap-34-2">pula.</span></div>
+<div class="cg" id="cap-35"><span class="cw" id="cap-35-0">Tekan</span> <span class="cw" id="cap-35-1">beg</span> <span class="cw key" id="cap-35-2">kuning</span> <span class="cw" id="cap-35-3">sekarang</span></div>
+<div class="cg" id="cap-36"><span class="cw" id="cap-36-0">dan</span> <span class="cw key" id="cap-36-1">checkout</span> <span class="cw" id="cap-36-2">sekarang</span></div>
+<div class="cg" id="cap-37"><span class="cw" id="cap-37-0">sebab</span> <span class="cw" id="cap-37-1">stok</span> <span class="cw" id="cap-37-2">kita</span></div>
+<div class="cg" id="cap-38"><span class="cw" id="cap-38-0">sangat-sangat</span> <span class="cw key" id="cap-38-1">terhad.</span></div>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#cap-0",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},0.120);
+tl.to("#cap-0-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},0.130);
+tl.to("#cap-0-0",{color:"#F7F1E6",scale:1,duration:.12},0.727);
+tl.to("#cap-0",{opacity:0,duration:.1,ease:"power2.in"},0.826);
+tl.set("#cap-0",{opacity:0,visibility:"hidden"},0.926);
+tl.fromTo("#cap-1",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},0.926);
+tl.to("#cap-1-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},0.966);
+tl.to("#cap-1-0",{color:"#F7F1E6",scale:1,duration:.12},1.301);
+tl.to("#cap-1-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},1.261);
+tl.to("#cap-1-1",{color:"#F7F1E6",scale:1,duration:.12},1.957);
+tl.to("#cap-1-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},1.917);
+tl.to("#cap-1-2",{color:"#F7F1E6",scale:1,duration:.12},2.383);
+tl.to("#cap-1",{opacity:0,duration:.1,ease:"power2.in"},2.203);
+tl.set("#cap-1",{opacity:0,visibility:"hidden"},2.303);
+tl.fromTo("#cap-2",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},2.303);
+tl.to("#cap-2-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},2.343);
+tl.to("#cap-2-0",{color:"#F7F1E6",scale:1,duration:.12},2.777);
+tl.to("#cap-2-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},2.737);
+tl.to("#cap-2-1",{color:"#F7F1E6",scale:1,duration:.12},3.006);
+tl.to("#cap-2-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},2.966);
+tl.to("#cap-2-2",{color:"#F7F1E6",scale:1,duration:.12},3.498);
+tl.to("#cap-2",{opacity:0,duration:.1,ease:"power2.in"},3.318);
+tl.set("#cap-2",{opacity:0,visibility:"hidden"},3.418);
+tl.fromTo("#cap-3",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},3.418);
+tl.to("#cap-3-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},3.458);
+tl.to("#cap-3-0",{color:"#F7F1E6",scale:1,duration:.12},3.777);
+tl.to("#cap-3-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},3.737);
+tl.to("#cap-3-1",{color:"#F7F1E6",scale:1,duration:.12},4.022);
+tl.to("#cap-3-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},3.982);
+tl.to("#cap-3-2",{color:"#F7F1E6",scale:1,duration:.12},4.219);
+tl.to("#cap-3",{opacity:0,duration:.1,ease:"power2.in"},4.039);
+tl.set("#cap-3",{opacity:0,visibility:"hidden"},4.139);
+tl.fromTo("#cap-4",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},4.139);
+tl.to("#cap-4-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},4.179);
+tl.to("#cap-4-0",{color:"#F7F1E6",scale:1,duration:.12},4.498);
+tl.to("#cap-4-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},4.458);
+tl.to("#cap-4-1",{color:"#F7F1E6",scale:1,duration:.12},4.695);
+tl.to("#cap-4-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},4.655);
+tl.to("#cap-4-2",{color:"#F7F1E6",scale:1,duration:.12},4.908);
+tl.to("#cap-4",{opacity:0,duration:.1,ease:"power2.in"},4.728);
+tl.set("#cap-4",{opacity:0,visibility:"hidden"},4.828);
+tl.fromTo("#cap-5",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},4.828);
+tl.to("#cap-5-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},4.868);
+tl.to("#cap-5-0",{color:"#F7F1E6",scale:1,duration:.12},5.055);
+tl.to("#cap-5-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},5.015);
+tl.to("#cap-5-1",{color:"#F7F1E6",scale:1,duration:.12},5.473);
+tl.to("#cap-5",{opacity:0,duration:.1,ease:"power2.in"},5.359);
+tl.set("#cap-5",{opacity:0,visibility:"hidden"},5.459);
+tl.fromTo("#cap-6",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},5.459);
+tl.to("#cap-6-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},5.499);
+tl.to("#cap-6-0",{color:"#F7F1E6",scale:1,duration:.12},5.670);
+tl.to("#cap-6-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},5.630);
+tl.to("#cap-6-1",{color:"#F7F1E6",scale:1,duration:.12},5.916);
+tl.to("#cap-6-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},5.876);
+tl.to("#cap-6-2",{color:"#F7F1E6",scale:1,duration:.12},6.096);
+tl.to("#cap-6-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},6.056);
+tl.to("#cap-6-3",{color:"#F7F1E6",scale:1,duration:.12},6.227);
+tl.to("#cap-6",{opacity:0,duration:.1,ease:"power2.in"},6.047);
+tl.set("#cap-6",{opacity:0,visibility:"hidden"},6.147);
+tl.fromTo("#cap-7",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},6.147);
+tl.to("#cap-7-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},6.187);
+tl.to("#cap-7-0",{color:"#F7F1E6",scale:1,duration:.12},6.539);
+tl.to("#cap-7-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},6.499);
+tl.to("#cap-7-1",{color:"#F7F1E6",scale:1,duration:.12},6.752);
+tl.to("#cap-7-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},6.712);
+tl.to("#cap-7-2",{color:"#F7F1E6",scale:1,duration:.12},7.063);
+tl.to("#cap-7",{opacity:0,duration:.1,ease:"power2.in"},6.883);
+tl.set("#cap-7",{opacity:0,visibility:"hidden"},6.983);
+tl.fromTo("#cap-8",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},6.983);
+tl.to("#cap-8-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},7.023);
+tl.to("#cap-8-0",{color:"#F7F1E6",scale:1,duration:.12},7.391);
+tl.to("#cap-8-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},7.351);
+tl.to("#cap-8-1",{color:"#F7F1E6",scale:1,duration:.12},7.654);
+tl.to("#cap-8-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},7.614);
+tl.to("#cap-8-2",{color:"#F7F1E6",scale:1,duration:.12},7.916);
+tl.to("#cap-8",{opacity:0,duration:.1,ease:"power2.in"},7.736);
+tl.set("#cap-8",{opacity:0,visibility:"hidden"},7.836);
+tl.fromTo("#cap-9",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},7.836);
+tl.to("#cap-9-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},7.876);
+tl.to("#cap-9-0",{color:"#F7F1E6",scale:1,duration:.12},8.178);
+tl.to("#cap-9-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},8.138);
+tl.to("#cap-9-1",{color:"#F7F1E6",scale:1,duration:.12},8.309);
+tl.to("#cap-9-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},8.269);
+tl.to("#cap-9-2",{color:"#F7F1E6",scale:1,duration:.12},8.809);
+tl.to("#cap-9",{opacity:0,duration:.1,ease:"power2.in"},8.744);
+tl.set("#cap-9",{opacity:0,visibility:"hidden"},8.844);
+tl.fromTo("#cap-10",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},8.844);
+tl.to("#cap-10-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},8.884);
+tl.to("#cap-10-0",{color:"#F7F1E6",scale:1,duration:.12},9.072);
+tl.to("#cap-10-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},9.032);
+tl.to("#cap-10-1",{color:"#F7F1E6",scale:1,duration:.12},9.367);
+tl.to("#cap-10-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},9.327);
+tl.to("#cap-10-2",{color:"#F7F1E6",scale:1,duration:.12},9.629);
+tl.to("#cap-10-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},9.589);
+tl.to("#cap-10-3",{color:"#F7F1E6",scale:1,duration:.12},10.039);
+tl.to("#cap-10",{opacity:0,duration:.1,ease:"power2.in"},9.892);
+tl.set("#cap-10",{opacity:0,visibility:"hidden"},9.992);
+tl.fromTo("#cap-11",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},9.992);
+tl.to("#cap-11-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},10.032);
+tl.to("#cap-11-0",{color:"#F7F1E6",scale:1,duration:.12},10.301);
+tl.to("#cap-11-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},10.261);
+tl.to("#cap-11-1",{color:"#F7F1E6",scale:1,duration:.12},10.531);
+tl.to("#cap-11-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},10.491);
+tl.to("#cap-11-2",{color:"#F7F1E6",scale:1,duration:.12},10.695);
+tl.to("#cap-11",{opacity:0,duration:.1,ease:"power2.in"},10.515);
+tl.set("#cap-11",{opacity:0,visibility:"hidden"},10.615);
+tl.fromTo("#cap-12",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},10.615);
+tl.to("#cap-12-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},10.655);
+tl.to("#cap-12-0",{color:"#F7F1E6",scale:1,duration:.12},10.826);
+tl.to("#cap-12-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},10.786);
+tl.to("#cap-12-1",{color:"#F7F1E6",scale:1,duration:.12},11.268);
+tl.to("#cap-12",{opacity:0,duration:.1,ease:"power2.in"},11.088);
+tl.set("#cap-12",{opacity:0,visibility:"hidden"},11.188);
+tl.fromTo("#cap-13",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},11.188);
+tl.to("#cap-13-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},11.228);
+tl.to("#cap-13-0",{color:"#F7F1E6",scale:1,duration:.12},11.498);
+tl.to("#cap-13-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},11.458);
+tl.to("#cap-13-1",{color:"#F7F1E6",scale:1,duration:.12},11.629);
+tl.to("#cap-13-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},11.589);
+tl.to("#cap-13-2",{color:"#F7F1E6",scale:1,duration:.12},11.973);
+tl.to("#cap-13-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},11.933);
+tl.to("#cap-13-3",{color:"#F7F1E6",scale:1,duration:.12},12.088);
+tl.to("#cap-13",{opacity:0,duration:.1,ease:"power2.in"},11.908);
+tl.set("#cap-13",{opacity:0,visibility:"hidden"},12.008);
+tl.fromTo("#cap-14",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},12.008);
+tl.to("#cap-14-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},12.048);
+tl.to("#cap-14-0",{color:"#F7F1E6",scale:1,duration:.12},12.334);
+tl.to("#cap-14-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},12.294);
+tl.to("#cap-14-1",{color:"#F7F1E6",scale:1,duration:.12},12.596);
+tl.to("#cap-14-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},12.556);
+tl.to("#cap-14-2",{color:"#F7F1E6",scale:1,duration:.12},12.875);
+tl.to("#cap-14",{opacity:0,duration:.1,ease:"power2.in"},12.695);
+tl.set("#cap-14",{opacity:0,visibility:"hidden"},12.795);
+tl.fromTo("#cap-15",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},12.795);
+tl.to("#cap-15-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},12.835);
+tl.to("#cap-15-0",{color:"#F7F1E6",scale:1,duration:.12},13.281);
+tl.to("#cap-15-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},13.241);
+tl.to("#cap-15-1",{color:"#F7F1E6",scale:1,duration:.12},13.588);
+tl.to("#cap-15",{opacity:0,duration:.1,ease:"power2.in"},13.408);
+tl.set("#cap-15",{opacity:0,visibility:"hidden"},13.508);
+tl.fromTo("#cap-16",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},13.508);
+tl.to("#cap-16-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},13.548);
+tl.to("#cap-16-0",{color:"#F7F1E6",scale:1,duration:.12},13.916);
+tl.to("#cap-16-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},13.876);
+tl.to("#cap-16-1",{color:"#F7F1E6",scale:1,duration:.12},14.162);
+tl.to("#cap-16-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},14.122);
+tl.to("#cap-16-2",{color:"#F7F1E6",scale:1,duration:.12},14.490);
+tl.to("#cap-16",{opacity:0,duration:.1,ease:"power2.in"},14.670);
+tl.set("#cap-16",{opacity:0,visibility:"hidden"},14.770);
+tl.fromTo("#cap-17",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},14.770);
+tl.to("#cap-17-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},14.810);
+tl.to("#cap-17-0",{color:"#F7F1E6",scale:1,duration:.12},15.113);
+tl.to("#cap-17-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},15.073);
+tl.to("#cap-17-1",{color:"#F7F1E6",scale:1,duration:.12},15.490);
+tl.to("#cap-17-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},15.450);
+tl.to("#cap-17-2",{color:"#F7F1E6",scale:1,duration:.12},15.752);
+tl.to("#cap-17",{opacity:0,duration:.1,ease:"power2.in"},15.572);
+tl.set("#cap-17",{opacity:0,visibility:"hidden"},15.672);
+tl.fromTo("#cap-18",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},15.672);
+tl.to("#cap-18-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},15.712);
+tl.to("#cap-18-0",{color:"#F7F1E6",scale:1,duration:.12},16.080);
+tl.to("#cap-18-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},16.040);
+tl.to("#cap-18-1",{color:"#F7F1E6",scale:1,duration:.12},16.277);
+tl.to("#cap-18",{opacity:0,duration:.1,ease:"power2.in"},16.097);
+tl.set("#cap-18",{opacity:0,visibility:"hidden"},16.197);
+tl.fromTo("#cap-19",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},16.197);
+tl.to("#cap-19-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},16.237);
+tl.to("#cap-19-0",{color:"#F7F1E6",scale:1,duration:.12},16.670);
+tl.to("#cap-19-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},16.630);
+tl.to("#cap-19-1",{color:"#F7F1E6",scale:1,duration:.12},17.219);
+tl.to("#cap-19",{opacity:0,duration:.1,ease:"power2.in"},17.203);
+tl.set("#cap-19",{opacity:0,visibility:"hidden"},17.303);
+tl.fromTo("#cap-20",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},17.303);
+tl.to("#cap-20-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},17.343);
+tl.to("#cap-20-0",{color:"#F7F1E6",scale:1,duration:.12},17.875);
+tl.to("#cap-20",{opacity:0,duration:.1,ease:"power2.in"},17.834);
+tl.set("#cap-20",{opacity:0,visibility:"hidden"},17.934);
+tl.fromTo("#cap-21",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},17.934);
+tl.to("#cap-21-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},17.974);
+tl.to("#cap-21-0",{color:"#F7F1E6",scale:1,duration:.12},18.309);
+tl.to("#cap-21-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},18.269);
+tl.to("#cap-21-1",{color:"#F7F1E6",scale:1,duration:.12},18.555);
+tl.to("#cap-21",{opacity:0,duration:.1,ease:"power2.in"},18.375);
+tl.set("#cap-21",{opacity:0,visibility:"hidden"},18.475);
+tl.fromTo("#cap-22",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},18.475);
+tl.to("#cap-22-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},18.515);
+tl.to("#cap-22-0",{color:"#F7F1E6",scale:1,duration:.12},19.227);
+tl.to("#cap-22-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},19.187);
+tl.to("#cap-22-1",{color:"#F7F1E6",scale:1,duration:.12},19.588);
+tl.to("#cap-22-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},19.548);
+tl.to("#cap-22-2",{color:"#F7F1E6",scale:1,duration:.12},19.916);
+tl.to("#cap-22",{opacity:0,duration:.1,ease:"power2.in"},19.736);
+tl.set("#cap-22",{opacity:0,visibility:"hidden"},19.836);
+tl.fromTo("#cap-23",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},19.836);
+tl.to("#cap-23-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},19.876);
+tl.to("#cap-23-0",{color:"#F7F1E6",scale:1,duration:.12},20.178);
+tl.to("#cap-23-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},20.138);
+tl.to("#cap-23-1",{color:"#F7F1E6",scale:1,duration:.12},20.408);
+tl.to("#cap-23-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},20.368);
+tl.to("#cap-23-2",{color:"#F7F1E6",scale:1,duration:.12},20.670);
+tl.to("#cap-23",{opacity:0,duration:.1,ease:"power2.in"},20.490);
+tl.set("#cap-23",{opacity:0,visibility:"hidden"},20.590);
+tl.fromTo("#cap-24",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},20.590);
+tl.to("#cap-24-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},20.630);
+tl.to("#cap-24-0",{color:"#F7F1E6",scale:1,duration:.12},21.006);
+tl.to("#cap-24-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},20.966);
+tl.to("#cap-24-1",{color:"#F7F1E6",scale:1,duration:.12},21.383);
+tl.to("#cap-24-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},21.343);
+tl.to("#cap-24-2",{color:"#F7F1E6",scale:1,duration:.12},21.867);
+tl.to("#cap-24",{opacity:0,duration:.1,ease:"power2.in"},21.687);
+tl.set("#cap-24",{opacity:0,visibility:"hidden"},21.787);
+tl.fromTo("#cap-25",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},21.787);
+tl.to("#cap-25-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},21.827);
+tl.to("#cap-25-0",{color:"#F7F1E6",scale:1,duration:.12},22.465);
+tl.to("#cap-25",{opacity:0,duration:.1,ease:"power2.in"},22.285);
+tl.set("#cap-25",{opacity:0,visibility:"hidden"},22.385);
+tl.fromTo("#cap-26",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},22.385);
+tl.to("#cap-26-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},22.425);
+tl.to("#cap-26-0",{color:"#F7F1E6",scale:1,duration:.12},22.678);
+tl.to("#cap-26-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},22.638);
+tl.to("#cap-26-1",{color:"#F7F1E6",scale:1,duration:.12},23.186);
+tl.to("#cap-26-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},23.146);
+tl.to("#cap-26-2",{color:"#F7F1E6",scale:1,duration:.12},23.752);
+tl.to("#cap-26",{opacity:0,duration:.1,ease:"power2.in"},23.572);
+tl.set("#cap-26",{opacity:0,visibility:"hidden"},23.672);
+tl.fromTo("#cap-27",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},23.672);
+tl.to("#cap-27-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},23.712);
+tl.to("#cap-27-0",{color:"#F7F1E6",scale:1,duration:.12},23.850);
+tl.to("#cap-27-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},23.810);
+tl.to("#cap-27-1",{color:"#F7F1E6",scale:1,duration:.12},24.129);
+tl.to("#cap-27-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},24.089);
+tl.to("#cap-27-2",{color:"#F7F1E6",scale:1,duration:.12},24.342);
+tl.to("#cap-27-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},24.302);
+tl.to("#cap-27-3",{color:"#F7F1E6",scale:1,duration:.12},24.990);
+tl.to("#cap-27",{opacity:0,duration:.1,ease:"power2.in"},24.810);
+tl.set("#cap-27",{opacity:0,visibility:"hidden"},24.910);
+tl.fromTo("#cap-28",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},24.910);
+tl.to("#cap-28-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},24.950);
+tl.to("#cap-28-0",{color:"#F7F1E6",scale:1,duration:.12},25.432);
+tl.to("#cap-28-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},25.392);
+tl.to("#cap-28-1",{color:"#F7F1E6",scale:1,duration:.12},25.826);
+tl.to("#cap-28-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},25.786);
+tl.to("#cap-28-2",{color:"#F7F1E6",scale:1,duration:.12},26.391);
+tl.to("#cap-28",{opacity:0,duration:.1,ease:"power2.in"},26.728);
+tl.set("#cap-28",{opacity:0,visibility:"hidden"},26.828);
+tl.fromTo("#cap-29",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},26.828);
+tl.to("#cap-29-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},26.868);
+tl.to("#cap-29-0",{color:"#F7F1E6",scale:1,duration:.12},27.318);
+tl.to("#cap-29-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},27.278);
+tl.to("#cap-29-1",{color:"#F7F1E6",scale:1,duration:.12},27.531);
+tl.to("#cap-29",{opacity:0,duration:.1,ease:"power2.in"},27.351);
+tl.set("#cap-29",{opacity:0,visibility:"hidden"},27.451);
+tl.fromTo("#cap-30",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},27.451);
+tl.to("#cap-30-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},27.491);
+tl.to("#cap-30-0",{color:"#F7F1E6",scale:1,duration:.12},27.744);
+tl.to("#cap-30-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},27.704);
+tl.to("#cap-30-1",{color:"#F7F1E6",scale:1,duration:.12},28.154);
+tl.to("#cap-30",{opacity:0,duration:.1,ease:"power2.in"},28.039);
+tl.set("#cap-30",{opacity:0,visibility:"hidden"},28.139);
+tl.fromTo("#cap-31",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},28.139);
+tl.to("#cap-31-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},28.179);
+tl.to("#cap-31-0",{color:"#F7F1E6",scale:1,duration:.12},28.547);
+tl.to("#cap-31-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},28.507);
+tl.to("#cap-31-1",{color:"#F7F1E6",scale:1,duration:.12},28.859);
+tl.to("#cap-31-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},28.819);
+tl.to("#cap-31-2",{color:"#F7F1E6",scale:1,duration:.12},29.186);
+tl.to("#cap-31-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},29.146);
+tl.to("#cap-31-3",{color:"#F7F1E6",scale:1,duration:.12},29.465);
+tl.to("#cap-31",{opacity:0,duration:.1,ease:"power2.in"},29.285);
+tl.set("#cap-31",{opacity:0,visibility:"hidden"},29.385);
+tl.fromTo("#cap-32",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},29.385);
+tl.to("#cap-32-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},29.425);
+tl.to("#cap-32-0",{color:"#F7F1E6",scale:1,duration:.12},29.842);
+tl.to("#cap-32-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},29.802);
+tl.to("#cap-32-1",{color:"#F7F1E6",scale:1,duration:.12},30.039);
+tl.to("#cap-32-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},29.999);
+tl.to("#cap-32-2",{color:"#F7F1E6",scale:1,duration:.12},30.391);
+tl.to("#cap-32",{opacity:0,duration:.1,ease:"power2.in"},30.228);
+tl.set("#cap-32",{opacity:0,visibility:"hidden"},30.328);
+tl.fromTo("#cap-33",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},30.328);
+tl.to("#cap-33-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},30.368);
+tl.to("#cap-33-0",{color:"#F7F1E6",scale:1,duration:.12},30.670);
+tl.to("#cap-33-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},30.630);
+tl.to("#cap-33-1",{color:"#F7F1E6",scale:1,duration:.12},30.801);
+tl.to("#cap-33-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},30.761);
+tl.to("#cap-33-2",{color:"#F7F1E6",scale:1,duration:.12},31.145);
+tl.to("#cap-33-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},31.105);
+tl.to("#cap-33-3",{color:"#F7F1E6",scale:1,duration:.12},31.604);
+tl.to("#cap-33",{opacity:0,duration:.1,ease:"power2.in"},31.424);
+tl.set("#cap-33",{opacity:0,visibility:"hidden"},31.524);
+tl.fromTo("#cap-34",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},31.524);
+tl.to("#cap-34-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},31.564);
+tl.to("#cap-34-0",{color:"#F7F1E6",scale:1,duration:.12},31.949);
+tl.to("#cap-34-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},31.909);
+tl.to("#cap-34-1",{color:"#F7F1E6",scale:1,duration:.12},32.260);
+tl.to("#cap-34-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},32.220);
+tl.to("#cap-34-2",{color:"#F7F1E6",scale:1,duration:.12},32.473);
+tl.to("#cap-34",{opacity:0,duration:.1,ease:"power2.in"},32.408);
+tl.set("#cap-34",{opacity:0,visibility:"hidden"},32.508);
+tl.fromTo("#cap-35",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},32.508);
+tl.to("#cap-35-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},32.548);
+tl.to("#cap-35-0",{color:"#F7F1E6",scale:1,duration:.12},32.719);
+tl.to("#cap-35-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},32.679);
+tl.to("#cap-35-1",{color:"#F7F1E6",scale:1,duration:.12},32.850);
+tl.to("#cap-35-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},32.810);
+tl.to("#cap-35-2",{color:"#F7F1E6",scale:1,duration:.12},32.998);
+tl.to("#cap-35-3",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},32.958);
+tl.to("#cap-35-3",{color:"#F7F1E6",scale:1,duration:.12},33.277);
+tl.to("#cap-35",{opacity:0,duration:.1,ease:"power2.in"},33.097);
+tl.set("#cap-35",{opacity:0,visibility:"hidden"},33.197);
+tl.fromTo("#cap-36",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},33.197);
+tl.to("#cap-36-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},33.237);
+tl.to("#cap-36-0",{color:"#F7F1E6",scale:1,duration:.12},33.490);
+tl.to("#cap-36-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},33.450);
+tl.to("#cap-36-1",{color:"#F7F1E6",scale:1,duration:.12},33.818);
+tl.to("#cap-36-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},33.778);
+tl.to("#cap-36-2",{color:"#F7F1E6",scale:1,duration:.12},34.555);
+tl.to("#cap-36",{opacity:0,duration:.1,ease:"power2.in"},34.375);
+tl.set("#cap-36",{opacity:0,visibility:"hidden"},34.475);
+tl.fromTo("#cap-37",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},34.475);
+tl.to("#cap-37-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},34.515);
+tl.to("#cap-37-0",{color:"#F7F1E6",scale:1,duration:.12},34.932);
+tl.to("#cap-37-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},34.892);
+tl.to("#cap-37-1",{color:"#F7F1E6",scale:1,duration:.12},35.145);
+tl.to("#cap-37-2",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},35.105);
+tl.to("#cap-37-2",{color:"#F7F1E6",scale:1,duration:.12},35.580);
+tl.to("#cap-37",{opacity:0,duration:.1,ease:"power2.in"},35.400);
+tl.set("#cap-37",{opacity:0,visibility:"hidden"},35.500);
+tl.fromTo("#cap-38",{opacity:0,y:18,visibility:"visible"},{opacity:1,y:0,duration:.14,ease:"power2.out"},35.500);
+tl.to("#cap-38-0",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},35.540);
+tl.to("#cap-38-0",{color:"#F7F1E6",scale:1,duration:.12},36.563);
+tl.to("#cap-38-1",{opacity:1,color:"#F0D49A",scale:1.06,duration:.08},36.523);
+tl.to("#cap-38-1",{color:"#F7F1E6",scale:1,duration:.12},36.842);
+tl.to("#cap-38",{opacity:0,duration:.1,ease:"power2.in"},37.222);
+tl.set("#cap-38",{opacity:0,visibility:"hidden"},37.322);
+window.__timelines["captions"] = tl;
+</script>
+</template>

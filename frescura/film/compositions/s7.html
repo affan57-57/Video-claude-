@@ -1,0 +1,54 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Manrope';src:url('assets/fonts/Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Manrope',sans-serif;color:#F4EEE3}
+.abs{position:absolute}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.serif{font-family:'Bodoni Moda',serif}
+.ital{font-family:'Bodoni Moda',serif;font-style:italic}
+.label{font-family:'Manrope',sans-serif;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:30px;color:#D9BD86}
+.gold{background:linear-gradient(100deg,#8C6A2E 0%,#E9CF94 28%,#FFF4D6 46%,#D2AE68 62%,#8C6A2E 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{left:0;width:1080px;text-align:center}
+.onyx{background:radial-gradient(120% 70% at 50% 18%,#2A2320 0%,#141110 46%,#090808 100%)}
+.grain{opacity:.07;mix-blend-mode:overlay}
+.hair{stroke:#D9BD86;stroke-width:1.5;fill:none}
+
+.scard{position:absolute;left:100px;width:860px;height:330px;border-radius:34px;border:1px solid rgba(233,207,148,.45);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.sbtl{position:absolute;left:46px;top:28px;width:150px;height:428px;filter:drop-shadow(0 18px 24px rgba(0,0,0,.6))}
+.sinfo{position:absolute;left:230px;top:66px;width:520px}
+.snote{margin-top:16px;font-size:28px;letter-spacing:.04em;font-weight:600;letter-spacing:.1em;color:rgba(244,238,227,.8)}
+</style>
+<div id="root" data-composition-id="s7" data-width="1080" data-height="1920" data-duration="3.219">
+
+<div class="full onyx"></div>
+<svg class="full grain" viewBox="0 0 1080 1920" data-layout-ignore><filter id="s7-n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/></filter><rect width="1080" height="1920" filter="url(#s7-n)"/></svg>
+<div id="s7-head" class="abs center" style="top:260px">
+  <div class="label">Dua wangian eksklusif</div>
+  <div class="ital gold" style="font-size:96px;font-weight:500;margin-top:10px">bauan perfume</div>
+</div>
+<div id="s7-c1" class="scard" style="top:450px;background:linear-gradient(120deg,#5E0E18 0%,#2A070C 70%)">
+  <img src="assets/img/glory_cut.png" class="sbtl">
+  <div class="sinfo"><div class="label" style="font-size:28px;color:#F2C9CF">Woman Glory</div><div class="ital" style="font-size:84px;font-weight:600;line-height:1.05">Bombshell</div><div class="snote">Ros &middot; Aromatherapy</div></div>
+</div>
+<div id="s7-c2" class="scard" style="top:800px;background:linear-gradient(120deg,#2E1F5E 0%,#110B26 70%)">
+  <img src="assets/img/noche_cut.png" class="sbtl">
+  <div class="sinfo"><div class="label" style="font-size:28px;color:#CFC4F2">Noche</div><div class="ital" style="font-size:56px;font-weight:600;line-height:1.05">Midnight Fantasy</div><div class="snote">Ocean Salt &middot; Aromatherapy</div></div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s7-head .label",{opacity:0},{opacity:1,duration:.45},0.02);
+tl.fromTo("#s7-head .ital",{opacity:0,y:30,backgroundPosition:"100% 0"},{opacity:1,y:0,backgroundPosition:"0% 0",duration:.7,ease:"power3.out"},0.44);
+tl.fromTo("#s7-c1",{opacity:0,x:-700,rotation:-4},{opacity:1,x:0,rotation:0,duration:.55,ease:"expo.out"},1.85);
+tl.fromTo("#s7-c1 .sbtl",{y:120},{y:0,duration:.8,ease:"expo.out"},1.92);
+tl.fromTo("#s7-c2",{opacity:0,x:700,rotation:4},{opacity:1,x:0,rotation:0,duration:.55,ease:"expo.out"},2.47);
+tl.fromTo("#s7-c2 .sbtl",{y:120},{y:0,duration:.8,ease:"expo.out"},2.54);
+
+window.__timelines["s7"] = tl;
+</script>
+</template>

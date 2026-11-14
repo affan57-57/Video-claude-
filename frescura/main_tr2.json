@@ -1,0 +1,657 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.84,
+  "text": " Suami, jangan sesekali anggap istri yang menguruskan rumah dan anak sepanjang hari itu tak penat.",
+  "words": [
+   {
+    "w": " Suami,",
+    "s": 0.0,
+    "e": 0.98
+   },
+   {
+    "w": " jangan",
+    "s": 1.32,
+    "e": 1.68
+   },
+   {
+    "w": " sesekali",
+    "s": 1.68,
+    "e": 2.48
+   },
+   {
+    "w": " anggap",
+    "s": 2.48,
+    "e": 3.0
+   },
+   {
+    "w": " istri",
+    "s": 3.0,
+    "e": 3.48
+   },
+   {
+    "w": " yang",
+    "s": 3.48,
+    "e": 3.76
+   },
+   {
+    "w": " menguruskan",
+    "s": 3.76,
+    "e": 4.36
+   },
+   {
+    "w": " rumah",
+    "s": 4.36,
+    "e": 4.7
+   },
+   {
+    "w": " dan",
+    "s": 4.7,
+    "e": 5.0
+   },
+   {
+    "w": " anak",
+    "s": 5.0,
+    "e": 5.24
+   },
+   {
+    "w": " sepanjang",
+    "s": 5.24,
+    "e": 5.58
+   },
+   {
+    "w": " hari",
+    "s": 5.58,
+    "e": 5.82
+   },
+   {
+    "w": " itu",
+    "s": 5.82,
+    "e": 6.08
+   },
+   {
+    "w": " tak",
+    "s": 6.08,
+    "e": 6.26
+   },
+   {
+    "w": " penat.",
+    "s": 6.26,
+    "e": 6.84
+   }
+  ]
+ },
+ {
+  "start": 6.92,
+  "end": 10.98,
+  "text": " Dia mungkin tak keluar bekerja macam korang tetapi kerja rumah tak pernah habis.",
+  "words": [
+   {
+    "w": " Dia",
+    "s": 6.92,
+    "e": 7.08
+   },
+   {
+    "w": " mungkin",
+    "s": 7.08,
+    "e": 7.38
+   },
+   {
+    "w": " tak",
+    "s": 7.38,
+    "e": 7.6
+   },
+   {
+    "w": " keluar",
+    "s": 7.6,
+    "e": 7.76
+   },
+   {
+    "w": " bekerja",
+    "s": 7.76,
+    "e": 8.14
+   },
+   {
+    "w": " macam",
+    "s": 8.14,
+    "e": 8.4
+   },
+   {
+    "w": " korang",
+    "s": 8.4,
+    "e": 8.78
+   },
+   {
+    "w": " tetapi",
+    "s": 8.78,
+    "e": 9.18
+   },
+   {
+    "w": " kerja",
+    "s": 9.18,
+    "e": 9.5
+   },
+   {
+    "w": " rumah",
+    "s": 9.5,
+    "e": 9.82
+   },
+   {
+    "w": " tak",
+    "s": 9.82,
+    "e": 10.14
+   },
+   {
+    "w": " pernah",
+    "s": 10.14,
+    "e": 10.3
+   },
+   {
+    "w": " habis.",
+    "s": 10.3,
+    "e": 10.98
+   }
+  ]
+ },
+ {
+  "start": 11.12,
+  "end": 17.98,
+  "text": " Dari pagi sampai malam, ada saja yang perlu diuruskan sebab itu istri pun perlukan masa untuk berehat dan menjaga diri sendiri.",
+  "words": [
+   {
+    "w": " Dari",
+    "s": 11.12,
+    "e": 11.3
+   },
+   {
+    "w": " pagi",
+    "s": 11.3,
+    "e": 11.66
+   },
+   {
+    "w": " sampai",
+    "s": 11.66,
+    "e": 11.98
+   },
+   {
+    "w": " malam,",
+    "s": 11.98,
+    "e": 12.48
+   },
+   {
+    "w": " ada",
+    "s": 12.52,
+    "e": 12.8
+   },
+   {
+    "w": " saja",
+    "s": 12.8,
+    "e": 13.08
+   },
+   {
+    "w": " yang",
+    "s": 13.08,
+    "e": 13.28
+   },
+   {
+    "w": " perlu",
+    "s": 13.28,
+    "e": 13.44
+   },
+   {
+    "w": " diuruskan",
+    "s": 13.44,
+    "e": 13.98
+   },
+   {
+    "w": " sebab",
+    "s": 13.98,
+    "e": 14.26
+   },
+   {
+    "w": " itu",
+    "s": 14.26,
+    "e": 14.42
+   },
+   {
+    "w": " istri",
+    "s": 14.42,
+    "e": 14.84
+   },
+   {
+    "w": " pun",
+    "s": 14.84,
+    "e": 14.98
+   },
+   {
+    "w": " perlukan",
+    "s": 14.98,
+    "e": 15.28
+   },
+   {
+    "w": " masa",
+    "s": 15.28,
+    "e": 15.6
+   },
+   {
+    "w": " untuk",
+    "s": 15.6,
+    "e": 15.94
+   },
+   {
+    "w": " berehat",
+    "s": 15.94,
+    "e": 16.5
+   },
+   {
+    "w": " dan",
+    "s": 16.5,
+    "e": 16.88
+   },
+   {
+    "w": " menjaga",
+    "s": 16.88,
+    "e": 17.28
+   },
+   {
+    "w": " diri",
+    "s": 17.28,
+    "e": 17.58
+   },
+   {
+    "w": " sendiri.",
+    "s": 17.58,
+    "e": 17.98
+   }
+  ]
+ },
+ {
+  "start": 18.42,
+  "end": 21.34,
+  "text": " Berikan istri sedikit masa untuk manjakan dirinya.",
+  "words": [
+   {
+    "w": " Berikan",
+    "s": 18.42,
+    "e": 18.74
+   },
+   {
+    "w": " istri",
+    "s": 18.74,
+    "e": 19.2
+   },
+   {
+    "w": " sedikit",
+    "s": 19.2,
+    "e": 19.52
+   },
+   {
+    "w": " masa",
+    "s": 19.52,
+    "e": 19.92
+   },
+   {
+    "w": " untuk",
+    "s": 19.92,
+    "e": 20.16
+   },
+   {
+    "w": " manjakan",
+    "s": 20.16,
+    "e": 20.64
+   },
+   {
+    "w": " dirinya.",
+    "s": 20.64,
+    "e": 21.34
+   }
+  ]
+ },
+ {
+  "start": 21.58,
+  "end": 27.26,
+  "text": " Pastinya, Frescura Body niat mati pengalaman mandi yang buih lembut terus daripada botol.",
+  "words": [
+   {
+    "w": " Pastinya,",
+    "s": 21.58,
+    "e": 22.18
+   },
+   {
+    "w": " Frescura",
+    "s": 22.42,
+    "e": 22.78
+   },
+   {
+    "w": " Body",
+    "s": 22.78,
+    "e": 23.08
+   },
+   {
+    "w": " niat",
+    "s": 23.08,
+    "e": 23.44
+   },
+   {
+    "w": " mati",
+    "s": 23.44,
+    "e": 23.9
+   },
+   {
+    "w": " pengalaman",
+    "s": 23.9,
+    "e": 24.34
+   },
+   {
+    "w": " mandi",
+    "s": 24.34,
+    "e": 24.74
+   },
+   {
+    "w": " yang",
+    "s": 24.74,
+    "e": 25.06
+   },
+   {
+    "w": " buih",
+    "s": 25.06,
+    "e": 25.34
+   },
+   {
+    "w": " lembut",
+    "s": 25.34,
+    "e": 25.72
+   },
+   {
+    "w": " terus",
+    "s": 25.72,
+    "e": 26.14
+   },
+   {
+    "w": " daripada",
+    "s": 26.14,
+    "e": 26.6
+   },
+   {
+    "w": " botol.",
+    "s": 26.6,
+    "e": 27.26
+   }
+  ]
+ },
+ {
+  "start": 27.26,
+  "end": 35.28,
+  "text": " Tekan-tekan terus keluar buih yang lembut dan gebu dengan bauan perfume, bombshell dan Midnight Fantasy.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 27.26,
+    "e": 27.6
+   },
+   {
+    "w": "-tekan",
+    "s": 27.6,
+    "e": 28.06
+   },
+   {
+    "w": " terus",
+    "s": 28.06,
+    "e": 28.32
+   },
+   {
+    "w": " keluar",
+    "s": 28.32,
+    "e": 28.94
+   },
+   {
+    "w": " buih",
+    "s": 28.94,
+    "e": 29.7
+   },
+   {
+    "w": " yang",
+    "s": 29.7,
+    "e": 29.82
+   },
+   {
+    "w": " lembut",
+    "s": 29.82,
+    "e": 30.16
+   },
+   {
+    "w": " dan",
+    "s": 30.16,
+    "e": 30.42
+   },
+   {
+    "w": " gebu",
+    "s": 30.42,
+    "e": 31.28
+   },
+   {
+    "w": " dengan",
+    "s": 31.28,
+    "e": 31.82
+   },
+   {
+    "w": " bauan",
+    "s": 31.82,
+    "e": 32.3
+   },
+   {
+    "w": " perfume,",
+    "s": 32.3,
+    "e": 33.06
+   },
+   {
+    "w": " bombshell",
+    "s": 33.76,
+    "e": 34.26
+   },
+   {
+    "w": " dan",
+    "s": 34.26,
+    "e": 34.52
+   },
+   {
+    "w": " Midnight",
+    "s": 34.52,
+    "e": 34.78
+   },
+   {
+    "w": " Fantasy.",
+    "s": 34.78,
+    "e": 35.28
+   }
+  ]
+ },
+ {
+  "start": 35.36,
+  "end": 38.08,
+  "text": " Jangan asyik suruh istri jaga semua orang.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 35.36,
+    "e": 35.76
+   },
+   {
+    "w": " asyik",
+    "s": 35.76,
+    "e": 36.14
+   },
+   {
+    "w": " suruh",
+    "s": 36.14,
+    "e": 36.54
+   },
+   {
+    "w": " istri",
+    "s": 36.54,
+    "e": 36.88
+   },
+   {
+    "w": " jaga",
+    "s": 36.88,
+    "e": 37.34
+   },
+   {
+    "w": " semua",
+    "s": 37.34,
+    "e": 37.58
+   },
+   {
+    "w": " orang.",
+    "s": 37.58,
+    "e": 38.08
+   }
+  ]
+ },
+ {
+  "start": 38.1,
+  "end": 40.62,
+  "text": " Kali ini belikan sesuatu untuk dia pula.",
+  "words": [
+   {
+    "w": " Kali",
+    "s": 38.1,
+    "e": 38.42
+   },
+   {
+    "w": " ini",
+    "s": 38.42,
+    "e": 38.58
+   },
+   {
+    "w": " belikan",
+    "s": 38.58,
+    "e": 39.0
+   },
+   {
+    "w": " sesuatu",
+    "s": 39.0,
+    "e": 39.56
+   },
+   {
+    "w": " untuk",
+    "s": 39.56,
+    "e": 39.98
+   },
+   {
+    "w": " dia",
+    "s": 39.98,
+    "e": 40.36
+   },
+   {
+    "w": " pula.",
+    "s": 40.36,
+    "e": 40.62
+   }
+  ]
+ },
+ {
+  "start": 40.76,
+  "end": 46.02,
+  "text": " Tekan beg kuning sekarang dan checkout sekarang sebab stok kita sangat-sangat terhad.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 40.76,
+    "e": 40.92
+   },
+   {
+    "w": " beg",
+    "s": 40.92,
+    "e": 41.08
+   },
+   {
+    "w": " kuning",
+    "s": 41.08,
+    "e": 41.26
+   },
+   {
+    "w": " sekarang",
+    "s": 41.26,
+    "e": 41.6
+   },
+   {
+    "w": " dan",
+    "s": 41.6,
+    "e": 41.86
+   },
+   {
+    "w": " checkout",
+    "s": 41.86,
+    "e": 42.26
+   },
+   {
+    "w": " sekarang",
+    "s": 42.26,
+    "e": 43.16
+   },
+   {
+    "w": " sebab",
+    "s": 43.16,
+    "e": 43.62
+   },
+   {
+    "w": " stok",
+    "s": 43.62,
+    "e": 43.88
+   },
+   {
+    "w": " kita",
+    "s": 43.88,
+    "e": 44.48
+   },
+   {
+    "w": " sangat",
+    "s": 44.48,
+    "e": 45.14
+   },
+   {
+    "w": "-sangat",
+    "s": 45.14,
+    "e": 45.68
+   },
+   {
+    "w": " terhad.",
+    "s": 45.68,
+    "e": 46.02
+   }
+  ]
+ },
+ {
+  "start": 46.12,
+  "end": 47.02,
+  "text": " Tekan beg kuning dan checkout.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 46.12,
+    "e": 46.32
+   },
+   {
+    "w": " beg",
+    "s": 46.32,
+    "e": 46.42
+   },
+   {
+    "w": " kuning",
+    "s": 46.42,
+    "e": 46.56
+   },
+   {
+    "w": " dan",
+    "s": 46.56,
+    "e": 46.76
+   },
+   {
+    "w": " checkout.",
+    "s": 46.76,
+    "e": 47.02
+   }
+  ]
+ }
+]
