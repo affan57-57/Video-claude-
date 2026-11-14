@@ -1,0 +1,681 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.42,
+  "text": " Suami-suami, jangan sampai orang luar lebih pandai menghargai istri korang berbanding korang sendiri.",
+  "words": [
+   {
+    "w": " Suami",
+    "s": 0.0,
+    "e": 0.7
+   },
+   {
+    "w": "-suami,",
+    "s": 0.7,
+    "e": 1.2
+   },
+   {
+    "w": " jangan",
+    "s": 1.52,
+    "e": 1.74
+   },
+   {
+    "w": " sampai",
+    "s": 1.74,
+    "e": 2.2
+   },
+   {
+    "w": " orang",
+    "s": 2.2,
+    "e": 2.56
+   },
+   {
+    "w": " luar",
+    "s": 2.56,
+    "e": 2.84
+   },
+   {
+    "w": " lebih",
+    "s": 2.84,
+    "e": 3.24
+   },
+   {
+    "w": " pandai",
+    "s": 3.24,
+    "e": 3.72
+   },
+   {
+    "w": " menghargai",
+    "s": 3.72,
+    "e": 4.36
+   },
+   {
+    "w": " istri",
+    "s": 4.36,
+    "e": 4.86
+   },
+   {
+    "w": " korang",
+    "s": 4.86,
+    "e": 5.22
+   },
+   {
+    "w": " berbanding",
+    "s": 5.22,
+    "e": 5.74
+   },
+   {
+    "w": " korang",
+    "s": 5.74,
+    "e": 6.0
+   },
+   {
+    "w": " sendiri.",
+    "s": 6.0,
+    "e": 6.42
+   }
+  ]
+ },
+ {
+  "start": 6.78,
+  "end": 10.12,
+  "text": " Jangan tunggu hari istimewa baru nak tujuk kasih sayang.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 6.78,
+    "e": 7.06
+   },
+   {
+    "w": " tunggu",
+    "s": 7.06,
+    "e": 7.42
+   },
+   {
+    "w": " hari",
+    "s": 7.42,
+    "e": 7.64
+   },
+   {
+    "w": " istimewa",
+    "s": 7.64,
+    "e": 8.34
+   },
+   {
+    "w": " baru",
+    "s": 8.34,
+    "e": 8.78
+   },
+   {
+    "w": " nak",
+    "s": 8.78,
+    "e": 9.0
+   },
+   {
+    "w": " tujuk",
+    "s": 9.0,
+    "e": 9.3
+   },
+   {
+    "w": " kasih",
+    "s": 9.3,
+    "e": 9.58
+   },
+   {
+    "w": " sayang.",
+    "s": 9.58,
+    "e": 10.12
+   }
+  ]
+ },
+ {
+  "start": 10.32,
+  "end": 17.02,
+  "text": " Hargai istri ketika dia penat, ucap terima kasih atas pengorbanannya dan sesekali berikan hadiah yang dia suka.",
+  "words": [
+   {
+    "w": " Hargai",
+    "s": 10.32,
+    "e": 10.64
+   },
+   {
+    "w": " istri",
+    "s": 10.64,
+    "e": 11.06
+   },
+   {
+    "w": " ketika",
+    "s": 11.06,
+    "e": 11.4
+   },
+   {
+    "w": " dia",
+    "s": 11.4,
+    "e": 11.68
+   },
+   {
+    "w": " penat,",
+    "s": 11.68,
+    "e": 12.12
+   },
+   {
+    "w": " ucap",
+    "s": 12.34,
+    "e": 12.6
+   },
+   {
+    "w": " terima",
+    "s": 12.6,
+    "e": 13.0
+   },
+   {
+    "w": " kasih",
+    "s": 13.0,
+    "e": 13.3
+   },
+   {
+    "w": " atas",
+    "s": 13.3,
+    "e": 13.68
+   },
+   {
+    "w": " pengorbanannya",
+    "s": 13.68,
+    "e": 14.54
+   },
+   {
+    "w": " dan",
+    "s": 14.54,
+    "e": 15.0
+   },
+   {
+    "w": " sesekali",
+    "s": 15.0,
+    "e": 15.5
+   },
+   {
+    "w": " berikan",
+    "s": 15.5,
+    "e": 15.94
+   },
+   {
+    "w": " hadiah",
+    "s": 15.94,
+    "e": 16.32
+   },
+   {
+    "w": " yang",
+    "s": 16.32,
+    "e": 16.46
+   },
+   {
+    "w": " dia",
+    "s": 16.46,
+    "e": 16.7
+   },
+   {
+    "w": " suka.",
+    "s": 16.7,
+    "e": 17.02
+   }
+  ]
+ },
+ {
+  "start": 17.42,
+  "end": 24.34,
+  "text": " Biar dia rasa dirinya sentiasa istimewa dalam hidup korang untuk hadiah kecil yang boleh melengkapkan roti penjagaan dirinya.",
+  "words": [
+   {
+    "w": " Biar",
+    "s": 17.42,
+    "e": 17.48
+   },
+   {
+    "w": " dia",
+    "s": 17.48,
+    "e": 17.64
+   },
+   {
+    "w": " rasa",
+    "s": 17.64,
+    "e": 17.98
+   },
+   {
+    "w": " dirinya",
+    "s": 17.98,
+    "e": 18.6
+   },
+   {
+    "w": " sentiasa",
+    "s": 18.6,
+    "e": 19.2
+   },
+   {
+    "w": " istimewa",
+    "s": 19.2,
+    "e": 19.76
+   },
+   {
+    "w": " dalam",
+    "s": 19.76,
+    "e": 20.04
+   },
+   {
+    "w": " hidup",
+    "s": 20.04,
+    "e": 20.4
+   },
+   {
+    "w": " korang",
+    "s": 20.4,
+    "e": 20.8
+   },
+   {
+    "w": " untuk",
+    "s": 20.8,
+    "e": 21.18
+   },
+   {
+    "w": " hadiah",
+    "s": 21.18,
+    "e": 21.5
+   },
+   {
+    "w": " kecil",
+    "s": 21.5,
+    "e": 21.8
+   },
+   {
+    "w": " yang",
+    "s": 21.8,
+    "e": 22.04
+   },
+   {
+    "w": " boleh",
+    "s": 22.04,
+    "e": 22.28
+   },
+   {
+    "w": " melengkapkan",
+    "s": 22.28,
+    "e": 23.2
+   },
+   {
+    "w": " roti",
+    "s": 23.2,
+    "e": 23.46
+   },
+   {
+    "w": " penjagaan",
+    "s": 23.46,
+    "e": 23.98
+   },
+   {
+    "w": " dirinya.",
+    "s": 23.98,
+    "e": 24.34
+   }
+  ]
+ },
+ {
+  "start": 24.34,
+  "end": 34.36,
+  "text": " Pastinya, Frescura Body dengan buih lembut, garam laut dan dua pilihan wangi yang perfume, feminine bombshell serta Midnight Fantasy yang manis dan misteri.",
+  "words": [
+   {
+    "w": " Pastinya,",
+    "s": 24.34,
+    "e": 25.36
+   },
+   {
+    "w": " Frescura",
+    "s": 25.56,
+    "e": 26.1
+   },
+   {
+    "w": " Body",
+    "s": 26.1,
+    "e": 26.48
+   },
+   {
+    "w": " dengan",
+    "s": 26.48,
+    "e": 26.76
+   },
+   {
+    "w": " buih",
+    "s": 26.76,
+    "e": 26.94
+   },
+   {
+    "w": " lembut,",
+    "s": 26.94,
+    "e": 27.26
+   },
+   {
+    "w": " garam",
+    "s": 27.48,
+    "e": 27.7
+   },
+   {
+    "w": " laut",
+    "s": 27.7,
+    "e": 27.96
+   },
+   {
+    "w": " dan",
+    "s": 27.96,
+    "e": 28.26
+   },
+   {
+    "w": " dua",
+    "s": 28.26,
+    "e": 28.56
+   },
+   {
+    "w": " pilihan",
+    "s": 28.56,
+    "e": 29.0
+   },
+   {
+    "w": " wangi",
+    "s": 29.0,
+    "e": 29.44
+   },
+   {
+    "w": " yang",
+    "s": 29.44,
+    "e": 29.68
+   },
+   {
+    "w": " perfume,",
+    "s": 29.68,
+    "e": 30.08
+   },
+   {
+    "w": " feminine",
+    "s": 30.26,
+    "e": 30.54
+   },
+   {
+    "w": " bombshell",
+    "s": 30.54,
+    "e": 31.28
+   },
+   {
+    "w": " serta",
+    "s": 31.28,
+    "e": 31.68
+   },
+   {
+    "w": " Midnight",
+    "s": 31.68,
+    "e": 31.88
+   },
+   {
+    "w": " Fantasy",
+    "s": 31.88,
+    "e": 32.34
+   },
+   {
+    "w": " yang",
+    "s": 32.34,
+    "e": 32.86
+   },
+   {
+    "w": " manis",
+    "s": 32.86,
+    "e": 33.26
+   },
+   {
+    "w": " dan",
+    "s": 33.26,
+    "e": 33.48
+   },
+   {
+    "w": " misteri.",
+    "s": 33.48,
+    "e": 34.36
+   }
+  ]
+ },
+ {
+  "start": 34.54,
+  "end": 42.42,
+  "text": " Suami kalau korang, kau selalu. Suami kalau istri korang selalu ada untuk korang, sekarang giliran korang pula buat sesuatu untuk dia.",
+  "words": [
+   {
+    "w": " Suami",
+    "s": 34.54,
+    "e": 34.62
+   },
+   {
+    "w": " kalau",
+    "s": 34.62,
+    "e": 34.82
+   },
+   {
+    "w": " korang,",
+    "s": 34.82,
+    "e": 35.54
+   },
+   {
+    "w": " kau",
+    "s": 35.68,
+    "e": 35.94
+   },
+   {
+    "w": " selalu.",
+    "s": 35.94,
+    "e": 36.42
+   },
+   {
+    "w": " Suami",
+    "s": 36.6,
+    "e": 37.02
+   },
+   {
+    "w": " kalau",
+    "s": 37.02,
+    "e": 37.4
+   },
+   {
+    "w": " istri",
+    "s": 37.4,
+    "e": 37.84
+   },
+   {
+    "w": " korang",
+    "s": 37.84,
+    "e": 38.12
+   },
+   {
+    "w": " selalu",
+    "s": 38.12,
+    "e": 38.64
+   },
+   {
+    "w": " ada",
+    "s": 38.64,
+    "e": 38.86
+   },
+   {
+    "w": " untuk",
+    "s": 38.86,
+    "e": 39.12
+   },
+   {
+    "w": " korang,",
+    "s": 39.12,
+    "e": 39.68
+   },
+   {
+    "w": " sekarang",
+    "s": 39.98,
+    "e": 40.28
+   },
+   {
+    "w": " giliran",
+    "s": 40.28,
+    "e": 40.76
+   },
+   {
+    "w": " korang",
+    "s": 40.76,
+    "e": 41.12
+   },
+   {
+    "w": " pula",
+    "s": 41.12,
+    "e": 41.34
+   },
+   {
+    "w": " buat",
+    "s": 41.34,
+    "e": 41.58
+   },
+   {
+    "w": " sesuatu",
+    "s": 41.58,
+    "e": 41.9
+   },
+   {
+    "w": " untuk",
+    "s": 41.9,
+    "e": 42.18
+   },
+   {
+    "w": " dia.",
+    "s": 42.18,
+    "e": 42.42
+   }
+  ]
+ },
+ {
+  "start": 42.7,
+  "end": 50.14,
+  "text": " Tekan make-gun sekarang dan cek out Frescura Body. Jangan tunggu sampai stop ni habis sebab anda mungkin nak kelepas kalau anda tak beli.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 42.7,
+    "e": 42.9
+   },
+   {
+    "w": " make",
+    "s": 42.9,
+    "e": 43.02
+   },
+   {
+    "w": "-gun",
+    "s": 43.02,
+    "e": 43.12
+   },
+   {
+    "w": " sekarang",
+    "s": 43.12,
+    "e": 43.4
+   },
+   {
+    "w": " dan",
+    "s": 43.4,
+    "e": 43.64
+   },
+   {
+    "w": " cek",
+    "s": 43.64,
+    "e": 43.9
+   },
+   {
+    "w": " out",
+    "s": 43.9,
+    "e": 43.96
+   },
+   {
+    "w": " Frescura",
+    "s": 43.96,
+    "e": 44.44
+   },
+   {
+    "w": " Body.",
+    "s": 44.44,
+    "e": 44.7
+   },
+   {
+    "w": " Jangan",
+    "s": 44.94,
+    "e": 45.42
+   },
+   {
+    "w": " tunggu",
+    "s": 45.42,
+    "e": 46.22
+   },
+   {
+    "w": " sampai",
+    "s": 46.22,
+    "e": 46.64
+   },
+   {
+    "w": " stop",
+    "s": 46.64,
+    "e": 46.96
+   },
+   {
+    "w": " ni",
+    "s": 46.96,
+    "e": 47.14
+   },
+   {
+    "w": " habis",
+    "s": 47.14,
+    "e": 47.46
+   },
+   {
+    "w": " sebab",
+    "s": 47.46,
+    "e": 47.8
+   },
+   {
+    "w": " anda",
+    "s": 47.8,
+    "e": 48.14
+   },
+   {
+    "w": " mungkin",
+    "s": 48.14,
+    "e": 48.46
+   },
+   {
+    "w": " nak",
+    "s": 48.46,
+    "e": 48.62
+   },
+   {
+    "w": " kelepas",
+    "s": 48.62,
+    "e": 49.14
+   },
+   {
+    "w": " kalau",
+    "s": 49.14,
+    "e": 49.44
+   },
+   {
+    "w": " anda",
+    "s": 49.44,
+    "e": 49.62
+   },
+   {
+    "w": " tak",
+    "s": 49.62,
+    "e": 49.78
+   },
+   {
+    "w": " beli.",
+    "s": 49.78,
+    "e": 50.14
+   }
+  ]
+ }
+]
