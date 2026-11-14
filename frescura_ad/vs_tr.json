@@ -1,0 +1,705 @@
+[
+ {
+  "start": 0.0,
+  "end": 5.3,
+  "text": " Suami korang tahu tak, kadang-kadang isteri bukan nak hadiah mahal pun, dia cuma nak rasa yang suami masih peduli tentang dirinya.",
+  "words": [
+   {
+    "w": " Suami",
+    "s": 0.0,
+    "e": 0.22
+   },
+   {
+    "w": " korang",
+    "s": 0.22,
+    "e": 0.5
+   },
+   {
+    "w": " tahu",
+    "s": 0.5,
+    "e": 0.74
+   },
+   {
+    "w": " tak,",
+    "s": 0.74,
+    "e": 0.96
+   },
+   {
+    "w": " kadang",
+    "s": 1.0,
+    "e": 1.26
+   },
+   {
+    "w": "-kadang",
+    "s": 1.26,
+    "e": 1.36
+   },
+   {
+    "w": " isteri",
+    "s": 1.36,
+    "e": 1.7
+   },
+   {
+    "w": " bukan",
+    "s": 1.7,
+    "e": 1.82
+   },
+   {
+    "w": " nak",
+    "s": 1.82,
+    "e": 2.0
+   },
+   {
+    "w": " hadiah",
+    "s": 2.0,
+    "e": 2.22
+   },
+   {
+    "w": " mahal",
+    "s": 2.22,
+    "e": 2.52
+   },
+   {
+    "w": " pun,",
+    "s": 2.52,
+    "e": 2.7
+   },
+   {
+    "w": " dia",
+    "s": 2.74,
+    "e": 2.86
+   },
+   {
+    "w": " cuma",
+    "s": 2.86,
+    "e": 3.02
+   },
+   {
+    "w": " nak",
+    "s": 3.02,
+    "e": 3.2
+   },
+   {
+    "w": " rasa",
+    "s": 3.2,
+    "e": 3.48
+   },
+   {
+    "w": " yang",
+    "s": 3.48,
+    "e": 3.66
+   },
+   {
+    "w": " suami",
+    "s": 3.66,
+    "e": 4.04
+   },
+   {
+    "w": " masih",
+    "s": 4.04,
+    "e": 4.2
+   },
+   {
+    "w": " peduli",
+    "s": 4.2,
+    "e": 4.56
+   },
+   {
+    "w": " tentang",
+    "s": 4.56,
+    "e": 4.72
+   },
+   {
+    "w": " dirinya.",
+    "s": 4.72,
+    "e": 5.3
+   }
+  ]
+ },
+ {
+  "start": 5.44,
+  "end": 8.42,
+  "text": " Dia nak suami tanya keadaan dirinya, ambil tahu bila dia penat.",
+  "words": [
+   {
+    "w": " Dia",
+    "s": 5.44,
+    "e": 5.6
+   },
+   {
+    "w": " nak",
+    "s": 5.6,
+    "e": 5.74
+   },
+   {
+    "w": " suami",
+    "s": 5.74,
+    "e": 6.0
+   },
+   {
+    "w": " tanya",
+    "s": 6.0,
+    "e": 6.26
+   },
+   {
+    "w": " keadaan",
+    "s": 6.26,
+    "e": 6.66
+   },
+   {
+    "w": " dirinya,",
+    "s": 6.66,
+    "e": 7.04
+   },
+   {
+    "w": " ambil",
+    "s": 7.12,
+    "e": 7.44
+   },
+   {
+    "w": " tahu",
+    "s": 7.44,
+    "e": 7.64
+   },
+   {
+    "w": " bila",
+    "s": 7.64,
+    "e": 7.92
+   },
+   {
+    "w": " dia",
+    "s": 7.92,
+    "e": 8.1
+   },
+   {
+    "w": " penat.",
+    "s": 8.1,
+    "e": 8.42
+   }
+  ]
+ },
+ {
+  "start": 8.5,
+  "end": 10.58,
+  "text": " Sesekali buat sesuatu, tak perlu diminta.",
+  "words": [
+   {
+    "w": " Sesekali",
+    "s": 8.5,
+    "e": 9.02
+   },
+   {
+    "w": " buat",
+    "s": 9.02,
+    "e": 9.28
+   },
+   {
+    "w": " sesuatu,",
+    "s": 9.28,
+    "e": 9.68
+   },
+   {
+    "w": " tak",
+    "s": 9.82,
+    "e": 9.92
+   },
+   {
+    "w": " perlu",
+    "s": 9.92,
+    "e": 10.1
+   },
+   {
+    "w": " diminta.",
+    "s": 10.1,
+    "e": 10.58
+   }
+  ]
+ },
+ {
+  "start": 10.68,
+  "end": 13.64,
+  "text": " Perkara kecil macam ni boleh membawa makna besar dalam keluarga.",
+  "words": [
+   {
+    "w": " Perkara",
+    "s": 10.68,
+    "e": 10.9
+   },
+   {
+    "w": " kecil",
+    "s": 10.9,
+    "e": 11.2
+   },
+   {
+    "w": " macam",
+    "s": 11.2,
+    "e": 11.34
+   },
+   {
+    "w": " ni",
+    "s": 11.34,
+    "e": 11.56
+   },
+   {
+    "w": " boleh",
+    "s": 11.56,
+    "e": 11.78
+   },
+   {
+    "w": " membawa",
+    "s": 11.78,
+    "e": 12.18
+   },
+   {
+    "w": " makna",
+    "s": 12.18,
+    "e": 12.6
+   },
+   {
+    "w": " besar",
+    "s": 12.6,
+    "e": 12.82
+   },
+   {
+    "w": " dalam",
+    "s": 12.82,
+    "e": 13.1
+   },
+   {
+    "w": " keluarga.",
+    "s": 13.1,
+    "e": 13.64
+   }
+  ]
+ },
+ {
+  "start": 13.72,
+  "end": 20.12,
+  "text": " Jadi jangan lupa berikan perhatian kepada isteri dengan hadiahkan Frescura Body untuk dia menikmati rutin mandi yang istimewa,",
+  "words": [
+   {
+    "w": " Jadi",
+    "s": 13.72,
+    "e": 13.98
+   },
+   {
+    "w": " jangan",
+    "s": 13.98,
+    "e": 14.32
+   },
+   {
+    "w": " lupa",
+    "s": 14.32,
+    "e": 14.62
+   },
+   {
+    "w": " berikan",
+    "s": 14.62,
+    "e": 14.98
+   },
+   {
+    "w": " perhatian",
+    "s": 14.98,
+    "e": 15.32
+   },
+   {
+    "w": " kepada",
+    "s": 15.32,
+    "e": 15.46
+   },
+   {
+    "w": " isteri",
+    "s": 15.46,
+    "e": 15.82
+   },
+   {
+    "w": " dengan",
+    "s": 15.82,
+    "e": 16.14
+   },
+   {
+    "w": " hadiahkan",
+    "s": 16.14,
+    "e": 16.72
+   },
+   {
+    "w": " Frescura",
+    "s": 16.72,
+    "e": 17.22
+   },
+   {
+    "w": " Body",
+    "s": 17.22,
+    "e": 17.38
+   },
+   {
+    "w": " untuk",
+    "s": 17.38,
+    "e": 17.52
+   },
+   {
+    "w": " dia",
+    "s": 17.52,
+    "e": 17.72
+   },
+   {
+    "w": " menikmati",
+    "s": 17.72,
+    "e": 18.1
+   },
+   {
+    "w": " rutin",
+    "s": 18.1,
+    "e": 18.54
+   },
+   {
+    "w": " mandi",
+    "s": 18.54,
+    "e": 18.88
+   },
+   {
+    "w": " yang",
+    "s": 18.88,
+    "e": 19.1
+   },
+   {
+    "w": " istimewa,",
+    "s": 19.1,
+    "e": 20.12
+   }
+  ]
+ },
+ {
+  "start": 20.14,
+  "end": 26.64,
+  "text": " buih lembut, tekan-tekan, terus keluar buih dan pilihan luar yang feminine iaitu bombshell dan minat fantasi yang manis dan misteri.",
+  "words": [
+   {
+    "w": " buih",
+    "s": 20.14,
+    "e": 20.48
+   },
+   {
+    "w": " lembut,",
+    "s": 20.48,
+    "e": 20.92
+   },
+   {
+    "w": " tekan",
+    "s": 20.92,
+    "e": 21.1
+   },
+   {
+    "w": "-tekan,",
+    "s": 21.1,
+    "e": 21.46
+   },
+   {
+    "w": " terus",
+    "s": 21.46,
+    "e": 21.74
+   },
+   {
+    "w": " keluar",
+    "s": 21.74,
+    "e": 21.98
+   },
+   {
+    "w": " buih",
+    "s": 21.98,
+    "e": 22.3
+   },
+   {
+    "w": " dan",
+    "s": 22.3,
+    "e": 22.48
+   },
+   {
+    "w": " pilihan",
+    "s": 22.48,
+    "e": 22.82
+   },
+   {
+    "w": " luar",
+    "s": 22.82,
+    "e": 23.02
+   },
+   {
+    "w": " yang",
+    "s": 23.02,
+    "e": 23.12
+   },
+   {
+    "w": " feminine",
+    "s": 23.12,
+    "e": 23.42
+   },
+   {
+    "w": " iaitu",
+    "s": 23.42,
+    "e": 23.82
+   },
+   {
+    "w": " bombshell",
+    "s": 23.82,
+    "e": 24.3
+   },
+   {
+    "w": " dan",
+    "s": 24.3,
+    "e": 24.68
+   },
+   {
+    "w": " minat",
+    "s": 24.68,
+    "e": 24.86
+   },
+   {
+    "w": " fantasi",
+    "s": 24.86,
+    "e": 25.3
+   },
+   {
+    "w": " yang",
+    "s": 25.3,
+    "e": 25.42
+   },
+   {
+    "w": " manis",
+    "s": 25.42,
+    "e": 25.9
+   },
+   {
+    "w": " dan",
+    "s": 25.9,
+    "e": 26.02
+   },
+   {
+    "w": " misteri.",
+    "s": 26.02,
+    "e": 26.64
+   }
+  ]
+ },
+ {
+  "start": 26.64,
+  "end": 33.24,
+  "text": " Kalau korang nak buat isteri sentiasa tersenyum, mulakan dengan satu penghargaan kecil dengan tekan beg kuning sekarang dan check out.",
+  "words": [
+   {
+    "w": " Kalau",
+    "s": 26.64,
+    "e": 26.98
+   },
+   {
+    "w": " korang",
+    "s": 26.98,
+    "e": 27.32
+   },
+   {
+    "w": " nak",
+    "s": 27.32,
+    "e": 27.42
+   },
+   {
+    "w": " buat",
+    "s": 27.42,
+    "e": 27.64
+   },
+   {
+    "w": " isteri",
+    "s": 27.64,
+    "e": 28.12
+   },
+   {
+    "w": " sentiasa",
+    "s": 28.12,
+    "e": 28.72
+   },
+   {
+    "w": " tersenyum,",
+    "s": 28.72,
+    "e": 29.12
+   },
+   {
+    "w": " mulakan",
+    "s": 29.12,
+    "e": 29.62
+   },
+   {
+    "w": " dengan",
+    "s": 29.62,
+    "e": 29.92
+   },
+   {
+    "w": " satu",
+    "s": 29.92,
+    "e": 30.3
+   },
+   {
+    "w": " penghargaan",
+    "s": 30.3,
+    "e": 30.8
+   },
+   {
+    "w": " kecil",
+    "s": 30.8,
+    "e": 31.2
+   },
+   {
+    "w": " dengan",
+    "s": 31.2,
+    "e": 31.38
+   },
+   {
+    "w": " tekan",
+    "s": 31.38,
+    "e": 31.7
+   },
+   {
+    "w": " beg",
+    "s": 31.7,
+    "e": 31.8
+   },
+   {
+    "w": " kuning",
+    "s": 31.8,
+    "e": 32.04
+   },
+   {
+    "w": " sekarang",
+    "s": 32.04,
+    "e": 32.22
+   },
+   {
+    "w": " dan",
+    "s": 32.22,
+    "e": 32.7
+   },
+   {
+    "w": " check",
+    "s": 32.7,
+    "e": 33.02
+   },
+   {
+    "w": " out.",
+    "s": 33.02,
+    "e": 33.24
+   }
+  ]
+ },
+ {
+  "start": 33.28,
+  "end": 37.1,
+  "text": " Sebab stok daripada Frescura Body sangat-sangat terhad, kita kesyok pun ada bagi diskaun.",
+  "words": [
+   {
+    "w": " Sebab",
+    "s": 33.28,
+    "e": 33.74
+   },
+   {
+    "w": " stok",
+    "s": 33.74,
+    "e": 34.06
+   },
+   {
+    "w": " daripada",
+    "s": 34.06,
+    "e": 34.38
+   },
+   {
+    "w": " Frescura",
+    "s": 34.38,
+    "e": 34.72
+   },
+   {
+    "w": " Body",
+    "s": 34.72,
+    "e": 34.86
+   },
+   {
+    "w": " sangat",
+    "s": 34.86,
+    "e": 35.18
+   },
+   {
+    "w": "-sangat",
+    "s": 35.18,
+    "e": 35.5
+   },
+   {
+    "w": " terhad,",
+    "s": 35.5,
+    "e": 35.74
+   },
+   {
+    "w": " kita",
+    "s": 35.9,
+    "e": 36.08
+   },
+   {
+    "w": " kesyok",
+    "s": 36.08,
+    "e": 36.34
+   },
+   {
+    "w": " pun",
+    "s": 36.34,
+    "e": 36.44
+   },
+   {
+    "w": " ada",
+    "s": 36.44,
+    "e": 36.64
+   },
+   {
+    "w": " bagi",
+    "s": 36.64,
+    "e": 36.84
+   },
+   {
+    "w": " diskaun.",
+    "s": 36.84,
+    "e": 37.1
+   }
+  ]
+ },
+ {
+  "start": 37.12,
+  "end": 37.94,
+  "text": " Tekan beg kuning dan check out.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 37.12,
+    "e": 37.3
+   },
+   {
+    "w": " beg",
+    "s": 37.3,
+    "e": 37.38
+   },
+   {
+    "w": " kuning",
+    "s": 37.38,
+    "e": 37.54
+   },
+   {
+    "w": " dan",
+    "s": 37.54,
+    "e": 37.62
+   },
+   {
+    "w": " check",
+    "s": 37.62,
+    "e": 37.82
+   },
+   {
+    "w": " out.",
+    "s": 37.82,
+    "e": 37.94
+   }
+  ]
+ }
+]
