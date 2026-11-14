@@ -1,0 +1,687 @@
+[
+ {
+  "start": 0.0,
+  "end": 7.32,
+  "text": " Suami-suami, bila kali terakhir, korang belikan hadiah untuk isteri tanpa perlu tunggu hari jadi ataupun anniversary.",
+  "words": [
+   {
+    "w": " Suami",
+    "s": 0.0,
+    "e": 0.66
+   },
+   {
+    "w": "-suami,",
+    "s": 0.66,
+    "e": 1.02
+   },
+   {
+    "w": " bila",
+    "s": 1.28,
+    "e": 1.54
+   },
+   {
+    "w": " kali",
+    "s": 1.54,
+    "e": 1.82
+   },
+   {
+    "w": " terakhir,",
+    "s": 1.82,
+    "e": 2.32
+   },
+   {
+    "w": " korang",
+    "s": 2.46,
+    "e": 2.9
+   },
+   {
+    "w": " belikan",
+    "s": 2.9,
+    "e": 3.34
+   },
+   {
+    "w": " hadiah",
+    "s": 3.34,
+    "e": 3.62
+   },
+   {
+    "w": " untuk",
+    "s": 3.62,
+    "e": 3.88
+   },
+   {
+    "w": " isteri",
+    "s": 3.88,
+    "e": 4.36
+   },
+   {
+    "w": " tanpa",
+    "s": 4.36,
+    "e": 5.0
+   },
+   {
+    "w": " perlu",
+    "s": 5.0,
+    "e": 5.22
+   },
+   {
+    "w": " tunggu",
+    "s": 5.22,
+    "e": 5.58
+   },
+   {
+    "w": " hari",
+    "s": 5.58,
+    "e": 5.9
+   },
+   {
+    "w": " jadi",
+    "s": 5.9,
+    "e": 6.12
+   },
+   {
+    "w": " ataupun",
+    "s": 6.12,
+    "e": 6.76
+   },
+   {
+    "w": " anniversary.",
+    "s": 6.76,
+    "e": 7.32
+   }
+  ]
+ },
+ {
+  "start": 7.92,
+  "end": 10.92,
+  "text": " Jangan fikir hadiah kena mahal baru bermakna.",
+  "words": [
+   {
+    "w": " Jangan",
+    "s": 7.92,
+    "e": 8.52
+   },
+   {
+    "w": " fikir",
+    "s": 8.52,
+    "e": 8.98
+   },
+   {
+    "w": " hadiah",
+    "s": 8.98,
+    "e": 9.5
+   },
+   {
+    "w": " kena",
+    "s": 9.5,
+    "e": 9.8
+   },
+   {
+    "w": " mahal",
+    "s": 9.8,
+    "e": 10.14
+   },
+   {
+    "w": " baru",
+    "s": 10.14,
+    "e": 10.48
+   },
+   {
+    "w": " bermakna.",
+    "s": 10.48,
+    "e": 10.92
+   }
+  ]
+ },
+ {
+  "start": 11.04,
+  "end": 16.84,
+  "text": " Kadang-kadang, benda kecil yang kita belikan dengan penuh ikatan pun boleh buat isteri tersenyum.",
+  "words": [
+   {
+    "w": " Kadang",
+    "s": 11.04,
+    "e": 11.22
+   },
+   {
+    "w": "-kadang,",
+    "s": 11.22,
+    "e": 11.48
+   },
+   {
+    "w": " benda",
+    "s": 11.62,
+    "e": 11.84
+   },
+   {
+    "w": " kecil",
+    "s": 11.84,
+    "e": 12.16
+   },
+   {
+    "w": " yang",
+    "s": 12.16,
+    "e": 12.26
+   },
+   {
+    "w": " kita",
+    "s": 12.26,
+    "e": 12.52
+   },
+   {
+    "w": " belikan",
+    "s": 12.52,
+    "e": 12.96
+   },
+   {
+    "w": " dengan",
+    "s": 12.96,
+    "e": 13.3
+   },
+   {
+    "w": " penuh",
+    "s": 13.3,
+    "e": 13.78
+   },
+   {
+    "w": " ikatan",
+    "s": 13.78,
+    "e": 14.22
+   },
+   {
+    "w": " pun",
+    "s": 14.22,
+    "e": 14.64
+   },
+   {
+    "w": " boleh",
+    "s": 14.64,
+    "e": 15.44
+   },
+   {
+    "w": " buat",
+    "s": 15.44,
+    "e": 15.78
+   },
+   {
+    "w": " isteri",
+    "s": 15.78,
+    "e": 16.32
+   },
+   {
+    "w": " tersenyum.",
+    "s": 16.32,
+    "e": 16.84
+   }
+  ]
+ },
+ {
+  "start": 17.02,
+  "end": 21.44,
+  "text": " Yang penting, dia tahu. Kita masih ingat dan menghargai dirinya.",
+  "words": [
+   {
+    "w": " Yang",
+    "s": 17.02,
+    "e": 17.42
+   },
+   {
+    "w": " penting,",
+    "s": 17.42,
+    "e": 17.92
+   },
+   {
+    "w": " dia",
+    "s": 18.1,
+    "e": 18.2
+   },
+   {
+    "w": " tahu.",
+    "s": 18.2,
+    "e": 18.54
+   },
+   {
+    "w": " Kita",
+    "s": 18.7,
+    "e": 19.06
+   },
+   {
+    "w": " masih",
+    "s": 19.06,
+    "e": 19.46
+   },
+   {
+    "w": " ingat",
+    "s": 19.46,
+    "e": 19.9
+   },
+   {
+    "w": " dan",
+    "s": 19.9,
+    "e": 20.18
+   },
+   {
+    "w": " menghargai",
+    "s": 20.18,
+    "e": 20.92
+   },
+   {
+    "w": " dirinya.",
+    "s": 20.92,
+    "e": 21.44
+   }
+  ]
+ },
+ {
+  "start": 21.44,
+  "end": 31.56,
+  "text": " Antara hadiah yang boleh korang berikan adalah semestinya Fresh Kudabodi, sambung mandi, berbuih lembut dengan garam laut, tekan-tekan terus keluar buih.",
+  "words": [
+   {
+    "w": " Antara",
+    "s": 21.44,
+    "e": 22.64
+   },
+   {
+    "w": " hadiah",
+    "s": 22.64,
+    "e": 22.94
+   },
+   {
+    "w": " yang",
+    "s": 22.94,
+    "e": 23.08
+   },
+   {
+    "w": " boleh",
+    "s": 23.08,
+    "e": 23.42
+   },
+   {
+    "w": " korang",
+    "s": 23.42,
+    "e": 23.76
+   },
+   {
+    "w": " berikan",
+    "s": 23.76,
+    "e": 24.18
+   },
+   {
+    "w": " adalah",
+    "s": 24.18,
+    "e": 24.62
+   },
+   {
+    "w": " semestinya",
+    "s": 24.62,
+    "e": 25.42
+   },
+   {
+    "w": " Fresh",
+    "s": 25.42,
+    "e": 25.78
+   },
+   {
+    "w": " Kudabodi,",
+    "s": 25.78,
+    "e": 26.38
+   },
+   {
+    "w": " sambung",
+    "s": 26.66,
+    "e": 27.0
+   },
+   {
+    "w": " mandi,",
+    "s": 27.0,
+    "e": 27.58
+   },
+   {
+    "w": " berbuih",
+    "s": 27.7,
+    "e": 28.0
+   },
+   {
+    "w": " lembut",
+    "s": 28.0,
+    "e": 28.42
+   },
+   {
+    "w": " dengan",
+    "s": 28.42,
+    "e": 28.64
+   },
+   {
+    "w": " garam",
+    "s": 28.64,
+    "e": 29.06
+   },
+   {
+    "w": " laut,",
+    "s": 29.06,
+    "e": 29.32
+   },
+   {
+    "w": " tekan",
+    "s": 29.56,
+    "e": 29.76
+   },
+   {
+    "w": "-tekan",
+    "s": 29.76,
+    "e": 30.22
+   },
+   {
+    "w": " terus",
+    "s": 30.22,
+    "e": 30.88
+   },
+   {
+    "w": " keluar",
+    "s": 30.88,
+    "e": 31.2
+   },
+   {
+    "w": " buih.",
+    "s": 31.2,
+    "e": 31.56
+   }
+  ]
+ },
+ {
+  "start": 32.08,
+  "end": 38.12,
+  "text": " Serta dua pilihan wangian luxury perfume iaitu bombshell dan mena fantasi.",
+  "words": [
+   {
+    "w": " Serta",
+    "s": 32.08,
+    "e": 32.34
+   },
+   {
+    "w": " dua",
+    "s": 32.34,
+    "e": 32.88
+   },
+   {
+    "w": " pilihan",
+    "s": 32.88,
+    "e": 33.64
+   },
+   {
+    "w": " wangian",
+    "s": 33.64,
+    "e": 34.64
+   },
+   {
+    "w": " luxury",
+    "s": 34.64,
+    "e": 35.3
+   },
+   {
+    "w": " perfume",
+    "s": 35.3,
+    "e": 35.92
+   },
+   {
+    "w": " iaitu",
+    "s": 35.92,
+    "e": 36.48
+   },
+   {
+    "w": " bombshell",
+    "s": 36.48,
+    "e": 37.08
+   },
+   {
+    "w": " dan",
+    "s": 37.08,
+    "e": 37.32
+   },
+   {
+    "w": " mena",
+    "s": 37.32,
+    "e": 37.56
+   },
+   {
+    "w": " fantasi.",
+    "s": 37.56,
+    "e": 38.12
+   }
+  ]
+ },
+ {
+  "start": 38.38,
+  "end": 40.38,
+  "text": " Pilihan wangian yang sangat-sangat menarik.",
+  "words": [
+   {
+    "w": " Pilihan",
+    "s": 38.38,
+    "e": 38.6
+   },
+   {
+    "w": " wangian",
+    "s": 38.6,
+    "e": 39.06
+   },
+   {
+    "w": " yang",
+    "s": 39.06,
+    "e": 39.32
+   },
+   {
+    "w": " sangat",
+    "s": 39.32,
+    "e": 39.72
+   },
+   {
+    "w": "-sangat",
+    "s": 39.72,
+    "e": 39.92
+   },
+   {
+    "w": " menarik.",
+    "s": 39.92,
+    "e": 40.38
+   }
+  ]
+ },
+ {
+  "start": 40.92,
+  "end": 45.7,
+  "text": " Sejum buat isteri korang tersenyum hari ini dengan tekan beg kuning sekarang dan check out.",
+  "words": [
+   {
+    "w": " Sejum",
+    "s": 40.92,
+    "e": 41.3
+   },
+   {
+    "w": " buat",
+    "s": 41.3,
+    "e": 41.66
+   },
+   {
+    "w": " isteri",
+    "s": 41.66,
+    "e": 42.24
+   },
+   {
+    "w": " korang",
+    "s": 42.24,
+    "e": 42.66
+   },
+   {
+    "w": " tersenyum",
+    "s": 42.66,
+    "e": 43.16
+   },
+   {
+    "w": " hari",
+    "s": 43.16,
+    "e": 43.34
+   },
+   {
+    "w": " ini",
+    "s": 43.34,
+    "e": 43.58
+   },
+   {
+    "w": " dengan",
+    "s": 43.58,
+    "e": 43.9
+   },
+   {
+    "w": " tekan",
+    "s": 43.9,
+    "e": 44.26
+   },
+   {
+    "w": " beg",
+    "s": 44.26,
+    "e": 44.4
+   },
+   {
+    "w": " kuning",
+    "s": 44.4,
+    "e": 44.56
+   },
+   {
+    "w": " sekarang",
+    "s": 44.56,
+    "e": 44.82
+   },
+   {
+    "w": " dan",
+    "s": 44.82,
+    "e": 45.06
+   },
+   {
+    "w": " check",
+    "s": 45.06,
+    "e": 45.42
+   },
+   {
+    "w": " out.",
+    "s": 45.42,
+    "e": 45.7
+   }
+  ]
+ },
+ {
+  "start": 45.7,
+  "end": 52.34,
+  "text": " Dapatkan hang off, promosi daripada Fresh Kudabodi dan TikTok sebab stok kita sangat-sangat tak banyak.",
+  "words": [
+   {
+    "w": " Dapatkan",
+    "s": 45.7,
+    "e": 46.54
+   },
+   {
+    "w": " hang",
+    "s": 46.54,
+    "e": 46.72
+   },
+   {
+    "w": " off,",
+    "s": 46.72,
+    "e": 47.02
+   },
+   {
+    "w": " promosi",
+    "s": 47.24,
+    "e": 48.1
+   },
+   {
+    "w": " daripada",
+    "s": 48.1,
+    "e": 48.46
+   },
+   {
+    "w": " Fresh",
+    "s": 48.46,
+    "e": 48.74
+   },
+   {
+    "w": " Kudabodi",
+    "s": 48.74,
+    "e": 49.3
+   },
+   {
+    "w": " dan",
+    "s": 49.3,
+    "e": 49.62
+   },
+   {
+    "w": " TikTok",
+    "s": 49.62,
+    "e": 50.12
+   },
+   {
+    "w": " sebab",
+    "s": 50.12,
+    "e": 50.68
+   },
+   {
+    "w": " stok",
+    "s": 50.68,
+    "e": 50.92
+   },
+   {
+    "w": " kita",
+    "s": 50.92,
+    "e": 51.14
+   },
+   {
+    "w": " sangat",
+    "s": 51.14,
+    "e": 51.56
+   },
+   {
+    "w": "-sangat",
+    "s": 51.56,
+    "e": 51.86
+   },
+   {
+    "w": " tak",
+    "s": 51.86,
+    "e": 52.0
+   },
+   {
+    "w": " banyak.",
+    "s": 52.0,
+    "e": 52.34
+   }
+  ]
+ },
+ {
+  "start": 52.56,
+  "end": 54.22,
+  "text": " Dapatkan sementara masih ada.",
+  "words": [
+   {
+    "w": " Dapatkan",
+    "s": 52.56,
+    "e": 53.16
+   },
+   {
+    "w": " sementara",
+    "s": 53.16,
+    "e": 53.58
+   },
+   {
+    "w": " masih",
+    "s": 53.58,
+    "e": 53.94
+   },
+   {
+    "w": " ada.",
+    "s": 53.94,
+    "e": 54.22
+   }
+  ]
+ }
+]
