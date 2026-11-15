@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, initial-scale=1" />
+<title>Frescura Gift Edit</title>
+<script src="gsap.min.js"></script>
+<style>
+@font-face{font-family:"Bodoni";src:url(fonts/BodoniModa.ttf) format("truetype");font-weight:400 900;font-style:normal}
+@font-face{font-family:"Bodoni";src:url(fonts/BodoniModa-Italic.ttf) format("truetype");font-weight:400 900;font-style:italic}
+@font-face{font-family:"Jost";src:url(fonts/Jost.ttf) format("truetype");font-weight:100 900}
+:root{--ink:#0b0907;--ivory:#f5efe4;--champ:#dcc59c;--gold1:#fbecc6;--gold2:#c9a467;--gold3:#8a6a3a}
+html,body{margin:0;padding:0;width:1080px;height:1920px;overflow:hidden;background:#0b0907}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0b0907;font-family:"Jost",sans-serif;color:var(--ivory)}
+.clip{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+video.bro,img.bro{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+.kicker{font-family:"Jost";font-weight:500;font-size:28px;letter-spacing:.42em;text-transform:uppercase;color:var(--champ)}
+.disp{font-family:"Bodoni";font-weight:500;line-height:.98;color:var(--ivory);letter-spacing:-.01em}
+.gold{background:linear-gradient(100deg,var(--gold3) 0%,var(--gold2) 22%,var(--gold1) 45%,var(--gold2) 62%,#a7824b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.it{font-style:italic;font-weight:500}
+.line{display:block;overflow:hidden;padding:0 .06em .08em}
+.line>span{display:inline-block}
+.center{left:0;right:0;text-align:center}
+.shade-top{background:linear-gradient(180deg,rgba(8,6,4,.93) 0%,rgba(8,6,4,.6) 30%,rgba(8,6,4,0) 52%,rgba(8,6,4,.25) 70%,rgba(8,6,4,.85) 100%)}
+.vign{background:radial-gradient(ellipse 80% 60% at 50% 45%,rgba(0,0,0,0) 40%,rgba(0,0,0,.7) 100%)}
+/* boutique */
+.mall{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse 90% 55% at 50% 38%,#3a2c1f 0%,#1a130d 45%,#0a0806 100%)}
+.mall .strip{position:absolute;top:-5%;height:72%;width:26px;background:linear-gradient(180deg,rgba(255,226,170,0) 0%,rgba(255,226,170,.55) 30%,rgba(255,226,170,.25) 70%,rgba(255,226,170,0) 100%);filter:blur(6px)}
+.mall .bok{position:absolute;border-radius:50%;filter:blur(10px);mix-blend-mode:screen}
+.mall .floor{position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(180deg,rgba(20,15,10,.0) 0%,#120d09 18%,#0a0806 100%)}
+.mall .floor:before{content:"";position:absolute;left:-10%;right:-10%;top:16%;height:2px;background:linear-gradient(90deg,transparent,rgba(220,197,156,.35),transparent)}
+.mall .spot{position:absolute;left:50%;top:-8%;width:900px;height:1500px;margin-left:-450px;background:radial-gradient(ellipse 30% 100% at 50% 0%,rgba(255,236,200,.38) 0%,rgba(255,236,200,.10) 55%,rgba(255,236,200,0) 75%);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);filter:blur(18px);mix-blend-mode:screen}
+.ped{position:absolute;width:640px;height:230px;left:50%;margin-left:-320px}
+.ped .top{position:absolute;left:0;right:0;top:0;height:90px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#f3ece2 0%,#cfc3b1 55%,#8f8374 100%);box-shadow:0 0 60px rgba(255,230,190,.25)}
+.ped .body{position:absolute;left:0;right:0;top:45px;height:185px;background:linear-gradient(90deg,#6d6357 0%,#d8cdbd 38%,#efe7da 50%,#bfb3a2 64%,#5e554b 100%);border-radius:0 0 50% 50%/0 0 60px 60px}
+.ped .rim{position:absolute;left:3%;right:3%;top:70px;height:2px;background:rgba(190,150,90,.8)}
+.bott{position:absolute;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.bott img{display:block;width:100%}
+.bott .refl{position:absolute;left:0;top:100%;width:100%;transform:scaleY(-1);opacity:.22;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,0) 35%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,0) 35%)}
+.bott .sheen{position:absolute;inset:0;-webkit-mask-size:100% 100%;mask-size:100% 100%;overflow:hidden;mix-blend-mode:screen}
+.bott .sheen i{position:absolute;top:-10%;left:-60%;width:40%;height:120%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,248,230,.75),rgba(255,255,255,0));transform:skewX(-18deg)}
+/* glass chip */
+.glass{background:rgba(14,10,7,.42);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(220,197,156,.55);border-radius:999px;padding:20px 38px;font-family:"Jost";font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-size:30px;color:var(--ivory);white-space:nowrap}
+.dot{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--gold1);box-shadow:0 0 0 8px rgba(251,236,198,.25),0 0 30px rgba(251,236,198,.9)}
+.lead{position:absolute;height:2px;background:linear-gradient(90deg,var(--gold1),rgba(251,236,198,.2));transform-origin:0 50%}
+/* captions */
+#caps{position:absolute;left:0;right:0;top:1440px;height:260px;z-index:60}
+.cap{position:absolute;left:60px;right:60px;top:0;text-align:center;font-family:"Bodoni";font-weight:700;font-size:80px;line-height:1.08;color:#fff;text-shadow:0 0 34px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.8),0 1px 2px rgba(0,0,0,.7);opacity:0}
+.cap .w{display:inline-block;margin:0 .17em;white-space:nowrap;transform-origin:50% 80%}
+.cap .w.k{font-style:italic}
+/* chrome */
+#chrome{position:absolute;inset:0;z-index:70;pointer-events:none}
+.corner{position:absolute;width:46px;height:46px;border-color:rgba(220,197,156,.55);border-style:solid;border-width:0}
+#grain{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px;opacity:.09;z-index:80;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}
+#flash{position:absolute;inset:0;z-index:75;background:radial-gradient(ellipse at 50% 45%,#fff6e2 0%,#f0d6a2 45%,rgba(240,214,162,0) 80%);opacity:0;mix-blend-mode:screen}
+#leak{position:absolute;inset:-20%;z-index:74;background:radial-gradient(ellipse 40% 30% at 20% 30%,rgba(255,170,90,.55),rgba(255,170,90,0) 70%),radial-gradient(ellipse 35% 28% at 85% 70%,rgba(255,215,150,.45),rgba(255,215,150,0) 70%);opacity:0;mix-blend-mode:screen}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff3d6;box-shadow:0 0 12px 3px rgba(255,226,170,.9)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="root" data-width="1080" data-height="1920" data-start="0" data-duration="__DUR__" data-fps="30">
+
+<!-- S1 HOOK : boutique reveal -->
+<div id="s1" class="clip" data-start="0" data-duration="4.6">
+  <div class="mall" id="m1"></div>
+  <div class="abs full" id="s1cam">
+    <div class="ped" style="top:1300px"><div class="body"></div><div class="top"></div><div class="rim"></div></div>
+    <div class="bott" id="s1b1" style="left:240px;top:560px;width:272px"><img src="assets/cut_noche.png"><img class="refl" src="assets/cut_noche.png"><div class="sheen" style="-webkit-mask-image:url(assets/cut_noche.png);mask-image:url(assets/cut_noche.png)"><i></i></div></div>
+    <div class="bott" id="s1b2" style="left:568px;top:560px;width:272px"><img src="assets/cut_glory.png"><img class="refl" src="assets/cut_glory.png"><div class="sheen" style="-webkit-mask-image:url(assets/cut_glory.png);mask-image:url(assets/cut_glory.png)"><i></i></div></div>
+  </div>
+  <div class="abs full" style="background:linear-gradient(180deg,rgba(8,6,4,.85) 0%,rgba(8,6,4,0) 26%,rgba(8,6,4,0) 64%,rgba(8,6,4,.7) 100%)"></div>
+  <div class="abs center kicker" id="s1k" style="top:168px">Frescura Body · The Gift Edit</div>
+  <div class="abs center disp" id="s1t" style="top:230px;font-size:118px"><span class="line"><span>Satu hadiah</span></span><span class="line"><span class="gold it" style="font-size:150px">kecil.</span></span></div>
+  <div class="abs center disp" id="s1t2" style="top:236px;font-size:104px;opacity:0"><span class="line"><span>Senyuman</span></span><span class="line"><span class="gold it" style="font-size:128px">sepanjang hari.</span></span></div>
+</div>
+
+<!-- S2 : not about price (ivory editorial) -->
+<div id="s2" class="clip" data-start="4.6" data-duration="1.9" style="background:linear-gradient(180deg,rgba(0,0,0,0) 62%,#15100b 82%),radial-gradient(ellipse at 50% 40%,#fbf7f0 0%,#eee5d6 70%,#e2d6c2 100%)">
+  <div class="abs center kicker" id="s2k" style="top:560px;color:#8a6a3a">Bukan soal</div>
+  <div class="abs center disp" id="s2t" style="top:640px;font-size:300px;color:#16110c;font-weight:600">Harga</div>
+  <div class="abs" id="s2strike" style="left:120px;top:830px;width:840px;height:14px;background:linear-gradient(90deg,#8a6a3a,#d9b77a,#8a6a3a);transform-origin:0 50%"></div>
+  <div class="abs" id="s2tag" style="left:640px;top:1040px;width:230px;height:120px;border:2px solid #16110c;border-radius:14px 60px 60px 14px;display:flex;align-items:center;justify-content:center;font-family:Jost;font-size:44px;font-weight:600;color:#16110c;letter-spacing:.05em">RM ???</div>
+  <div class="abs center" id="s2sub" style="top:1220px;font-family:Bodoni;font-style:italic;font-size:64px;color:#6b5434">yang dia ingat…</div>
+</div>
+
+<!-- S3a : pump table -->
+<div id="s3a" class="clip scene">
+  <video id="v3a" class="bro clip" src="assets/pump.mp4" data-start="6.5" data-duration="2.1" data-media-start="2.0" muted playsinline></video>
+  <div class="abs full shade-top"></div>
+  <div class="abs center kicker" id="s3k" style="top:190px">Tetapi sebab</div>
+  <div class="abs center disp" id="s3t" style="top:250px;font-size:112px"><span class="line"><span>dia tahu,</span></span><span class="line"><span class="gold it" style="font-size:140px">suami ingat.</span></span></div>
+</div>
+
+<!-- S3b : pump close + list -->
+<div id="s3b" class="clip scene">
+  <video id="v3b" class="bro clip" src="assets/pump.mp4" data-start="8.6" data-duration="2.5" data-media-start="10.3" muted playsinline></video>
+  <div class="abs full" style="background:linear-gradient(90deg,rgba(8,6,4,.94) 0%,rgba(8,6,4,.75) 50%,rgba(8,6,4,.1) 90%)"></div>
+  <div class="abs full" style="background:linear-gradient(180deg,rgba(8,6,4,0) 60%,rgba(8,6,4,.8) 100%)"></div>
+  <div class="abs" style="left:80px;top:300px">
+    <div class="li" id="li1" style="display:flex;align-items:baseline;gap:30px;margin-bottom:40px"><span class="kicker" style="font-size:30px">01</span><span class="disp" style="font-size:120px">Masih <span class="gold it">ingat</span></span></div>
+    <div class="abs" id="libar" style="left:0;top:178px;width:760px;height:1px;background:rgba(220,197,156,.6);transform-origin:0 50%"></div>
+    <div class="li" id="li2" style="display:flex;align-items:baseline;gap:30px;margin-top:60px"><span class="kicker" style="font-size:30px">02</span><span class="disp" style="font-size:120px">Ambil <span class="gold it">berat</span></span></div>
+  </div>
+  <svg class="abs" id="heart" style="left:110px;top:720px" width="200" height="190" viewBox="0 0 200 190"><path id="hp" d="M100 170 C 30 120, 0 80, 20 45 C 40 10, 85 15, 100 55 C 115 15, 160 10, 180 45 C 200 80, 170 120, 100 170 Z" fill="none" stroke="#f3dfb2" stroke-width="5" stroke-linecap="round" stroke-dasharray="600" stroke-dashoffset="600"/></svg>
+</div>
+
+<!-- S4 : foaming body wash + callouts -->
+<div id="s4" class="clip scene">
+  <video id="v4" class="bro clip" src="assets/pump.mp4" data-start="11.1" data-duration="2.45" data-media-start="14.6" muted playsinline></video>
+  <div class="abs full shade-top"></div>
+  <div class="abs center kicker" id="s4k" style="top:170px">Inilah</div>
+  <div class="abs center disp" id="s4t" style="top:225px;font-size:124px"><span class="line"><span class="gold it">Foaming</span></span><span class="line"><span>Body Wash</span></span></div>
+  <div class="dot" id="d1" style="left:520px;top:900px"></div><div class="lead" id="l1" style="left:531px;top:910px;width:150px;transform:rotate(-20deg)"></div>
+  <div class="glass abs" id="c1" style="left:560px;top:760px">Buih terus dari pam</div>
+  <div class="dot" id="d2" style="left:420px;top:1080px"></div><div class="lead" id="l2" style="left:180px;top:1091px;width:240px"></div>
+  <div class="glass abs" id="c2" style="left:60px;top:1150px">Ocean Salt</div>
+  <div class="glass abs" id="c3" style="left:560px;top:1250px">Aromatherapy</div>
+</div>
+
+<!-- S5 : two scents duo -->
+<div id="s5" class="clip" data-start="13.55" data-duration="2.4">
+  <div class="abs" style="left:0;top:0;width:540px;height:1920px;overflow:hidden;background:radial-gradient(ellipse 90% 50% at 50% 48%,#7a0f18 0%,#2b0508 60%,#120204 100%)" id="s5L">
+    <div class="ped" style="top:1220px;transform:scale(.62);left:270px"><div class="body"></div><div class="top"></div><div class="rim"></div></div>
+    <div class="bott" id="s5b1" style="left:130px;top:520px;width:280px"><img src="assets/cut_glory.png"><img class="refl" src="assets/cut_glory.png"><div class="sheen" style="-webkit-mask-image:url(assets/cut_glory.png);mask-image:url(assets/cut_glory.png)"><i></i></div></div>
+    <div class="abs center" style="top:300px" id="s5n1"><div class="kicker" style="font-size:24px">Woman Glory</div><div class="disp gold it" style="font-size:86px;margin-top:12px">Bombshell</div></div>
+  </div>
+  <div class="abs" style="left:540px;top:0;width:540px;height:1920px;overflow:hidden;background:radial-gradient(ellipse 90% 50% at 50% 48%,#3d1f86 0%,#150a33 60%,#07040f 100%)" id="s5R">
+    <div class="ped" style="top:1220px;transform:scale(.62);left:270px"><div class="body"></div><div class="top"></div><div class="rim"></div></div>
+    <div class="bott" id="s5b2" style="left:126px;top:520px;width:284px"><img src="assets/cut_noche.png"><img class="refl" src="assets/cut_noche.png"><div class="sheen" style="-webkit-mask-image:url(assets/cut_noche.png);mask-image:url(assets/cut_noche.png)"><i></i></div></div>
+    <div class="abs center" style="top:300px" id="s5n2"><div class="kicker" style="font-size:24px">Noche</div><div class="disp gold it" style="font-size:80px;margin-top:12px;line-height:.9">Midnight<br>Fantasy</div></div>
+  </div>
+  <div class="abs" id="s5div" style="left:539px;top:120px;width:2px;height:1680px;background:linear-gradient(180deg,transparent,#e8cf9c,transparent);transform-origin:50% 0"></div>
+  <div class="abs center kicker" id="s5k" style="top:180px">Dua haruman eksklusif</div>
+</div>
+
+<!-- S6 : perfume luxury -->
+<div id="s6" class="clip" data-start="15.95" data-duration="2.2">
+  <img id="i6" class="bro" src="assets/photo_cross.jpg">
+  <div class="abs full" style="background:linear-gradient(180deg,rgba(8,6,4,.9) 0%,rgba(8,6,4,.35) 30%,rgba(8,6,4,.1) 55%,rgba(8,6,4,.8) 100%)"></div>
+  <div class="abs center kicker" id="s6k" style="top:180px">Haruman ala</div>
+  <div class="abs center disp gold it" id="s6t" style="top:240px;font-size:150px">perfume</div>
+  <div class="abs center disp" id="s6m" style="top:430px;font-size:170px;font-weight:600;letter-spacing:.18em;padding-left:.18em">MEWAH</div>
+  <div class="abs full" id="s6sp"></div>
+</div>
+
+<!-- S7a : lather + "sesuai" -->
+<div id="s7a" class="clip scene">
+  <video id="v7a" class="bro clip" src="assets/pump.mp4" data-start="18.15" data-duration="1.8" data-media-start="24.3" muted playsinline></video>
+  <div class="abs full shade-top"></div>
+  <div class="abs center kicker" id="s7k" style="top:200px">Sesuai dijadikan</div>
+  <div class="abs center disp" id="s7t" style="top:260px;font-size:150px"><span class="gold it">hadiah</span></div>
+</div>
+
+<!-- S7b : gift wrap -->
+<div id="s7b" class="clip" data-start="19.95" data-duration="1.85">
+  <img id="i7" class="bro" src="assets/photo_diag.jpg">
+  <div class="abs full" style="background:rgba(10,7,5,.38)"></div>
+  <div class="abs" id="rib1" style="left:-40px;top:880px;width:1160px;height:84px;background:linear-gradient(180deg,#7d5a2c,#e9cf98 35%,#fff2d2 50%,#d4b177 65%,#6f4f25);transform-origin:0 50%;box-shadow:0 10px 30px rgba(0,0,0,.45)"></div>
+  <div class="abs" id="rib2" style="left:498px;top:-40px;width:84px;height:2000px;background:linear-gradient(90deg,#7d5a2c,#e9cf98 35%,#fff2d2 50%,#d4b177 65%,#6f4f25);transform-origin:50% 0;box-shadow:10px 0 30px rgba(0,0,0,.45)"></div>
+  <div class="abs" id="tag" style="left:250px;top:1000px;width:580px;height:330px;transform-origin:50% -60px">
+    <div class="abs" style="left:288px;top:-60px;width:2px;height:62px;background:#e9cf98"></div>
+    <div class="abs full" style="background:linear-gradient(160deg,#fbf6ec,#eadfcb);border-radius:20px;box-shadow:0 30px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <div class="kicker" style="color:#8a6a3a;font-size:26px">Untuk</div>
+      <div class="disp it" style="color:#2a1d12;font-size:96px;margin-top:10px;line-height:1">Isteri<br>Tersayang</div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 : CTA -->
+<div id="s8" class="clip" data-start="21.8" data-duration="4.3">
+  <img id="i8" class="bro" src="assets/photo_pair.jpg" style="filter:blur(3px) brightness(.55)">
+  <div class="abs full vign"></div>
+  <div class="abs center kicker" id="s8k" style="top:170px">Abang, jangan lepaskan</div>
+  <div class="abs center disp gold it" id="s8t" style="top:230px;font-size:150px">peluang.</div>
+  <div class="abs" id="stock" style="left:140px;top:560px;width:800px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="kicker" style="color:#fff;font-size:30px">Stok sangat terhad</span><span id="pct" style="font-family:Bodoni;font-size:64px;font-weight:600" class="gold">100%</span></div>
+    <div style="margin-top:22px;height:16px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden"><div id="bar" style="height:100%;width:100%;border-radius:9px;background:linear-gradient(90deg,#c9a467,#fbecc6,#e45b4b)"></div></div>
+  </div>
+  <div class="abs" id="bagwrap" style="left:390px;top:800px;width:300px;height:300px">
+    <div class="abs ring" style="left:50px;top:50px;width:200px;height:200px;border-radius:50%;border:3px solid rgba(255,207,51,.9)"></div>
+    <div class="abs ring" style="left:50px;top:50px;width:200px;height:200px;border-radius:50%;border:3px solid rgba(255,207,51,.9)"></div>
+    <div class="abs" id="bag" style="left:60px;top:60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe680,#ffc31f 55%,#e09a00);box-shadow:0 20px 60px rgba(255,190,20,.5);display:flex;align-items:center;justify-content:center">
+      <svg width="96" height="96" viewBox="0 0 64 64"><path d="M14 22h36l-3 32H17z" fill="#1a1208"/><path d="M24 24v-6a8 8 0 0 1 16 0v6" fill="none" stroke="#1a1208" stroke-width="4" stroke-linecap="round"/></svg>
+    </div>
+    <svg class="abs" id="finger" style="left:170px;top:170px" width="140" height="160" viewBox="0 0 70 80"><path d="M22 6c4 0 6 3 6 6v22l2-1c3-1 6 0 7 2l1 1c3-1 6 0 7 3 3-1 6 1 6 4v14c0 9-6 17-15 17h-4c-6 0-10-3-13-8L8 50c-2-3-1-6 2-7s5 0 7 2l0 0V12c0-3 2-6 5-6z" fill="#fff" stroke="#1a1208" stroke-width="2.5"/></svg>
+  </div>
+  <div class="abs center kicker" id="baglbl" style="top:1120px;color:#ffd34d;font-size:30px">Tekan beg kuning</div>
+  <div class="abs" id="cta" style="left:170px;top:1220px;width:740px;height:130px;border-radius:999px;background:linear-gradient(100deg,#8a6a3a,#e9cf98 35%,#fff2d2 50%,#d4b177 65%,#8a6a3a);box-shadow:0 20px 60px rgba(233,207,152,.35);display:flex;align-items:center;justify-content:center;gap:24px;overflow:hidden">
+    <span style="font-family:Jost;font-weight:600;font-size:44px;letter-spacing:.2em;color:#1a1208">CHECKOUT SEKARANG</span><span style="font-size:48px;color:#1a1208">→</span>
+    <i id="ctash" class="abs" style="top:-20%;left:-30%;width:22%;height:140%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0));transform:skewX(-20deg)"></i>
+  </div>
+</div>
+
+<!-- S9 : end card -->
+<div id="s9" class="clip" data-start="26.1" data-duration="__S9D__" style="background:#000">
+  <div class="mall" id="m9" style="opacity:.55"></div>
+  <img id="logo" class="abs" src="assets/logo.jpg" style="left:190px;top:240px;width:700px;height:700px;mix-blend-mode:screen">
+  <div class="bott" id="s9b1" style="left:70px;top:1330px;width:180px"><img src="assets/cut_noche.png"><img class="refl" src="assets/cut_noche.png"></div>
+  <div class="bott" id="s9b2" style="left:832px;top:1330px;width:177px"><img src="assets/cut_glory.png"><img class="refl" src="assets/cut_glory.png"></div>
+  <div class="abs center disp it gold" id="s9t" style="top:960px;font-size:76px">Foaming Body Wash</div>
+  <div class="abs center kicker" id="s9k" style="top:1070px">Hadiah mewah · untuk isteri</div>
+  <div class="abs center" id="s9c" style="top:1180px"><span class="glass" style="border-color:rgba(255,207,51,.8);font-size:30px">🛍 Tekan beg kuning sekarang</span></div>
+</div>
+
+<audio id="mix" src="assets/mix.wav" data-start="0" data-duration="__DUR__" data-volume="1"></audio>
+<div id="caps"></div>
+
+<div id="chrome">
+  <div class="corner" style="left:36px;top:36px;border-left-width:2px;border-top-width:2px"></div>
+  <div class="corner" style="right:36px;top:36px;border-right-width:2px;border-top-width:2px"></div>
+  <div class="corner" style="left:36px;bottom:36px;border-left-width:2px;border-bottom-width:2px"></div>
+  <div class="corner" style="right:36px;bottom:36px;border-right-width:2px;border-bottom-width:2px"></div>
+  <div class="abs kicker" data-layout-ignore style="left:96px;top:62px;font-size:22px;opacity:.7">Frescura Body</div>
+  <div class="abs kicker" data-layout-ignore style="right:96px;top:62px;font-size:22px;opacity:.7;letter-spacing:.3em">N°01 — Gift Edit</div>
+</div>
+<div id="leak"></div>
+<div id="flash"></div>
+<div id="grain"></div>
+
+<script>
+const WORDS=__WORDS__;
+const DUR=__DUR__;
+let seed=7; const rnd=()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{}; window.__timelines["root"]=tl;
+
+/* ---------- boutique backgrounds ---------- */
+function buildMall(el){
+  const xs=[90,250,830,990];
+  xs.forEach(x=>{const s=document.createElement('div');s.className='strip';s.style.left=x+'px';el.appendChild(s)});
+  const sp=document.createElement('div');sp.className='spot';el.appendChild(sp);
+  for(let i=0;i<26;i++){const b=document.createElement('div');b.className='bok';const r=30+rnd()*120;
+    b.style.cssText+=`width:${r}px;height:${r}px;left:${rnd()*1080-r/2}px;top:${rnd()*1100-80}px;background:radial-gradient(circle,rgba(${rnd()<.75?'255,214,150':'255,245,230'},${.25+rnd()*.45}) 0%,rgba(255,214,150,0) 70%)`;
+    b.dataset.dx=(rnd()-.5)*120; el.appendChild(b)}
+  const f=document.createElement('div');f.className='floor';el.appendChild(f);
+}
+buildMall($('#m1')); buildMall($('#m9'));
+$$('#m1 .bok').forEach(b=>tl.fromTo(b,{x:0},{x:+b.dataset.dx,duration:4.6,ease:'none'},0));
+$$('#m9 .bok').forEach(b=>tl.fromTo(b,{x:0},{x:+b.dataset.dx*.6,duration:DUR-26.1,ease:'none'},26.1));
+
+/* ---------- helpers ---------- */
+const E='expo.out', P='power3.out';
+function lines(sel,t,st=.09){tl.fromTo($$(sel+' .line>span'),{yPercent:110,rotate:4},{yPercent:0,rotate:0,duration:.75,ease:E,stagger:st},t)}
+function rise(sel,t,d=.7){tl.fromTo(sel,{y:40,opacity:0,filter:'blur(10px)'},{y:0,opacity:1,filter:'blur(0px)',duration:d,ease:E},t)}
+function sceneIn(sel,t,type){
+  if(type==='zoom') tl.fromTo(sel,{scale:1.18,filter:'blur(18px)'},{scale:1,filter:'blur(0px)',duration:.6,ease:E},t);
+  if(type==='wipeUp') tl.fromTo(sel,{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',duration:.5,ease:'power4.out'},t);
+  if(type==='iris') tl.fromTo(sel,{clipPath:'circle(0% at 50% 50%)'},{clipPath:'circle(75% at 50% 50%)',duration:.6,ease:'power3.inOut'},t);
+  if(type==='slide') tl.fromTo(sel,{xPercent:100},{xPercent:0,duration:.5,ease:'power4.out'},t);
+  if(type==='split') tl.fromTo(sel,{clipPath:'inset(0 50% 0 50%)'},{clipPath:'inset(0 0% 0 0%)',duration:.55,ease:'power4.out'},t);
+}
+function flash(t,a=.75){tl.fromTo('#flash',{opacity:0},{opacity:a,duration:.07,ease:'none'},t).to('#flash',{opacity:0,duration:.35,ease:'power2.out'},t+.07)}
+function leak(t,d=1.2){tl.fromTo('#leak',{opacity:0,x:-80},{opacity:.85,x:0,duration:d*.4,ease:'sine.out'},t).to('#leak',{opacity:0,x:80,duration:d*.6,ease:'sine.in'},t+d*.4)}
+function sheen(sel,t,d=1.1){tl.fromTo(sel+' .sheen i',{xPercent:0},{xPercent:475,duration:d,ease:'power2.inOut'},t)}
+function kb(sel,t,d,s0,s1,x0=0,x1=0,y0=0,y1=0){tl.fromTo(sel,{scale:s0,x:x0,y:y0},{scale:s1,x:x1,y:y1,duration:d,ease:'none'},t)}
+
+/* manual scene windows for video scenes */
+[['#s3a',6.5,8.6],['#s3b',8.6,11.1],['#s4',11.1,13.55],['#s7a',18.15,19.95]].forEach(([s,a,b])=>{tl.set(s,{autoAlpha:0},0);tl.set(s,{autoAlpha:1},a);tl.set(s,{autoAlpha:0},b)});
+tl.set('#flash',{opacity:0},0);tl.set('#leak',{opacity:0},0);
+/* ---------- S1 HOOK ---------- */
+tl.fromTo('#m1 .spot',{opacity:0},{opacity:1,duration:.25,ease:'none'},.05);
+tl.fromTo('#m1',{filter:'brightness(.2)'},{filter:'brightness(1)',duration:.6,ease:P},.05);
+kb('#s1cam',0,4.6,1.12,1.0,0,0,60,0);
+tl.fromTo('#s1b1',{y:180,opacity:0,rotate:-6},{y:0,opacity:1,rotate:-3,duration:1.0,ease:E},.15);
+tl.fromTo('#s1b2',{y:220,opacity:0,rotate:6},{y:0,opacity:1,rotate:3,duration:1.0,ease:E},.28);
+sheen('#s1b1',1.3); sheen('#s1b2',1.45);
+flash(0.02,.9);
+rise('#s1k',.35,.6); lines('#s1t',.95);
+tl.to('#s1t',{opacity:0,y:-30,filter:'blur(8px)',duration:.3,ease:'power2.in'},3.05);
+tl.set('#s1t2',{opacity:1},3.2); lines('#s1t2',3.2);
+leak(3.25,1.3);
+tl.to('#s1',{scale:1.1,filter:'blur(14px)',duration:.25,ease:'power2.in'},4.36);
+
+/* ---------- S2 PRICE ---------- */
+sceneIn('#s2',4.6,'wipeUp');
+rise('#s2k',4.65,.5);
+tl.fromTo('#s2t',{scale:1.35,opacity:0},{scale:1,opacity:1,duration:.6,ease:E},4.68);
+gsap.set('#s2strike',{rotate:-4,scaleX:0});tl.to('#s2strike',{scaleX:1,duration:.32,ease:'power3.inOut'},5.38);
+tl.fromTo('#s2t',{opacity:1},{opacity:.35,duration:.3},5.6);
+tl.fromTo('#s2tag',{y:-400,rotate:-30,opacity:0},{y:0,rotate:12,opacity:1,duration:.55,ease:'back.out(2)'},5.55);
+rise('#s2sub',5.85,.5);
+
+/* ---------- S3a ---------- */
+sceneIn('#s3a',6.5,'zoom'); flash(6.48,.5);
+kb('#v3a',6.5,2.1,1.08,1.18);
+rise('#s3k',6.55,.5); lines('#s3t',6.7);
+
+/* ---------- S3b ---------- */
+sceneIn('#s3b',8.6,'slide');
+kb('#v3b',8.6,2.5,1.15,1.05,60,0);
+tl.fromTo('#li1',{x:-80,opacity:0},{x:0,opacity:1,duration:.6,ease:E},8.62);
+tl.fromTo('#libar',{scaleX:0},{scaleX:1,duration:.7,ease:'power3.inOut'},8.9);
+tl.fromTo('#li2',{x:-80,opacity:0},{x:0,opacity:1,duration:.6,ease:E},9.24);
+tl.to('#hp',{strokeDashoffset:0,duration:.8,ease:'power2.inOut'},9.85);
+tl.fromTo('#heart',{scale:.9},{scale:1.08,duration:.2,yoyo:true,repeat:3,ease:'sine.inOut'},10.4);
+
+/* ---------- S4 FOAM ---------- */
+sceneIn('#s4',11.1,'iris');
+kb('#v4',11.1,2.45,1.12,1.0);
+rise('#s4k',11.15,.5); lines('#s4t',12.05,.12);
+[['#d1','#l1','#c1',12.5],['#d2','#l2','#c2',12.75],[null,null,'#c3',13.0]].forEach(([d,l,c,t])=>{
+  if(d) tl.fromTo(d,{scale:0},{scale:1,duration:.35,ease:'back.out(3)'},t);
+  if(l) tl.fromTo(l,{scaleX:0},{scaleX:1,duration:.3,ease:P},t+.06);
+  tl.fromTo(c,{opacity:0,y:20,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.4,ease:E},t+.1);
+});
+
+/* ---------- S5 DUO ---------- */
+sceneIn('#s5',13.55,'split');
+tl.fromTo('#s5div',{scaleY:0},{scaleY:1,duration:.7,ease:'power3.inOut'},13.6);
+rise('#s5k',13.65,.5);
+tl.fromTo('#s5b1',{y:260,opacity:0,filter:'blur(14px)'},{y:0,opacity:1,filter:'blur(0px)',duration:.8,ease:E},13.95);
+tl.fromTo('#s5n1',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},14.15);
+tl.fromTo('#s5b2',{y:260,opacity:0,filter:'blur(14px)'},{y:0,opacity:1,filter:'blur(0px)',duration:.8,ease:E},14.85);
+tl.fromTo('#s5n2',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},15.05);
+sheen('#s5b1',14.5,.9); sheen('#s5b2',15.35,.9);
+tl.fromTo('#s5L',{filter:'brightness(1)'},{filter:'brightness(.55)',duration:.4},14.85);
+
+/* ---------- S6 PERFUME ---------- */
+sceneIn('#s6',15.95,'zoom'); flash(15.93,.55);
+kb('#i6',15.95,2.2,1.25,1.08,0,0,40,-20);
+rise('#s6k',16.0,.5);
+tl.fromTo('#s6t',{opacity:0,scale:.8,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.6,ease:E},16.3);
+tl.fromTo('#s6m',{opacity:0,scaleX:1.5},{opacity:1,scaleX:1,duration:.7,ease:E},17.65);
+tl.fromTo('#s6m',{color:'#f5efe4'},{color:'#fbecc6',duration:.5},17.9);
+(function(){const box=$('#s6sp');for(let i=0;i<34;i++){const s=document.createElement('div');s.className='spark';const x=120+rnd()*840,y=380+rnd()*300;s.style.left=x+'px';s.style.top=y+'px';box.appendChild(s);
+  const t=17.7+rnd()*.35; tl.fromTo(s,{scale:0,opacity:0},{scale:1+rnd()*1.4,opacity:1,duration:.18,ease:'power2.out'},t).to(s,{scale:0,opacity:0,y:-40-rnd()*60,duration:.5,ease:'power2.in'},t+.18)}})();
+leak(17.6,.9);
+
+/* ---------- S7a ---------- */
+sceneIn('#s7a',18.15,'wipeUp');
+kb('#v7a',18.15,1.8,1.05,1.16);
+rise('#s7k',18.3,.5);
+tl.fromTo('#s7t',{opacity:0,y:60,filter:'blur(12px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.6,ease:E},19.0);
+
+/* ---------- S7b GIFT ---------- */
+sceneIn('#s7b',19.95,'zoom'); flash(19.93,.5);
+kb('#i7',19.95,1.85,1.18,1.05);
+tl.fromTo('#rib1',{scaleX:0},{scaleX:1,duration:.45,ease:'power3.inOut'},20.0);
+tl.fromTo('#rib2',{scaleY:0},{scaleY:1,duration:.45,ease:'power3.inOut'},20.2);
+tl.fromTo('#tag',{y:-700,rotate:-24},{y:0,rotate:0,duration:1.0,ease:'elastic.out(1,.55)'},20.75);
+
+/* ---------- S8 CTA ---------- */
+sceneIn('#s8',21.8,'iris');
+kb('#i8',21.8,4.3,1.15,1.0);
+rise('#s8k',21.85,.5);
+tl.fromTo('#s8t',{opacity:0,scale:1.25,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.55,ease:E},22.6);
+tl.fromTo('#stock',{opacity:0,y:30},{opacity:1,y:0,duration:.45,ease:E},23.2);
+const pc={v:100}; tl.to(pc,{v:9,duration:1.1,ease:'power2.inOut',onUpdate:()=>{$('#pct').textContent=Math.round(pc.v)+'%'}},23.4);
+tl.fromTo('#bar',{width:'100%'},{width:'9%',duration:1.1,ease:'power2.inOut'},23.4);
+tl.fromTo('#bagwrap',{scale:0,rotate:-20},{scale:1,rotate:0,duration:.5,ease:'back.out(2.2)'},24.2);
+rise('#baglbl',24.3,.4);
+tl.fromTo('#finger',{x:120,y:120,opacity:0},{x:0,y:0,opacity:1,duration:.3,ease:P},24.45);
+tl.to('#bag',{scale:.86,duration:.08,yoyo:true,repeat:1,ease:'power2.inOut'},24.72);
+$$('#bagwrap .ring').forEach((r,i)=>tl.fromTo(r,{scale:1,opacity:.9},{scale:1.9,opacity:0,duration:.7,ease:'power2.out'},24.74+i*.18));
+tl.fromTo('#cta',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:.45,ease:'back.out(1.8)'},25.1);
+tl.fromTo('#ctash',{xPercent:0},{xPercent:680,duration:.7,ease:'power2.inOut'},25.45);
+tl.to('#cta',{scale:1.05,duration:.18,yoyo:true,repeat:1,ease:'sine.inOut'},25.55);
+
+/* ---------- S9 END ---------- */
+tl.fromTo('#s9',{opacity:0},{opacity:1,duration:.35,ease:'none'},26.1);
+tl.fromTo('#logo',{opacity:0,scale:.92,filter:'brightness(.2)'},{opacity:1,scale:1,filter:'brightness(1)',duration:.9,ease:E},26.3);
+[[26.45,.25],[26.55,1],[26.62,.4],[26.7,1]].forEach(([t,o])=>tl.set('#logo',{opacity:o},t));
+tl.to('#logo',{scale:1.04,duration:DUR-27.2,ease:'none'},27.2);
+tl.fromTo('#s9b1',{y:200,opacity:0},{y:0,opacity:1,duration:.8,ease:E},26.9);
+tl.fromTo('#s9b2',{y:200,opacity:0},{y:0,opacity:1,duration:.8,ease:E},27.0);
+tl.fromTo('#s9t',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},27.3);
+rise('#s9k',27.5,.6); rise('#s9c',27.9,.6);
+tl.to('#s9c .glass',{scale:1.05,duration:.35,yoyo:true,repeat:3,ease:'sine.inOut'},28.6);
+tl.to('#root',{opacity:0,duration:.5,ease:'none'},DUR-.5);
+
+/* ---------- captions ---------- */
+(function(){
+  const KEY=new Set(['hadiah','tersenyum','harga','ingat','berat','Foaming','Bombshell','Midnight','Fantasy','perfume','mewah','tersayang','peluang.','Stok','terhad.','kuning','Checkout','sekarang!','isteri']);
+  const SCN=[4.6,6.5,8.6,11.1,15.95,18.15,19.95,21.8];
+  const chunks=[]; let cur=[];
+  WORDS.forEach((w,i)=>{
+    const prev=WORDS[i-1];
+    const crossScene=prev&&SCN.some(s=>prev.s<s-.05&&w.s>=s-.05);
+    if(cur.length&&(cur.length>=3||crossScene||(prev&&/[.,!]$/.test(prev.w))||(prev&&w.s-prev.e>.18))){chunks.push(cur);cur=[]}
+    cur.push(w)});
+  if(cur.length) chunks.push(cur);
+  const box=$('#caps');
+  chunks.forEach((c,ci)=>{
+    const d=document.createElement('div'); d.className='cap';
+    c.forEach(w=>{const s=document.createElement('span');s.className='w'+(KEY.has(w.w)?' k':'');s.textContent=w.w.replace(/[.,]$/,'');d.appendChild(s)});
+    box.appendChild(d);
+    const t0=c[0].s-.04, t1=(chunks[ci+1]?Math.min(chunks[ci+1][0].s-.04,c[c.length-1].e+.5):c[c.length-1].e+.4);
+    tl.fromTo(d,{opacity:0,y:26,scale:.94},{opacity:1,y:0,scale:1,duration:.18,ease:'power3.out'},t0);
+    tl.to(d,{opacity:0,duration:.08,ease:'none'},t1-.08);
+    [...d.children].forEach((s,j)=>{const w=c[j];
+      tl.fromTo(s,{color:'#ffffff',scale:1},{color:KEY.has(w.w)?'#f1d79f':'#fff3d9',scale:1.08,duration:.1,ease:'power2.out'},w.s);
+      tl.to(s,{scale:1,color:KEY.has(w.w)?'#e8c98a':'#ffffff',duration:.18,ease:'power2.out'},w.s+.12)});
+  });
+})();
+
+/* ---------- grain jitter ---------- */
+for(let t=0;t<DUR;t+=1/12) tl.set('#grain',{x:Math.round(rnd()*200-100),y:Math.round(rnd()*200-100)},t);
+tl.set({},{},DUR);
+</script>
+</div>
+</body>
+</html>
