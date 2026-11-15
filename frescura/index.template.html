@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,800;1,6..96,400;1,6..96,600&family=Jost:wght@300;400;500;600;700&display=block" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+:root{
+  --ground:#0a0908; --ink:#f7f0e4; --muted:#bfb3a0;
+  --gold:#e2c48a; --gold-hi:#f8e9c4; --gold-lo:#a87b3c;
+  --rose:#c3122f; --violet:#7c5cff;
+  --serif:"Bodoni Moda", serif; --sans:"Jost", sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:var(--sans);color:var(--ink);background:var(--ground)}
+.clip,.stage{position:absolute;inset:0;width:1080px;height:1920px}
+.abs{position:absolute}
+.goldtxt{background:linear-gradient(100deg,var(--gold-lo) 0%,var(--gold-hi) 38%,var(--gold) 55%,var(--gold-lo) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-family:var(--sans);font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.serif{font-family:var(--serif)}
+
+/* ---------- MALL BOUTIQUE BACKDROP (persistent) ---------- */
+#mall{z-index:0;background:radial-gradient(120% 70% at 50% 34%,#2a2219 0%,#120f0c 48%,#070605 100%)}
+#mall .bay{position:absolute;top:120px;height:1080px;width:150px;border-radius:2px;
+  background:linear-gradient(180deg,rgba(255,226,170,.0) 0%,rgba(255,226,170,.16) 30%,rgba(255,226,170,.05) 100%);
+  box-shadow:inset 0 0 0 1px rgba(226,196,138,.14)}
+#mall .beam{position:absolute;top:-80px;width:520px;height:1500px;left:280px;
+  background:radial-gradient(50% 100% at 50% 0%,rgba(255,236,200,.22) 0%,rgba(255,236,200,0) 70%);mix-blend-mode:screen;filter:blur(6px)}
+#mall .floor{position:absolute;left:0;right:0;bottom:0;height:640px;
+  background:linear-gradient(180deg,rgba(32,26,20,1) 0%,#0b0907 100%)}
+#mall .floor::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,rgba(226,196,138,.07) 0 2px,transparent 2px 180px);
+  transform:perspective(600px) rotateX(62deg);transform-origin:50% 0}
+#mall .horizon{position:absolute;left:0;right:0;top:1278px;height:2px;background:linear-gradient(90deg,transparent,rgba(226,196,138,.5),transparent)}
+#mall .bokeh{position:absolute;border-radius:50%;filter:blur(10px);mix-blend-mode:screen}
+#grain{z-index:90;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:repeating-radial-gradient(circle at 17% 32%,#fff 0 1px,transparent 1px 3px),repeating-radial-gradient(circle at 71% 64%,#000 0 1px,transparent 1px 4px)}
+#vignette{z-index:89;pointer-events:none;background:radial-gradient(120% 80% at 50% 45%,transparent 55%,rgba(0,0,0,.65) 100%)}
+
+/* ---------- shared pieces ---------- */
+.rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.chip{display:inline-flex;align-items:center;gap:18px;padding:20px 34px;border-radius:999px;
+  border:1.5px solid rgba(226,196,138,.55);background:rgba(16,13,10,.62);backdrop-filter:blur(8px);
+  font:500 34px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.chip i{width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.frame{position:absolute;overflow:hidden;border-radius:44px;box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 1.5px rgba(226,196,138,.45)}
+.frame video,.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.vid{position:absolute;object-fit:cover}
+
+/* captions */
+#caps{z-index:80}
+.cap{position:absolute;left:70px;right:70px;top:1395px;text-align:center;opacity:0;
+  font:600 72px/1.12 var(--sans);letter-spacing:.005em;color:var(--ink);
+  text-shadow:0 4px 28px rgba(0,0,0,.85),0 2px 4px rgba(0,0,0,.9)}
+.cap .w{display:inline-block;margin:0 .13em;transition:none}
+.cap .w.on{color:var(--gold-hi);font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:0}
+
+/* S1 / S2 */
+.hl{position:absolute;left:0;right:0;text-align:center}
+.big{font-family:var(--serif);font-weight:600;line-height:.95;letter-spacing:-.01em}
+/* S3 */
+.card{position:absolute;left:110px;width:860px;height:170px;border-radius:30px;display:flex;align-items:center;gap:36px;padding:0 44px;
+  background:linear-gradient(110deg,rgba(40,32,24,.92),rgba(18,15,12,.88));box-shadow:0 0 0 1.5px rgba(226,196,138,.35),0 30px 80px rgba(0,0,0,.55)}
+.card svg{flex:none}
+.card .t{font:500 50px/1 var(--sans);letter-spacing:.04em}
+.card .k{margin-left:auto;width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center}
+.bar{position:absolute;left:110px;width:860px;height:16px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar b{display:block;height:100%;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi))}
+/* S4 gift */
+#gift{position:absolute;left:290px;top:560px;width:500px;height:640px}
+#gift .box{position:absolute;left:0;bottom:0;width:500px;height:420px;border-radius:14px;background:linear-gradient(160deg,#1c1813,#0c0a08);box-shadow:0 0 0 1.5px rgba(226,196,138,.5),0 60px 120px rgba(0,0,0,.7)}
+#gift .lid{position:absolute;left:-20px;top:170px;width:540px;height:110px;border-radius:12px;background:linear-gradient(160deg,#25201a,#100d0a);box-shadow:0 0 0 1.5px rgba(226,196,138,.6),0 20px 40px rgba(0,0,0,.6);transform-origin:10% 100%}
+#gift .rv{position:absolute;left:225px;top:0;width:50px;height:100%;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi),var(--gold-lo))}
+#gift .rh{position:absolute;left:0;top:150px;width:100%;height:46px;background:linear-gradient(180deg,var(--gold-lo),var(--gold-hi),var(--gold-lo))}
+#gift .bow{position:absolute;left:170px;top:60px;width:200px;height:120px}
+#glow{position:absolute;left:140px;top:300px;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(255,230,180,.75) 0%,rgba(255,210,140,.25) 35%,transparent 70%);mix-blend-mode:screen}
+/* product stage */
+.plinth{position:absolute;width:420px;height:210px;border-radius:50%/40px;
+  background:linear-gradient(180deg,#efe6d8 0%,#c9bca8 30%,#8d806e 100%);box-shadow:0 50px 90px rgba(0,0,0,.8)}
+.plinth::before{content:"";position:absolute;left:0;right:0;top:0;height:80px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#fffaf1,#d8ccb9)}
+.bottle{position:absolute;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.spot{position:absolute;width:700px;height:1300px;background:radial-gradient(40% 100% at 50% 0%,rgba(255,240,215,.35),transparent 75%);mix-blend-mode:screen}
+.namecard{position:absolute;text-align:center}
+.namecard .n{font-family:var(--serif);font-weight:600;font-size:96px;line-height:1}
+.namecard .s{margin-top:16px;font:500 30px/1 var(--sans);letter-spacing:.45em;text-transform:uppercase;color:var(--gold)}
+.callout{position:absolute;display:flex;align-items:center;gap:16px;padding:16px 28px 16px 20px;border-radius:999px;background:rgba(12,10,8,.78);box-shadow:0 0 0 1.5px rgba(226,196,138,.5);font:500 32px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.callout .ln{height:2px;background:var(--gold)}
+.callout .dot{width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
+.stamp{position:absolute;left:0;right:0;text-align:center;font-family:var(--serif);font-style:italic;font-weight:600}
+.shine{position:absolute;top:-200px;width:220px;height:2400px;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,244,220,.45),transparent);mix-blend-mode:screen}
+/* CTA */
+.btn{position:absolute;left:150px;width:780px;height:150px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:26px;
+  background:linear-gradient(180deg,#ffd84a,#f2b705);color:#1a1405;font:700 52px/1 var(--sans);letter-spacing:.06em;box-shadow:0 30px 80px rgba(242,183,5,.35)}
+.ripple{position:absolute;width:160px;height:160px;border-radius:50%;border:5px solid #fff}
+.meter{position:absolute;left:140px;width:800px;height:34px;border-radius:20px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1.5px rgba(226,196,138,.4);overflow:hidden}
+.meter b{display:block;height:100%;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,#d8253f,#ff5a6e)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__DUR__" data-width="1080" data-height="1920">
+
+  <!-- persistent backdrop: luxury boutique in a mall atrium -->
+  <div id="mall" class="clip" data-start="0" data-duration="__DUR__" data-track-index="0">
+    <div class="bay" style="left:40px"></div><div class="bay" style="left:220px;opacity:.6"></div>
+    <div class="bay" style="left:710px;opacity:.6"></div><div class="bay" style="left:890px"></div>
+    <div class="beam" id="beamL" style="left:-120px;transform:rotate(-14deg)"></div>
+    <div class="beam" id="beamR" style="left:680px;transform:rotate(14deg)"></div>
+    <div class="floor"></div><div class="horizon"></div>
+    <div id="bokeh"></div>
+  </div>
+
+  <!-- S1 HOOK -->
+  <div id="s1" class="clip" data-start="0" data-duration="2.74" data-track-index="1" style="z-index:10">
+    <div class="hl eyebrow" style="top:470px" id="s1e">Untuk para suami</div>
+    <div class="rule abs" id="s1r" style="left:240px;width:600px;top:540px"></div>
+    <div class="hl big" style="top:610px;font-size:150px" id="s1a">Dia jaga</div>
+    <div class="hl big goldtxt" style="top:780px;font-size:140px;font-style:italic;padding:0 20px" id="s1b">semua orang.</div>
+    <svg class="abs" id="s1h" style="left:470px;top:1010px" width="140" height="130" viewBox="0 0 24 22"><path d="M12 21s-8-5.3-10.3-10C.2 7.6 2.3 3 6.4 3c2.3 0 3.9 1.3 5.6 3.4C13.7 4.3 15.3 3 17.6 3c4.1 0 6.2 4.6 4.7 8-2.3 4.7-10.3 10-10.3 10z" fill="none" stroke="#e2c48a" stroke-width="1.2"/></svg>
+  </div>
+
+  <!-- S2 question -->
+  <div id="s2" class="clip" data-start="2.74" data-duration="2.42" data-track-index="1" style="z-index:10">
+    <div class="hl big" style="top:420px;font-size:120px" id="s2a">Tapi siapa</div>
+    <div class="hl big" style="top:560px;font-size:120px" id="s2b">fikirkan</div>
+    <div class="hl big goldtxt" style="top:720px;font-size:300px;font-style:italic;padding-right:30px" id="s2c">DIA?</div>
+    <div class="hl eyebrow" style="top:1150px" id="s2d">kebahagiaan dia</div>
+  </div>
+
+  <!-- S3 educational: daily load -->
+  <div id="s3" class="clip" data-start="5.16" data-duration="3.96" data-track-index="1" style="z-index:10">
+    <div class="hl eyebrow" style="top:250px" id="s3e">Rutin harian seorang isteri</div>
+    <div class="hl big" style="top:320px;font-size:140px" id="s3t"><span class="goldtxt" style="font-style:italic;padding-right:12px">24</span> jam · <span class="goldtxt" style="font-style:italic;padding-right:12px">7</span> hari</div>
+    <div class="card" id="c1" style="top:560px">
+      <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#e2c48a" stroke-width="1.3"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+      <div class="t">Urus rumah</div><div class="k"><svg width="34" height="34" viewBox="0 0 24 24"><path id="k1" d="M5 12l5 5 9-10" fill="none" stroke="#f8e9c4" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="24" stroke-dashoffset="24"/></svg></div>
+    </div>
+    <div class="card" id="c2" style="top:760px">
+      <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#e2c48a" stroke-width="1.3"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M2.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6"/><path d="M13.5 20c.3-2.8 1.6-4.6 3.5-4.6s3.4 1.8 3.6 4.6"/></svg>
+      <div class="t">Anak-anak</div><div class="k"><svg width="34" height="34" viewBox="0 0 24 24"><path id="k2" d="M5 12l5 5 9-10" fill="none" stroke="#f8e9c4" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="24" stroke-dashoffset="24"/></svg></div>
+    </div>
+    <div class="card" id="c3" style="top:960px">
+      <svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#e2c48a" stroke-width="1.3"><path d="M4 7h16l-1.5 12.5a2 2 0 0 1-2 1.5h-9a2 2 0 0 1-2-1.5z"/><path d="M8.5 7a3.5 3.5 0 0 1 7 0"/></svg>
+      <div class="t">Keperluan keluarga</div><div class="k"><svg width="34" height="34" viewBox="0 0 24 24"><path id="k3" d="M5 12l5 5 9-10" fill="none" stroke="#f8e9c4" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="24" stroke-dashoffset="24"/></svg></div>
+    </div>
+    <div class="eyebrow abs" style="left:110px;top:1185px;font-size:24px;letter-spacing:.3em" id="s3l">Beban harian</div>
+    <div class="eyebrow abs" style="right:110px;top:1185px;font-size:24px;letter-spacing:.2em;color:var(--ink)" id="s3p">100%</div>
+    <div class="bar" style="top:1230px" id="s3bar"><b id="s3b"></b></div>
+  </div>
+
+  <!-- S4 gift -->
+  <div id="s4" class="clip" data-start="9.12" data-duration="3.2" data-track-index="1" style="z-index:10">
+    <div class="hl eyebrow" style="top:280px" id="s4e">Sesekali, abang</div>
+    <div class="hl big" style="top:350px;font-size:118px" id="s4t">hadiahkan <span class="goldtxt" style="font-style:italic">dia</span>.</div>
+    <div id="glow"></div>
+    <div id="gift">
+      <div class="box"><div class="rv"></div></div>
+      <div class="lid" id="lid"><div class="rv" style="left:245px"></div>
+        <svg class="bow" viewBox="0 0 200 120" style="left:190px;top:-95px;position:absolute"><path d="M100 110 C60 40 10 40 20 80 C28 108 80 110 100 110 C120 110 172 108 180 80 C190 40 140 40 100 110Z" fill="none" stroke="#f0d79f" stroke-width="12"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5 brand + pump b-roll -->
+  <div id="s5" class="stage" style="z-index:12;visibility:hidden">
+    <div class="frame" id="f5" style="left:110px;top:250px;width:860px;height:1060px;background:#000">
+      <video id="v5" class="vid" style="inset:0;width:100%;height:100%" src="assets/pump_A.mp4" muted playsinline data-start="12.32" data-duration="2.28" data-media-start="0.15"></video>
+    </div>
+    <div class="abs" id="s5logo" style="left:0;right:0;top:120px;text-align:center">
+      <div style="font:500 54px/1 var(--sans);letter-spacing:.3em;padding-left:.3em;color:#7fe6ff;text-shadow:0 0 24px #29c6ff,0 0 60px #1a8cff">FRESCURA BODY</div>
+    </div>
+    <div class="chip abs" id="s5c" style="left:190px;top:1150px"><i></i>Foaming body shower</div>
+  </div>
+
+  <!-- S6 product reveal on plinths -->
+  <div id="s6" class="clip" data-start="14.6" data-duration="5.74" data-track-index="1" style="z-index:11">
+    <div class="spot" id="sp1" style="left:-110px;top:0"></div>
+    <div class="spot" id="sp2" style="left:490px;top:0"></div>
+    <div class="plinth" id="pl1" style="left:70px;top:1180px"></div>
+    <div class="plinth" id="pl2" style="left:590px;top:1180px"></div>
+    <img class="bottle" id="b1" src="assets/bottle_red.png" style="left:130px;top:465px;width:300px">
+    <img class="bottle" id="b2" src="assets/bottle_noche.png" style="left:650px;top:465px;width:300px">
+    <div class="namecard" id="n1" style="left:20px;width:520px;top:250px"><div class="n" style="font-size:78px">Bombshell</div><div class="s" style="font-size:24px">Woman Glory</div></div>
+    <div class="namecard" id="n2" style="left:540px;width:520px;top:250px"><div class="n" style="font-size:78px;font-style:italic">Midnight</div><div class="s" style="font-size:24px">Noche · Fantasy</div></div>
+    <div class="stamp" id="fem" style="top:250px;font-size:150px"><span class="goldtxt">Feminine</span></div>
+    <div class="stamp" id="prem" style="top:250px;font-size:150px"><span class="goldtxt">Premium</span></div>
+    <div class="shine" id="shine" style="left:-400px"></div>
+  </div>
+
+  <!-- S7 foam b-roll "perfume" -->
+  <div id="s7" class="stage" style="z-index:13;visibility:hidden">
+    <video id="v7" class="vid" style="left:0;top:0;width:1080px;height:1920px" src="assets/pump_B.mp4" muted playsinline data-start="16.4" data-duration="1.56" data-media-start="0.8"></video>
+    <div class="abs" style="left:0;right:0;top:0;height:700px;background:linear-gradient(180deg,rgba(0,0,0,.7),transparent)"></div>
+    <div class="hl eyebrow" style="top:200px" id="s7e">Wangian</div>
+    <div class="hl big" style="top:270px;font-size:118px;font-style:italic" id="s7t"><span class="goldtxt">seperti perfume</span></div>
+    <div class="callout" id="co1" style="left:120px;top:960px"><span class="dot"></span><span class="ln" style="width:90px"></span>Ocean salt</div>
+    <div class="callout" id="co2" style="left:520px;top:1090px"><span class="dot"></span><span class="ln" style="width:90px"></span>Aromatherapy</div>
+  </div>
+
+  <!-- S8 lather + editorial photo -->
+  <div id="s8" class="stage" style="z-index:12;visibility:hidden">
+    <video id="v8" class="vid" style="left:0;top:0;width:1080px;height:1920px" src="assets/pump_D.mp4" muted playsinline data-start="20.34" data-duration="1.6" data-media-start="0.2"></video>
+    <div class="abs" id="ph" style="left:0;top:0;width:1080px;height:1920px;overflow:hidden;opacity:0"><img id="phimg" src="assets/flat1.jpg" style="width:1080px;height:1890px;object-fit:cover"></div>
+    <div class="abs" style="left:0;right:0;top:0;height:900px;background:linear-gradient(180deg,rgba(8,6,4,.9) 0%,rgba(8,6,4,.6) 55%,transparent)"></div>
+    <div class="hl big" style="top:220px;font-size:120px" id="s8a">Hadiah kecil.</div>
+    <div class="hl big goldtxt" style="top:370px;font-size:120px;font-style:italic;padding-right:20px" id="s8b">Rasa dihargai.</div>
+  </div>
+
+  <!-- S9 limited stock -->
+  <div id="s9" class="clip" data-start="23.9" data-duration="1.56" data-track-index="1" style="z-index:12">
+    <div class="hl eyebrow" style="top:420px;color:#ff6b7d" id="s9e">Amaran</div>
+    <div class="hl big" style="top:500px;font-size:190px;font-style:italic" id="s9t"><span class="goldtxt">Stok</span></div>
+    <div class="hl big" style="top:690px;font-size:170px" id="s9u">TERHAD</div>
+    <div class="eyebrow abs" style="left:140px;top:960px;font-size:24px;letter-spacing:.3em">Baki stok</div>
+    <div class="eyebrow abs" style="right:140px;top:960px;font-size:24px;color:#ff6b7d" id="s9p">12%</div>
+    <div class="meter" style="top:1005px"><b id="s9b"></b></div>
+  </div>
+
+  <!-- S10 CTA -->
+  <div id="s10" class="clip" data-start="25.46" data-duration="2.5" data-track-index="1" style="z-index:12">
+    <div class="hl eyebrow" style="top:300px" id="s10e">Sekarang juga</div>
+    <svg class="abs" id="bag" style="left:390px;top:390px" width="300" height="330" viewBox="0 0 60 66"><defs><linearGradient id="yb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe06b"/><stop offset="1" stop-color="#f2b705"/></linearGradient></defs><path d="M20 20v-6a10 10 0 0 1 20 0v6" fill="none" stroke="#ffd84a" stroke-width="4" stroke-linecap="round"/><path d="M6 20h48l-4 42a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4z" fill="url(#yb)"/><path d="M22 34a8 8 0 0 0 16 0" fill="none" stroke="#2a1f05" stroke-width="3.5" stroke-linecap="round"/></svg>
+    <div class="ripple" id="rp1" style="left:340px;top:440px"></div>
+    <div class="btn" id="btn" style="top:800px">TEKAN BEG KUNING</div>
+    <div class="hl" style="top:1010px;font:500 46px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase" id="s10c">Check out <span class="goldtxt serif" style="font-style:italic;text-transform:none;letter-spacing:0;font-size:60px">sebelum habis</span></div>
+    <svg class="abs" id="hand" style="left:560px;top:1050px" width="170" height="210" viewBox="0 0 24 30"><path d="M9 13V4a2 2 0 0 1 4 0v8l5.6 1.1A3 3 0 0 1 21 16.4L20 24a4 4 0 0 1-4 3.4h-4.6a4 4 0 0 1-3.2-1.6L4 20.2a2 2 0 0 1 3-2.6l2 2z" fill="#f7f0e4" stroke="#1a1405" stroke-width="1"/></svg>
+  </div>
+
+  <!-- S11 end card -->
+  <div id="s11" class="clip" data-start="27.96" data-duration="__ENDDUR__" data-track-index="1" style="z-index:12">
+    <div class="spot" style="left:190px;top:0;width:700px"></div>
+    <img class="bottle" id="e1" src="assets/bottle_red.png" style="left:205px;top:700px;width:300px;transform:rotate(-4deg)">
+    <img class="bottle" id="e2" src="assets/bottle_noche.png" style="left:575px;top:700px;width:300px;transform:rotate(4deg)">
+    <div class="abs" id="elogo" style="left:0;right:0;top:250px;text-align:center">
+      <div style="font:400 92px/1 var(--sans);letter-spacing:.2em;color:#a8f0ff;text-shadow:0 0 24px #29c6ff,0 0 70px #1a8cff">FRESCURA</div>
+      <div style="margin-top:18px;font:400 92px/1 var(--sans);letter-spacing:.2em;color:#a8f0ff;text-shadow:0 0 24px #29c6ff,0 0 70px #1a8cff">BODY</div>
+      <div style="margin-top:34px;font:500 30px/1 var(--sans);letter-spacing:.6em;color:var(--ink)">SOFT | FRAGRANT</div>
+    </div>
+    <div class="btn" id="ebtn" style="top:1520px;height:120px;font-size:44px">CHECK OUT SEKARANG</div>
+  </div>
+
+  <div id="caps" class="clip" data-start="0" data-duration="__DUR__" data-track-index="5"></div>
+  <div id="flash" class="clip" data-start="0" data-duration="__DUR__" data-track-index="6" style="z-index:95;background:#fff7e6;opacity:0"></div>
+  <div id="vignette" class="clip" data-start="0" data-duration="__DUR__" data-track-index="7"></div>
+  <div id="grain" class="clip" data-start="0" data-duration="__DUR__" data-track-index="8"></div>
+</div>
+
+<script>
+const VO = __VO__;                       // voice offset into the film
+const WORDS = __WORDS__;                 // [word, start, end] on the voice track
+const tl = gsap.timeline({ paused: true });
+const E = "power3.out", EI = "power2.inOut";
+
+/* ---- deterministic bokeh field ---- */
+(function(){
+  const host = document.getElementById("bokeh"); let s = 7;
+  const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 26; i++) {
+    const d = document.createElement("div"); d.className = "bokeh";
+    const z = 30 + rnd() * 120, warm = rnd();
+    d.style.cssText = `left:${rnd()*1080-60}px;top:${80+rnd()*1150}px;width:${z}px;height:${z}px;` +
+      `background:radial-gradient(circle,rgba(255,${200+warm*40|0},${130+warm*70|0},${.35+rnd()*.35}) 0%,transparent 70%)`;
+    host.appendChild(d);
+    tl.to(d, { x: (rnd() - .5) * 140, y: (rnd() - .5) * 90, duration: __DUR__, ease: "none" }, 0);
+  }
+})();
+tl.fromTo("#mall", { scale: 1.12 }, { scale: 1.0, duration: __DUR__, ease: "none" }, 0);
+tl.fromTo(["#beamL","#beamR"], { opacity: .4 }, { opacity: 1, duration: 1.2, yoyo: true, repeat: 13, ease: "sine.inOut" }, 0);
+
+/* ---- helpers ---- */
+const flash = (t, a = .55, d = .35) => tl.fromTo("#flash", { opacity: a }, { opacity: 0, duration: d, ease: "power2.out" }, t);
+const punch = (sel, t) => tl.fromTo(sel, { scale: 1.06 }, { scale: 1, duration: .5, ease: "expo.out" }, t);
+const rise = (sel, t, d = .6, y = 70) => tl.fromTo(sel, { y, opacity: 0, filter: "blur(14px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: d, ease: E }, t);
+const out = (sel, t, d = .25) => tl.to(sel, { opacity: 0, y: -40, filter: "blur(10px)", duration: d, ease: "power2.in" }, t);
+
+/* S1 hook — slam in immediately */
+flash(0, .9, .5);
+tl.fromTo("#s1a", { scale: 1.6, opacity: 0, filter: "blur(20px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: .45, ease: "expo.out" }, 0.0);
+tl.fromTo("#s1b", { scale: .7, opacity: 0 }, { scale: 1, opacity: 1, duration: .7, ease: "expo.out" }, 0.28);
+rise("#s1e", .55, .5, 30);
+tl.fromTo("#s1r", { scaleX: 0 }, { scaleX: 1, duration: .8, ease: EI }, .5);
+tl.fromTo("#s1h", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .6, ease: "back.out(2.5)" }, 1.25);
+tl.to("#s1h", { scale: 1.15, duration: .25, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.85);
+out(["#s1a","#s1b","#s1e","#s1r","#s1h"], 2.5);
+
+/* S2 */
+rise("#s2a", 2.74, .45, 50); rise("#s2b", 2.9, .45, 50);
+tl.fromTo("#s2c", { scale: 2.4, opacity: 0, filter: "blur(30px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: .55, ease: "expo.out" }, VO + 4.38 - .1);
+flash(VO + 4.38 - .05, .5, .4);
+rise("#s2d", VO + 4.5, .4, 20);
+tl.to("#s2", { scale: 1.08, duration: 2.4, ease: "none" }, 2.74);
+out(["#s2a","#s2b","#s2c","#s2d"], 4.98, .18);
+
+/* S3 educational infographic */
+rise("#s3e", 5.16, .4, 20); rise("#s3t", 5.22, .5, 60);
+const cardIn = (c, k, t) => { tl.fromTo(c, { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: .45, ease: "expo.out" }, t);
+  tl.to(k, { strokeDashoffset: 0, duration: .3, ease: "power2.out" }, t + .25);
+  tl.fromTo(c, { boxShadow: "0 0 0 1.5px rgba(226,196,138,.35),0 30px 80px rgba(0,0,0,.55)" }, { boxShadow: "0 0 0 3px rgba(248,233,196,.95),0 0 60px rgba(226,196,138,.45)", duration: .2, yoyo: true, repeat: 1 }, t + .25); };
+cardIn("#c1", "#k1", VO + 5.88 - .2);
+cardIn("#c2", "#k2", VO + 6.40 - .2);
+cardIn("#c3", "#k3", VO + 7.22 - .2);
+rise(["#s3l","#s3p","#s3bar"], VO + 5.6, .4, 20);
+tl.fromTo("#s3b", { scaleX: 0 }, { scaleX: 1, duration: 2.3, ease: "power1.inOut" }, VO + 5.6);
+tl.to("#s3", { y: -30, duration: 4, ease: "none" }, 5.16);
+out("#s3 > *", 8.95, .2);
+
+/* S4 gift opening */
+rise("#s4e", 9.12, .4, 20); rise("#s4t", 9.2, .5, 50);
+tl.fromTo("#gift", { y: 260, opacity: 0, scale: .8 }, { y: 0, opacity: 1, scale: 1, duration: .7, ease: "expo.out" }, 9.15);
+tl.fromTo("#glow", { opacity: 0, scale: .3 }, { opacity: 0, scale: .3, duration: .01 }, 9.12);
+tl.to("#lid", { y: -230, x: 80, rotation: 24, duration: .7, ease: "back.out(1.6)" }, VO + 10.16);
+tl.to("#glow", { opacity: 1, scale: 1.2, duration: .6, ease: "power2.out" }, VO + 10.2);
+tl.to("#gift", { scale: 1.06, duration: 1.4, ease: "none" }, VO + 10.3);
+flash(VO + 11.7, .9, .4);
+tl.to("#s4", { scale: 1.6, opacity: 0, duration: .35, ease: "power2.in" }, 12.0);
+
+/* S5 brand + pump */
+tl.set("#s5", { visibility: "visible" }, 12.32); tl.set("#s5", { visibility: "hidden" }, 14.62);
+tl.set("#s7", { visibility: "visible" }, 16.4); tl.set("#s7", { visibility: "hidden" }, 17.96);
+tl.set("#s8", { visibility: "visible" }, 20.34); tl.set("#s8", { visibility: "hidden" }, 23.9);
+tl.fromTo("#f5", { clipPath: "inset(50% 0% 50% 0% round 44px)", scale: 1.1 }, { clipPath: "inset(0% 0% 0% 0% round 44px)", scale: 1, duration: .55, ease: "expo.out" }, 12.32);
+tl.fromTo("#s5logo", { opacity: 0, scaleX: 1.35 }, { opacity: 1, scaleX: 1, duration: .6, ease: E }, 12.32);
+tl.fromTo("#s5logo", { filter: "brightness(.4)" }, { filter: "brightness(1.4)", duration: .08, yoyo: true, repeat: 5, ease: "none" }, 12.4);
+tl.fromTo("#s5c", { y: 40, opacity: 0, scale: .9 }, { y: 0, opacity: 1, scale: 1, duration: .45, ease: "back.out(2)" }, VO + 12.34);
+tl.fromTo("#v5", { scale: 1.0 }, { scale: 1.14, duration: 2.3, ease: "none" }, 12.32);
+tl.to("#s5", { opacity: 0, duration: .2 }, 14.42);
+
+/* S6 product stage */
+tl.fromTo(["#pl1","#pl2"], { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: E, stagger: .1 }, 14.6);
+tl.fromTo("#sp1", { opacity: 0 }, { opacity: 1, duration: .2 }, VO + 14.40 - .05);
+tl.fromTo("#b1", { y: -900, rotation: -8 }, { y: 0, rotation: 0, duration: .55, ease: "back.out(1.3)" }, VO + 14.40 - .3);
+rise("#n1", VO + 14.40, .45, 30);
+tl.fromTo("#sp2", { opacity: 0 }, { opacity: 1, duration: .2 }, VO + 15.32 - .05);
+tl.fromTo("#b2", { y: -900, rotation: 8 }, { y: 0, rotation: 0, duration: .55, ease: "back.out(1.3)" }, VO + 15.32 - .3);
+rise("#n2", VO + 15.32, .45, 30);
+// return after foam insert: FEMININE / PREMIUM
+tl.set(["#n1","#n2"], { opacity: 0 }, 17.96);
+tl.fromTo("#fem", { scale: 1.8, opacity: 0, filter: "blur(18px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: .4, ease: "expo.out" }, VO + 18.0 - .08);
+tl.to("#fem", { opacity: 0, scale: .9, duration: .2 }, VO + 18.58 - .15);
+tl.fromTo("#prem", { scale: 1.8, opacity: 0, filter: "blur(18px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: .4, ease: "expo.out" }, VO + 19.36 - .08);
+tl.fromTo("#shine", { x: 0 }, { x: 1900, duration: .9, ease: "power2.inOut" }, VO + 19.36);
+flash(VO + 19.36 - .02, .35, .3);
+tl.fromTo(["#b1","#b2"], { scale: 1 }, { scale: 1.08, duration: 2.3, ease: "none" }, 17.96);
+tl.fromTo("#s6", { scale: 1.0 }, { scale: 1.05, duration: 5.7, ease: "none" }, 14.6);
+tl.to("#s6", { opacity: 0, duration: .2 }, 20.15);
+
+/* S7 foam b-roll */
+tl.fromTo("#v7", { scale: 1.18 }, { scale: 1.0, duration: 1.6, ease: "power2.out" }, 16.4);
+tl.fromTo("#s7", { clipPath: "circle(0% at 50% 60%)" }, { clipPath: "circle(80% at 50% 60%)", duration: .45, ease: "expo.out" }, 16.4);
+rise("#s7e", 16.45, .35, 20); rise("#s7t", 16.5, .45, 40);
+tl.fromTo("#co1", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: .35, ease: E }, 16.75);
+tl.fromTo("#co2", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: .35, ease: E }, 16.95);
+tl.to("#s7", { clipPath: "circle(0% at 50% 50%)", duration: .3, ease: "power2.in" }, 17.66);
+
+/* S8 lather -> editorial photo */
+tl.fromTo("#v8", { scale: 1.12 }, { scale: 1.0, duration: 1.6, ease: "none" }, 20.34);
+tl.fromTo("#s8", { opacity: 0 }, { opacity: 1, duration: .15 }, 20.34);
+rise("#s8a", VO + 19.88, .5, 50);
+tl.to("#ph", { opacity: 1, duration: .35, ease: "power2.inOut" }, 21.8);
+tl.fromTo("#phimg", { scale: 1.25, y: -60 }, { scale: 1.05, y: 0, duration: 2.1, ease: "none" }, 21.8);
+rise("#s8b", VO + 22.84 - .25, .5, 50);
+tl.to("#s8", { opacity: 0, duration: .15 }, 23.75);
+
+/* S9 limited stock */
+tl.fromTo("#s9t", { scale: 2.2, opacity: 0 }, { scale: 1, opacity: 1, duration: .35, ease: "expo.out" }, VO + 23.68 - .1);
+tl.fromTo("#s9u", { scale: 2.2, opacity: 0 }, { scale: 1, opacity: 1, duration: .35, ease: "expo.out" }, VO + 24.10 - .1);
+rise("#s9e", 23.92, .3, 20);
+tl.fromTo("#s9b", { scaleX: 1 }, { scaleX: .12, duration: 1.2, ease: "power3.inOut" }, 24.05);
+tl.fromTo("#s9", { x: -10 }, { x: 10, duration: .05, yoyo: true, repeat: 7, ease: "none" }, VO + 24.10);
+tl.to("#s9", { x: 0, duration: .01 }, VO + 24.10 + .42);
+flash(VO + 24.10 - .03, .4, .25);
+
+/* S10 CTA */
+rise("#s10e", 25.46, .3, 20);
+tl.fromTo("#bag", { scale: 0, rotation: -20, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: .5, ease: "back.out(2.2)" }, VO + 25.22 - .2);
+tl.fromTo("#btn", { y: 80, opacity: 0, scale: .9 }, { y: 0, opacity: 1, scale: 1, duration: .45, ease: "back.out(2)" }, VO + 24.92);
+tl.fromTo("#hand", { x: 160, y: 240, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: .4, ease: E }, VO + 25.3);
+tl.to("#hand", { scale: .88, y: -20, duration: .1, yoyo: true, repeat: 1 }, VO + 25.72);
+tl.to("#btn", { scale: .94, duration: .1, yoyo: true, repeat: 1 }, VO + 25.74);
+tl.fromTo("#rp1", { scale: .3, opacity: 1, x: 120, y: 360 }, { scale: 2.6, opacity: 0, x: 120, y: 360, duration: .6, ease: "power2.out" }, VO + 25.76);
+tl.to("#bag", { y: -30, duration: .22, yoyo: true, repeat: 5, ease: "sine.inOut" }, VO + 25.5);
+rise("#s10c", VO + 25.96, .45, 30);
+tl.to("#s10", { opacity: 0, duration: .2 }, 27.8);
+
+/* S11 end card */
+tl.fromTo("#elogo", { opacity: 0, scale: 1.15, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .8, ease: E }, 27.96);
+tl.fromTo("#e1", { x: -500, opacity: 0 }, { x: 0, opacity: 1, duration: .7, ease: "expo.out" }, 28.15);
+tl.fromTo("#e2", { x: 500, opacity: 0 }, { x: 0, opacity: 1, duration: .7, ease: "expo.out" }, 28.25);
+tl.fromTo("#ebtn", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: "back.out(2)" }, 28.7);
+tl.to("#ebtn", { scale: 1.05, duration: .4, yoyo: true, repeat: 3, ease: "sine.inOut" }, 29.3);
+tl.to("#s11", { opacity: 0, duration: .5 }, __DUR__ - .5);
+
+/* ---- karaoke captions (chunks of <=3 words, break on punctuation) ---- */
+(function(){
+  const host = document.getElementById("caps"); const chunks = []; let cur = [];
+  WORDS.forEach((w, i) => { cur.push(w); const p = /[.,?!]$/.test(w[0]);
+    const len = cur.map(x => x[0]).join(" ").length;
+    if (p || cur.length >= 3 || len > 16 || i === WORDS.length - 1) { chunks.push(cur); cur = []; } });
+  chunks.forEach((c, ci) => {
+    const el = document.createElement("div"); el.className = "cap";
+    const t0 = VO + c[0][1] - .04, t1 = ci < chunks.length - 1 ? VO + chunks[ci + 1][0][1] - .04 : VO + c[c.length - 1][2] + .35;
+    c.forEach(w => { const s = document.createElement("span"); s.className = "w"; s.textContent = w[0].replace(/[.,]$/, ""); el.appendChild(s);
+      tl.set(s, { className: "w on" }, VO + w[1]); tl.set(s, { className: "w" }, Math.min(VO + w[2] + .02, t1)); });
+    host.appendChild(el);
+    tl.fromTo(el, { opacity: 0, y: 26, scale: .94 }, { opacity: 1, y: 0, scale: 1, duration: .14, ease: "power2.out" }, t0);
+    tl.set(el, { opacity: 0 }, t1);
+  });
+})();
+
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
