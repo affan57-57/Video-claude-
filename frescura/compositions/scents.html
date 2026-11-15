@@ -1,0 +1,70 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  #sc-photo{position:absolute;inset:0}
+  #sc-photo img{position:absolute;left:-36px;top:-64px;width:1152px;height:2048px}
+  #sc-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,5,.75),rgba(8,6,5,.0) 30%,rgba(8,6,5,.0) 60%,rgba(8,6,5,.8))}
+  #sc-h{top:200px;font-size:110px}
+  #sc-sub{top:330px;font-size:30px}
+  .sc-panel{position:absolute;inset:0}
+  #sc-red{background:radial-gradient(90% 60% at 50% 40%,#7A0E1F 0%,#2A0509 60%,#0C0203 100%)}
+  #sc-vio{background:radial-gradient(90% 60% at 50% 40%,#3B2A8C 0%,#140C38 60%,#050311 100%)}
+  .sc-bot{position:absolute;left:390px;top:380px;width:300px;height:760px;object-fit:contain;filter:drop-shadow(0 40px 60px rgba(0,0,0,.7))}
+  .sc-name{top:205px;font-size:118px}
+  .sc-k{top:150px;font-size:30px}
+  .sc-notes{top:1050px;font-size:28px}
+</style>
+  <div id="root" data-composition-id="scents" data-width="1080" data-height="1920" data-duration="3.3">
+
+    <div id="sc-photo"><img src="assets/img/flatlay1.jpg" alt=""></div>
+    <div id="sc-dim"></div>
+    <div id="sc-h" class="center disp">pilih <span class="it goldgrad">haruman</span></div>
+    <div id="sc-sub" class="center label">dua aroma · satu hadiah</div>
+    <div id="sc-red" class="sc-panel">
+      <div class="center label sc-k">Woman Glory</div>
+      <div class="center disp it sc-name" style="color:#FFD9DF">Bombshell</div>
+      <img class="sc-bot" id="sc-b1" src="assets/img/bottle_glory.png" alt="">
+    </div>
+    <div id="sc-vio" class="sc-panel">
+      <div class="center label sc-k">Noche</div>
+      <div class="center disp it sc-name" style="color:#E3DCFF">Midnight Fantasy</div>
+      <img class="sc-bot" id="sc-b2" src="assets/img/bottle_noche.png" alt="">
+    </div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#sc-photo",{scale:1.0},{scale:1.1,duration:1.5,ease:"none"},0);
+    tl.fromTo("#sc-h",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:.2},0.12);
+    tl.fromTo("#sc-sub",{opacity:0,scale:1.14},{opacity:1,scale:1,duration:.6,ease:"expo.out"},0.3);
+    tl.fromTo("#sc-red",{clipPath:"inset(0 0 0 100%)"},{clipPath:"inset(0 0 0 0%)",duration:.4,ease:"power3.inOut"},1.45);
+    tl.fromTo("#sc-b1",{y:160,rotation:6,scale:.9},{y:0,rotation:0,scale:1,duration:.7,ease:"expo.out"},1.55);
+    tl.fromTo("#sc-red .sc-name",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.5,ease:"expo.out"},1.6);
+    tl.fromTo("#sc-vio",{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:.4,ease:"power3.inOut"},2.15);
+    tl.fromTo("#sc-b2",{y:160,rotation:-6,scale:.9},{y:0,rotation:0,scale:1,duration:.7,ease:"expo.out"},2.25);
+    tl.fromTo("#sc-vio .sc-name",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.5,ease:"expo.out"},2.3);
+
+    window.__timelines["scents"] = tl;
+  </script>
+</template>

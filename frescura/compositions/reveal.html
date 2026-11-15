@@ -1,0 +1,95 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+    .rv-wall{background:linear-gradient(180deg,#1B1410 0%,#2B2019 48%,#120E0B 62%,#070605 100%)}
+    .rv-pil{position:absolute;top:0;height:1180px;background:linear-gradient(180deg,rgba(255,226,170,.0),rgba(255,226,170,.55) 30%,rgba(255,226,170,.15) 80%,transparent)}
+    .rv-bk{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,214,150,.9) 0%,rgba(255,200,120,.25) 45%,transparent 70%);}
+    #rv-floor{position:absolute;left:-400px;width:1880px;top:1120px;height:1300px;transform-origin:50% 0;
+      background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 235px),
+        radial-gradient(60% 40% at 50% 8%,rgba(255,220,170,.35),transparent 70%),
+        linear-gradient(180deg,#3A2D24 0%,#1A1310 40%,#0B0807 100%)}
+    .rv-cone{position:absolute;top:-120px;width:620px;height:1500px;mix-blend-mode:screen;
+      background:linear-gradient(180deg,rgba(255,236,200,.55),rgba(255,236,200,.08) 75%,transparent);
+      clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(10px)}
+    #rv-cone1{left:20px} #rv-cone2{left:440px}
+    #rv-vit{position:absolute;left:95px;top:430px;width:890px;height:860px;border:2px solid rgba(217,183,126,.35);border-radius:6px;
+      background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,.05) 55%,rgba(255,255,255,0) 70%)}
+    .rv-ped{position:absolute;top:1100px;width:300px;height:250px;
+      background:linear-gradient(90deg,#16110D 0%,#3E3127 35%,#5A4A3A 50%,#2C221B 75%,#120D0A 100%)}
+    .rv-pedtop{position:absolute;left:0;top:-26px;width:300px;height:52px;border-radius:50%;
+      background:radial-gradient(60% 60% at 50% 40%,#E9D3A8,#8A7050 70%,#4A3A2C)}
+    #rv-ped1{left:150px} #rv-ped2{left:630px}
+    .rv-bot{position:absolute;top:500px;width:270px;height:760px}
+    .rv-bot img{position:absolute;left:0;top:0;width:270px;height:760px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+    .rv-bot img.rv-ref{top:760px;transform:scaleY(-1);opacity:.22;filter:blur(2px);
+      -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 35%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 35%)}
+    #rv-b1{left:165px} #rv-b2{left:645px}
+    #rv-glint{position:absolute;left:-300px;top:400px;width:220px;height:1000px;mix-blend-mode:screen;
+      background:linear-gradient(90deg,transparent,rgba(255,250,235,.35),transparent);filter:blur(8px)}
+    
+  #rv-cam{position:absolute;inset:0}
+  #rv-brand{top:220px;font-size:34px}
+  #rv-t{top:270px;font-size:120px}
+  #rv-black{position:absolute;inset:0;background:#000}
+</style>
+  <div id="root" data-composition-id="reveal" data-width="1080" data-height="1920" data-duration="1.75">
+
+    <div id="rv-cam">
+    <div id="rv-set" class="full" data-layout-allow-overflow data-layout-ignore>
+      <div class="full rv-wall"></div>
+      <div class="rv-pil" style="left:40px;width:26px"></div><div class="rv-pil" style="left:250px;width:14px"></div><div class="rv-pil" style="left:800px;width:14px"></div><div class="rv-pil" style="left:1010px;width:26px"></div>
+      <div class="full" id="rv-bokeh"><div class="rv-bk" style="left:-10px;top:210px;width:180px;height:180px;opacity:0.18"></div><div class="rv-bk" style="left:150px;top:460px;width:120px;height:120px;opacity:0.26"></div><div class="rv-bk" style="left:820px;top:150px;width:220px;height:220px;opacity:0.33999999999999997"></div><div class="rv-bk" style="left:920px;top:540px;width:140px;height:140px;opacity:0.42"></div><div class="rv-bk" style="left:80px;top:740px;width:160px;height:160px;opacity:0.18"></div><div class="rv-bk" style="left:815px;top:805px;width:110px;height:110px;opacity:0.26"></div><div class="rv-bk" style="left:470px;top:110px;width:140px;height:140px;opacity:0.33999999999999997"></div><div class="rv-bk" style="left:340px;top:380px;width:80px;height:80px;opacity:0.42"></div><div class="rv-bk" style="left:650px;top:420px;width:100px;height:100px;opacity:0.18"></div><div class="rv-bk" style="left:-5px;top:595px;width:90px;height:90px;opacity:0.26"></div><div class="rv-bk" style="left:980px;top:360px;width:120px;height:120px;opacity:0.33999999999999997"></div><div class="rv-bk" style="left:585px;top:725px;width:70px;height:70px;opacity:0.42"></div></div>
+      <div id="rv-floor"></div>
+      <div id="rv-cone1" class="rv-cone"></div>
+      <div id="rv-cone2" class="rv-cone"></div>
+      <div id="rv-vit"></div>
+      <div id="rv-ped1" class="rv-ped"><div class="rv-pedtop"></div></div>
+      <div id="rv-ped2" class="rv-ped"><div class="rv-pedtop"></div></div>
+      <div id="rv-b1" class="rv-bot"><img src="assets/img/bottle_noche.png" alt=""><img class="rv-ref" src="assets/img/bottle_noche.png" alt=""></div>
+      <div id="rv-b2" class="rv-bot"><img src="assets/img/bottle_glory.png" alt=""><img class="rv-ref" src="assets/img/bottle_glory.png" alt=""></div>
+      <div id="rv-glint"></div>
+    </div></div>
+    <div class="vign"></div>
+    <div id="rv-brand" class="center label">Frescura Body · Boutique</div>
+    <div id="rv-t" class="center disp it goldgrad">hadiah mewah</div>
+    <div id="rv-black"></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set("#rv-floor",{rotationX:72,transformPerspective:900},0);
+    
+    tl.fromTo("#rv-black",{opacity:1},{opacity:0,duration:.25,ease:"power2.out"},0);
+    tl.fromTo("#rv-cam",{scale:1.35,y:120},{scale:1,y:0,duration:1.6,ease:"power3.out"},0);
+    tl.fromTo(".rv-cone",{opacity:0},{opacity:1,duration:.12,stagger:.18},0.05);
+    tl.fromTo("#rv-b1",{y:220,opacity:0},{y:0,opacity:1,duration:.7,ease:"expo.out"},0.15);
+    tl.fromTo("#rv-b2",{y:220,opacity:0},{y:0,opacity:1,duration:.7,ease:"expo.out"},0.3);
+    tl.fromTo("#rv-glint",{x:0},{x:1700,duration:.9,ease:"power2.inOut"},0.6);
+    tl.fromTo("#rv-brand",{opacity:0,scale:1.14},{opacity:1,scale:1,duration:.6,ease:"expo.out"},0.4);
+    tl.fromTo("#rv-t",{opacity:0,filter:"blur(12px)",y:20},{opacity:1,filter:"blur(0px)",y:0,duration:.35,ease:"power3.out"},0.55);
+    tl.fromTo("#rv-bokeh",{x:-30},{x:30,duration:1.75,ease:"none"},0);
+
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>

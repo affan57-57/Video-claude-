@@ -1,0 +1,59 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  #pr-tag{position:absolute;left:230px;top:330px;width:620px;height:330px}
+  #pr-card{position:absolute;inset:0;border-radius:24px;background:linear-gradient(135deg,#F3E6CF,#D9C39A);box-shadow:0 40px 80px rgba(0,0,0,.6)}
+  #pr-hole{position:absolute;left:40px;top:145px;width:40px;height:40px;border-radius:50%;background:#100C09}
+  #pr-cap{position:absolute;left:110px;top:56px;font-size:30px;color:#6B5233}
+  #pr-num{position:absolute;left:105px;top:115px;font-family:'Bodoni Moda';font-weight:800;font-size:100px;color:#1A120C;white-space:nowrap}
+  #pr-strike{position:absolute;left:80px;top:180px;width:480px;height:12px;border-radius:6px;background:var(--rose)}
+  #pr-l1{top:780px;font-size:110px}
+  #pr-l2{top:910px;font-size:46px}
+  #pr-stamp{position:absolute;left:640px;top:240px;width:250px;height:250px;border-radius:50%;border:5px solid var(--rose);color:var(--rose);
+    font-family:'Jakarta';font-weight:800;font-size:44px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.05}
+</style>
+  <div id="root" data-composition-id="pricey" data-width="1080" data-height="1920" data-duration="2.1">
+
+    <div class="full bg-noir"></div>
+    <div id="pr-tag"><div id="pr-card"></div><div id="pr-hole"></div>
+      <div id="pr-cap" class="label" style="color:#6B5233">harga</div>
+      <div id="pr-num">RM9,999</div><div id="pr-strike"></div></div>
+    <div id="pr-stamp">BUKAN<br>ITU</div>
+    <div id="pr-l1" class="center disp">bukan yang <span class="it goldgrad">mahal</span></div>
+    <div id="pr-l2" class="center label">yang dia harapkan</div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#pr-tag",{y:-500,rotation:-14},{y:0,rotation:-4,duration:.6,ease:"back.out(1.6)"},0);
+    tl.fromTo("#pr-strike",{scaleX:0,transformOrigin:"0% 50%"},{scaleX:1,duration:.22,ease:"power4.out"},0.85);
+    tl.to("#pr-num",{opacity:.4,duration:.2},0.95);
+    tl.fromTo("#pr-stamp",{scale:2.4,opacity:0,rotation:-30},{scale:1,opacity:1,rotation:-12,duration:.28,ease:"power4.out"},0.9);
+    tl.fromTo("#pr-l1",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:.2},0.25);
+    tl.fromTo("#pr-l2",{opacity:0,scale:1.14},{opacity:1,scale:1,duration:.5,ease:"expo.out"},1.2);
+    tl.to(["#pr-tag","#pr-stamp","#pr-l1","#pr-l2"],{opacity:0,x:-120,filter:"blur(12px)",duration:.18,ease:"power3.in"},1.9);
+
+    window.__timelines["pricey"] = tl;
+  </script>
+</template>

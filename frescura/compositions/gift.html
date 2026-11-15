@@ -1,0 +1,62 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  #gf-svg{position:absolute;left:290px;top:300px;width:500px;height:520px;overflow:visible}
+  #gf-svg path,#gf-svg rect,#gf-svg line{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+  #gf-k{top:300px;font-size:150px}
+  #gf-x{position:absolute;left:250px;top:340px;width:580px;height:500px}
+  #gf-x i{position:absolute;left:0;top:240px;width:580px;height:10px;background:var(--rose);border-radius:6px;box-shadow:0 0 30px rgba(192,33,58,.6)}
+  #gf-l1{top:900px;font-size:56px}
+  #gf-l2{top:975px;font-size:118px}
+  #gf-ring{position:absolute;left:240px;top:250px;width:600px;height:600px;border-radius:50%;border:1px solid rgba(217,183,126,.25)}
+</style>
+  <div id="root" data-composition-id="gift" data-width="1080" data-height="1920" data-duration="1.95">
+
+    <div class="full bg-noir"></div>
+    <div id="gf-ring"></div>
+    <svg id="gf-svg" viewBox="0 0 500 520">
+      <rect id="gf-box" x="60" y="230" width="380" height="270" rx="10" pathLength="1"/>
+      <rect id="gf-lid" x="35" y="160" width="430" height="80" rx="10" pathLength="1"/>
+      <line id="gf-rib" x1="250" y1="160" x2="250" y2="500" pathLength="1"/>
+      <path id="gf-bow" d="M250 160 C 200 60, 120 90, 160 150 C 190 170, 230 165, 250 160 C 270 165, 310 170, 340 150 C 380 90, 300 60, 250 160" pathLength="1"/>
+    </svg>
+    <div id="gf-x"><i></i></div>
+    <div id="gf-l1" class="center label">Isteri abang</div>
+    <div id="gf-l2" class="center disp">tak pernah <span class="it goldgrad">minta</span></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#gf-ring",{scale:.6,opacity:0},{scale:1,opacity:1,duration:.8,ease:"expo.out"},0);
+    ["#gf-box","#gf-lid","#gf-rib","#gf-bow"].forEach((s,i)=>tl.fromTo(s,{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:.55,ease:"power2.inOut"},0.05+i*0.12));
+    tl.fromTo("#gf-svg",{y:30,scale:.9},{y:0,scale:1,duration:.7,ease:"expo.out"},0);
+    tl.fromTo("#gf-l1",{opacity:0,scale:1.14},{opacity:1,scale:1,duration:.5,ease:"expo.out"},0.1);
+    tl.fromTo("#gf-l2",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:.2,ease:"power3.out"},0.9);
+    tl.fromTo("#gf-x i",{scaleX:0,rotation:-18,transformOrigin:"0% 50%"},{scaleX:1,rotation:-18,duration:.25,ease:"power4.out"},1.25);
+    tl.to("#gf-svg",{opacity:.35,duration:.25},1.25);
+    tl.to(["#gf-l2","#gf-l1","#gf-x","#gf-svg","#gf-ring"],{opacity:0,filter:"blur(10px)",duration:.15,ease:"power2.in"},1.78);
+
+    window.__timelines["gift"] = tl;
+  </script>
+</template>

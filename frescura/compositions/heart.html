@@ -1,0 +1,64 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  #ht-bg{background:radial-gradient(80% 55% at 50% 40%,#3A1418 0%,#160A0B 55%,#070405 100%)}
+  #ht-svg{position:absolute;left:340px;top:250px;width:400px;height:380px;overflow:visible}
+  #ht-svg path{fill:none;stroke:var(--gold);stroke-width:6;stroke-linecap:round}
+  #ht-fill{fill:rgba(192,33,58,.0)!important;stroke:none!important}
+  #ht-l1{top:700px;font-size:44px}
+  #ht-big{top:770px;font-size:178px;font-weight:500}
+  #ht-l3{top:980px;font-size:40px;color:rgba(246,239,228,.75)}
+  .ht-p{position:absolute;width:34px;height:22px;border-radius:60% 0 60% 0;background:linear-gradient(135deg,#E0455C,#7A0F1E);opacity:.8}
+  #ht-pulse{position:absolute;left:390px;top:280px;width:300px;height:300px;border-radius:50%;border:2px solid rgba(217,183,126,.6)}
+</style>
+  <div id="root" data-composition-id="heart" data-width="1080" data-height="1920" data-duration="2.7">
+
+    <div id="ht-bg" class="full"></div>
+    <div class="ht-p" id="ht-p0" style="left:120px;top:300px;transform:rotate(20deg)"></div><div class="ht-p" id="ht-p1" style="left:880px;top:380px;transform:rotate(-30deg)"></div><div class="ht-p" id="ht-p2" style="left:200px;top:900px;transform:rotate(45deg)"></div><div class="ht-p" id="ht-p3" style="left:930px;top:820px;transform:rotate(10deg)"></div><div class="ht-p" id="ht-p4" style="left:520px;top:220px;transform:rotate(-15deg)"></div><div class="ht-p" id="ht-p5" style="left:70px;top:640px;transform:rotate(60deg)"></div><div class="ht-p" id="ht-p6" style="left:990px;top:560px;transform:rotate(-50deg)"></div><div class="ht-p" id="ht-p7" style="left:640px;top:980px;transform:rotate(30deg)"></div>
+    <div id="ht-pulse"></div>
+    <svg id="ht-svg" viewBox="0 0 400 380">
+      <path id="ht-fill" d="M200 350 C 40 240, 10 140, 60 80 C 110 20, 180 40, 200 100 C 220 40, 290 20, 340 80 C 390 140, 360 240, 200 350 Z"/>
+      <path id="ht-path" d="M200 350 C 40 240, 10 140, 60 80 C 110 20, 180 40, 200 100 C 220 40, 290 20, 340 80 C 390 140, 360 240, 200 350 Z" pathLength="1"/>
+    </svg>
+    <div id="ht-l1" class="center label">jauh di sudut hati</div>
+    <div id="ht-big" class="center disp it goldgrad">dihargai</div>
+    <div id="ht-l3" class="center label" style="letter-spacing:.3em">— itu yang dia mahu —</div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#ht-path",{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:"power2.inOut"},0.05);
+    tl.fromTo("#ht-fill",{fill:"rgba(192,33,58,0)"},{fill:"rgba(192,33,58,.85)",duration:.5,ease:"power2.out"},0.9);
+    tl.fromTo("#ht-svg",{scale:.85},{scale:1,duration:1.2,ease:"expo.out"},0);
+    tl.fromTo("#ht-svg",{scale:1},{scale:1.08,duration:.12,yoyo:true,repeat:3,ease:"power1.inOut",immediateRender:false},1.3);
+    tl.fromTo("#ht-pulse",{scale:.6,opacity:.9},{scale:1.9,opacity:0,duration:1.0,ease:"power2.out"},1.3);
+    tl.fromTo("#ht-l1",{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:"expo.out"},0.15);
+    tl.fromTo("#ht-big",{opacity:0,scale:1.18,filter:"blur(12px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.6,ease:"expo.out"},1.55);
+    tl.fromTo("#ht-l3",{opacity:0},{opacity:1,duration:.3},1.95);
+    for(let i=0;i<8;i++) tl.fromTo("#ht-p"+i,{y:-60,opacity:0},{y:260+i*25,x:(i%2?-40:40),rotation:(i%2?160:-160),opacity:.8,duration:2.7,ease:"none"},0);
+    tl.to(["#ht-big","#ht-l1","#ht-l3","#ht-svg"],{opacity:0,filter:"blur(10px)",duration:.16,ease:"power2.in"},2.52);
+
+    window.__timelines["heart"] = tl;
+  </script>
+</template>

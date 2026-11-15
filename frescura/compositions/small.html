@@ -1,0 +1,64 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  #sm-wrap{position:absolute;inset:0}
+  #sm-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,7,.85) 0%,rgba(10,8,7,.6) 45%,rgba(10,8,7,.92) 100%)}
+  #sm-row{position:absolute;left:0;right:0;top:330px;height:330px}
+  #sm-dot{position:absolute;left:230px;top:140px;width:44px;height:44px;border-radius:50%;background:var(--gold);box-shadow:0 0 30px rgba(217,183,126,.8)}
+  #sm-arrow{position:absolute;left:330px;top:158px;width:250px;height:8px;background:linear-gradient(90deg,transparent,var(--gold))}
+  #sm-big{position:absolute;left:620px;top:20px;width:290px;height:290px;border-radius:50%;
+     background:radial-gradient(circle at 35% 30%,#FFF1D2,#D9B77E 45%,#8C6A3A);box-shadow:0 0 80px rgba(217,183,126,.55)}
+  #sm-c1{position:absolute;left:150px;top:220px;width:210px;text-align:center;font-size:30px}
+  #sm-c2{position:absolute;left:615px;top:330px;width:300px;text-align:center;font-size:24px}
+  #sm-l1{top:760px;font-size:96px}
+  #sm-l2{top:870px;font-size:124px}
+</style>
+  <div id="root" data-composition-id="small" data-width="1080" data-height="1920" data-duration="3.7">
+
+    <div id="sm-wrap"><video id="sm-vid" class="clip media" data-start="0" data-duration="3.7" data-media-start="0" src="assets/video/p2.mp4" muted playsinline></video></div>
+    <div id="sm-dim"></div>
+    <div id="sm-row">
+      <div id="sm-dot"></div><div id="sm-arrow"></div><div id="sm-big"></div>
+      <div id="sm-c1" class="label">perhatian kecil</div>
+      <div id="sm-c2" class="label">bahagia besar</div>
+    </div>
+    <div id="sm-l1" class="center disp">perhatian <span class="it">kecil</span></div>
+    <div id="sm-l2" class="center disp it goldgrad">= bahagia</div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#sm-wrap",{scale:1.18},{scale:1.02,duration:3.7,ease:"power1.out"},0);
+    tl.fromTo("#sm-dot",{scale:0},{scale:1,duration:.4,ease:"back.out(3)"},0.2);
+    tl.fromTo("#sm-c1",{opacity:0},{opacity:1,duration:.3},0.35);
+    tl.fromTo("#sm-l1",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:.22},0.4);
+    tl.fromTo("#sm-arrow",{scaleX:0,transformOrigin:"0% 50%"},{scaleX:1,duration:.5,ease:"power3.inOut"},1.3);
+    tl.fromTo("#sm-big",{scale:0},{scale:1,duration:.7,ease:"elastic.out(1,.6)"},1.7);
+    tl.fromTo("#sm-c2",{opacity:0},{opacity:1,duration:.3},1.9);
+    tl.fromTo("#sm-l2",{opacity:0,y:40},{opacity:1,y:0,duration:.5,ease:"expo.out"},2.35);
+    tl.to(["#sm-row","#sm-l1","#sm-l2"],{opacity:0,scale:1.15,filter:"blur(14px)",duration:.22,ease:"power3.in"},3.45);
+
+    window.__timelines["small"] = tl;
+  </script>
+</template>

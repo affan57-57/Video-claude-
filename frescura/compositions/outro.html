@@ -1,0 +1,110 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+    .ou-wall{background:linear-gradient(180deg,#1B1410 0%,#2B2019 48%,#120E0B 62%,#070605 100%)}
+    .ou-pil{position:absolute;top:0;height:1180px;background:linear-gradient(180deg,rgba(255,226,170,.0),rgba(255,226,170,.55) 30%,rgba(255,226,170,.15) 80%,transparent)}
+    .ou-bk{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,214,150,.9) 0%,rgba(255,200,120,.25) 45%,transparent 70%);}
+    #ou-floor{position:absolute;left:-400px;width:1880px;top:1120px;height:1300px;transform-origin:50% 0;
+      background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 235px),
+        radial-gradient(60% 40% at 50% 8%,rgba(255,220,170,.35),transparent 70%),
+        linear-gradient(180deg,#3A2D24 0%,#1A1310 40%,#0B0807 100%)}
+    .ou-cone{position:absolute;top:-120px;width:620px;height:1500px;mix-blend-mode:screen;
+      background:linear-gradient(180deg,rgba(255,236,200,.55),rgba(255,236,200,.08) 75%,transparent);
+      clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(10px)}
+    #ou-cone1{left:20px} #ou-cone2{left:440px}
+    #ou-vit{position:absolute;left:95px;top:430px;width:890px;height:860px;border:2px solid rgba(217,183,126,.35);border-radius:6px;
+      background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,.05) 55%,rgba(255,255,255,0) 70%)}
+    .ou-ped{position:absolute;top:1100px;width:300px;height:250px;
+      background:linear-gradient(90deg,#16110D 0%,#3E3127 35%,#5A4A3A 50%,#2C221B 75%,#120D0A 100%)}
+    .ou-pedtop{position:absolute;left:0;top:-26px;width:300px;height:52px;border-radius:50%;
+      background:radial-gradient(60% 60% at 50% 40%,#E9D3A8,#8A7050 70%,#4A3A2C)}
+    #ou-ped1{left:150px} #ou-ped2{left:630px}
+    .ou-bot{position:absolute;top:500px;width:270px;height:760px}
+    .ou-bot img{position:absolute;left:0;top:0;width:270px;height:760px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+    .ou-bot img.ou-ref{top:760px;transform:scaleY(-1);opacity:.22;filter:blur(2px);
+      -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 35%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 35%)}
+    #ou-b1{left:165px} #ou-b2{left:645px}
+    #ou-glint{position:absolute;left:-300px;top:400px;width:220px;height:1000px;mix-blend-mode:screen;
+      background:linear-gradient(90deg,transparent,rgba(255,250,235,.35),transparent);filter:blur(8px)}
+    
+  #ou-cam{position:absolute;inset:0}
+  #ou-photo{position:absolute;inset:0}
+  #ou-photo img{position:absolute;left:-36px;top:-48px;width:1152px;height:2016px}
+  #ou-logo{position:absolute;left:190px;top:150px;width:700px;height:700px;mix-blend-mode:screen}
+  #ou-logo img{width:100%;height:100%}
+  #ou-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,5,4,.94) 0%,rgba(6,5,4,.72) 45%,rgba(6,5,4,.94) 100%)}
+  #ou-h{top:840px;font-size:104px}
+  #ou-sub{top:980px;font-size:30px}
+  #ou-cta{position:absolute;left:240px;top:1100px;width:600px;height:100px;border-radius:999px;border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;font-family:'Jakarta';font-weight:800;font-size:38px;color:var(--ink);letter-spacing:.12em;background:rgba(10,8,7,.5)}
+  #ou-wipe{position:absolute;inset:0;background:#000}
+</style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920" data-duration="5.75">
+
+    <div id="ou-cam">
+    <div id="ou-set" class="full" data-layout-allow-overflow data-layout-ignore>
+      <div class="full ou-wall"></div>
+      <div class="ou-pil" style="left:40px;width:26px"></div><div class="ou-pil" style="left:250px;width:14px"></div><div class="ou-pil" style="left:800px;width:14px"></div><div class="ou-pil" style="left:1010px;width:26px"></div>
+      <div class="full" id="ou-bokeh"><div class="ou-bk" style="left:-10px;top:210px;width:180px;height:180px;opacity:0.18"></div><div class="ou-bk" style="left:150px;top:460px;width:120px;height:120px;opacity:0.26"></div><div class="ou-bk" style="left:820px;top:150px;width:220px;height:220px;opacity:0.33999999999999997"></div><div class="ou-bk" style="left:920px;top:540px;width:140px;height:140px;opacity:0.42"></div><div class="ou-bk" style="left:80px;top:740px;width:160px;height:160px;opacity:0.18"></div><div class="ou-bk" style="left:815px;top:805px;width:110px;height:110px;opacity:0.26"></div><div class="ou-bk" style="left:470px;top:110px;width:140px;height:140px;opacity:0.33999999999999997"></div><div class="ou-bk" style="left:340px;top:380px;width:80px;height:80px;opacity:0.42"></div><div class="ou-bk" style="left:650px;top:420px;width:100px;height:100px;opacity:0.18"></div><div class="ou-bk" style="left:-5px;top:595px;width:90px;height:90px;opacity:0.26"></div><div class="ou-bk" style="left:980px;top:360px;width:120px;height:120px;opacity:0.33999999999999997"></div><div class="ou-bk" style="left:585px;top:725px;width:70px;height:70px;opacity:0.42"></div></div>
+      <div id="ou-floor"></div>
+      <div id="ou-cone1" class="ou-cone"></div>
+      <div id="ou-cone2" class="ou-cone"></div>
+      <div id="ou-vit"></div>
+      <div id="ou-ped1" class="ou-ped"><div class="ou-pedtop"></div></div>
+      <div id="ou-ped2" class="ou-ped"><div class="ou-pedtop"></div></div>
+      <div id="ou-b1" class="ou-bot"><img src="assets/img/bottle_noche.png" alt=""><img class="ou-ref" src="assets/img/bottle_noche.png" alt=""></div>
+      <div id="ou-b2" class="ou-bot"><img src="assets/img/bottle_glory.png" alt=""><img class="ou-ref" src="assets/img/bottle_glory.png" alt=""></div>
+      <div id="ou-glint"></div>
+    </div></div>
+    <div id="ou-photo"><img src="assets/img/flatlay2.jpg" alt=""></div>
+    <div id="ou-dim"></div>
+    <div id="ou-logo"><img src="assets/img/logo.jpg" alt=""></div>
+    <div id="ou-h" class="center disp">hadiah <span class="it goldgrad">untuk dia</span></div>
+    <div id="ou-sub" class="center label">Soft · Fragrant · 500 ml</div>
+    <div id="ou-cta">BELI SEKARANG</div>
+    <div id="ou-wipe"></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set("#ou-floor",{rotationX:72,transformPerspective:900},0);
+    
+    tl.set("#ou-wipe",{opacity:0},0);
+    tl.fromTo("#ou-cam",{scale:1.2},{scale:1.0,duration:2.4,ease:"power3.out"},0);
+    tl.fromTo(".ou-cone",{opacity:0},{opacity:1,duration:.15,stagger:.15},0.1);
+    tl.fromTo("#ou-b1",{y:200,opacity:0},{y:0,opacity:1,duration:.7,ease:"expo.out"},0.2);
+    tl.fromTo("#ou-b2",{y:200,opacity:0},{y:0,opacity:1,duration:.7,ease:"expo.out"},0.35);
+    tl.fromTo("#ou-glint",{x:0},{x:1700,duration:1.0,ease:"power2.inOut"},0.8);
+    tl.fromTo("#ou-photo",{opacity:0,scale:1.15},{opacity:1,scale:1.0,duration:.6,ease:"power2.inOut"},2.4);
+    tl.fromTo("#ou-dim",{opacity:0},{opacity:1,duration:.5},2.5);
+    tl.fromTo("#ou-logo",{opacity:0,scale:.85,filter:"blur(12px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:.7,ease:"expo.out"},2.6);
+    tl.fromTo("#ou-h",{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:"expo.out"},2.85);
+    tl.fromTo("#ou-sub",{opacity:0,scale:1.14},{opacity:1,scale:1,duration:.7,ease:"expo.out"},3.0);
+    tl.fromTo("#ou-cta",{opacity:0,scale:.8},{opacity:1,scale:1,duration:.45,ease:"back.out(1.8)"},3.3);
+    tl.fromTo("#ou-photo",{scale:1.0},{scale:1.06,duration:2.7,ease:"none",immediateRender:false},3.0);
+    tl.to("#ou-wipe",{opacity:1,duration:.5,ease:"power2.in"},5.2);
+
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

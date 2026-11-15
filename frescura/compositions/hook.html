@@ -1,0 +1,99 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+    .hk-wall{background:linear-gradient(180deg,#1B1410 0%,#2B2019 48%,#120E0B 62%,#070605 100%)}
+    .hk-pil{position:absolute;top:0;height:1180px;background:linear-gradient(180deg,rgba(255,226,170,.0),rgba(255,226,170,.55) 30%,rgba(255,226,170,.15) 80%,transparent)}
+    .hk-bk{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,214,150,.9) 0%,rgba(255,200,120,.25) 45%,transparent 70%);}
+    #hk-floor{position:absolute;left:-400px;width:1880px;top:1120px;height:1300px;transform-origin:50% 0;
+      background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 235px),
+        radial-gradient(60% 40% at 50% 8%,rgba(255,220,170,.35),transparent 70%),
+        linear-gradient(180deg,#3A2D24 0%,#1A1310 40%,#0B0807 100%)}
+    .hk-cone{position:absolute;top:-120px;width:620px;height:1500px;mix-blend-mode:screen;
+      background:linear-gradient(180deg,rgba(255,236,200,.55),rgba(255,236,200,.08) 75%,transparent);
+      clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(10px)}
+    #hk-cone1{left:20px} #hk-cone2{left:440px}
+    #hk-vit{position:absolute;left:95px;top:430px;width:890px;height:860px;border:2px solid rgba(217,183,126,.35);border-radius:6px;
+      background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,.05) 55%,rgba(255,255,255,0) 70%)}
+    .hk-ped{position:absolute;top:1100px;width:300px;height:250px;
+      background:linear-gradient(90deg,#16110D 0%,#3E3127 35%,#5A4A3A 50%,#2C221B 75%,#120D0A 100%)}
+    .hk-pedtop{position:absolute;left:0;top:-26px;width:300px;height:52px;border-radius:50%;
+      background:radial-gradient(60% 60% at 50% 40%,#E9D3A8,#8A7050 70%,#4A3A2C)}
+    #hk-ped1{left:150px} #hk-ped2{left:630px}
+    .hk-bot{position:absolute;top:500px;width:270px;height:760px}
+    .hk-bot img{position:absolute;left:0;top:0;width:270px;height:760px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+    .hk-bot img.hk-ref{top:760px;transform:scaleY(-1);opacity:.22;filter:blur(2px);
+      -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 35%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 35%)}
+    #hk-b1{left:165px} #hk-b2{left:645px}
+    #hk-glint{position:absolute;left:-300px;top:400px;width:220px;height:1000px;mix-blend-mode:screen;
+      background:linear-gradient(90deg,transparent,rgba(255,250,235,.35),transparent);filter:blur(8px)}
+    
+  #hk-cam{position:absolute;inset:0}
+  #hk-blur{position:absolute;inset:0;backdrop-filter:blur(14px);background:rgba(8,6,5,.45)}
+  #hk-t1{top:470px;font-size:188px}
+  #hk-t2{top:700px;font-size:150px}
+  #hk-q{top:880px;font-size:300px;line-height:1}
+  #hk-line{left:240px;width:600px;top:450px}
+  #hk-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#FFF2D6,rgba(255,220,160,.0) 60%);mix-blend-mode:screen}
+</style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-duration="1.5">
+
+    <div id="hk-cam">
+    <div id="hk-set" class="full" data-layout-allow-overflow data-layout-ignore>
+      <div class="full hk-wall"></div>
+      <div class="hk-pil" style="left:40px;width:26px"></div><div class="hk-pil" style="left:250px;width:14px"></div><div class="hk-pil" style="left:800px;width:14px"></div><div class="hk-pil" style="left:1010px;width:26px"></div>
+      <div class="full" id="hk-bokeh"><div class="hk-bk" style="left:-10px;top:210px;width:180px;height:180px;opacity:0.18"></div><div class="hk-bk" style="left:150px;top:460px;width:120px;height:120px;opacity:0.26"></div><div class="hk-bk" style="left:820px;top:150px;width:220px;height:220px;opacity:0.33999999999999997"></div><div class="hk-bk" style="left:920px;top:540px;width:140px;height:140px;opacity:0.42"></div><div class="hk-bk" style="left:80px;top:740px;width:160px;height:160px;opacity:0.18"></div><div class="hk-bk" style="left:815px;top:805px;width:110px;height:110px;opacity:0.26"></div><div class="hk-bk" style="left:470px;top:110px;width:140px;height:140px;opacity:0.33999999999999997"></div><div class="hk-bk" style="left:340px;top:380px;width:80px;height:80px;opacity:0.42"></div><div class="hk-bk" style="left:650px;top:420px;width:100px;height:100px;opacity:0.18"></div><div class="hk-bk" style="left:-5px;top:595px;width:90px;height:90px;opacity:0.26"></div><div class="hk-bk" style="left:980px;top:360px;width:120px;height:120px;opacity:0.33999999999999997"></div><div class="hk-bk" style="left:585px;top:725px;width:70px;height:70px;opacity:0.42"></div></div>
+      <div id="hk-floor"></div>
+      <div id="hk-cone1" class="hk-cone"></div>
+      <div id="hk-cone2" class="hk-cone"></div>
+      <div id="hk-vit"></div>
+      <div id="hk-ped1" class="hk-ped"><div class="hk-pedtop"></div></div>
+      <div id="hk-ped2" class="hk-ped"><div class="hk-pedtop"></div></div>
+      <div id="hk-b1" class="hk-bot"><img src="assets/img/bottle_noche.png" alt=""><img class="hk-ref" src="assets/img/bottle_noche.png" alt=""></div>
+      <div id="hk-b2" class="hk-bot"><img src="assets/img/bottle_glory.png" alt=""><img class="hk-ref" src="assets/img/bottle_glory.png" alt=""></div>
+      <div id="hk-glint"></div>
+    </div></div>
+    <div id="hk-blur"></div>
+    <div class="vign"></div>
+    <div id="hk-line" class="hair"></div>
+    <div id="hk-t1" class="center disp it goldgrad">Abang,</div>
+    <div id="hk-t2" class="center disp">pernah <span class="it">terfikir</span></div>
+    <div id="hk-q" class="center disp goldgrad">?</div>
+    <div id="hk-flash"></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set("#hk-floor",{rotationX:72,transformPerspective:900},0);
+    
+    tl.fromTo("#hk-cam",{scale:1.25},{scale:1.08,duration:1.5,ease:"power2.out"},0);
+    tl.fromTo("#hk-flash",{opacity:.9},{opacity:0,duration:.45,ease:"power2.out"},0);
+    tl.fromTo("#hk-t1",{opacity:1,scale:1.6,filter:"blur(0px)"},{scale:1,duration:.38,ease:"expo.out"},0);
+    tl.fromTo("#hk-line",{scaleX:0},{scaleX:1,duration:.5,ease:"expo.out"},0.05);
+    tl.fromTo("#hk-t2",{opacity:0,y:40,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.3,ease:"power4.out"},0.42);
+    tl.fromTo("#hk-q",{opacity:0,scale:.3,rotation:-25},{opacity:1,scale:1,rotation:0,duration:.45,ease:"back.out(2)"},0.85);
+    tl.to(["#hk-t1","#hk-t2","#hk-q"],{opacity:0,filter:"blur(10px)",y:-30,duration:.18,ease:"power3.in"},1.32);
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

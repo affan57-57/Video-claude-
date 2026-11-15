@@ -1,0 +1,59 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  #fm-w1,#fm-w2{position:absolute;inset:0}
+  #fm-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,5,.75) 0%,rgba(8,6,5,0) 28%,rgba(8,6,5,.15) 50%,rgba(8,6,5,.7) 62%,rgba(8,6,5,.85) 100%)}
+  #fm-tag{top:200px;font-size:30px}
+  #fm-h{top:245px;font-size:112px}
+  .fm-chip{position:absolute;left:70px;width:440px;padding:22px 30px;border-radius:999px;border:1.5px solid rgba(217,183,126,.7);
+     background:rgba(15,11,8,.55);backdrop-filter:blur(12px);display:flex;flex-direction:column}
+  .fm-chip b{font-family:'Jakarta';font-weight:800;font-size:38px;color:var(--ink)}
+  .fm-chip span{font-family:'Tenor Sans';font-size:24px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+  #fm-c0{top:560px} #fm-c1{top:700px} #fm-c2{top:840px}
+  #fm-frame{position:absolute;left:40px;top:40px;right:40px;bottom:40px;border:1.5px solid rgba(217,183,126,.45);border-radius:28px}
+</style>
+  <div id="root" data-composition-id="foam" data-width="1080" data-height="1920" data-duration="3.6">
+
+    <div id="fm-w1"><video id="fm-v1" class="clip media" data-start="0" data-duration="1.95" data-media-start="0.1" src="assets/video/p1.mp4" muted playsinline></video></div>
+    <div id="fm-w2"><video id="fm-v2" class="clip media" data-start="1.95" data-duration="1.65" data-media-start="0.6" src="assets/video/p3.mp4" muted playsinline></video></div>
+    <div id="fm-grad"></div>
+    <div id="fm-frame"></div>
+    <div id="fm-tag" class="center label">Foaming Body Shower</div>
+    <div id="fm-h" class="center disp">buih <span class="it goldgrad">mewah</span></div>
+    <div class="fm-chip" id="fm-c0"><b>Ocean Salt</b><span>garam laut</span></div><div class="fm-chip" id="fm-c1"><b>Aromaterapi</b><span>tenang & wangi</span></div><div class="fm-chip" id="fm-c2"><b>Gentle Foaming</b><span>lembut di kulit</span></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#fm-w1",{scale:1.0},{scale:1.12,duration:1.95,ease:"none"},0);
+    tl.fromTo("#fm-w2",{scale:1.2},{scale:1.05,duration:1.65,ease:"power2.out"},1.95);
+    tl.fromTo("#fm-frame",{opacity:0,scale:1.05},{opacity:1,scale:1,duration:.5,ease:"expo.out"},0);
+    tl.fromTo("#fm-tag",{opacity:0,scale:1.14},{opacity:1,scale:1,duration:.6,ease:"expo.out"},0.05);
+    tl.fromTo("#fm-h",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:.2},0.3);
+    [0,1,2].forEach(i=>tl.fromTo("#fm-c"+i,{x:-520,opacity:0},{x:0,opacity:1,duration:.45,ease:"expo.out"},1.5+i*0.4));
+    tl.to(["#fm-c0","#fm-c1","#fm-c2","#fm-h","#fm-tag"],{opacity:0,x:80,duration:.15,ease:"power2.in"},3.42);
+
+    window.__timelines["foam"] = tl;
+  </script>
+</template>

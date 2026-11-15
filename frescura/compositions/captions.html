@@ -1,0 +1,140 @@
+<template>
+  <style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500.woff2') format('woff2');font-weight:500;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-800.woff2') format('woff2');font-weight:800;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/bodoni-500i.woff2') format('woff2');font-weight:500;font-style:italic}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Jakarta';src:url('assets/fonts/pjs-800.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Tenor Sans';src:url('assets/fonts/tenor.woff2') format('woff2');font-weight:400}
+
+#root{position:absolute;inset:0;overflow:hidden;--ink:#F6EFE4;--gold:#D9B77E;--gold2:#F3DDB0;--noir:#0A0807;--rose:#C0213A;--violet:#7A5CFF;}
+#root *{box-sizing:border-box}
+.full{position:absolute;inset:0}
+.bg-noir{background:radial-gradient(120% 70% at 50% 38%,#2A1F17 0%,#120D0A 55%,#060504 100%)}
+.label{font-family:'Tenor Sans',serif;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:30px}
+.disp{font-family:'Bodoni Moda',serif;font-weight:500;color:var(--ink);line-height:.98;letter-spacing:-.01em}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldgrad{background:linear-gradient(100deg,#B98F4E 0%,#F6E3B8 45%,#C99D5C 70%,#F3DDB0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{position:absolute;left:0;right:0;text-align:center}
+.hair{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.vign{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent 40%,rgba(0,0,0,.75) 100%);pointer-events:none}
+.media{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+
+  .cg{position:absolute;left:0;right:0;top:1170px;height:170px;display:flex;align-items:center;justify-content:center}
+  .cgi{max-width:880px;text-align:center;font-family:'Jakarta';font-weight:800;font-size:66px;line-height:1.08;color:#FFFFFF;
+       text-shadow:0 4px 24px rgba(0,0,0,.75),0 1px 2px rgba(0,0,0,.9)}
+  .cw{display:inline-block}
+  .cw.em{font-family:'Bodoni Moda';font-style:italic;font-weight:500;font-size:80px;color:#F3D9A4}
+</style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="24.75">
+<div class="cg clip" id="cg0" data-start="0.2" data-duration="1.25"><div class="cgi"><span class="cw" id="cw0_0">Abang</span> <span class="cw" id="cw0_1">pernah</span> <span class="cw" id="cw0_2">tak</span> <span class="cw em" id="cw0_3">terfikir?</span></div></div>
+<div class="cg clip" id="cg1" data-start="1.45" data-duration="0.9"><div class="cgi"><span class="cw" id="cw1_0">isteri</span> <span class="cw" id="cw1_1">abang</span> <span class="cw" id="cw1_2">mungkin</span></div></div>
+<div class="cg clip" id="cg2" data-start="2.35" data-duration="1.12"><div class="cgi"><span class="cw" id="cw2_0">tak</span> <span class="cw" id="cw2_1">pernah</span> <span class="cw em" id="cw2_2">minta</span> <span class="cw em" id="cw2_3">hadiah</span></div></div>
+<div class="cg clip" id="cg3" data-start="3.47" data-duration="1.28"><div class="cgi"><span class="cw" id="cw3_0">tapi</span> <span class="cw" id="cw3_1">jauh</span> <span class="cw" id="cw3_2">di</span> <span class="cw" id="cw3_3">sudut</span> <span class="cw" id="cw3_4">hati</span></div></div>
+<div class="cg clip" id="cg4" data-start="4.75" data-duration="1.52"><div class="cgi"><span class="cw" id="cw4_0">dia</span> <span class="cw" id="cw4_1">pun</span> <span class="cw" id="cw4_2">nak</span> <span class="cw" id="cw4_3">rasa</span> <span class="cw em" id="cw4_4">dihargai</span></div></div>
+<div class="cg clip" id="cg5" data-start="6.27" data-duration="0.98"><div class="cgi"><span class="cw" id="cw5_0">Bukan</span> <span class="cw em" id="cw5_1">hadiah</span> <span class="cw em" id="cw5_2">mahal</span></div></div>
+<div class="cg clip" id="cg6" data-start="7.25" data-duration="1.04"><div class="cgi"><span class="cw" id="cw6_0">yang</span> <span class="cw" id="cw6_1">dia</span> <span class="cw" id="cw6_2">harapkan</span></div></div>
+<div class="cg clip" id="cg7" data-start="8.29" data-duration="1.18"><div class="cgi"><span class="cw" id="cw7_0">Kadang-kadang</span> <span class="cw" id="cw7_1">perhatian</span> <span class="cw em" id="cw7_2">kecil</span></div></div>
+<div class="cg clip" id="cg8" data-start="9.47" data-duration="1.06"><div class="cgi"><span class="cw" id="cw8_0">daripada</span> <span class="cw" id="cw8_1">suami</span> <span class="cw" id="cw8_2">pun</span></div></div>
+<div class="cg clip" id="cg9" data-start="10.53" data-duration="1.64"><div class="cgi"><span class="cw" id="cw9_0">dah</span> <span class="cw" id="cw9_1">cukup</span> <span class="cw em" id="cw9_2">membahagiakan</span></div></div>
+<div class="cg clip" id="cg10" data-start="13.69" data-duration="1.16"><div class="cgi"><span class="cw" id="cw10_0">Apa</span> <span class="cw" id="cw10_1">kata</span> <span class="cw" id="cw10_2">abang</span> <span class="cw em" id="cw10_3">hadiahkan</span></div></div>
+<div class="cg clip" id="cg11" data-start="14.85" data-duration="1.28"><div class="cgi"><span class="cw" id="cw11_0">mandian</span> <span class="cw em" id="cw11_1">foaming</span> <span class="cw" id="cw11_2">body</span> <span class="cw" id="cw11_3">shower</span></div></div>
+<div class="cg clip" id="cg12" data-start="16.13" data-duration="1.26"><div class="cgi"><span class="cw" id="cw12_0">ni</span> <span class="cw" id="cw12_1">untuk</span> <span class="cw" id="cw12_2">dia</span></div></div>
+<div class="cg clip" id="cg13" data-start="17.39" data-duration="1.5"><div class="cgi"><span class="cw" id="cw13_0">Pilihlah</span> <span class="cw" id="cw13_1">haruman</span></div></div>
+<div class="cg clip" id="cg14" data-start="18.95" data-duration="0.42"><div class="cgi"><span class="cw em" id="cw14_0">Bombshell</span></div></div>
+<div class="cg clip" id="cg15" data-start="19.37" data-duration="1.38"><div class="cgi"><span class="cw" id="cw15_0">ataupun</span> <span class="cw em" id="cw15_1">Midnight</span> <span class="cw em" id="cw15_2">Fantasy</span></div></div>
+<div class="cg clip" id="cg16" data-start="20.99" data-duration="1.26"><div class="cgi"><span class="cw" id="cw16_0">stok</span> <span class="cw" id="cw16_1">kami</span> <span class="cw" id="cw16_2">sangat-sangat</span> <span class="cw em" id="cw16_3">terhad</span></div></div>
+<div class="cg clip" id="cg17" data-start="22.25" data-duration="0.72"><div class="cgi"><span class="cw" id="cw17_0">Tekan</span> <span class="cw" id="cw17_1">beg</span> <span class="cw em" id="cw17_2">kuning</span> <span class="cw" id="cw17_3">sekarang</span></div></div>
+<div class="cg clip" id="cg18" data-start="22.97" data-duration="2.03"><div class="cgi"><span class="cw" id="cw18_0">dan</span> <span class="cw" id="cw18_1">checkout</span> <span class="cw" id="cw18_2">sementara</span> <span class="cw" id="cw18_3">masih</span> <span class="cw" id="cw18_4">ada</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+tl.fromTo("#cw0_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},0.21);
+tl.fromTo("#cw0_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},0.48);
+tl.fromTo("#cw0_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},0.70);
+tl.fromTo("#cw0_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},0.92);
+tl.to("#cg0 .cgi",{opacity:0,duration:.1,ease:"power2.in"},1.35);
+tl.fromTo("#cw1_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},1.46);
+tl.fromTo("#cw1_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},1.72);
+tl.fromTo("#cw1_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},2.00);
+tl.to("#cg1 .cgi",{opacity:0,duration:.1,ease:"power2.in"},2.25);
+tl.fromTo("#cw2_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},2.36);
+tl.fromTo("#cw2_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},2.56);
+tl.fromTo("#cw2_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},2.68);
+tl.fromTo("#cw2_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},2.96);
+tl.to("#cg2 .cgi",{opacity:0,duration:.1,ease:"power2.in"},3.37);
+tl.fromTo("#cw3_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},3.48);
+tl.fromTo("#cw3_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},3.78);
+tl.fromTo("#cw3_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},4.12);
+tl.fromTo("#cw3_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},4.28);
+tl.fromTo("#cw3_4",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},4.46);
+tl.to("#cg3 .cgi",{opacity:0,duration:.1,ease:"power2.in"},4.65);
+tl.fromTo("#cw4_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},4.76);
+tl.fromTo("#cw4_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},4.94);
+tl.fromTo("#cw4_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},5.10);
+tl.fromTo("#cw4_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},5.22);
+tl.fromTo("#cw4_4",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},5.46);
+tl.to("#cg4 .cgi",{opacity:0,duration:.1,ease:"power2.in"},6.17);
+tl.fromTo("#cw5_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},6.28);
+tl.fromTo("#cw5_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},6.54);
+tl.fromTo("#cw5_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},6.90);
+tl.to("#cg5 .cgi",{opacity:0,duration:.1,ease:"power2.in"},7.15);
+tl.fromTo("#cw6_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},7.26);
+tl.fromTo("#cw6_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},7.40);
+tl.fromTo("#cw6_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},7.62);
+tl.to("#cg6 .cgi",{opacity:0,duration:.1,ease:"power2.in"},8.19);
+tl.fromTo("#cw7_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},8.30);
+tl.fromTo("#cw7_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},8.66);
+tl.fromTo("#cw7_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},9.02);
+tl.to("#cg7 .cgi",{opacity:0,duration:.1,ease:"power2.in"},9.37);
+tl.fromTo("#cw8_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},9.48);
+tl.fromTo("#cw8_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},9.88);
+tl.fromTo("#cw8_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},10.24);
+tl.to("#cg8 .cgi",{opacity:0,duration:.1,ease:"power2.in"},10.43);
+tl.fromTo("#cw9_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},10.54);
+tl.fromTo("#cw9_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},10.68);
+tl.fromTo("#cw9_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},11.02);
+tl.to("#cg9 .cgi",{opacity:0,duration:.1,ease:"power2.in"},12.07);
+tl.fromTo("#cw10_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},13.70);
+tl.fromTo("#cw10_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},13.86);
+tl.fromTo("#cw10_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},14.06);
+tl.fromTo("#cw10_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},14.32);
+tl.to("#cg10 .cgi",{opacity:0,duration:.1,ease:"power2.in"},14.75);
+tl.fromTo("#cw11_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},14.86);
+tl.fromTo("#cw11_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},15.24);
+tl.fromTo("#cw11_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},15.60);
+tl.fromTo("#cw11_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},15.88);
+tl.to("#cg11 .cgi",{opacity:0,duration:.1,ease:"power2.in"},16.03);
+tl.fromTo("#cw12_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},16.14);
+tl.fromTo("#cw12_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},16.44);
+tl.fromTo("#cw12_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},16.76);
+tl.to("#cg12 .cgi",{opacity:0,duration:.1,ease:"power2.in"},17.29);
+tl.fromTo("#cw13_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},17.40);
+tl.fromTo("#cw13_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},17.76);
+tl.to("#cg13 .cgi",{opacity:0,duration:.1,ease:"power2.in"},18.79);
+tl.fromTo("#cw14_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},18.96);
+tl.to("#cg14 .cgi",{opacity:0,duration:.1,ease:"power2.in"},19.27);
+tl.fromTo("#cw15_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},19.38);
+tl.fromTo("#cw15_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},19.60);
+tl.fromTo("#cw15_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},19.90);
+tl.to("#cg15 .cgi",{opacity:0,duration:.1,ease:"power2.in"},20.65);
+tl.fromTo("#cw16_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},21.00);
+tl.fromTo("#cw16_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},21.06);
+tl.fromTo("#cw16_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},21.32);
+tl.fromTo("#cw16_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},21.96);
+tl.to("#cg16 .cgi",{opacity:0,duration:.1,ease:"power2.in"},22.15);
+tl.fromTo("#cw17_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},22.26);
+tl.fromTo("#cw17_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},22.42);
+tl.fromTo("#cw17_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},22.58);
+tl.fromTo("#cw17_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},22.78);
+tl.to("#cg17 .cgi",{opacity:0,duration:.1,ease:"power2.in"},22.87);
+tl.fromTo("#cw18_0",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},22.98);
+tl.fromTo("#cw18_1",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},23.20);
+tl.fromTo("#cw18_2",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},23.48);
+tl.fromTo("#cw18_3",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},24.04);
+tl.fromTo("#cw18_4",{opacity:.0,y:18,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.14,ease:"power3.out"},24.38);
+tl.to("#cg18 .cgi",{opacity:0,duration:.1,ease:"power2.in"},24.90);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
