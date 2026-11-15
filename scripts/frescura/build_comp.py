@@ -106,9 +106,9 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:var(--noir)}}
   background:var(--gold);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 6px 22px rgba(0,0,0,.7));padding:0 .04em}}
 /* overlays */
-#stripes{{position:absolute;inset:-40%;z-index:60;pointer-events:none;opacity:0;
+#stripes{{position:absolute;inset:-40%;z-index:60;pointer-events:none;opacity:0;visibility:hidden;
   background:repeating-linear-gradient(118deg,rgba(255,236,200,0) 0 70px,rgba(255,236,200,.85) 70px 120px,rgba(255,236,200,0) 120px 210px);mix-blend-mode:screen;filter:blur(6px)}}
-#flash{{position:absolute;inset:0;z-index:61;background:#fff6e6;opacity:0;pointer-events:none}}
+#flash{{position:absolute;inset:0;z-index:61;background:#fff6e6;opacity:0;visibility:hidden;pointer-events:none}}
 #grain{{position:absolute;inset:-100px;z-index:70;background:url(assets/img/grain.png);opacity:.07;mix-blend-mode:overlay;pointer-events:none}}
 #prog{{position:absolute;left:0;top:0;height:6px;width:1080px;z-index:72;transform-origin:0 50%;background:var(--gold)}}
 #wm{{position:absolute;right:34px;top:40px;z-index:80;font:500 22px/1 "Jost";letter-spacing:.35em;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.35);padding:10px 14px}}
@@ -349,12 +349,12 @@ const tl = gsap.timeline({{ paused: true }});
 const CAPS = {CAP_JSON};
 const E = "power3.out", EI = "expo.out";
 // ---- global
-tl.set(["#flash","#stripes"],{{opacity:0}},0);
+tl.set(["#flash","#stripes"],{{autoAlpha:0}},0);
 tl.fromTo("#prog", {{scaleX:0}}, {{scaleX:1, duration:{TOTAL}, ease:"none"}}, 0);
 tl.fromTo("#grain", {{x:0,y:0}}, {{x:-60,y:40, duration:{TOTAL}, ease:"steps(160)"}}, 0);
-function stripes(t){{ tl.fromTo("#stripes",{{opacity:0,x:-500}},{{opacity:1,x:0,duration:.22,ease:"power2.in"}},t-.22)
-  .to("#stripes",{{opacity:0,x:500,duration:.3,ease:"power2.out"}},t); }}
-function flash(t,o=.85){{ tl.fromTo("#flash",{{opacity:o}},{{opacity:0,duration:.35,ease:"power2.out"}},t); }}
+function stripes(t){{ tl.fromTo("#stripes",{{autoAlpha:0,x:-500}},{{autoAlpha:1,x:0,duration:.22,ease:"power2.in",immediateRender:false}},t-.22)
+  .fromTo("#stripes",{{autoAlpha:1,x:0}},{{autoAlpha:0,x:500,duration:.3,ease:"power2.out",immediateRender:false}},t); }}
+function flash(t,o=.85){{ tl.fromTo("#flash",{{autoAlpha:o}},{{autoAlpha:0,duration:.35,ease:"power2.out",immediateRender:false}},t); }}
 function sceneIn(sel,t,from){{ tl.fromTo(sel, from||{{scale:1.08,filter:"blur(14px)",opacity:0}}, {{scale:1,filter:"blur(0px)",opacity:1,duration:.5,ease:EI}}, t); }}
 function lineUp(sel,t,d=.7){{ tl.fromTo(sel,{{yPercent:110,opacity:0}},{{yPercent:0,opacity:1,duration:d,ease:EI}},t); }}
 // ---- captions: words rise in with blur, gold shimmer on highlights
