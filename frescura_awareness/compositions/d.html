@@ -1,0 +1,75 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#d-k{top:236px;left:470px;text-align:left;}
+#d-num{left:70px;top:200px;font-size:250px;line-height:1;color:#d8b77a;font-weight:500}
+#d-t1{left:470px;top:280px;font-size:66px;font-weight:500;}
+#d-t2{left:470px;top:365px;width:560px;font-size:56px;font-weight:700;line-height:1.12;letter-spacing:.01em}
+#d-arch{left:150px;top:540px;width:780px;height:600px;overflow:hidden;border-radius:390px 390px 26px 26px;}
+#d-rim{left:150px;top:540px;width:780px;height:600px;border-radius:390px 390px 26px 26px;box-shadow:0 0 0 2px #d8b77a inset;}
+
+#d-card{left:110px;top:600px;width:860px;height:470px;border-radius:30px;background:rgba(244,238,230,.05);border:1.5px solid rgba(216,183,122,.4);}
+#d-ct{left:150px;top:640px;font-size:30px;letter-spacing:.32em;text-transform:uppercase;color:#d8b77a}
+#d-st{right:150px;top:625px;font-size:56px;font-weight:700}
+#d-row{left:150px;top:760px;width:780px;display:flex;justify-content:space-between}
+.d-day{display:flex;flex-direction:column;align-items:center;gap:16px;font-size:28px;letter-spacing:.08em}
+.d-c{position:relative;width:88px;height:88px;border-radius:50%;border:2px solid rgba(216,183,122,.5);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.d-c svg{position:relative;z-index:2}
+.d-f{position:absolute;inset:0;background:#d8b77a;border-radius:50%}
+#d-note{left:150px;top:940px;width:780px;font-size:34px;line-height:1.3;opacity:.85}
+#d-note b{font-family:'Bodoni Moda';font-style:italic;color:#d8b77a}
+</style>
+<div id="root" data-composition-id="d" data-width="1080" data-height="1920" data-start="0" data-duration="3.6">
+<div id="d-wrap" class="full"><div id="d-bg" class="full" style="background:radial-gradient(900px 900px at 50% 45%,#211912,#0b0908 70%)"></div>
+<div id="d-num" class="abs it">03</div>
+<div id="d-k" class="abs eyebrow">Ketiga</div>
+<div id="d-t1" class="abs it">Amalkan</div>
+<div id="d-t2" class="abs serif">rutin penjagaan diri</div>
+<div id="d-card" class="abs"></div>
+<div id="d-ct" class="abs">Rutin mingguan</div>
+<div id="d-st" class="abs serif"><span id="d-n">0</span>/7</div>
+<div id="d-row" class="abs"><div class="d-day" id="d-d0"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck0" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f0"></div></div><span>Isn</span></div><div class="d-day" id="d-d1"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck1" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f1"></div></div><span>Sel</span></div><div class="d-day" id="d-d2"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck2" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f2"></div></div><span>Rab</span></div><div class="d-day" id="d-d3"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck3" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f3"></div></div><span>Kha</span></div><div class="d-day" id="d-d4"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck4" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f4"></div></div><span>Jum</span></div><div class="d-day" id="d-d5"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck5" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f5"></div></div><span>Sab</span></div><div class="d-day" id="d-d6"><div class="d-c"><svg width="54" height="54" viewBox="0 0 96 96"><path class="ln d-ck6" pathLength="1" d="M28 50 L43 65 L70 34" style="stroke:#0d0b0a;stroke-width:9"/></svg><div class="d-f" id="d-f6"></div></div><span>Ahd</span></div></div>
+<div id="d-note" class="abs">Kuncinya: <b>konsisten</b>, setiap hari.</div></div>
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+tl.fromTo('#d-num',{opacity:0,y:120,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.5,ease:'expo.out'},0);
+inBlur(tl,'#d-k',0.1,.35);inBlur(tl,'#d-t1',0.8,.3);
+tl.fromTo('#d-t2',{opacity:0,x:40,filter:'blur(10px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.4,ease:'expo.out'},1.2);
+
+tl.fromTo('#d-card',{opacity:0,y:60},{opacity:1,y:0,duration:.5,ease:'expo.out'},0.3);
+tl.fromTo(['#d-ct','#d-st'],{opacity:0},{opacity:1,duration:.3},0.45);
+tl.fromTo('.d-day',{opacity:0,y:30},{opacity:1,y:0,duration:.35,stagger:.05,ease:'expo.out'},0.5);
+var dn=document.getElementById('d-n');
+for(var i=0;i<7;i++){var t=1.4+i*0.21;tl.fromTo('#d-f'+i,{scale:0},{scale:1,duration:.22,ease:'back.out(2)'},t);draw(tl,'.d-ck'+i,t+.08,.2);(function(k){tl.call(function(){dn.textContent=String(k)},null,t+.01);tl.call(function(){dn.textContent=String(k-1)},null,t-.01);})(i+1);}
+inBlur(tl,'#d-note',2.3,.4);
+tl.to('#d-wrap',{x:-300,opacity:0,filter:'blur(14px)',duration:.22,ease:'power3.in'},3.38);
+tl.set({}, {}, 3.5900000000000003);
+window.__timelines["d"] = tl;
+})();
+</script>
+</template>

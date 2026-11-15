@@ -17,21 +17,20 @@ svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-li
 
 #br{left:70px;top:184px;font-size:28px;letter-spacing:.5em;font-weight:500;color:rgba(244,238,230,.75)}
 #ch{right:70px;top:180px;font-size:28px;letter-spacing:.32em;text-transform:uppercase;color:rgba(244,238,230,.75);text-align:right}
-#ch-n{font-weight:600;color:#d8b77a;margin-right:14px}
 #pg{left:70px;top:1360px;width:940px;height:2px;background:rgba(244,238,230,.12)}
 #pgf{width:100%;height:100%;background:#d8b77a;transform-origin:left center}
 #big{right:40px;top:1340px;font-size:520px;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(216,183,122,.16);font-weight:500}
 #gr{background:url('assets/img/grain.png');opacity:.07;mix-blend-mode:overlay}
 #vg{background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.45) 100%)}
 </style>
-<div id="root" data-composition-id="chrome" data-width="1080" data-height="1920" data-start="0" data-duration="37.4">
+<div id="root" data-composition-id="chrome" data-width="1080" data-height="1920" data-start="0" data-duration="33.6">
 
 <div id="vg" class="full"></div>
 <div id="gr" class="full"></div>
 <div id="br" class="abs">FRESCURA BODY</div>
-<div id="ch" class="abs"><span id="ch-n">01 /</span><span id="ch-l">Realiti</span></div>
+<div id="ch" class="abs">Tip isteri</div>
 <div id="pg" class="abs"><div id="pgf"></div></div>
-<div id="big" class="abs it" data-layout-ignore>01</div>
+<div id="big" class="abs it" data-layout-ignore>3</div>
 
 </div>
 <script>
@@ -45,15 +44,16 @@ function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0
 function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
 
 const tl = gsap.timeline({ paused: true });
-tl.set('#big',{textContent:'01'},0);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:true},0);tl.set('#ch-n',{textContent:'01 /'},0);tl.set('#ch-l',{textContent:'Realiti'},0);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:true},0);tl.set('#big',{textContent:'02'},7.0);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},7.0);tl.set('#ch-n',{textContent:'02 /'},7.0);tl.set('#ch-l',{textContent:'Fakta'},7.0);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},7.0);tl.set('#big',{textContent:'03'},11.55);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},11.55);tl.set('#ch-n',{textContent:'03 /'},11.55);tl.set('#ch-l',{textContent:'Keperluan'},11.55);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},11.55);tl.set('#big',{textContent:'04'},15.85);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},15.85);tl.set('#ch-n',{textContent:'04 /'},15.85);tl.set('#ch-l',{textContent:'Peringatan'},15.85);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},15.85);tl.set('#big',{textContent:'05'},19.28);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},19.28);tl.set('#ch-n',{textContent:'05 /'},19.28);tl.set('#ch-l',{textContent:'Solusi'},19.28);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},19.28);tl.set('#big',{textContent:'06'},24.6);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},24.6);tl.set('#ch-n',{textContent:'06 /'},24.6);tl.set('#ch-l',{textContent:'Untuk kamu'},24.6);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},24.6);tl.set('#big',{textContent:'07'},27.9);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},27.9);tl.set('#ch-n',{textContent:'07 /'},27.9);tl.set('#ch-l',{textContent:'Checkout'},27.9);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},27.9);tl.set('#big',{textContent:'08'},30.95);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},30.95);tl.set('#ch-n',{textContent:'08 /'},30.95);tl.set('#ch-l',{textContent:'Pilihan'},30.95);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},30.95);tl.set('#big',{textContent:'09'},33.1);tl.fromTo('#big',{opacity:0,y:60},{opacity:1,y:0,duration:.8,ease:'expo.out',immediateRender:false},33.1);tl.set('#ch-n',{textContent:'09 /'},33.1);tl.set('#ch-l',{textContent:'Sekarang'},33.1);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},33.1);
-tl.fromTo('#pgf',{scaleX:0},{scaleX:1,duration:37.4,ease:'none'},0);
-tl.fromTo('#gr',{backgroundPosition:'0px 0px'},{backgroundPosition:'512px 1536px',duration:37.4,ease:'steps(561)'},0);
-// dark chrome on the light editorial scene
-tl.to(['#br','#ch'],{color:'rgba(13,11,10,.8)',duration:.2},24.6);tl.to('#ch-n',{color:'#6e0f1d',duration:.2},24.6);tl.to('#ch-n',{color:'#d8b77a',duration:.2},27.9);tl.to(['#br','#ch'],{color:'rgba(244,238,230,.75)',duration:.2},27.9);
-tl.to('#vg',{opacity:.35,duration:.2},24.6);tl.to('#big',{webkitTextStroke:'2px rgba(110,15,29,.18)',duration:.2},24.6);tl.to('#big',{webkitTextStroke:'2px rgba(216,183,122,.16)',duration:.2},27.9);tl.to('#vg',{opacity:1,duration:.2},27.9);
-tl.to(['#br','#ch','#pg','#big'],{opacity:0,duration:.4},35.1);
+tl.set('#ch',{textContent:'Tip isteri'},0);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:true},0);tl.set('#ch',{textContent:'01 / Badan'},5.3);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},5.3);tl.set('#ch',{textContent:'02 / Pakaian'},7.25);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},7.25);tl.set('#ch',{textContent:'03 / Rutin'},9.7);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},9.7);tl.set('#ch',{textContent:'Ingat'},13.3);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},13.3);tl.set('#ch',{textContent:'Solusi'},15.4);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},15.4);tl.set('#ch',{textContent:'Ringkasan'},22.45);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},22.45);tl.set('#ch',{textContent:'Checkout'},25.6);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},25.6);tl.set('#ch',{textContent:'Sekarang'},29.2);tl.fromTo('#ch',{opacity:0,y:-10},{opacity:1,y:0,duration:.35,ease:'expo.out',immediateRender:false},29.2);
+tl.set('#big',{textContent:'3'},0);tl.set('#big',{textContent:'1'},5.3);tl.set('#big',{textContent:'2'},7.25);tl.set('#big',{textContent:'3'},9.7);
+tl.fromTo('#big',{opacity:1},{opacity:0,duration:.3},13.3);
+tl.fromTo('#pgf',{scaleX:0},{scaleX:1,duration:33.6,ease:'none'},0);
+tl.fromTo('#gr',{backgroundPosition:'0px 0px'},{backgroundPosition:'512px 1536px',duration:33.6,ease:'steps(504)'},0);
+tl.to(['#br','#ch'],{color:'rgba(13,11,10,.8)',duration:.2},22.45);tl.to(['#br','#ch'],{color:'rgba(244,238,230,.75)',duration:.2},25.6);
+tl.to('#vg',{opacity:.35,duration:.2},22.45);tl.to('#vg',{opacity:1,duration:.2},25.6);
+tl.to(['#br','#ch','#pg'],{opacity:0,duration:.4},31.2);
 
-tl.set({}, {}, 37.39);
+tl.set({}, {}, 33.59);
 window.__timelines["chrome"] = tl;
 })();
 </script>

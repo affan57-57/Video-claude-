@@ -42,7 +42,7 @@ svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-li
 #s5-g{left:330px}#s5-n{left:560px}
 .s5-ref{position:absolute;top:1170px;height:600px;transform:scaleY(-1);opacity:.16;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 45%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 45%)}
 .s5-bk{position:absolute;border-radius:50%;filter:blur(2px)}
-#s5-pre{top:860px;font-size:76px;font-weight:500;}
+#s5-pre{top:270px;font-size:72px;line-height:1.1;font-weight:500;}
 .s5-lab{position:absolute;top:700px;width:270px;}
 .s5-lab .nm{font-family:'Bodoni Moda';font-style:italic;font-size:50px;line-height:1.05}
 .s5-lab .sub{font-size:28px;letter-spacing:.36em;text-transform:uppercase;color:#d8b77a;margin-top:12px}
@@ -51,7 +51,7 @@ svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-li
 #s5-lkg{left:240px;width:70px}#s5-lkn{left:770px;width:70px}
 #s5-feat{top:540px;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a}
 </style>
-<div id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-start="0" data-duration="5.32">
+<div id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-start="0" data-duration="7.05">
 
 <div id="s5-bg" class="full"></div>
 <div id="s5-cam">
@@ -69,7 +69,7 @@ svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-li
   <img id="s5-g" class="s5-bt" src="assets/img/bt_glory.png"/>
   <img id="s5-n" class="s5-bt" src="assets/img/bt_noche.png"/>
 </div>
-<div id="s5-pre" class="abs center it">Pastinya,</div>
+<div id="s5-pre" class="abs center it">Untuk rutin mandi<br/>harian korang,</div>
 
 <div id="s5-lg" class="s5-lab"><div class="nm">Bombshell</div><div class="sub">Woman Glory</div></div>
 <div id="s5-ln" class="s5-lab"><div class="nm">Midnight<br/>Fantasy</div><div class="sub">Noche</div></div>
@@ -89,28 +89,28 @@ function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(
 const tl = gsap.timeline({ paused: true });
 
 tl.fromTo('#s5-cam',{scale:1.45,y:220,filter:'blur(16px)'},{scale:1.0,y:0,filter:'blur(0px)',duration:1.3,ease:'expo.out'},0);
-tl.to('#s5-cam',{scale:1.06,y:-30,duration:3.75,ease:'power1.inOut'},1.3);
-tl.fromTo('#s5-ceil',{backgroundPosition:'0px 0px, 0px 0px'},{backgroundPosition:'0px 0px, 0px 820px',duration:5.32,ease:'power2.out'},0);
-tl.fromTo('#s5-floor',{backgroundPosition:'0px 0px, 0px 0px, 0px -900px, 0px 0px'},{backgroundPosition:'0px 0px, 0px 0px, 0px 0px, 0px 0px',duration:5.32,ease:'power2.out'},0);
-tl.fromTo('#s5-bks',{x:0},{x:-60,duration:5.32,ease:'none'},0);
+tl.to('#s5-cam',{scale:1.06,y:-30,duration:5.5,ease:'power1.inOut'},1.3);
+tl.fromTo('#s5-ceil',{backgroundPosition:'0px 0px, 0px 0px'},{backgroundPosition:'0px 0px, 0px 820px',duration:7.05,ease:'power2.out'},0);
+tl.fromTo('#s5-floor',{backgroundPosition:'0px 0px, 0px 0px, 0px -900px, 0px 0px'},{backgroundPosition:'0px 0px, 0px 0px, 0px 0px, 0px 0px',duration:7.05,ease:'power2.out'},0);
+tl.fromTo('#s5-bks',{x:0},{x:-60,duration:7.05,ease:'none'},0);
 // neon sign flicker on (Frescura)
 tl.fromTo('#s5-sign',{opacity:0,scale:.92},{opacity:0,scale:.92,duration:.01},0);
-[0,.06,.12,.2,.28].forEach(function(d,i){tl.to('#s5-sign',{opacity:i%2?0.25:1,scale:1,duration:.03,ease:'none'},0.58+d);});
-tl.to('#s5-sign',{opacity:1,duration:.05},0.9);
+[0,.06,.12,.2,.28].forEach(function(d,i){tl.to('#s5-sign',{opacity:i%2?0.25:1,scale:1,duration:.03,ease:'none'},2.42+d);});
+tl.to('#s5-sign',{opacity:1,duration:.05},2.74);
 tl.fromTo('#s5-beam',{opacity:0},{opacity:1,duration:.5,ease:'power2.out'},0.05);
 tl.fromTo(['#s5-g','#s5-n'],{y:160,opacity:0,filter:'blur(10px)'},{y:0,opacity:1,filter:'blur(0px)',duration:.9,stagger:.12,ease:'expo.out'},0.05);
 tl.fromTo(['#s5-gr','#s5-nr'],{y:-160,opacity:0},{y:0,opacity:.16,duration:.9,stagger:.12,ease:'expo.out'},0.05);
-tl.fromTo('#s5-pre',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.3,ease:'expo.out'},0.03);
-tl.to('#s5-pre',{opacity:0,filter:'blur(8px)',duration:.2},0.85);
+tl.fromTo('#s5-pre',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:.4,ease:'expo.out'},0.45);
+tl.to('#s5-pre',{opacity:0,filter:'blur(8px)',duration:.2},2.15);
 // fragrance labels (after the pump overlay, 3.47+)
 
-tl.fromTo('#s5-lg',{opacity:0,x:-40,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45,ease:'expo.out'},3.6);
-tl.fromTo('#s5-ln',{opacity:0,x:40,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45,ease:'expo.out'},3.75);
+tl.fromTo('#s5-lg',{opacity:0,x:-40,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45,ease:'expo.out'},5.8);
+tl.fromTo('#s5-ln',{opacity:0,x:40,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45,ease:'expo.out'},6.32);
 
-tl.to('#s5-cam',{opacity:0,filter:'blur(14px)',scale:1.25,duration:.22,ease:'power3.in'},5.08);
-tl.to('.s5-lab',{opacity:0,duration:.18},5.08);
+tl.to('#s5-cam',{opacity:0,filter:'blur(14px)',scale:1.25,duration:.22,ease:'power3.in'},6.8);
+tl.to('.s5-lab',{opacity:0,duration:.18},6.8);
 
-tl.set({}, {}, 5.3100000000000005);
+tl.set({}, {}, 7.04);
 window.__timelines["s5"] = tl;
 })();
 </script>

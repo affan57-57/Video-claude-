@@ -1,0 +1,61 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url('assets/fonts/BodoniModa-normal.woff2') format('woff2');}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url('assets/fonts/BodoniModa-italic.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 800;src:url('assets/fonts/Jost-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Jost',sans-serif;color:#f4eee6;}
+.abs{position:absolute;}
+.full{position:absolute;inset:0;}
+.serif{font-family:'Bodoni Moda',serif;}
+.it{font-family:'Bodoni Moda',serif;font-style:italic;}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:30px;letter-spacing:.42em;text-transform:uppercase;color:#d8b77a;}
+.center{left:0;width:1080px;text-align:center;}
+.gold{color:#d8b77a;}
+.rule{height:2px;background:linear-gradient(90deg,transparent,#d8b77a,transparent);}
+svg .ln{fill:none;stroke:#d8b77a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;}
+
+#b-k{top:236px;left:470px;text-align:left;}
+#b-num{left:70px;top:200px;font-size:250px;line-height:1;color:#d8b77a;font-weight:500}
+#b-t1{left:470px;top:280px;font-size:66px;font-weight:500;}
+#b-t2{left:470px;top:365px;width:560px;font-size:56px;font-weight:700;line-height:1.12;letter-spacing:.01em}
+#b-arch{left:150px;top:540px;width:780px;height:600px;overflow:hidden;border-radius:390px 390px 26px 26px;}
+#b-rim{left:150px;top:540px;width:780px;height:600px;border-radius:390px 390px 26px 26px;box-shadow:0 0 0 2px #d8b77a inset;}
+
+#b-v{position:absolute;left:-150px;top:-540px;width:1080px;height:1920px;object-fit:cover}
+#b-ic{left:840px;top:1050px;width:120px;height:120px;border-radius:50%;background:#0d0b0a;border:2px solid #d8b77a;display:flex;align-items:center;justify-content:center}
+</style>
+<div id="root" data-composition-id="b" data-width="1080" data-height="1920" data-start="0" data-duration="1.95">
+<div id="b-wrap" class="full"><div id="b-bg" class="full" style="background:radial-gradient(900px 900px at 50% 45%,#211912,#0b0908 70%)"></div>
+<div id="b-num" class="abs it">01</div>
+<div id="b-k" class="abs eyebrow">Pertama</div>
+<div id="b-t1" class="abs it">Jaga</div>
+<div id="b-t2" class="abs serif">kebersihan badan</div>
+<div id="b-arch" class="abs"><video id="b-v" class="clip" src="assets/vid/lather.mp4" data-start="0" data-duration="1.95" muted playsinline></video></div>
+<div id="b-rim" class="abs"></div>
+<div id="b-ic" class="abs"><svg class="b-svg" width="72" height="72" viewBox="0 0 96 96"><path class="ln" pathLength="1" d="M48 12 C48 12 22 44 22 60 A26 26 0 0 0 74 60 C74 44 48 12 48 12 Z"/><path class="ln" pathLength="1" d="M36 62 A12 12 0 0 0 48 74"/></svg></div></div>
+
+</div>
+<script>
+(function(){
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function inBlur(tl,sel,t,d,extra){tl.fromTo(sel,Object.assign({opacity:0,filter:'blur(10px)'},extra&&extra.from||{}),Object.assign({opacity:1,filter:'blur(0px)',duration:d||0.35,ease:'expo.out'},extra&&extra.to||{}),t);}
+function outBlur(tl,sel,t,d){tl.to(sel,{opacity:0,filter:'blur(8px)',duration:d||0.18,ease:'power2.in'},t);}
+function slam(tl,sel,t,s){tl.fromTo(sel,{opacity:0,scale:s||1.35,filter:'blur(12px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:0.42,ease:'expo.out'},t);}
+function draw(tl,sel,t,d){tl.fromTo(sel,{strokeDashoffset:1},{strokeDashoffset:0,duration:d||0.5,ease:'power2.out'},t);}
+function shake(tl,sel,t,amp,seed){var r=rng(seed||7);for(var i=0;i<8;i++){tl.to(sel,{x:(r()-.5)*amp*(1-i/8),y:(r()-.5)*amp*(1-i/8),duration:0.03,ease:'none'},t+i*0.03);}tl.to(sel,{x:0,y:0,duration:0.04},t+0.24);}
+
+const tl = gsap.timeline({ paused: true });
+tl.fromTo('#b-num',{opacity:0,y:120,filter:'blur(14px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.5,ease:'expo.out'},0);
+inBlur(tl,'#b-k',0.1,.35);inBlur(tl,'#b-t1',0.8,.3);
+tl.fromTo('#b-t2',{opacity:0,x:40,filter:'blur(10px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.4,ease:'expo.out'},1.1);
+tl.fromTo(['#b-arch','#b-rim'],{clipPath:'inset(100% 0% 0% 0% round 0px)'},{clipPath:'inset(0% 0% 0% 0% round 0px)',duration:.6,ease:'expo.out'},0.05);
+tl.fromTo('#b-v',{scale:1.15},{scale:1,duration:1.95,ease:'power1.out'},0);
+tl.fromTo('#b-ic',{scale:0},{scale:1,duration:.4,ease:'back.out(2)'},1.2);draw(tl,'.b-svg .ln',1.25,.45);
+tl.to('#b-wrap',{x:-300,opacity:0,filter:'blur(14px)',duration:.22,ease:'power3.in'},1.73);
+tl.set({}, {}, 1.94);
+window.__timelines["b"] = tl;
+})();
+</script>
+</template>
