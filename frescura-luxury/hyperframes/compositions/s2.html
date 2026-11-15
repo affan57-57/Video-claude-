@@ -1,0 +1,45 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost.woff2') format('woff2');font-weight:300 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;--ivory:#F7F0E6;--gold:#D9B97E;--gold2:#F3DDAE;--esp:#120C0A;--rose:#C0212E;--violet:#7A55E0;--bag:#FFC629;font-family:'Jost',sans-serif;color:var(--ivory)}
+.abs{position:absolute}
+.lbl{font-family:'Jost';font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:29px}
+.serif{font-family:'Bodoni Moda'}
+.it{font-family:'Bodoni Moda';font-style:italic}
+.goldtxt{background:linear-gradient(100deg,#B98F4F 0%,#F3DDAE 38%,#D9B97E 60%,#FFF1CF 80%,#B98F4F 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{left:0;width:1080px;text-align:center}
+</style>
+<div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+
+<div id="s2-wrap" class="abs" style="inset:0">
+ <div id="s2-lbl" class="abs row lbl" style="top:250px">Tip 01 · Hargai Selagi Ada</div>
+ <div id="s2-frame" class="abs" style="left:250px;top:300px;width:580px;height:700px;border-radius:290px 290px 28px 28px;border:2px solid rgba(217,185,126,.7)"></div>
+ <div id="s2-card" class="abs" style="left:270px;top:320px;width:540px;height:660px;border-radius:270px 270px 22px 22px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.55)">
+   <img id="s2-img" src="assets/img/flatlay-linen.jpg" style="position:absolute;left:-40px;top:-70px;width:620px;height:1097px;object-fit:cover">
+ </div>
+ <div id="s2-line" class="abs" style="left:220px;top:1066px;width:640px;height:2px;background:linear-gradient(90deg,#D9B97E,#F3DDAE,#D9B97E);transform-origin:0 50%"></div>
+ <div id="s2-n1" class="abs" style="left:90px;top:1048px;width:300px;text-align:center"><div style="margin:0 auto;width:38px;height:38px;border-radius:50%;background:#F7F0E6;box-shadow:0 0 24px rgba(255,236,200,.7)"></div><div style="margin-top:16px;font-size:28px;font-weight:600;letter-spacing:.08em">PERKARA KECIL</div></div>
+ <div id="s2-n2" class="abs" style="left:380px;top:1048px;width:320px;text-align:center"><div style="margin:0 auto;width:38px;height:38px;border-radius:50%;background:#F7F0E6;box-shadow:0 0 24px rgba(255,236,200,.7)"></div><div style="margin-top:16px;font-size:28px;font-weight:600;letter-spacing:.08em">HARI INI</div></div>
+ <div id="s2-n3" class="abs" style="left:700px;top:1048px;width:320px;text-align:center"><div style="margin:0 auto;width:38px;height:38px;border-radius:50%;background:#D9B97E;box-shadow:0 0 30px rgba(243,221,174,.9)"></div><div class="it goldtxt" style="margin-top:6px;font-size:40px;font-weight:600">kenangan manis</div></div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s2-lbl",{opacity:0,y:-20},{opacity:1,y:0,duration:0.5,ease:"expo.out"},0.05);
+tl.fromTo("#s2-card",{clipPath:"inset(100% 0% 0% 0% round 270px 270px 22px 22px)"},{clipPath:"inset(0% 0% 0% 0% round 270px 270px 22px 22px)",duration:0.6,ease:"expo.out"},0.0);
+tl.fromTo("#s2-frame",{opacity:0,scale:1.08},{opacity:1,scale:1,duration:0.8,ease:"expo.out"},0.15);
+tl.fromTo("#s2-img",{scale:1.18,y:30},{scale:1.0,y:0,duration:4.9,ease:"power1.out"},0);
+tl.fromTo("#s2-line",{scaleX:0},{scaleX:1,duration:3.2,ease:"power2.inOut"},0.47);
+tl.fromTo("#s2-n1",{opacity:0,y:24,scale:0.7},{opacity:1,y:0,scale:1,duration:0.4,ease:"back.out(2)"},0.47);
+tl.fromTo("#s2-n2",{opacity:0,y:24,scale:0.7},{opacity:1,y:0,scale:1,duration:0.4,ease:"back.out(2)"},1.95);
+tl.fromTo("#s2-n3",{opacity:0,y:24,scale:0.7},{opacity:1,y:0,scale:1,duration:0.45,ease:"back.out(2)"},3.39);
+tl.to("#s2-wrap",{scale:0.86,opacity:0,filter:"blur(12px)",duration:0.3,ease:"power3.in"},4.6);
+
+window.__timelines["s2"] = tl;
+</script>
+</template>

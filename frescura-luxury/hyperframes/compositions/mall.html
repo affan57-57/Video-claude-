@@ -1,0 +1,86 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost.woff2') format('woff2');font-weight:300 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;--ivory:#F7F0E6;--gold:#D9B97E;--gold2:#F3DDAE;--esp:#120C0A;--rose:#C0212E;--violet:#7A55E0;--bag:#FFC629;font-family:'Jost',sans-serif;color:var(--ivory)}
+.abs{position:absolute}
+.lbl{font-family:'Jost';font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:29px}
+.serif{font-family:'Bodoni Moda'}
+.it{font-family:'Bodoni Moda';font-style:italic}
+.goldtxt{background:linear-gradient(100deg,#B98F4F 0%,#F3DDAE 38%,#D9B97E 60%,#FFF1CF 80%,#B98F4F 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{left:0;width:1080px;text-align:center}
+</style>
+<div id="root" data-composition-id="mall" data-width="1080" data-height="1920">
+
+<div id="m-bg" class="abs" style="inset:0;background:radial-gradient(ellipse 90% 60% at 50% 32%,#47332a 0%,#22170f 45%,#0b0706 100%)"></div>
+<div id="m-arch" class="abs" style="left:170px;top:250px;width:740px;height:1150px;border:2px solid rgba(217,185,126,.35);border-bottom:none;border-radius:370px 370px 0 0"></div>
+<div id="m-arch2" class="abs" style="left:200px;top:280px;width:680px;height:1120px;border:1px solid rgba(217,185,126,.18);border-bottom:none;border-radius:340px 340px 0 0;background:radial-gradient(ellipse at 50% 20%,rgba(255,230,190,.10),rgba(0,0,0,0) 70%)"></div>
+<div id="m-pl" class="abs" style="left:-20px;top:0;width:130px;height:1920px;background:linear-gradient(90deg,#3b2c22,#c9b9a4 40%,#efe5d7 55%,#8f7a65);opacity:.55"></div>
+<div id="m-pr" class="abs" style="left:970px;top:0;width:130px;height:1920px;background:linear-gradient(90deg,#8f7a65,#efe5d7 45%,#c9b9a4 60%,#3b2c22);opacity:.55"></div>
+<div class="abs" style="left:110px;top:0;width:2px;height:1920px;background:linear-gradient(#0000,#D9B97E 30%,#D9B97E 70%,#0000);opacity:.6"></div>
+<div class="abs" style="left:968px;top:0;width:2px;height:1920px;background:linear-gradient(#0000,#D9B97E 30%,#D9B97E 70%,#0000);opacity:.6"></div>
+<div id="m-floor" class="abs" style="left:0;top:1400px;width:1080px;height:520px;background:linear-gradient(#2a1d16,#0d0907);"></div>
+<div class="abs" style="left:0;top:1400px;width:1080px;height:2px;background:linear-gradient(90deg,#0000,#D9B97E,#0000);opacity:.7"></div>
+<div id="m-b0" class="abs" style="left:309px;top:294px;width:125px;height:125px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.28) 0%,rgba(255,226,170,0.17) 55%,rgba(255,226,170,0) 72%);filter:blur(8px)"></div>
+<div id="m-b1" class="abs" style="left:977px;top:385px;width:51px;height:51px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,180,0.12) 0%,rgba(255,214,180,0.07) 55%,rgba(255,214,180,0) 72%);filter:blur(7px)"></div>
+<div id="m-b2" class="abs" style="left:883px;top:256px;width:69px;height:69px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.23) 0%,rgba(255,226,170,0.14) 55%,rgba(255,226,170,0) 72%);filter:blur(12px)"></div>
+<div id="m-b3" class="abs" style="left:-7px;top:1299px;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,215,0.22) 0%,rgba(255,240,215,0.13) 55%,rgba(255,240,215,0) 72%);filter:blur(15px)"></div>
+<div id="m-b4" class="abs" style="left:717px;top:226px;width:114px;height:114px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,215,0.18) 0%,rgba(255,240,215,0.11) 55%,rgba(255,240,215,0) 72%);filter:blur(15px)"></div>
+<div id="m-b5" class="abs" style="left:8px;top:372px;width:128px;height:128px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,180,0.27) 0%,rgba(255,214,180,0.16) 55%,rgba(255,214,180,0) 72%);filter:blur(13px)"></div>
+<div id="m-b6" class="abs" style="left:352px;top:433px;width:63px;height:63px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,215,0.12) 0%,rgba(255,240,215,0.07) 55%,rgba(255,240,215,0) 72%);filter:blur(11px)"></div>
+<div id="m-b7" class="abs" style="left:332px;top:717px;width:119px;height:119px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.13) 0%,rgba(255,226,170,0.08) 55%,rgba(255,226,170,0) 72%);filter:blur(13px)"></div>
+<div id="m-b8" class="abs" style="left:113px;top:774px;width:45px;height:45px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.27) 0%,rgba(255,226,170,0.16) 55%,rgba(255,226,170,0) 72%);filter:blur(15px)"></div>
+<div id="m-b9" class="abs" style="left:298px;top:1067px;width:117px;height:117px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,180,0.12) 0%,rgba(255,214,180,0.07) 55%,rgba(255,214,180,0) 72%);filter:blur(7px)"></div>
+<div id="m-b10" class="abs" style="left:735px;top:172px;width:135px;height:135px;border-radius:50%;background:radial-gradient(circle,rgba(240,200,140,0.24) 0%,rgba(240,200,140,0.15) 55%,rgba(240,200,140,0) 72%);filter:blur(22px)"></div>
+<div id="m-b11" class="abs" style="left:264px;top:628px;width:127px;height:127px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.31) 0%,rgba(255,226,170,0.18) 55%,rgba(255,226,170,0) 72%);filter:blur(12px)"></div>
+<div id="m-b12" class="abs" style="left:503px;top:390px;width:77px;height:77px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,215,0.19) 0%,rgba(255,240,215,0.11) 55%,rgba(255,240,215,0) 72%);filter:blur(21px)"></div>
+<div id="m-b13" class="abs" style="left:130px;top:650px;width:76px;height:76px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,215,0.28) 0%,rgba(255,240,215,0.17) 55%,rgba(255,240,215,0) 72%);filter:blur(20px)"></div>
+<div id="m-b14" class="abs" style="left:413px;top:589px;width:155px;height:155px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,215,0.13) 0%,rgba(255,240,215,0.08) 55%,rgba(255,240,215,0) 72%);filter:blur(9px)"></div>
+<div id="m-b15" class="abs" style="left:206px;top:769px;width:117px;height:117px;border-radius:50%;background:radial-gradient(circle,rgba(240,200,140,0.16) 0%,rgba(240,200,140,0.10) 55%,rgba(240,200,140,0) 72%);filter:blur(8px)"></div>
+<div id="m-b16" class="abs" style="left:635px;top:532px;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.20) 0%,rgba(255,226,170,0.12) 55%,rgba(255,226,170,0) 72%);filter:blur(20px)"></div>
+<div id="m-b17" class="abs" style="left:716px;top:874px;width:92px;height:92px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,180,0.12) 0%,rgba(255,214,180,0.07) 55%,rgba(255,214,180,0) 72%);filter:blur(16px)"></div>
+<div id="m-b18" class="abs" style="left:17px;top:376px;width:61px;height:61px;border-radius:50%;background:radial-gradient(circle,rgba(240,200,140,0.23) 0%,rgba(240,200,140,0.14) 55%,rgba(240,200,140,0) 72%);filter:blur(8px)"></div>
+<div id="m-b19" class="abs" style="left:552px;top:1428px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.29) 0%,rgba(255,226,170,0.18) 55%,rgba(255,226,170,0) 72%);filter:blur(16px)"></div>
+<div id="m-b20" class="abs" style="left:228px;top:573px;width:87px;height:87px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,170,0.13) 0%,rgba(255,226,170,0.08) 55%,rgba(255,226,170,0) 72%);filter:blur(14px)"></div>
+<div id="m-b21" class="abs" style="left:488px;top:523px;width:59px;height:59px;border-radius:50%;background:radial-gradient(circle,rgba(240,200,140,0.26) 0%,rgba(240,200,140,0.16) 55%,rgba(240,200,140,0) 72%);filter:blur(14px)"></div>
+
+<div id="m-sp1" class="abs" style="left:140px;top:-200px;width:420px;height:1700px;transform-origin:50% 0%;background:linear-gradient(rgba(255,236,200,.22),rgba(255,236,200,0) 85%);clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);filter:blur(10px)"></div>
+<div id="m-sp2" class="abs" style="left:520px;top:-200px;width:420px;height:1700px;transform-origin:50% 0%;background:linear-gradient(rgba(255,236,200,.18),rgba(255,236,200,0) 85%);clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);filter:blur(10px)"></div>
+<div id="m-vig" class="abs" style="inset:0;background:radial-gradient(ellipse 80% 70% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)"></div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#m-b0",{x:0},{x:15,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b1",{x:0},{x:-14,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b2",{x:0},{x:86,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b3",{x:0},{x:11,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b4",{x:0},{x:-79,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b5",{x:0},{x:76,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b6",{x:0},{x:-1,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b7",{x:0},{x:46,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b8",{x:0},{x:68,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b9",{x:0},{x:-41,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b10",{x:0},{x:58,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b11",{x:0},{x:20,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b12",{x:0},{x:-1,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b13",{x:0},{x:-40,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b14",{x:0},{x:-48,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b15",{x:0},{x:6,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b16",{x:0},{x:81,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b17",{x:0},{x:-79,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b18",{x:0},{x:12,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b19",{x:0},{x:-63,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b20",{x:0},{x:86,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-b21",{x:0},{x:35,duration:34.6,ease:"none"},0);
+
+tl.fromTo("#m-sp1",{rotation:-7},{rotation:6,duration:34.6,ease:"sine.inOut"},0);
+tl.fromTo("#m-sp2",{rotation:7},{rotation:-5,duration:34.6,ease:"sine.inOut"},0);
+tl.fromTo("#m-arch",{y:0},{y:-40,duration:34.6,ease:"none"},0);
+tl.fromTo("#m-arch2",{y:0},{y:-55,duration:34.6,ease:"none"},0);
+
+window.__timelines["mall"] = tl;
+</script>
+</template>

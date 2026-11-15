@@ -1,0 +1,62 @@
+<template>
+<style>
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa.woff2') format('woff2');font-weight:400 900;font-style:normal}
+@font-face{font-family:'Bodoni Moda';src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2');font-weight:400 900;font-style:italic}
+@font-face{font-family:'Jost';src:url('assets/fonts/Jost.woff2') format('woff2');font-weight:300 800;font-style:normal}
+
+#root{position:absolute;inset:0;overflow:hidden;--ivory:#F7F0E6;--gold:#D9B97E;--gold2:#F3DDAE;--esp:#120C0A;--rose:#C0212E;--violet:#7A55E0;--bag:#FFC629;font-family:'Jost',sans-serif;color:var(--ivory)}
+.abs{position:absolute}
+.lbl{font-family:'Jost';font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:29px}
+.serif{font-family:'Bodoni Moda'}
+.it{font-family:'Bodoni Moda';font-style:italic}
+.goldtxt{background:linear-gradient(100deg,#B98F4F 0%,#F3DDAE 38%,#D9B97E 60%,#FFF1CF 80%,#B98F4F 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{left:0;width:1080px;text-align:center}
+#s6-btn2{opacity:0}</style>
+<div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+
+<video id="s6-vid" class="clip" src="assets/video/foam.mp4" muted playsinline data-start="0" data-duration="4.85" data-media-start="24.6" style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover"></video>
+<div class="abs" style="inset:0;background:rgba(12,8,7,.74)"></div>
+<div id="s6-wrap" class="abs" style="inset:0">
+ <div id="s6-h" class="abs row" style="top:250px;font-size:96px;font-weight:800;letter-spacing:.05em;line-height:1">STOK <span id="s6-hw" style="display:inline-block;color:#ff4d5a">TERHAD</span></div>
+ <div class="abs" style="left:140px;top:380px;width:800px;height:16px;border-radius:8px;background:rgba(247,240,230,.15)"></div>
+ <div id="s6-bar" class="abs" style="left:140px;top:380px;width:800px;height:16px;border-radius:8px;background:linear-gradient(90deg,#ff4d5a,#D9B97E);transform-origin:0 50%"></div>
+ <div id="s6-bl" class="abs" style="left:140px;top:410px;font-size:28px;letter-spacing:.24em;font-weight:500;color:#e9dccb">BAKI STOK</div>
+ <div id="s6-hamp" class="abs" style="left:600px;top:410px;width:300px;text-align:right;font-size:28px;letter-spacing:.2em;font-weight:700;color:#ff4d5a">HAMPIR HABIS</div>
+ <div id="s6-card" class="abs" style="left:150px;top:500px;width:780px;height:560px;border-radius:40px;background:rgba(247,240,230,.07);border:1.5px solid rgba(217,185,126,.55)">
+   <img class="abs" src="assets/img/bombshell-cut.png" style="left:190px;top:40px;width:98px;height:300px">
+   <img class="abs" src="assets/img/noche-cut.png" style="left:490px;top:40px;width:97px;height:300px">
+   <div class="abs" style="left:0;top:360px;width:780px;text-align:center;font-size:26px;letter-spacing:.3em;color:#F3DDAE">FRESCURA BODY · 500ML</div>
+ </div>
+ <div id="s6-btn" class="abs" style="left:210px;top:920px;width:660px;height:150px;border-radius:75px;background:linear-gradient(180deg,#ffd451,#ffb800);box-shadow:0 20px 60px rgba(255,190,0,.45);display:flex;align-items:center;justify-content:center;gap:24px;color:#1b120d;font-size:38px;font-weight:800;letter-spacing:.06em"><svg width="110" height="110" viewBox="0 0 64 64"><path d="M14 22 h36 l-3 32 h-30 z" fill="#1b120d"/><path d="M24 24 v-6 a8 8 0 0 1 16 0 v6" fill="none" stroke="#1b120d" stroke-width="4" stroke-linecap="round"/></svg><span>TEKAN SEKARANG</span></div>
+ <div id="s6-btn2" class="abs" style="left:210px;top:920px;width:660px;height:150px;border-radius:75px;background:linear-gradient(100deg,#B98F4F,#F3DDAE 45%,#D9B97E);box-shadow:0 20px 60px rgba(217,185,126,.55);display:flex;align-items:center;justify-content:center;gap:20px;color:#1b120d;font-size:46px;font-weight:800;letter-spacing:.12em">
+   <svg width="56" height="56" viewBox="0 0 24 24"><path d="M4 12.5 L9.5 18 L20 6.5" fill="none" stroke="#1b120d" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>CHECKOUT</span></div>
+ <div id="s6-tap" class="abs" style="left:720px;top:1000px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 0 10px rgba(255,255,255,.25)"></div>
+ <div id="s6-warn" class="abs" style="left:700px;top:870px;padding:12px 26px;border-radius:30px;background:#c0212e;font-size:28px;font-weight:700;letter-spacing:.12em;transform-origin:0 100%">SEBELUM HABIS!</div>
+</div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s6-h",{opacity:0,scale:1.4,filter:"blur(14px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:0.3,ease:"expo.out"},0.0);
+tl.fromTo("#s6-bar",{scaleX:1},{scaleX:0.13,duration:1.4,ease:"power2.inOut"},0.15);
+tl.fromTo("#s6-bl",{opacity:0},{opacity:1,duration:0.3},0.15);
+tl.fromTo("#s6-hamp",{opacity:0,x:30},{opacity:1,x:0,duration:0.3,ease:"expo.out"},1.45);
+tl.fromTo("#s6-hw",{scale:1},{scale:1.18,duration:0.08,ease:"power2.out"},1.07);
+tl.to("#s6-hw",{scale:1,duration:0.4,ease:"elastic.out(1,0.4)"},1.1500000000000001);
+tl.fromTo("#s6-h",{x:0},{x:12,duration:0.04,yoyo:true,repeat:5,ease:"none"},1.07);
+tl.fromTo("#s6-card",{opacity:0,y:60},{opacity:1,y:0,duration:0.5,ease:"expo.out"},0.5);
+tl.fromTo("#s6-btn",{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.45,ease:"back.out(2)"},1.45);
+tl.fromTo("#s6-tap",{opacity:0,x:160,y:220,scale:1.4},{opacity:1,x:0,y:0,scale:1,duration:0.4,ease:"power3.out"},1.55);
+tl.to("#s6-tap",{scale:0.7,duration:0.08,ease:"power2.in"},2.05);
+tl.to("#s6-btn",{scale:0.93,duration:0.08,ease:"power2.in"},2.05);
+tl.to("#s6-btn",{scale:1,duration:0.35,ease:"back.out(3)"},2.13);
+tl.to("#s6-tap",{scale:1,opacity:0,duration:0.35,ease:"power2.out"},2.13);
+tl.fromTo("#s6-btn2",{opacity:0,scale:0.9},{opacity:1,scale:1,duration:0.3,ease:"back.out(2.5)"},3.23);
+tl.to("#s6-btn",{opacity:0,duration:0.15},3.23);
+tl.fromTo("#s6-warn",{opacity:0,scale:0.3,rotation:-14},{opacity:1,scale:1,rotation:-6,duration:0.35,ease:"back.out(2.5)"},4.11);
+tl.to("#s6-wrap",{opacity:0,scale:0.9,filter:"blur(12px)",duration:0.25,ease:"power3.in"},4.6);
+
+window.__timelines["s6"] = tl;
+</script>
+</template>
