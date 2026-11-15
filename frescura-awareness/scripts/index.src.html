@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Bodoni Moda";src:url(assets/fonts/bodoni.woff2) format("woff2");font-weight:400 900;font-style:normal}
+@font-face{font-family:"Bodoni Moda";src:url(assets/fonts/bodoni-it.woff2) format("woff2");font-weight:400 900;font-style:italic}
+@font-face{font-family:"Outfit";src:url(assets/fonts/outfit.woff2) format("woff2");font-weight:100 900}
+:root{
+  --black:#0a0807; --ink:#f7f1e7; --mute:#bfb3a2; --gold:#d6b36a; --gold2:#f4dfae; --gold3:#9c7a3c;
+  --plum:#7b4bd1; --rose:#c41d3a;
+  --serif:"Bodoni Moda",serif; --sans:"Outfit",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--black)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--black);font-family:var(--sans);color:var(--ink)}
+.clip{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden}
+.abs{position:absolute}
+.center{left:50%;transform:translateX(-50%)}
+.serif{font-family:var(--serif)}
+.eyebrow{font-family:var(--sans);font-weight:500;font-size:34px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.goldtxt{background:linear-gradient(100deg,#a8823f 0%,#f6e3b4 38%,#d4ae62 55%,#fff1c9 70%,#b48b45 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- luxury mall backdrop ---------- */
+.mall{position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 38%,#2a1f17 0%,#140f0b 45%,#070605 100%)}
+.mall .slats{position:absolute;left:-60px;right:-60px;top:0;height:1260px;opacity:.55;background:
+  repeating-linear-gradient(90deg,rgba(214,179,106,.0) 0 86px,rgba(214,179,106,.16) 86px 88px,rgba(0,0,0,.25) 88px 92px,rgba(214,179,106,0) 92px 180px);
+  -webkit-mask-image:linear-gradient(#000 0%,#000 60%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 60%,transparent 100%)}
+.mall .arch{position:absolute;left:150px;width:780px;top:250px;height:1060px;border-radius:390px 390px 0 0;
+  background:radial-gradient(80% 60% at 50% 30%,rgba(255,226,170,.16),rgba(255,226,170,.03) 60%,transparent 75%);
+  border:2px solid rgba(214,179,106,.35);box-shadow:inset 0 0 120px rgba(214,179,106,.08)}
+.mall .floor{position:absolute;left:0;right:0;top:1250px;bottom:0;background:
+  linear-gradient(180deg,rgba(255,236,200,.10),rgba(0,0,0,0) 30%),
+  repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 2px,transparent 2px 140px),
+  linear-gradient(180deg,#2b241d,#0c0a08 80%)}
+.mall .floor:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,rgba(244,223,174,.7),transparent)}
+.bokeh{position:absolute;border-radius:50%;mix-blend-mode:screen}
+.beam{position:absolute;top:-120px;width:420px;height:1500px;transform-origin:50% 0;
+  background:linear-gradient(180deg,rgba(255,235,195,.38),rgba(255,235,195,.06) 70%,transparent);
+  clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(10px);mix-blend-mode:screen}
+
+/* podium + products */
+.podium{position:absolute;left:50%;transform:translateX(-50%);width:820px;height:150px}
+.podium .top{position:absolute;left:0;right:0;top:0;height:120px;border-radius:50%;
+  background:radial-gradient(60% 60% at 50% 40%,#3d3329,#1a1510);border:2px solid rgba(214,179,106,.75);
+  box-shadow:0 0 60px rgba(214,179,106,.25),inset 0 6px 30px rgba(255,230,180,.15)}
+.podium .side{position:absolute;left:0;right:0;top:60px;height:150px;border-radius:0 0 50% 50%/0 0 60px 60px;
+  background:linear-gradient(90deg,#0e0b08,#2a221a 45%,#0e0b08);border-left:2px solid rgba(214,179,106,.4);border-right:2px solid rgba(214,179,106,.4)}
+.bottle{position:absolute;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.reflect{position:absolute;transform:scaleY(-1);opacity:.22;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 45%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 45%)}
+.sweep{position:absolute;top:0;bottom:0;width:260px;background:linear-gradient(100deg,transparent,rgba(255,250,235,.55),transparent);mix-blend-mode:overlay;filter:blur(6px)}
+
+/* glass cards */
+.glass{position:absolute;border-radius:36px;background:linear-gradient(140deg,rgba(255,255,255,.12),rgba(255,255,255,.03));
+  border:1.5px solid rgba(244,223,174,.35);box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.25);backdrop-filter:blur(18px)}
+
+/* global overlays */
+#frame{position:absolute;inset:34px;border:1.5px solid rgba(214,179,106,.45);border-radius:6px;pointer-events:none;z-index:50}
+#frame:before,#frame:after{content:"";position:absolute;width:44px;height:44px;border:3px solid var(--gold)}
+#frame:before{left:-8px;top:-8px;border-right:0;border-bottom:0}
+#frame:after{right:-8px;bottom:-8px;border-left:0;border-top:0}
+#brand{position:absolute;top:84px;left:0;right:0;text-align:center;z-index:51;font:500 26px var(--sans);letter-spacing:.6em;color:rgba(244,223,174,.85)}
+#brand b{font-family:var(--serif);font-weight:500;font-style:italic;letter-spacing:.05em;font-size:30px;color:var(--ink)}
+#grain{position:absolute;inset:-200px;z-index:60;opacity:.10;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}
+#vig{position:absolute;inset:0;z-index:55;pointer-events:none;background:radial-gradient(120% 85% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+#flash{position:absolute;inset:0;z-index:70;background:#fff8ea;opacity:0;pointer-events:none}
+#progress{position:absolute;left:70px;right:70px;bottom:70px;height:4px;z-index:52;background:rgba(244,223,174,.15);border-radius:4px;overflow:hidden}
+#progress i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--gold3),var(--gold2))}
+
+/* captions */
+#caps{position:absolute;left:60px;right:60px;top:1500px;height:260px;z-index:40}
+.cap{position:absolute;left:0;right:0;top:0;text-align:center;opacity:0;line-height:1.08}
+.cap .w{display:inline-block;margin:0 .14em;font:800 78px var(--sans);letter-spacing:-.005em;text-transform:uppercase;color:var(--ink);
+  text-shadow:0 4px 24px rgba(0,0,0,.85),0 2px 2px rgba(0,0,0,.6)}
+.cap .w.hl{color:var(--gold2)}
+.cap .bar{position:absolute;left:50%;top:-34px;width:120px;height:3px;margin-left:-60px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+/* scene-specific */
+.h-xl{font-family:var(--serif);font-weight:700;font-size:176px;line-height:.92;letter-spacing:-.02em}
+.h-l{font-family:var(--serif);font-weight:600;font-size:118px;line-height:.95;letter-spacing:-.015em}
+.it{font-family:var(--serif);font-style:italic;font-weight:500}
+.card{left:110px;width:860px;height:300px;display:flex;align-items:center;gap:44px;padding:0 56px}
+.card .ic{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.card h3{font:800 66px var(--sans);letter-spacing:.02em;text-transform:uppercase}
+.card p{font:400 36px var(--sans);color:var(--mute);margin-top:10px;letter-spacing:.01em}
+.row{display:flex;align-items:center;gap:26px;margin-top:40px}
+.row .lbl{font:600 38px var(--sans);width:420px;letter-spacing:.01em}
+.row .trk{flex:1;height:14px;border-radius:14px;background:rgba(255,255,255,.08);overflow:hidden}
+.row .trk i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--gold3),var(--gold2))}
+.row .ok{width:58px;height:58px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;opacity:0}
+.chip{display:inline-flex;align-items:center;gap:16px;padding:20px 38px;border-radius:80px;border:1.5px solid rgba(244,223,174,.6);
+  background:rgba(10,8,7,.55);font:600 36px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);backdrop-filter:blur(10px)}
+.benefit{left:90px;width:900px;height:170px;display:flex;align-items:center;gap:36px;padding:0 44px}
+.benefit .n{font:italic 600 76px var(--serif);color:var(--gold);width:90px}
+.benefit h4{font:800 50px var(--sans);letter-spacing:.06em;text-transform:uppercase}
+.benefit p{font:400 32px var(--sans);color:var(--mute);margin-top:6px}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="32" data-width="1080" data-height="1920">
+
+  <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="32" data-volume="1"></audio>
+
+  <!-- ===== S1 HOOK : mall display ===== -->
+  <section id="s1" class="clip" data-start="0" data-duration="3.55">
+    <div class="mall"><div class="slats"></div><div class="arch"></div><div class="floor"></div></div>
+    <div class="bk-layer"></div>
+    <div class="beam" style="left:120px;transform:rotate(-14deg)"></div>
+    <div class="beam" style="left:540px;transform:rotate(14deg)"></div>
+    <div id="s1-stage" class="abs" style="left:0;top:0;width:1080px;height:1920px">
+      <div class="podium" style="top:1330px"><div class="side"></div><div class="top"></div></div>
+      <img class="bottle" src="assets/img/noche.png" style="left:205px;top:610px;height:780px">
+      <img class="bottle" src="assets/img/glory.png" style="left:560px;top:620px;height:772px">
+      <div class="sweep" id="s1-sweep" style="left:-300px"></div>
+    </div>
+    <div class="abs" style="left:0;right:0;top:230px;text-align:center">
+      <div class="eyebrow" id="s1-e" style="clip-path:inset(0 100% 0 0)">Setiap hari · pada kulit</div>
+      <div class="h-xl" id="s1-h1" style="margin-top:26px">Dah <span class="goldtxt">Diuji</span></div>
+      <div class="h-l it goldtxt" id="s1-h2" style="margin-top:6px">atau tidak?</div>
+    </div>
+  </section>
+
+  <!-- ===== S2 EDUCATION : right to know ===== -->
+  <section id="s2" class="clip" data-start="3.45" data-duration="3.6">
+    <div class="mall"><div class="slats" style="opacity:.3"></div><div class="floor"></div></div>
+    <div class="abs" style="left:0;right:0;top:220px;text-align:center">
+      <div class="eyebrow" id="s2-e">Hak pengguna</div>
+      <div class="h-l" id="s2-h" style="margin-top:22px">Kau <span class="it goldtxt">berhak</span> tahu</div>
+    </div>
+    <div class="glass card abs" id="s2-a" style="top:600px">
+      <div class="ic" style="background:radial-gradient(circle,#f4dfae,#b88d45)"><svg width="80" height="80" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#1a130b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h3 class="goldtxt">Diuji Makmal</h3><p>Ada bukti &amp; keputusan ujian</p></div>
+    </div>
+    <div class="glass card abs" id="s2-b" style="top:950px">
+      <div class="ic" style="background:rgba(196,29,58,.18);border:2px solid rgba(196,29,58,.7)"><svg width="70" height="70" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="#e8495f" stroke-width="2.8" stroke-linecap="round"/></svg></div>
+      <div><h3>Tiada Ujian</h3><p>Tiada bukti · siapa tahu?</p></div>
+    </div>
+    <div class="abs" id="s2-ring" style="left:110px;top:600px;width:860px;height:300px;border-radius:36px;border:3px solid var(--gold2);opacity:0;box-shadow:0 0 60px rgba(244,223,174,.5)"></div>
+  </section>
+
+  <!-- ===== S3a LOGO REVEAL ===== -->
+  <section id="s3a" class="clip" data-start="6.94" data-duration="1.5">
+    <div class="abs" style="inset:0;background:radial-gradient(70% 45% at 50% 42%,#0b1a2e 0%,#05070b 60%,#020203 100%)"></div>
+    <div class="abs" id="s3-ring" style="left:140px;top:420px;width:800px;height:800px;border-radius:50%;border:2px dashed rgba(90,190,255,.35)"></div>
+    <img id="s3-logo" class="abs" src="assets/img/logo.jpg" style="left:90px;top:370px;width:900px;height:900px;mix-blend-mode:screen">
+    <div class="abs" style="left:0;right:0;top:1290px;text-align:center"><div class="eyebrow" id="s3-e" style="color:#9fdcff">Telah menjalani</div></div>
+  </section>
+
+  <!-- ===== S3b LAB TEST ===== -->
+  <section id="s3b" class="clip" data-start="8.35" data-duration="1.85">
+    <div class="abs" style="inset:0;background:radial-gradient(90% 60% at 50% 40%,#1b1530 0%,#0b0912 55%,#050407 100%)"></div>
+    <svg class="abs" id="s3-net" style="left:0;top:0" width="1080" height="1400"></svg>
+    <div class="abs" style="left:0;right:0;top:220px;text-align:center">
+      <div class="eyebrow">Bukti saintifik</div>
+      <div class="h-l" id="s3-h" style="margin-top:20px">Ujian <span class="it goldtxt">Makmal</span></div>
+    </div>
+    <svg class="abs" id="flask" style="left:340px;top:520px" width="400" height="560" viewBox="0 0 400 560">
+      <defs>
+        <linearGradient id="liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b98cff"/><stop offset="1" stop-color="#d0264a"/></linearGradient>
+        <clipPath id="fl"><path d="M150 40 h100 v170 l130 280 q14 40 -30 50 h-300 q-44 -10 -30 -50 l130 -280z"/></clipPath>
+      </defs>
+      <g clip-path="url(#fl)"><rect id="liqrect" x="0" y="560" width="400" height="560" fill="url(#liq)"/>
+        <g id="bubs"></g></g>
+      <path d="M150 40 h100 v170 l130 280 q14 40 -30 50 h-300 q-44 -10 -30 -50 l130 -280z" fill="rgba(255,255,255,.04)" stroke="#f4dfae" stroke-width="5"/>
+      <rect x="132" y="20" width="136" height="28" rx="10" fill="none" stroke="#f4dfae" stroke-width="5"/>
+      <path d="M95 330 h40 M75 380 h40 M55 430 h40" stroke="#f4dfae" stroke-width="4" opacity=".6"/>
+    </svg>
+    <div class="abs center" id="s3-pin" style="top:1150px"><span class="chip"><svg width="34" height="40" viewBox="0 0 24 28"><path d="M12 27s9-9.2 9-15.5A9 9 0 0 0 3 11.5C3 17.8 12 27 12 27z" fill="#d6b36a"/><circle cx="12" cy="11.5" r="3.4" fill="#0a0807"/></svg>Kedah Bio</span></div>
+  </section>
+
+  <!-- ===== S4 REPORT + STAMP ===== -->
+  <section id="s4" class="clip" data-start="10.1" data-duration="3.4">
+    <div class="mall"><div class="slats" style="opacity:.25"></div><div class="floor"></div></div>
+    <div class="glass abs" id="s4-card" style="left:90px;top:250px;width:900px;height:1080px;padding:70px 64px">
+      <div class="eyebrow" style="font-size:30px">Laporan ujian</div>
+      <div class="serif" style="font-size:92px;font-weight:600;margin-top:14px;line-height:1">Frescura <span class="it goldtxt">Body</span></div>
+      <div style="height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:40px 0 10px"></div>
+      <div class="row"><div class="lbl">Sampel diuji</div><div class="trk"><i></i></div><div class="ok"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#120d07" stroke-width="3.4" stroke-linecap="round"/></svg></div></div>
+      <div class="row"><div class="lbl">Keputusan ujian</div><div class="trk"><i></i></div><div class="ok"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#120d07" stroke-width="3.4" stroke-linecap="round"/></svg></div></div>
+      <div class="row"><div class="lbl">Spesifikasi makmal</div><div class="trk"><i></i></div><div class="ok"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#120d07" stroke-width="3.4" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="abs" id="s4-stamp" style="left:300px;top:840px;width:480px;height:480px;opacity:0">
+      <svg width="480" height="480" viewBox="0 0 480 480">
+        <defs><path id="cp" d="M240 240 m-194 0 a194 194 0 1 1 388 0 a194 194 0 1 1 -388 0"/></defs>
+        <circle cx="240" cy="240" r="222" fill="rgba(10,8,7,.82)" stroke="#d6b36a" stroke-width="8"/>
+        <circle cx="240" cy="240" r="160" fill="none" stroke="#d6b36a" stroke-width="2.5"/>
+        <text font-family="Outfit" font-weight="700" font-size="27" letter-spacing="8" fill="#f4dfae"><textPath href="#cp">MEMENUHI SPESIFIKASI · MAKMAL ·</textPath></text>
+        <text x="240" y="250" text-anchor="middle" font-family="Bodoni Moda" font-weight="700" font-size="66" fill="#f4dfae">LULUS</text>
+        <path d="M196 300 l32 30 l66 -66" fill="none" stroke="#d6b36a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== S5 PUMP FOAM (A-roll product) ===== -->
+<video id="v-pump1" class="clip" src="assets/video/pump.mp4" data-start="13.42" data-duration="2.62" data-media-start="3.4" muted playsinline style="object-fit:cover"></video>
+  <section id="s5" class="clip" data-start="13.42" data-duration="2.62">
+    <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(8,6,5,.78) 0%,rgba(8,6,5,0) 34%,rgba(8,6,5,0) 62%,rgba(8,6,5,.85) 100%)"></div>
+    <div class="abs" style="left:0;right:0;top:200px;text-align:center">
+      <div class="h-l" id="s5-h">Jangan <span class="it goldtxt">tunggu</span></div>
+      <div class="h-l" id="s5-h2" style="font-size:96px;margin-top:6px">lama-lama</div>
+    </div>
+    <div class="abs center" id="s5-chip" style="top:1330px"><span class="chip">✦ Gentle foaming</span></div>
+  </section>
+
+  <!-- ===== S6 STOK TERHAD : vitrine ===== -->
+  <section id="s6" class="clip" data-start="16.0" data-duration="1.6">
+    <div class="mall"><div class="slats"></div><div class="arch"></div><div class="floor"></div></div>
+    <div class="beam" style="left:330px;transform:rotate(0deg);width:420px"></div>
+    <div class="abs" id="s6-vit" style="left:170px;top:560px;width:740px;height:800px;border:2px solid rgba(244,223,174,.5);border-radius:10px;background:linear-gradient(120deg,rgba(255,255,255,.07),rgba(255,255,255,0) 40%,rgba(255,255,255,.05))">
+      <img class="bottle" src="assets/img/noche.png" style="left:70px;top:150px;height:610px">
+      <img class="bottle" src="assets/img/glory.png" style="left:390px;top:158px;height:603px">
+      <div class="sweep" id="s6-sweep" style="left:-300px"></div>
+    </div>
+    <div class="abs" style="left:0;right:0;top:200px;text-align:center">
+      <div class="h-xl" id="s6-h" style="font-size:150px">Stok <span class="it goldtxt">Terhad</span></div>
+    </div>
+    <div class="abs" style="left:170px;top:1395px;width:740px">
+      <div style="display:flex;justify-content:space-between;font:600 30px var(--sans);letter-spacing:.2em;color:var(--gold2)"><span>STOK</span><span id="s6-pct">100%</span></div>
+      <div style="height:16px;margin-top:14px;border-radius:16px;background:rgba(255,255,255,.1);overflow:hidden"><i id="s6-bar" style="display:block;height:100%;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,#c41d3a,#d6b36a)"></i></div>
+    </div>
+  </section>
+
+  <!-- ===== S7 CTA : yellow bag + checkout ===== -->
+  <section id="s7" class="clip" data-start="17.5" data-duration="3.5">
+    <div class="mall"><div class="slats" style="opacity:.35"></div><div class="floor"></div></div>
+    <img class="bottle abs" id="s7-l" src="assets/img/noche.png" style="left:-40px;top:560px;height:640px;opacity:.9">
+    <img class="bottle abs" id="s7-r" src="assets/img/glory.png" style="left:810px;top:570px;height:630px;opacity:.9">
+    <div class="abs" id="s7-ripple" style="left:390px;top:540px;width:300px;height:300px;border-radius:50%;border:4px solid #ffd23f;opacity:0"></div>
+    <div class="abs" id="s7-bag" style="left:390px;top:520px;width:300px;height:330px">
+      <svg width="300" height="330" viewBox="0 0 300 330">
+        <defs><linearGradient id="bagg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe066"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs>
+        <path d="M95 110 v-30 a55 55 0 0 1 110 0 v30" fill="none" stroke="#f5c400" stroke-width="18" stroke-linecap="round"/>
+        <rect x="30" y="100" width="240" height="220" rx="34" fill="url(#bagg)"/>
+        <rect x="30" y="100" width="240" height="40" rx="20" fill="rgba(255,255,255,.35)"/>
+        <path d="M110 205 l30 30 l55 -60" fill="none" stroke="#3a2a00" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="abs" style="left:0;right:0;top:230px;text-align:center">
+      <div class="eyebrow" id="s7-e">Tekan beg kuning</div>
+      <div class="h-l" id="s7-h" style="margin-top:20px">Checkout <span class="it goldtxt">sekarang</span></div>
+    </div>
+    <div class="abs center" id="s7-btn" style="top:1000px;width:760px;height:150px;border-radius:120px;background:linear-gradient(100deg,#b48b45,#f6e3b4 45%,#d4ae62);display:flex;align-items:center;justify-content:center;font:800 50px var(--sans);letter-spacing:.14em;color:#160f06;box-shadow:0 20px 60px rgba(214,179,106,.45)">CHECKOUT SEKARANG</div>
+    <div class="abs" id="s7-cur" style="left:830px;top:1100px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 0 14px rgba(255,255,255,.25);opacity:0"></div>
+    <div class="abs" style="left:0;right:0;top:1230px;text-align:center"><span class="chip" id="s7-warn" style="border-color:rgba(232,73,95,.7);color:#ffb3bf">⚠ Sebelum kehabisan stok</span></div>
+  </section>
+
+  <!-- ===== S8 FOAM ASMR + EDUCATION ===== -->
+<video id="v-pump2" class="clip" src="assets/video/pump.mp4" data-start="20.95" data-duration="3.85" data-media-start="12.6" muted playsinline style="object-fit:cover"></video>
+  <section id="s8" class="clip" data-start="20.95" data-duration="3.85">
+    <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(8,6,5,.8) 0%,rgba(8,6,5,0) 30%,rgba(8,6,5,.15) 55%,rgba(8,6,5,.9) 100%)"></div>
+    <div class="abs" style="left:0;right:0;top:200px;text-align:center">
+      <div class="eyebrow">Rahsia foam mewah</div>
+      <div class="h-l" id="s8-h" style="margin-top:18px">Lembut <span class="it goldtxt">&amp; wangi</span></div>
+    </div>
+    <div class="glass benefit abs" id="b1" style="top:1150px"><div class="n">01</div><div><h4>Ocean Salt</h4><p>Diperkaya garam laut</p></div></div>
+    <div class="glass benefit abs" id="b2" style="top:1345px"><div class="n">02</div><div><h4>Aromatherapy</h4><p>Wangian yang menenangkan</p></div></div>
+    <div class="glass benefit abs" id="b3" style="top:1540px"><div class="n">03</div><div><h4>Gentle Foaming</h4><p>Buih halus, lembut di kulit</p></div></div>
+  </section>
+
+  <!-- ===== S9 COLLECTION : two display windows ===== -->
+  <section id="s9" class="clip" data-start="24.75" data-duration="3.9">
+    <div class="mall"><div class="slats"></div><div class="floor"></div></div>
+    <div class="abs" style="left:0;right:0;top:200px;text-align:center">
+      <div class="eyebrow">Koleksi signature</div>
+      <div class="h-l" id="s9-h" style="margin-top:18px">Pilih <span class="it goldtxt">aura</span> kau</div>
+    </div>
+    <div class="abs" id="w1" style="left:70px;top:520px;width:450px;height:1000px;border-radius:225px 225px 12px 12px;border:2px solid rgba(244,223,174,.55);overflow:hidden;background:radial-gradient(80% 50% at 50% 45%,rgba(123,75,209,.55),rgba(30,15,60,.6) 60%,rgba(8,6,10,.9))">
+      <img class="bottle" src="assets/img/noche.png" style="left:85px;top:150px;height:620px">
+      <div class="abs" style="left:0;right:0;top:810px;text-align:center"><div class="serif" style="font-size:72px;font-weight:600">Noche</div><div class="it" style="font-size:36px;color:#cdb6ff;margin-top:4px">Midnight Fantasy</div></div>
+    </div>
+    <div class="abs" id="w2" style="left:560px;top:520px;width:450px;height:1000px;border-radius:225px 225px 12px 12px;border:2px solid rgba(244,223,174,.55);overflow:hidden;background:radial-gradient(80% 50% at 50% 45%,rgba(196,29,58,.55),rgba(60,10,20,.6) 60%,rgba(10,6,6,.9))">
+      <img class="bottle" src="assets/img/glory.png" style="left:90px;top:155px;height:615px">
+      <div class="abs" style="left:0;right:0;top:810px;text-align:center"><div class="serif" style="font-size:66px;font-weight:600">Woman Glory</div><div class="it" style="font-size:36px;color:#ffb3bf;margin-top:4px">Bombshell</div></div>
+    </div>
+  </section>
+
+  <!-- ===== S10 END CARD ===== -->
+  <section id="s10" class="clip" data-start="28.6" data-duration="3.4">
+    <img id="s10-bg" class="abs" src="assets/img/duo_linen.jpg" style="left:-40px;top:-60px;width:1160px;height:2060px;object-fit:cover;filter:blur(18px) brightness(.32) saturate(1.1)">
+    <img id="s10-logo" class="abs" src="assets/img/logo.jpg" style="left:140px;top:420px;width:800px;height:800px;mix-blend-mode:screen">
+    <div class="abs" style="left:0;right:0;top:1220px;text-align:center">
+      <div class="it goldtxt" id="s10-t" style="font-size:84px">Soft · Fragrant</div>
+      <div style="margin-top:44px"><span class="chip" id="s10-c" style="border-color:#ffd23f;color:#ffe680">🛍 Tekan beg kuning sekarang</span></div>
+    </div>
+  </section>
+
+  <!-- ===== global overlays ===== -->
+  <div id="caps" class="clip" data-start="0" data-duration="32" style="inset:auto;left:60px;top:1500px;width:960px;height:260px;overflow:visible"></div>
+  <div id="frame" class="clip" data-start="0" data-duration="32" style="inset:34px;width:auto;height:auto;overflow:visible"></div>
+  <div id="brand" class="clip" data-start="0" data-duration="32" style="inset:auto;top:84px;left:0;width:1080px;height:50px">FRESCURA <b>Body</b></div>
+  <div id="vig" class="clip" data-start="0" data-duration="32"></div>
+  <div id="grain" class="clip" data-start="0" data-duration="32" style="inset:-200px;width:1480px;height:2320px"></div>
+  <div id="progress" class="clip" data-start="0" data-duration="32" style="inset:auto;left:70px;bottom:70px;width:940px;height:4px"><i></i></div>
+  <div id="flash" class="clip" data-start="0" data-duration="32"></div>
+
+<script>
+const CAPS = __CAPTIONS__;
+// ---------- deterministic helpers ----------
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+// bokeh lights in every mall backdrop
+document.querySelectorAll('.mall').forEach((m) => {
+  for (let i = 0; i < 9; i++) {
+    const b = document.createElement('div'); b.className = 'bokeh';
+    const s = 30 + rnd() * 110; const warm = rnd();
+    b.style.cssText = `width:${s}px;height:${s}px;left:${rnd() * 1080 - 50}px;top:${rnd() * 1150}px;` +
+      `background:radial-gradient(circle,rgba(255,${190 + warm * 50 | 0},${120 + warm * 60 | 0},${0.2 + rnd() * 0.3}) 0%,rgba(255,200,140,0) 70%)`;
+    m.appendChild(b);
+  }
+});
+// lab network dots
+(() => {
+  const svg = document.getElementById('s3-net'); let h = '';
+  const pts = Array.from({ length: 26 }, () => [rnd() * 1080, 120 + rnd() * 1250]);
+  pts.forEach((p, i) => pts.slice(i + 1).forEach((q) => { const d = Math.hypot(p[0] - q[0], p[1] - q[1]); if (d < 260) h += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="rgba(185,140,255,.22)" stroke-width="1.5"/>`; }));
+  pts.forEach((p) => h += `<circle cx="${p[0]}" cy="${p[1]}" r="${3 + rnd() * 5}" fill="rgba(244,223,174,.6)"/>`);
+  svg.innerHTML = h;
+  const g = document.getElementById('bubs'); let bh = '';
+  for (let i = 0; i < 18; i++) bh += `<circle class="bub" cx="${70 + rnd() * 260}" cy="${560 + rnd() * 60}" r="${5 + rnd() * 12}" fill="rgba(255,255,255,.5)"/>`;
+  g.innerHTML = bh;
+})();
+// captions
+const capsEl = document.getElementById('caps');
+CAPS.forEach((c, i) => {
+  const d = document.createElement('div'); d.className = 'cap'; d.id = 'cap' + i;
+  d.innerHTML = '<div class="bar"></div>' + c.w.map((w, j) => `<span class="w" id="c${i}w${j}">${w.t}</span>`).join(' ');
+  capsEl.appendChild(d);
+});
+
+const tl = gsap.timeline({ paused: true });
+const E = 'power3.out', E4 = 'power4.out', EI = 'power2.inOut';
+const inBlur = (sel, t, extra = {}) => tl.fromTo(sel, { opacity: 0, y: 60, filter: 'blur(18px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .6, ease: E4, ...extra }, t);
+const wipe = (sel, t, d = .55) => tl.fromTo(sel, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: d, ease: 'expo.out' }, t);
+const sceneIn = (sel, t) => tl.fromTo(sel, { scale: 1.12, filter: 'blur(16px) brightness(1.6)' }, { scale: 1, filter: 'blur(0px) brightness(1)', duration: .55, ease: 'expo.out' }, t);
+const flash = (t, o = .85) => tl.fromTo('#flash', { opacity: o }, { opacity: 0, duration: .35, ease: 'power2.out', immediateRender: false }, t);
+
+// global
+tl.to('#progress i', { scaleX: 1, duration: 32, ease: 'none' }, 0);
+tl.to('#grain', { x: 120, y: -90, duration: 32, ease: 'steps(240)' }, 0);
+gsap.utils.toArray('.bokeh').forEach((b, i) => tl.to(b, { x: (i % 2 ? 40 : -40), y: (i % 3 ? -30 : 30), opacity: '+=0.08', duration: 6, ease: 'sine.inOut', yoyo: true, repeat: 5 }, 0));
+tl.from('#frame', { opacity: 0, scale: 1.04, duration: .8, ease: E }, 0);
+tl.from('#brand', { opacity: 0, scale: 1.3, duration: 1, ease: E }, .2);
+
+// S1 hook
+flash(0, 1);
+tl.fromTo('#s1-stage', { scale: 1.35, y: 120, filter: 'blur(20px)' }, { scale: 1, y: 0, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out' }, 0);
+tl.to('#s1-stage', { scale: 1.06, duration: 2.4, ease: 'none' }, 1.1);
+tl.fromTo('#s1-sweep', { x: 0 }, { x: 1500, duration: 1.2, ease: EI }, .7);
+wipe('#s1-e', .15, .7);
+tl.fromTo('#s1-h1', { opacity: 0, scale: 1.6, filter: 'blur(24px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: .7, ease: 'expo.out' }, .25);
+tl.fromTo('#s1-h2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .55, ease: E4 }, .7);
+tl.to('#s1-h1, #s1-h2', { scale: 1.04, duration: 2, ease: 'none' }, 1);
+
+// S2 education
+sceneIn('#s2', 3.45); flash(3.45, .35);
+wipe('#s2-e', 3.5); inBlur('#s2-h', 3.55);
+tl.fromTo('#s2-a', { x: -1000, rotate: -4 }, { x: 0, rotate: 0, duration: .6, ease: 'expo.out' }, 3.75);
+tl.fromTo('#s2-b', { x: 1000, rotate: 4 }, { x: 0, rotate: 0, duration: .6, ease: 'expo.out' }, 4.15);
+tl.to('#s2-a', { scale: 1.05, duration: .35, ease: 'back.out(3)' }, 5.75);
+tl.fromTo('#s2-ring', { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1.05, duration: .4, ease: E }, 5.75);
+tl.to('#s2-b', { opacity: .35, filter: 'grayscale(1)', duration: .3 }, 6.35);
+tl.fromTo('#s2-b', { x: 0 }, { x: 14, duration: .05, repeat: 5, yoyo: true, ease: 'none' }, 6.35);
+
+// S3a logo
+flash(6.94, .9);
+tl.fromTo('#s3-logo', { scale: .6, opacity: 0, filter: 'blur(20px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: .7, ease: 'expo.out' }, 6.94);
+tl.to('#s3-logo', { scale: 1.08, duration: .8, ease: 'none' }, 7.65);
+tl.fromTo('#s3-ring', { rotate: 0, scale: .7, opacity: 0 }, { rotate: 120, scale: 1.05, opacity: 1, duration: 1.5, ease: E }, 6.94);
+wipe('#s3-e', 7.45);
+
+// S3b lab
+sceneIn('#s3b', 8.35);
+inBlur('#s3-h', 8.4);
+tl.fromTo('#liqrect', { attr: { y: 560 } }, { attr: { y: 250 }, duration: 1.4, ease: 'power2.out' }, 8.45);
+gsap.utils.toArray('.bub').forEach((b, i) => tl.fromTo(b, { y: 0, opacity: 0 }, { y: -330 - (i % 5) * 20, opacity: 1, duration: 1.1, ease: 'power1.in' }, 8.7 + (i % 6) * .12));
+tl.fromTo('#flask', { y: 80, rotate: -6 }, { y: 0, rotate: 0, duration: .8, ease: 'back.out(1.6)' }, 8.35);
+tl.fromTo('#s3-net', { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 1.2, ease: E }, 8.35);
+tl.fromTo('#s3-pin', { y: 60, opacity: 0, scale: .7 }, { y: 0, opacity: 1, scale: 1, duration: .45, ease: 'back.out(2.5)' }, 9.38);
+
+// S4 report
+sceneIn('#s4', 10.1); flash(10.1, .3);
+tl.fromTo('#s4-card', { y: 300, rotateX: 25, opacity: 0 }, { y: 0, rotateX: 0, opacity: 1, duration: .7, ease: 'expo.out' }, 10.12);
+gsap.utils.toArray('#s4 .row').forEach((r, i) => {
+  const t = 10.5 + i * .45;
+  tl.to(r.querySelector('.trk i'), { scaleX: 1, duration: .5, ease: EI }, t);
+  tl.fromTo(r.querySelector('.ok'), { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .35, ease: 'back.out(3)' }, t + .45);
+});
+tl.to('#s4-card', { scale: .92, opacity: .45, filter: 'blur(4px)', duration: .4, ease: E }, 12.15);
+tl.fromTo('#s4-stamp', { opacity: 0, scale: 2.6, rotate: 18 }, { opacity: 1, scale: 1, rotate: -10, duration: .28, ease: 'power4.in' }, 12.0);
+tl.fromTo('#s4', { x: 0 }, { x: 10, duration: .04, repeat: 5, yoyo: true, ease: 'none', immediateRender: false }, 12.28);
+
+// S5 pump
+flash(13.42, .5);
+tl.fromTo('#v-pump1', { scale: 1.18 }, { scale: 1.02, duration: 2.62, ease: 'power1.out' }, 13.42);
+tl.fromTo('#s5-h', { opacity: 0, y: -60, filter: 'blur(14px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .5, ease: E4 }, 13.5);
+wipe('#s5-h2', 13.75, .6);
+tl.fromTo('#s5-chip', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .45, ease: E4 }, 14.3);
+
+// S6 stock
+sceneIn('#s6', 16.0); flash(16.0, .4);
+tl.fromTo('#s6-h', { opacity: 0, scale: 1.4, filter: 'blur(20px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: .5, ease: 'expo.out' }, 16.02);
+tl.fromTo('#s6-vit', { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out' }, 16.05);
+tl.fromTo('#s6-sweep', { x: 0 }, { x: 1300, duration: .9, ease: EI }, 16.4);
+const stock = { v: 100 };
+tl.fromTo('#s6-bar', { scaleX: 1 }, { scaleX: .09, duration: 1.1, ease: 'power2.inOut' }, 16.35);
+tl.to(stock, { v: 9, duration: 1.1, ease: 'power2.inOut', onUpdate: () => { document.getElementById('s6-pct').textContent = Math.round(stock.v) + '%'; } }, 16.35);
+
+// S7 CTA
+sceneIn('#s7', 17.5); flash(17.5, .35);
+wipe('#s7-e', 17.52);
+tl.fromTo('#s7-bag', { scale: 0, rotate: -20 }, { scale: 1, rotate: 0, duration: .55, ease: 'back.out(2.4)' }, 17.6);
+tl.fromTo('#s7-ripple', { scale: .8, opacity: .9 }, { scale: 2.2, opacity: 0, duration: .8, ease: E }, 17.85);
+tl.fromTo('#s7-ripple', { scale: .8, opacity: .9 }, { scale: 2.2, opacity: 0, duration: .7, ease: E, immediateRender: false }, 18.7);
+tl.to('#s7-bag', { y: -18, duration: .4, yoyo: true, repeat: 5, ease: 'sine.inOut' }, 18.2);
+tl.fromTo('#s7-l', { x: -300, rotate: -12 }, { x: 0, rotate: -8, duration: .7, ease: 'expo.out' }, 17.55);
+tl.fromTo('#s7-r', { x: 300, rotate: 12 }, { x: 0, rotate: 8, duration: .7, ease: 'expo.out' }, 17.55);
+inBlur('#s7-h', 18.05);
+tl.fromTo('#s7-btn', { scale: .6, opacity: 0 }, { scale: 1, opacity: 1, duration: .45, ease: 'back.out(2.2)' }, 18.3);
+tl.fromTo('#s7-cur', { opacity: 0, x: 120, y: 120 }, { opacity: 1, x: 0, y: 0, duration: .4, ease: E }, 18.55);
+tl.to('#s7-cur', { scale: .7, duration: .1, yoyo: true, repeat: 1 }, 18.95);
+tl.to('#s7-btn', { scale: .94, duration: .1, yoyo: true, repeat: 1 }, 18.95);
+tl.to('#s7-btn', { boxShadow: '0 0 90px rgba(244,223,174,.9)', duration: .35, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 19.2);
+tl.fromTo('#s7-warn', { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .35, ease: 'back.out(2.5)' }, 19.45);
+tl.to('#s7-warn', { opacity: .45, duration: .18, yoyo: true, repeat: 5 }, 19.9);
+
+// S8 foam education
+flash(20.95, .6);
+tl.fromTo('#v-pump2', { scale: 1.25 }, { scale: 1.05, duration: 3.85, ease: 'power1.out' }, 20.95);
+inBlur('#s8-h', 21.05);
+['#b1', '#b2', '#b3'].forEach((b, i) => tl.fromTo(b, { x: 1100, opacity: 0 }, { x: 0, opacity: 1, duration: .55, ease: 'expo.out' }, 21.5 + i * .55));
+
+// S9 collection
+sceneIn('#s9', 24.75); flash(24.75, .35);
+inBlur('#s9-h', 24.8);
+tl.fromTo('#w1', { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out' }, 25.0);
+tl.fromTo('#w2', { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out' }, 25.45);
+tl.to('#w1 .bottle, #w2 .bottle', { y: -16, duration: 1.2, yoyo: true, repeat: 2, ease: 'sine.inOut' }, 25.8);
+
+// S10 end card
+flash(28.6, .7);
+tl.fromTo('#s10-bg', { scale: 1.15 }, { scale: 1, duration: 3.4, ease: 'power1.out' }, 28.6);
+tl.fromTo('#s10-logo', { opacity: 0, scale: .75, filter: 'blur(16px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: .9, ease: 'expo.out' }, 28.7);
+tl.fromTo('#s10-t', { opacity: 0, y: 40, scale: 1.25 }, { opacity: 1, y: 0, scale: 1, duration: .8, ease: E4 }, 29.3);
+tl.fromTo('#s10-c', { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .45, ease: 'back.out(2.5)' }, 29.8);
+tl.to('#frame, #brand', { opacity: 0, duration: .6 }, 31.3);
+tl.to('#root', { filter: 'brightness(0)', duration: .5, ease: 'power2.in' }, 31.5);
+
+// captions: chunk in, word highlight, chunk out
+CAPS.forEach((c, i) => {
+  const id = '#cap' + i;
+  tl.fromTo(id, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .16, ease: 'power2.out' }, c.s - .06);
+  c.w.forEach((w, j) => {
+    const el = `#c${i}w${j}`;
+    tl.fromTo(el, { opacity: .0, y: 22, scale: .9 }, { opacity: 1, y: 0, scale: 1, duration: .14, ease: 'back.out(2)' }, Math.max(c.s - .06, w.s - .04));
+    tl.set(el, { className: 'w hl' }, w.s);
+    tl.fromTo(el, { scale: 1.12 }, { scale: 1, duration: .22, ease: 'power2.out', immediateRender: false }, w.s);
+    tl.set(el, { className: 'w' }, Math.max(w.e, w.s + .12));
+  });
+  const nx = CAPS[i + 1] ? CAPS[i + 1].s - .08 : c.e + .3;
+  const out = Math.min(c.e, nx - .1);
+  tl.to(id, { opacity: 0, y: -18, duration: .1, ease: 'power2.in' }, out);
+});
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</div>
+</body>
+</html>
