@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="lib/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Bodoni";src:url(fonts/bodoni-moda-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:"Bodoni";src:url(fonts/bodoni-moda-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:"Bodoni";src:url(fonts/bodoni-moda-latin-500-italic.woff2);font-weight:500;font-style:italic}
+@font-face{font-family:"Bodoni";src:url(fonts/bodoni-moda-latin-700-italic.woff2);font-weight:700;font-style:italic}
+@font-face{font-family:"Outfit";src:url(fonts/outfit-latin-300-normal.woff2);font-weight:300}
+@font-face{font-family:"Outfit";src:url(fonts/outfit-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:"Outfit";src:url(fonts/outfit-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:"Outfit";src:url(fonts/outfit-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:"Tenor";src:url(fonts/tenor-sans-latin-400-normal.woff2)}
+:root{--ink:#0b0a09;--gold:#dcb872;--gold2:#f3dfae;--ivory:#fbf7ef;--wine:#7a1222;--violet:#7d5cf0;--yellow:#ffc531}
+html,body{margin:0;background:#000}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink);font-family:"Outfit",sans-serif;color:var(--ivory)}
+.full{position:absolute;inset:0}
+video.bg{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;transform-origin:50% 50%}
+.layer{position:absolute;inset:0;pointer-events:none}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,0) 52%,rgba(0,0,0,.72) 100%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 62% at 50% 46%,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%);z-index:80}
+#grain{position:absolute;inset:-200px;background:url(img/grain.png);opacity:.07;mix-blend-mode:overlay;z-index:81}
+.frameline{position:absolute;border:1.5px solid rgba(220,184,114,.55);z-index:60}
+/* chapter chip */
+.chip{position:absolute;left:64px;top:150px;z-index:70;display:flex;align-items:center;gap:18px;font-family:"Tenor";font-size:26px;letter-spacing:.32em;color:var(--gold2);text-transform:uppercase}
+.chip b{font-family:"Bodoni";font-style:italic;font-weight:500;font-size:44px;letter-spacing:0;color:var(--gold)}
+.chip i{display:block;width:70px;height:1.5px;background:var(--gold)}
+/* captions */
+#caps{position:absolute;left:0;right:0;top:1235px;height:260px;z-index:75}
+.cap{position:absolute;left:60px;right:60px;top:0;text-align:center;line-height:1.08;opacity:0}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .06em .14em;margin:0 .15em}
+.w>span{display:inline-block;font-family:"Outfit";font-weight:600;font-size:82px;letter-spacing:-.01em;color:var(--ivory);text-shadow:0 4px 30px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.5)}
+.w.k>span{font-family:"Bodoni";font-style:italic;font-weight:700;font-size:100px;letter-spacing:-.005em;background:linear-gradient(180deg,#fff3d1 0%,#e8c57f 48%,#b98a3e 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 4px 18px rgba(0,0,0,.6))}
+.uline{position:absolute;left:50%;bottom:-18px;height:3px;width:240px;margin-left:-120px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%}
+/* hook */
+.eyebrow{font-family:"Tenor";font-size:28px;letter-spacing:.5em;color:var(--gold2);text-transform:uppercase}
+.big-it{font-family:"Bodoni";font-style:italic;font-weight:500;color:var(--ivory)}
+.big-caps{font-family:"Outfit";font-weight:800;letter-spacing:.06em;color:var(--ivory)}
+.goldtxt{background:linear-gradient(180deg,#fff3d1 0%,#e3bd73 50%,#a97a33 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sweep{position:absolute;top:-20%;height:140%;width:260px;background:linear-gradient(90deg,transparent,rgba(255,240,205,.55),transparent);transform:skewX(-18deg);mix-blend-mode:screen}
+/* glass card */
+.glass{position:absolute;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));border:1.5px solid rgba(243,223,174,.45);border-radius:34px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.row{position:relative;display:flex;align-items:center;gap:26px;font-size:54px;font-weight:500;margin:22px 0}
+.row .x{width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:30px}
+.strike{position:absolute;left:78px;top:52%;height:5px;background:#e24b5b;border-radius:3px;width:0}
+/* product */
+.podium{position:absolute;border-radius:50%}
+.bottle{position:absolute;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6))}
+.refl{position:absolute;transform:scaleY(-1);opacity:.22;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 40%);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent 40%)}
+.spot{position:absolute;left:50%;top:-200px;width:1100px;height:1700px;margin-left:-550px;background:radial-gradient(ellipse 34% 60% at 50% 0%,rgba(255,236,196,.42),rgba(255,236,196,0) 70%);mix-blend-mode:screen}
+.label{font-family:"Tenor";font-size:28px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold2)}
+.callout{position:absolute;display:flex;align-items:center;gap:18px;font-family:"Tenor";font-size:30px;letter-spacing:.24em;color:var(--ivory);text-transform:uppercase}
+.callout .ln{height:1.5px;background:var(--gold);width:120px;transform-origin:0 50%}
+.callout .dot{width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.pill{display:inline-block;padding:14px 30px;border:1.5px solid rgba(243,223,174,.7);border-radius:100px;font-family:"Tenor";font-size:28px;letter-spacing:.28em;color:var(--ivory);background:rgba(0,0,0,.35);backdrop-filter:blur(8px)}
+.step{position:absolute;left:64px;display:flex;align-items:baseline;gap:22px}
+.step .n{font-family:"Bodoni";font-style:italic;font-size:92px;color:var(--gold)}
+.step .t{font-family:"Outfit";font-weight:600;font-size:58px;color:var(--ivory);text-shadow:0 4px 24px rgba(0,0,0,.6)}
+.bar{position:absolute;height:22px;border-radius:12px;background:rgba(255,255,255,.14);overflow:hidden;border:1.5px solid rgba(243,223,174,.5)}
+.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#e24b5b,#dcb872);transform-origin:0 50%}
+.cta{position:absolute;padding:30px 64px;border-radius:100px;background:linear-gradient(180deg,#f6dfa6,#c99a4c);color:#1a1209;font-family:"Outfit";font-weight:800;font-size:46px;letter-spacing:.14em;box-shadow:0 20px 60px rgba(220,184,114,.45)}
+.ring{position:absolute;opacity:0;border-radius:50%;border:3px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="root" data-width="1080" data-height="1920" data-start="0" data-duration="30.6">
+
+  <!-- ============ B-ROLL TRACK ============ -->
+  <video id="v0"  class="bg clip" src="media/s0_mall.mp4"   data-start="0"     data-duration="1.75" muted></video>
+  <video id="v1"  class="bg clip" src="media/s1_door.mp4"   data-start="1.70"  data-duration="1.36" muted></video>
+  <video id="v2"  class="bg clip" src="media/s2_gift.mp4"   data-start="3.02"  data-duration="1.38" muted></video>
+  <video id="v3"  class="bg clip" src="media/s3_hug.mp4"    data-start="4.36"  data-duration="1.08" muted></video>
+  <video id="v4"  class="bg clip" src="media/s4_cheek.mp4"  data-start="5.40"  data-duration="2.68" muted></video>
+  <video id="v5"  class="bg clip" src="media/s5_store.mp4"  data-start="8.04"  data-duration="1.68" muted></video>
+  <video id="v6"  class="bg clip" src="media/s6_roses.mp4"  data-start="9.68"  data-duration="1.64" muted></video>
+  <video id="v7"  class="bg clip" src="media/s7_sky.mp4"    data-start="11.28" data-duration="1.22" muted></video>
+  <video id="v8a" class="bg clip" src="media/s8a_pump.mp4"  data-start="12.46" data-duration="2.04" muted></video>
+  <video id="v8b" class="bg clip" src="media/s8b_foam.mp4"  data-start="14.46" data-duration="1.54" muted></video>
+  <video id="v9"  class="bg clip" src="media/s9_busy.mp4"   data-start="15.96" data-duration="2.64" muted></video>
+  <video id="v10a" class="bg clip" src="media/s10a_emb.mp4" data-start="18.56" data-duration="1.28" muted></video>
+  <video id="v10b" class="bg clip" src="media/s10b_joy.mp4" data-start="19.80" data-duration="1.10" muted></video>
+  <video id="v11" class="bg clip" src="media/s11_mall.mp4"  data-start="20.86" data-duration="1.64" muted></video>
+  <video id="v12" class="bg clip" src="media/s12_lav.mp4"   data-start="22.46" data-duration="4.13" muted></video>
+
+  <div class="shade" style="z-index:5"></div>
+
+  <!-- ============ S0 HOOK (0 - 1.70) ============ -->
+  <div id="s0" class="layer clip" data-start="0" data-duration="1.75" style="z-index:40">
+    <div class="full" style="background:radial-gradient(ellipse at 50% 45%,rgba(30,20,8,.35),rgba(0,0,0,.82))"></div>
+    <div class="frameline" id="h_frame" style="left:56px;top:56px;right:56px;bottom:56px"></div>
+    <div id="h_eye" class="eyebrow" style="position:absolute;top:470px;width:100%;text-align:center">Frescura Body &nbsp;·&nbsp; Gift Edit</div>
+    <div style="position:absolute;top:560px;width:100%;text-align:center;overflow:hidden;height:300px">
+      <div id="h_w1" class="big-it goldtxt" style="font-size:250px;line-height:1.1">Hadiah</div>
+    </div>
+    <div id="h_w2" class="big-caps" style="position:absolute;top:870px;width:100%;text-align:center;font-size:104px">TANPA SEBAB.</div>
+    <div id="h_line" style="position:absolute;top:1010px;left:340px;width:400px;height:2px;background:var(--gold)"></div>
+    <div id="h_sub" style="position:absolute;top:1050px;width:100%;text-align:center;font-family:Bodoni;font-style:italic;font-size:50px;color:var(--gold2)">— ini rahsia suami yang disayangi</div>
+    <div class="sweep" id="h_sweep" style="left:-400px"></div>
+  </div>
+
+  <!-- chapter chips -->
+  <div id="ch1" class="chip clip" data-start="1.75" data-duration="2.6"><b>01</b><i></i>Momen kecil</div>
+  <div id="ch2" class="chip clip" data-start="5.45" data-duration="2.55"><b>02</b><i></i>Bila masa sesuai?</div>
+  <div id="ch3" class="chip clip" data-start="8.10" data-duration="4.3"><b>03</b><i></i>Koleksi kami</div>
+  <div id="ch4" class="chip clip" data-start="12.50" data-duration="3.45"><b>04</b><i></i>Cara guna</div>
+  <div id="ch5" class="chip clip" data-start="16.00" data-duration="4.85"><b>05</b><i></i>Kenapa penting</div>
+  <div id="ch6" class="chip clip" data-start="22.50" data-duration="4.0"><b>06</b><i></i>Dapatkan sekarang</div>
+
+  <!-- ============ S3 STAMP "TANPA SEBARANG SEBAB" (4.36 - 5.40) ============ -->
+  <div id="s3" class="layer clip" data-start="4.36" data-duration="1.06" style="z-index:42">
+    <div class="full" style="background:rgba(10,7,4,.55)"></div>
+    <div id="st1" class="big-caps" style="position:absolute;top:560px;width:100%;text-align:center;font-size:150px;letter-spacing:.12em">TANPA</div>
+    <div id="st2" class="big-it goldtxt" style="position:absolute;top:740px;width:100%;text-align:center;font-size:190px">sebarang</div>
+    <div id="st3" class="big-caps" style="position:absolute;top:980px;width:100%;text-align:center;font-size:150px;letter-spacing:.12em">SEBAB.</div>
+  </div>
+
+  <!-- ============ S4 EDU LIST (5.40 - 8.04) ============ -->
+  <div id="s4" class="layer clip" data-start="5.40" data-duration="2.66" style="z-index:42">
+    <div id="g4" class="glass" style="left:110px;top:300px;width:860px;padding:54px 60px;box-sizing:border-box">
+      <div class="label" style="margin-bottom:22px">Hadiah tak perlu tunggu</div>
+      <div class="row" id="r1"><span class="x">✕</span>Dia minta<div class="strike" id="k1"></div></div>
+      <div class="row" id="r2"><span class="x">✕</span>Hari jadi<div class="strike" id="k2"></div></div>
+      <div class="row" id="r3"><span class="x">✕</span>Hari istimewa<div class="strike" id="k3"></div></div>
+      <div id="r4" style="margin-top:30px;padding-top:28px;border-top:1.5px solid rgba(243,223,174,.35);font-family:Bodoni;font-style:italic;font-size:62px" class="goldtxt">Hari biasa pun boleh ✓</div>
+    </div>
+  </div>
+
+  <!-- ============ S5 PRODUCT HERO BOUTIQUE (8.04 - 9.68) ============ -->
+  <div id="s5" class="layer clip" data-start="8.04" data-duration="1.66" style="z-index:42">
+    <div class="full" style="background:radial-gradient(ellipse at 50% 60%,rgba(20,14,8,.45),rgba(5,4,3,.9))"></div>
+    <div class="spot" id="p_spot"></div>
+    <div class="label" id="p_lab" style="position:absolute;top:300px;width:100%;text-align:center">Frescura Body · Boutique</div>
+    <div id="p_t1" class="big-it goldtxt" style="position:absolute;top:350px;width:100%;text-align:center;font-size:118px">Foaming</div>
+    <div id="p_t2" class="big-caps" style="position:absolute;top:490px;width:100%;text-align:center;font-size:62px;letter-spacing:.32em">BODY SHOWER</div>
+    <div class="podium" id="p_pod" style="left:150px;top:1385px;width:780px;height:150px;background:radial-gradient(ellipse at 50% 40%,#3a2f22,#120e0a 70%);border:2px solid rgba(220,184,114,.7);box-shadow:0 0 60px rgba(220,184,114,.25)"></div>
+    <img class="bottle" id="p_b1" src="img/noche.png" style="left:205px;top:690px;height:740px">
+    <img class="bottle" id="p_b2" src="img/wg.png"    style="left:555px;top:690px;height:740px">
+    <div class="sweep" id="p_sweep" style="left:-300px;top:600px;height:900px"></div>
+  </div>
+
+  <!-- ============ S6 WOMAN GLORY (9.68 - 11.28) ============ -->
+  <div id="s6" class="layer clip" data-start="9.68" data-duration="1.62" style="z-index:42">
+    <div class="full" style="background:linear-gradient(90deg,rgba(40,3,8,.86) 0%,rgba(40,3,8,.55) 55%,rgba(40,3,8,.2) 100%)"></div>
+    <img class="bottle" id="w_b" src="img/wg.png" style="left:80px;top:430px;height:820px">
+    <div style="position:absolute;left:520px;top:470px;width:520px">
+      <div class="label" id="w_l">Woman Glory</div>
+      <div id="w_t" class="big-it goldtxt" style="font-size:112px;line-height:1.05;margin-top:10px">Bomb&shy;shell</div>
+      <div id="w_d" style="font-family:Outfit;font-weight:300;font-size:40px;margin-top:22px;color:var(--gold2)">Haruman ala perfume</div>
+    </div>
+    <div class="callout" id="w_c1" style="left:520px;top:860px"><span class="dot"></span><span class="ln"></span>Ocean Salt</div>
+    <div class="callout" id="w_c2" style="left:520px;top:940px"><span class="dot"></span><span class="ln"></span>Aromatherapy</div>
+    <div class="callout" id="w_c3" style="left:520px;top:1020px"><span class="dot"></span><span class="ln"></span>500 ml</div>
+  </div>
+
+  <!-- ============ S7 NOCHE (11.28 - 12.46) ============ -->
+  <div id="s7" class="layer clip" data-start="11.28" data-duration="1.20" style="z-index:42">
+    <div class="full" style="background:linear-gradient(270deg,rgba(10,6,30,.86) 0%,rgba(10,6,30,.5) 55%,rgba(10,6,30,.15) 100%)"></div>
+    <img class="bottle" id="n_b" src="img/noche.png" style="left:640px;top:430px;height:820px">
+    <div style="position:absolute;left:70px;top:500px;width:560px">
+      <div class="label" id="n_l">Noche</div>
+      <div id="n_t" class="big-it" style="font-size:108px;line-height:1.02;margin-top:10px;color:#e9e0ff">Midnight<br>Fantasy</div>
+      <div id="n_d" style="font-family:Outfit;font-weight:300;font-size:40px;margin-top:22px;color:#cfc3ff">Tenang, wangi, mewah</div>
+    </div>
+  </div>
+
+  <!-- ============ S8 HOW-TO PUMP (12.46 - 15.96) ============ -->
+  <div id="s8" class="layer clip" data-start="12.46" data-duration="3.52" style="z-index:42">
+    <div class="full" style="background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 62%,rgba(0,0,0,.75))"></div>
+    <div class="step" id="sp1" style="top:250px"><span class="n">i.</span><span class="t">Tekan sekali</span></div>
+    <div class="step" id="sp2" style="top:250px"><span class="n">ii.</span><span class="t">Terus jadi buih</span></div>
+    <div class="step" id="sp3" style="top:250px"><span class="n">iii.</span><span class="t">Lembut di kulit</span></div>
+    <div id="pills" style="position:absolute;left:0;right:0;top:1330px;text-align:center;line-height:2.4">
+      <span class="pill" id="pl1">OCEAN SALT</span>&nbsp;
+      <span class="pill" id="pl2">AROMATHERAPY</span><br>
+      <span class="pill" id="pl3">GENTLE FOAMING</span>&nbsp;
+      <span class="pill" id="pl4">500 ML</span>
+    </div>
+  </div>
+
+  <!-- ============ S9 BUSY (15.96 - 18.56) ============ -->
+  <div id="s9" class="layer clip" data-start="15.96" data-duration="2.62" style="z-index:42">
+    <div class="full" style="background:rgba(8,6,4,.45)"></div>
+    <div style="position:absolute;left:330px;top:470px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(10,8,5,.75),rgba(10,8,5,.35))"></div>
+    <svg id="clockring" width="420" height="420" viewBox="0 0 420 420" style="position:absolute;left:330px;top:470px">
+      <circle cx="210" cy="210" r="190" fill="none" stroke="rgba(243,223,174,.25)" stroke-width="3"/>
+      <circle id="cr" cx="210" cy="210" r="190" fill="none" stroke="#dcb872" stroke-width="6" stroke-linecap="round" stroke-dasharray="1194" stroke-dashoffset="1194" transform="rotate(-90 210 210)"/>
+    </svg>
+    <div id="clk" style="position:absolute;left:330px;top:605px;width:420px;text-align:center;font-family:Bodoni;font-weight:500;font-size:120px;line-height:1.2">09:00</div>
+    <div class="label" style="position:absolute;left:140px;top:930px;width:800px;text-align:center" id="clkl">Sibuk cari rezeki</div>
+  </div>
+
+  <!-- ============ S10 HEART LINE (18.56 - 20.86) ============ -->
+  <div id="s10" class="layer clip" data-start="18.56" data-duration="2.32" style="z-index:42">
+    <svg width="1080" height="300" viewBox="0 0 1080 300" style="position:absolute;top:470px;left:0">
+      <path id="ecg" d="M0 150 H330 L370 150 L395 70 L425 240 L455 40 L485 210 L510 150 H600 C640 150 650 95 690 95 C730 95 740 150 740 150 C740 150 750 95 790 95 C830 95 840 150 880 190 L740 290 L600 190 C560 150 570 95 610 95 M880 150 H1080" fill="none" stroke="#f3dfae" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div id="hl" class="big-it goldtxt" style="position:absolute;top:800px;width:100%;text-align:center;font-size:84px">Dia rasa diingati.</div>
+  </div>
+
+  <!-- ============ S11 QUESTION (20.86 - 22.46) ============ -->
+  <div id="s11" class="layer clip" data-start="20.86" data-duration="1.62" style="z-index:42">
+    <div id="qm" class="big-it goldtxt" style="position:absolute;top:240px;width:100%;text-align:center;font-size:640px;line-height:1;opacity:.9">?</div>
+  </div>
+
+  <!-- ============ S12-13 CTA (22.46 - 26.55) ============ -->
+  <div id="s12" class="layer clip" data-start="22.46" data-duration="4.12" style="z-index:42">
+    <div class="full" style="background:radial-gradient(ellipse at 50% 45%,rgba(25,18,10,.72),rgba(5,4,3,.93))"></div>
+    <div class="spot" style="opacity:.8"></div>
+    <img class="bottle" id="c_b1" src="img/noche.png" style="left:230px;top:330px;height:640px">
+    <img class="bottle" id="c_b2" src="img/wg.png"    style="left:545px;top:330px;height:640px">
+    <!-- yellow bag -->
+    <div id="bag" style="position:absolute;left:84px;top:1560px;width:130px;height:130px">
+      <div class="ring" id="rg1" style="left:-20px;top:-20px;width:170px;height:170px"></div>
+      <div class="ring" id="rg2" style="left:-20px;top:-20px;width:170px;height:170px"></div>
+      <svg width="130" height="130" viewBox="0 0 64 64"><rect x="4" y="4" width="56" height="56" rx="14" fill="#ffc531"/><path d="M20 26h24l-2 22H22z" fill="#1a1209"/><path d="M26 26v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#1a1209" stroke-width="3"/></svg>
+    </div>
+    <svg id="arrow" width="200" height="220" viewBox="0 0 200 220" style="position:absolute;left:200px;top:1440px">
+      <path d="M180 10 C 150 120, 90 160, 30 190" fill="none" stroke="#ffc531" stroke-width="7" stroke-linecap="round" stroke-dasharray="8 16"/>
+      <path d="M22 160 L28 196 L64 188" fill="none" stroke="#ffc531" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="cta" id="ctab" style="left:540px;top:1040px;white-space:nowrap">CHECKOUT SEKARANG</div>
+    <!-- stock meter -->
+    <div id="stock" style="position:absolute;left:150px;top:1040px;width:780px;opacity:0">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span class="label">Baki stok</span><span id="pct" style="font-family:Bodoni;font-weight:700;font-size:76px;color:#ff6b78">100%</span>
+      </div>
+      <div class="bar" style="position:relative;margin-top:14px;width:780px"><i id="barfill"></i></div>
+      <div id="terhad" class="big-caps" style="margin-top:34px;text-align:center;font-size:64px;letter-spacing:.2em;color:#ff6b78">SANGAT TERHAD</div>
+    </div>
+  </div>
+
+  <!-- ============ S14 END CARD (26.55 - 30.6) ============ -->
+  <div id="s14" class="layer clip" data-start="26.55" data-duration="4.05" style="z-index:44">
+    <div class="full" style="background:radial-gradient(ellipse at 50% 38%,#2a2014 0%,#0d0a07 55%,#050403 100%)"></div>
+    <div id="bok" class="full"></div>
+    <div class="spot"></div>
+    <img id="logo" src="img/logo.jpg" style="position:absolute;left:190px;top:180px;width:700px;mix-blend-mode:screen">
+    <div class="podium" style="left:170px;top:1345px;width:740px;height:140px;background:radial-gradient(ellipse at 50% 40%,#3a2f22,#120e0a 70%);border:2px solid rgba(220,184,114,.7);box-shadow:0 0 70px rgba(220,184,114,.3)" id="e_pod"></div>
+    <img class="bottle" id="e_b1" src="img/noche.png" style="left:230px;top:760px;height:640px">
+    <img class="bottle" id="e_b2" src="img/wg.png"    style="left:545px;top:760px;height:640px">
+    <div id="e_t" class="big-it goldtxt" style="position:absolute;top:1530px;width:100%;text-align:center;font-size:76px">Hadiah kecil, bahagia besar.</div>
+    <div id="e_s" class="label" style="position:absolute;top:1650px;width:100%;text-align:center;font-size:24px;letter-spacing:.3em">Tekan beg kuning · Checkout sekarang</div>
+    <div class="sweep" id="e_sweep" style="left:-300px;top:700px;height:800px"></div>
+  </div>
+
+  <!-- flash / transitions -->
+  <div id="flash" class="full" style="background:#fff3d6;opacity:0;z-index:85;mix-blend-mode:screen"></div>
+  <div id="leak" class="full" style="background:radial-gradient(ellipse 60% 40% at 0% 30%,rgba(255,170,80,.7),transparent 70%);opacity:0;z-index:84;mix-blend-mode:screen"></div>
+
+  <div id="caps"></div>
+  <div class="vig"></div>
+  <div id="grain"></div>
+</div>
+
+<script>
+const tl = gsap.timeline({ paused: true });
+const E = "expo.out", P = "power3.out";
+
+/* ---------- background motion: slow push-in + whip-in on each cut ---------- */
+const cuts = [["#v0",0,1.75],["#v1",1.70,1.36],["#v2",3.02,1.38],["#v3",4.36,1.08],["#v4",5.40,2.68],["#v5",8.04,1.68],["#v6",9.68,1.64],["#v7",11.28,1.22],["#v8a",12.46,2.04],["#v8b",14.46,1.54],["#v9",15.96,2.64],["#v10a",18.56,1.28],["#v10b",19.80,1.10],["#v11",20.86,1.64],["#v12",22.46,4.13]];
+cuts.forEach(([id,t,d],i)=>{
+  const dir = i%2 ? 1 : -1;
+  tl.fromTo(id,{scale:1.22,x:dir*60,filter:"blur(14px) brightness(1.5)"},{scale:1.10,x:0,filter:"blur(0px) brightness(1)",duration:0.32,ease:E},t);
+  tl.to(id,{scale:1.0,duration:Math.max(d-0.32,0.2),ease:"none"},t+0.32);
+});
+// flashes on key cuts
+[1.70,4.36,8.04,12.46,15.96,22.46,26.55].forEach(t=>{ tl.fromTo("#flash",{opacity:0.55},{opacity:0,duration:0.28,ease:"power2.out",immediateRender:false},t); });
+[3.02,9.68,11.28,18.56,20.86].forEach(t=>{ tl.fromTo("#leak",{opacity:0,x:-300},{opacity:0.9,x:200,duration:0.22,ease:"sine.out",immediateRender:false},t-0.05); tl.to("#leak",{opacity:0,duration:0.3},t+0.17); });
+// grain jitter
+for(let f=0; f<30.6; f+=1/15){ tl.set("#grain",{x:(Math.sin(f*91.7)*180)|0,y:(Math.cos(f*53.3)*180)|0},f); }
+
+/* ---------- S0 hook ---------- */
+tl.fromTo("#h_frame",{clipPath:"inset(0 100% 100% 0)"},{clipPath:"inset(0 0% 0% 0)",duration:0.9,ease:E},0.0);
+tl.fromTo("#h_eye",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:0.8,ease:E},0.05);
+tl.fromTo("#h_w1",{yPercent:110},{yPercent:0,duration:0.7,ease:E},0.12);
+tl.fromTo("#h_w2",{opacity:0,scale:1.9,filter:"blur(20px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:0.35,ease:"power4.out"},0.42);
+tl.fromTo("#h_line",{scaleX:0},{scaleX:1,duration:0.5,ease:E},0.6);
+tl.fromTo("#h_sub",{opacity:0,y:20},{opacity:1,y:0,duration:0.5,ease:P},0.75);
+tl.fromTo("#h_sweep",{x:0},{x:1700,duration:0.9,ease:"power2.inOut"},0.55);
+tl.to("#s0 > div:not(.full)",{opacity:0,y:-30,duration:0.18},1.55);
+
+/* chips */
+["#ch1","#ch2","#ch3","#ch4","#ch5","#ch6"].forEach(id=>{
+  const el=document.querySelector(id); const t=parseFloat(el.dataset.start);
+  tl.fromTo(id,{opacity:0,x:-40},{opacity:1,x:0,duration:0.45,ease:E},t);
+  tl.fromTo(id+" i",{scaleX:0},{scaleX:1,transformOrigin:"0 50%",duration:0.5,ease:E},t+0.1);
+});
+
+/* ---------- S3 stamp ---------- */
+[["#st1",4.36],["#st2",4.80],["#st3",5.18]].forEach(([id,t])=>{
+  tl.fromTo(id,{opacity:0,scale:2.2,filter:"blur(16px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:0.22,ease:"power4.out"},t);
+});
+tl.fromTo("#s3",{x:0},{x:10,duration:0.04,yoyo:true,repeat:3},4.80);
+
+/* ---------- S4 edu list ---------- */
+tl.fromTo("#g4",{opacity:0,y:60,scale:.96},{opacity:1,y:0,scale:1,duration:0.5,ease:E},5.42);
+[["#r1",5.55],["#r2",5.75],["#r3",5.95]].forEach(([id,t])=>tl.fromTo(id,{opacity:0,x:-30},{opacity:1,x:0,duration:0.35,ease:E},t));
+tl.to("#k1",{width:250,duration:0.25,ease:P},6.18);
+tl.to("#k2",{width:240,duration:0.25,ease:P},6.80);
+tl.to("#k3",{width:370,duration:0.3,ease:P},7.42);
+[["#r1",6.2],["#r2",6.82],["#r3",7.45]].forEach(([id,t])=>tl.to(id,{opacity:.45,duration:.2},t));
+tl.fromTo("#r4",{opacity:0,y:20},{opacity:1,y:0,duration:0.4,ease:E},7.6);
+
+/* ---------- S5 product hero ---------- */
+tl.fromTo("#p_spot",{opacity:0,scaleX:.4},{opacity:1,scaleX:1,duration:0.5,ease:E},8.04);
+tl.fromTo("#p_pod",{opacity:0,scaleX:.3},{opacity:1,scaleX:1,duration:0.5,ease:E},8.06);
+tl.fromTo("#p_b1",{y:260,opacity:0,rotation:-6},{y:0,opacity:1,rotation:-3,duration:0.6,ease:E},8.10);
+tl.fromTo("#p_b2",{y:260,opacity:0,rotation:6},{y:0,opacity:1,rotation:3,duration:0.6,ease:E},8.18);
+tl.to(["#p_b1","#p_b2"],{y:-14,duration:1.0,ease:"sine.inOut"},8.7);
+tl.fromTo("#p_lab",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:0.6,ease:E},8.12);
+tl.fromTo("#p_t1",{opacity:0,y:40,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:0.5,ease:E},8.58);
+tl.fromTo("#p_t2",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:0.5,ease:E},8.80);
+tl.fromTo("#p_sweep",{x:0},{x:1700,duration:0.8,ease:"power2.inOut"},8.75);
+
+/* ---------- S6 WG ---------- */
+tl.fromTo("#w_b",{x:-400,opacity:0,rotation:-8},{x:0,opacity:1,rotation:-2,duration:0.55,ease:E},9.68);
+tl.to("#w_b",{y:-16,duration:1.0,ease:"sine.inOut"},10.25);
+tl.fromTo("#w_l",{opacity:0,x:40},{opacity:1,x:0,duration:0.4,ease:E},9.78);
+tl.fromTo("#w_t",{opacity:0,y:50},{opacity:1,y:0,duration:0.45,ease:E},10.62);
+tl.fromTo("#w_d",{opacity:0},{opacity:1,duration:0.4},9.95);
+[["#w_c1",10.05],["#w_c2",10.2],["#w_c3",10.35]].forEach(([id,t])=>{tl.fromTo(id,{opacity:0},{opacity:1,duration:0.25},t);tl.fromTo(id+" .ln",{scaleX:0},{scaleX:1,duration:0.35,ease:E},t);});
+
+/* ---------- S7 Noche ---------- */
+tl.fromTo("#n_b",{x:400,opacity:0,rotation:8},{x:0,opacity:1,rotation:2,duration:0.55,ease:E},11.28);
+tl.fromTo("#n_l",{opacity:0,x:-40},{opacity:1,x:0,duration:0.4,ease:E},11.36);
+tl.fromTo("#n_t",{opacity:0,y:50,filter:"blur(10px)"},{opacity:1,y:0,filter:"blur(0px)",duration:0.5,ease:E},11.45);
+tl.fromTo("#n_d",{opacity:0},{opacity:1,duration:0.4},11.7);
+
+/* ---------- S8 pump how-to ---------- */
+[["#sp1",12.55,13.55],["#sp2",13.6,14.6],["#sp3",14.65,15.96]].forEach(([id,a,b])=>{
+  tl.fromTo(id,{opacity:0,y:40},{opacity:1,y:0,duration:0.35,ease:E},a);
+  if(b<15.9) tl.to(id,{opacity:0,y:-30,duration:0.2},b-0.2);
+});
+[["#pl1",12.8],["#pl2",13.0],["#pl3",13.2],["#pl4",13.4]].forEach(([id,t])=>tl.fromTo(id,{opacity:0,y:30,scale:.9},{opacity:1,y:0,scale:1,duration:0.4,ease:"back.out(2)"},t));
+
+/* ---------- S9 clock ---------- */
+tl.fromTo("#clockring",{opacity:0,scale:.8},{opacity:1,scale:1,duration:0.4,ease:E},15.98);
+tl.to("#cr",{attr:{"stroke-dashoffset":0},duration:2.4,ease:"power1.inOut"},16.05);
+const clk={h:9}; tl.to(clk,{h:21,duration:2.4,ease:"power1.inOut",onUpdate:()=>{const h=Math.floor(clk.h),m=Math.floor((clk.h-h)*60);document.getElementById("clk").textContent=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0");}},16.05);
+tl.fromTo("#clk",{opacity:0},{opacity:1,duration:0.3},16.0);
+tl.fromTo("#clkl",{opacity:0},{opacity:1,duration:0.4},16.3);
+
+/* ---------- S10 heart ---------- */
+const ecg=document.getElementById("ecg"); const L=ecg.getTotalLength(); ecg.style.strokeDasharray=L; ecg.style.strokeDashoffset=L;
+tl.to("#ecg",{strokeDashoffset:0,duration:1.2,ease:"power2.inOut"},18.6);
+tl.fromTo("#hl",{opacity:0,y:30},{opacity:1,y:0,duration:0.5,ease:E},19.85);
+
+/* ---------- S11 ? ---------- */
+tl.fromTo("#qm",{opacity:0,scale:.6,rotation:-12},{opacity:.9,scale:1,rotation:0,duration:0.6,ease:"back.out(1.6)"},21.0);
+tl.to("#qm",{y:-30,duration:1.0,ease:"sine.inOut"},21.6);
+
+/* ---------- S12 CTA ---------- */
+tl.fromTo(["#c_b1","#c_b2"],{y:200,opacity:0},{y:0,opacity:1,duration:0.6,ease:E,stagger:0.08},22.46);
+tl.to(["#c_b1","#c_b2"],{y:-18,duration:2.0,ease:"sine.inOut",yoyo:true,repeat:1},23.06);
+tl.fromTo("#bag",{scale:0,rotation:-20},{scale:1,rotation:0,duration:0.5,ease:"back.out(2.2)"},22.62);
+tl.fromTo("#arrow",{opacity:0,x:40,y:-40},{opacity:1,x:0,y:0,duration:0.4,ease:E},22.8);
+tl.to("#arrow",{x:-14,y:14,duration:0.25,yoyo:true,repeat:5,ease:"sine.inOut"},23.2);
+[["#rg1",22.95],["#rg2",23.25],["#rg1",23.9],["#rg2",24.2]].forEach(([id,t])=>tl.fromTo(id,{scale:.7,opacity:1},{scale:1.7,opacity:0,duration:0.7,ease:"power2.out",immediateRender:false},t));
+tl.to("#bag",{scale:.86,duration:0.08,yoyo:true,repeat:1},23.0);
+tl.fromTo("#ctab",{xPercent:-50,opacity:0,y:40,scale:.9},{xPercent:-50,opacity:1,y:0,scale:1,duration:0.45,ease:"back.out(2)"},23.6);
+tl.to("#ctab",{scale:1.06,duration:0.18,yoyo:true,repeat:1},24.05);
+tl.to("#ctab",{opacity:0,y:-30,duration:0.2},24.35);
+tl.to("#stock",{opacity:1,duration:0.3},24.45);
+tl.fromTo("#barfill",{scaleX:1},{scaleX:0.08,duration:1.5,ease:"power2.inOut"},24.55);
+const pc={v:100}; tl.to(pc,{v:8,duration:1.5,ease:"power2.inOut",onUpdate:()=>{document.getElementById("pct").textContent=Math.round(pc.v)+"%";}},24.55);
+tl.fromTo("#terhad",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:0.3,ease:"power4.out"},25.25);
+tl.to("#terhad",{opacity:.5,duration:0.15,yoyo:true,repeat:5},25.6);
+
+/* ---------- S14 end card ---------- */
+const bok=document.getElementById("bok");
+for(let i=0;i<26;i++){const d=document.createElement("div");const s=20+((i*37)%70);d.style.cssText=`position:absolute;left:${(i*173)%1080}px;top:${(i*311)%1920}px;width:${s}px;height:${s}px;border-radius:50%;background:radial-gradient(circle,rgba(243,223,174,.5),rgba(243,223,174,0) 70%)`;d.className="bk";bok.appendChild(d);
+  tl.fromTo(d,{opacity:0,y:40},{opacity:1,y:-120-(i%5)*30,duration:4,ease:"none"},26.55);}
+tl.fromTo("#logo",{opacity:0,scale:1.25,filter:"blur(12px)"},{opacity:1,scale:1,filter:"blur(0px)",duration:0.9,ease:E},26.6);
+tl.fromTo("#e_pod",{opacity:0,scaleX:.3},{opacity:1,scaleX:1,duration:0.6,ease:E},26.7);
+tl.fromTo("#e_b1",{y:240,opacity:0,rotation:-6},{y:0,opacity:1,rotation:-3,duration:0.7,ease:E},26.8);
+tl.fromTo("#e_b2",{y:240,opacity:0,rotation:6},{y:0,opacity:1,rotation:3,duration:0.7,ease:E},26.9);
+tl.to(["#e_b1","#e_b2"],{y:-14,duration:1.4,ease:"sine.inOut",yoyo:true,repeat:1},27.6);
+tl.fromTo("#e_t",{opacity:0,y:30},{opacity:1,y:0,duration:0.6,ease:E},27.3);
+tl.fromTo("#e_s",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:0.7,ease:E},27.6);
+tl.fromTo("#e_sweep",{x:0},{x:1700,duration:1.0,ease:"power2.inOut"},28.0);
+tl.to("#root",{opacity:1,duration:0.01},30.59);
+
+/* ---------- captions ---------- */
+const CAPS=[
+ [1.70,2.28,"Cuma *sesekali*"],[2.28,2.98,"balik rumah,"],[3.02,3.78,"abang bawa *hadiah*"],[3.78,4.36,"untuk isteri"],
+ [5.46,6.16,"Tak perlu tunggu"],[6.16,6.56,"dia *minta,*"],[6.58,7.34,"tak perlu tunggu"],[7.34,8.04,"hari *istimewa*"],
+ [8.04,8.60,"*Hadiahkan*"],[8.60,9.68,"Foaming Body Shower ni"],[9.68,10.68,"dengan haruman *perfume*"],[10.68,11.28,"*Bombshell*"],
+ [11.28,11.74,"ataupun"],[11.74,12.46,"*Midnight Fantasy*"],
+ [15.98,16.70,"Biar dia *tahu,*"],[16.74,17.46,"dalam kesibukan"],[17.46,18.50,"abang mencari *rezeki,*"],
+ [18.60,19.82,"abang tetap *ingat*"],[19.82,20.86,"untuk *bahagiakan* dia."],
+ [20.92,21.76,"So, abang nak hadiahkan"],[21.76,22.50,"untuk isteri abang *tak?*"],
+ [22.62,23.56,"Tekan *beg kuning* ni"],[23.66,24.42,"& *checkout* sekarang"],[24.42,25.20,"sebab stok kami"],[25.20,26.50,"*sangat-sangat* terhad."]
+];
+const capsEl=document.getElementById("caps");
+CAPS.forEach(([a,b,txt],ci)=>{
+  const c=document.createElement("div"); c.className="cap";
+  const toks=txt.match(/\*[^*]+\*|\S+/g);
+  toks.forEach(tk=>{const key=tk.startsWith("*"); const words=key?[tk.slice(1,-1)]:[tk];
+    words.forEach(w=>{const s=document.createElement("span"); s.className="w"+(key?" k":""); const i=document.createElement("span"); i.textContent=w; s.appendChild(i); c.appendChild(s); c.appendChild(document.createTextNode(" "));});});
+  const ul=document.createElement("div"); ul.className="uline"; c.appendChild(ul);
+  capsEl.appendChild(c);
+  tl.set(c,{opacity:1},a);
+  const inner=c.querySelectorAll(".w>span");
+  tl.fromTo(inner,{yPercent:105,filter:"blur(6px)"},{yPercent:0,filter:"blur(0px)",duration:0.3,ease:E,stagger:Math.min(0.06,(b-a)/inner.length/3)},a);
+  if(c.querySelector(".k")) tl.fromTo(ul,{scaleX:0},{scaleX:1,duration:0.4,ease:E},a+0.12); else ul.style.display="none";
+  tl.to(c,{opacity:0,y:-14,duration:0.1},b-0.08);
+  tl.set(c,{y:0},b+0.05);
+});
+
+[[0,0],[8.04,265],[9.68,190],[12.46,0],[22.46,110],[26.55,0]].forEach(([t,y])=>tl.set("#caps",{y:y},t));
+window.__timelines = window.__timelines || {};
+window.__timelines["root"] = tl;
+</script>
+</body>
+</html>
