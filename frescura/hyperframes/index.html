@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/fonts/fonts.css" />
+<script src="assets/gsap.min.js"></script>
+<style>
+:root{
+  --ink:#0b0907; --ink2:#15110d; --ivory:#f6efe4; --cream:#efe5d6;
+  --gold:#d9b77c; --gold2:#f3dfb2; --gold3:#a8834a;
+  --rose:#b3121f; --plum:#4b1f8f;
+  --serif:'Bodoni Moda', serif; --sans:'Outfit', sans-serif; --deco:'Italiana', serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink);font-family:var(--sans);color:var(--ivory)}
+.clip{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute}
+.center-x{left:50%;transform:translateX(-50%)}
+.serif{font-family:var(--serif)}
+.it{font-style:italic}
+.gold{color:var(--gold)}
+.goldtxt{background:linear-gradient(100deg,#b88d4f 0%,#f6e3b8 35%,#d6b06f 55%,#fff1cf 70%,#b88d4f 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.track{letter-spacing:.42em;text-transform:uppercase;font-weight:400}
+.hair{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+/* ---------- mall atmosphere ---------- */
+.mall{position:absolute;inset:0;background:
+  radial-gradient(120% 60% at 50% 30%, #3a2a1a 0%, #1a130d 45%, #0b0907 75%);}
+.mall .pillar{position:absolute;top:-10%;height:120%;width:120px;background:linear-gradient(90deg,transparent,rgba(255,226,170,.10),transparent);filter:blur(6px)}
+.mall .floor{position:absolute;left:0;right:0;bottom:0;height:46%;background:
+  linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(255,220,160,.05) 30%,rgba(0,0,0,.6) 100%),
+  repeating-linear-gradient(90deg,rgba(255,235,200,.05) 0 2px,transparent 2px 270px);}
+.bokeh{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,224,170,.55),rgba(255,210,150,.0) 70%);filter:blur(2px)}
+
+/* podium */
+.podium{position:absolute;left:50%;transform:translateX(-50%);}
+.podium .top{position:absolute;left:0;top:0;width:100%;height:110px;border-radius:50%;
+  background:radial-gradient(60% 70% at 45% 40%,#fbf6ee,#d9d0c3 60%,#b7ab9a);box-shadow:0 2px 0 rgba(255,255,255,.6) inset}
+.podium .body{position:absolute;left:0;top:55px;width:100%;height:330px;
+  background:linear-gradient(90deg,#8d8273 0%,#e9e1d5 30%,#f8f3ea 48%,#cfc4b4 72%,#7d7264 100%);border-radius:0 0 50% 50%/0 0 40px 40px}
+.podium .goldring{position:absolute;left:0;top:52px;width:100%;height:8px;background:linear-gradient(90deg,#8a6a38,#f3dfb2,#b8925a,#f3dfb2,#8a6a38)}
+.spot{position:absolute;left:50%;top:-200px;width:900px;height:1700px;transform:translateX(-50%);
+  background:radial-gradient(50% 100% at 50% 0%,rgba(255,240,210,.32),rgba(255,240,210,0) 70%);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);filter:blur(10px)}
+.reflect{position:absolute;top:0;bottom:0;width:180px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-18deg)}
+
+/* captions */
+#caps{position:absolute;left:0;right:0;top:1405px;height:300px;z-index:50;pointer-events:none}
+.cap{position:absolute;left:50%;top:0;transform:translateX(-50%);width:960px;text-align:center;opacity:0}
+.cap .pill{display:inline-block;padding:22px 40px 26px;border-radius:28px;background:rgba(12,9,7,.58);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(217,183,124,.35);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.w{display:inline-block;font-family:var(--sans);font-weight:600;font-size:66px;line-height:1.12;letter-spacing:-.01em;color:rgba(246,239,228,.42);margin:0 .13em;transform-origin:50% 80%}
+.w.acc{font-family:var(--serif);font-style:italic;font-weight:600;font-size:74px;letter-spacing:0}
+.w.on{color:#fff8ec}
+.w.acc.on{color:var(--gold2)}
+
+/* glass card */
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(243,223,178,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.chip{position:absolute;display:flex;align-items:center;gap:22px;padding:22px 34px;border-radius:999px}
+.chip .dot{width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.chip b{font-family:var(--sans);font-weight:600;font-size:40px;letter-spacing:.16em;color:#fff8ec}
+.chip small{display:block;font-family:var(--serif);font-style:italic;font-size:32px;color:var(--gold2);letter-spacing:0;margin-top:2px}
+
+#brandbar{position:absolute;top:96px;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:center;gap:26px}
+#brandbar span{font-family:var(--sans);font-size:28px;letter-spacing:.55em;color:var(--gold2);font-weight:400;padding-left:.55em}
+#brandbar i{display:block;width:90px;height:1px;background:var(--gold)}
+#frame{position:absolute;inset:40px;border:1px solid rgba(217,183,124,.28);z-index:39;border-radius:6px}
+
+#grain{position:absolute;inset:-100px;background:url(assets/noise.png);opacity:.07;mix-blend-mode:overlay;z-index:90}
+#vig{position:absolute;inset:0;z-index:89;background:radial-gradient(120% 80% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+#flash{position:absolute;inset:0;z-index:95;background:radial-gradient(circle at 50% 40%,#fff6e4,rgba(255,240,210,.0) 70%);opacity:0}
+#sweep{position:absolute;top:-20%;height:140%;width:340px;left:-500px;z-index:94;background:linear-gradient(90deg,transparent,rgba(255,236,200,.35),transparent);transform:rotate(18deg);mix-blend-mode:screen}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+
+  <audio id="mix" src="assets/mix.wav" data-start="0" data-duration="30" data-volume="1"></audio>
+
+  <!-- ===== S1 HOOK : mall atrium ===== -->
+  <div id="s1" class="clip" data-start="0" data-duration="4.9" data-track-index="1">
+    <div class="mall"><div class="floor"></div></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s1-small" class="abs center-x track gold" style="top:330px;font-size:34px;white-space:nowrap">Nak bahagiakan isteri</div>
+      <div id="s1-big" class="abs center-x serif" style="top:400px;font-size:200px;line-height:1;font-weight:500;white-space:nowrap;letter-spacing:-.02em">Tunggu</div>
+      <svg id="s1-strike" class="abs" style="left:170px;top:500px" width="740" height="40"><path d="M5 25 C 200 8, 520 34, 735 12" stroke="#d9b77c" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="760" stroke-dashoffset="760"/></svg>
+      <div id="s1-it" class="abs center-x serif it goldtxt" style="top:610px;font-size:118px;line-height:1;white-space:nowrap">hari lahir?</div>
+      <!-- calendar -->
+      <div id="cal" class="abs glass" style="left:150px;top:830px;width:360px;height:420px;border-radius:34px;overflow:hidden">
+        <div style="height:96px;background:linear-gradient(90deg,#a8834a,#f3dfb2,#a8834a);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:600;letter-spacing:.4em;font-size:34px;color:#1a120a;padding-left:.4em">NOV</div>
+        <div id="calnum" class="serif" style="position:relative;height:324px;display:flex;align-items:center;justify-content:center;font-size:220px;color:#fff8ec"><span id="cn1" class="abs">14</span><span id="cn2" class="abs" style="opacity:0">22</span><span id="cn3" class="abs it goldtxt" style="opacity:0">?</span></div>
+      </div>
+      <!-- rings -->
+      <div id="rings" class="abs glass" style="left:570px;top:830px;width:360px;height:420px;border-radius:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px">
+        <svg width="250" height="170" viewBox="0 0 250 170"><circle class="rg" cx="95" cy="95" r="62" stroke="#f3dfb2" stroke-width="9" fill="none" stroke-dasharray="400" stroke-dashoffset="400"/><circle class="rg" cx="155" cy="95" r="62" stroke="#d9b77c" stroke-width="9" fill="none" stroke-dasharray="400" stroke-dashoffset="400"/><path class="rg" d="M140 30 l15 -22 l15 22 z" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
+        <div class="track" style="font-size:26px;color:var(--gold2)">Anniversary</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S2 gift box : ivory boutique ===== -->
+  <div id="s2" class="clip" data-start="4.3" data-duration="5.5" data-track-index="1">
+    <div class="abs" style="inset:0;background:radial-gradient(90% 60% at 50% 55%,#fbf6ee 0%,#efe4d3 55%,#d8c7ad 100%)"></div>
+    <div class="abs" style="inset:0;background:repeating-linear-gradient(90deg,rgba(168,131,74,.06) 0 1px,transparent 1px 135px)"></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s2-h1" class="abs center-x serif" style="top:200px;font-size:150px;line-height:1;color:#1b140d;white-space:nowrap;font-weight:500">Hadiah kecil</div>
+      <div id="s2-h2" class="abs center-x serif it" style="top:350px;font-size:120px;line-height:1;color:#a8834a;white-space:nowrap">tanpa sebab.</div>
+      <div id="s2-rays" class="abs" style="left:540px;top:1060px;width:1400px;height:1400px;margin:-700px 0 0 -700px;border-radius:50%;opacity:0;
+        background:repeating-conic-gradient(from 0deg,rgba(255,230,180,.55) 0 4deg,rgba(255,230,180,0) 4deg 16deg);-webkit-mask:radial-gradient(circle,#000 0,#000 25%,transparent 62%);mask:radial-gradient(circle,#000 0,#000 25%,transparent 62%)"></div>
+      <div id="s2-prod" class="abs" style="left:540px;top:1240px;width:500px;margin-left:-250px;transform-origin:50% 100%">
+        <img src="assets/pair.png" style="width:500px;display:block;filter:drop-shadow(0 30px 40px rgba(60,30,10,.35))"/>
+      </div>
+      <!-- gift box -->
+      <div id="box" class="abs" style="left:540px;top:1160px;width:640px;margin-left:-320px;height:430px">
+        <div class="abs" style="inset:0;background:linear-gradient(180deg,#151110,#0a0807);border-radius:10px;box-shadow:0 40px 80px rgba(40,20,5,.45)"></div>
+        <div class="abs" style="left:290px;top:0;width:60px;height:100%;background:linear-gradient(90deg,#8a6a38,#f3dfb2,#a8834a)"></div>
+        <div class="abs track" style="left:0;right:0;top:300px;text-align:center;font-size:24px;color:var(--gold2)">Frescura Body</div>
+      </div>
+      <div id="lid" class="abs" style="left:540px;top:1100px;width:690px;margin-left:-345px;height:110px;transform-origin:10% 100%">
+        <div class="abs" style="inset:0;background:linear-gradient(180deg,#221b17,#0f0b09);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.4)"></div>
+        <div class="abs" style="left:315px;top:0;width:60px;height:100%;background:linear-gradient(90deg,#8a6a38,#f3dfb2,#a8834a)"></div>
+        <div class="abs" style="left:225px;top:-70px;width:120px;height:80px;border:16px solid #d9b77c;border-radius:60% 40% 40% 60%;transform:rotate(-18deg)"></div>
+        <div class="abs" style="left:345px;top:-70px;width:120px;height:80px;border:16px solid #d9b77c;border-radius:40% 60% 60% 40%;transform:rotate(18deg)"></div>
+      </div>
+      <svg id="smile" class="abs" style="left:290px;top:430px;width:500px;height:120px" width="600" height="160" viewBox="0 0 600 160"><path d="M30 30 Q 300 200 570 30" stroke="#a8834a" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700"/></svg>
+      <div id="s2-eq" class="abs center-x track" style="top:560px;font-size:32px;color:#6e5430;white-space:nowrap;opacity:0">= senyuman isteri</div>
+      <div id="sparks2" class="abs" style="inset:0"></div>
+    </div>
+  </div>
+
+  <!-- ===== S3 vitrine : foaming body shower ===== -->
+  <div id="s3" class="clip" data-start="9.15" data-duration="3.0" data-track-index="1">
+    <div class="mall"><div class="floor"></div></div>
+    <div class="spot"></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s3-out" class="abs center-x serif" style="top:260px;font-size:148px;line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #d9b77c;letter-spacing:.02em">FOAMING</div>
+      <div id="s3-sub" class="abs center-x track" style="top:455px;font-size:40px;white-space:nowrap;color:#fff8ec">Body Shower</div>
+      <div id="s3-stage" class="abs" style="left:0;top:0;width:1080px;height:1920px">
+        <div class="podium" style="top:1270px;width:760px"><div class="body"></div><div class="top"></div><div class="goldring"></div></div>
+        <img id="s3-pair" src="assets/pair.png" class="abs" style="left:540px;top:620px;width:470px;margin-left:-235px;filter:drop-shadow(0 30px 30px rgba(0,0,0,.6))"/>
+        <div class="reflect" id="s3-ref" style="left:-300px"></div>
+      </div>
+      <div id="arch" class="abs" style="left:560px;top:600px;width:440px;height:660px;border-radius:220px 220px 26px 26px;overflow:hidden;border:2px solid #d9b77c;box-shadow:0 30px 90px rgba(0,0,0,.6);opacity:0;background:#111">
+      </div>
+      <div id="arch-lbl" class="abs track" style="left:560px;width:440px;top:1290px;text-align:center;font-size:24px;color:var(--gold2);opacity:0">Busa terus dari pam</div>
+    </div>
+  </div>
+
+  <video id="pumpvid" src="assets/foam_pump.mp4" muted playsinline data-start="10.2" data-duration="1.4" data-track-index="2" style="position:absolute;left:562px;top:602px;width:436px;height:656px;object-fit:cover;border-radius:218px 218px 24px 24px;z-index:3"></video>
+
+  <!-- ===== S4 dua pilihan ===== -->
+  <div id="s4" class="clip" data-start="11.6" data-duration="2.9" data-track-index="1">
+    <div class="abs" style="inset:0;background:radial-gradient(100% 70% at 50% 45%,#1f1710,#0b0907 70%)"></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s4-two" class="abs center-x serif" style="top:120px;font-size:1000px;line-height:1;color:transparent;-webkit-text-stroke:3px rgba(217,183,124,.55);font-weight:400">2</div>
+      <div id="s4-lbl" class="abs center-x track" style="top:300px;font-size:38px;white-space:nowrap;color:var(--gold2)">Pilihan Perfume</div>
+      <div id="cardL" class="abs" style="left:90px;top:520px;width:430px;height:780px;border-radius:215px 215px 30px 30px;overflow:hidden;background:radial-gradient(90% 60% at 50% 40%,#c21d2b,#4b060c 80%);border:2px solid #d9b77c">
+        <img src="assets/glory.png" class="abs" style="left:50%;top:100px;height:560px;transform:translateX(-50%);filter:drop-shadow(0 20px 30px rgba(0,0,0,.5))"/>
+        <div class="abs serif it" style="left:0;right:0;bottom:46px;text-align:center;font-size:58px;color:#fff3e0">Bombshell</div>
+      </div>
+      <div id="cardR" class="abs" style="left:560px;top:520px;width:430px;height:780px;border-radius:215px 215px 30px 30px;overflow:hidden;background:radial-gradient(90% 60% at 50% 40%,#6a3bc4,#150a33 80%);border:2px solid #d9b77c">
+        <img src="assets/noche.png" class="abs" style="left:50%;top:100px;height:560px;transform:translateX(-50%);filter:drop-shadow(0 20px 30px rgba(0,0,0,.5))"/>
+        <div class="abs serif it" style="left:0;right:0;bottom:46px;text-align:center;font-size:50px;color:#fff3e0;line-height:1">Midnight<br/>Fantasy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S5 bombshell ===== -->
+  <div id="s5" class="clip" data-start="13.9" data-duration="2.1" data-track-index="1">
+    <div class="abs" style="inset:0;background:radial-gradient(80% 55% at 50% 50%,#9b0f1c 0%,#3d0509 55%,#120203 100%)"></div>
+    <div id="petals" class="abs" style="inset:0"></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s5-t" class="abs center-x serif it" style="top:200px;font-size:190px;line-height:1;white-space:nowrap;color:#fff3e0">Bombshell</div>
+      <div class="abs center-x track" style="top:420px;font-size:30px;white-space:nowrap;color:#f3dfb2">Woman Glory</div>
+      <img id="s5-b" src="assets/glory.png" class="abs" style="left:540px;margin-left:-139px;top:520px;height:860px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6))"/>
+      <div class="chip glass s5c" style="left:70px;top:900px"><span class="dot"></span><b>ROSE</b></div>
+      <div class="chip glass s5c" style="right:70px;top:1060px"><span class="dot"></span><b>SENSUAL</b></div>
+    </div>
+  </div>
+
+  <!-- ===== S6 midnight ===== -->
+  <div id="s6" class="clip" data-start="15.4" data-duration="1.5" data-track-index="1">
+    <div class="abs" style="inset:0;background:radial-gradient(90% 60% at 50% 30%,#3b2380 0%,#160c3a 50%,#06040f 100%)"></div>
+    <div class="abs" style="left:-200px;top:-100px;width:1500px;height:700px;transform:rotate(-24deg);background:radial-gradient(50% 30% at 50% 50%,rgba(200,170,255,.35),transparent 70%);filter:blur(20px)"></div>
+    <div id="stars" class="abs" style="inset:0"></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s6-t" class="abs center-x serif it" style="top:220px;font-size:132px;line-height:.95;text-align:center;white-space:nowrap;color:#fff3e0">Midnight<br/><span class="goldtxt">Fantasy</span></div>
+      <img id="s6-b" src="assets/noche.png" class="abs" style="left:540px;margin-left:-135px;top:560px;height:840px;filter:drop-shadow(0 40px 60px rgba(0,0,0,.7))"/>
+    </div>
+  </div>
+
+  <!-- ===== S7 foam montage (educational) ===== -->
+  <video id="foamvid" src="assets/foam_montage.mp4" muted playsinline data-start="16.3" data-duration="3.45" data-track-index="2" style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover"></video>
+  <div id="s7" class="clip" data-start="16.3" data-duration="3.5" data-track-index="1">
+    <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(10,7,5,.75) 0%,rgba(10,7,5,0) 30%,rgba(10,7,5,0) 60%,rgba(10,7,5,.7) 100%)"></div>
+    <div class="abs center-x track" style="top:230px;font-size:30px;color:var(--gold2);white-space:nowrap">Kenapa dia akan suka</div>
+    <div class="chip glass s7c" style="left:80px;top:320px"><span class="dot"></span><div><b>OCEAN SALT</b><small>bersih &amp; segar</small></div></div>
+    <div class="chip glass s7c" style="left:80px;top:480px"><span class="dot"></span><div><b>AROMATHERAPY</b><small>wangi menenangkan</small></div></div>
+    <div class="chip glass s7c" style="left:80px;top:640px"><span class="dot"></span><div><b>GENTLE FOAMING</b><small>busa padat &amp; lembut</small></div></div>
+  </div>
+
+  <!-- ===== S8 lifestyle ===== -->
+  <div id="s8" class="clip" data-start="19.3" data-duration="2.0" data-track-index="1">
+    <img id="s8-img" src="assets/marble.jpg" class="abs" style="left:-270px;top:-480px;width:1620px"/>
+    <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(20,14,8,.55) 0%,rgba(20,14,8,0) 35%,rgba(20,14,8,0) 65%,rgba(20,14,8,.55) 100%)"></div>
+    <div id="s8-t" class="abs center-x serif it" style="top:200px;font-size:150px;white-space:nowrap;color:#fff8ec;text-shadow:0 10px 40px rgba(0,0,0,.4)">untuk dia.</div>
+    <svg id="heart" class="abs" style="left:465px;top:380px" width="150" height="140" viewBox="0 0 150 140"><path d="M75 128 C 20 90, 5 60, 20 35 C 35 10, 65 15, 75 40 C 85 15, 115 10, 130 35 C 145 60, 130 90, 75 128 Z" stroke="#f3dfb2" stroke-width="7" fill="none" stroke-linejoin="round" stroke-dasharray="420" stroke-dashoffset="420"/></svg>
+  </div>
+
+  <!-- ===== S9 stok terhad ===== -->
+  <div id="s9" class="clip" data-start="20.7" data-duration="3.5" data-track-index="1">
+    <div class="abs" style="inset:0;background:radial-gradient(100% 70% at 50% 40%,#21170e,#0b0907 70%)"></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s9-a" class="abs center-x track gold" style="top:330px;font-size:34px;white-space:nowrap">Jangan tunggu lama-lama</div>
+      <div id="s9-b" class="abs center-x serif" style="top:420px;font-size:210px;line-height:1;white-space:nowrap;font-weight:500">Stok</div>
+      <div id="s9-c" class="abs center-x serif it goldtxt" style="top:640px;font-size:132px;line-height:1;white-space:nowrap">sangat terhad</div>
+      <div id="s9-bar" class="abs glass" style="left:140px;top:930px;width:800px;height:150px;border-radius:30px;padding:28px 34px">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:28px;letter-spacing:.3em;color:#f3dfb2"><span><i id="s9-dot" style="display:inline-block;width:16px;height:16px;border-radius:50%;background:#ff3b3b;box-shadow:0 0 16px #ff3b3b;margin-right:16px;vertical-align:middle"></i>STOK SEMASA</span><span id="s9-pct" style="font-family:var(--serif);font-size:40px;letter-spacing:0;color:#fff">100%</span></div>
+        <div style="margin-top:22px;height:22px;border-radius:11px;background:rgba(255,255,255,.12);overflow:hidden"><div id="s9-fill" style="height:100%;width:100%;border-radius:11px;background:linear-gradient(90deg,#a8834a,#f3dfb2,#d9b77c)"></div></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- ===== S10 CTA beg kuning ===== -->
+  <div id="s10" class="clip" data-start="23.6" data-duration="2.3" data-track-index="1">
+    <div class="mall"><div class="floor"></div></div>
+    <div class="cam abs" style="inset:0">
+      <div id="s10-a" class="abs center-x serif" style="top:240px;font-size:128px;line-height:1;white-space:nowrap;font-weight:500">Tekan beg</div>
+      <div id="s10-b" class="abs center-x serif it" style="top:380px;font-size:150px;line-height:1;white-space:nowrap;color:#ffc93c">kuning</div>
+      <div id="ring1" class="abs" style="left:540px;top:900px;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;border:3px solid rgba(255,201,60,.8)"></div>
+      <div id="ring2" class="abs" style="left:540px;top:900px;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;border:3px solid rgba(255,201,60,.8)"></div>
+      <div id="bagwrap" class="abs glass" style="left:540px;top:900px;width:400px;height:400px;margin:-200px 0 0 -200px;border-radius:50%;display:flex;align-items:center;justify-content:center">
+        <svg width="220" height="240" viewBox="0 0 220 240"><path d="M70 80 V60 a40 40 0 0 1 80 0 V80" stroke="#ffc93c" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M20 80 H200 L188 225 a12 12 0 0 1 -12 11 H44 a12 12 0 0 1 -12 -11 Z" fill="#ffc93c"/><path d="M75 140 q35 40 70 0" stroke="#3a2a00" stroke-width="12" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <div id="tap" class="abs" style="left:640px;top:1010px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 0 14px rgba(255,255,255,.25)"></div>
+      <div id="btn" class="abs" style="left:0;right:0;margin:0 auto;width:max-content;top:1215px;padding:30px 64px;border-radius:999px;white-space:nowrap;background:linear-gradient(100deg,#a8834a,#f3dfb2 45%,#c9a265);color:#1a120a;font-weight:700;font-size:40px;letter-spacing:.2em;box-shadow:0 20px 50px rgba(217,183,124,.35)">CHECKOUT SEKARANG →</div>
+    </div>
+  </div>
+
+  <!-- ===== S11 end card ===== -->
+  <div id="s11" class="clip" data-start="25.3" data-duration="4.7" data-track-index="1">
+    <div class="mall"><div class="floor"></div></div>
+    <div class="spot"></div>
+    <div class="cam abs" style="inset:0">
+      <img id="logo" src="assets/logo.png" class="abs" style="left:540px;top:150px;width:720px;margin-left:-360px"/>
+      <div class="podium" style="top:1330px;width:820px"><div class="body" style="height:190px"></div><div class="top"></div><div class="goldring"></div></div>
+      <img id="s11-pair" src="assets/pair.png" class="abs" style="left:540px;top:730px;width:440px;margin-left:-220px;filter:drop-shadow(0 30px 30px rgba(0,0,0,.6))"/>
+      <div class="reflect" id="s11-ref" style="left:-300px"></div>
+      <div id="s11-t" class="abs center-x serif it" style="top:1610px;font-size:56px;white-space:nowrap;color:#fff3e0">Bombshell <span class="gold">·</span> Midnight Fantasy</div>
+      <div id="s11-s" class="abs center-x track" style="top:1705px;font-size:28px;white-space:nowrap;color:var(--gold2)">Foaming Body Shower · 500ml</div>
+    </div>
+  </div>
+
+  <!-- ===== global overlays ===== -->
+  <div id="overlay" class="clip" data-start="0" data-duration="30" data-track-index="5" style="z-index:30;pointer-events:none">
+    <div id="frame"></div>
+    <div id="brandbar"><i></i><span>FRESCURA BODY</span><i></i></div>
+    <div id="caps"></div>
+    <div id="sweep"></div>
+    <div id="flash"></div>
+    <div id="vig"></div>
+    <div id="grain"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---------- deterministic rng ----------
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
+  const tl = gsap.timeline({ paused: true });
+
+  // ---------- generated decor ----------
+  $$('.mall').forEach(m => {
+    for (let i = 0; i < 6; i++) { const p = document.createElement('div'); p.className = 'pillar'; p.style.left = (i * 190 + 20) + 'px'; p.style.opacity = .5 + rnd() * .5; m.appendChild(p); }
+    for (let i = 0; i < 16; i++) { const b = document.createElement('div'); b.className = 'bokeh'; const s = 40 + rnd() * 140; Object.assign(b.style, { width: s + 'px', height: s + 'px', left: (rnd() * 1080 - s / 2) + 'px', top: (rnd() * 1100) + 'px', opacity: .25 + rnd() * .5 }); b.dataset.dx = (rnd() - .5) * 120; m.appendChild(b); }
+  });
+  const petals = $('#petals');
+  for (let i = 0; i < 22; i++) { const p = document.createElement('div'); const s = 26 + rnd() * 40; Object.assign(p.style, { position: 'absolute', width: s + 'px', height: s * .8 + 'px', left: rnd() * 1080 + 'px', top: (-100 - rnd() * 600) + 'px', borderRadius: '60% 0 60% 0', background: 'linear-gradient(135deg,#e2283a,#7a0612)', opacity: .85, filter: i % 3 ? 'none' : 'blur(3px)' }); p.className = 'petal'; p.dataset.r = rnd() * 360; p.dataset.y = 1500 + rnd() * 900; petals.appendChild(p); }
+  const stars = $('#stars');
+  for (let i = 0; i < 70; i++) { const s = document.createElement('div'); const z = 2 + rnd() * 5; Object.assign(s.style, { position: 'absolute', width: z + 'px', height: z + 'px', borderRadius: '50%', background: '#fff', left: rnd() * 1080 + 'px', top: rnd() * 1300 + 'px', boxShadow: '0 0 8px #cbb8ff' }); s.className = 'star'; stars.appendChild(s); }
+  const sp = $('#sparks2');
+  for (let i = 0; i < 26; i++) { const s = document.createElement('div'); Object.assign(s.style, { position: 'absolute', left: '540px', top: '1150px', width: '10px', height: '10px', borderRadius: '50%', background: '#f3dfb2', boxShadow: '0 0 12px #f3dfb2', opacity: 0 }); s.className = 'spk'; s.dataset.a = rnd() * Math.PI * 2; s.dataset.d = 200 + rnd() * 380; sp.appendChild(s); }
+
+  // ---------- helpers ----------
+  const camPush = (scene, t0, dur, from = 1.0, to = 1.07) => tl.fromTo(`${scene} .cam`, { scale: from }, { scale: to, duration: dur, ease: 'none' }, t0);
+  const riseIn = (el, t, d = .5, y = 60) => tl.fromTo(el, { y, opacity: 0, filter: 'blur(14px)' }, { y: 0, opacity: 1, filter: 'blur(0px)', duration: d, ease: 'expo.out' }, t);
+  const maskIn = (el, t, d = .6) => tl.fromTo(el, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: d, ease: 'power4.out' }, t);
+  const flash = (t, o = .55) => tl.fromTo('#flash', { opacity: o }, { opacity: 0, duration: .35, ease: 'power2.out' }, t);
+  const bokehDrift = (scene, t0, dur) => $$(scene + ' .bokeh').forEach(b => tl.fromTo(b, { x: 0 }, { x: +b.dataset.dx, duration: dur, ease: 'none' }, t0));
+  const sceneIn = (scene, t, kind = 'zoom') => {
+    if (kind === 'zoom') tl.fromTo(scene, { scale: 1.12, opacity: 0, filter: 'blur(18px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: .45, ease: 'expo.out' }, t);
+    if (kind === 'wipe') tl.fromTo(scene, { clipPath: 'circle(0% at 50% 50%)' }, { clipPath: 'circle(80% at 50% 50%)', duration: .55, ease: 'power3.inOut' }, t);
+    if (kind === 'up') tl.fromTo(scene, { yPercent: 100 }, { yPercent: 0, duration: .5, ease: 'expo.out' }, t);
+    if (kind === 'slide') tl.fromTo(scene, { xPercent: 100 }, { xPercent: 0, duration: .45, ease: 'expo.out' }, t);
+    if (kind === 'bars') tl.fromTo(scene, { clipPath: 'inset(50% 0 50% 0)' }, { clipPath: 'inset(0% 0 0% 0)', duration: .5, ease: 'expo.inOut' }, t);
+  };
+
+  // grain + sweeps
+  tl.fromTo('#grain', { x: 0, y: 0 }, { x: 90, y: -70, duration: 30, ease: 'steps(900)' }, 0);
+  [0.05, 9.2, 25.35].forEach(t => tl.fromTo('#sweep', { x: 0 }, { x: 2000, duration: .9, ease: 'power2.inOut' }, t));
+  tl.fromTo('#brandbar', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .8, ease: 'expo.out' }, .3);
+  tl.to('#brandbar', { opacity: 0, duration: .3 }, 25.2);
+  tl.fromTo('#frame', { opacity: 0 }, { opacity: 1, duration: 1 }, 0);
+
+  // ===== S1 =====
+  tl.fromTo('#s1', { opacity: 0 }, { opacity: 1, duration: .3 }, 0);
+  flash(0.12, .9);
+  camPush('#s1', 0, 4.35, 1.08, 1.0); bokehDrift('#s1', 0, 4.35);
+  maskIn('#s1-small', 0.2, .7);
+  tl.fromTo('#s1-big', { scale: 1.6, opacity: 0, filter: 'blur(30px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: .7, ease: 'expo.out' }, 1.75);
+  riseIn('#s1-it', 2.6, .6);
+  tl.to('#s1-it', { backgroundPosition: '100% 0', duration: 1.6, ease: 'none' }, 2.6);
+  tl.fromTo('#cal', { y: 260, opacity: 0, rotationX: -40 }, { y: 0, opacity: 1, rotationX: 0, duration: .6, ease: 'back.out(1.4)' }, 2.3);
+  tl.to('#cn1', { yPercent: -60, opacity: 0, duration: .2 }, 2.95); tl.fromTo('#cn2', { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .2 }, 2.95);
+  tl.to('#cn2', { yPercent: -60, opacity: 0, duration: .2 }, 3.3); tl.fromTo('#cn3', { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .25 }, 3.3);
+  tl.fromTo('#rings', { y: 260, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'back.out(1.4)' }, 3.2);
+  tl.to('#rings .rg', { strokeDashoffset: 0, duration: .7, stagger: .12, ease: 'power2.out' }, 3.35);
+  tl.to('#s1-strike path', { strokeDashoffset: 0, duration: .35, ease: 'power3.in' }, 3.6);
+  tl.to('#s1-big', { opacity: .45, duration: .3 }, 3.85);
+
+  // ===== S2 gift =====
+  sceneIn('#s2', 4.3, 'wipe'); camPush('#s2', 4.3, 4.9, 1.0, 1.05);
+  riseIn('#s2-h1', 4.45, .6, 80);
+  tl.fromTo('#box', { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out' }, 4.45);
+  tl.fromTo('#lid', { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out' }, 4.5);
+  tl.fromTo('#lid', { rotation: 0 }, { rotation: -6, duration: .06, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 4.8);
+  tl.to('#lid', { y: -520, x: -260, rotation: -38, opacity: 0, duration: .7, ease: 'power3.in' }, 5.1);
+  tl.fromTo('#s2-rays', { opacity: 0, scale: .4, rotation: 0 }, { opacity: 1, scale: 1, rotation: 25, duration: 1.2, ease: 'expo.out' }, 5.1);
+  tl.to('#s2-rays', { rotation: 70, duration: 3, ease: 'none' }, 6.3);
+  tl.fromTo('#s2-prod', { y: 300, scale: .5, opacity: 0 }, { y: -600, scale: 1, opacity: 1, duration: .9, ease: 'expo.out' }, 5.2);
+  tl.to('#box', { y: 520, opacity: 0, duration: .8, ease: 'power3.in' }, 5.6);
+  $$('.spk').forEach(s => { const a = +s.dataset.a, d = +s.dataset.d; tl.fromTo(s, { x: 0, y: 0, opacity: 1, scale: 1 }, { x: Math.cos(a) * d, y: Math.sin(a) * d - 300, opacity: 0, scale: .2, duration: 1.2, ease: 'expo.out' }, 5.15); });
+  riseIn('#s2-h2', 5.85, .6, 50);
+  tl.to('#s2-h1', { y: -40, duration: .5, ease: 'expo.out' }, 5.85); tl.to('#s2-h2', { y: -40, duration: .5, ease: 'expo.out' }, 6.4);
+  tl.to('#smile path', { strokeDashoffset: 0, duration: .5, ease: 'power3.out' }, 8.45);
+  tl.fromTo('#s2-eq', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .6, ease: 'expo.out' }, 8.55);
+  tl.fromTo('#s2-prod', { rotation: 0 }, { rotation: 2, duration: 1.5, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 6.2);
+
+  tl.to('#brandbar span', { color: '#5a4426', duration: .3 }, 4.3); tl.to('#brandbar span', { color: '#f3dfb2', duration: .2 }, 9.15);
+  // ===== S3 vitrine =====
+  sceneIn('#s3', 9.15, 'bars'); flash(9.15, .5); camPush('#s3', 9.15, 2.5, 1.0, 1.06); bokehDrift('#s3', 9.15, 2.5);
+  tl.fromTo('#s3-out', { opacity: 0, scale: 1.3, filter: 'blur(10px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: .8, ease: 'expo.out' }, 9.25);
+  maskIn('#s3-sub', 9.75, .6);
+  tl.fromTo('#s3-pair', { y: -120, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'bounce.out' }, 9.2);
+  tl.fromTo('#s3-ref', { x: 0 }, { x: 1700, duration: 1.1, ease: 'power2.inOut' }, 9.45);
+  tl.to('#s3-stage', { x: -230, scale: .92, duration: .6, ease: 'expo.inOut' }, 10.1);
+  tl.fromTo(['#arch', '#pumpvid'], { opacity: 0, y: 120, clipPath: 'inset(100% 0 0 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0% 0 0 0)', duration: .6, ease: 'expo.out' }, 10.2);
+  tl.fromTo('#arch-lbl', { opacity: 0 }, { opacity: 1, duration: .4 }, 10.5);
+
+  // ===== S4 dua pilihan =====
+  sceneIn('#s4', 11.6, 'slide'); camPush('#s4', 11.6, 2.35, 1.0, 1.04);
+  tl.fromTo('#s4-two', { scale: 2.2, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: 0, duration: .7, ease: 'expo.out' }, 11.65);
+  maskIn('#s4-lbl', 12.0, .6);
+  tl.fromTo('#cardL', { x: -700, rotation: -12 }, { x: 0, rotation: -3, duration: .6, ease: 'expo.out' }, 12.2);
+  tl.fromTo('#cardR', { x: 700, rotation: 12 }, { x: 0, rotation: 3, duration: .6, ease: 'expo.out' }, 12.45);
+  tl.to('#cardL', { scale: 1.06, duration: .4, ease: 'power2.out' }, 13.35);
+  tl.to('#cardR', { opacity: .55, duration: .4 }, 13.35);
+
+  // ===== S5 bombshell =====
+  sceneIn('#s5', 13.9, 'zoom'); flash(13.9, .45); camPush('#s5', 13.9, 1.55, 1.0, 1.06);
+  tl.fromTo('#s5-t', { opacity: 0, scale: 1.4, filter: 'blur(20px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: .6, ease: 'expo.out' }, 13.95);
+  tl.fromTo('#s5-b', { y: 300, rotation: -6, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: .7, ease: 'expo.out' }, 13.9);
+  tl.to('#s5-b', { y: -30, duration: .9, ease: 'sine.inOut' }, 14.6);
+  tl.fromTo('.s5c', { opacity: 0, scale: .6 }, { opacity: 1, scale: 1, duration: .4, stagger: .2, ease: 'back.out(2)' }, 14.25);
+  $$('.petal').forEach(p => tl.fromTo(p, { y: 0, rotation: 0 }, { y: +p.dataset.y, rotation: +p.dataset.r, duration: 1.8, ease: 'none' }, 13.85));
+
+  // ===== S6 midnight =====
+  sceneIn('#s6', 15.4, 'wipe'); camPush('#s6', 15.4, .95, 1.0, 1.05);
+  tl.fromTo('#s6-t', { opacity: 0, y: 40, filter: 'blur(16px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .5, ease: 'expo.out' }, 15.45);
+  tl.fromTo('#s6-b', { y: 260, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out' }, 15.4);
+  $$('.star').forEach((s, i) => tl.fromTo(s, { opacity: .2 }, { opacity: 1, duration: .15 + (i % 5) * .05, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 15.4 + (i % 7) * .03));
+
+  // ===== S7 foam =====
+  sceneIn('#s7', 16.3, 'up'); tl.fromTo('#foamvid', { yPercent: 100 }, { yPercent: 0, duration: .5, ease: 'expo.out' }, 16.3); tl.fromTo('#foamvid', { scale: 1 }, { scale: 1.08, duration: 3, ease: 'none' }, 16.3);
+  const chips = $$('.s7c');
+  chips.forEach((c, i) => tl.fromTo(c, { x: -560, opacity: 0 }, { x: 0, opacity: 1, duration: .5, ease: 'expo.out' }, 16.45 + i * 1.0));
+
+  // ===== S8 lifestyle =====
+  sceneIn('#s8', 19.3, 'zoom'); flash(19.3, .4);
+  tl.fromTo('#s8-img', { scale: 1.0, x: 0, y: 0 }, { scale: 1.12, x: -40, y: -60, duration: 1.45, ease: 'none' }, 19.3);
+  riseIn('#s8-t', 19.45, .6);
+  tl.to('#heart path', { strokeDashoffset: 0, duration: .6, ease: 'power2.out' }, 19.9);
+  tl.fromTo('#heart', { scale: .6 }, { scale: 1, duration: .5, ease: 'back.out(3)' }, 19.9);
+
+  // ===== S9 stok =====
+  sceneIn('#s9', 20.7, 'bars'); camPush('#s9', 20.7, 2.95, 1.0, 1.05);
+  maskIn('#s9-a', 20.75, .6);
+  tl.fromTo('#s9-b', { scale: 1.6, opacity: 0, filter: 'blur(24px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: .55, ease: 'expo.out' }, 22.2);
+  riseIn('#s9-c', 22.75, .5);
+  tl.to('#s9-c', { backgroundPosition: '100% 0', duration: 1, ease: 'none' }, 22.75);
+  tl.fromTo('#s9-bar', { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' }, 20.95);
+  const pct = { v: 100 };
+  tl.to(pct, { v: 7, duration: 2.1, ease: 'power2.in', onUpdate: () => { $('#s9-pct').textContent = Math.round(pct.v) + '%'; } }, 21.2);
+  tl.to('#s9-fill', { width: '7%', duration: 2.1, ease: 'power2.in' }, 21.2);
+  tl.to('#s9-fill', { background: 'linear-gradient(90deg,#ff3b3b,#ff8a5b)', duration: .6 }, 22.4);
+  tl.fromTo('#s9-dot', { opacity: 1 }, { opacity: .15, duration: .18, yoyo: true, repeat: 11 }, 21.0);
+  tl.fromTo('#s9-bar', { x: 0 }, { x: 10, duration: .05, yoyo: true, repeat: 7, ease: 'none' }, 22.3);
+
+  // ===== S10 CTA =====
+  sceneIn('#s10', 23.6, 'zoom'); flash(23.6, .5); camPush('#s10', 23.6, 1.75, 1.0, 1.05);
+  riseIn('#s10-a', 23.62, .45);
+  tl.fromTo('#s10-b', { scale: 1.8, opacity: 0 }, { scale: 1, opacity: 1, duration: .45, ease: 'back.out(2)' }, 23.8);
+  tl.fromTo('#bagwrap', { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: .28, ease: 'back.out(2)' }, 23.65);
+  tl.fromTo('#tap', { x: 160, y: 200, opacity: 0, scale: 1 }, { x: 0, y: 0, opacity: 1, duration: .3, ease: 'power3.out' }, 23.7);
+  tl.to('#tap', { scale: .7, duration: .08, yoyo: true, repeat: 1 }, 23.95);
+  tl.to('#bagwrap', { scale: .9, duration: .08, yoyo: true, repeat: 1 }, 23.95);
+  [['#ring1', 23.97], ['#ring2', 24.2]].forEach(([r, t]) => tl.fromTo(r, { scale: 1, opacity: .9 }, { scale: 1.8, opacity: 0, duration: .7, ease: 'expo.out' }, t));
+  tl.to('#tap', { x: -40, y: 260, duration: .35, ease: 'power3.inOut' }, 24.2);
+  tl.fromTo('#btn', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: .4, ease: 'expo.out' }, 24.15);
+  tl.to('#tap', { scale: .7, duration: .08, yoyo: true, repeat: 1 }, 24.58);
+  tl.to('#btn', { scale: .92, duration: .08, yoyo: true, repeat: 1 }, 24.58);
+  tl.fromTo('#btn', { backgroundPosition: '0 0' }, { boxShadow: '0 0 80px rgba(243,223,178,.9)', duration: .3 }, 24.62);
+
+  // ===== S11 end =====
+  sceneIn('#s11', 25.3, 'zoom'); flash(25.3, .9); camPush('#s11', 25.3, 4.7, 1.06, 1.0); bokehDrift('#s11', 25.3, 4.7);
+  tl.fromTo('#logo', { opacity: 0, scale: .85, filter: 'blur(12px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.0, ease: 'expo.out' }, 25.45);
+  tl.fromTo('#s11-pair', { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: .9, ease: 'expo.out' }, 25.4);
+  tl.fromTo('#s11-ref', { x: 0 }, { x: 1700, duration: 1.4, ease: 'power2.inOut' }, 26.3);
+  riseIn('#s11-t', 26.0, .7); maskIn('#s11-s', 26.4, .8);
+  tl.to('#root', { opacity: 1, duration: .01 }, 29.99);
+
+  // ---------- captions ----------
+  const O = 0.6;
+  const G = [
+    [['Kata',0],['nak',.28],['bahagiakan',.52],['isteri',1.04,1]],
+    [['kena',1.44],['tunggu',1.70,1],['hari',2.06],['lahir?',2.32]],
+    [['ataupun',2.64],['anniversary?',3.00,1]],
+    [['Kadang-kadang',3.68],['hadiah',4.38,1],['kecil',4.70]],
+    [['tanpa',5.26,1],['sebab',5.96,1],['pun,',6.32]],
+    [['boleh',6.62],['buat',6.86],['hati',7.06],['seorang',7.32],['isteri',7.58,1]],
+    [['tersenyum.',7.92,1]],
+    [['Abang',8.56],['boleh',8.84],['hadiahkan',9.06]],
+    [['foaming',9.74,1],['body',10.14],['shower',10.38],['ini',10.62]],
+    [['dan',10.96],['ada',11.42],['dua',11.74,1],['pilihan',12.24],['perfume',12.88]],
+    [['iaitu',13.30],['Bombshell',13.76,1]],
+    [['dan',14.46],['Midnight',14.80,1],['Fantasy',15.04,1]],
+    [['Bayangkan',15.50],['senyuman',16.26,1],['isteri',16.68]],
+    [['bila',17.10],['abang',17.30],['sendiri',17.86,1]],
+    [['yang',18.32],['hadiahkan',18.88],['untuk',19.50],['dia.',19.74,1]],
+    [['So,',20.08],['jangan',20.34],['tunggu',20.58],['lama-lama!',20.82,1]],
+    [['Stok',21.68],['kami',21.74],['sangat-sangat',22.04],['terhad!',22.68,1]],
+    [['Tekan',23.16],['beg',23.28],['kuning',23.40,1]],
+    [['&',23.62],['checkout',23.92],['sekarang!',24.22,1]],
+  ];
+  const caps = $('#caps');
+  G.forEach((g, gi) => {
+    const box = document.createElement('div'); box.className = 'cap'; const pill = document.createElement('div'); pill.className = 'pill'; box.appendChild(pill); caps.appendChild(box);
+    const t0 = g[0][1] + O, t1 = (gi < G.length - 1 ? G[gi + 1][0][1] : 24.95 - O + .35) + O - 0.02;
+    g.forEach(([w, t, acc]) => { const s = document.createElement('span'); s.className = 'w' + (acc ? ' acc' : ''); s.textContent = w; pill.appendChild(s);
+      tl.fromTo(s, { y: 14, opacity: .38, scale: .94 }, { y: 0, opacity: 1, scale: 1, duration: .22, ease: 'back.out(2.2)' }, t + O - .04);
+      tl.to(s, { color: acc ? '#f3dfb2' : '#fff8ec', duration: .08 }, t + O);
+      if (acc) tl.fromTo(s, { scale: 1.18 }, { scale: 1, duration: .3, ease: 'expo.out' }, t + O);
+    });
+    tl.fromTo(box, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .18, ease: 'expo.out' }, t0 - .05);
+    tl.to(box, { opacity: 0, y: -16, duration: .12 }, t1 - .1);
+  });
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines['main'] = tl;
+})();
+</script>
+</body>
+</html>
