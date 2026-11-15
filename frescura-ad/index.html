@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <style>
+      :root {
+        --ground: #0b0907;
+        --ink: #f6efe4;
+        --muted: rgba(246, 239, 228, 0.62);
+        --gold: #d9bb88;
+        --gold-hi: #f3dfb6;
+        --gold-lo: #9a7a4b;
+        --rose: #b3243a;
+        --violet: #7b5cd6;
+        --yellow: #ffcf3a;
+        --serif: "Bodoni Moda", serif;
+        --sans: "Jost", sans-serif;
+        --deco: "Italiana", serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--sans); color: var(--ink); background: var(--ground); }
+      .stage { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .abs { position: absolute; }
+      .center-x { left: 50%; transform: translateX(-50%); }
+      .full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .kicker { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); }
+      .serif-i { font-family: var(--serif); font-style: italic; font-weight: 500; }
+      .serif { font-family: var(--serif); font-weight: 500; }
+      .deco { font-family: var(--deco); font-weight: 400; }
+      .hair { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+      .vignette { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 45%, transparent 35%, rgba(5,4,3,0.85) 100%); }
+      .shade-b { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,6,5,0.55) 0%, rgba(8,6,5,0) 28%, rgba(8,6,5,0) 52%, rgba(8,6,5,0.92) 100%); }
+
+      /* ---------- persistent chrome ---------- */
+      #frame { position: absolute; inset: 34px; border: 1.5px solid rgba(217,187,136,0.38); pointer-events: none; z-index: 50; }
+      #frame i { position: absolute; width: 26px; height: 26px; border-color: var(--gold); border-style: solid; }
+      #frame i:nth-child(1) { left: -2px; top: -2px; border-width: 3px 0 0 3px; }
+      #frame i:nth-child(2) { right: -2px; top: -2px; border-width: 3px 3px 0 0; }
+      #frame i:nth-child(3) { left: -2px; bottom: -2px; border-width: 0 0 3px 3px; }
+      #frame i:nth-child(4) { right: -2px; bottom: -2px; border-width: 0 3px 3px 0; }
+      #topbar { position: absolute; left: 70px; right: 70px; top: 70px; display: flex; justify-content: space-between; align-items: center; z-index: 51; font-size: 28px; letter-spacing: 0.34em; color: rgba(246,239,228,0.9); text-shadow: 0 2px 12px rgba(0,0,0,0.7); font-weight: 500; }
+      #topbar b { color: var(--gold); font-weight: 600; }
+      #chap { font-family: var(--serif); font-style: italic; letter-spacing: 0.06em; font-size: 30px; color: var(--gold-hi); }
+      #progress { position: absolute; left: 70px; top: 116px; height: 2px; width: 940px; background: rgba(246,239,228,0.14); z-index: 51; }
+      #progress div { height: 100%; width: 100%; background: var(--gold); transform-origin: 0 50%; transform: scaleX(0); }
+      #grain { position: absolute; left: -60px; top: -60px; width: 1200px; height: 2040px; z-index: 60; opacity: 0.10; mix-blend-mode: overlay; pointer-events: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+      #wipe { position: absolute; left: -400px; top: -400px; width: 700px; height: 2800px; z-index: 45; transform: rotate(18deg) translateX(-900px);
+        background: linear-gradient(90deg, transparent 0%, rgba(243,223,182,0.0) 10%, rgba(243,223,182,0.85) 48%, #fff7e6 50%, rgba(243,223,182,0.85) 52%, rgba(243,223,182,0) 90%, transparent 100%); mix-blend-mode: screen; filter: blur(6px); }
+
+      /* ---------- captions ---------- */
+      #captions { position: absolute; left: 80px; right: 80px; top: 1200px; height: 210px; z-index: 40; display: flex; align-items: center; justify-content: center; }
+      .cap { position: absolute; left: 0; right: 0; text-align: center; font-family: var(--sans); font-weight: 600; font-size: 74px; line-height: 1.08; letter-spacing: 0.01em; color: var(--ink); opacity: 0;
+        text-shadow: 0 4px 28px rgba(0,0,0,0.75), 0 1px 2px rgba(0,0,0,0.6); }
+      .cap .w { display: inline-block; margin: 0 0.2em; transition: none; }
+      .cap .w.k { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--gold-hi); letter-spacing: 0; }
+      .cap .w.on { color: var(--gold); }
+
+      /* ---------- hook ---------- */
+      #hook { background: radial-gradient(70% 45% at 50% 42%, #2a1f14 0%, #0b0907 70%); }
+      #hook .burst { position: absolute; left: 50%; top: 40%; width: 1400px; height: 1400px; margin: -700px 0 0 -700px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,240,210,0.95) 0%, rgba(217,187,136,0.45) 18%, rgba(217,187,136,0) 55%); }
+      #hook .l1 { position: absolute; left: 0; right: 0; top: 560px; text-align: center; font-size: 250px; line-height: 1; color: var(--gold-hi); }
+      #hook .l2 { position: absolute; left: 0; right: 0; top: 860px; text-align: center; font-size: 96px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+      #hook .l2 span { display: inline-block; }
+      #hook .l3 { position: absolute; left: 0; right: 0; top: 1040px; text-align: center; }
+      #hook .ring { position: absolute; left: 50%; top: 780px; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; border: 2px solid rgba(217,187,136,0.5); }
+
+      /* ---------- s1 clock ---------- */
+      #s1 { background: radial-gradient(80% 50% at 50% 38%, #1d1711 0%, #0b0907 72%); }
+      #clock { position: absolute; left: 220px; top: 310px; width: 640px; height: 640px; }
+      #s1 .digi { position: absolute; left: 0; right: 0; top: 975px; text-align: center; font-family: var(--serif); font-size: 140px; font-weight: 500; color: var(--ink); letter-spacing: 0.02em; }
+      #s1 .digi span { position: absolute; left: 0; right: 0; opacity: 0; }
+      #s1 .tag { position: absolute; left: 0; right: 0; top: 250px; text-align: center; }
+
+      /* ---------- s2 checklist ---------- */
+      #s2 { background: linear-gradient(180deg, #14100c 0%, #0b0907 100%); }
+      #s2 .title { position: absolute; left: 140px; top: 300px; font-size: 110px; line-height: 1.02; color: var(--ink); }
+      #s2 .title em { color: var(--gold-hi); }
+      .row { position: absolute; left: 140px; width: 800px; height: 130px; display: flex; align-items: center; gap: 40px; border-bottom: 1.5px solid rgba(217,187,136,0.28); }
+      .row .n { font-family: var(--serif); font-style: italic; font-size: 40px; color: var(--gold); width: 64px; }
+      .row .t { font-size: 62px; font-weight: 500; flex: 1; letter-spacing: 0.01em; }
+      .row svg { width: 84px; height: 84px; }
+
+      /* ---------- s3 energy ---------- */
+      #s3 { background: radial-gradient(90% 60% at 50% 45%, #1a120f 0%, #0b0907 75%); }
+      .meter { position: absolute; top: 340px; width: 300px; height: 640px; border: 2px solid rgba(246,239,228,0.4); border-radius: 46px; padding: 16px; }
+      .meter .cap-top { position: absolute; left: 50%; top: -34px; width: 110px; height: 22px; margin-left: -55px; border-radius: 10px 10px 0 0; background: rgba(246,239,228,0.4); }
+      .meter .fill { position: absolute; left: 16px; right: 16px; bottom: 16px; height: 604px; border-radius: 30px; transform-origin: 50% 100%;
+        background: linear-gradient(0deg, var(--rose) 0%, #e06a4c 30%, var(--gold) 70%, var(--gold-hi) 100%); }
+      .meter .lbl { position: absolute; left: -40px; right: -40px; top: 670px; text-align: center; font-size: 44px; letter-spacing: 0.3em; font-weight: 600; }
+      .meter .pct { position: absolute; left: -60px; right: -60px; top: 240px; text-align: center; font-family: var(--serif); font-size: 110px; font-weight: 600; text-shadow: 0 6px 30px rgba(0,0,0,0.6); }
+      .meter .pct span { position: absolute; left: 0; right: 0; opacity: 0; }
+
+      /* ---------- s4 me time ---------- */
+      #s4 .bg { transform-origin: 50% 60%; }
+      .beam { position: absolute; top: -300px; width: 360px; height: 2600px; mix-blend-mode: screen; filter: blur(18px);
+        background: linear-gradient(90deg, transparent, rgba(255,236,200,0.36), transparent); transform-origin: 50% 0; }
+      #s4 .t1 { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-size: 56px; font-weight: 500; letter-spacing: 0.06em; text-shadow: 0 4px 30px rgba(0,0,0,0.7); }
+      #s4 .t2 { position: absolute; left: 0; right: 0; top: 380px; text-align: center; font-size: 200px; line-height: 1; color: var(--gold-hi); text-shadow: 0 8px 50px rgba(0,0,0,0.55); }
+      #s4 .t2 span { display: inline-block; }
+      #s4 .ul { position: absolute; left: 290px; width: 500px; top: 610px; height: 3px; background: var(--gold); transform-origin: 0 50%; }
+
+      /* ---------- s5 foam arch ---------- */
+      #s5 { background: radial-gradient(80% 55% at 50% 40%, #241a12 0%, #0b0907 75%); }
+      .arch { position: absolute; left: 170px; top: 320px; width: 740px; height: 840px; border-radius: 370px 370px 28px 28px; overflow: hidden; }
+      .arch video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .arch-line { position: absolute; left: 154px; top: 304px; width: 772px; height: 872px; border-radius: 386px 386px 36px 36px; border: 2px solid rgba(217,187,136,0.75); }
+      #s5 .lab { position: absolute; left: 0; right: 0; top: 245px; text-align: center; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 22px; padding: 22px 34px; border-radius: 999px; background: rgba(12,10,8,0.62); border: 1.5px solid rgba(217,187,136,0.6);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); font-size: 36px; font-weight: 500; letter-spacing: 0.02em; color: var(--ink); white-space: nowrap; }
+      .chip b { font-family: var(--serif); font-style: italic; color: var(--gold-hi); font-size: 40px; font-weight: 600; }
+      .bokeh { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(243,223,182,0.55), rgba(243,223,182,0) 70%); }
+
+      /* ---------- s6 boutique ---------- */
+      #s6 { background: linear-gradient(180deg, #120e0b 0%, #1a140f 52%, #0d0a08 53%, #070605 100%); }
+      .spot { position: absolute; top: -80px; width: 640px; height: 1300px; mix-blend-mode: screen; transform-origin: 50% 0;
+        background: radial-gradient(60% 100% at 50% 0%, rgba(255,240,214,0.55) 0%, rgba(255,240,214,0.16) 45%, rgba(255,240,214,0) 75%);
+        clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%); filter: blur(10px); }
+      .podium { position: absolute; top: 900px; width: 380px; height: 200px; }
+      .podium .top { position: absolute; left: 0; top: 0; width: 380px; height: 84px; border-radius: 50%; background: radial-gradient(70% 70% at 50% 40%, #fbf3e6, #cfc3b2 70%, #a99b87); }
+      .podium .body { position: absolute; left: 0; top: 42px; width: 380px; height: 158px; border-radius: 0 0 50% 50% / 0 0 45px 45px; background: linear-gradient(90deg, #8f8374, #e9e0d3 35%, #f8f1e6 50%, #cfc3b2 70%, #7d7264); }
+      .prod { position: absolute; transform-origin: 50% 100%; }
+      .prod img { display: block; width: 100%; filter: drop-shadow(0 30px 40px rgba(0,0,0,0.55)); }
+      .refl { position: absolute; transform: scaleY(-1); opacity: 0.22; -webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0.8), transparent 40%); mask-image: linear-gradient(0deg, rgba(0,0,0,0.8), transparent 40%); }
+      .refl img { display: block; width: 100%; }
+      .pname { position: absolute; top: 1120px; width: 500px; text-align: center; }
+      .pname .a { font-size: 25px; letter-spacing: 0.4em; color: var(--muted); font-weight: 500; text-transform: uppercase; }
+      .pname .b { font-size: 76px; line-height: 1.05; margin-top: 10px; }
+      #s6 .head { position: absolute; left: 0; right: 0; top: 240px; text-align: center; }
+      #s6 .head .h { font-size: 64px; margin-top: 12px; }
+
+      /* ---------- s7 gift + benefits ---------- */
+      #s7 .h { position: absolute; left: 0; right: 0; top: 290px; text-align: center; font-size: 130px; line-height: 1.0; color: var(--ink); text-shadow: 0 6px 40px rgba(0,0,0,0.65); }
+      #s7 .h em { color: var(--gold-hi); }
+      .ben { position: absolute; left: 130px; width: 820px; padding: 28px 36px; display: flex; gap: 30px; align-items: baseline; background: rgba(11,9,7,0.66);
+        border-left: 4px solid var(--gold); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+      .ben .n { font-family: var(--serif); font-style: italic; font-size: 56px; color: var(--gold); width: 80px; }
+      .ben .t { font-size: 48px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      .ben .d { font-size: 34px; color: var(--muted); margin-top: 6px; letter-spacing: 0.02em; font-weight: 400; }
+
+      /* ---------- s8 yellow bag ---------- */
+      #s8 { background: radial-gradient(70% 45% at 50% 42%, #2a2210 0%, #0b0907 72%); }
+      .grid { position: absolute; inset: 0; opacity: 0.18;
+        background-image: linear-gradient(rgba(217,187,136,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(217,187,136,0.5) 1px, transparent 1px); background-size: 90px 90px; }
+      #bagbtn { position: absolute; left: 340px; top: 450px; width: 400px; height: 400px; border-radius: 110px; background: linear-gradient(160deg, #ffe17a 0%, var(--yellow) 45%, #f0a800 100%);
+        box-shadow: 0 40px 90px rgba(255,190,30,0.35), inset 0 -10px 30px rgba(160,90,0,0.35), inset 0 8px 20px rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; }
+      #bagbtn svg { width: 230px; height: 230px; }
+      .ripple { position: absolute; left: 540px; top: 650px; width: 400px; height: 400px; margin: -200px 0 0 -200px; border-radius: 50%; border: 4px solid var(--yellow); opacity: 0; }
+      #finger { position: absolute; left: 600px; top: 740px; width: 150px; height: 150px; border-radius: 50%; background: rgba(255,255,255,0.85); box-shadow: 0 0 0 14px rgba(255,255,255,0.25); }
+      #s8 .t { position: absolute; left: 0; right: 0; top: 250px; text-align: center; }
+      #s8 .t .h { font-size: 104px; line-height: 1; }
+      #s8 .t .h em { color: var(--yellow); }
+      #stock { position: absolute; left: 170px; width: 720px; top: 930px; }
+      #stock .row1 { display: flex; justify-content: space-between; align-items: center; font-size: 34px; letter-spacing: 0.24em; font-weight: 600; }
+      #stock .dot { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: #ff3b4e; margin-right: 18px; box-shadow: 0 0 22px #ff3b4e; }
+      #stock .bar { margin-top: 22px; height: 26px; border-radius: 13px; background: rgba(246,239,228,0.14); overflow: hidden; }
+      #stock .bar div { height: 100%; width: 100%; transform-origin: 0 50%; background: linear-gradient(90deg, #ff3b4e, #ff8a3d 50%, var(--yellow)); border-radius: 13px; }
+      #stock .pcts { position: relative; height: 50px; margin-top: 14px; font-family: var(--serif); font-style: italic; font-size: 42px; color: var(--gold-hi); }
+      #stock .pcts span { position: absolute; right: 0; opacity: 0; }
+
+      /* ---------- s9 checkout ---------- */
+      #s9 { background: radial-gradient(80% 50% at 50% 40%, #1e1711 0%, #0b0907 72%); }
+      .card { position: absolute; left: 170px; top: 390px; width: 740px; height: 770px; border-radius: 56px; background: linear-gradient(170deg, rgba(246,239,228,0.10), rgba(246,239,228,0.03));
+        border: 1.5px solid rgba(217,187,136,0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 50px 120px rgba(0,0,0,0.55); }
+      .card .thumbs { position: absolute; left: 0; right: 0; top: 40px; height: 380px; display: flex; justify-content: center; align-items: flex-end; gap: 10px; }
+      .card .thumbs img { height: 360px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); }
+      .card .nm { position: absolute; left: 50px; right: 50px; top: 440px; text-align: center; }
+      .card .nm .a { font-size: 26px; letter-spacing: 0.4em; color: var(--gold); font-weight: 500; }
+      .card .nm .b { font-size: 58px; margin-top: 10px; }
+      .card .cta { position: absolute; left: 70px; right: 70px; top: 610px; height: 120px; border-radius: 60px; background: var(--yellow); color: #1b1407; display: flex; align-items: center; justify-content: center;
+        font-size: 46px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; overflow: hidden; }
+      .card .cta span { position: absolute; }
+      .card .cta .ok { opacity: 0; color: #1b1407; }
+      #s9 .big { position: absolute; left: 0; right: 0; top: 245px; text-align: center; font-size: 110px; color: var(--gold-hi); line-height: 1; }
+
+      /* ---------- s10 end ---------- */
+      #s10a .h { position: absolute; left: 0; right: 0; top: 270px; text-align: center; font-size: 168px; line-height: 0.98; text-shadow: 0 8px 50px rgba(0,0,0,0.6); }
+      #s10a .h em { color: var(--gold-hi); }
+      #s10b { background: radial-gradient(70% 45% at 50% 40%, #16202a 0%, #07090c 55%, #050505 100%); }
+      #s10b .logo { position: absolute; left: 220px; top: 270px; width: 640px; height: 640px; mix-blend-mode: screen; }
+      #s10b .floor { position: absolute; left: 0; right: 0; top: 1180px; height: 740px; background: linear-gradient(180deg, rgba(120,170,220,0.12), rgba(0,0,0,0) 60%); }
+      #s10b .ctapill { position: absolute; left: 190px; width: 700px; top: 1110px; height: 120px; border-radius: 60px; background: var(--yellow); color: #1b1407; display: flex; align-items: center; justify-content: center; gap: 22px;
+        font-size: 40px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; box-shadow: 0 20px 60px rgba(255,200,40,0.35); }
+      #s10b .ctapill svg { width: 56px; height: 56px; }
+      #s10b .sub { position: absolute; left: 0; right: 0; top: 960px; text-align: center; font-size: 30px; letter-spacing: 0.5em; color: rgba(160,220,255,0.9); font-weight: 500; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="33" data-width="1080" data-height="1920">
+
+      <!-- ===== AUDIO (pre-mixed: studio voice + music + SFX) ===== -->
+      <audio id="mix" class="clip" src="assets/audio/mix.wav" data-start="0" data-duration="33" data-volume="1"></audio>
+
+      <!-- ===== HOOK 0 - 1.45 ===== -->
+      <div id="hook" class="clip" data-start="0" data-duration="1.5">
+        <div class="burst"></div>
+        <div class="ring"></div>
+        <div class="l1 serif-i" id="hk1">Isteri</div>
+        <div class="l2" id="hk2"><span>a</span><span>b</span><span>a</span><span>n</span><span>g</span><span>&nbsp;</span><span>p</span><span>e</span><span>n</span><span>a</span><span>t</span><span>?</span></div>
+        <div class="l3"><span class="kicker" id="hk3">Hadiah untuk dia</span></div>
+      </div>
+
+      <!-- ===== S1 clock 1.45 - 3.0 ===== -->
+      <div id="s1" class="clip" data-start="1.45" data-duration="1.6">
+        <div class="tag"><span class="kicker">Sehari bekerja</span></div>
+        <svg id="clock" viewBox="0 0 700 700">
+          <circle cx="350" cy="350" r="330" fill="none" stroke="rgba(217,187,136,0.25)" stroke-width="2" />
+          <circle id="clockArc" cx="350" cy="350" r="330" fill="none" stroke="#d9bb88" stroke-width="5" stroke-dasharray="2073" stroke-dashoffset="2073" transform="rotate(-90 350 350)" stroke-linecap="round" />
+          <g id="ticks"></g>
+          <line id="hHand" x1="350" y1="350" x2="350" y2="170" stroke="#f6efe4" stroke-width="12" stroke-linecap="round" />
+          <line id="mHand" x1="350" y1="350" x2="350" y2="80" stroke="#d9bb88" stroke-width="6" stroke-linecap="round" />
+          <circle cx="350" cy="350" r="18" fill="#d9bb88" />
+        </svg>
+        <div class="digi"><span>08:00</span><span>10:30</span><span>13:00</span><span>15:30</span><span>18:00</span></div>
+      </div>
+
+      <!-- ===== S2 checklist 3.0 - 5.65 ===== -->
+      <div id="s2" class="clip" data-start="3" data-duration="2.7">
+        <div class="kicker abs" style="left:142px;top:250px">Seharian isteri</div>
+        <div class="title serif">Di rumah,<br /><em class="serif-i">tanpa henti.</em></div>
+        <div class="row" style="top:580px"><span class="n">01</span><span class="t">Masak</span><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="38" fill="none" stroke="#d9bb88" stroke-width="3"/><circle class="dotf" cx="42" cy="42" r="34" fill="#d9bb88" transform="scale(0)" transform-origin="42 42"/><path class="chk" d="M24 43 L37 56 L61 30" fill="none" stroke="#0b0907" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60"/></svg></div>
+        <div class="row" style="top:715px"><span class="n">02</span><span class="t">Kemas rumah</span><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="38" fill="none" stroke="#d9bb88" stroke-width="3"/><circle class="dotf" cx="42" cy="42" r="34" fill="#d9bb88" transform="scale(0)" transform-origin="42 42"/><path class="chk" d="M24 43 L37 56 L61 30" fill="none" stroke="#0b0907" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60"/></svg></div>
+        <div class="row" style="top:850px"><span class="n">03</span><span class="t">Jaga anak-anak</span><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="38" fill="none" stroke="#d9bb88" stroke-width="3"/><circle class="dotf" cx="42" cy="42" r="34" fill="#d9bb88" transform="scale(0)" transform-origin="42 42"/><path class="chk" d="M24 43 L37 56 L61 30" fill="none" stroke="#0b0907" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60"/></svg></div>
+        <div class="row" style="top:985px"><span class="n">04</span><span class="t">Basuh &amp; lipat</span><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="38" fill="none" stroke="#d9bb88" stroke-width="3"/><circle class="dotf" cx="42" cy="42" r="34" fill="#d9bb88" transform="scale(0)" transform-origin="42 42"/><path class="chk" d="M24 43 L37 56 L61 30" fill="none" stroke="#0b0907" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60"/></svg></div>
+      </div>
+
+      <!-- ===== S3 energy 5.65 - 7.4 ===== -->
+      <div id="s3" class="clip" data-start="5.65" data-duration="1.8">
+        <div class="kicker abs center-x" style="top:250px;white-space:nowrap">Tahap tenaga</div>
+        <div class="meter" style="left:150px"><div class="cap-top"></div><div class="fill" id="f1"></div><div class="pct"><span>100%</span><span>64%</span><span>31%</span><span>18%</span></div><div class="lbl">ABANG</div></div>
+        <div class="meter" style="left:630px"><div class="cap-top"></div><div class="fill" id="f2"></div><div class="pct"><span>100%</span><span>58%</span><span>26%</span><span>9%</span></div><div class="lbl">ISTERI</div></div>
+      </div>
+
+      <!-- ===== S4 me time 7.4 - 11.3 ===== -->
+      <div id="s4" class="clip" data-start="7.4" data-duration="3.95">
+        <img class="full bg" id="s4bg" src="assets/img/marble.jpg" alt="" />
+        <div class="vignette"></div>
+        <div class="shade-b"></div>
+        <div class="abs" style="left:0;right:0;top:0;height:760px;background:linear-gradient(180deg,rgba(8,6,5,0.85),rgba(8,6,5,0.55) 70%,transparent)"></div>
+        <div class="beam" id="bm1" style="left:180px"></div>
+        <div class="beam" id="bm2" style="left:620px"></div>
+        <div class="t1" id="s4t1">Dia juga perlukan masa</div>
+        <div class="t2 deco" id="s4t2"><span>M</span><span>e</span><span>&nbsp;</span><span>T</span><span>i</span><span>m</span><span>e</span></div>
+        <div class="ul" id="s4ul"></div>
+      </div>
+
+      <!-- ===== S5 foam 11.3 - 14.75 ===== -->
+      <div id="s5" class="stage" style="opacity:0">
+        <div id="s5bokeh"></div>
+        <div class="lab"><span class="kicker">Foaming body wash</span></div>
+        <div class="arch" id="arch">
+          <video id="vA" class="clip" src="assets/video/pumpA.mp4" muted playsinline data-start="11.3" data-duration="1.75" data-media-start="0.2"></video>
+          <video id="vB" class="clip" src="assets/video/pumpB.mp4" muted playsinline data-start="13.05" data-duration="1.75" data-media-start="0.4"></video>
+        </div>
+        <div class="arch-line" id="archLine"></div>
+        <div class="chip" id="s5chip" style="left:175px;top:1085px"><b>01</b>Buih terus dari pam, tanpa span</div>
+      </div>
+
+      <!-- ===== S6 boutique 14.75 - 17.6 ===== -->
+      <div id="s6" class="clip" data-start="14.75" data-duration="2.9">
+        <div class="head"><div class="kicker">Dua haruman perfume</div><div class="h serif-i">Pilih rasanya</div></div>
+        <div class="spot" id="sp1" style="left:-40px"></div>
+        <div class="spot" id="sp2" style="left:480px"></div>
+        <div class="podium" style="left:75px"><div class="body"></div><div class="top"></div></div>
+        <div class="podium" style="left:625px"><div class="body"></div><div class="top"></div></div>
+        <div class="prod" id="pR" style="left:170px;top:287px;width:190px"><img src="assets/img/red_cut.png" alt="" /></div>
+        <div class="prod" id="pN" style="left:705px;top:274px;width:220px"><img src="assets/img/noche_cut.png" alt="" /></div>
+        <div class="pname" id="nR" style="left:15px"><div class="a">Woman Glory</div><div class="b serif-i" style="color:#ff7a8a">Bombshell</div></div>
+        <div class="pname" id="nN" style="left:565px"><div class="a">Noche</div><div class="b serif-i" style="color:#b9a2ff">Midnight<br />Fantasy</div></div>
+      </div>
+
+      <!-- ===== S7 gift 17.6 - 21.4 ===== -->
+      <div id="s7" class="stage" style="opacity:0">
+        <video id="vC" class="full clip" src="assets/video/pumpC.mp4" muted playsinline data-start="17.6" data-duration="1.75" data-media-start="0.3"></video>
+        <img class="full" id="s7img" src="assets/img/flatlay2.jpg" alt="" style="opacity:0" />
+        <div class="shade-b"></div>
+        <div class="h serif" id="s7h">Hadiah kecil,<br /><em class="serif-i">makna besar.</em></div>
+        <div class="ben" id="b1" style="top:560px"><span class="n">01</span><div><div class="t">Aromatherapy</div><div class="d">Wangian yang menenangkan</div></div></div>
+        <div class="ben" id="b2" style="top:745px"><span class="n">02</span><div><div class="t">Ocean Salt</div><div class="d">Rasa segar &amp; bersih</div></div></div>
+        <div class="ben" id="b3" style="top:930px"><span class="n">03</span><div><div class="t">Gentle Foaming</div><div class="d">Buih lembut pada kulit</div></div></div>
+      </div>
+
+      <!-- ===== S8 yellow bag 21.4 - 24.65 ===== -->
+      <div id="s8" class="clip" data-start="21.4" data-duration="3.3">
+        <div class="grid"></div>
+        <div class="t"><div class="kicker">Langkah 01</div><div class="h serif" style="margin-top:16px">Tekan <em class="serif-i">beg kuning</em></div></div>
+        <div class="ripple" id="rp1"></div><div class="ripple" id="rp2"></div>
+        <div id="bagbtn"><svg viewBox="0 0 100 100"><path d="M22 36 h56 l-5 46 a6 6 0 0 1 -6 5 h-34 a6 6 0 0 1 -6 -5 z" fill="#1b1407"/><path d="M36 38 v-8 a14 14 0 0 1 28 0 v8" fill="none" stroke="#1b1407" stroke-width="6" stroke-linecap="round"/></svg></div>
+        <div id="finger"></div>
+        <div id="stock">
+          <div class="row1"><span><i class="dot" id="sdot"></i>STOK TERHAD</span><span class="serif-i" style="letter-spacing:0;font-weight:500;color:var(--gold-hi)">hampir habis</span></div>
+          <div class="bar"><div id="sbar"></div></div>
+          <div class="pcts"><span>100%</span><span>60%</span><span>34%</span><span>12%</span></div>
+        </div>
+      </div>
+
+      <!-- ===== S9 checkout 24.65 - 27.35 ===== -->
+      <div id="s9" class="clip" data-start="24.65" data-duration="2.75">
+        <div class="big serif-i" id="s9big">sebelum habis</div>
+        <div class="card" id="card">
+          <div class="thumbs"><img src="assets/img/red_cut.png" alt="" /><img src="assets/img/noche_cut.png" alt="" /></div>
+          <div class="nm"><div class="a">FRESCURA BODY</div><div class="b serif">Foaming Body Wash</div></div>
+          <div class="cta" id="cta"><span class="go">Checkout</span><span class="ok">✓ Berjaya</span></div>
+        </div>
+      </div>
+
+      <!-- ===== S10a flatlay 27.35 - 29.9 ===== -->
+      <div id="s10a" class="clip" data-start="27.35" data-duration="2.6">
+        <img class="full" id="s10img" src="assets/img/flatlay1.jpg" alt="" />
+        <div class="shade-b"></div>
+        <div class="h serif" id="s10h">Demi<br /><em class="serif-i">bidadari</em><br />kita.</div>
+      </div>
+
+      <!-- ===== S10b end card 29.9 - 33 ===== -->
+      <div id="s10b" class="clip" data-start="29.9" data-duration="3.1">
+        <img class="logo" id="logo" src="assets/img/logo.jpg" alt="Frescura Body" />
+        <div class="floor"></div>
+        <div class="prod" id="eR" style="left:80px;top:700px;width:150px"><img src="assets/img/red_cut.png" alt="" /></div>
+        <div class="prod" id="eN" style="left:845px;top:710px;width:165px"><img src="assets/img/noche_cut.png" alt="" /></div>
+        <div class="sub" id="esub">FOAMING BODY WASH</div>
+        <div class="ctapill" id="epill"><svg viewBox="0 0 100 100"><path d="M22 36 h56 l-5 46 a6 6 0 0 1 -6 5 h-34 a6 6 0 0 1 -6 -5 z" fill="#1b1407"/><path d="M36 38 v-8 a14 14 0 0 1 28 0 v8" fill="none" stroke="#1b1407" stroke-width="6" stroke-linecap="round"/></svg>Tekan beg kuning</div>
+      </div>
+
+      <!-- ===== persistent chrome ===== -->
+      <div id="wipe"></div>
+      <div id="captions"></div>
+      <div id="frame"><i></i><i></i><i></i><i></i></div>
+      <div id="topbar" data-layout-allow-safe-zone><span><b>FRESCURA</b> BODY</span><span id="chap">N° 01</span></div>
+      <div id="progress"><div id="prog"></div></div>
+      <div id="grain"></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const D = 33;
+      const q = (s) => document.querySelector(s);
+      const qa = (s) => Array.from(document.querySelectorAll(s));
+      // deterministic PRNG
+      let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+
+      /* ---------- chrome ---------- */
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: D, ease: "none" }, 0);
+      tl.to("#grain", { x: -50, y: 40, duration: 0.0667, ease: "steps(1)", repeat: 494, yoyo: true }, 0);
+      const chapters = [[0, "N° 01"], [3.0, "N° 02"], [5.65, "N° 03"], [7.4, "N° 04"], [11.3, "N° 05"], [14.75, "N° 06"], [17.6, "N° 07"], [21.4, "N° 08"], [24.65, "N° 09"], [27.35, "N° 10"]];
+      chapters.forEach(([t, s]) => tl.set("#chap", { textContent: s }, t));
+      // light wipes on big transitions
+      [7.3, 14.65, 21.3, 29.8].forEach((t) => tl.fromTo("#wipe", { x: -900 }, { x: 1900, duration: 0.42, ease: "power2.inOut" }, t));
+
+      tl.set("#s5", { opacity: 1 }, 11.3); tl.set("#s5", { opacity: 0 }, 14.8);
+      tl.set("#s7", { opacity: 1 }, 17.6); tl.set("#s7", { opacity: 0 }, 21.45);
+      tl.to("#captions", { autoAlpha: 0, duration: 0.15 }, 14.72); tl.to("#captions", { autoAlpha: 1, duration: 0.15 }, 17.62); tl.to("#captions", { autoAlpha: 0, duration: 0.2 }, 28.4);
+      /* ---------- HOOK ---------- */
+      tl.fromTo("#hook .burst", { scale: 0.2, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.9, ease: "expo.out" }, 0);
+      tl.fromTo("#hook .ring", { scale: 0.3, opacity: 0.9 }, { scale: 1.25, opacity: 0, duration: 1.2, ease: "expo.out" }, 0.05);
+      tl.fromTo("#hk1", { opacity: 0, scale: 1.35, filter: "blur(24px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0.02);
+      tl.fromTo("#hk2 span", { opacity: 0, y: 60, rotationX: -80 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.4, stagger: 0.025, ease: "back.out(2)" }, 0.22);
+      tl.fromTo("#hk3", { opacity: 0, scaleX: 1.4 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "power3.out" }, 0.55);
+      tl.to(["#hk1", "#hk2", "#hk3"], { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 1.22);
+
+      /* ---------- S1 clock ---------- */
+      const tg = q("#ticks");
+      for (let i = 0; i < 60; i++) {
+        const a = (i / 60) * Math.PI * 2, r1 = i % 5 ? 300 : 280, r2 = 315;
+        const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l.setAttribute("x1", 350 + r1 * Math.sin(a)); l.setAttribute("y1", 350 - r1 * Math.cos(a));
+        l.setAttribute("x2", 350 + r2 * Math.sin(a)); l.setAttribute("y2", 350 - r2 * Math.cos(a));
+        l.setAttribute("stroke", i % 5 ? "rgba(246,239,228,0.35)" : "#d9bb88"); l.setAttribute("stroke-width", i % 5 ? 2 : 5);
+        tg.appendChild(l);
+      }
+      tl.fromTo("#clock", { scale: 0.6, opacity: 0, rotation: -20 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.45, ease: "expo.out", transformOrigin: "50% 50%" }, 1.45);
+      tl.fromTo("#clockArc", { strokeDashoffset: 2073 }, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 1.5);
+      tl.fromTo("#hHand", { rotation: 240 }, { rotation: 540, duration: 1.45, ease: "power2.inOut", svgOrigin: "350 350" }, 1.5);
+      tl.fromTo("#mHand", { rotation: 0 }, { rotation: 3600, duration: 1.45, ease: "power2.inOut", svgOrigin: "350 350" }, 1.5);
+      qa("#s1 .digi span").forEach((el, i, arr) => {
+        const t = 1.5 + i * 0.3;
+        tl.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.12 }, t);
+        if (i < arr.length - 1) tl.to(el, { opacity: 0, y: -30, duration: 0.12 }, t + 0.28);
+      });
+      tl.fromTo("#s1 .tag", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4 }, 1.5);
+      tl.to("#s1 > *", { opacity: 0, scale: 0.92, duration: 0.2, ease: "power2.in" }, 2.85);
+
+      /* ---------- S2 checklist ---------- */
+      tl.fromTo("#s2 .title", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 3.0);
+      tl.fromTo("#s2 .kicker", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 3.05);
+      const rowT = [3.25, 3.75, 4.3, 4.9];
+      qa("#s2 .row").forEach((r, i) => {
+        tl.fromTo(r, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, rowT[i] - 0.15);
+        tl.fromTo(r.querySelector(".dotf"), { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(3)", svgOrigin: "42 42" }, rowT[i] + 0.15);
+        tl.fromTo(r.querySelector(".chk"), { strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 0.22, ease: "power2.out" }, rowT[i] + 0.25);
+      });
+      tl.to("#s2 > *", { opacity: 0, y: -40, duration: 0.2, stagger: 0.02, ease: "power2.in" }, 5.45);
+
+      /* ---------- S3 meters ---------- */
+      tl.fromTo("#s3 .meter", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: "expo.out" }, 5.65);
+      tl.fromTo("#s3 .kicker", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.7);
+      tl.fromTo("#f1", { scaleY: 1 }, { scaleY: 0.18, duration: 1.2, ease: "power2.inOut" }, 5.9);
+      tl.fromTo("#f2", { scaleY: 1 }, { scaleY: 0.09, duration: 1.3, ease: "power2.inOut" }, 5.95);
+      ["#s3 .meter:nth-of-type(2) .pct span", "#s3 .meter:nth-of-type(3) .pct span"].forEach((sel) => {
+        qa(sel).forEach((el, i, arr) => {
+          const t = 5.75 + i * 0.38;
+          tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.06 }, t);
+          if (i < arr.length - 1) tl.to(el, { opacity: 0, duration: 0.06 }, t + 0.36);
+        });
+      });
+      tl.to("#s3 .fill", { opacity: 0.35, duration: 0.12, repeat: 3, yoyo: true }, 7.0);
+
+      /* ---------- S4 me time ---------- */
+      tl.fromTo("#s4bg", { scale: 1.25, filter: "brightness(0.35) blur(10px)" }, { scale: 1.05, filter: "brightness(0.8) blur(0px)", duration: 1.2, ease: "expo.out" }, 7.4);
+      tl.to("#s4bg", { scale: 1.0, duration: 2.75, ease: "none" }, 8.6);
+      tl.fromTo("#bm1", { rotation: -28, opacity: 0 }, { rotation: 12, opacity: 1, duration: 3.6, ease: "sine.inOut" }, 7.5);
+      tl.fromTo("#bm2", { rotation: 26, opacity: 0 }, { rotation: -14, opacity: 0.8, duration: 3.6, ease: "sine.inOut" }, 7.6);
+      tl.fromTo("#s4t1", { opacity: 0, y: 30, scaleX: 1.25 }, { opacity: 1, y: 0, scaleX: 1, duration: 0.7, ease: "expo.out" }, 8.3);
+      tl.fromTo("#s4t2 span", { opacity: 0, y: 80, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, stagger: 0.05, ease: "expo.out" }, 9.6);
+      tl.fromTo("#s4ul", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.inOut" }, 10.0);
+      tl.to(["#s4t1", "#s4t2", "#s4ul"], { opacity: 0, y: -30, duration: 0.25 }, 11.08);
+
+      /* ---------- S5 foam ---------- */
+      const bk = q("#s5bokeh");
+      for (let i = 0; i < 18; i++) {
+        const d = document.createElement("div"); d.className = "bokeh"; const s = 60 + rnd() * 180;
+        Object.assign(d.style, { width: s + "px", height: s + "px", left: rnd() * 1080 - 60 + "px", top: rnd() * 1920 - 60 + "px", opacity: 0.2 + rnd() * 0.5 });
+        bk.appendChild(d);
+        tl.fromTo(d, { y: 40 }, { y: -160 - rnd() * 200, duration: 3.5, ease: "none" }, 11.3);
+      }
+      tl.fromTo("#arch", { clipPath: "inset(100% 0% 0% 0%)", scale: 1.08 }, { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.65, ease: "expo.out" }, 11.3);
+      tl.fromTo("#archLine", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 11.4);
+      tl.fromTo("#s5 .lab", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5 }, 11.5);
+      tl.fromTo("#vA", { scale: 1.12 }, { scale: 1.0, duration: 1.75, ease: "none" }, 11.3);
+      tl.fromTo("#vB", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "none" }, 13.05); tl.fromTo("#vB", { scale: 1.0 }, { scale: 1.1, duration: 1.75, ease: "none" }, 13.05);
+      tl.fromTo("#s5chip", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, 12.3);
+      tl.to("#s5 > *:not(#s5bokeh)", { opacity: 0, duration: 0.2 }, 14.6);
+
+      /* ---------- S6 boutique ---------- */
+      tl.fromTo("#s6 .head", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 14.8);
+      tl.fromTo("#s6 .podium", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "expo.out" }, 14.75);
+      tl.fromTo("#sp1", { opacity: 0, rotation: -14 }, { opacity: 1, rotation: -6, duration: 0.6, ease: "power2.out" }, 15.6);
+      tl.fromTo("#pR", { opacity: 0, y: 260, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "expo.out" }, 15.55);
+      tl.fromTo("#nR", { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 15.95);
+      tl.fromTo("#sp2", { opacity: 0, rotation: 14 }, { opacity: 1, rotation: 6, duration: 0.6, ease: "power2.out" }, 16.5);
+      tl.fromTo("#pN", { opacity: 0, y: 260, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "expo.out" }, 16.45);
+      tl.fromTo("#nN", { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 16.8);
+      tl.to("#pR", { y: -14, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 16.3);
+      tl.to("#pN", { y: -14, duration: 0.9, ease: "sine.inOut" }, 17.2);
+
+      /* ---------- S7 gift ---------- */
+      tl.fromTo("#vC", { scale: 1.15 }, { scale: 1.0, duration: 1.8, ease: "none" }, 17.6);
+      tl.fromTo("#s7h", { opacity: 0, y: 40, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 17.75);
+      tl.fromTo("#s7img", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1.05, duration: 0.5, ease: "power2.out" }, 19.3);
+      tl.to("#s7img", { scale: 1.0, filter: "brightness(0.72)", duration: 1.6, ease: "none" }, 19.8);
+      tl.to("#s7h", { y: -40, scale: 0.78, opacity: 0.0, duration: 0.3 }, 19.25);
+      ["#b1", "#b2", "#b3"].forEach((b, i) => tl.fromTo(b, { opacity: 0, x: 140, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "expo.out" }, 19.45 + i * 0.4));
+      tl.to(["#b1", "#b2", "#b3"], { opacity: 0, x: -60, duration: 0.2, stagger: 0.04 }, 21.15);
+
+      /* ---------- S8 yellow bag ---------- */
+      tl.fromTo("#s8 .t", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 21.4);
+      tl.fromTo("#bagbtn", { scale: 0, rotation: -25 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.2)" }, 21.4);
+      tl.fromTo("#finger", { opacity: 0, x: 160, y: 200 }, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power3.out" }, 21.55);
+      tl.to("#finger", { scale: 0.8, duration: 0.07, yoyo: true, repeat: 1 }, 21.86);
+      tl.to("#bagbtn", { scale: 0.9, duration: 0.07, yoyo: true, repeat: 1 }, 21.86);
+      tl.fromTo("#rp1", { scale: 0.9, opacity: 0.9 }, { scale: 2.2, opacity: 0, duration: 0.7, ease: "expo.out" }, 21.88);
+      tl.fromTo("#rp2", { scale: 0.9, opacity: 0.7 }, { scale: 2.8, opacity: 0, duration: 0.9, ease: "expo.out" }, 22.0);
+      tl.to("#finger", { opacity: 0, duration: 0.2 }, 22.3);
+      tl.fromTo("#stock", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 22.85);
+      tl.fromTo("#sbar", { scaleX: 1 }, { scaleX: 0.12, duration: 1.3, ease: "power3.inOut" }, 23.2);
+      qa("#stock .pcts span").forEach((el, i, arr) => {
+        const t = 22.9 + i * 0.42;
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.05 }, t);
+        if (i < arr.length - 1) tl.to(el, { opacity: 0, duration: 0.05 }, t + 0.4);
+      });
+      tl.to("#sdot", { opacity: 0.15, duration: 0.15, yoyo: true, repeat: 7 }, 23.0);
+      tl.to("#bagbtn", { scale: 1.08, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut" }, 23.7);
+
+      /* ---------- S9 checkout ---------- */
+      tl.fromTo("#card", { opacity: 0, y: 160, rotationX: 25, scale: 0.9 }, { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 24.65);
+      tl.fromTo("#s9big", { opacity: 0, y: -30, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 25.9);
+      tl.to("#cta", { scale: 0.93, duration: 0.08, yoyo: true, repeat: 1 }, 25.66);
+      tl.to("#cta .go", { y: -90, opacity: 0, duration: 0.2, ease: "power2.in" }, 25.72);
+      tl.fromTo("#cta .ok", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 25.82);
+      tl.to("#cta", { backgroundColor: "#d9bb88", duration: 0.3 }, 25.8);
+      tl.to("#card", { y: -12, duration: 0.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 25.9);
+
+      /* ---------- S10 ---------- */
+      tl.fromTo("#s10img", { scale: 1.25, filter: "brightness(0.5)" }, { scale: 1.05, filter: "brightness(0.85)", duration: 2.6, ease: "power2.out" }, 27.35);
+      tl.fromTo("#s10h", { opacity: 0, y: 40, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 28.45);
+      tl.fromTo("#logo", { opacity: 0, scale: 0.7, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.9, ease: "expo.out" }, 29.95);
+      tl.to("#logo", { scale: 1.05, duration: 2.1, ease: "none" }, 30.85);
+      tl.fromTo("#eR", { opacity: 0, x: -120, rotation: -8 }, { opacity: 1, x: 0, rotation: -4, duration: 0.7, ease: "expo.out" }, 30.3);
+      tl.fromTo("#eN", { opacity: 0, x: 120, rotation: 8 }, { opacity: 1, x: 0, rotation: 4, duration: 0.7, ease: "expo.out" }, 30.38);
+      tl.fromTo("#esub", { opacity: 0, scaleX: 1.4 }, { opacity: 1, scaleX: 1, duration: 0.8, ease: "power3.out" }, 30.6);
+      tl.fromTo("#epill", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 30.5);
+      tl.to("#epill", { scale: 1.06, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 31.2);
+
+      /* ---------- captions (studio voice, +1.0s offset) ---------- */
+      const OFF = 1.0;
+      const W = [
+        ["Keluar",0,.6],["bekerja",.6,1],["mencari",1,1.36],["rezeki.",1.36,1.76,1],
+        ["Isteri",2.06,2.2,1],["pula",2.2,2.5],["mungkin",2.5,2.82],["seharian",2.82,3.2,1],["menguruskan",3.2,3.66],["rumah",3.66,3.86],["dan",3.86,4.1],["anak-anak.",4.1,4.54,1],
+        ["Masing-masing",4.78,5.22],["ada",5.22,5.6],["penat",5.6,5.86,1],["sendiri.",5.86,6.32],
+        ["Tapi",6.46,6.6],["jangan",6.6,6.82],["lupa,",6.82,7.18],["isteri",7.38,7.54],["juga",7.54,7.8],["perlukan",7.8,8.1],["masa",8.1,8.4,1],["untuk",8.4,8.78],["manjakan",8.78,9.46,1],["dirinya,",9.46,9.86],["abang.",9.86,10.22],
+        ["Apa",10.38,10.52],["kata",10.52,10.7],["abang",10.7,11.04],["hadiahkan",11.04,12.02,1],["mandian",12.02,12.64],["foaming",12.64,13,1],["body",13,13.3],["wash",13.3,13.52],["ni?",13.52,13.7],
+        ["Ada",13.78,13.96],["haruman",13.96,14.56],["perfume",14.72,14.94],["Bombshell",14.94,15.54,1],["dan",15.54,15.8],["Midnight",15.8,16.06,1],["Fantasy.",16.06,16.54,1],
+        ["Hadiah",16.8,17.08,1],["kecil",17.08,17.4],["ini",17.4,17.68],["sebagai",17.68,17.96],["tanda",17.96,18.26],["abang",18.26,18.54],["menghargai",18.54,19.22,1],["segala",19.22,19.66],["pengorbanannya.",19.66,20.38],
+        ["So",20.6,20.68],["abang",20.68,20.86],["tekan",20.86,21.12],["beg",21.12,21.26,1],["kuning",21.26,21.42,1],["sekarang",21.42,21.9],["sebab",21.9,22.26],["stok",22.26,22.48],["kami",22.48,22.72],["sangat-sangat",22.72,23.24,1],["terhad.",23.24,23.6,1],
+        ["Tekan",23.74,23.88],["beg",23.88,24.02,1],["kuning",24.02,24.2,1],["dan",24.2,24.44],["terus",24.44,24.68],["checkout",24.68,25.1,1],["sebelum",25.1,25.72],["habis.",25.72,26.18,1],
+        ["Demi",26.42,26.56],["kita",26.56,26.76],["menjaga",26.76,27.24],["dan",27.24,27.54],["menyayangi",27.54,28.12,1],["bidadari",28.12,28.58,1],["kita.",28.58,28.82]
+      ];
+      // group into chunks: max 3 words / 20 chars, break after punctuation
+      const chunks = []; let cur = [];
+      W.forEach((w, i) => {
+        const len = cur.map((x) => x[0]).join(" ").length + w[0].length;
+        if (cur.length && (cur.length >= 3 || len > 20)) { chunks.push(cur); cur = []; }
+        cur.push(w);
+        if (/[.,?]$/.test(w[0])) { chunks.push(cur); cur = []; }
+      });
+      if (cur.length) chunks.push(cur);
+      const capBox = q("#captions");
+      chunks.forEach((c, ci) => {
+        const el = document.createElement("div"); el.className = "cap";
+        c.forEach((w) => { const s = document.createElement("span"); s.className = "w" + (w[3] ? " k" : ""); s.textContent = w[0]; el.appendChild(s); });
+        capBox.appendChild(el);
+        const t0 = c[0][1] + OFF - 0.04;
+        const next = chunks[ci + 1];
+        const t1 = next ? Math.min(next[0][1] + OFF - 0.04, c[c.length - 1][2] + OFF + 0.5) : c[c.length - 1][2] + OFF + 0.4;
+        tl.fromTo(el, { opacity: 0, y: 34, scale: 0.96, filter: "blur(8px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, t0);
+        tl.to(el, { opacity: 0, y: -18, duration: 0.08, ease: "power1.in" }, Math.max(t0 + 0.2, t1 - 0.08));
+        el.querySelectorAll(".w").forEach((s, wi) => {
+          const w = c[wi];
+          tl.fromTo(s, { scale: 1 }, { scale: 1.12, duration: 0.08, ease: "power2.out" }, w[1] + OFF);
+          tl.to(s, { scale: 1, duration: 0.12, ease: "power2.inOut" }, w[1] + OFF + 0.1);
+          if (!w[3]) { tl.set(s, { color: "#d9bb88" }, w[1] + OFF); tl.set(s, { color: "#f6efe4" }, w[2] + OFF); }
+        });
+      });
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
